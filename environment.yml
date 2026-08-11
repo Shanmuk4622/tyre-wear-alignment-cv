@@ -1,0 +1,86 @@
+name: cv_conda
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+
+  # --- core scientific stack ---
+  - numpy=1.26
+  - scipy
+  - pandas
+  - pyarrow            # parquet metadata
+  - scikit-learn       # isotonic regression, metrics, conformal
+  - scikit-image       # morphology, stitching helpers
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pyyaml
+  - rich               # nice console output for qc.py
+
+  # --- vision ---
+  - opencv=4.10
+  - pillow
+  - imageio
+  - imageio-ffmpeg
+  - zarr               # tiled storage for large unrolled maps
+  - numcodecs
+
+  # --- deep learning (GPU) ---
+  # For CPU-only machines, drop pytorch-cuda and use the cpuonly package.
+  - pytorch=2.4
+  - torchvision
+  - pytorch-cuda=12.1
+  - lightning          # optional; the Kaggle notebook uses raw PyTorch DDP
+
+  # --- dev ---
+  - jupyterlab
+  - ipywidgets
+  - pytest
+  - black
+  - ruff
+  - pre-commit
+
+  - pip
+  - pip:
+      # --- models ---
+      - timm>=1.0.9                 # ConvNeXt-V2, EfficientNetV2 backbones
+      - ultralytics>=8.3.0          # YOLO11 seg/det
+      - transformers>=4.44          # SegFormer
+      - segmentation-models-pytorch # U-Net variants
+      - anomalib>=1.1               # PatchCore / PaDiM for damage anomaly detection
+
+      # --- hub / data ---
+      - huggingface_hub>=0.25
+      - datasets>=3.0
+      - kaggle>=1.6.17
+      - safetensors
+
+      # --- geometry / calibration ---
+      - opencv-contrib-python-headless>=4.10   # ChArUco, extra calib
+      - pupil-apriltags                        # optional fiducials
+      - transforms3d
+
+      # --- metrics / stats ---
+      - torchmetrics>=1.4
+      - mapie>=0.9                  # conformal prediction
+      - statsmodels                 # Bland-Altman, bootstrap helpers
+
+      # --- experiment tracking ---
+      - wandb                       # optional; metrics.jsonl on HF is the source of truth
+      - tensorboard
+
+      # --- export / deploy ---
+      - onnx>=1.16
+      - onnxruntime-gpu
+      - onnxsim
+
+      # --- demo ---
+      - gradio>=4.44
+
+      # --- annotation helpers ---
+      - labelme
+      - pycocotools

@@ -1,0 +1,50 @@
+# credentials — never commit
+kaggle.json
+.env
+*.token
+hf_token*
+
+# data
+data/
+datasets/
+raw/
+processed/
+synthetic/
+*.zarr/
+*.npy
+*.npz
+*.mp4
+*.avi
+
+# model artefacts
+runs/
+checkpoints/
+ckpt_local/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.tflite
+*.safetensors
+
+# but keep small calibration outputs
+!calib/*.yaml
+!calib/*.json
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# blender
+*.blend1
+*.blend2
+
+# os
+.DS_Store
+Thumbs.db
+desktop.ini

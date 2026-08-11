@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+title: >-
+  GRIP: Joint Tyre-Wear and Wheel-Alignment Estimation from a
+  Single Rolling Pass over a Ground-Embedded Optical Sensor
+message: >-
+  If you use this software or the GRIP-Roll dataset, please cite it
+  using the metadata from this file.
+type: software
+authors:
+  - given-names: Shanmukesh
+    email: shanmukeshbonal4622@gmail.com
+repository-code: 'https://github.com/Shanmuk4622/tyre-wear-alignment-cv'
+abstract: >-
+  GRIP (Ground-level Rolling Inspection Pipeline) estimates tyre tread
+  depth, wear-pattern class, and wheel alignment angles from a single
+  pass of a vehicle over a ground-embedded optical sensor. A camera
+  below a glass plate images the tyre contact patch, which is
+  instantaneously stationary under the rolling-without-slip constraint
+  and therefore free of motion blur at any vehicle speed. Frustrated
+  total internal reflection through the plate yields a contact-pressure
+  footprint whose asymmetry encodes camber and toe. A line laser
+  supervises tread-depth regression at training time only, so inference
+  is RGB-only. Wear and alignment are coupled by a physics-consistency
+  loss derived from the brush tyre model, which additionally enables a
+  diagnostic distinguishing recent from chronic misalignment.
+keywords:
+  - computer-vision
+  - tyre-inspection
+  - tire-wear
+  - wheel-alignment
+  - vehicle-safety
+  - frustrated-total-internal-reflection
+  - physics-informed-machine-learning
+  - deep-learning
+license: MIT
+version: 0.1.0
+date-released: '2026-08-09'
