@@ -1,6 +1,8 @@
 MIT License
 
-Copyright (c) 2026 Shanmukesh
+Copyright (c) 2026 Bonala Shanmukesh, Gunnamneni Nehru,
+                   GV Manu Rohith, Nettem Harish Kumar
+                   (SCOPE, VIT-AP University)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +28,19 @@ NOTE ON SCOPE
 
 This MIT license covers the SOURCE CODE and DOCUMENTATION in this repository.
 
-The GRIP-Roll dataset is released separately under CC BY-NC 4.0 at
-https://huggingface.co/datasets/Shanmuk4622/grip-roll and is NOT covered by
-this license.
+The tyrevision-front dataset is released separately under CC BY-NC 4.0 at
+https://huggingface.co/datasets/Shanmuk4622/tyrevision-front and is NOT
+covered by this license.
 
 SAFETY DISCLAIMER
 
-This software is a research prototype for screening purposes only. It is not a
-certified measurement instrument and must not be used as the sole basis for
-determining vehicle roadworthiness. Tread depth and wheel alignment affect
-vehicle safety; always verify with calibrated equipment and a qualified
-technician.
+This software is a research prototype for SCREENING purposes only. It is not a
+certified measurement instrument.
+
+Specifically, it does NOT provide certified tread depth in millimetres, and it
+does NOT provide total axle toe, thrust angle, caster, or four-wheel alignment.
+Alignment outputs are single-wheel screening estimates with uncertainty.
+
+Tread depth and wheel alignment affect vehicle safety. Always verify with a
+calibrated tread-depth gauge and a professional wheel-alignment machine before
+making any decision about a vehicle's roadworthiness.

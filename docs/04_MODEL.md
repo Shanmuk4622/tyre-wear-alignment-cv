@@ -1,318 +1,402 @@
 # 04 — Model Architecture
 
-> Design principle: **geometry where geometry works, learning where it doesn't.** End-to-end regression from raw video to alignment angles is the obvious approach and it is the wrong one — it wastes the strong analytic structure this problem hands you for free, needs 10× the data, and is indefensible in a viva.
+> Design principle: **geometry where geometry works, learning where it doesn't.** Detailed wear recognition and alignment estimation use different evidence and must not share one black box.
 
 ---
 
-## 1. System overview
+## 0. Pipeline
 
 ```
-video pass (N frames × 3 illumination channels)
-        │
-        ▼
-┌───────────────────────────────────────────────────────┐
-│ STAGE A — PERCEPTION (per frame)                      │
-│  A1  tyre + footprint segmentation   (YOLO11-seg)     │
-│  A2  laser line extraction (sub-pixel Gaussian peak)  │
-│  A3  groove / rib / sipe / TWI segmentation (UNet)    │
-│  A4  sidewall silhouette extraction                   │
-└───────────────┬───────────────────────────────────────┘
-                ▼
-┌───────────────────────────────────────────────────────┐
-│ STAGE B — RECONSTRUCTION (per pass)                   │
-│  B1  rolling-speed estimation from tread feature flow │
-│  B2  unroll + stitch → metric tread map (θ × w)       │
-│  B3  laser depth profile → sparse metric depth        │
-│  B4  travel-direction fit from footprint centroid track│
-└───────────────┬───────────────────────────────────────┘
-                ▼
-        ┌───────┴────────┐
-        ▼                ▼
-┌──────────────┐  ┌─────────────────────────────────────┐
-│ STAGE C      │  │ STAGE D — GEOMETRY                  │
-│ TREAD        │  │  D1 analytic estimators E1,E2,E3    │
-│  C1 depth    │  │     → (τ̂₀, γ̂₀) + covariances       │
-│  C2 ranking  │  │  D2 learned residual on E-features  │
-│  C3 pattern  │  │     → Δτ, Δγ                        │
-│  C4 damage   │  │  D3 τ̂ = τ̂₀+Δτ,  γ̂ = γ̂₀+Δγ         │
-└──────┬───────┘  └────────────┬────────────────────────┘
-       └──────────┬────────────┘
-                  ▼
-┌───────────────────────────────────────────────────────┐
-│ STAGE E — FUSION                                      │
-│  physics-consistency loss (train)                     │
-│  agreement/disagreement diagnosis (inference)         │
-│  conformal intervals                                  │
-│  → REPORT                                             │
-└───────────────────────────────────────────────────────┘
+video (RGB + photometric normals + polarised channels)
+    │
+ ┌──▼─────────────────────────────────────────────────────┐
+ │ MODEL 0 · frame-quality gate         MobileNetV3-Small │
+ │   focus · exposure · glare/wet · occlusion · coverage  │
+ └──┬─────────────────────────────────────────────────────┘
+    │ accepted frames only
+ ┌──▼─────────────────────────────────────────────────────┐
+ │ ROI  ·  fixed calibrated crop  (YOLO11n-seg fallback)  │
+ └──┬─────────────────────────────────────────────────────┘
+ ┌──▼─────────────────────────────────────────────────────┐
+ │ MODEL 1 · SegFormer-B2   two-pass, tiled               │
+ │   tyre · tread · shoulders · grooves · ribs            │
+ │   sipes · TWI · damage        (class probabilities)    │
+ └──┬─────────────────────────────────────────────────────┘
+    ├──────────────────────────┬─────────────────────────┐
+ ┌──▼───────────────────┐  ┌───▼──────────┐  ┌───────────▼──────────┐
+ │ registration +       │  │ MODEL 3      │  │ MODEL 4 · alignment  │
+ │ partial unrolling    │  │ PatchCore    │  │  HRNet-W18 landmarks │
+ │ LK + RANSAC          │  │ unknown      │  │  + structure tensor  │
+ │ (RAFT-S ablation)    │  │ anomalies    │  │  + LSD/Hough/RANSAC  │
+ └──┬───────────────────┘  └───┬──────────┘  │  → analytic γ, τ     │
+ ┌──▼───────────────────────┐  │             │  → residual MLP      │
+ │ MODEL 2 · ConvNeXt-V2-T  │  │             └───────────┬──────────┘
+ │  ordinal severity        │  │                         │
+ │  multi-label pattern     │  │                         │
+ │  wear heatmap            │  │                         │
+ │  damage masks            │  │                         │
+ │  confidence              │  │                         │
+ │  (optional metric depth) │  │                         │
+ └──┬───────────────────────┘  │                         │
+    └──────────────┬───────────┴─────────────────────────┘
+ ┌─────────────────▼──────────────────────────────────────┐
+ │ temporal fusion · conformal intervals · cross-check    │
+ │        PASS / MONITOR / INSPECT / UNABLE_TO_MEASURE    │
+ └────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. Stage A — Perception
+## 1. Model 0 — frame-quality gate
 
-### A1 · Tyre and footprint segmentation
+**A blurred or occluded tyre must never become a confident safety answer.**
 
-- **YOLO11-seg (nano or small)**, fine-tuned from COCO. Two classes: `tyre`, `contact_footprint`.
-- The FTIR channel makes footprint segmentation almost trivial — thresholding gets you 90% there. Use the network for robustness to dirt and partial contact, not because the task is hard.
-- Output: instance masks + track IDs across the pass.
+Deterministic measurements first, small classifier second:
 
-### A2 · Laser line extraction
-
-Not a learning problem. Classical, and better than learned here:
-
-1. Take the laser-channel frame, subtract the temporally adjacent flood frame (removes ambient).
-2. For each image column, find the intensity peak.
-3. Fit a Gaussian to the 5 pixels around the peak → sub-pixel centre (typical σ_sub ≈ 0.1 px).
-4. Reject columns with peak SNR below threshold (rubber absorbs 650 nm; some columns will genuinely fail).
-5. Back-project through the calibrated laser plane → metric 3D profile.
-
-```python
-# scripts/laser_profile.py — core idea
-def subpixel_peak(col):
-    i = np.argmax(col)
-    if i < 1 or i >= len(col) - 1: return None
-    a, b, c = np.log(col[i-1:i+2] + 1e-6)
-    return i + 0.5 * (a - c) / (a - 2*b + c)   # Gaussian peak, closed form
-```
-
-### A3 · Groove / rib / TWI segmentation
-
-- **U-Net or SegFormer-B0**, 4 classes: `rib`, `groove`, `sipe`, `TWI_bar`.
-- Input: 3-channel stack `[FTIR, flood-IR, laser-depth-sparse]`. Stacking the modalities as channels is simple and works well; save cross-attention fusion for an ablation.
-- TWI bars are the rare class — weight them heavily (`w ≈ 10`) or they will be ignored.
-
-### A4 · Sidewall silhouette
-
-Contour extraction from the tyre mask, split into left/right sidewall arcs. Fit a low-order polynomial to each. The **asymmetry between the two fits** is the camber cue for estimator E1.
-
----
-
-## 3. Stage B — Reconstruction
-
-### B1 · Rolling-speed estimation (do not skip this)
-
-Naïve stitching uses vehicle speed. **This is wrong** — tyres slip, and the effective rolling radius changes with load and inflation. A 2% speed error compounds into visible seams and metric drift across a 2 m unrolled map.
-
-Correct approach: estimate **angular** velocity directly from tread features.
-
-1. Track distinctive tread features (blocks, sipe corners) between consecutive frames with LK optical flow, restricted to the near-contact band.
-2. In the contact band, surface displacement between frames ≈ `R·Δφ`.
-3. Robust-fit (RANSAC) a single `Δφ` per frame pair.
-4. Integrate → circumferential coordinate `θ(t)`.
-
-This is self-calibrating and immune to slip. Also gives you **effective rolling radius** as a bonus output, which correlates with inflation pressure. That's a free extra signal — mention it.
-
-### B2 · Unrolling and stitching
-
-For each frame, take the band `|x − x_contact| < 25 mm` (the near-zero-blur zone, see `01_CONCEPT.md §2`), rectify with the plate homography to metric millimetres, and place it at circumferential coordinate `θ(t)`.
-
-Blend overlaps with a **feathered weighted average**, weight = `cos²` falloff from the band centre (sharpest at the exact contact point). Output:
-
-```
-unrolled map:  (circumference_mm / res) × (tread_width_mm / res)
-at res = 0.1 mm/px, 195/65R15  →  19,900 × 1,950 px per full revolution
-```
-
-That is large. Store as tiled PNG or Zarr. For model input, downsample to 0.2 mm/px and crop patches.
-
-### B3 · Sparse → dense depth
-
-The laser gives one profile line per frame. Across the pass, those lines densify into a partial depth map. It will be sparse and striped. That is fine — it is *supervision*, not input. Train with a masked loss over valid laser pixels only.
-
-### B4 · Travel direction
-
-Fit a robust line (RANSAC) to the footprint centroid track across frames. This is the pass-specific travel axis. All toe angles are measured relative to it. Removes rig-mounting bias entirely (`02_RIG_BUILD.md §3.4`).
-
----
-
-## 4. Stage C — Tread heads
-
-### Backbone
-
-`ConvNeXt-V2-Tiny` or `EfficientNetV2-S`, pretrained self-supervised (MAE) on the public tyre image sets plus your own unlabelled captures. Input: patches from the unrolled map, 4 channels `[FTIR, flood, sparse-depth, groove-mask]`.
-
-> Why not a ViT? On this data, texture and local structure dominate and your dataset is small. ConvNeXt will be more sample-efficient and faster on the edge. Try a ViT in the ablation; don't start there.
-
-### C1 · Depth head
-
-Dense prediction head → per-pixel depth in mm over the unrolled map.
-
-```
-L_depth = Σ_valid  huber( D̂ − D_laser )        (masked to laser-valid pixels)
-        + λ_smooth · TV(D̂)                     (grooves are smooth along θ)
-        + λ_twi   · | D̂(TWI_top) − 1.6 |       (the free metric anchor)
-```
-
-That third term is `01_CONCEPT.md`'s novelty claim #5 turned into two lines of loss. It self-calibrates absolute scale on **every tyre**, forever, with no per-camera recalibration. Do not skip it.
-
-### C2 · Ranking head
-
-Siamese, shares the backbone. Feeds on your cheap human-labelled pairs.
-
-```
-L_rank = BCE( σ( (f(x_a) − f(x_b)) / T ), 1[d_a > d_b] )
-```
-
-At inference, map ranking scores to millimetres via **isotonic regression** fitted on the gauge-anchored subset. This gives a monotone, well-conditioned scale that degrades gracefully — far better than raw regression when the test tyre is unlike anything in training.
-
-Add a **monotonicity loss** on your longitudinal set: for the same tyre at times `t₁ < t₂`, enforce `d̂(t₂) ≤ d̂(t₁)`. Free supervision from a physical law.
-
-```
-L_mono = Σ  relu( d̂(t₂) − d̂(t₁) + margin )
-```
-
-### C3 · Pattern head
-
-Global-pooled features from the full unrolled map → **8 sigmoid outputs** (multi-label, not softmax — see `01_CONCEPT.md §7`). Focal loss, because `uniform` will dominate.
-
-Also emit the **explicit physical statistics** as auxiliary regression targets — lateral gradient `g_w`, centre/shoulder ratio, cupping FFT peak amplitude and frequency, rib-edge asymmetry `A`. These are computable analytically from `D̂`, so supervising them costs nothing and it forces the representation to be physically meaningful. They then feed Stage E.
-
-### C4 · Damage head
-
-Two-track:
-- **Supervised detector** for the classes you have examples of (cut, bulge, embedded object) — YOLO11.
-- **Unsupervised anomaly detection** (PatchCore / PaDiM) on the unrolled map for everything you've never seen. Fit the memory bank on healthy tyres only.
-
-The unsupervised track is what makes this deployable. You will never enumerate all tyre damage types.
-
----
-
-## 5. Stage D — Geometry
-
-### D1 · Three analytic estimators
-
-| | Input | Method | Output |
-|---|---|---|---|
-| **E1** sidewall | left/right sidewall polynomials | asymmetry → camber via a calibrated lookup | γ̂₁, σ₁ |
-| **E2** footprint | FTIR intensity field `F(x,y)` | lateral first moment → camber; principal-axis angle vs travel direction → toe | γ̂₂, τ̂₂, σ₂ |
-| **E3** grooves | groove centrelines in image | circumferential grooves are coplanar with the wheel mid-plane; their vanishing point gives the plane normal | γ̂₃, τ̂₃, σ₃ |
-
-E3 deserves emphasis. Circumferential grooves are, to good approximation, **circles coaxial with the wheel**. Their projections are conics whose common supporting-plane normal is the wheel-plane normal. With FTIR giving you clean groove masks, this is a well-posed, purely geometric estimator with no learned component at all. Solve with the conic back-projection in `01_CONCEPT.md §4`, disambiguating via the motion consistency check.
-
-### D2 · Learned residual
-
-```
-features = [ γ̂₁,σ₁, γ̂₂,τ̂₂,σ₂, γ̂₃,τ̂₃,σ₃,
-             footprint area, aspect, load proxy, inflation proxy,
-             speed, tyre size, backbone embedding (256-d) ]
-        → MLP (3 × 256) → (Δτ, Δγ, log σ_τ, log σ_γ)
-```
-
-Predicting **log-variance alongside the mean** (heteroscedastic / Gaussian NLL loss) gives per-sample uncertainty for free and makes the model down-weight hard passes rather than fitting noise:
-
-```
-L_geom = Σ [ (τ − τ̂)²/(2σ_τ²) + log σ_τ ] + [ same for γ ]
-```
-
-### D3 · Why the analytic prior matters
-
-Report this ablation, it will be one of your cleanest results:
-
-| Variant | Expected behaviour |
+| Signal | Method |
 |---|---|
-| End-to-end CNN → angles | Overfits the jig; collapses on real cars |
-| Analytic only | Unbiased but noisy; fails on dirty/partial data |
-| **Analytic + learned residual** | Best of both; degrades gracefully |
+| Focus | Variance of Laplacian / high-frequency energy |
+| Exposure | % clipped dark and bright pixels |
+| Glare / wetness | Specular area; polarised − unpolarised difference |
+| Coverage | Tread-mask area, **both-shoulder visibility** |
+| Motion blur | Optical-flow consistency across the burst |
+| Condition class | **MobileNetV3-Small** → clean / dirty / wet / glare / occluded / blurred |
 
-The middle row failing on dirty data and the top row failing on domain shift, with the hybrid surviving both — that is a compelling figure.
+**Outputs**
+
+```
+usable_probability · focus_score · exposure_score
+glare_or_wet_probability · occlusion_probability
+left_shoulder_visible · right_shoulder_visible · twi_visible
+```
+
+**Hard rule:** alignment is computed only when **both shoulders and sufficient groove structure are visible**. Otherwise → `UNABLE_TO_MEASURE`.
 
 ---
 
-## 6. Stage E — Fusion, consistency, diagnosis
+## 2. Model 1 — SegFormer-B2 segmentation
 
-### Training: the consistency loss
+Hierarchical transformer encoder + lightweight MLP decoder. Multi-scale features handle an image containing both a whole tread crown and 1-px sipes, and it tolerates varying input resolution without positional-encoding interpolation.
 
-Full objective (see `01_CONCEPT.md §6` for the derivation):
+**B0** as the speed baseline. **B2** as the research model. B4/B5 only once the data proves more capacity pays.
 
-```
-L = L_depth + L_rank + L_mono
-  + α · L_pattern
-  + β · L_geom
-  + λ · [ ‖ g_w − h_γ(γ̂) ‖²  +  ‖ A − h_τ(τ̂) ‖² ]
-```
-
-`h_γ`, `h_τ` are **monotone** links. Start with fitted affine functions (fit their coefficients on the jig+longitudinal subset where you have both labels, then freeze). Upgrade to a monotone MLP only if the affine version underfits — and report both.
-
-Schedule `λ`: **0 for the first 20 epochs**, then ramp to target over 10. Applying a consistency loss between two heads that are both still garbage just injects noise.
-
-### Inference: the disagreement diagnostic
-
-This is the output nobody else has. Compute:
+### Classes
 
 ```
-residual  r = g_w − h_γ(γ̂)          (wear says X, geometry says Y)
+0 background   1 tyre_visible   2 tread_crown   3 left_shoulder   4 right_shoulder
+5 main_groove  6 rib_or_block   7 sipe          8 twi_bar         9 visible_damage
 ```
 
-| Geometry | Wear pattern | `r` | Interpretation |
-|---|---|---|---|
-| aligned | uniform | ~0 | Healthy |
-| misaligned | matching gradient | ~0 | **Chronic misalignment** — has been wrong for a long time |
-| aligned | strong gradient | large | **Recently realigned** — damage is historical, monitor |
-| misaligned | uniform | large, opposite | **Recent misalignment** — kerb strike, pothole, recent impact |
+If the pilot set is small, merge 5+6+7 into `tread_structure` for experiment 1; split them once tyre and shoulder masks are reliable.
 
-That table is a paper section. It converts a two-number output into an actionable *narrative*, and it is only possible because you measure geometry and history simultaneously. Lead with it.
+### Input channels
+
+```
+[ R, G, B, n_x, n_y, n_z, albedo, CLAHE_L ]      8 channels
+```
+
+Photometric normals as first-class input, not an afterthought — grooves are shape, and this is where shape enters the network. Inflate the pretrained stem by replicating and rescaling RGB weights for the extra channels.
+
+### Resolution
+
+```
+pass 1 · whole tyre      768×768 or 896×896
+pass 2 · tread tiles     512×512, 20–25% overlap, blend probabilities
+```
+
+**Never resize a wide tread crop to 224×224.** It destroys the grooves and sipes the project exists to measure.
+
+### Loss
+
+```
+L_seg = L_focal + 0.7·L_dice + 0.3·L_boundary + 0.2·L_clDice
+```
+
+- **Focal** — background and large ribs otherwise dominate
+- **Dice** — overlap for small classes
+- **Boundary** — shoulder and groove edge accuracy, which feeds alignment geometry
+- **clDice** — topology preservation for sipes and cracks. A crack broken into three fragments is a serious failure that plain Dice barely penalises
+
+Extra class weighting on `sipe`, `twi_bar`, `visible_damage` (≈ 5–10×).
+
+**Output class probabilities, not hard masks.** Boundary uncertainty feeds shoulder-curve fitting and the decision on whether alignment geometry is trustworthy.
+
+---
+
+## 3. Model 2 — ConvNeXt-V2-Tiny multi-task wear network
+
+Operates on the segmented tread crop and, when video is available, on the partial unrolled map. Convolutional hierarchy suits local texture; MAE pretraining suits small data; practical on dual T4.
+
+### Two-branch input
+
+```
+RGB branch:        normalised RGB tread crop      → ConvNeXt-V2-Tiny
+structure branch:  CLAHE-L, Scharr magnitude,     → small 3-layer CNN
+                   Gabor/black-hat, normals
+fusion:            concat → 1×1 conv → SE gate
+```
+
+**Keep the raw RGB branch.** Filters delete subtle defects; the structure branch makes groove direction and edge asymmetry explicit. Neither alone is sufficient — and the comparison is Ablation 1.
+
+### Heads
+
+#### A · Ordinal wear severity
+
+```
+0 visually healthy   1 mild / monitor   2 significant / inspect   3 critical / replace
+```
+
+**CORAL / cumulative binary cross-entropy**, not softmax. Confusing 0 with 3 must cost more than confusing 1 with 2.
+
+**Plus a Siamese ranking head** on the cheap pairwise labels:
+
+```
+L_rank = BCE( σ((f(x_a) − f(x_b)) / T), 1[wear_a > wear_b] )
+```
+
+Map ranking scores to a physical scale by **isotonic regression** on the gauge-anchored subset. Pairwise labels are near-noise-free and cost seconds each; absolute mm labels are expensive and noisy. On a small dataset this is where precision actually comes from.
+
+**Plus monotonicity** on the longitudinal set — depth only decreases:
+
+```
+L_mono = Σ relu( d̂(t₂) − d̂(t₁) + margin ),   t₁ < t₂
+```
+
+#### B · Multi-label wear pattern
+
+Nine independent sigmoids (see `03_DATA.md §3.3`). **Class-balanced binary focal loss. Never one softmax across these labels.**
+
+Also regress the **explicit physical statistics** as auxiliary targets — lateral depth gradient, centre/shoulder ratio, rib-edge asymmetry, cupping FFT amplitude and period. They are computable analytically from the predictions, so supervising them is free, and it forces a physically meaningful representation.
+
+#### C · Local wear heatmap
+
+Pixel- or patch-level map of *where* the evidence is. A worn/not-worn scalar does not satisfy "recognise every detail."
+
+#### D · Known-damage head
+
+Masks/instances for `cut · crack · missing_chunk · embedded_object · exposed_cord · bulge`. Focal + Dice. Bulge reported only when the sidewall is visible.
+
+#### E · Confidence head
+
+Predict image-level log-variance. Inputs include segmentation coverage, blur, illumination, dirt, model entropy, temporal disagreement.
+
+#### F · Optional metric depth
+
+Active **only** on samples with gauge / laser / structured-light / RGB-D labels. Masked Huber. RGB-only samples train the ordinal/relative head and **must never be presented as millimetres**.
+
+Plus the TWI anchor when available:
+
+```
+L_twi = λ_twi · | D̂(rib) − D̂(twi_top) − 1.6 mm |
+```
+
+### Objective
+
+```
+L_wear = λ_o·L_ordinal + λ_r·L_rank + λ_m·L_mono
+       + λ_p·L_multilabel + λ_h·L_heatmap + λ_d·L_damage
+       + λ_u·L_uncertainty + λ_z·L_metric_depth(valid only) + λ_twi·L_twi
+```
+
+Weights chosen on validation and **frozen before final testing**. If one head dominates, use uncertainty-based task weighting or GradNorm rather than hand-shrinking every other loss.
+
+---
+
+## 4. Model 3 — PatchCore anomaly detection
+
+A supervised head recognises only annotated defect categories. Tyre damage is open-ended.
+
+- Input: rectified tread tiles, tread mask applied
+- Features: intermediate ConvNeXt or WideResNet layers
+- Memory bank: **healthy tread only**, across brands and tread designs
+- Output: image-level anomaly score + pixel/patch heatmap
+
+**PatchCore is a flagging model, not a classifier.** High score = "unfamiliar local structure, inspect this region." Fuse it *with* the supervised damage head, never instead of it.
+
+**Report false positives per healthy tyre.** That single number decides whether anyone would tolerate this system in practice.
+
+Ablations: **EfficientAD** (ms-scale inference, relevant for the app), **AnomalyDINO** (frozen DINOv2 features, no fine-tuning — attractive when healthy data is scarce).
+
+---
+
+## 5. Model 4 — single-wheel alignment
+
+### Do not regress angles directly from pixels
+
+Camber and toe are geometric quantities relative to a calibrated vertical and travel axis. A CNN will learn camera tilt, approach position and background. Keep the direct-regression arm **only as an ablation that demonstrates this failure**.
+
+```
+learned landmarks + classical orientation evidence
+        → calibrated analytic angle
+        → small learned residual
+        → temporal fusion + confidence interval
+```
+
+### 5.1 HRNet-W18 landmarks
+
+High-resolution branches maintained throughout — exactly what stable landmarks need.
+
+```
+1  left shoulder, near-contact band     4  right upper visible shoulder
+2  right shoulder, near-contact band    5  ≥2 centreline points on a dominant groove
+3  left upper visible shoulder          6  lowest visible tread point
+```
+
+**Must output per-point covariance (heatmap spread) and a visibility flag. Never force a prediction for a hidden landmark.**
+
+### 5.2 Classical geometry, inside the tread mask
+
+Scharr `x`/`y` · Canny · multi-orientation Gabor · structure tensor · LSD / probabilistic Hough · RANSAC groove and shoulder fits · left/right shoulder height and curvature asymmetry.
+
+```
+J = G_σ * [[Ix², IxIy], [IxIy, Iy²]]
+φ = ½ · atan2(2·J_xy, J_xx − J_yy)
+```
+
+**Reject low-coherence pixels rather than inventing a direction.**
+
+### 5.3 Analytic angles
+
+Fused landmarks and groove directions give a unit wheel-plane normal `n = (n_x, n_y, n_z)` in the calibrated rig frame (x travel, y lateral, z vertical):
+
+```
+individual toe   τ = atan2(n_x, n_y)
+camber           γ = atan2(n_z, √(n_x² + n_y²))
+```
+
+> **Define the sign convention once, for left and right wheels, and unit-test it.** Assert that a horizontal flip negates both, and that flipping twice is the identity. Half of all alignment bugs are sign errors.
+
+### 5.4 Residual MLP — not another backbone
+
+```
+inputs = [ analytic τ, γ · RANSAC residuals and inlier ratios
+           landmark coords + covariances · groove coherence
+           segmentation confidence · tyre width / load proxy
+           calibration_id embedding ]
+
+MLP 256 → 256 → 128
+outputs = [ Δτ, Δγ, log σ_τ, log σ_γ ]
+
+τ_final = τ_analytic + Δτ        γ_final = γ_analytic + Δγ
+```
+
+Heteroscedastic Gaussian NLL:
+
+```
+L_geom = Σ [ (τ − τ̂)²/(2σ_τ²) + log σ_τ ]  +  [ same for γ ]
+```
+
+The residual **corrects repeatable bias**; it never invents the angle.
+
+---
+
+## 6. Registration, unrolling and temporal fusion
+
+**Rolling/rotation speed** must come from tracked tread features, not from assumed vehicle speed — slip and effective-radius change make assumed speed wrong, and a 2% error produces visible seams and metric drift.
+
+**Unrolling**
+
+```
+U(θ,w) = Σ_t q_t·M_t(w)·I_t(π_t(θ,w))  /  Σ_t q_t·M_t(w)
+```
+
+**Report observed circumference percentage. Never inpaint unseen tread.** Unobserved ≠ healthy.
+
+**Angle fusion** — estimate from every accepted frame outside the strongest contact-deformation region; reject frames inconsistent with calibrated motion:
+
+```
+θ̂ = Σ_(t ∈ inliers) q_t·θ_t  /  Σ_(t ∈ inliers) q_t
+```
+
+Use a robust median if residuals are non-Gaussian. Model **periodic variation across rotation separately as possible runout** — the mean becomes the estimate, the periodic residual becomes a quality flag. That separation is a genuinely nice detail.
+
+---
+
+## 7. Fusion and the cross-check
+
+Wear evidence adjusts **confidence**, never the alignment value (see `01_CONCEPT.md §7`):
+
+| Geometry | Wear | Action |
+|---|---|---|
+| Suspicious | Matching one-sided / feathered | Raise confidence → `INSPECT` |
+| Normal | Old uneven wear | Historical or recently corrected → `MONITOR` |
+| Suspicious | Uniform | Recent event → `INSPECT` |
+| Disagreement, unexplained | — | Lower confidence → `INSPECT` |
 
 ### Conformal calibration
 
-Fit on a held-out calibration split, per output, per stratum (stratify by tyre size class — intervals should widen for underrepresented sizes).
+Split conformal on the dedicated **calibration split** (`03_DATA.md §4`), per output, stratified by tyre size class. Decisions use interval bounds, never point estimates.
 
 ---
 
-## 7. Training recipe
+## 8. Training recipe
 
 | | |
 |---|---|
-| Optimiser | AdamW, lr 3e-4 (heads) / 3e-5 (backbone), wd 0.05 |
-| Schedule | 5-epoch linear warmup → cosine to 1e-6 |
-| Batch | 32 unrolled-map patches (512×512 @ 0.2 mm/px) |
-| Precision | bf16 mixed (T4s support fp16; use fp16 + GradScaler on Kaggle) |
-| Epochs | 60 synthetic pretrain → 40 jig → 25 real fine-tune |
-| Augmentation | Flip lateral (**and negate camber/toe labels** — easy to get wrong), brightness/gamma, synthetic dirt overlays, random channel dropout, cutout on the unrolled map |
-| Loss weights | α=1.0, β=2.0, λ=0.3 (ramped), λ_twi=5.0, λ_smooth=0.05 |
-| EMA | Yes, decay 0.999 — meaningfully helps small-data regression |
-| Early stop | On val depth MAE, patience 10 |
+| Optimiser | AdamW, lr 3e-4 heads / 3e-5 backbone, wd 0.05 |
+| Schedule | 5-epoch warmup → cosine to 1e-6 |
+| Batch | 16/GPU at 512×512, gradient accumulation for larger effective batch |
+| Precision | **fp16 + GradScaler** (T4 has no bf16) |
+| Memory format | `channels_last` — free speedup on Turing convnets |
+| EMA | decay 0.999 — meaningfully helps small-data regression |
+| Early stop | on val ordinal MAE, patience 10 |
+| Seeds | **3 seeds for every reported ablation** |
 
-> **The lateral-flip augmentation sign flip is a classic bug.** Flipping the image horizontally must negate both camber and toe labels. Write a unit test for it. Seriously — assert that flipping twice returns the original label.
+### Backbone initialisation — a research finding that changes the default
 
-### Ablation grid (plan these now, run them at the end)
+The [DINOv3 vs ImageNet industrial-inspection study](https://arxiv.org/html/2605.23472) found frozen self-supervised features give **no clear advantage** on RGB industrial tasks, but are the **strongest initialisation once fully fine-tuned**.
 
-| # | Ablate | Question answered |
-|---|---|---|
-| 1 | λ = 0 | Does physics consistency help? |
-| 2 | No synthetic pretraining | Is sim-to-real worth the pipeline? |
-| 3 | No analytic prior (end-to-end) | Is the hybrid justified? |
-| 4 | FTIR channel removed | Is the rig's key innovation load-bearing? |
-| 5 | No laser distillation (RGB-only training) | How much does the teacher buy? |
-| 6 | No TWI anchor | Does self-calibration matter? |
-| 7 | Regression instead of ranking | Is ordinal learning better on small data? |
-| 8 | Single-frame instead of full-pass | Is the unrolled map worth it? |
+**So: initialise from SSL, fine-tune the whole backbone. Do not freeze and linear-probe.** The common small-data instinct to freeze is wrong here.
 
-Ablation 4 is the one reviewers will ask for. Make sure you run it.
+Also worth doing: **self-supervised pretraining (MAE/DINO) on your own unlabelled tyre frames.** You will capture far more frames than you label; this uses them for free.
 
----
+### Training order — do not train every head at once
 
-## 8. Baselines to compare against
-
-Be fair and be thorough — a weak baseline section is the fastest route to rejection.
-
-1. **Human expert.** Get a tyre technician to judge 50 tyres by eye. Report their MAE against the gauge. If you beat a human, say so; if you don't, that is still a real finding and an honest one.
-2. **Depth-gauge repeatability.** Measure the same 20 tyres twice, on different days. This is your **noise floor** — no model can beat it, and reporting it shows you understand your own metrology.
-3. **Off-the-shelf monocular depth** (Depth Anything V2 fine-tuned) on the same crops. Shows why the task needs a purpose-built approach.
-4. **Simple CNN regression** from a single raw frame. The obvious approach; shows the value of the pipeline.
-5. **Classical CV alignment**: ellipse fit only, no learning. Shows the value of the residual head.
-6. Public-dataset classifiers (the Kaggle ViT baselines) on the *binary* good/bad task, to place your work in existing literature.
+| Phase | What |
+|---|---|
+| **1 · Classical baseline** | Undistortion, ROI, CLAHE, Scharr, Canny, Gabor, structure tensor, morphology, RANSAC, LK. Debug visuals + non-learning baselines |
+| **2 · Segmentation** | SegFormer-B0 → B2. Freeze the taxonomy. Verify **boundary F-score** on shoulders and grooves, not just IoU |
+| **3 · Wear recognition** | ConvNeXt ordinal + multi-label. Add heatmap and damage heads once the classifier is stable |
+| **4 · Alignment** | HRNet landmarks on the jig. **Evaluate the analytic estimator alone first** — never skip that baseline. Then add the residual MLP |
+| **5 · Video + anomalies** | Unrolling, PatchCore, RAFT-Small — only after the frame pipeline is reliable |
+| **6 · Fusion** | Temporal fusion, conformal calibration, decision logic |
 
 ---
 
-## 9. Deployment
+## 9. Ablations
 
-| Target | Format | Notes |
+Plan them now, run them at the end, 3 seeds each.
+
+| # | Ablate | Question |
 |---|---|---|
-| Rig (Jetson Orin Nano) | TensorRT fp16 | Target < 2 s per pass end-to-end |
-| Mobile app | TFLite / CoreML, INT8 | Handheld close-up mode only — no FTIR, no laser, so wider intervals. **Be explicit in the UI that it's a lower-confidence mode.** |
-| Cloud demo | Gradio on HF Spaces | Upload a pass, get the report card |
+| 1 | Raw RGB vs RGB + structure branch | Do classical filters add anything? |
+| 2 | **Flat light vs photometric stereo** | **Is the illumination upgrade load-bearing?** |
+| 3 | SegFormer-B0 vs B2 | Is the capacity justified? |
+| 4 | Whole image vs segmented tread crop | Does segmentation help downstream? |
+| 5 | Single frame vs registered video fusion | Is video worth the complexity? |
+| 6 | Classical vs direct CNN vs hybrid alignment | Is the hybrid justified? |
+| 7 | Lucas–Kanade vs RAFT-Small | Is dense flow needed? |
+| 8 | Supervised damage vs + PatchCore | Does anomaly detection add coverage? |
+| 9 | RGB-only vs metric-sensor-supervised depth | How much does the teacher buy? |
+| 10 | With / without boundary loss | Does edge accuracy matter? |
+| 11 | With / without clDice | Does connectivity matter for sipes and cracks? |
+| 12 | With / without temporal quality rejection | Does the gate help? |
+| 13 | Ordinal vs plain regression | Better on small data? |
+| 14 | With / without TWI anchor | Does self-calibration matter? |
+| 15 | ImageNet vs DINOv2 init, frozen vs fine-tuned | Confirm the transfer-learning finding |
 
-Export path: PyTorch → ONNX (opset 17) → TensorRT / TFLite. Validate numerics after each conversion — assert max abs difference < 1e-3 on a fixed batch. Conversion silently breaking a model is common and demoralising to discover late.
+**Ablation 2 is the one to prioritise.** It is cheap, likely to show a large effect, and it is the project's most distinctive engineering decision.
 
-**Mobile mode caveat:** without FTIR and laser, the mobile app is a fundamentally weaker sensor. Do not let it output the same confidence numbers as the rig. Re-run conformal calibration separately for the mobile pipeline and let the intervals be honestly wider.
+A component stays in the final system only if it improves the frozen validation result **or** makes failure detection more reliable.
+
+---
+
+## 10. Deployment
+
+| Target | Format | Note |
+|---|---|---|
+| Laptop demo | PyTorch / ONNX | Sufficient for the capstone |
+| Jetson Orin Nano | TensorRT fp16 | Target < 2 s per inspection |
+| Mobile app | TFLite / CoreML INT8 | **No photometric stereo, no polarisation → weaker sensor. Recalibrate conformal separately; let the intervals be honestly wider** |
+
+Export path PyTorch → ONNX (opset 17) → TensorRT/TFLite. **Validate numerics after every conversion** — assert max abs difference < 1e-3 on a fixed batch. Silent conversion breakage is common and demoralising to find late.

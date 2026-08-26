@@ -47,11 +47,14 @@ dependencies:
   - pip
   - pip:
       # --- models ---
-      - timm>=1.0.9                 # ConvNeXt-V2, EfficientNetV2 backbones
-      - ultralytics>=8.3.0          # YOLO11 seg/det
-      - transformers>=4.44          # SegFormer
-      - segmentation-models-pytorch # U-Net variants
-      - anomalib>=1.1               # PatchCore / PaDiM for damage anomaly detection
+      - timm>=1.0.9                 # ConvNeXt-V2, HRNet, EfficientNetV2, MobileNetV3
+      - ultralytics>=8.3.0          # YOLO11 seg/det (ROI fallback)
+      - transformers>=4.44          # SegFormer-B0/B2, DINOv2
+      - segmentation-models-pytorch # U-Net / DeepLabV3+ baselines
+      - anomalib>=1.1               # PatchCore, EfficientAD, PaDiM
+      - mmpose                      # HRNet-W18 keypoints (optional; timm alt available)
+      - coral-pytorch               # CORAL ordinal regression heads
+      - monai                       # clDice / boundary / topology losses
 
       # --- hub / data ---
       - huggingface_hub>=0.25
@@ -60,9 +63,13 @@ dependencies:
       - safetensors
 
       # --- geometry / calibration ---
-      - opencv-contrib-python-headless>=4.10   # ChArUco, extra calib
+      - opencv-contrib-python-headless>=4.10   # ChArUco, LSD, structure tensor, optical flow
       - pupil-apriltags                        # optional fiducials
       - transforms3d
+
+      # --- annotation ---
+      - "sam2 @ git+https://github.com/facebookresearch/sam2.git"   # SAM2 video propagation
+      - peft                        # LoRA fine-tuning for FS-SAM2
 
       # --- metrics / stats ---
       - torchmetrics>=1.4

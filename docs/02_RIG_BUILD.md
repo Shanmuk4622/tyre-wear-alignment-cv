@@ -1,290 +1,297 @@
-# 02 — The Rig: Hardware, Optics, Calibration
+# 02 — Camera Rig, Illumination and Calibration
 
-> Build this before you write a single line of model code. **The rig is the project.** A mediocre model on excellent data beats an excellent model on mediocre data, every time.
+> Build this before writing model code. **The rig is the sensor.** An excellent model on badly-lit, uncalibrated data will lose to a mediocre model on good data, every time.
 
 ---
 
-## 0. Build in three tiers
+## 0. Three tiers — build v0 this week
 
-Do **not** try to build the final rig first. Build v0 this week.
-
-| Tier | Cost (₹) | Time | What it proves |
+| Tier | Cost (₹) | Time | Proves |
 |---|---|---|---|
-| **v0 — Cardboard** | ~1,500 | 2 days | Geometry works. Phone under a glass sheet on bricks, roll a *bicycle wheel* over it by hand. |
-| **v1 — Bench** | ~12,000 | 2 weeks | FTIR works, laser works, stitching works. Single spare wheel on a jig, pushed by hand. |
-| **v2 — Drive-over** | ~45,000 | 4 weeks | Real car, real speed, real data. |
+| **v0 — Phone on a brick** | ~1,500 | 2 days | Viewpoint works. Can you see grooves, shoulders and a TWI bar at all? |
+| **v1 — Bench rig** | ~22,000 | 2–3 weeks | Photometric stereo + calibration + repeatable capture |
+| **v2 — Vehicle-mounted** | ~35,000 | 3–4 weeks | Real cars, real conditions, real dataset |
 
-**v0 exists to kill the project cheaply if the idea is wrong.** Spend two days on it. If you can't see grooves clearly through glass with a phone, you need to know that in week 1, not week 12.
-
----
-
-## 1. Bill of materials
-
-### Tier v1 — Bench rig (build this properly, it generates most of your data)
-
-| Item | Spec | Qty | ₹ (approx) | Notes |
-|---|---|---|---|---|
-| Camera | Raspberry Pi Global Shutter Camera (IMX296, 1456×1088, C/CS mount) | 1 | 4,500 | Global shutter is still worth it for the laser channel |
-| Lens | 6 mm C-mount, f/1.4, low distortion | 1 | 1,200 | Wider = more FOV but more distortion; calibrate it |
-| Host | Raspberry Pi 5 8 GB + 128 GB A2 microSD | 1 | 9,000 | Or a laptop with a USB3 camera |
-| Glass | Low-iron toughened, 10 mm, 400×300 mm, **polished edges** | 1 | 1,800 | Polished edges are essential for LED injection — specify this |
-| **Interface film** | Clear polyurethane PPF or PET, 75–150 µm, 1 m² | 1 | 400 | **Mandatory — see `09_RELATED_WORK.md §3`.** Bare rubber on bare glass gives no FTIR contrast. Sacrificial, replace when scratched. |
-| IR LED strip | 850 nm, 5 m, 12 V, high density | 1 | 900 | Two strips along the long polished edges |
-| IR-pass filter | 850 nm bandpass, screw-in for lens | 1 | 600 | Blocks ambient visible light |
-| Line laser | 650 nm, 5 mW, 90° fan, focusable | 1 | 400 | **Class 3R — see safety §6** |
-| Aluminium extrusion | 20×20 mm V-slot, 2 m + brackets | 1 set | 2,500 | Frame, camera mount, laser mount |
-| Matte black flock | Self-adhesive sheet, 1 m² | 1 | 400 | Line the enclosure. Stray light is your enemy |
-| Calibration target | ChArUco board, A3, printed on rigid foam-board | 1 | 300 | Print flat and check with a ruler |
-| Tread depth gauge | Digital, 0.01 mm resolution | 1 | 900 | Your ground-truth instrument. Buy a good one |
-| Misc | Wiring, 12 V PSU, fasteners | — | 1,500 | |
-| | | **Total** | **~24,000** | |
-
-### Tier v2 additions — Drive-over
-
-| Item | Spec | Qty | ₹ | Notes |
-|---|---|---|---|---|
-| Glass | Low-iron toughened laminated, **19 mm**, 1200×400 mm | 1 | 9,000 | Must take vehicle load. Do not economise here |
-| Steel frame | Welded, flush-mount ramp, load-rated 1.5 t/wheel | 1 | 12,000 | Local fabricator |
-| Second camera | Same as above, second wheel of axle | 1 | 5,700 | Unlocks thrust angle |
-| Edge compute | Jetson Orin Nano 8 GB dev kit | 1 | 35,000 | Optional — a laptop works for the capstone |
-| Trigger | IR break-beam pair | 2 | 1,200 | Starts capture, measures speed |
-| Air knife / blower | 12 V | 1 | 1,500 | Clears water/grit from the plate |
-
-> **Budget reality check.** You can produce a strong capstone at v1 only (~₹24k) using a spare wheel on a jig, plus a *few* real-car passes over a v0-grade plate laid on level ground. Do not let v2 cost block progress. The jig data (see `03_DATA.md`) is better labelled than real-car data anyway.
+**v0 exists to fail cheaply.** Two days. If you cannot see a TWI bar in a phone photo of a tyre lit from the side, you need to know in week 1.
 
 ---
 
-## 2. Optical layout
+## 1. Geometry of the mount
 
 ```
-              tyre rolling  ──────►  +x (travel)
-     ═══════════════════════════════════════════   glass plate (z = 0)
-      ▲IR         ▲IR         ▲IR         ▲IR       ← 850 nm injected at edges
-     ═══════════════════════════════════════════
-                        │
-        ╱ laser fan     │  camera optical axis (vertical, +z)
-       ╱                │
-   [LASER]           [CAMERA]
-   ◄────── b = 200 mm ──────►
-                        │
-                        │  z₀ = 150 mm standoff
-                        ▼
+                              ╭───────────╮
+                         ╭────╯           ╰────╮
+                        ╱      TYRE (front)     ╲
+                       │   ← tread crown →       │
+                       │  shoulder     shoulder  │
+        ───────────────┴─────────────────────────┴──────── ground
+                    ╲    ↖ field of view ↗    ╱
+                     ╲                       ╱
+                      ╲    [CAMERA]         ╱
+                       ╲   +4 LEDs         ╱
+                    low, ahead of the wheel,
+                    aimed backward + slightly upward
 ```
 
-### The triangulation arithmetic — do this before buying
+**Requirements:**
 
-Disparity per millimetre of groove depth:
-
-```
-Δu / Δz  ≈  f · b / z₀²          [pixels per mm]
-```
-
-| f (px) | b (mm) | z₀ (mm) | px per mm | mm per px |
-|---|---|---|---|---|
-| 1400 | 80 | 250 | 1.8 | 0.56 ← **useless** |
-| 1400 | 150 | 200 | 5.3 | 0.19 |
-| 1400 | 200 | 150 | 12.4 | **0.081** ← target |
-| 1400 | 250 | 120 | 24.3 | 0.041 ← better, but FOV shrinks |
-
-With Gaussian sub-pixel peak fitting on the laser line (routinely 0.1 px), the last two rows give **~0.008 mm** effective precision. Absurdly better than you need — which is exactly right for a *teacher* signal.
-
-**Trade-off to be aware of:** shrinking `z₀` shrinks the field of view. At `z₀ = 150 mm` with a 6 mm lens on a 1/2.9" sensor you cover roughly 140 mm laterally — enough for one tyre width on a small car, tight on an SUV. Either accept the crop, or use two cameras side by side, or step back to `z₀ = 200 mm` and accept 0.19 mm/px. **Measure your actual FOV in v0 before committing.**
-
-### FTIR light injection
-
-- Sand and polish both long edges of the plate to optical clarity (a glass shop will do this — ask for "polished edge, C-grind").
-- Mount the LED strip flush against the edge with index-matching optical gel or clear silicone. Air gaps kill coupling efficiency.
-- Wrap the whole underside enclosure in matte black flock.
-- **Laminate the clear interface film onto the top face.** Without it, black tread rubber absorbs the coupled light instead of scattering it back, and you get no contrast. This is not optional — see `09_RELATED_WORK.md §3`.
-
-#### The revised go/no-go test (v0, week 1)
-
-The thumb test alone is **not sufficient**. A fingertip is soft, pale and moist; it scatters beautifully and will pass even if the concept fails on rubber. Run all four steps:
-
-| Step | Do | Expect |
+| Parameter | Target | Why |
 |---|---|---|
-| 1 | Edge-light the glass, press your thumb | Bright fingerprint → *the rig works* |
-| 2 | Press **black tread rubber cut from a scrap tyre**, bare glass | Probably little/no contrast |
-| 3 | Lay clear PPF/PET film on the glass, press the same rubber | Bright footprint → *the concept works* |
-| 4 | Compare 2 vs 3 quantitatively (histogram, Michelson contrast) | Document the difference |
+| Both shoulders in frame | Mandatory | Alignment is refused without them |
+| Full tread width in frame | Mandatory | Lateral wear profile needs edge-to-edge |
+| Elevation angle | 10–25° upward | Too flat → severe foreshortening; too steep → shoulders leave frame |
+| Standoff | 300–600 mm | Closer = better mm/px, but FOV and depth-of-field shrink |
+| Mount rigidity | **Absolute** | Any flex changes the calibration and biases toe |
 
-| Outcome | Action |
-|---|---|
-| Step 3 gives clear contrast | Proceed with film. Expected. |
-| Step 2 alone gives usable contrast | Better — no film needed. **Report it; it contradicts prior practice.** |
-| Neither works | Fall back to flood-lit ground view + laser. Still novel, still viable. Rewrite `01_CONCEPT.md §3`. |
-
-Cost: one afternoon, ~₹600 of film. **Do this before ordering the v1 camera.**
-
-### Channel separation
-
-You need three signals from one camera. Options, in order of preference:
-
-1. **Temporal multiplexing (recommended).** Cycle the illumination frame-by-frame at 120 fps: `[FTIR] → [laser] → [flood IR] → repeat`. Gives you 40 fps per channel, perfectly registered, one camera. Drive the LEDs and laser from Pi GPIO synced to the camera's frame-sync (XVS) pin.
-2. **Spectral separation.** 850 nm FTIR + 650 nm laser + dichroic splitter and two cameras. More expensive, no temporal offset.
-3. **Two cameras, independent.** Simplest to build, hardest to register.
-
-Go with (1). It is elegant, cheap, and the temporal offset at 8 km/h is 23 mm of travel between channels — recoverable exactly, because you know the speed.
+> **The image border is not a reference.** Vertical and travel direction come from calibration only. Write this on the rig if you have to.
 
 ---
 
-## 3. Calibration — do all four, in this order
+## 2. Resolution budget — do this arithmetic before buying
 
-### 3.1 Intrinsics
+From `01_CONCEPT.md §5`: resolving a 0.3 mm sipe at 3 px requires **≤ 0.1 mm/px**.
 
-Standard ChArUco / checkerboard, OpenCV `calibrateCamera`. **Capture ≥30 views** covering all corners of the frame and a range of tilts.
+| Sensor | Horizontal px | FOV 250 mm | FOV 150 mm | FOV 100 mm |
+|---|---|---|---|---|
+| 1080p (1920) | 0.130 mm/px | 0.078 mm/px | 0.052 mm/px |
+| 8 MP (3264) | 0.077 mm/px | 0.046 mm/px | 0.031 mm/px |
+| 12 MP (4056) | 0.062 mm/px | 0.037 mm/px | 0.025 mm/px |
+
+**Conclusions:**
+
+- 1080p across a full 250 mm tread is **not enough** for sipes. It is fine for grooves, shoulders and wear patterns.
+- **Recommended: ≥8 MP**, or accept that fine structures are resolved only in a cropped centre region.
+- **State the achieved mm/px in every results table.** A detail claim without a spatial resolution is unfalsifiable.
+
+Also check **depth of field**: a doubly-curved tyre spans 50–100 mm in depth. At f/2.8 and 400 mm standoff DoF is tight — stop down to f/5.6–f/8 and add light rather than opening the aperture.
+
+---
+
+## 3. Bill of materials
+
+### v1 — bench rig
+
+| Item | Spec | Qty | ₹ | Note |
+|---|---|---|---|---|
+| Camera | Raspberry Pi HQ (IMX477, 12 MP) **or** global-shutter 8 MP USB3 | 1 | 6,000 | **Global shutter required if the wheel rotates** |
+| Lens | 12–16 mm C-mount, low distortion | 1 | 1,800 | Match to standoff; verify FOV before buying |
+| Host | Raspberry Pi 5 8 GB + 128 GB A2 card | 1 | 9,000 | Or a laptop with USB3 |
+| **LEDs for photometric stereo** | 4 × 10 W white COB, individually GPIO-switchable | 4 | 1,600 | 90° apart around the lens, 30–45° elevation |
+| **Polarising film** | Linear, A4 sheets | 2 | 500 | One on the lights, one on the lens, crossed |
+| LED driver | 4-channel constant current + MOSFET gates | 1 | 900 | Must switch fast enough to strobe |
+| Diffusers | Frosted acrylic squares | 4 | 300 | Softens hard shadows without killing directionality |
+| Calibration target | ChArUco A3 on rigid foam board | 1 | 300 | **Must be flat** — verify with a straightedge |
+| Tread depth gauge | Digital, 0.01 mm | 1 | 900 | Your reference instrument. Buy a good one |
+| Grey card | 18% reflectance | 1 | 200 | Flat-field correction |
+| Extrusion + brackets | 20×20 V-slot, 2 m | 1 set | 2,000 | Rigid frame |
+| Matte black flock | 1 m² | 1 | 400 | Kill stray reflections |
+| **Total** | | | **~23,900** | |
+
+### v2 additions — vehicle-mounted
+
+| Item | Spec | ₹ | Note |
+|---|---|---|---|
+| Enclosure | IP65, impact-resistant | 3,000 | Road debris, water |
+| Mounting bracket | Custom, bolted to a jack point or bumper | 4,000 | Local fabricator |
+| Power | 12 V automotive → 5 V buck, fused | 1,500 | Never tap the ECU harness |
+| Line laser (optional) | 650 nm, 5 mW, focusable | 400 | **Training-time teacher only** — see §7 |
+| Edge compute (optional) | Jetson Orin Nano 8 GB | 35,000 | A laptop is fine for the capstone |
+
+> **Budget reality:** a strong capstone is achievable at v1 (~₹24k) plus a phone-grade v2 for real-vehicle captures. Don't let the Jetson block progress.
+
+---
+
+## 4. Illumination — the highest-value subsystem
+
+Read `10_VISION_TECHNIQUES.md §2–3` first. Summary of what to build:
+
+### Photometric stereo array
+
+```
+        LED_N (0°)
+            │
+LED_W ──[CAMERA]── LED_E        4 LEDs, 90° apart
+   (270°)   │      (90°)         elevation 30–45°
+        LED_S (180°)             all at equal radius from the lens
+```
+
+Capture sequence per inspection, GPIO-strobed:
+
+```
+frame 1: LED_N only      frame 4: LED_W only
+frame 2: LED_E only      frame 5: all LEDs (flat reference)
+frame 3: LED_S only      frame 6: all LEDs, cross-polarised
+```
+
+Six frames in ~120 ms at 50 fps. Solve `I_i = ρ(n·l_i)` for the normal map `n` and albedo `ρ`.
+
+**Critical constraint: the tyre must be static during the burst.** Either capture stationary, or strobe fast enough that inter-frame motion is sub-pixel, or register the burst before solving. Verify this in v0.
+
+**Calibrate the light directions.** Photograph a matte white sphere (a ping-pong ball works) under each LED; the specular highlight position gives the light direction. Do this once and store it with the calibration.
+
+### Cross-polarisation
+
+Polariser sheet over the LEDs, second polariser on the lens rotated 90°. Verify by pointing at a wet tyre: highlights should vanish. Capture both polarised and unpolarised — the **difference image isolates the specular component**, which is a useful gloss/wetness feature in its own right.
+
+### Flat-field correction
+
+Once per session, photograph an 18% grey card filling the frame under each illumination condition. Store as `flatfield_<condition>.npy`. Divide every subsequent frame by it. This removes vignetting and lighting non-uniformity that otherwise **looks exactly like shoulder wear**.
+
+---
+
+## 5. Calibration — four steps, in order
+
+### 5.1 Intrinsics
+
+ChArUco, OpenCV `calibrateCamera`, **≥30 views** covering all frame corners and a range of tilts.
 
 ```bash
 conda activate cv_conda
 python scripts/calibrate_intrinsics.py --images data/calib/intrinsics/ --board charuco_5x7_35mm
 ```
 
-Acceptance: reprojection RMS **< 0.3 px**. If not, your target isn't flat or your images are blurry. Print on foam-board, not paper.
+**Acceptance: reprojection RMS < 0.3 px.** If not, the target isn't flat or the images are blurred. Foam board, not paper.
 
-### 3.2 Plate-plane pose
+### 5.2 Extrinsics — camera to world
 
-Lay the ChArUco flat *on the glass*. Solve PnP. This defines world `z = 0` and gives you a metric px→mm homography for the plate surface.
+Place the ChArUco flat on the ground in a known orientation relative to the vehicle travel axis. Solve PnP for `[R|t]`.
 
-Acceptance: measure a known 100 mm distance on the plate through the homography, error **< 0.5 mm**.
+**Acceptance:** a known 100 mm ground distance reconstructs within 0.5 mm.
 
-### 3.3 Laser-plane calibration
+### 5.3 Light-direction calibration
 
-The laser fan is a plane in camera coordinates. To find it:
+Sphere method above. **Acceptance:** re-solving a known convex object's normals gives < 5° angular error.
 
-1. Place the ChArUco at ≥6 different known heights above the plate (use gauge blocks or precision-cut spacers).
-2. At each height, the laser line intersects the known board plane; extract line points, back-project to 3D.
-3. Fit a plane to the union of all 3D points → laser plane `π_L: n·X + d = 0`.
+### 5.4 Travel-axis verification — the one everyone gets wrong
 
-Then any laser pixel back-projects to a ray, which you intersect with `π_L` for a metric 3D point. Standard structured-light calibration.
+**Toe is measured relative to the vehicle travel axis. Any error in that axis biases every toe reading by the same amount.**
 
-Acceptance: measure a machined step of known height (a stack of feeler gauges works) — error **< 0.05 mm**.
+Two defences:
 
-### 3.4 Travel-axis alignment — the one everyone forgets
+1. **Static:** establish the axis from calibration against a marked straight line on the floor.
+2. **Dynamic (preferred):** estimate travel direction per-clip from the **tracked motion of the tyre across frames**, not from the mount. Fit a robust line to the motion track. This makes the measurement self-referencing and removes mount bias entirely.
 
-Your toe measurement is *relative to the rig's `+x` axis*. If the rig's axis is not parallel to the vehicle's actual direction of travel, every toe reading is biased by that error.
+**Acceptance test:** set the jig to exactly 0° toe. Measured toe must be **0 ± 0.2°** across 20 clips. A constant offset means systematic bias — find it *before* collecting 400 tyres, not after.
 
-Fix it:
-- Machine/mark the plate frame with a precise reference edge.
-- Determine actual travel direction per-pass from the **tracked motion of the tyre footprint centroid** across frames, not from the frame geometry. Fit a line to the centroid track; that line *is* the travel direction for that pass.
-- This makes the measurement self-referencing and removes rig-alignment bias entirely. **Do this — it is nearly free and it removes an entire error source.**
+### Calibration hygiene
 
-Acceptance: roll the jig wheel set to exactly 0° toe. Measured toe should be **0 ± 0.1°** across 20 passes. If there's a constant offset, you have a systematic bias — find it before collecting data, not after.
+- Store a **calibration version ID with every clip.** Non-negotiable.
+- Recalibrate after any lens, focus, or mount change.
+- Re-run the zero-toe test weekly. If it drifts, the mount is not rigid enough.
 
 ---
 
-## 4. Capture software
+## 6. Capture software
 
 ```
 capture/
-  ├─ trigger.py         # break-beam → arm → record → speed estimate
-  ├─ illum_sync.py      # GPIO channel cycling, synced to camera XVS
-  ├─ record.py          # ring buffer, saves raw frames + metadata JSON
-  └─ qc.py              # immediate quality check; reject bad passes on the spot
+├── record.py        # burst capture, LED sequencing, metadata
+├── illum.py         # GPIO strobe control synced to frame sync
+├── flatfield.py     # grey-card capture and correction
+└── qc.py            # immediate quality check — reject on the spot
 ```
 
-**`qc.py` is the most important file here.** After every pass it must check and report:
+### `qc.py` is the most important file here
 
-- [ ] Footprint detected in ≥ 15 frames
-- [ ] Sharpness (variance of Laplacian) above threshold in the contact band
-- [ ] Laser line detected and unbroken across the tyre width
-- [ ] Speed within 4–15 km/h
-- [ ] Plate surface clean (no false FTIR blobs before the tyre arrives)
-- [ ] Exposure not clipped (< 0.1% saturated pixels)
+After every capture it must check and print a large PASS or FAIL:
 
-Print a big green PASS or red FAIL. **Nothing wastes a data-collection day like discovering at home that 200 passes were out of focus.**
+- [ ] Tread mask coverage above threshold
+- [ ] **Both shoulders visible** (alignment refused otherwise)
+- [ ] Focus: variance of Laplacian above threshold
+- [ ] Exposure: < 0.1% clipped pixels, either end
+- [ ] Specular area below threshold (or wetness flagged)
+- [ ] Photometric-stereo burst: inter-frame motion sub-pixel
+- [ ] ≥ N frames accepted for registration
+- [ ] TWI bar detected (flag if not — scale anchor unavailable)
 
-### Metadata to record for every single pass
+**Nothing wastes a collection day like discovering at home that 60 tyres were out of focus.**
 
-Store as JSON alongside the frames. This is your dataset's real value.
+### Metadata for every clip
 
 ```json
 {
-  "pass_id": "2026-08-14_1432_p017",
+  "clip_id": "2026-09-03_1412_t047_c02",
+  "tyre_id": "t047",
   "vehicle": {"make":"Maruti","model":"Swift","year":2019,"odometer_km":48210},
   "wheel": "front_left",
-  "tyre": {"brand":"MRF","model":"ZLX","size":"185/65R15",
-           "dot_code":"3419","load_index":88,"speed_rating":"H"},
+  "tyre": {"brand":"MRF","model":"ZLX","size":"185/65R15","dot":"3419"},
   "inflation_kpa": 220,
-  "measured_depth_mm": {"positions": "12 clock x 5 lateral", "values": [[...]]},
-  "alignment_gt": {"source":"jig","toe_deg":0.35,"camber_deg":-1.20,
-                   "uncertainty_deg":0.05},
-  "capture": {"speed_kmh":8.4,"fps":120,"frames":58,"coverage_pct":52,
+  "load_state": "empty",
+  "gauge_depth_mm": {"stations": 6, "grooves": 4, "values": [[...]]},
+  "alignment_gt": {"source":"jig","toe_deg":0.35,"camber_deg":-1.20,"unc_deg":0.05},
+  "capture": {"fps":50,"frames":180,"mm_per_px":0.062,
+              "illum":["N","E","S","W","flat","xpol"],
               "surface":"dry","ambient_lux":320,"temp_c":31},
-  "operator": "shanmukesh",
-  "qc": {"passed": true, "sharpness": 412.7, "laser_ok": true}
+  "calibration_id": "calib_2026-09-01_v3",
+  "qc": {"passed":true,"focus":412.7,"shoulders_visible":true,"twi_found":true}
 }
 ```
 
 ---
 
-## 5. Common failure modes and their fixes
+## 7. Optional metric-depth extension
 
-| Symptom | Likely cause | Fix |
+If the project needs defensible millimetre depth, add **one** of:
+
+| Option | Precedent | Cost |
 |---|---|---|
-| **Footprint has no contrast at all — contact and non-contact both dark** | **No interface film.** Black rubber absorbs the coupled light instead of scattering it | **Laminate clear PPF/PET on the plate.** `09_RELATED_WORK.md §3` |
-| Footprint brightness drifts during a long static test | Plastic film creep/hysteresis (documented in Cabrera 2017) | Rolling contact loads each point for only ~50 ms, so this should be minor — measure it and report |
-| Film scratches quickly | Grit on tyres | It's sacrificial. Buy a roll, replace weekly. Budget for it. |
-| FTIR image is grey mush, no contrast | Ambient light leaking in | Flock the enclosure; add IR-pass filter; test at night first |
-| Fingerprint test fails | Poor edge coupling, or plate too thick/thin | Polish edges properly; use optical gel; try 8–10 mm glass |
-| Grooves invisible in flood channel | Glass surface dirty or scratched | Clean with IPA; replace plate; it *will* get scratched by grit |
-| Laser line washed out | Ambient IR / sunlight | 650 nm narrow bandpass filter on that frame; capture indoors or at dusk |
-| Laser line broken across black rubber | Rubber absorbs 650 nm strongly | Increase laser power to 5 mW (not more); lengthen exposure on laser frames only |
-| Stitched map has seams / duplicated features | Speed estimate wrong | Estimate rolling speed from tread feature tracking, **not** from vehicle speed — slip is real |
-| Toe reading has constant offset | Rig axis bias | Use per-pass travel direction from footprint track (§3.4) |
-| Depth predictions collapse to the dataset mean | Class-imbalanced tread depths | Stratify sampling by depth bin; use the ranking loss |
-| Model works on jig, fails on real cars | Domain gap — load, suspension compliance, dirt | Collect real-car data early and continuously, not at the end |
+| Line laser + triangulation | [Wang et al. 2019](https://doi.org/10.1177/1687814019837828), **<0.2 mm** | ₹400 + calibration |
+| Second camera (stereo) | — | ₹6,000 |
+| RGB-D sensor | [Shi et al. 2026](https://doi.org/10.3390/metrology6010004), **<0.1°** alignment | ₹15,000+ |
+
+**Use it as a training-time teacher, not a deployment sensor.** Supervise the RGB model with metric depth, then ship RGB-only. That is the cheap-deployment story *and* a clean ablation (`06_EVALUATION.md`).
+
+**Laser safety:** 5 mW 650 nm is Class 3R. Never at eye level. Interlock it off unless a tyre is present. Wear 650 nm eyewear during alignment. Label the enclosure.
 
 ---
 
-## 6. Safety — read this before you switch anything on
+## 8. Failure modes
 
-**Laser.** A 5 mW 650 nm line laser is Class 3R. It will not blind you instantly but it can damage vision on direct beam entry. Rules:
-- Mount so the beam is **always** pointing upward into an enclosed cavity, never at eye level.
-- Interlock: laser off unless the plate is covered or a wheel is present.
-- Wear 650 nm laser safety glasses during alignment and calibration work.
-- Put a warning label on the enclosure.
-
-**Glass under a vehicle.** A 19 mm laminated toughened plate on a properly supported steel frame handles a passenger-car wheel load (~400 kg). But:
-- **Never** let a vehicle onto v0/v1 glass (10 mm, unlaminated). It will shatter.
-- Support the plate on its full perimeter, on a compliant gasket, never on point loads.
-- Use **laminated** glass in v2 so a failure holds together rather than dropping a wheel into your camera.
-- Test with sandbags to 1.5× rated load before any car goes near it.
-
-**Vehicle movement.** Data collection means a moving car near a person operating a camera. Have a second person. Agree hand signals. Never stand in the path. Chock the wheels between passes.
-
-**Electrical.** 12 V is safe but outdoors + water is not. Use an IP-rated enclosure and an RCD if mains-powered.
+| Symptom | Cause | Fix |
+|---|---|---|
+| Grooves invisible, image flat and grey | Flat/ring illumination | **Photometric stereo.** This is the whole point of §4 |
+| Bright blown-out patches | Specular reflection | Cross-polarise; check wetness flag |
+| One shoulder consistently darker | Uneven lighting | Flat-field correction |
+| Sipes not resolvable | Insufficient mm/px | Crop tighter or use a higher-res sensor (§2) |
+| Photometric normals noisy/wrong | Non-Lambertian rubber, shadows in grooves | ≥4 lights, robust/RANSAC normal fit, cross-polarise |
+| Normals smeared | Tyre moved during burst | Strobe faster, capture stationary, or register the burst |
+| Toe has a constant offset | Travel-axis bias | Per-clip motion-derived axis (§5.4) |
+| Toe drifts week to week | Mount flexing | Stiffen the mount; recalibrate; re-run zero-toe test |
+| Model great on val, bad on new tyres | Frame-level split leak, or brand shift | **Tyre-level grouped splits**; unseen-brand test set |
+| Tread skewed when wheel rotates | Rolling shutter | Global-shutter sensor |
 
 ---
 
-## 7. Build checklist
+## 9. Build checklist
 
 ```
 Week 1  — v0
-  [ ] Glass sheet + phone + bricks assembled
-  [ ] Fingerprint FTIR test passes           ← GO / NO-GO for the whole concept
-  [ ] Bicycle wheel rolled over, grooves visible in video
-  [ ] Frames extracted, one crude stitch attempted
+  [ ] Phone + side lighting + one tyre, photographed
+  [ ] Can you see: grooves? shoulders? a sipe? a TWI bar?     ← GO / NO-GO
+  [ ] Measure achieved mm/px against a ruler in frame
+  [ ] 4-position hand-torch photometric test: do grooves pop?
+  [ ] Start the gauge study: measure 4 tyres, record with date
 
 Week 2-3 — v1
-  [ ] Frame built, camera mounted rigidly
-  [ ] Edge polish + LED injection working
+  [ ] Frame built, camera rigidly mounted
+  [ ] 4-LED array + drivers, GPIO strobing verified
+  [ ] Cross-polarisation verified on a wet tyre
   [ ] Intrinsics calibrated, RMS < 0.3 px
-  [ ] Plate homography verified < 0.5 mm
-  [ ] Laser plane calibrated, step test < 0.05 mm
-  [ ] Illumination channel cycling synced
+  [ ] Extrinsics + ground plane, 100 mm within 0.5 mm
+  [ ] Light directions calibrated, < 5° error
+  [ ] Flat-field capture routine working
   [ ] qc.py written and actually used
 
-Week 4-6 — jig + first data
-  [ ] Alignment jig built and protractor-calibrated (see 03_DATA.md)
-  [ ] Zero-toe bias test passes: 0 ± 0.1° over 20 passes
-  [ ] 200 jig passes captured with full metadata
-  [ ] Unrolled tread map pipeline produces clean output
+Week 4-5 — jig + pilot
+  [ ] Alignment jig built, verniers verified to 0.05°
+  [ ] Zero-toe bias test: 0 ± 0.2° over 20 clips
+  [ ] Pilot: 30-50 unique tyres captured with full metadata
+  [ ] Photometric normal maps look sane on real tyres
 
-Week 7+ — v2 (only if v1 data looks good)
-  [ ] Load-tested plate
-  [ ] Frame installed flush
-  [ ] Break-beam trigger
-  [ ] First real-car pass
+Week 6+ — v2
+  [ ] Enclosure + vehicle mount
+  [ ] Real-vehicle clips
+  [ ] Weekly calibration re-verification
 ```
 
-Everything in this repo runs under `conda activate cv_conda`.
+Everything runs under `conda activate cv_conda`.

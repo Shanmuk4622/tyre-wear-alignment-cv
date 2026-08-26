@@ -1,251 +1,228 @@
-# 09 — Related Work and Novelty Audit
+# 09 — Annotated Related Work and Novelty Audit
 
-> Research pass completed 2026-08-09. Two findings **change the design**; read §2 and §3 before building anything.
-> Novelty audit in §7 replaces the optimistic table in `README.md`.
-
----
-
-## 1. Executive summary of the research pass
-
-| Question | Answer | Consequence |
-|---|---|---|
-| Is FTIR tyre-footprint imaging novel? | **No.** Established since Chodera; validated lab test bench published in *Sensors* 2017. | **Good news, not bad.** The physics is peer-validated. Novelty moves to in-motion deployment + inverting the model. |
-| Does the footprint actually encode camber? | **Yes — measured and fitted in prior work.** | The signal provably exists. De-risks the core premise. |
-| Will black tyre rubber work directly on glass? | **Probably not.** Prior art uses a clear plastic interface film for a reason. | **Design change required.** See §3. |
-| Is drive-over laser tread depth novel? | **No.** Multiple granted patents. | Our laser is a *training-time teacher only*; RGB at inference. That is the differentiator. |
-| What's SOTA for image-based tread depth? | **±1.5 mm on 90% of images** (QBurst, monocular CNN). | Our 0.35 mm MAE target would be a **4× improvement**. Strong positioning. |
-| Is "no-stop" alignment novel? | **No.** Hunter holds patents on rolling alignment with drive-direction calculation. | But those use clamp-on wheel targets. Target-free, ground-embedded is open. |
-| Is cross-task consistency loss novel? | **No.** Established (Zamir et al. CVPR'20; Joint-Task Regularization CVPR'24). | Novelty is the *physically-derived link function*, not the mechanism. Reposition. |
-| Can toe be grounded in physics? | **Yes — better than expected.** Toe = permanent static slip angle; brush/Archard models give wear rate as an explicit function of it. | Upgrades the consistency loss from heuristic to derived. **Big win.** |
+> Extends the Review-1 literature review with the methods research from `10_VISION_TECHNIQUES.md`.
+> §6 is the honest novelty grading — read it before writing the Review-2 abstract.
 
 ---
 
-## 2. Finding A — FTIR is prior art, and that is good for you
+## 1. Tyre-domain literature
 
-**Cabrera Carrillo et al., "Optimization of an Optical Test Bench for Tire Properties Measurement and Tread Defects Characterization," *Sensors* 2017, 17(4), 707.**
+### 1.1 Visual tyre and tread recognition
 
-What they built:
-- 12 mm glass plate, illuminated from the sides by fluorescent tubes
-- A **plastic lamina placed between the tyre and the glass**
-- Camera below, grey level calibrated to normal contact pressure
-- Tests on a Nankang 165/65R13 at 1000 N vertical load
-- Swept **camber angle** and **inflation pressure**; fitted contact area and pressure-centre as functions of both
-- Also used it to detect belt defects and abrasion
+**[1] Petrovic et al. (2025) — "Deep learning-based instance segmentation for detection of tire tread area."** *Progress in Engineering Science* 2(2). [doi:10.1016/j.pes.2025.100080](https://doi.org/10.1016/j.pes.2025.100080)
 
-They cite Chodera as the originator of FTIR pressure sensing, and note that optical techniques give **better spatial resolution than piezoresistive sensor mats**, which is the competing technology.
+Mask R-CNN with a ResNet-50 backbone, trained on **247 images**, tested on 62, achieving **COCO mAP 0.6081**. HOG features extracted from the segmented tread for condition classification.
 
-### Why this is good news, not bad
+*Why it matters:* the closest published viewpoint to ours. It proves a learned tread mask is feasible from a front view. Equally important, the modest dataset and mAP show **tread localisation is not a solved preprocessing step** — it must be evaluated explicitly, not assumed. Our design keeps high-resolution boundary information for shoulders and thin grooves rather than treating segmentation as a throwaway crop.
 
-1. **The physics is peer-validated.** You are not gambling on an untested idea; you are deploying a proven measurement principle in a new setting. That is a much safer capstone.
-2. **They proved the signal you need exists.** Figures 13–17 of that paper are literally *contact area vs camber angle* and *pressure centre vs camber angle*, with fitted models. Somebody has already demonstrated that camber is recoverable from an FTIR footprint. Cite it as your justification.
-3. **They built the forward model. You build the inverse.** They set camber and measured the footprint. You observe the footprint and estimate camber. Forward → inverse is a legitimate, well-understood form of contribution.
-4. **They were static, indoors, on a lab bench, with a hand-placed film.** You are in the road plane, under a moving vehicle, at 8 km/h. That gap is the contribution.
+*How we differ:* SegFormer-B2 with tiled fine-structure passes and boundary + clDice losses; segmentation quality reported as a first-class metric.
 
-### Revised claim wording
+**[6] Vivekanandan & Rajeswari (2026) — "Edge-based visual tire wear classification with behavior-aware fusion."** *Measurement* 276:121509. [doi:10.1016/j.measurement.2026.121509](https://doi.org/10.1016/j.measurement.2026.121509)
 
-> ~~"FTIR contact-footprint imaging repurposed for wheel-alignment estimation."~~
->
-> **"Prior work has established FTIR footprint imaging as a laboratory instrument for characterising tyres with *known* alignment [Cabrera 2017, Chodera]. We invert this relationship and deploy it in the road plane: estimating *unknown* alignment state from the footprint of a moving vehicle, without markers, clamps, or driver intervention."**
+MobileNetV2 + behaviour-aware fusion, **4,000 images**, multiple manufacturers. Domain adaptation via Adaptive BatchNorm and Deep CORAL raised unseen-brand accuracy **88.2% → 92.4%**; ~44 ms/frame on a Jetson Nano.
 
-That is a smaller claim than the original, and a much more defensible one. It also gives you a strong related-work paragraph instead of a nervous one.
+*Why it matters:* the important result is not the real-time inference — it is that **brand and tread-design shift produce a measured 4-point generalisation gap.** This is the single most quotable justification for our unseen-brand test split. Domain shift here is documented fact, not a hypothetical risk.
 
----
+*How we differ:* we report stratified performance by brand/tread family rather than a pooled accuracy, and treat domain adaptation as an ablation (`04_MODEL.md` #15).
 
-## 3. Finding B — the design change: you need an interface film
+### 1.2 Optical tread-depth measurement
 
-**This is the most important practical result of the research pass.**
+**[2] Huber, Preindl & Betz (2022) — "TireEye: Optical On-board Tire Wear Detection."** *PHM Society* 14(1). [doi:10.36001/phmconf.2022.v14i1.3242](https://doi.org/10.36001/phmconf.2022.v14i1.3242)
 
-The prior art does not press rubber directly onto glass. It interposes a **clear plastic lamina**, and the reason is optical:
+Wheel-well-mounted device observing a longitudinal groove cross-section. Adaptive Canny recovers the groove outline; **tread-wear indicators provide an in-frame scale reference.** Full-vehicle accuracy **0.57 mm**.
 
-> *"the plastic interface absorbs one fraction, lets another pass through, and if it is clear, it reflects a large amount of it."* — Cabrera et al.
+*Why it matters:* the most directly transferable result in this list. It establishes three principles we adopt wholesale — stable camera placement, a constrained measurement region, and a **physical in-frame scale reference**. Our TWI-anchor loss (`04_MODEL.md §3F`) is this idea formalised into a training objective.
 
-FTIR only produces a **bright** footprint if the contacting material **scatters light back down** toward the camera. Tyre tread rubber does the opposite:
+*Benchmark:* 0.57 mm on a full vehicle is the number to beat for on-board optical wear measurement.
 
-- Carbon-black-filled rubber has a **high refractive index** (couples light in efficiently — good) and is **strongly absorbing** (destroys it — bad).
-- Light that enters black rubber is absorbed, not scattered back.
-- Meanwhile, in non-contact regions TIR is intact, so no light exits downward there either.
+**[3] Wang et al. (2019) — "Tire tread depth measurement based on machine vision."** *Advances in Mechanical Engineering* 11. [doi:10.1177/1687814019837828](https://doi.org/10.1177/1687814019837828)
 
-**Net result: with bare rubber on bare glass, both contact and non-contact regions look dark. You get almost no contrast.** The elegant fingerprint-scanner picture in `01_CONCEPT.md` does not transfer to a black tyre.
+Two cameras observing a laser plane intersecting a radial section; laser centreline extracted, transformed to world coordinates, groove concavities identified. **Absolute error < 0.2 mm on two tyres.**
 
-### The fix
+*Why it matters:* demonstrates that accurate depth is a **calibrated 3-D metrology problem**, not an appearance problem. Sets the ceiling: with structured light you get 0.2 mm; without it you should not claim millimetres.
 
-Laminate a **thin, clear, sacrificial interface film** onto the top surface of the glass:
+*Caveat to cite honestly:* two tyres is not a generalisation claim.
 
-| Property | Requirement | Candidate |
-|---|---|---|
-| Refractive index | > glass (1.52) | Polyurethane PPF (n ≈ 1.50–1.56), PET (n ≈ 1.57) |
-| Thickness | 75–150 µm | thicker = more hysteresis/creep |
-| Optical | clear, scattering back-face | slight matte on the underside helps |
-| Durability | sacrificial, replaceable | car paint-protection film is designed for exactly this abuse |
-| Cost | low | PPF ≈ ₹400/m² |
+*How we use it:* structured light as a **training-time teacher** with RGB-only inference — the cheap-deployment story plus a clean ablation (#9).
 
-**Automotive paint-protection film (PPF) is close to ideal**: optically clear polyurethane, self-healing, abrasion-resistant, designed for road grit, sold by the roll, and trivially replaceable when scratched. It is a genuinely good fit for a drive-over plate.
+### 1.3 Surface damage and anomaly segmentation
 
-Caveat the prior art already flagged: plastic laminae exhibit **creep and hysteresis** (grey level drifts under sustained pressure). For a *rolling* contact the load is applied for only ~50 ms per point, which is far better than a static bench test — arguably your dynamic use case suffers *less* from creep than theirs did. Worth measuring and reporting; it is a nice small result.
+**[4] Chen et al. (2024) — "Tire Surface Damage Detection Based on Image Processing."** *Sensors* 24(9):2778. [doi:10.3390/s24092778](https://doi.org/10.3390/s24092778)
 
-### Week-1 test, revised
+Multi-scale bilateral filtering, clustering, Harris corners, histogram correlation. Mainly sidewall scratches.
 
-The original "press your thumb on the glass" test is **not sufficient** — a fingertip is soft, pale, moist, and scatters beautifully. It will pass even if the concept fails on rubber.
+*Why it matters:* an explainable classical baseline. Dark rubber has weak colour differences, and edge-preserving filtering genuinely helps isolate local cuts. In our system these operations generate **candidate regions and interpretable comparisons**, not the final detector.
 
-**Revised go/no-go protocol:**
+**[5] Ko et al. (2021) — "Anomaly Segmentation Based on Depth Image for Tire Manufacturing."** *Applied Sciences* 11(21):10376. [doi:10.3390/app112110376](https://doi.org/10.3390/app112110376)
 
-1. Edge-light the glass. Press your thumb. Expect a bright fingerprint. *(Confirms the rig works.)*
-2. Press a **piece of black tread rubber cut from a scrap tyre**. Photograph. *(This is the real test.)*
-3. Lay a piece of clear PPF/PET film on the glass, press the same rubber. Photograph.
-4. Compare contrast between 2 and 3.
+16-bit depth images + DeepLabV3+. Stacking raw depth, histogram-equalised depth and a height heat map improved **mIoU by >7 points**.
 
-**Decision rule:**
+*Why it matters:* directly supports our photometric-stereo decision. When a defect is defined by **protrusion, indentation or groove height**, depth-like channels carry evidence RGB texture does not. Their multi-representation stacking is the same idea as our `[RGB | normals | albedo | CLAHE]` input stack.
 
-| Outcome | Action |
-|---|---|
-| (3) shows a clear bright footprint | Proceed with film. Expected outcome. |
-| (2) alone shows usable contrast | Even better — no film needed. Report it, it contradicts prior practice. |
-| Neither works | Fall back to flood-lit ground view + laser. Still novel, still viable. Rewrite `01_CONCEPT.md §3`. |
+### 1.4 Vision-based wheel alignment
 
-Total cost: one afternoon and about ₹600 of film. **Do this before ordering the v1 camera.**
+**[7] Furferi, Governi, Volpe & Carfagni (2013) — "Machine Vision System for Automatic Vehicle Wheel Alignment."** [doi:10.5772/55928](https://doi.org/10.5772/55928)
 
----
+Stereovision with NIR markers around the sidewall; stereo triangulation → wheel-plane fit → toe and camber in a calibrated vehicle frame. Average difference vs a 3-D scanner: **~0.024° toe, ~0.026° camber**.
 
-## 4. Competitive positioning — the numbers that matter
+*Why it matters:* demonstrates the **correct measurement logic** — alignment angles are properties of a wheel plane relative to a vehicle coordinate system, not the apparent tilt of an image. Our analytic estimator follows this structure exactly.
 
-### Tread depth
+*Why we cannot match it:* markers, stereo, and precise references. We are target-free and monocular. **State this gap explicitly rather than hoping nobody compares.**
 
-| System | Method | Reported accuracy |
-|---|---|---|
-| Digital tread gauge (reference) | Mechanical | ~0.10–0.15 mm test–retest |
-| **QBurst tire inspection** | Monocular CNN (U-Net/DenseNet) | **±1.5 mm on 90% of images** |
-| Industrial 2D laser profilers | Laser triangulation, up to 4000 fps | ~0.01–0.05 mm |
-| Drive-over laser ramps (patented) | Structured-light triangulation | sub-mm |
-| **GRIP target** | RGB, laser-distilled, TWI-anchored | **0.35 mm MAE, 85% within ±0.5 mm** |
+**[8] Xu et al. (2022) — "Automatic and Accurate Vision-Based Measurement of Camber and Toe-In."** *IEEE T-IM* 71. [doi:10.1109/TIM.2022.3216382](https://doi.org/10.1109/TIM.2022.3216382)
 
-**This is your headline comparison.** The best published *image-based* result is ±1.5 mm. Laser systems reach 0.05 mm but require shipping a laser. If GRIP hits 0.35 mm with RGB-only inference, you have closed most of the gap between cheap cameras and expensive lasers — and that is a clean, quotable one-sentence contribution.
+Calibrated vision + geometric recognition; emphasises detecting stable circular/wheel structure before computing the angle.
 
-### Alignment
+*Why it matters:* reinforces detecting stable geometry first. From our low front view the rim is usually occluded, which is precisely why we substitute **shoulder contours and groove-orientation fields** as the stable structure.
 
-| System | Method | Accuracy | Requires |
+**[9] Shi, Liu & Zappa (2026) — "Flexible Wheel Alignment via APCS-SwinUnet and Point Cloud Registration."** *Metrology* 6(1):4. [doi:10.3390/metrology6010004](https://doi.org/10.3390/metrology6010004)
+
+Rim segmented by a task-specific Swin-UNet, point cloud registered by ICP, rotation matrix → toe and camber. **Errors < 0.1°** in a controlled single-wheel feasibility study.
+
+*Why it matters:* the target-free 3-D direction and the best modern comparator. The authors themselves acknowledge limited diversity and **no direct validation against a commercial aligner** — cite that honestly; it shows even the strongest recent work is a feasibility study, which properly frames our own scope.
+
+*How we differ:* monocular RGB, no depth sensor. RGB-D is our ablation #9, not our baseline.
+
+**[10] Zhang et al. (2023) — "Noncontact tire deformation measurement, Tire-Net."** *Measurement* 215:113034. [doi:10.1016/j.measurement.2023.113034](https://doi.org/10.1016/j.measurement.2023.113034)
+
+Semantic segmentation + sub-pixel edge extraction + physical scale conversion.
+
+*Why it matters:* the clearest precedent for our hybrid split — **deep learning finds the correct region, calibrated analytic vision performs the physical measurement.** This is the design pattern of our whole alignment module.
+
+### Tyre-domain summary
+
+| Study | Approach | Reported result | Relevance |
 |---|---|---|---|
-| Hunter HawkEye Elite | Camera + clamp-on targets | ~0.02–0.05° | Targets, rack, 70 s, technician |
-| Furferi et al. 2013 | Stereovision + NIR sidewall markers | "compatible with commercial systems" | Markers on tyre |
-| IEEE Access 2022 (RVM-DBSCAN) | Calibration-free vision | camber & toe, high accuracy claimed | Static, controlled |
-| **GRIP target** | Target-free, ground-embedded, in-motion | camber 0.30°, toe **screening** (AUC > 0.90) | Nothing — driver just drives |
-
-**Do not claim to compete with Hunter on accuracy. You will lose.** Claim a different axis entirely: **zero-effort, zero-hardware-on-vehicle, universal screening.** Hunter measures 20 cars a day that a technician already suspected. GRIP screens every car that enters the forecourt, for free, and tells the technician which ones to put on the Hunter. Those are complementary products, and framing it that way makes your modest accuracy a design choice rather than a shortfall.
-
----
-
-## 5. Finding C — a proper physical basis for the toe consistency loss
-
-This upgrades `01_CONCEPT.md §6` from a plausible heuristic to a derived relationship, and it is the strongest theoretical result of the research pass.
-
-**The key realisation: a wheel with static toe angle τ, driving in a straight line, is permanently operating at slip angle α = τ.**
-
-Toe is not merely *correlated* with wear. Toe **is** a continuously-applied slip angle, and the tyre-wear literature gives explicit models for wear rate as a function of slip angle:
-
-- **Brush tyre model** (Salminen, KTH; Analysis of tyre wear using the expanded brush tyre model, DiVA) — models tread elements as elastic bristles, gives sliding velocity and frictional work in the contact patch as a function of slip angle.
-- **Archard-type abrasion:** wear volume ∝ frictional work = ∫ (shear stress × sliding distance) over the contact patch.
-- Empirical wear-rate form: `W = f(A_b, F_y, α, S, F_N/F_N0)` — abrasion coefficient, lateral force, slip angle, distance, normalised normal load.
-- Reported sensitivity is extreme: side-slip angle and longitudinal slip are the **most influential** parameters, with wear rates varying by orders of magnitude across the range.
-
-### What this buys you
-
-1. **`h_τ` is derivable, not fitted from thin air.** You can write down the brush-model prediction of lateral wear-rate distribution across the tread as a function of τ, and use *that* as the link function. A physics-informed loss with actual physics in it.
-2. **Strong signal.** If wear rate depends steeply on slip angle, then small toe errors produce large, detectable wear-pattern differences — precisely the regime where inferring toe *from wear* beats measuring toe *geometrically*. This is an argument that your indirect route may be **more sensitive** than the direct one.
-3. **A real theoretical section for the paper.** Derive the wear-rate-vs-slip-angle relation from the brush model, show your learned link function recovers it from data, and you have a genuine physics-informed-ML contribution rather than a regulariser with a nice name.
-
-Camber gets similar treatment: camber thrust produces lateral force and asymmetric normal pressure, both of which feed the same wear model.
-
-**Action:** read the two DiVA theses on brush-model tyre wear in Phase 0. They are free, thorough, and directly usable. This is the highest-value reading in your literature review.
+| Petrovic 2025 | Mask R-CNN front-view tread | mAP 0.6081, 247 imgs | Same viewpoint; segmentation must be evaluated |
+| Vivekanandan 2026 | MobileNetV2 + DA | 88.2% → 92.4% unseen brand | **Brand shift is measured, not hypothetical** |
+| Huber 2022 | Wheel-well groove + TWI scale | **0.57 mm** | In-frame scale reference; benchmark |
+| Wang 2019 | Stereo + laser plane | **<0.2 mm** (2 tyres) | Depth is 3-D metrology |
+| Chen 2024 | Classical filtering | — | Explainable baseline |
+| Ko 2021 | Depth + DeepLabV3+ | **+7 mIoU** | Depth channels beat RGB for height defects |
+| Furferi 2013 | Stereo NIR markers | **~0.025°** | Correct alignment logic; marker-based |
+| Xu 2022 | Calibrated vision geometry | — | Find stable structure first |
+| Shi 2026 | Swin-UNet + RGB-D ICP | **<0.1°** | Modern target-free 3-D; still feasibility-stage |
+| Zhang 2023 | Tire-Net + sub-pixel edges | — | **Hybrid learned-region + analytic-measurement pattern** |
 
 ---
 
-## 6. Positioning against cross-task consistency literature
+## 2. Method literature adopted from the technique research
 
-Cross-task consistency is an established family:
+### Illumination and photometric stereo
 
-- Zamir et al., *Robust Learning Through Cross-Task Consistency*, CVPR 2020 — the canonical reference.
-- Nishi et al., *Joint-Task Regularization for Partially Labeled Multi-Task Learning*, CVPR 2024 — directly relevant, handles exactly your "abundant labels for task A, scarce for task B" setting.
-- Broad semi-supervised consistency-regularisation literature.
+- **[11]** Photometric Stereo-Based Defect Detection for Steel Components, *Sensors* 2022 — [PMC8838491](https://pmc.ncbi.nlm.nih.gov/articles/PMC8838491/). Photometric stereo + convolutional segmentation deployed on **highly specular** industrial surfaces. Establishes the approach on the same specularity problem wet rubber has.
+- **[12]** A dataset for surface defect detection on complex structured parts based on photometric stereo, *Scientific Data* 2025 — [doi:10.1038/s41597-025-04454-6](https://www.nature.com/articles/s41597-025-04454-6). Public dataset for method development.
+- **[13]** Defect segmentation for multi-illumination quality control, *MVA* 2021 — [link](https://link.springer.com/article/10.1007/s00138-021-01244-z). Multi-angle pseudo-colour imaging; documents that a **static ring light cannot distinguish a stain from a shadowed cavity.** This is the argument for our illumination design in one sentence.
+- **[14]** Polarization 3D imaging technology: a review, *Frontiers in Physics* 2023 — [link](https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2023.1198457/full). Shape-from-polarisation background; supports cross-polarisation and scopes SfP as future work.
 
-**Reposition accordingly.** Your contribution is not "we used a consistency loss." It is:
+### Thin-structure segmentation
 
-> **"Where cross-task consistency is usually enforced through learned cross-task mappings, we derive the link function from tyre contact mechanics. The constraint is therefore falsifiable and interpretable: the residual has physical meaning, and we show it identifies *temporal* discrepancies between a vehicle's current geometry and its accumulated wear history."**
+- **[15]** Shit et al., **clDice — a topology-preserving loss for tubular structures** — [arXiv:2003.07311](https://arxiv.org/pdf/2003.07311). Dice on skeletonised predictions, with a topology-preservation guarantee up to homotopy equivalence; **explicitly proposed for crack detection in industrial quality control.** Adopted for sipes and cracks.
+- **[16]** Skeleton Recall Loss — [arXiv:2404.03010](https://arxiv.org/html/2404.03010v1). Cheaper connectivity-preserving alternative.
 
-That last clause — the disagreement diagnostic — remains, after this entire research pass, **the most novel thing in the project.** Nothing found in the search does it. Protect it.
+  *Known trade-off to state in the report:* clDice is insensitive to boundary shifts within the structure radius, so it slightly costs boundary precision. We therefore **combine** it with boundary loss rather than replacing it, and ablate it specifically on connectivity metrics.
+
+### Foundation models and annotation efficiency
+
+- **[17]** FS-SAM2: adapting SAM2 for few-shot segmentation via LoRA — [arXiv:2509.12105](https://arxiv.org/html/2509.12105). Meaningful gains with **as few as 50 images per class.**
+- **[18]** SAM2 memory propagation for video annotation — throughput **37.8 s/frame → 4.5 s/frame** in a comparable workflow. Directly adopted (`03_DATA.md §5`).
+- **[19]** Rethinking Transfer Learning for Industrial Inspection: DINOv3 vs ImageNet — [arXiv:2605.23472](https://arxiv.org/html/2605.23472). **Frozen SSL features give no clear advantage on RGB industrial tasks; fully fine-tuned SSL initialisation is strongest.** This changed our training recipe.
+- **[20]** DINOv2 — [arXiv:2304.07193](https://arxiv.org/html/2304.07193v2).
+
+### Monocular depth — a documented negative result
+
+- **[21]** Depth Anything V2 — [arXiv:2406.09414](https://arxiv.org/html/2406.09414v2), and independent robotics evaluation reporting that **"fine details and close-range depths in feature-sparse areas are not represented well."**
+
+  Dark, low-texture, close-range rubber is close to the worst case for this model family. **We run it once as a negative-result ablation and do not build on it.** A documented negative result is a legitimate contribution.
+
+### Core architectures
+
+- **[22]** Xie et al., SegFormer, NeurIPS 2021 — [link](https://research.nvidia.com/labs/lpr/publication/xie2021segformer/)
+- **[23]** Woo et al., ConvNeXt V2, CVPR 2023 — [link](https://openaccess.thecvf.com/content/CVPR2023/html/Woo_ConvNeXt_V2_Co-Designing_and_Scaling_ConvNets_With_Masked_Autoencoders_CVPR_2023_paper.html)
+- **[24]** Roth et al., PatchCore, CVPR 2022 — [link](https://openaccess.thecvf.com/content/CVPR2022/html/Roth_Towards_Total_Recall_in_Industrial_Anomaly_Detection_CVPR_2022_paper.html)
+- **[25]** Sun et al., HRNet, CVPR 2019 — [link](https://openaccess.thecvf.com/content_CVPR_2019/html/Sun_Deep_High-Resolution_Representation_Learning_for_Human_Pose_Estimation_CVPR_2019_paper.html)
+- **[26]** Teed & Deng, RAFT, ECCV 2020 — [arXiv:2003.12039](https://arxiv.org/abs/2003.12039)
+- **[27]** Cao et al., CORAL rank-consistent ordinal regression — [arXiv:2111.08851](https://arxiv.org/html/2111.08851v5)
+- **[28]** Angelopoulos & Bates, A Gentle Introduction to Conformal Prediction
 
 ---
 
-## 7. Revised novelty audit
+## 3. Public datasets — what they are good for
 
-Replaces the table in `README.md`. Honest grades.
-
-| # | Claim | Verdict | Grade |
+| Dataset | Size | Labels | Verdict |
 |---|---|---|---|
-| 1 | FTIR footprint imaging for tyres | **Prior art** (Chodera; Cabrera 2017) | ✗ Not novel |
-| 1b | FTIR **in the road plane, in motion, inverted to estimate unknown alignment** | No prior art found | ✓ **Novel** |
-| 2 | Zero-blur imaging via the rolling constraint | Physically obvious once stated; no paper found that states it | ~ Novel framing, weak claim. Use as *justification*, not contribution. |
-| 3 | Laser as train-time teacher, RGB at inference | Cross-modal distillation is established; this application is not | ✓ **Novel application** |
-| 4 | Consistency loss coupling wear to alignment | Mechanism is prior art; **brush-model-derived link function is not** | ✓ **Novel as reframed (§5)** |
-| 4b | **Disagreement diagnostic** (recent vs chronic misalignment) | Nothing comparable found | ✓✓ **Strongest claim** |
-| 5 | TWI bars as in-image metric ruler | No paper found doing this. Simple, but genuinely useful. | ✓ **Novel, small** |
-| 6 | GRIP-Roll dataset | No comparable public dataset exists | ✓✓ **Solid, durable** |
-| 7 | Conformal intervals on tyre safety decisions | Standard method, new application | ~ Good practice, not a contribution |
-| 8 | **Beating the ±1.5 mm image-based SOTA by 4×** | Verifiable, quotable | ✓ **Strong if achieved** |
+| [Tyre Quality Classification](https://www.kaggle.com/datasets/warcoder/tyre-quality-classification) | 1,854 | good / defective | Binary static close-ups. **Backbone pretraining only** |
+| [Tire Texture Image Recognition](https://www.kaggle.com/datasets/jehanbhathena/tire-texture-image-recognition) | 1,028 | cracked / normal | Texture pretraining |
+| [Tyre Condition Classification](https://www.kaggle.com/datasets/sameersambhare1/tyre-condition-classification-dataset) | — | new / serviceable / unusable | Closest to ordinal; warm-start the CORAL head |
+| [Roboflow tyre datasets](https://universe.roboflow.com/search?q=class%3Atyre) | varies | boxes, some masks | Warm-start the detector |
 
-**Headline claims for the abstract, in order:** 4b (disagreement diagnostic) → 8 (accuracy vs image-based SOTA) → 6 (dataset) → 1b (in-motion inverse FTIR).
+**Use them for exactly two things:** self-supervised backbone pretraining (labels irrelevant), and warm-starting the detector/segmenter.
 
-**Drop from the abstract:** 2 and 7. Keep them in Methods where they belong.
+**Do not benchmark against them and claim victory.** They are static hand-held photos with binary labels; ours is a calibrated video task with localisation, geometry and uncertainty. Say so plainly in Related Work — that framing *strengthens* the contribution.
 
 ---
 
-## 8. Patent landscape — what to avoid claiming
+## 4. Where this project sits
 
-You are doing academic research, so freedom-to-operate is not a blocker. But do not claim novelty for these:
+| Axis | Best published | This project |
+|---|---|---|
+| Front-view tread segmentation | mAP 0.608, 247 imgs [1] | SegFormer-B2, 250–400 tyres, boundary + topology losses |
+| On-board optical depth | 0.57 mm [2] | RGB-relative + TWI anchor; metric only with a metric sensor |
+| Structured-light depth | <0.2 mm [3] | Ablation ceiling / training teacher |
+| Marker-based alignment | ~0.025° [7] | Target-free; camber ~0.3–0.5°, toe screening |
+| RGB-D target-free alignment | <0.1° [9] | Monocular; RGB-D as ablation |
+| Wear classification | binary / 3-class | **Ordinal + 9-way multi-label + localised heatmap** |
+| Uncertainty | rarely reported | Conformal intervals + explicit refusal |
 
-| Patent | Claims |
-|---|---|
-| US 11820178, US 10352688, US 8621919, US 11421982 | Drive-over ramp, laser pattern projected onto tyre, deformation → tread depth, velocity correction |
-| US 11698250 / US 12467747 (Hunter) | Rolling wheel aligner using drive-direction calculation from calibrated cameras + gravity from inclinometer, no-stop positioning |
-| US 10670392 / US 11408732 / US 10508907 | Wheel aligner, advanced diagnostics, no-stop positioning |
-| US 6219134 | Rolling runout compensation |
-| DE 19705047A1 | Laser-illuminated tread depth measurement |
+**The defensible positioning:** every prior system does *one* of these well, usually with extra hardware (markers, stereo, lasers, depth cameras) and usually without uncertainty. We do **detailed localised wear recognition and alignment screening together, from one ordinary camera, with calibrated confidence and an honest refusal state.**
 
-**Note especially the Hunter drive-direction patents.** Your per-pass travel-direction estimation (`02_RIG_BUILD.md §3.4`) is conceptually adjacent. Cite them, describe the difference (they use clamp-on targets and side-mounted cameras; you use the footprint centroid track from below, target-free), and do not claim it as novel.
-
----
-
-## 9. Reading list — Phase 0 priority order
-
-**Tier 1 — read fully, week 1–2**
-
-1. Cabrera Carrillo et al., *Optimization of an Optical Test Bench for Tire Properties Measurement and Tread Defects Characterization*, Sensors 2017, 17(4), 707. **Your single most important reference.** — https://doi.org/10.3390/s17040707
-2. Salminen, *Parametrizing tyre wear using a brush tyre model*, KTH — https://kth.diva-portal.org/smash/get/diva2:802101/FULLTEXT01.pdf
-3. *Analysis of tyre wear using the expanded brush tyre model*, DiVA — https://www.diva-portal.org/smash/get/diva2:854657/FULLTEXT01.pdf
-4. Furferi, Governi, Volpe, Carfagni, *Design and Assessment of a Machine Vision System for Automatic Vehicle Wheel Alignment*, 2013 — https://journals.sagepub.com/doi/10.5772/55928
-5. *Automatic and Accurate Vision-Based Measurement of Camber and Toe-In Alignment of Vehicle Wheel*, IEEE Access 2022 — https://ieeexplore.ieee.org/document/9926077/
-
-**Tier 2 — read for method grounding**
-
-6. Zamir et al., *Robust Learning Through Cross-Task Consistency*, CVPR 2020
-7. Nishi et al., *Joint-Task Regularization for Partially Labeled Multi-Task Learning*, CVPR 2024 — https://openaccess.thecvf.com/content/CVPR2024/papers/Nishi_Joint-Task_Regularization_for_Partially_Labeled_Multi-Task_Learning_CVPR_2024_paper.pdf
-8. Cao et al., *Rank Consistent Ordinal Regression (CORAL)* — https://arxiv.org/html/2111.08851v5
-9. Angelopoulos & Bates, *A Gentle Introduction to Conformal Prediction*
-10. *Hybrid Synthetic Data Generation with Domain Randomization for Part Inspection* — https://arxiv.org/html/2512.00125v1
-11. *Deep learning-based instance segmentation for detection of tire tread area*, 2025 — https://www.sciencedirect.com/science/article/abs/pii/S2950425225000325
-12. *A Flexible Wheel Alignment Measurement Method via APCS-SwinUnet and Point Cloud Registration* — https://www.mdpi.com/2673-8244/6/1/4
-13. *Camber Angle Inspection for Vehicle Wheel Alignments*, Sensors — https://ncbi.nlm.nih.gov/pmc/articles/PMC5336001
-14. Modelling wear of truck tyres under high slip, *Vehicle System Dynamics* 2025 — https://www.tandfonline.com/doi/full/10.1080/00423114.2025.2520489
-15. wisetrue95/Tire — *Efficient Tire Wear and Defect Detection* (code) — https://github.com/wisetrue95/Tire
-
-**Tier 3 — skim for context:** the patents in §8, UVeye product documentation, Michelin/Les Schwab wear-pattern guides, Kaggle dataset cards.
+Do not claim to beat Furferi or Shi on angular accuracy. Claim a different operating point: **no markers, no stereo, no depth sensor, and a system that knows when it cannot answer.**
 
 ---
 
-## 10. Changes to make elsewhere in this repo
+## 5. Gaps in the literature this project addresses
 
-- [ ] `01_CONCEPT.md §3` — add the interface-film requirement; correct the "rubber is index-matched to glass" claim
-- [ ] `02_RIG_BUILD.md` — add PPF/PET film to the BOM; revise the week-1 go/no-go test to use tyre rubber, not a thumb
-- [ ] `02_RIG_BUILD.md §5` — add "footprint has no contrast" failure mode → interface film
-- [ ] `README.md` — replace the novelty table with §7 of this document
-- [ ] `01_CONCEPT.md §6` — replace the heuristic `h_τ` with the brush-model derivation
-- [ ] `06_EVALUATION.md` — add ±1.5 mm (QBurst) as an explicit baseline row
-- [ ] `07_ROADMAP.md` — add "read Tier-1 papers" to weeks 1–2; add film procurement to week 1
+1. **No public front-view single-tyre video dataset** with tread masks, fine structures, gauge depth, wear patterns, damage and calibrated alignment labels together
+2. **Wear work is binary or 3-class**; nobody publishes localised, multi-label, ordinal wear from this viewpoint
+3. **Alignment work needs markers, stereo or RGB-D**; monocular target-free single-wheel screening is unexplored
+4. **Uncertainty and refusal are almost never reported** in tyre inspection, despite it being a safety task
+5. **Circumferential coverage is never quantified** — papers show one view and imply the whole tyre
+6. **Photometric stereo is proven in industrial inspection but unpublished on tyres**, despite rubber being the ideal case (low albedo, shape-defined features)
+7. **Wear and alignment are never estimated jointly**, so no one can distinguish recent from chronic misalignment
+
+---
+
+## 6. Novelty audit — honest grades
+
+| # | Claim | Verdict |
+|---|---|---|
+| 1 | Front-view single-tyre video **dataset** with paired wear + alignment labels | ✓✓ **Strong** — no equivalent exists, and it outlives the project |
+| 2 | Multi-task **localised** wear + damage instead of binary classification | ✓ **Solid** — a real step beyond [1], [6] |
+| 3 | **Partial tread unrolling with explicit coverage reporting** | ✓ **Novel and honest** — nobody quantifies what fraction they actually saw |
+| 4 | Hybrid learned-landmark + analytic alignment | ~ **Established pattern** ([10], [8]); novel in *this* viewpoint and single-wheel scope |
+| 5 | **Wear ↔ geometry cross-check; recent vs chronic misalignment** | ✓✓ **Strongest claim — nothing comparable found** |
+| 6 | RGB vs photometric-stereo vs structured-light vs RGB-D on **one tyre set** | ✓ **Genuinely useful** — no such controlled comparison exists |
+| 7 | **Photometric stereo applied to tyre wear** | ✓ **Novel application** of an established industrial method |
+| 8 | TWI bar as in-image metric anchor | ~ **Prior art** ([2] TireEye). Novel only as a *training loss term*. Cite Huber |
+| 9 | Conformal intervals + explicit refusal | ~ Standard method, new application. Good practice, not a headline |
+| 10 | Optional app | ✗ Engineering, not research |
+
+**Review-2 / paper headline order:** 5 → 1 → 6 → 3 → 7. Keep 8, 9 in Methods where they belong; do not lead with them.
+
+---
+
+## 7. Reading priority
+
+**Tier 1 — read fully before Review-2**
+
+1. Huber et al. 2022 (TireEye) — closest measurement precedent, and the TWI scale idea
+2. Petrovic et al. 2025 — closest viewpoint precedent
+3. Zhang et al. 2023 (Tire-Net) — the hybrid design pattern we follow
+4. Shit et al., clDice — the loss upgrade for sipes and cracks
+5. Defect segmentation for multi-illumination QC [13] — the illumination argument
+
+**Tier 2 — method grounding**
+
+6. Shi et al. 2026 · 7. Furferi et al. 2013 · 8. Ko et al. 2021 · 9. Vivekanandan & Rajeswari 2026 · 10. Photometric stereo for steel components [11] · 11. DINOv3 vs ImageNet [19] · 12. SegFormer · 13. ConvNeXt V2 · 14. PatchCore · 15. HRNet · 16. CORAL · 17. Conformal prediction intro
+
+**Tier 3 — skim:** Wang 2019, Chen 2024, Xu 2022, RAFT, Depth Anything V2, SAM2/FS-SAM2, Kaggle dataset cards.

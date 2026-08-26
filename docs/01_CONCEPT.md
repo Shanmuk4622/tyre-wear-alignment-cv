@@ -1,343 +1,177 @@
-# 01 — Concept, Physics, and Mathematics
+# 01 — Problem Formulation and Observability
 
-> Read `README.md` first. This document is the technical justification for every design choice.
+> What a low-front camera can and cannot see, stated precisely, before any model is chosen.
 
 ---
 
-## 1. Restating the problem properly
+## 1. The estimation problem
 
-Your original brief: *"detect whether a car tyre is worn out, and whether the wheel alignment is correct, while the car is in motion."*
+Given a calibrated short video `V = {I₁ … I_T}` of one tyre, camera intrinsics `K`, and rig-to-world calibration `C`:
 
-Written as an estimation problem, that is:
+```
+f(V, K, C) → { M_tread, W_map, P_pattern, D_damage, γ, τ, U }
+```
 
-Given a short video sequence `V = {I_1 … I_T}` of one wheel captured during a rolling pass, estimate:
+The projection model throughout is
 
-| Symbol | Quantity | Units | Difficulty |
+```
+s · p = K [R | t] P
+```
+
+where `P` is a 3-D point in the rig/world frame, `p` its image coordinate, `s` projective scale. The world frame has **x = vehicle travel, y = lateral, z = vertical**. This frame comes from calibration, never from the image border.
+
+---
+
+## 2. Observability analysis — the core of the design
+
+Not everything the project would like to know is recoverable from this viewpoint. Being explicit about this is what separates a research system from an over-claim.
+
+| Quantity | Observable from a low front view? | Evidence | Confidence |
 |---|---|---|---|
-| `d(θ, w)` | tread depth as a function of circumferential angle θ and lateral position w | mm | **hard** — sub-mm regression |
-| `c ∈ C` | wear-pattern class | 8-way | medium |
-| `γ` | camber angle | degrees | **hard** — needs ~0.2° |
-| `τ` | toe angle | degrees | **very hard** — spec is ~±0.1° |
-| `p` | inflation state proxy | normalised | easy |
-| `a` | damage / anomaly flags | binary set | medium |
+| Tread crown, both shoulders | **Yes**, directly | Segmentation | High |
+| Main grooves, ribs, blocks | **Yes**, directly | Segmentation + orientation fields | High |
+| Sipes, fine cracks | **Yes**, with directional light | Photometric stereo + thin-structure segmentation | Medium-high |
+| TWI bars | **Yes**, when a groove cross-section is visible | Detection + metric anchor | Medium |
+| Relative wear across tread width | **Yes** | Lateral depth/shading profile | High |
+| Wear around the circumference | **Partially** — only what rotates into view | Unrolled map + coverage % | Medium |
+| Absolute tread depth (mm) | **Not from RGB alone** | Needs structured light / stereo / RGB-D | Low without metric sensor |
+| **Camber γ** | **Yes** — produces visible lateral tilt and shoulder asymmetry | Shoulder contours + landmarks | Medium |
+| **Individual toe τ** | **Weakly** — small yaw, confusable with camera yaw and approach angle | Groove orientation + landmarks | Low-medium → *screening only* |
+| Hidden sidewall, bulges | **No** | — | Out of scope unless sidewall enters view |
+| Total axle toe, thrust angle, caster | **No** — requires both wheels / full vehicle | — | **Explicitly out of scope** |
+| Inflation pressure | **Indirectly**, weak proxy | Deformation, contact width | Low — report as a hint only |
 
-Note the honesty in that table. Toe tolerance on a passenger car is often **±6 arcminutes (0.1°)**. A vision system that claims to replace a ₹25-lakh Hunter alignment rack is not credible. GRIP is positioned as a **screening instrument**: it flags "this vehicle needs an alignment check" with high recall, and it does so on every car that drives in, for free, with zero driver effort. That is a genuinely useful product *and* an honest scientific claim. See `08_RISKS_AND_MY_OPINION.md`.
+**The two rules that follow:**
 
----
-
-## 2. The rolling constraint and why blur disappears
-
-For a wheel of radius `R` rolling without slip at forward speed `v`, the velocity of a point on the tyre surface at angle `φ` from the contact point is:
-
-```
-|v_surface(φ)| = 2·v·sin(φ/2)
-```
-
-At `φ = 0` (contact point): `0`.
-At `φ = π` (top of tyre): `2v`.
-
-Blur length for exposure `t_e` at the contact patch is therefore `≈ 0` regardless of vehicle speed. Verified numerically:
-
-```
-10 km/h, 1000 µs exposure → 5.56 mm blur at top of tyre,  ~0 mm at contact patch
-30 km/h, 1000 µs exposure → 16.7 mm blur at top of tyre,  ~0 mm at contact patch
-```
-
-**Consequence:** you do not need a global-shutter camera, a xenon strobe, or a 2000 fps sensor. A ₹4,500 Raspberry Pi Global Shutter camera at 120 fps is sufficient. Every rupee saved on the sensor goes into optics and lighting, which matter far more.
-
-**Caveat to be rigorous about:** the zero-blur zone is a *band* around the contact point, not a point. Within ±20 mm of contact, surface speed is under 6% of `v` — still effectively sharp. Outside that band blur grows fast. So the model must be trained on, and only trust, the near-contact band. Enforce this with a mask derived from the FTIR channel.
+1. **Camber gets a continuous estimate. Toe gets a screening estimate with an interval.** Do not present them with equal confidence.
+2. **Anything requiring the second wheel is out of scope and stays out.** Total toe, thrust angle and caster are four-wheel quantities. Claiming them from one tyre is indefensible and an examiner will find it immediately.
 
 ---
 
-## 3. FTIR contact imaging
+## 3. Why wear and alignment need different machinery
 
-### The optics
-
-A glass plate of refractive index `n₁ = 1.52` in air (`n₂ = 1.0`) has critical angle:
-
-```
-θ_c = arcsin(n₂/n₁) = arcsin(1/1.52) = 41.1°
-```
-
-Light injected into the plate edge at angles beyond `θ_c` propagates by total internal reflection and never leaves the top face. Where a higher-index material physically contacts the top face, the TIR condition collapses, light couples out of the glass, scatters, and a fraction returns downward into the camera.
-
-> ### ⚠ Correction — you need an interface film. Do not skip this.
->
-> An earlier draft of this document assumed bare tread rubber on bare glass would work, because rubber is roughly index-matched to glass (`n ≈ 1.52`). **That is only half the requirement**, and the half it satisfies is not the important one.
->
-> FTIR produces a *bright* footprint only if the contacting material **scatters light back down** toward the camera. Carbon-black tread rubber couples light in efficiently (high index — good) and then **absorbs it** (bad). Light goes in and does not come back. Meanwhile non-contact regions keep TIR intact, so nothing exits there either. **Both regions read dark: almost no contrast.**
->
-> This is exactly why the validated prior art ([Cabrera et al., *Sensors* 2017](https://doi.org/10.3390/s17040707)) interposes a **clear plastic lamina** between tyre and glass rather than using the rubber directly.
->
-> **Fix:** laminate a thin (75–150 µm) optically clear, sacrificial film onto the top of the plate. Automotive **paint-protection film (PPF)** is close to ideal — clear polyurethane, `n ≈ 1.50–1.56`, abrasion-resistant, self-healing, designed for road grit, replaceable, ~₹400/m².
->
-> Full analysis and the revised go/no-go test: `09_RELATED_WORK.md §3`.
-
-### What you get
-
-| Region | Appearance in FTIR channel |
-|---|---|
-| Tread rib carrying load | Bright, intensity ∝ contact pressure |
-| Groove void | Black (air gap, TIR intact) |
-| Sipe | Black hairline |
-| Contact patch boundary | Razor-sharp edge |
-| Everything not touching the glass | Black |
-
-This is an **enormously** higher-SNR signal than trying to segment tread from a normally-lit photo. You get near-perfect groove masks for free, which then anchor everything downstream.
-
-### Alignment signatures in the footprint
-
-| Condition | FTIR signature |
-|---|---|
-| Negative camber | Pressure centroid shifted toward inner shoulder; inner edge brighter |
-| Positive camber | Centroid shifted outward |
-| Toe-in / toe-out | Footprint sheared into a trapezoid; leading edge asymmetry; rib edges show directional intensity gradient |
-| Under-inflation | Footprint longer, shoulders bright, centre dim |
-| Over-inflation | Footprint short and narrow, centre bright |
-| Static load imbalance | Footprint area asymmetry front/rear |
-
-Formally: define the footprint intensity field `F(x, y)`. Extract
-- lateral first moment `μ_w = Σ w·F / Σ F` → camber proxy
-- principal-axis angle of `F` relative to travel direction → toe proxy
-- longitudinal/lateral second-moment ratio → inflation proxy
-
-These become **analytic features fed to the network as a prior**, not replaced by it. See §6.
-
-### Practical warnings
-
-- **Water and mud also frustrate TIR.** A wet plate produces false bright regions. Mitigations: air knife across the plate, hydrophobic coating, and a "surface-clean" classifier that aborts the pass. For the capstone, collect indoors/dry and list wet operation as future work — this is defensible.
-- Use **low-iron toughened glass**, ≥10 mm, with **polished edges** for LED injection.
-- Surround the plate underside with matte black flock to kill stray light.
-- Use **850 nm IR LEDs** + IR-pass filter on the camera. Ambient sunlight has far less 850 nm energy than visible, and drivers won't see a glowing plate.
-
----
-
-## 4. Recovering toe and camber geometrically
-
-### Setup
-
-Camera below, optical axis vertical, intrinsics `K` known from calibration. The glass plane is the world `z = 0` plane. The rig's long axis defines world `+x` = direction of travel. This is the crucial advantage: **the rig defines the vehicle reference frame**, so we never need to estimate it.
-
-### Step 1 — wheel plane from the bead/rim ellipse
-
-The tyre bead seat is a circle of radius `r_b` lying in the wheel mid-plane. Under perspective projection a 3D circle images as an ellipse. Fitting the conic `C` and back-projecting gives the classic two-fold-ambiguous solution for the supporting plane normal `n`:
-
-```
-Q = Kᵀ C K              (conic in normalised camera coords)
-eigendecompose Q → λ₁ ≥ λ₂ > 0 > λ₃
-n ∝ [ ±√((λ₁-λ₂)/(λ₁-λ₃)), 0, √((λ₂-λ₃)/(λ₁-λ₃)) ]  (in eigenbasis)
-```
-
-The two solutions are mirror images about the optical axis. **Disambiguate using motion**: track the ellipse across frames as the wheel translates; only one hypothesis produces a consistent rigid translation along `+x`. This is a clean, publishable use of the rolling constraint.
-
-### Step 2 — angles
-
-With unit normal `n = (n_x, n_y, n_z)` in the rig frame (x = travel, y = lateral, z = up):
-
-```
-toe    τ = arctan( n_x / n_y )      (deviation of wheel plane from travel direction, in ground plane)
-camber γ = arcsin( n_z )             (tilt of wheel plane from vertical)
-```
-
-Sign conventions: define toe-in positive, negative camber = top of wheel leaning inward. **Write these down once and never change them.** Half the bugs in alignment work are sign errors.
-
-### Step 3 — the practical problem, and the fix
-
-From directly below, the rim is largely occluded by the tyre itself. You will often see only the **sidewall silhouette** near the contact patch. Three complementary estimators, fused:
-
-| Estimator | Signal | Strength | Weakness |
-|---|---|---|---|
-| **E1 — sidewall silhouette** | Left/right sidewall bulge outlines; a cambered wheel makes them asymmetric | Always visible | Deformable, load-dependent |
-| **E2 — FTIR footprint moments** | Pressure asymmetry and shear | Highest SNR, sub-pixel | Confounded by load & pressure |
-| **E3 — tread-groove direction flow** | Circumferential grooves are straight lines in the tyre frame; their projected direction reveals the wheel plane | Geometric, principled | Needs clean groove segmentation (which FTIR gives you) |
-
-Fuse with a small learned head that takes all three plus their covariances. **Do not throw all of this away and regress angles end-to-end from pixels.** Analytic-prior-plus-learned-residual will beat end-to-end here by a wide margin, and it is far easier to defend in a viva.
-
-### Step 4 — separating the confounds
-
-Camber, load, and inflation all shift the footprint. You cannot disentangle them from one wheel alone. Two fixes:
-
-1. **Capture both wheels of an axle** (two cameras, or two plates). Load transfer is symmetric; camber is not. Differencing cancels the confound.
-2. **Multi-pass consistency.** The same car, same load, driven over the plate twice — geometry repeats, noise doesn't.
-
-Also: capturing both wheels of an axle unlocks **thrust angle**, which is arguably the single most useful alignment number and which no single-wheel system can produce. Strongly recommended for the final rig.
-
----
-
-## 5. Tread depth: the metrology problem
-
-### Why this is the hard part
-
-New passenger tyre: 8 mm. Legal minimum: 1.6 mm. Useful resolution: **0.3 mm**. That is a 4% change in a quantity you are inferring from shading in a photo. Naïve RGB→mm regression will not get there. Four independent measures:
-
-#### (a) Laser-line triangulation as the ground-truth teacher
-
-A 650 nm line laser mounted at baseline `b` from the camera, projecting a fan across the tyre just *ahead* of the contact patch. Groove depth `Δz` displaces the imaged laser line by
-
-```
-Δu = f · b · Δz / (z₀ · (z₀ + Δz))  ≈  f · b · Δz / z₀²
-```
-
-With `f ≈ 1400 px`, `b = 80 mm`, `z₀ = 250 mm`: `Δu ≈ 1.79 px per mm`. That is too coarse. Increase baseline to `b = 200 mm` and shorten `z₀` to 150 mm → `Δu ≈ 12.4 px/mm`, i.e. **0.08 mm per pixel**, and with sub-pixel peak fitting (Gaussian centroid on the laser profile, typically 0.1 px) you reach **~0.01 mm**. Comfortably good enough to *supervise* the model.
-
-> **Design rule: maximise baseline, minimise standoff.** Do the arithmetic before you buy anything. A spreadsheet cell is cheaper than a rebuild.
-
-**The trick:** the laser is a *training-time* sensor only. You train an RGB→depth network with the laser profile as dense supervision, then at deployment you ship RGB-only. This is cross-modal distillation, it is cheap, and it is exactly the kind of thing reviewers like.
-
-#### (b) TWI bars as an in-frame ruler
-
-Every road-legal tyre has **Tread Wear Indicator** bars moulded into the main grooves at exactly **1.6 mm** above the groove floor, marked on the sidewall by a small triangle / "TWI" / brand logo. Find them, and you have an absolute metric reference *inside the image*, immune to scale drift, camera height error, and tyre-size variation.
-
-Pipeline: detect TWI bar → measure its apparent height against the adjacent rib surface → that difference *is* 1.6 mm minus remaining depth... no, more precisely: `remaining_depth = 1.6 + height_of_rib_above_TWI_top`. Calibrate every prediction against this. Free, universal, self-calibrating. Novelty claim #5.
-
-#### (c) Relative / ordinal learning instead of absolute regression
-
-Absolute mm regression from a single image is badly conditioned. Pairwise ranking is not. Train a Siamese head:
-
-```
-L_rank = BCE( σ(f(x_a) − f(x_b)), 1[d_a > d_b] )
-```
-
-Labelling "A is more worn than B" is trivial and near-noise-free, whereas labelling "A is 4.3 mm" requires a gauge and careful technique. Train the ranker on abundant pairs, then **anchor the learned scale to millimetres with a small calibrated set** (isotonic regression from ranking score → mm). This is how you get precision out of a modest dataset. This is probably the single highest-leverage modelling decision in the project.
-
-#### (d) Shape-from-shading in the groove
-
-Under controlled, known illumination, groove-floor irradiance falls off predictably with depth (a deeper groove is more occluded from the light source). With the FTIR channel giving you an exact groove mask, and a fixed illuminator geometry, the *mean intensity inside the groove mask* is a strong monotone depth cue. Cheap to compute, add it as an explicit input channel.
-
-### The unrolled tread map
-
-As the wheel rolls across the plate, successive frames sample successive circumferential sections. Stitch the near-contact band from each frame into a single **unrolled tread map**: a `(circumference × width)` image at ~80–170 µm/px.
-
-Numbers (verified):
-
-```
-195/65R15 → 634 mm diameter → 1.99 m circumference
-glass plate 1.0 m  → 51% of circumference per pass, 2 passes for full coverage
-glass plate 1.5 m  → 77% per pass
-at 10 km/h, 120 fps → 23 mm of travel per frame → ~6× overlap on a 150 mm contact patch
-```
-
-**Recommendation: 1.2 m glass plate, 120 fps, target 6–10 km/h.** Two passes gives full 360° coverage with margin. Report per-pass coverage as a dataset field.
-
-This unrolled map is the representation everything downstream operates on. It is metric, blur-free, illumination-normalised, and directly comparable across tyres and across time. It is also a very good figure for the paper.
-
----
-
-## 6. The physics-consistency loss
-
-The heart of the research contribution.
-
-Let the network produce a depth map `D̂(θ, w)` over the unrolled tread and geometry estimates `(τ̂, γ̂)`.
-
-Define the **lateral wear gradient** as the slope of depth across tread width, averaged circumferentially:
-
-```
-g_w = (1/Θ) Σ_θ  ∂D̂(θ,w)/∂w     evaluated as a least-squares fit across w
-```
-
-Tyre-contact mechanics says: sustained camber produces a monotone lateral wear gradient of the same sign, with magnitude increasing in `|γ|`. Model it as a monotone link `h_γ` (a small monotone MLP, or a fitted affine function — start affine):
-
-```
-L_camber_consistency = || g_w − h_γ(γ̂) ||²
-```
-
-### Toe: a derived link function, not a heuristic
-
-Toe deserves better than "feathering correlates with toe," and the tyre-mechanics literature provides it.
-
-> **A wheel with static toe angle τ, driving in a straight line, is permanently operating at slip angle α = τ.**
-
-Toe is not merely *associated* with wear — toe **is** a continuously applied slip angle. That means the standard tyre-wear models apply directly:
-
-- The **brush tyre model** treats tread elements as elastic bristles and gives sliding velocity and frictional work across the contact patch as an explicit function of slip angle.
-- **Archard-type abrasion**: wear volume ∝ frictional work = ∫ (shear stress × sliding distance) over the patch.
-- Empirically, `W = f(A_b, F_y, α, S, F_N/F_N0)`, and side-slip angle is among the *most* influential parameters — wear rate varies by orders of magnitude across the range.
-
-So `h_τ` can be **derived from the brush model** rather than fitted blind. Two consequences:
-
-1. The consistency loss becomes a genuine physics-informed constraint with a falsifiable functional form — you can check whether the learned link recovers the predicted one.
-2. Because wear rate depends *steeply* on slip angle, small toe errors produce large wear-pattern differences. **Inferring toe from accumulated wear may be more sensitive than measuring it geometrically.** That is a real argument for the indirect route, and worth testing explicitly.
-
-Reading: `09_RELATED_WORK.md §5` and the two brush-model theses listed there.
-
-Empirically, sustained toe produces **feathering**: rib edges become sharp on one side and rounded on the other. Quantify with a directional edge-asymmetry statistic on the unrolled map:
-
-```
-A = Σ_ribs [ |∇⁺ D̂| − |∇⁻ D̂| ]  /  Σ_ribs [ |∇⁺ D̂| + |∇⁻ D̂| ]
-L_toe_consistency = || A − h_τ(τ̂) ||²
-```
-
-Total:
-
-```
-L = L_depth + α·L_pattern + β·L_geometry + λ·(L_camber_consistency + L_toe_consistency)
-```
-
-### Why this is a real contribution, not decoration
-
-1. **It is a semi-supervised mechanism.** `L_consistency` needs *no alignment label at all* — it only needs the two heads to agree. So you can train on thousands of unlabelled passes and still improve the alignment head.
-2. **It is falsifiable.** Ablate `λ = 0` and report the degradation. If it doesn't help, you report that honestly and it's still a finding.
-3. **It gives explainability for free.** When the two heads *disagree*, that is itself informative: geometry says aligned, wear says misaligned → *the car was recently realigned but the old damage remains.* Geometry says misaligned, wear says fine → *the misalignment is recent.* No other system can make that distinction. **This is a genuinely novel diagnostic capability and I would build a whole section of the paper around it.**
-
-That third point is the best idea in this document. Make it a headline.
-
----
-
-## 7. Wear-pattern taxonomy (your label set)
-
-| Class | Appearance on unrolled map | Usual cause |
+| | Wear | Alignment |
 |---|---|---|
-| `uniform` | flat depth profile | healthy |
-| `centre_wear` | centre ribs shallow, shoulders deep | chronic over-inflation |
-| `shoulder_wear` | both shoulders shallow, centre deep | chronic under-inflation |
-| `one_side_wear` | monotone lateral gradient | camber misalignment |
-| `feathering` | rib edges asymmetric, sawtooth cross-section | toe misalignment |
-| `cupping` | periodic scalloping around circumference | worn damper / imbalance |
-| `flat_spot` | one localised low-depth patch | hard braking / skid |
-| `patch_wear` | irregular localised patches | imbalance, bent rim |
+| Nature | Appearance / texture / local shape | Global geometry |
+| Best evidence | Shading, normals, texture statistics | Calibrated landmark positions and orientations |
+| Right tool | Deep multi-task CNN | Analytic geometry + learned residual |
+| Failure mode if you get it wrong | Misses subtle wear | **Learns camera tilt and background shortcuts** |
+| Ground truth | Digital gauge, human annotation | Jig or alignment rack |
 
-Plus independent binary damage flags: `cut`, `bulge`, `embedded_object`, `crack`, `exposed_cord`.
-
-Note that the classes are **not mutually exclusive** — use multi-label sigmoid outputs, not softmax. Real tyres carry two or three at once. Every public tyre dataset gets this wrong by using binary good/defective; being the first to model it properly is a small but real contribution.
+A single network mapping pixels to `(worn?, γ, τ)` will do well on validation and collapse on a new camera mount, because it has learned the mount. The architecture keeps the two pathways separate and fuses them only at the decision stage.
 
 ---
 
-## 8. Uncertainty — non-negotiable for a safety claim
+## 4. The confound problem
 
-A number without an interval is not a measurement. Use **split conformal prediction**:
+The recurring difficulty: **many nuisance variables produce the same image change as the signal.**
 
-1. Train the model on the training split.
-2. On a held-out calibration split, compute residuals `|d_true − d̂|`.
-3. Take the `⌈(n+1)(1−α)⌉`-th smallest residual as `q̂`.
-4. At test time, output `[d̂ − q̂, d̂ + q̂]`.
+| Nuisance | Mimics | Mitigation |
+|---|---|---|
+| Auto-exposure change | Tread darkening / wear | Lock exposure and white balance; record settings |
+| Non-uniform illumination | Shoulder wear (one side darker) | Flat-field correction per session |
+| Wet / glossy rubber | Smooth worn surface | Cross-polarisation; wetness flag from the quality gate |
+| Dirt and brake dust | Cracks, patch wear | Contamination tag; dirt augmentation; quality gate |
+| Camera yaw | **Toe** | Calibration + per-session verification; report toe as screening |
+| Vehicle approaching at an angle | **Toe** | Estimate travel direction from motion, not from mounting |
+| Load and inflation | Camber (contact width change) | Record pressure and load; treat as covariates |
+| Steering angle | Toe | Straight-ahead protocol; reject frames with steering input |
+| Tyre brand / tread family | Everything | **Unseen-brand test split.** Domain gap is measured, not assumed |
 
-This gives a **distribution-free finite-sample coverage guarantee** of `1−α` under exchangeability, with no assumptions about the network. It is five lines of code, it is rigorous, and it makes the safety claim defensible. Do the same for `τ̂` and `γ̂`.
+That last row is not hypothetical. [Vivekanandan & Rajeswari (2026)](https://doi.org/10.1016/j.measurement.2026.121509) measured unseen-brand accuracy at **88.2%**, rising to **92.4%** only after explicit domain adaptation. Brand shift is real, quantified, and must be in your test design from day one.
 
-Then define the decision rule in terms of the interval, not the point estimate:
+---
+
+## 5. What "recognise every single detail" means operationally
+
+The phrase needs a testable definition or it cannot be evaluated. Ours:
+
+| Structure | Typical scale | Required capability |
+|---|---|---|
+| Tread crown | 150–250 mm | Segment with IoU > 0.90 |
+| Shoulder boundary | ~1 mm edge precision | Boundary F-score > 0.70; drives alignment |
+| Main groove | 8–15 mm wide, 1.6–9 mm deep | Segment + measure relative depth |
+| Rib / block edge | ~1–2 mm | Detect rounding asymmetry (feathering cue) |
+| Sipe | 0.3–1 mm wide | Detect presence and **connectivity** (clDice) |
+| TWI bar | ~5 mm wide, 1.6 mm high | Detect and use as metric anchor |
+| Crack | 0.2–2 mm wide | Detect with connectivity preserved |
+
+**Resolution requirement.** To resolve a 0.3 mm sipe at ≥3 px you need **≤0.1 mm/px**. Across a 250 mm tread that is 2,500 px — more than a 1080p sensor delivers across the full width.
+
+Two consequences, and they are design-defining:
+
+1. **Use a higher-resolution sensor** (≥ 8 MP) *or* accept that sipes are resolved only in a **cropped centre region**.
+2. **Tile the fine-detail pass** (512×512 tiles, 20–25% overlap) rather than downsampling the whole tread.
+
+State the achieved mm/px in every result table. A wear claim without a stated spatial resolution is unfalsifiable.
+
+---
+
+## 6. Metric scale — the TWI anchor
+
+RGB gives you appearance; it does not give you millimetres. But every road-legal tyre carries a moulded ruler:
+
+**Tread Wear Indicator bars sit exactly 1.6 mm above the groove floor**, marked on the sidewall by a triangle, "TWI", or a brand symbol.
+
+If you can segment the TWI bar and the adjacent rib surface, you have an **absolute in-image scale reference** immune to camera-distance error, lens change and tyre-size variation. [Huber et al. (2022)](https://doi.org/10.36001/phmconf.2022.v14i1.3242) use exactly this in TireEye and report **0.57 mm** accuracy on a full vehicle.
 
 ```
-if upper_bound(depth) < 3.0 mm      → REPLACE
-elif lower_bound(depth) < 3.0 mm    → INSPECT MANUALLY (model is unsure)
-else                                → OK
+remaining_depth ≈ 1.6 mm + height(rib_surface − TWI_top)
+L_twi = | D̂(rib) − D̂(twi_top) − 1.6 |
 ```
 
-That "I don't know" branch is what separates a research demo from something a workshop would actually install.
+**Limitation to state honestly:** the TWI must be in view and resolvable. It appears at only a few points around the circumference. So it anchors *scale*, it does not measure *every* location. Report the fraction of passes where a TWI anchor was available.
+
+---
+
+## 7. The wear ↔ alignment cross-check
+
+Both quantities are estimated independently. Comparing them is informative in a way neither is alone.
+
+| Geometry says | Wear pattern says | Interpretation |
+|---|---|---|
+| Aligned | Uniform | Healthy |
+| Misaligned | Matching one-sided / feathered wear | **Chronic** — long-standing misalignment. High confidence |
+| Aligned | Strong one-sided wear | **Recently corrected** — damage is historical. Monitor |
+| Misaligned | Uniform wear | **Recent** — kerb strike or pothole. Inspect |
+| Either | Disagreement without explanation | Lower confidence; `INSPECT` |
+
+**Important discipline:** wear evidence is a **cross-check on confidence**, never the alignment ground truth. Wear is a decade-long integral; alignment is a present-tense measurement. Using one to label the other would be circular.
+
+The physical basis is real: a wheel with static toe angle τ driving straight is permanently operating at **slip angle α = τ**, and brush-model tyre-wear theory gives wear rate as a steep function of slip angle. So the correlation is mechanistic, not coincidental — which is why disagreement is *diagnostic* rather than noise.
+
+This cross-check is Research Contribution 5 and, after the literature audit, the most distinctive element of the project.
+
+---
+
+## 8. Decision output
+
+Every inspection returns exactly one verdict:
+
+| Verdict | Condition |
+|---|---|
+| `PASS` | Wear below threshold with confidence; geometry within screening tolerance |
+| `MONITOR` | Borderline wear, or geometry near tolerance, or partial circumferential coverage |
+| `INSPECT` | Wear above threshold, damage detected, anomaly flagged, or geometry out of tolerance |
+| `UNABLE_TO_MEASURE` | Quality gate failed, both shoulders not visible, insufficient groove structure, or interval too wide |
+
+Decisions use **interval bounds**, never point estimates. `UNABLE_TO_MEASURE` is a success state, not a failure — a screening instrument that refuses when it cannot see is more trustworthy than one that always answers.
 
 ---
 
 ## 9. Design decisions log
 
-Keep this table updated. Examiners love it and it saves you from re-litigating settled questions at 2 a.m.
-
 | Decision | Chosen | Rejected | Why |
 |---|---|---|---|
-| Viewpoint | Below, ground-embedded | Wheel-arch, dashcam | Zero blur at contact; rig defines reference frame; FTIR possible |
-| Contact medium | Toughened low-iron glass, FTIR-lit | Open pit, no glass | FTIR footprint is the highest-SNR signal available |
-| Illumination | 850 nm IR edge injection + IR-pass filter | Visible flood | Sunlight immunity; invisible to driver |
-| Camera | Global shutter, 120 fps, 1.6 MP | High-speed 1000 fps | Rolling constraint removes the need |
-| Depth GT | Laser triangulation at capture | Manual gauge only | Dense, automatic, sub-0.05 mm |
-| Depth model | RGB → depth, laser-distilled | Ship the laser | Cheaper deployment, better paper |
-| Depth objective | Ordinal ranking + isotonic anchoring | Direct mm regression | Far better conditioned on small data |
-| Alignment model | Analytic prior + learned residual | End-to-end regression | Interpretable, data-efficient, defensible |
-| Pattern head | Multi-label sigmoid | Softmax multi-class | Real tyres show multiple patterns |
-| Uncertainty | Split conformal | Softmax confidence | Distribution-free guarantee |
+| Viewpoint | Low front, single tyre, fixed rig | Ground-embedded, wheel-arch | Given by the project setup; rigid mount enables calibration |
+| Illumination | **Multi-directional photometric stereo + cross-polarisation** | Single flood / ring light | Rubber structure is shape, not colour; ring light cannot separate stain from cavity |
+| Input | Short video | Single still | Circumferential coverage, repeated estimates, quality *selection* |
+| Segmentation | SegFormer-B2, tiled | Whole-image downsampled CNN | Downsampling destroys sipes and grooves |
+| Thin-structure loss | focal + dice + boundary + **clDice** | dice only | Connectivity of cracks and sipes matters more than mean IoU |
+| Wear objective | Ordinal (CORAL) + multi-label | Binary worn/not-worn | Severity is ordered; patterns co-occur |
+| Depth | Relative from RGB; metric only with a metric sensor | RGB → mm regression | Not defensible; monocular depth documented weak at close range |
+| Alignment | Analytic geometry + learned residual | End-to-end CNN regression | End-to-end learns mount and background shortcuts |
+| Toe | Screening estimate with interval | Continuous measurement | Weakly observable from one wheel |
+| Backbone use | Fine-tune fully from SSL init | Frozen features + linear probe | DINOv3-vs-ImageNet study: frozen gives no advantage, fine-tuned is best |
+| Uncertainty | Heteroscedastic + split conformal | Softmax confidence | Distribution-free coverage guarantee |
+| Annotation | SAM2 propagation + bootstrapping | Fully manual | ~8× throughput; manual labelling would consume the project |

@@ -22,25 +22,25 @@
 ## 2. Storage layout
 
 ```
-/kaggle/temp/grip/            ← 1 TB scratch, wiped each session
+/kaggle/temp/tyrevision/            ← 1 TB scratch, wiped each session
 ├── data/                     ← extracted dataset (large)
 ├── cache/                    ← preprocessed tensors, unrolled maps
 └── ckpt_local/               ← every-N-step checkpoints (fast, local)
 
 /kaggle/working/              ← 20 GB persistent, keep it lean
-├── grip/                     ← code, cloned from HF or GitHub
+├── tyrevision/                   ← code, cloned from HF or GitHub
 ├── state/                    ← run_state.json, RNG states, optimizer
 └── logs/                     ← jsonl metrics, small
 
 HF Hub                        ← the single source of truth
-├── Shanmuk4622/grip-net              (model repo)
+├── Shanmuk4622/tyrevision-front-net              (model repo)
 │   ├── checkpoints/latest/           ← rolling, overwritten
 │   ├── checkpoints/epoch_{n}/        ← milestone, kept
 │   ├── run_state.json                ← resume pointer
 │   ├── metrics.jsonl                 ← append-only, every eval
 │   ├── config.yaml
 │   └── README.md                     ← model card
-└── Shanmuk4622/grip-roll             (dataset repo)
+└── Shanmuk4622/tyrevision-front             (dataset repo)
 ```
 
 **Rule: Hugging Face is the source of truth, not `/kaggle/working`.** A session that starts by pulling from HF works identically whether it's your 1st or 40th session, and works from any account or any machine.
@@ -53,7 +53,7 @@ HF Hub                        ← the single source of truth
 
 ```json
 {
-  "run_id": "grip-v3-2026-09-14",
+  "run_id": "tyrevision-v3-2026-09-14",
   "stage": "finetune_real",
   "global_step": 48213,
   "epoch": 27,
@@ -167,10 +167,10 @@ Direct from Kaggle datasets is dramatically faster than HF or Drive inside a Kag
 # For public Kaggle datasets not attached:
 !pip install -q kaggle
 !mkdir -p ~/.kaggle && cp /kaggle/input/kaggle-creds/kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
-!kaggle datasets download -d warcoder/tyre-quality-classification -p /kaggle/temp/grip/data --unzip
+!kaggle datasets download -d warcoder/tyre-quality-classification -p /kaggle/temp/tyrevision/data --unzip
 ```
 
-**Upload `GRIP-Roll` as a private Kaggle Dataset** as well as to HF. Then it mounts instantly at `/kaggle/input/grip-roll` with zero download time, every session. Push new versions with `kaggle datasets version`. HF stays the archival/public copy; Kaggle is the fast working copy.
+**Upload `tyrevision-front` as a private Kaggle Dataset** as well as to HF. Then it mounts instantly at `/kaggle/input/tyrevision-front` with zero download time, every session. Push new versions with `kaggle datasets version`. HF stays the archival/public copy; Kaggle is the fast working copy.
 
 Extract to `/kaggle/temp` (1 TB), never `/kaggle/working` (20 GB).
 
@@ -202,7 +202,7 @@ Cell 0 should print something impossible to miss:
 
 ```
 ╔══════════════════════════════════════════════════════════╗
-║  RESUMING run grip-v3-2026-09-14                         ║
+║  RESUMING run tyrevision-v3-2026-09-14                         ║
 ║  stage      : finetune_real                              ║
 ║  epoch      : 27 / 40      batch 1104 / 1832             ║
 ║  step       : 48,213                                     ║
@@ -217,7 +217,7 @@ Cell 0 should print something impossible to miss:
 ## 8. What gets pushed to HF (everything — you train once)
 
 ```
-Shanmuk4622/grip-net/
+Shanmuk4622/tyrevision-front-net/
 ├── README.md                   # model card: architecture, data, metrics, limits, intended use
 ├── config.yaml                 # exact config hash
 ├── requirements.lock.txt       # pinned env
