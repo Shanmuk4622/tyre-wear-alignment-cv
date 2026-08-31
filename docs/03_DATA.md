@@ -4,11 +4,35 @@
 
 ---
 
+## 0. Where we actually are — `final_v1`
+
+A pilot package exists and is verified: **`D:\Dataset Download\Tire Dataset Prepared\FINAL`**.
+
+| | |
+|---|---:|
+| Clean unique images | 418 |
+| Synthetic derivatives | 4,180 |
+| **Independent capture sessions** | **12** |
+| Capture window | one 22-minute window, 2026-08-25 |
+| Labels | 3-class **mileage proxy** only |
+| Tread-depth measurements | **none** |
+| Segmentation masks | ✅ **`annotation_v2`** — 418 hand-drawn + 4,180 propagated (v1 propagation was geometrically wrong; see `annotations/README.md §0`) |
+| Alignment ground truth | **none** |
+
+Full analysis, capability matrix and difficulty-floor probes: **`12_DATASET_FINAL_V1.md`**.
+
+The rest of this document is the **collection plan that closes the gap**. Read §1 targets as what still needs collecting, not as what exists.
+
+**The binding constraint is 12 sessions.** Not image count, not architecture. Two trivial baselines reach 0.95+ macro-F1 on one fold and collapse to 0.12 on another, because with 1–2 sessions per class per fold, "class" is very nearly "which tyre". More tyres is the only fix.
+
+---
+
 ## 1. Dataset targets
 
 | Phase | Unique tyres | Purpose |
 |---|---|---|
-| **Pilot** | 30–50 | Validate viewpoint, illumination, label taxonomy, annotation workflow |
+| ~~**Pilot**~~ ✅ **done — `final_v1`** | **12** | Delivered. Validated the viewpoint; exposed the session-count constraint |
+| **Pilot-2 (next)** | **+40 minimum** | Break the tyre-identity confound; add condition diversity; first gauge measurements |
 | **Main study** | 250–400 | Train and evaluate all heads |
 | **Scrapyard supplement** | 40–60 | Rare classes: worn to cord, cuts, cupping, flat spots |
 | **Alignment jig** | 1 wheel × ~800 clips | Balanced camber/toe coverage |
@@ -146,6 +170,8 @@ Value out of proportion to effort:
 
 **Group by tyre identity. Never split by frame or by clip.**
 
+> `final_v1` already does this correctly — whole `session_group` values are assigned to folds, and validation contains clean originals only. **Use the supplied `splits/*.csv` files; do not construct your own.** Assertions to run every time are in `12_DATASET_FINAL_V1.md §10`.
+
 ```
 train : val : calibration : test  =  60 : 15 : 10 : 15   (grouped by tyre_id)
 + unseen_brand      — 2 brands held out entirely
@@ -183,20 +209,24 @@ Label 30 tyres → train SegFormer-B0 → pre-annotate the next 30 → **correct
 
 ### Annotation budget
 
+*(Solo — one annotator. See `15_ANNOTATION_GUIDE.md`.)*
+
 | What | Tool | Volume | Est. time |
 |---|---|---|---|
 | Tread/shoulder masks | SAM2 + correction | 300 tyres | ~20 h |
 | Fine structure (grooves, sipes, TWI) | SAM2 + correction, tiled | 150 tyres | ~25 h |
 | Wear-pattern multi-label | Checkbox UI | 400 clips | ~8 h |
-| Damage masks | CVAT | 300 images | ~6 h |
-| Landmarks | CVAT points + visibility | 400 frames | ~8 h |
+| Damage masks | labelme | 300 images | ~6 h |
+| Landmarks | labelme points | 400 frames | ~8 h |
 | **Ranking pairs** | Custom 2-up UI, ←/→ keys | 3,000 pairs | ~6 h |
 
 **Build the ranking UI.** Two crops side by side, arrow keys, `↑` for too-close-to-call. You will label 3,000 pairs in an evening. Highest labels-per-minute activity in the project, and it feeds the ordinal head — which is where precision on small data actually comes from.
 
 ### Quality control
 
-Write the **annotation guideline document with example images for every class before labelling anything.** Then have a second team member independently label 100 items and compute **Cohen's κ**. Report it. Two hours, paper-quality detail, almost every student project skips it.
+`15_ANNOTATION_GUIDE.md` is that guideline document — read it before labelling anything.
+
+**Working alone, the quality measure is self-consistency, not inter-annotator agreement.** Re-annotate a 30-image subset after finishing everything, without looking at the first pass, and report the IoU. It catches the thing that actually threatens a one-person job: your boundary judgement drifting as your eye improves over several hours. Almost no student project measures this, and it takes 20 minutes.
 
 ---
 

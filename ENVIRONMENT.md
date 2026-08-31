@@ -85,34 +85,39 @@ Used by `annotate/sam2_propagate.py` for video mask propagation (`03_DATA.md §5
 
 ```
 Tyre/
-├── README.md              ENVIRONMENT.md      environment.yml
-├── docs/                  01..11 + LOGBOOK.md + GITHUB_SETUP.md
-├── capture/               record.py  illum.py  flatfield.py  qc.py
-├── calib/                 intrinsics.py  extrinsics.py  lights.py
-├── tyrevision/
-│   ├── data/              datasets, samplers, augment, splits
-│   ├── photometric/       normals.py  albedo.py  integrate.py
+├── README.md   PROGRESS.md   ENVIRONMENT.md   environment.yml
+├── docs/                  00..14 + LOGBOOK.md + GITHUB_SETUP.md
+├── tyrelib/               ← the library; notebooks are GENERATED from it
+│   ├── infra/             uploader.py  registry.py  sharding.py  lifecycle.py
+│   │                      rate_limit.py  atomic_io.py  config_hash.py
+│   ├── telemetry/         schema.py  gpu_monitor.py  epoch_accumulator.py
+│   ├── data/              datasets.py  samplers.py  augment.py  splits.py
+│   ├── models/            zoo.py  heads.py  fgvc.py  target_layers.py
+│   ├── train/             loop.py  resume.py  ema.py
+│   ├── xai/               attribution.py  masks.py  ter_bar_sar.py
+│   │                      faithfulness.py  stress_tests.py
 │   ├── filters/           clahe.py  scharr.py  gabor.py  structure_tensor.py
-│   ├── recon/             register.py  unroll.py  coverage.py
-│   ├── geometry/          landmarks.py  estimators.py  residual.py  fusion.py
-│   ├── models/            segformer.py  convnext_heads.py  hrnet.py  patchcore.py
-│   ├── losses/            focal.py  dice.py  boundary.py  cldice.py  coral.py
-│   ├── train/             loop, resume, hf_sync
-│   └── eval/              metrics, conformal, plots, stratify
-├── annotate/              sam2_propagate.py  ranking_ui/  guidelines.md
-├── app/                   fastapi backend, gradio demo   (optional)
-├── notebooks/             00_feasibility  01_calib  02_explore  03_train(kaggle)
-├── scripts/               verify_env.py, cli entry points
-├── configs/               debug.yaml  seg.yaml  wear.yaml  align.yaml
-└── tests/                 test_resume.py  test_augment_signs.py  test_calib.py
-                           test_angle_conventions.py
+│   └── eval/              metrics.py  conformal.py  stats.py  plots.py
+├── notebooks/             00_preflight  01_train_worker  02_xai  03_analysis
+├── build_notebooks.py     ← regenerates notebooks from tyrelib (base64 bootstrap)
+├── scripts/               verify_env.py  dataset_shortcut_probe.py
+├── configs/               recipe_base.yaml  zoo.yaml  ofat.yaml
+└── tests/                 test_resume.py  test_registry_shards.py
+                           test_sharding_determinism.py  test_augment_signs.py
+                           test_schema.py  test_xai_sanity.py
 ```
 
-Four tests matter more than the rest:
+**The `.py` library is the source of truth; notebooks are generated.** Edit Python, run `build_notebooks.py`, re-upload. Never hand-edit the base64 blob (`05 §11`).
 
-- `test_augment_signs.py` — **horizontal flip must negate camber and toe; flipping twice is the identity.** This bug class is invisible until it has cost you a month
-- `test_angle_conventions.py` — sign convention fixed for left and right wheels; known synthetic normals produce known angles
-- `test_resume.py` — 200 steps straight vs 100 + resume + 100 must match (`05_TRAINING_KAGGLE_HF.md §3`)
-- `test_calib.py` — a known ground distance reconstructs within 0.5 mm; light directions within 5°
+Six tests matter more than the rest:
 
-Write them early. Each catches a bug class that is otherwise invisible until it has cost you a week.
+| Test | Catches |
+|---|---|
+| **`test_resume.py`** | Real kill mid-run → resume → **compare post-seam per-epoch losses**, not final accuracy (⚠ Bug 6) |
+| **`test_registry_shards.py`** | Two writers must not lose each other's entries; terminal states sticky (⚠ Bug 2) |
+| **`test_sharding_determinism.py`** | Assignment invariant to measured costs (⚠ Bug 7) |
+| `test_schema.py` | Every telemetry column always present; `NA` where undefined |
+| `test_xai_sanity.py` | Weight randomisation degrades every saliency map (`14 §4`) |
+| `test_augment_signs.py` | Horizontal flip negates signed lateral labels; flipping twice is identity |
+
+Write them early. Each catches a bug class that is otherwise invisible until it has cost a week — and in the sharded multi-account setup, until it has silently corrupted a few hundred runs.

@@ -13,104 +13,115 @@
 
 ---
 
-## What this is
-
-A low-mounted RGB camera sits ahead of one wheel, aimed backward and slightly upward at the front face of the tread. From a short video it must:
-
-1. **Recognise the tyre in detail** — tread crown, both shoulders, main grooves, ribs/blocks, sipes, TWI bars, visible damage
-2. **Decide whether it is worn** — ordinal severity, multi-label wear pattern, and a *localised* wear map, not a binary verdict
-3. **Screen single-wheel alignment** — camber and individual toe from calibrated geometry, with uncertainty
-4. *(optional)* Feed a connected app that reports the evidence
-
-The system is **not** one black box mapping an image to `worn / not worn`. Wear is an appearance problem; alignment is a geometry problem. They need different evidence and different methods, and the architecture keeps them separate on purpose.
+> ### 📍 Start here
+>
+> - **New to the project?** → `docs/00_WHAT_THIS_PROJECT_IS.md`
+> - **What are we actually doing?** → `docs/13_EXPERIMENT_PLAN.md`
+> - **Current status** → `PROGRESS.md`
 
 ---
 
-## The honest scope
+## The current phase, in one paragraph
 
-This matters more than any accuracy number, so it comes first.
+A camera mounted **below and in front of a vehicle** photographs one tyre. We have a prepared, verified dataset of those images — 418 unique photographs from **12 tyres**, labelled with a three-level *mileage proxy*. We are not building hardware. We are running a **broad, controlled, explainability-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with Grad-CAM and its relatives used as a **measuring instrument** rather than a garnish.
 
-| Claim we make | Claim we do **not** make |
+**Current execution point:** NB07 is complete and its public, three-seed XAI
+gate selected **RegNetY-16GF, DenseNet-121 and ResNet-50**. NB06 Stage-B OFAT
+is in progress on those three architectures and fold 1 only. Public HF holds
+**4/108 completed runs**: all three DenseNet-121 ROI seeds and ResNet-50 ROI
+seed 3. Public HF also records two reproducible epoch-0 RegNet/cuDNN failures
+with only ~1.1 GB used per T4. The 2026-08-31 tyrelib v4 repair keeps RegNet,
+batch 32, 384px and AMP unchanged, but uses its conservative contiguous CUDA
+layout; it also fixes the ROI host-RAM leak and prevents workers from stealing
+fresh work assigned to another account.
+
+**Focus for this phase: tyre wear.** Alignment is deferred — see `docs/13 §3` for why it is the harder half, not the easier one.
+
+---
+
+## The question the study asks
+
+A naive benchmark would ask *"we trained 20 models, which was most accurate?"* On this data that would be **ranking noise**. Two deliberately stupid baselines, on the dataset's own folds:
+
+| Baseline | fold 0 | fold 1 | fold 2 | mean |
+|---|---:|---:|---:|---:|
+| 10 colour numbers from a 64×64 thumbnail | **0.952** | 0.399 | 0.123 | 0.491 |
+| 9 texture numbers from the tread band | 0.354 | 0.119 | **0.976** | 0.483 |
+
+A fold-to-fold swing of 0.12 → 0.98 will swamp any difference between architectures.
+
+> ### So we ask a different question:
+> ### **Not "which model is most accurate?" but "which model actually looks at the tread?"**
+
+Accuracy is not identifiable on 12 tyres. **Where the evidence comes from is** — and it is what determines whether a model survives contact with a tyre it has never seen.
+
+---
+
+## The contribution
+
+> A **shortcut-aware, explanation-grounded benchmark** of tyre-wear recognition under small-sample conditions.
+>
+> We train a wide sweep of architectures and techniques, generate architecture-appropriate saliency for every one, and measure **how much of each model's evidence falls on the tread** rather than on background, dirt, or factory paint stripes. We then test whether that predicts cross-fold generalisation better than validation accuracy does.
+
+| | |
 |---|---|
-| Detailed, localised wear and damage recognition | Certified tread depth in millimetres from RGB alone |
-| Ordinal wear state + calibrated relative depth | Replacement for a digital tread gauge |
-| **Single-wheel** camber and individual toe *screening* with confidence intervals | Total axle toe, thrust angle, caster, or four-wheel alignment |
-| A refusal output when the image or geometry is inadequate | A confident answer on every frame |
+| **A measured problem** | We quantified the shortcut risk before designing around it |
+| **A new metric family** | Tread Evidence Ratio and siblings — **zero manual annotation required** |
+| **A falsifiable hypothesis** | Pre-registered. It can come out "no", and that is still a result |
+| **Breadth with discipline** | Every configuration: 3 folds × 3 seeds. No single-run numbers |
 
-RGB video is appropriate for wear classification and alignment *screening*. Defensible millimetre depth and workshop-grade angles require metric sensing — structured light, a laser line, stereo, or RGB-D. Those are scoped as ablations and extensions, not assumed away.
-
-The system returns one of four verdicts, always:
-
-```
-PASS · MONITOR · INSPECT · UNABLE_TO_MEASURE
-```
-
-`UNABLE_TO_MEASURE` is a first-class output. A safety system that never admits doubt is a liability.
+**One line:** *on small tyre datasets, validation accuracy is noise and attribution location is signal.*
 
 ---
 
-## Problem formulation
-
-Given a calibrated short video `V = {I₁ … I_T}` of one tyre, with camera intrinsics `K` and rig-to-world calibration `C`:
+## How it fits together
 
 ```
-f(V, K, C) → { M_tread, W_map, P_pattern, D_damage, γ, τ, U }
+   A. CLASSIFICATION  ── the only real labels we have
+      3-class ordinal mileage proxy
+      ~30 architectures × 12 technique factors × 3 folds × 3 seeds
+                │ CAMs
+                ▼
+   B. LOCALISATION  ── weakly supervised, no boxes needed
+      CAM → box · SAM2 reference · YOLO26 on pseudo-labels
+                │ CAM prompts SAM2
+                ▼
+   C. SEGMENTATION  ── zero-shot teacher, distilled students
+      SAM2 pseudo-masks → SegFormer / U-Net / DeepLabV3+
+                │ tread mask
+                ▼
+   D. XAI MEASUREMENT  ── the primary axis
+      TER · BAR · SAR · faithfulness · stress tests
 ```
 
-- `M_tread` — tyre / tread / shoulder / groove / sipe / TWI / damage masks
-- `W_map` — localised wear map over the observed tread
-- `P_pattern` — multi-label wear-pattern probabilities
-- `D_damage` — visible defect regions
-- `γ`, `τ` — camber and individual toe
-- `U` — uncertainty, quality flags, and observed-circumference percentage
+Segmentation earns its place by being **the instrument that makes the evidence metrics computable** — not as a competing deliverable.
 
 ---
 
-## Why the front view is hard, and what follows from it
+## The metrics that make this new
 
-The camera sees the tread crown and both shoulders. It does **not** see the full wheel, the hidden sidewall, or the whole circumference in one frame. The tyre is curved, dark, deformable near the road, and specular when wet. Small changes in illumination, pressure, load, steering and camera pose can all masquerade as changes in wear or alignment.
+| Metric | Meaning | Target |
+|---|---|---|
+| **TER_norm** | area-normalised share of attribution on the tread | **> 1.0** |
+| **BAR** | attribution outside the tyre entirely | low |
+| **SAR** | attribution on **factory paint stripes / lettering** | low |
+| Insertion / Deletion / **ROAD** | is the explanation faithful at all? | — |
+| Cross-fold spread, cross-seed saliency IoU | is any of it stable? | — |
 
-Four consequences drive the whole design:
-
-**1. Illumination is the sensor, not a nuisance.** Carbon-black rubber has ~4–8% albedo and grooves are defined by *shape*, not colour. A single flood light throws that information away. We use **multi-directional illumination (photometric stereo)** to recover surface normals, which makes groove depth, cracks and wear geometry explicit. This is the largest single upgrade over a plain RGB pipeline — see `docs/10_VISION_TECHNIQUES.md §2`.
-
-**2. Video beats a still image.** Rotation exposes more circumference, gives repeated angle estimates, and lets frame quality be a *selection* criterion rather than a hope. We register accepted frames and build a **partial unrolled tread map**, reporting the observed circumference percentage and leaving unseen areas explicitly unknown.
-
-**3. Alignment must come from calibrated geometry.** A CNN regressing angles from pixels will learn camera tilt, approach position and background shortcuts. We use learned landmarks + classical orientation evidence → analytic angle → small learned residual → temporal fusion.
-
-**4. Camber is observable; toe barely is.** Camber produces visible lateral tilt. Toe is a small yaw easily confused with camera yaw or an angled approach. So camber gets a continuous estimate; toe gets a screening estimate with an honest interval.
+`SAR` is worth singling out: new tyres carry coloured paint stripes and white lettering from the factory. That is a direct, free giveaway for the `low` class — a concrete, named, measurable shortcut we have not seen reported in the tyre-vision literature.
 
 ---
 
-## Architecture
+## Honest scope
 
-```
-camera video
-    │
-    ├─▶ Model 0 · frame-quality gate ──────────── reject blur/glare/occlusion
-    │
-    ├─▶ fixed calibrated ROI  (YOLO11n-seg only if position varies)
-    │
-    ├─▶ Model 1 · SegFormer-B2 segmentation
-    │        tyre · tread crown · shoulders · grooves · ribs · sipes · TWI · damage
-    │
-    ├─▶ frame registration + partial tread unrolling
-    │        Lucas–Kanade + RANSAC   (RAFT-Small as ablation)
-    │
-    ├─▶ Model 2 · ConvNeXt-V2-Tiny multi-task
-    │        ordinal severity · multi-label pattern · wear heatmap
-    │        damage masks · confidence · (optional metric depth)
-    │
-    ├─▶ Model 3 · PatchCore  ──────────────────── unknown-anomaly flagging
-    │
-    ├─▶ Model 4 · HRNet-W18 landmarks + Scharr/Gabor/structure-tensor
-    │        → analytic camber & toe → residual MLP → uncertainty
-    │
-    └─▶ temporal fusion + conformal intervals
-             PASS / MONITOR / INSPECT / UNABLE_TO_MEASURE
-```
+| We claim | We do **not** claim |
+|---|---|
+| A comparative study of what learns tread structure vs tyre identity | A deployable tyre-wear product |
+| Ordinal **mileage-proxy** classification | Measured tread depth in millimetres |
+| Evidence-location and faithfulness measurements | Certified safety or roadworthiness |
+| Deferred alignment, with a stated reason | Toe, camber, thrust angle, or four-wheel alignment |
 
-**One sentence:** SegFormer-B2 understands the tyre's structure, ConvNeXt-V2-Tiny describes its wear, HRNet-W18 plus calibrated geometry screens its alignment, and classical filters plus temporal tracking supply stable physical features throughout.
+**Sample size is 12 tyres.** Stated everywhere. The dataset's labels come from workshop odometer folders, not from a gauge — so the honest description is *mileage-proxy classification*, never "worn / not worn".
 
 ---
 
@@ -118,34 +129,42 @@ camera video
 
 | Path | What it is |
 |---|---|
-| `README.md` | You are here |
-| `docs/01_CONCEPT.md` | Problem formulation, what a front view can and cannot observe, scope discipline |
-| `docs/02_RIG_BUILD.md` | Camera, **photometric-stereo illumination**, calibration, BOM |
-| `docs/03_DATA.md` | Collection protocol, alignment jig, label taxonomy, **SAM2-assisted annotation** |
-| `docs/04_MODEL.md` | Full model stack, losses, training order |
-| `docs/05_TRAINING_KAGGLE_HF.md` | Kaggle dual-T4 + Hugging Face resumable training spec |
-| `docs/06_EVALUATION.md` | Metrics, ablations, robustness, acceptance criteria |
-| `docs/07_ROADMAP.md` | Review-2 / Review-3 timeline, team work split |
-| `docs/08_RISKS_AND_MY_OPINION.md` | What will work, what probably won't, what to cut |
-| `docs/09_RELATED_WORK.md` | Annotated bibliography and novelty audit |
-| **`docs/10_VISION_TECHNIQUES.md`** | **Technique catalogue: every CV method considered, with verdicts** |
-| `docs/11_APP.md` | Optional camera-connected application |
-| `docs/LOGBOOK.md` | Weekly record |
-| `docs/GITHUB_SETUP.md` | Repo metadata and push instructions |
-
-**Start with `10`** if you want the technique survey. **Start with `08`** if you want the honest assessment.
+| **`docs/00_WHAT_THIS_PROJECT_IS.md`** | **Plain-language explanation. Start here** |
+| **`PROGRESS.md`** | **Live status log — what's done, blocked, next** |
+| **`docs/13_EXPERIMENT_PLAN.md`** | **The study design — model zoo, technique axis, run budget, figures** |
+| **`docs/14_XAI_PROTOCOL.md`** | **XAI methods, metrics, faithfulness, pre-registered hypotheses** |
+| **`docs/15_ANNOTATION_GUIDE.md`** | **Windows install + click-by-click annotation walkthrough (solo)** |
+| **`docs/16_HF_REPO_STRUCTURE.md`** | **Hugging Face layout, run IDs, push tiers, retention** |
+| **`docs/18_STAGE_A_RESULTS.md`** | **Stage A, 153 valid + 9 quarantined architecture substitutions — and why two folds are not usable as evidence** |
+| **`docs/17_DATA_LOGGING_SCHEMA.md`** | **Every column we record — ~185 per epoch** |
+| `docs/12_DATASET_FINAL_V1.md` | The dataset: what it supports, what it can't, the difficulty floor |
+| `docs/01_CONCEPT.md` | Problem formulation and observability analysis |
+| `docs/02_CAPTURE_AND_PREPROCESSING.md` | How the data was captured, capture guidance, filter table |
+| `docs/04_MODEL.md` | Model zoo implementation reference — exact configs, CAM layers, runtimes |
+| `docs/05_TRAINING_KAGGLE_HF.md` | Multi-account Kaggle + HF infrastructure, and the six bugs |
+| `docs/06_EVALUATION.md` | Metrics, statistics, anti-patterns |
+| `docs/07_ROADMAP.md` | Stages S0–S9, team split, interfaces |
+| `docs/08_RISKS_AND_MY_OPINION.md` | Honest assessment |
+| `docs/09_RELATED_WORK.md` | Annotated bibliography |
+| `docs/10_VISION_TECHNIQUES.md` | Technique catalogue |
+| `docs/11_APP.md` | Optional app (first on the cut list) |
+| `docs/LOGBOOK.md` | Long-form decision record |
+| `scripts/dataset_shortcut_probe.py` | Reproduces the difficulty-floor baselines |
 
 ---
 
-## Research contributions
+## Scale
 
-1. A low-front, single-tyre **video dataset** with tread masks, fine structures, gauge measurements, wear patterns, visible damage and calibrated alignment labels
-2. A **high-resolution multi-task model** producing localised wear and damage evidence, not a binary classification
-3. A **video-based partial tread-unrolling** method with explicit circumference-coverage reporting
-4. A **hybrid alignment method** — learned landmarks + calibrated analytic geometry + temporal fusion
-5. A **confidence-aware comparison of current geometry against accumulated wear**, enabling detection of disagreement and of recent-versus-historical conditions
-6. An **experimental comparison** of RGB-only, photometric-stereo, structured-light and RGB-D evidence on the same tyre set
-7. An optional **app interface** communicating evidence, uncertainty and inspection status without claiming certified alignment
+| | |
+|---|---|
+| Runs | ~800 (3 folds × 3 seeds throughout) |
+| Compute | **~440 GPU-h** (measured T4 throughput, not guessed) |
+| Available | 30 GPU-h/week per Kaggle account (see the note below) |
+| Wall-clock | **~4 weeks at 4 accounts · ~15 weeks at 1.** See `docs/07` |
+| Training length | **60-epoch equal budget, no early stopping** |
+| Annotation | 418 images, SAM2-assisted, **solo — ~3.5–4 h over 3–4 sittings** |
+
+Infrastructure pattern: lock-free coordination by arithmetic, per-writer registry shards, one HF repo as the only permanent store. `docs/05`.
 
 ---
 
@@ -154,29 +173,26 @@ camera video
 ```bash
 conda activate cv_conda            # every python command in this repo
 python scripts/verify_env.py
+python scripts/dataset_shortcut_probe.py --root "D:/Dataset Download/Tire Dataset Prepared/FINAL"
 ```
-
-Setup: `ENVIRONMENT.md`.
 
 ---
 
 ## Status
 
-- [x] Review-1 report submitted
-- [x] Model stack specified
-- [x] Literature audit
-- [x] Technique catalogue
-- [ ] Camera rig + photometric-stereo illumination built
-- [ ] Calibration verified
-- [ ] Pilot dataset (30–50 tyres)
-- [ ] Alignment jig
-- [ ] SegFormer-B2 baseline
-- [ ] Main dataset (250–400 tyres)
-- [ ] Full pipeline + evaluation
-- [ ] Review-2 / Review-3
+- [x] Review-1 submitted · literature audit · technique catalogue
+- [x] Pilot dataset `final_v1` prepared, verified, analysed
+- [x] Difficulty-floor probes — the baselines every model must beat
+- [x] **Approach redesigned as a comparative XAI-grounded study**
+- [x] S0 infrastructure + public-HF resumability exercised across 4 accounts
+- [ ] S1 baselines (partial)
+- [x] S2 architecture sweep
+- [x] S3 masks verified
+- [ ] **S4 technique OFAT — NB06 in progress, 4/108 public**
+- [ ] S5 detection/segmentation
+- [x] S6 Stage-B XAI gate
+- [ ] S7 stress tests
+- [ ] S8 ensembles
+- [ ] S9 Review-3 + paper
 
----
-
-## Key references
-
-Petrovic et al. 2025 (front-view tread segmentation) · Huber et al. 2022 (TireEye, 0.57 mm) · Wang et al. 2019 (structured light, <0.2 mm) · Furferi et al. 2013 (stereo alignment, ~0.025°) · Shi et al. 2026 (RGB-D rim registration, <0.1°) · full annotated list in `docs/09_RELATED_WORK.md`.
+Live detail in `PROGRESS.md`.

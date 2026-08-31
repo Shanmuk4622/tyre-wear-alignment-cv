@@ -1,5 +1,27 @@
 # 08 — Risks and My Honest Opinion
 
+> ### ⚑ Update, 2026-08-26 — the approach changed, and I think it changed correctly
+>
+> Sections 1–9 below were written for the **engineered-system** plan: build a rig, collect 300 tyres, chain SegFormer → ConvNeXt → HRNet → PatchCore. That plan is superseded by `13_EXPERIMENT_PLAN.md` — a broad comparative study with XAI as the measuring instrument.
+>
+> **What I think of the change: it is the right call, and it is right for a reason worth stating.**
+>
+> The old plan's fatal problem was not ambition. It was that it required labels that do not exist. Masks, gauge readings, alignment angles — none of them are in `final_v1` and none were arriving soon. A plan that cannot start is worse than a smaller plan that can.
+>
+> The new plan turns the dataset's biggest weakness into the research question. We *measured* that trivial baselines swing 0.12→0.98 across folds. That kills accuracy benchmarking — but it makes "which model actually looks at the tread?" a question worth asking, and one this data **can** answer.
+>
+> **Three things I would still push back on:**
+>
+> **1. Breadth is only a virtue with discipline.** "Train many models" becomes noise the moment someone reports a single fold. The 3 folds × 3 seeds rule and the trivial-baseline lines on every figure are what separate this from a leaderboard of random numbers. If those slip, the whole study is worthless. They are cheap — hold them.
+>
+> **2. XAI is the instrument, so its own validity matters more than usual.** Grad-CAM on a ViT is not the same operation as Grad-CAM on a CNN; there is a 2026 paper devoted to that ambiguity. Comparing them naively would have corrupted the headline result while looking perfectly reasonable. `14 §1` is the most important page in the new plan.
+>
+> **3. Alignment is the harder half, not the easier one.** Deferring it is right. But the reason is that it needs a calibrated vertical and a known travel direction, neither of which exists here — not that it is simple. Plan for it as the hard part when you return to it.
+>
+> **The risk register in §7 has been updated for the new plan. §§1–6 and 8–9 are retained as the record of the earlier reasoning** — some of it (the resolution arithmetic, the shortcut warnings, the data-collection priorities) still applies.
+
+---
+
 Written after reading the Review-1 report and the model-stack specification, and after a research pass on the underlying vision methods.
 
 ---
@@ -66,7 +88,7 @@ If the toe head isn't working by the P4 midpoint, **cut it**. "We deliberately s
 
 ### Sipes, at full tread width.
 
-The arithmetic in `02_RIG_BUILD.md §2` is unforgiving: a 0.3 mm sipe at 3 px needs ≤0.1 mm/px, which is 2,500 px across a 250 mm tread. 1080p does not deliver that.
+The arithmetic is unforgiving: a 0.3 mm sipe at 3 px needs ≤0.1 mm/px, which is 2,500 px across a 250 mm tread. `final_v1` sits at roughly 0.21–0.24 mm/px, so main grooves and rib edges resolve well and only the wider sipes do.
 
 **Either buy an 8–12 MP sensor, or accept that sipes are resolved only in a cropped centre region and say so in the report.** Both are fine. Silently claiming sipe detection at 0.13 mm/px is not.
 
@@ -90,7 +112,42 @@ Rig build + illumination + calibration + 300-tyre collection + annotation + six 
 
 ---
 
-## 5. The single biggest risk
+## 4b. Update after seeing `final_v1` (2026-08-26)
+
+I said in §5 that annotation throughput would be the binding constraint. Having analysed the pilot dataset, **I was wrong about which data constraint binds first.** It is not annotation. It is **the number of independent tyres.**
+
+The package is 4,598 files. It is **12 tyres**, photographed in one 22-minute window on one day.
+
+What that does to your evaluation, measured rather than assumed:
+
+| Trivial baseline | fold 0 | fold 1 | fold 2 | mean |
+|---|---:|---:|---:|---:|
+| Ten colour numbers from a 64×64 thumbnail | **0.952** | 0.399 | 0.123 | 0.491 |
+| Nine texture numbers from the tread band | 0.354 | 0.119 | **0.976** | 0.483 |
+
+Two things to take from this:
+
+**A ten-number colour model scores 95.2% on fold 0.** If you train a ConvNeXt and report fold 0, you will have reproduced mean RGB. Any single-fold number from this package is not a result.
+
+**The two probes win on opposite folds.** That is the signature of memorising tyres rather than learning wear. With one to two sessions per class per fold, the class label is very nearly a tyre identifier — for the `mid` class it *is* one physical tyre in every fold.
+
+The encouraging half: the physical signal is real. Deep-groove shadow fraction (`d20`: 0.046 → 0.037 → 0.019) and groove-banding strength (`colstd`: 0.60 → 0.51 → 0.39) are both monotone in the correct direction across all three classes. There is a genuine wear cue in these images. There is just not enough independent data to demonstrate a model is using it.
+
+**So the advice changes.** Do not spend this month on architecture. Spend it on:
+
+1. A ₹900 digital tread gauge, and a measurement for every tyre from now on
+2. A printed ruler or ChArUco marker in frame on every capture — mm/px for free
+3. **Forty more tyres**, across different days, sites and lighting
+
+Those three things cost under ₹2,000 and a few weekends, and they would move this project further than any model you could train on `final_v1`.
+
+Run the pilot classifier anyway — but for the **training harness**, not for its accuracy. Build the resumable notebook, the HF sync, the evaluation and conformal code. When the real data lands, the infrastructure will already work.
+
+One more thing the images showed: **new tyres carry coloured paint stripes and white lettering from the factory.** That is a direct, free shortcut to the low-mileage class. Crop to the tread band, and run a stripe-masked evaluation before believing any low-class recall number.
+
+---
+
+## 5. The next constraint after data volume
 
 **Annotation throughput. Not the models.**
 
@@ -116,7 +173,9 @@ The failure mode is concrete: two months on architecture, rig finished in month 
 
 **Don't skip the boring metrology.** The gauge test–retest study is an afternoon of tedium and it's the highest-value afternoon in the project. Without a noise floor none of your numbers are interpretable, and a good examiner will spot that in the first five minutes.
 
-**Don't let four people work on everything.** Split by subsystem and write down the interfaces (`07_ROADMAP.md`). Four-person projects fail at the seams, not inside the modules.
+**Split by subsystem, whoever is working on it.** Write down the interfaces (`07_ROADMAP.md`). Multi-person projects fail at the seams, not inside the modules — and a solo project fails by half-finishing four things at once, which is the same failure wearing a different hat.
+
+**If you are running this alone, the binding constraint moves to compute.** Annotation is four hours; that is fine. But Stage A on a single Kaggle account is ~98 GPU-h ≈ 3.5 weeks, and the whole study ~15 weeks. Three more free accounts fix it entirely and need no coordination, because ownership is decided by arithmetic rather than negotiation. If that is not possible, cut the model zoo to Tiers 0–2 (~47 GPU-h) — still a complete, honest, reportable architecture result. Cut seeds last, and never cut folds.
 
 **Do release the dataset.** Of everything here, it's the thing most likely to outlive the project and get cited. Models age out in eighteen months; a well-documented dataset with a real ground-truth protocol gets used for years.
 
@@ -124,9 +183,32 @@ The failure mode is concrete: two months on architecture, rig finished in month 
 
 ## 7. Risk register
 
-| Risk | P | Impact | Mitigation | Trigger to act |
+### Updated register for the comparative study
+
+| Risk | P | Impact | Mitigation | Trigger |
 |---|---|---|---|---|
-| **Annotation too slow → small dataset** | **High** | **High** | SAM2 workflow in P2; bootstrapping; measure time/tyre | > 15 min per tyre in pilot |
+| **Reporting a single fold as the result** | **High** | **Fatal** | 3 folds × 3 seeds always; baselines on every figure | Any results table |
+| **Broken resume / lost-update registry corrupts hundreds of runs** | Medium | **Fatal** | ⚠ Bugs 1–7 in `05`; per-writer shards; post-seam resume test | Before S2 |
+| **XAI method mismatched to architecture** | **High** | **Fatal to the headline** | `14 §1`; faithfulness-selected method per architecture; state the choice | Before S6 |
+| **Metrics CSV schema changed mid-sweep** | Medium | High | Freeze before S2 | Any schema edit after S2 starts |
+| **Pseudo-mask quality unmeasured** | Medium | High | 50-image manual audit published before any dependent number | Before S6 |
+| **TER not area-normalised** | Medium | High | `TER_norm` is the reported number | Any TER claim |
+| **Hypotheses invented after seeing the scatter** | Medium | High | Pre-register H1–H3 with a date in `PROGRESS.md` | Before S6 |
+| Shortcut learning (paint stripes, tread identity, background, dirt) | **High** | Medium | It is now the *subject*, not just a threat — stress-test matrix in `06 §5` | Ongoing |
+| HF rate limit hit across 4 accounts | Medium | Medium | Per-token bucket, `cap × n < 128` | Decision #1 in `PROGRESS.md` |
+| ROI host-RAM growth kills the kernel without an exception | **Realised, repaired** | High | Bbox-only masks; ROI workers/pinning off; 88% checkpoint-and-push guard (`05`, Bug 17) | `proc_rss_gb_peak` rises across epochs |
+| RegNet AMP + `channels_last` selects a failing T4/cuDNN grouped-conv path | **Realised, repaired** | High | Same model/config on contiguous NCHW; cuDNN autotuning off; fatal-context stop (`05`, Bug 18) | `ERROR.txt`; `runtime_cuda_memory_format` |
+| Simultaneous workers steal fresh absent runs before the first claim is visible | **Realised, repaired** | High | Absent work stays with static owner; only a real event older than 45 min is stealable (`05`, Bug 18) | duplicate owners for one `run_id` |
+| Work imbalance across accounts | Medium | Medium | LPT bin packing on a **static** cost table (⚠ Bug 7) | Print the plan first |
+| Too few independent tyres (12) | **Realised** | — | **This is the study's premise, not a blocker.** Still the top `final_v2` priority | — |
+| Scope creep — adding models forever | Medium | Medium | The cut list in `07`; Tier 6 cut last | Behind at S4 |
+
+### Retained from the earlier plan
+
+| Risk | P | Impact | Mitigation |
+|---|---|---|---|
+| No tread-depth measurements | Realised | High | Buy gauge; measure every tyre from now |
+| Annotation too slow | Medium | Medium | SAM2 pseudo-labels remove most of it |
 | Toe never reaches useful precision | **High** | Medium | Reframe as binary screening; cut if needed | P4 midpoint review |
 | Sipes unresolvable at full width | Medium | Medium | Higher-res sensor or cropped-region claim | v0 resolution measurement |
 | Photometric stereo fails on rubber | Low-med | Medium | Hand-torch test in P0; fall back to flat + classical | P0 week 1 |

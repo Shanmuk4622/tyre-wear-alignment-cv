@@ -147,6 +147,74 @@ Semantic segmentation + sub-pixel edge extraction + physical scale conversion.
 
 ---
 
+## 2b. Where `final_v1` sits against the literature
+
+Our pilot dataset in context (`12_DATASET_FINAL_V1.md`):
+
+| Study | Images | Independent units | Labels |
+|---|---:|---:|---|
+| Petrovic et al. 2025 | 247 train / 62 test | not reported | tread masks |
+| Vivekanandan & Rajeswari 2026 | 4,000 | multiple manufacturers | wear class |
+| Wang et al. 2019 | — | **2 tyres** | laser depth <0.2 mm |
+| Huber et al. 2022 | — | full-vehicle trial | depth, 0.57 mm |
+| Shi et al. 2026 | — | single wheel, controlled | toe/camber <0.1° |
+| **`final_v1` (ours)** | **418 clean** | **12 sessions** | 3-class mileage proxy |
+
+Two honest observations:
+
+1. **Small independent-unit counts are normal in this field.** Wang et al. published sub-0.2 mm depth on *two* tyres; Shi et al. published <0.1° on a single controlled wheel. Our 12 is not an outlier — but neither is it a generalisation claim, and neither were theirs.
+2. **Our label type is weaker than any of them.** Every paper above has a *physical* target — millimetres or degrees. Ours is a workshop odometer category. Closing that gap needs a ₹900 gauge, not a better model.
+
+When writing Related Work, position `final_v1` as a **pilot that validated the viewpoint and exposed the sample-size constraint**, and state the planned `final_v2` collection alongside it. Reviewers respond far better to a measured limitation with a stated remedy than to a quietly small *n*.
+
+---
+
+## 2c. Literature for the comparative-study phase
+
+Added 2026-08-26 when the approach became a shortcut-aware, XAI-grounded benchmark (`13_EXPERIMENT_PLAN.md`).
+
+### Explainability — faithfulness and evaluation
+
+- **[29]** *Saliency-Bench: A Comprehensive Benchmark for Evaluating Visual Explanations* — [arXiv:2310.08537](https://arxiv.org/html/2310.08537). Standardised evaluation pipeline; the closest methodological template for what we are building.
+- **[30]** *A Comprehensive Review of XAI in Computer Vision* — [PMC12252469](https://pmc.ncbi.nlm.nih.gov/articles/PMC12252469/). Insertion/deletion AUC, AOPC, pointing game. Establishes the key distinction we adopt: **plausibility ≠ faithfulness**, and plausibility metrics can reward maps that look sensible while misrepresenting the model.
+- **[31]** *A comparative evaluation of explainability techniques for image data*, *Scientific Reports* 2025 — [link](https://www.nature.com/articles/s41598-025-25839-y).
+- **[32]** *Grad-CAM for Vision Transformers: A Systematic Taxonomy and Audit of Methodological Ambiguity* — [arXiv:2608.05258](https://arxiv.org/html/2608.05258v1). **The most important methodological reference for this study.** Several published "Grad-CAM for ViT" methods compute gradients on attention entries rather than channel-averaged feature maps — different algorithms sharing a name. Since our whole design compares attribution *across* architecture families, a naive comparison would have silently corrupted the headline result. Drives the hard rule in `14 §1`.
+- **[33]** Chefer et al., *Transformer Interpretability Beyond Attention Visualization*, CVPR 2021 — [link](https://openaccess.thecvf.com/content/CVPR2021/papers/Chefer_Transformer_Interpretability_Beyond_Attention_Visualization_CVPR_2021_paper.pdf). Our reference method for class-specific ViT attribution.
+- **[34]** *On the Faithfulness of Vision Transformer Explanations* — [arXiv:2404.01415](https://arxiv.org/pdf/2404.01415).
+- **[35]** *Revisiting LRP: Positional Attribution for Transformer Explainability* (AttnLRP) — [HF papers](https://huggingface.co/papers/2506.02138).
+
+### Shortcut learning and spurious correlations
+
+- **[36]** *Spurious Correlations in Machine Learning: A Survey* — [arXiv:2402.12715](https://arxiv.org/html/2402.12715v1). Taxonomy of data-centric, representation-learning and detection approaches.
+- **[37]** *Navigating Shortcuts, Spurious Correlations, and Confounders: From Origins via Detection to Mitigation* — [arXiv:2412.05152](https://arxiv.org/pdf/2412.05152). **Tier-1 read.** The organising framework for our stress-test matrix.
+- **[38]** *An XAI-Based Analysis of Shortcut Learning in Neural Networks* — [Springer](https://link.springer.com/chapter/10.1007/978-3-032-08327-2_20). Direct precedent for using attribution *to detect* shortcuts, which is our core method.
+- **[39]** *ShortcutProbe: Probing Prediction Shortcuts for Learning Robust Models*, IJCAI 2025 — [PDF](https://www.ijcai.org/proceedings/2025/0795.pdf).
+- **[40]** *Efficient Unsupervised Shortcut Learning Detection and Mitigation in Transformers*, ICCV 2025 — [PDF](https://openaccess.thecvf.com/content/ICCV2025/papers/Kuhn_Efficient_Unsupervised_Shortcut_Learning_Detection_and_Mitigation_in_Transformers_ICCV_2025_paper.pdf).
+- **[41]** *Mitigating Shortcut Learning via Feature Disentanglement in Medical Imaging: A Benchmark Study* — [arXiv:2602.18502](https://arxiv.org/pdf/2602.18502). **The closest analogue to what we are doing**, in a different domain. Useful for positioning: shortcut-aware benchmarking is established in medical imaging and, as far as I can find, absent from tyre inspection.
+
+### Weakly supervised localisation and segmentation
+
+- **[42]** *Pro2SAM: Mask Prompt to SAM with Grid Points for Weakly Supervised Object Localization* — [Springer](https://link.springer.com/chapter/10.1007/978-3-031-72890-7_24).
+- **[43]** *From SAM to CAMs: Exploring Segment Anything Model for Weakly Supervised Semantic Segmentation*. Together these justify the **CAM → SAM2 pseudo-mask pipeline** that lets us do detection and segmentation with zero manual annotation.
+
+### Architectures
+
+- **[44]** *Ultralytics YOLO Evolution: YOLO26, YOLO11, YOLOv8, YOLOv5* — [arXiv:2510.09653](https://arxiv.org/abs/2510.09653) · [docs](https://docs.ultralytics.com/models/yolo26). **YOLO26** (Jan 2026): NMS-free one-to-one head, DFL removal, ProgLoss, STAL, MuSGD. 40.9–57.5 mAP at 1.7–11.8 ms T4 TensorRT; up to 43% faster CPU ONNX than YOLO11n; YOLO26x exceeds RT-DETRv2-x with fewer parameters. **Use YOLO26, not YOLO11.**
+- **[45]** *A ConvNet for the 2020s* (ConvNeXt) — [arXiv:2201.03545](https://arxiv.org/pdf/2201.03545).
+- **[46]** timm model families and current guidance — modern CNNs (ConvNeXt, EfficientNetV2) still lead under limited compute or data; transformers need large-scale pretraining and high-resolution fine-tuning. Directly informs our expectation that ConvNeXt-V2-T and EfficientNetV2-S lead Stage A.
+
+### Fine-grained visual classification
+
+- **[47]** Yu et al., *Hierarchical Bilinear Pooling for Fine-Grained Visual Recognition*, ECCV 2018 — [PDF](https://openaccess.thecvf.com/content_ECCV_2018/papers/Chaojian_Yu_Hierarchical_Bilinear_Pooling_ECCV_2018_paper.pdf). 87.1 / 91.4 / 93.4% on CUB / Aircraft / Cars; an order of magnitude smaller than compact bilinear.
+- **[48]** *Attention Bilinear Pooling for Fine-Grained Classification* (CAB/SAB/CSAB/SCAB) — [link](https://www.researchgate.net/publication/335091538_Attention_Bilinear_Pooling_for_Fine-Grained_Classification). Produces attention maps natively → a within-model XAI cross-check.
+- **[49]** *Low-rank Bilinear Pooling* — [arXiv:1611.05109](https://arxiv.org/pdf/1611.05109).
+- **[50]** *Context-aware Attentional Pooling (CAP)*, AAAI 2021 — [PDF](https://cdn.aaai.org/ojs/16176/16176-13-19670-1-2-20210518.pdf).
+- **[51]** *Coarse2Fine: A Two-stage Training Method for FGVC* — [arXiv:1909.02680](https://arxiv.org/html/1909.02680).
+
+> **Positioning note.** Tyre wear is a fine-grained visual classification problem — subtle within-class texture differences on objects of near-identical global shape. FGVC has a mature literature and, as far as I can find, **no prior application to tyre wear**. That makes Tier 6 of the model zoo the most promising novelty on the architecture axis.
+
+---
+
 ## 3. Public datasets — what they are good for
 
 | Dataset | Size | Labels | Verdict |

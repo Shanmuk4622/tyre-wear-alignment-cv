@@ -1,234 +1,241 @@
 # 06 — Evaluation Protocol
 
-> Decide these metrics **now**, before you have results. Choosing metrics after seeing results is how honest people accidentally produce dishonest reports.
+> Decide these metrics **now**, before there are results. Choosing metrics after seeing results is how honest people accidentally produce dishonest reports.
+>
+> Companion to `13_EXPERIMENT_PLAN.md` and `14_XAI_PROTOCOL.md`.
 
 ---
 
-## 1. The acceptance principle
+## 1. The evaluation principle for this study
 
-> The primary success criterion is **not** the smallest average error under ideal conditions. It is a system that retains **high sensitivity for visibly unsafe wear**, **recognises when its geometric estimate is unreliable**, and **generalises to tyres not represented in training**.
+> **Accuracy is not identifiable on 12 tyres. Evidence location is.**
 
-Every metric below serves one of those three.
+Two trivial baselines swing from 0.12 to 0.98 macro-F1 across the three folds. Any accuracy difference between two architectures will be dominated by that variance. So accuracy is reported — carefully, with spread — but it is **not the primary axis**. The primary axis is where the model's evidence comes from.
 
----
+Every results table has three blocks:
 
-## 2. Establish the noise floor first
+```
+[ ACCURACY ]        mean ± spread over 3 folds × 3 seeds, + trivial baselines
+[ EVIDENCE ]        TER_norm, BAR, SAR, faithfulness
+[ ROBUSTNESS ]      shortcut stress-test deltas
+```
 
-**You cannot beat your own reference instrument.** Before evaluating any model (`03_DATA.md §3.2`):
-
-| Measurement | Expected | Purpose |
-|---|---|---|
-| Gauge test–retest MAE | 0.10–0.15 mm | Absolute floor |
-| Inter-operator MAE | 0.15–0.25 mm | Human-label noise |
-| Inter-annotator κ (wear pattern) | > 0.70 | Label reliability |
-
-Report all three. A model at 0.35 mm against a 0.15 mm reference is doing well — but that is only visible if you measured the floor. One afternoon; highest credibility-per-hour in the project.
+A model that wins block 1 and loses blocks 2 and 3 has not won.
 
 ---
 
-## 3. Per-task metrics
+## 2. Mandatory baselines — on every figure
 
-### Segmentation
+| Baseline | fold 0 | fold 1 | fold 2 | **mean** |
+|---|---:|---:|---:|---:|
+| **Frame occupancy only** — `tyre_frac`, `tread_frac`, ratio | 0.181 | 0.455 | **0.968** | **0.535** ← **highest** |
+| **Colour only** — 10 stats from a 64×64 thumbnail | **0.952** | 0.399 | 0.123 | **0.491** |
+| **Structure only** — 9 contrast-normalised tread-band stats | 0.354 | 0.119 | **0.976** | **0.483** |
+| **Annotation side-channel** — `marking→low, damage→high, else mid` | **0.978** | 0.159 | 0.108 | 0.415 |
+| Majority class (accuracy) | 0.360 | 0.484 | 0.423 | 0.423 |
+| HOG + SVM | — | — | — | *to run* |
+| Random-init CNN | — | — | — | *to run* |
 
-| Metric | Target | Why |
-|---|---|---|
-| Dice, mean IoU | > 0.85 (tread/shoulders) | Standard |
-| Per-class IoU | report **all**, including `sipe`, `twi_bar` | Rare classes are where it fails |
-| **Boundary F-score** | > 0.70 on shoulders and grooves | **A mask can have good IoU and still place a shoulder edge too inaccurately for angle estimation** |
-| **clDice / connectivity** | report for `sipe`, `crack` | A crack broken into fragments is a serious failure ordinary Dice barely penalises |
+Reproduce: `python scripts/dataset_shortcut_probe.py --root "<FINAL>"` (first three) and `annotations/README.md §6` (last two).
 
-Boundary F-score and clDice are not optional extras — they are the metrics that correspond to "recognise every detail."
+> ### **The floor is 0.535, not 0.491.**
+>
+> The strongest trivial baseline is now **how much of the frame the tyre fills** — nothing else. The tyre occupies 72% of the frame in `low` images, 62% in `mid`, 61% in `high`, so framing alone is a class cue. It beats both colour and texture.
+>
+> Every one of the four probes is near-perfect on **one** fold and collapses on the others. Four different shortcuts, four different folds. That is the fingerprint of memorising tyres, and it is why single-fold numbers from this dataset are meaningless.
 
-### Ordinal wear severity
+### What Stage A did against that floor (2026-08-27, 36 runs)
 
-| Metric | Target |
+The probes predicted this and the real models confirmed it. Full table:
+`docs/18_STAGE_A_RESULTS.md`.
+
+| fold | leak-flagged | best model macro-F1 | **final macro-F1 (fixed budget)** | trivial floor |
+|---|---|---:|---:|---:|
+| 0 | **yes** | 1.000 | 1.000 | 0.181 |
+| 1 | no | 0.736 | **0.499** | **0.455** |
+| 2 | **yes** | 1.000 | 1.000 | 0.968 |
+
+**Report `final_val_*`, not `best_val_*`.** `best` is the epoch with the highest
+validation QWK — chosen by looking at a validation fold of four tyres, then
+reported as if it were held out. That is circular, and on fold 1 it is worth
++0.24 macro-F1 of pure selection. The fixed-budget number was chosen by nobody
+and is the only one comparable with a baseline.
+
+Quote them side by side. The gap between them is itself a result: it measures
+how much of the score is selection.
+
+**Two consequences that change the experiment design:**
+
+1. **A tyre-region crop is a control, not an optimisation.** It removes the frame-occupancy shortcut outright. Run it early (`04 §9` factor 5).
+2. **Stress tests must be symmetric.** `marking` appears on **only** `low` images (67) and `damage` on **only** `high` (63) — so mask the paint stripes for `low` *and* the damage regions for `high`. Testing one without the other measures half the problem.
+
+Draw all four baselines as horizontal lines on every accuracy figure.
+
+---
+
+## 3. Classification metrics
+
+### Primary
+
+| Metric | Why |
 |---|---|
-| Macro-F1 | > 0.75 |
-| Balanced accuracy | > 0.75 |
-| **Ordinal MAE** (mean |ŷ − y| in class units) | < 0.35 |
-| **Critical-wear sensitivity** (class 3 recall) | **> 0.95** |
+| **Macro-F1**, mean ± spread over 3 folds | Class-balanced; spread is as important as mean |
+| **Quadratic Weighted Kappa** | The classes are **ordered**. QWK penalises `low↔high` more than `low↔mid` |
+| **Mean absolute class error** | Interpretable ordinal distance |
+| **Per-class recall** | `mid` has only 3 sessions — it will be worst, and hiding that in a macro average is dishonest |
+| **Confusion matrix, per fold** | Where the ordinal structure breaks |
 
-That last row is the safety metric. **Missing a critically worn tyre is the failure that matters.** Report it separately and prominently; optimise the operating point for it even at some precision cost.
+### Reporting rules
 
-### Wear pattern (multi-label)
+1. **Always all three folds.** `0.71 ± 0.24 (0.48 / 0.72 / 0.94)` — never `0.71`
+2. **Spread is a headline number**, not a footnote. A model with 0.65 ± 0.05 may be more useful than one with 0.71 ± 0.30
+3. **Session-level breakdown** — per-session accuracy exposes single-tyre memorisation
+4. **Bootstrap CIs at the tyre level**, never the image level. 418 images are 12 tyres
+5. **Never report a single-fold number anywhere**, including in conversation
 
-| Metric | Target |
+### Calibration
+
+ECE · MCE · NLL · Brier · reliability diagram. Plus, after Stage G:
+
+| Conformal metric | Target |
 |---|---|
-| Per-label precision / recall / F1 | report all 9 |
-| Macro F1 | > 0.70 |
-| mAP | > 0.70 |
-| Hamming loss | < 0.12 |
+| Empirical coverage @ 90% | 88–92% on the calibration split |
+| Mean prediction-set size | smaller is better at equal coverage |
+| **Abstention rate** | the `uncertain / request another frame` outcome the dataset's guidance asks for |
 
-Expect `cupping_or_scalloping` and `flat_spot` to be worst. Say so rather than hiding them in a macro average.
+---
 
-### Damage
+## 4. Evidence metrics — the primary axis
 
-| Metric | Target |
-|---|---|
-| Defect-level sensitivity | > 0.85 |
-| Dice / IoU on defect masks | > 0.60 |
-| Instance mAP | > 0.50 |
-| **False positives per healthy tyre** | **< 0.5** |
-
-The FP rate decides whether anyone would tolerate the system. A detector that cries wolf on every clean tyre is useless regardless of its recall.
-
-### PatchCore / anomaly
-
-Image AUROC > 0.90 · pixel AUROC / AUPRO · **false positives on healthy tyres** (again, the deciding number).
-
-### Landmarks
-
-Normalised mean error · PCK@0.05 · **visibility-prediction accuracy** (did it correctly refuse to place a hidden landmark?).
-
-### Alignment
+Full definitions in `14_XAI_PROTOCOL.md §3`.
 
 | Metric | Target | Note |
 |---|---|---|
-| **Camber MAE** | < 0.40° | The observable one |
-| Camber RMSE, bias | report | Bias reveals calibration error |
-| **Toe MAE** | < 0.60° | Honest — weakly observable from one wheel |
-| **Misalignment screening AUROC** | **> 0.90** | **This is the primary alignment claim** |
-| Recall @ 95% precision | > 0.80 | False alarms destroy trust |
-| Repeatability (σ across clips, same tyre) | < 0.25° | Precision, independent of accuracy |
-| Sign accuracy (toe-in vs toe-out) | > 85% | Direction matters diagnostically |
+| **TER_norm** — area-normalised Tread Evidence Ratio | **> 1.0** | `1.0` = attends in proportion to area, i.e. no preference. **This is the paper number**; raw TER is supporting detail |
+| **BAR** — Background Attribution Ratio | low | evidence outside the tyre entirely |
+| **SAR** — Stripe Attribution Ratio | low | factory paint/lettering — the named shortcut |
+| **DAR** — Dirt Attribution Ratio | low | |
+| **Insertion AUC / Deletion AUC / ROAD** | high / low / high | is the explanation faithful at all? |
+| **Pointing game** | high | plausibility — report alongside faithfulness, never instead |
+| **Cross-seed saliency IoU** | high | unstable explanations ⇒ untrustworthy model |
 
-> **Frame toe as binary out-of-spec detection, with continuous MAE as a secondary result.** A workshop rack reaches ±0.05°; we will not. What we offer is screening every wheel with no markers, no stereo and no setup. That is a different, defensible operating point — see `09_RELATED_WORK.md §4`.
+**Prerequisites before any of these are reported:**
 
-### Metric depth
+- [x] Selected attribution method passes the **weight-randomisation sanity check**
+- [x] Method selected per architecture by finite **insertion-minus-deletion** among sanity survivors, and the choice stated
+- [x] **Mask quality reported** — NBT1 clean IoU 0.9780, propagated IoU 0.9747, ratio 0.9966, plus the tested-mask fingerprint
 
-Evaluated in millimetres **only** on samples with physical depth labels. MAE, RMSE, **Bland–Altman bias and limits of agreement** (the correct method-comparison plot against a reference instrument — use this as the headline figure, not a scatter plot), and % within ±0.5 mm.
+An evidence metric built on an unvalidated mask is unfalsifiable.
 
-**Report the fraction of clips where a TWI anchor was available.** Scale claims without it are weaker and must be labelled as such.
+### Completed Stage-B evidence gate
 
-### Uncertainty
+NB07 revision `2026-08-30-r3` completed on 2026-08-30 and the three public
+gate files were independently re-read. The locked architectures are:
 
-| Metric | Target |
+| Architecture | Three-seed TER_norm | BAR | Valid maps |
+|---|---:|---:|---:|
+| RegNetY-16GF (`regnety016`) | 1.5785 | 0.0310 | 180/180 |
+| DenseNet-121 (`densenet121`) | 1.5513 | 0.0455 | 178/180 |
+| ResNet-50 (`resnet50`) | 1.5146 | 0.0512 | 180/180 |
+
+All three have `xai_status=ok` and evidence from seeds 1–3. Accuracy was not
+part of the selection rule. The public aggregate contains 1,208 image-level
+evidence rows, 35 faithfulness rows, and 18 screened architecture rows. NB06
+is therefore unblocked and must use this exact set; there is no fallback list.
+
+---
+
+## 5. Shortcut stress tests
+
+Report as a matrix — **models × interventions**, cells = Δ macro-F1 with CI. This is one of the most informative tables the study will produce.
+
+| Test | Reading |
 |---|---|
-| Conformal coverage @ 90% | 88–92% empirical |
-| Mean interval width | report per output |
-| Expected Calibration Error | < 0.05 |
-| **Refusal rate** (`UNABLE_TO_MEASURE`) | report; too high is useless, too low is dishonest |
-| **Coverage under distribution shift** (unseen brand) | report honestly — **it will degrade** |
+| Background replacement | drop ⇒ background dependence |
+| Background blanking | drop ⇒ background dependence |
+| **Stripe masking** (`low` class) | drop in `low` recall ⇒ factory-marking dependence |
+| Tread-only crop | rise ⇒ context was harmful |
+| **Grayscale** | drop ⇒ colour dependence — and colour is not a wear cue |
+| Dirt inpainting | drop ⇒ dirt dependence |
+| Session holdout | drop ⇒ tyre-identity memorisation |
+| **Shuffled labels** | **above chance ⇒ pipeline leak. Stop and fix before anything else** |
 
-Conformal guarantees hold under exchangeability, which brand shift violates. Measuring the degradation is a much stronger result than pretending it doesn't happen.
-
-### Video
-
-Tracking inlier rate · registration reprojection error · **observed circumference coverage %** · fraction of frames accepted by the quality gate.
-
----
-
-## 4. Stratified reporting — mandatory
-
-**Overall accuracy alone is not sufficient.** Every headline result must also appear broken down by:
-
-```
-tyre brand · tread family · tyre size · wear severity
-camera / calibration ID · illumination condition
-dirt / wet state · approach angle · inflation · load
-```
-
-The brand row matters most: [Vivekanandan & Rajeswari 2026](https://doi.org/10.1016/j.measurement.2026.121509) measured an 88.2% → 92.4% gap on unseen brands. If your unseen-brand column is much worse than your overall column, that is the finding — report it.
+The shuffled-label control is cheap, mandatory, and run **before** any result is believed.
 
 ---
 
-## 5. Robustness sweep
+## 6. Detection and segmentation metrics
 
-| Axis | Conditions |
+Against SAM2 pseudo-labels, with the pseudo-label quality stated first.
+
+| Task | Metrics |
 |---|---|
-| Illumination | Indoor, overcast, direct sun, dusk, night with rig lights |
-| Surface | Dry, damp, wet, dusty, muddy |
-| Brand | ≥ 6; **2 held out entirely** |
-| Size | 13″–17″; one size class held out |
-| Tread pattern | Symmetric, asymmetric, directional |
-| Inflation | 180 / 200 / 220 / 240 kPa |
-| Load | Empty / 2 occupants / loaded |
-| Temperature | Cold vs after 20 min driving |
-| Camera pose | Nominal ± tolerance, to test calibration sensitivity |
-| Rotation | Stationary vs slowly rotating |
+| **Pseudo-mask quality** (50-image audit) | IoU vs manual, Dice, failure rate, per-class breakdown |
+| WSOL (CAM → box) | MaxBoxAcc, box IoU, pointing game |
+| Detection (YOLO26, RT-DETR) | mAP50, mAP50-95 vs pseudo-boxes, inference latency |
+| Segmentation (SegFormer, U-Net, DeepLabV3+) | mIoU, Dice, boundary F-score vs pseudo-masks |
+| **Downstream value** | Δ classification macro-F1 when the ROI crop is used |
 
-**Wet operation will degrade** (specular reflection, changed apparent texture). Measure exactly how much, report it as a named limitation, and cite cross-polarisation as the mitigation. A clearly characterised failure mode is a strength; an uncharacterised one is a hole.
+That last row is the one that matters. Detection and segmentation exist here to serve the classification and XAI tracks; their standalone scores are secondary to whether they *help*.
 
 ---
 
-## 6. Ablations
+## 7. Video evaluation — qualitative and temporal
 
-Fifteen listed in `04_MODEL.md §9`. Report as one table with Δ from the full model, **3 seeds each, mean ± std**.
+No labels, so no accuracy. What can be measured honestly:
 
-| Priority | Ablation | Why it matters most |
+| Metric | Definition | Reading |
 |---|---|---|
-| **1** | **Flat light vs photometric stereo** | The project's most distinctive engineering decision. Cheap to run, likely large effect |
-| **2** | Classical vs direct CNN vs hybrid alignment | Justifies the whole alignment architecture; the CNN arm should visibly fail on unseen mounts |
-| **3** | Single frame vs registered video | Justifies the video complexity |
-| **4** | With / without clDice | Directly tests the "every detail" claim on connectivity |
-| **5** | RGB-only vs metric-sensor supervision | Bounds what RGB alone can deliver |
-| 6–15 | Remainder | Complete the story |
+| **Temporal prediction consistency** | fraction of consecutive frames with the same predicted class, per clip | low ⇒ shortcut reliance |
+| **Temporal logit variance** | variance of class probabilities across frames of one tyre | high ⇒ instability |
+| **Temporal saliency IoU** | saliency agreement between adjacent frames | low ⇒ the model is not tracking a stable feature |
+| Qualitative panels | saliency overlaid on video frames | for the report |
 
-Single-seed ablations on a small dataset are noise, and an examiner will say so.
-
----
-
-## 7. Baselines
-
-Be generous to the baselines. A weak baseline section is the fastest route to a hard question in the viva.
-
-| Baseline | Expected | Demonstrates |
-|---|---|---|
-| Gauge test–retest | 0.12 mm | The floor |
-| **Human technician, visual only** | 0.8–1.5 mm; pattern κ ~0.5 | You should beat this — and it is the honest deployment comparison |
-| Classical-only pipeline (CLAHE + Canny + Gabor + RANSAC) | — | Value of learning |
-| Petrovic-style Mask R-CNN + HOG | mAP ~0.6 | Direct comparison to [1] |
-| MobileNetV2 binary classifier | — | Direct comparison to [6] |
-| Single-frame CNN, whole image | — | Value of segmentation + video |
-| Direct CNN → angles | — | **Should fail on unseen camera pose. That failure is the result** |
-| Depth Anything V2 fine-tuned | poor | **Documented negative result** — generic monocular depth is not metrology |
-| Analytic geometry alone (no residual MLP) | — | Value of the residual head |
+A model reading tread structure should give a stable answer across consecutive frames of the same tyre. One reading dirt, glare or background will flicker. **This needs no labels and is a genuinely informative generalisation test.**
 
 ---
 
 ## 8. Statistical rigour
 
 - **Bootstrap CIs on every headline number**, resampled at the **tyre** level, 10,000 draws
-- **Paired significance tests** for ablations — paired bootstrap or Wilcoxon signed-rank on per-tyre errors
-- **Holm–Bonferroni** correction across the 15-ablation grid
-- **Effect sizes**, not only p-values — a significant 0.01 mm improvement is not interesting
-- **Report negative results.** If clDice doesn't help, that is a finding about topology losses on this data
+- **Paired tests** for technique comparisons — paired bootstrap or Wilcoxon signed-rank on per-fold, per-seed results
+- **Holm–Bonferroni** across the OFAT grid (12 factors)
+- **Effect sizes**, not only p-values. A significant 0.005 macro-F1 gain is not interesting
+- **Report negative results.** If CORAL doesn't beat softmax, that is a finding about ordinal heads on small data
+- **H1–H3 registered** (`14 §10`) at `2026-08-30T10:06:21Z`, before the first XAI evidence row
 
 ---
 
-## 9. Failure analysis — a required section
+## 9. Failure analysis
 
-Aggregates hide everything. Take the **worst 50 predictions** and categorise them by hand:
+Aggregates hide everything. Take the **worst 50 predictions** across the top models and categorise by hand:
 
 ```
-worst-case analysis, n = 50
-├─ 14  heavy dirt / brake dust occluding grooves
-├─ 11  specular glare (wet or new glossy tread)
-├─  8  tread width exceeded FOV (wide tyre)
-├─  7  insufficient mm/px — sipes unresolvable
-├─  5  unusual tread pattern (directional, unseen family)
-├─  3  very worn (<1.5 mm) — no groove structure left
-└─  2  motion blur during rotation
+├─ session confusion (which tyre was mistaken for which)
+├─ heavy dirt / deposits
+├─ specular glare
+├─ framing — shoulders cropped off
+├─ unusual tread pattern
+└─ genuinely ambiguous wear level
 ```
 
-For each, state what it implies for the next version. This section is often what distinguishes a good capstone from an excellent one — it shows you understand your system rather than just having trained it.
-
-Pair it with a **qualitative figure**: 3 successes and 3 failures, showing input → segmentation → wear heatmap → prediction vs ground truth.
+For each, state what it implies for `final_v2`. Pair with a qualitative figure: 3 successes and 3 failures, showing image → saliency → prediction vs truth.
 
 ---
 
-## 10. Evaluation timeline
+## 10. Anti-patterns
 
-| Milestone | What |
+Things that would invalidate the study. Each has bitten someone before.
+
+| Anti-pattern | Why it invalidates |
 |---|---|
-| Pilot complete | Noise floor established; annotation κ measured |
-| Segmentation done | Boundary F-score + clDice verified; taxonomy frozen |
-| Wear heads done | First val numbers — **sanity only, do not optimise against test** |
-| Alignment done | Analytic-only baseline reported **before** the residual MLP |
-| Pre-Review-3 | Robustness sweep, ablations (3 seeds), baselines |
-| **Final** | **Gold rack test set opened — once** |
-| Final | Failure analysis, qualitative figures, stratified tables |
-
-### The gold-set rule
-
-Evaluate on `gold_rack` exactly once, at the end, and report whatever it says. If you peek and then tune, it stops being a test set and every number in the report becomes optimistic. Separate folder. Commit now, while it costs nothing.
+| Reporting fold 0 alone | A ten-number colour model gets 0.952 there |
+| Derivatives in validation | 10 near-copies of a validation image were in training |
+| Image-level bootstrap | 418 images are 12 tyres — CIs would be ~3× too tight |
+| Tuning on the fold you report | The fold stops being held out |
+| One seed | Cross-seed variance is large at this data scale |
+| Grad-CAM everywhere, unqualified | It is a different operation on ViTs (`14 §1`) |
+| TER without area normalisation | A model attending to everything scores well |
+| Claiming "wear detection" | Labels are a mileage proxy |
+| Sample size 4,598 | It is 12 |
+| Skipping the shuffled-label control | Silent leakage looks like success |
