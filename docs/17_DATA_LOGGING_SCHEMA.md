@@ -163,16 +163,31 @@ runtime_loader_num_workers · runtime_loader_pin_memory
 runtime_memory_safety_revision · runtime_host_ram_pause_percent
 runtime_cuda_memory_format · runtime_cudnn_benchmark
 runtime_cuda_safety_revision · runtime_scheduler_safety_revision
+runtime_hf_commit_policy_revision
+runtime_epoch_history_schema_revision
 ```
 
 `proc_rss_gb_peak` is the number that tells you whether the run would fit on a smaller machine, and the first thing you need when a session dies with no error.
 
-That is now a demonstrated use, not a hypothetical one. NB06 ROI telemetry
-showed process RSS rising from ~3.3 GB to ~20.7 GB in one run and 31.1 GB total
-host use in the next sequential run, while GPU use stayed below 5 GB/card.
-Tyrelib v4 records the effective loader settings and memory-safety revision,
-and `summary.json`/`STATUS.json` record `pause_reason=host_ram_guard` when it
-checkpoints before the 88% threshold.
+That is now a demonstrated use, not a hypothetical one. The first NB06 ROI
+telemetry showed process RSS rising from ~3.3 GB to ~20.7 GB in one run and
+31.1 GB total host use in the next sequential run, while GPU use stayed below
+5 GB/card. The expanded public state then showed 53 host-RAM pauses across ROI
+and standard full-frame arms, proving that the initial ROI-only explanation was
+incomplete. Tyrelib v6 records the effective loader, memory, scheduler and HF
+commit-policy revisions; `summary.json`/`STATUS.json` record
+`pause_reason=host_ram_guard` when it checkpoints before the 88% threshold.
+
+`runtime_memory_safety_revision=2026-08-31-r2` identifies the single full
+serialization per epoch plus Linux arena trimming. The commit-policy revision
+identifies runs where ordinary claim events ride the 30-minute batch rather
+than consuming standalone commits.
+
+`runtime_epoch_history_schema_revision=2026-09-01-r1` identifies the v6
+column-name writer. Two public histories had 178-value v5 rows beneath a
+177-column v4 header; the revision-aware reader inserts the known missing
+heading, pads only the older rows, validates every width, and atomically rewrites
+the table. Unknown width changes raise while preserving the source file.
 
 The same fields separated a later RegNet CUDA fault from an OOM: both failed
 epoch-0 attempts used only ~1.1 GB/card. RegNet now records

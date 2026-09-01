@@ -137,6 +137,10 @@ Not everything deserves the same frequency.
 
 **Batch into one commit.** `create_commit` with many `CommitOperationAdd`s is **one** rate-limit operation, not N. This is the single biggest saver.
 
+In tyrelib v6 (retaining the v5 policy) an ordinary static-owner `claimed` event is light data and rides
+this batch. Only an explicitly stolen claim flushes immediately. The old
+per-claim flush exhausted a worker's 25/hour cap while training sat idle.
+
 ### Budget — settled
 
 **One HuggingFace account: `Shanmuk4622`. Token in Kaggle Secrets as `HF_TOKEN`.**
@@ -167,7 +171,10 @@ At a 30-minute cycle a 9-hour session emits ~18 scheduled commits, plus a handfu
 | Background cycle, every 30 min | no |
 | End of every epoch — metrics + checkpoint enqueued | no (rides the cycle) |
 | Every 10 epochs — telemetry, per-sample predictions | no |
+| Ordinary static-owner claim | no (rides the cycle) |
+| Explicitly stolen claim | yes — immediate coordination boundary |
 | **A model finishes** | **yes — immediate blocking flush** |
+| **A model pauses cleanly** | **yes, then the worker stops** |
 | **End of an important cell** (`sess.push_now()`) | **yes** |
 | **You press Stop / SIGTERM / an exception** | **yes — emergency flush** |
 | 8.5-hour watchdog fires | yes, then pause cleanly |
@@ -287,23 +294,25 @@ Stage-B set is `regnety016`, `densenet121`, and `resnet50`; each has
 180/180 respectively. NB06 re-derives this coverage from the raw evidence
 before it starts training.
 
-### Current public Stage-B execution — verified 2026-08-31
+### Current public Stage-B execution — verified 2026-09-01
 
-There are six `runs/b-*` status files. Four are complete with 60-row epoch logs
-plus `ckpt_last.pt` and `ckpt_best.pt`:
+There are **70 `runs/b-*` status files: 14 completed, 53 paused, and 3
+running**. All 70 have both `checkpoints/ckpt_last.pt` and `ckpt_best.pt`; the at-risk count
+is zero. Every pause currently reports `pause_reason=host_ram_guard`, including
+standard full-frame factors, which disproved the completeness of the earlier
+ROI-only diagnosis.
 
-- `b-densenet121-roi_tyre-f1-s1`, `s2`, `s3`;
-- `b-resnet50-roi_tyre-f1-s3`.
+Tyrelib v6 keeps the same registered models/configs and the repaired contiguous
+RegNet CUDA path. It serialises one complete state per epoch, snapshots that
+file to `ckpt_best` on improvement, trims freed Linux checkpoint/upload arenas,
+disables automatic stealing in NB06, and batches normal claims into the
+30-minute commit. Any clean pause is published and then ends that worker; the
+next fresh Kaggle session fetches the public rolling checkpoint and continues.
 
-The other two are `b-regnety016-roi_tyre-f1-s1` and `s2`, both `failed` at
-epoch 0 with `ERROR.txt`/`ERROR.json` and no checkpoint. They contain no trained
-epoch to recover. Their independent first-batch errors identify the T4/cuDNN
-`channels_last` path rather than memory pressure: GPU samples were only about
-1.1 GB/card and host RAM about 2.6 GB. Repaired tyrelib v4 keeps the same model
-and config but runs RegNet contiguous NCHW, skips the four complete runs, and
-reserves each fresh run for its static worker. The earlier public telemetry
-still supplies the ROI memory diagnosis (under 5 GB/card but 31.1 GB host RAM),
-and the 88% host-RAM guard pushes before pausing.
+Two 60-row histories combined a 177-column v4 header with 178-value v5 rows.
+The checkpoints were valid; only pandas parsing failed. v6 migrates this known
+revision insertion losslessly, writes one canonical header atomically, and
+performs all future epoch updates by column name rather than positional append.
 
 ### What a run directory actually contains
 

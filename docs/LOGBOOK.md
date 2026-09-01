@@ -26,6 +26,67 @@
 
 ---
 
+## Entry 15 — 2026-09-01 · Mixed epoch-history schema repaired
+
+**Observed failure.** acct1 selected
+`b-densenet121-prep_gray-f1-s1`, fetched its valid epoch-60 checkpoint and
+history, then pandas raised `Expected 177 fields in line 5, saw 178`. The first
+three epoch rows used the v4 schema; v5 rows included the new HF commit-policy
+revision but positional append had not expanded the old header.
+
+**Scope audit.** Public HF contains 70 Stage-B epoch files. Sixty-eight have
+one internally consistent width; exactly two 60-row DenseNet histories mix 177-
+and 178-value rows. Public execution is now 14 completed, 53 paused and 3
+running. All 70 status-bearing runs have both checkpoints; nothing trained is
+at risk.
+
+**v6 repair.** The reader recognises the exact known revision insertion, adds
+the missing header, pads only the old rows, validates every row, and atomically
+rewrites the canonical CSV. Future epoch writes merge by column name and epoch
+key rather than append position. Unknown width drift leaves the file untouched
+and raises. The exact public failure file was tested losslessly: epochs 1–60 and
+all 178 columns survived with CUDA and validation fields correctly aligned.
+
+**Finalisation rule.** A checkpoint already at the configured 60 epochs is
+finalised as completed metadata without being called “resume from epoch 61” and
+without another training epoch.
+
+**Next.** Stop v4/v5 copies, upload NB06 v6 to all four Kaggle accounts, keep
+`NUM_WORKERS=4`, and Run All. No model or scientific setting changed.
+
+---
+
+## Entry 14 — 2026-08-31 · NB06 HF commit storm and pause cascade repaired
+
+**Public evidence.** The live HF dataset now has 65 Stage-B status files:
+**12 completed and 53 paused**. All 65 have both `ckpt_last.pt` and
+`ckpt_best.pt`; every pause reports `host_ram_guard`, so no published epoch is
+at risk and the earlier ROI-only memory explanation was incomplete.
+
+**What made the notebooks look idle.** `run_all()` flushed every normal
+static-owner claim as its own HF commit. It then continued to the next model
+after a host-RAM pause. One already-pressured process produced many tiny partial
+runs and reached 45 commits; the per-worker 25/hour limiter then printed
+`sleeping 197s`. That wait was foreground scheduler I/O, not GPU training.
+
+**v5 decision.** Automatic work stealing is disabled for NB06. Normal claims
+ride the 30-minute batch; only an explicitly stolen claim flushes immediately.
+Any paused run ends the worker after its checkpoint is published. The full
+checkpoint is serialised once per epoch and atomically snapshotted to
+`ckpt_best`; freed checkpoint/load/HF-upload arenas are collected and returned
+to Linux with `malloc_trim(0)`. The 88% RAM guard remains.
+
+**Scientific impact.** None: RegNetY-16GF, DenseNet-121, ResNet-50, fold 1,
+input sizes, batches, optimiser, AMP and the fixed 60-epoch budget are
+unchanged. The repaired notebook embeds tyrelib v5 and records memory,
+scheduler and commit-policy revisions in every new epoch/summary.
+
+**Next.** Stop all older v4 copies, upload NB06 v5 to acct1–acct4, leave
+`NUM_WORKERS=4`, and Run All. If a v5 worker still reaches the guard, start a
+fresh Kaggle session and Run All again; HF resumes at the next epoch.
+
+---
+
 ## Entry 13 — 2026-08-31 · RegNet CUDA path and fresh-work race repaired
 
 **New public evidence.** After the ROI host-RAM repair, two independent workers
@@ -351,3 +412,18 @@ Full detail in `docs/12_DATASET_FINAL_V1.md` and `PROGRESS.md`.
 Initial scaffold created. *(Superseded by Entry 2 — the capture setup assumed here was incorrect.)*
 
 ---
+
+## 2026-09-01 — tyrelib v7
+
+NB06 workers were stopping themselves. Two causes: the host-RAM guard compared the epoch's transient **peak** against 88% and any pause ended the whole cell (Bug 22), and the telemetry buffers were never cleared, leaking **0.54 GB/epoch** until Kaggle killed the kernel (Bug 23). The guard now measures live after releasing memory, uses 88/80 hysteresis, and continues to the next run when the pressure was the model. Telemetry writes incrementally and drops what it wrote. 12 new selftests; all 12 notebooks regenerated on v7.
+
+## 2026-09-01 (b) — tyrelib v8
+
+"2 of 4 workers stopped." Not a crash: `steal_stale=False` made other accounts'
+runs permanently unreachable, so a worker that finished its static shard planned
+zero runs and exited while others had twenty left (Bug 24). That flag was itself
+the fix for Bug 13's duplicate training. v8 answers the question properly with a
+two-phase claim — flush the claim, settle, re-read, lowest account wins — used
+only once a worker has exhausted its own shard. Four threads racing six runs
+produced exactly one winner each. 95 selftests; all 12 notebooks on v8.
+

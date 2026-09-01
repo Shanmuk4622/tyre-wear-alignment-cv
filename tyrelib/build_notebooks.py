@@ -146,11 +146,12 @@ SESSION_CELL = '''# === Who am I? ==============================================
 # ---------------------------------------------------------------------------
 # THESE TWO VALUES ARE SAFE TO CHANGE AT ANY TIME.
 #
-# They decide which account owns each fresh run. An absent run stays with that
-# static owner; only a real claim/run event that is older than 45 minutes can
-# be taken over. Whether a run is finished, and what epoch it reached, is read
-# from HuggingFace -- from the run's own files -- so it is the same answer for
-# every account at every worker count.
+# They decide which account owns each fresh run. An absent or partial run stays
+# with that static owner. Work stealing is disabled by default; an explicit
+# recovery run may opt in and can then take over only a real claim/run event
+# older than 45 minutes. Whether a run is finished, and what epoch it reached,
+# is read from HuggingFace -- from the run's own files -- so it is the same
+# answer for every account at every worker count.
 # Go from 4 workers to 1 and nothing is retrained: the runs the other three
 # finished are skipped, and the ones they left half-done are RESUMED from
 # their checkpoints.

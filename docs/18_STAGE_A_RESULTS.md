@@ -234,11 +234,13 @@ now says so at build time rather than 100 lines later as a training crash.
    confirmation. Seven architectures have explicit no-faithful-CAM exclusions
    and the mislabeled ConvNeXt-V2-S checkpoint has an architecture-mismatch
    exclusion. NB06 has no fallback, re-verifies the selection against raw
-   public evidence, and runs fold-1 OFAT only. Public HF now contains 4/108
-   completed runs plus two RegNet epoch-0 failure records without checkpoints.
-   The 2026-08-31 tyrelib v4 repair addresses the ROI host-RAM path, uses a
-   conservative contiguous RegNet CUDA runtime for the reproducible T4/cuDNN
-   fault, and reserves fresh work for its static owner. No architecture or
+   public evidence, and runs fold-1 OFAT only. Public HF now contains **14/108
+   completed runs plus 56 checkpointed incomplete runs; all 70 have both
+   checkpoints.** The 2026-09-01 tyrelib v6 repair retains the conservative
+   contiguous RegNet CUDA runtime, corrects the broader host-memory lifecycle,
+   batches ordinary claims into the 30-minute HF cadence, disables automatic
+   stealing, stops the worker after a clean pause, and repairs mixed v4/v5
+   epoch-history columns without dropping rows. No architecture or
    scientific setting changed.
 4. **NB08's shuffled-label control is now mandatory before anything else.** If
    a shuffled-label model also reaches 1.000 on folds 0 and 2, those folds are

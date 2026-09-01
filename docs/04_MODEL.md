@@ -209,15 +209,17 @@ load these names from `tables/stage_b_selection.csv`, never from a hard-coded
 fallback list.
 
 **No model substitution after the 2026-08-31 NB06 crash.** Public telemetry
-showed only ~4–5 GB used on each 16 GB T4; the failure was a linear host-RAM
-increase in the mask-based ROI loader. RegNetY-16GF, DenseNet-121 and ResNet-50
-remain locked. The repair changes only image/mask loading and memory lifecycle,
-and reproduces the previous ROI crop coordinates exactly.
+showed only ~4–5 GB used on each 16 GB T4; the failure was host-RAM growth, not
+GPU capacity. The expanded audit found the guard in ROI and full-frame arms, so
+the original ROI-only explanation was incomplete. RegNetY-16GF, DenseNet-121
+and ResNet-50 remain locked. Tyrelib v6 retains the v5 runtime loading,
+checkpoint/upload memory lifecycle and scheduling; ROI crop coordinates remain
+exactly reproducible.
 
 A later clean retry exposed a separate runtime fault: RegNetY-16GF ROI seeds 1
 and 2 independently failed in the first grouped convolution with
 `CUDNN_STATUS_EXECUTION_FAILED` / `misaligned address`, while each T4 held only
-about 1.1 GB. Tyrelib v4 therefore runs **that same RegNet model** with
+about 1.1 GB. Tyrelib v6 therefore retains **that same RegNet model** with
 contiguous NCHW tensors and cuDNN autotuning disabled. Batch 32, 384px, AMP,
 weights, optimiser and epoch budget are unchanged; all other models retain the
 Stage-A `channels_last` path. This runtime choice is logged in every epoch and

@@ -28,12 +28,15 @@ A camera mounted **below and in front of a vehicle** photographs one tyre. We ha
 **Current execution point:** NB07 is complete and its public, three-seed XAI
 gate selected **RegNetY-16GF, DenseNet-121 and ResNet-50**. NB06 Stage-B OFAT
 is in progress on those three architectures and fold 1 only. Public HF holds
-**4/108 completed runs**: all three DenseNet-121 ROI seeds and ResNet-50 ROI
-seed 3. Public HF also records two reproducible epoch-0 RegNet/cuDNN failures
-with only ~1.1 GB used per T4. The 2026-08-31 tyrelib v4 repair keeps RegNet,
-batch 32, 384px and AMP unchanged, but uses its conservative contiguous CUDA
-layout; it also fixes the ROI host-RAM leak and prevents workers from stealing
-fresh work assigned to another account.
+**14/108 completed runs and 56 checkpointed incomplete runs** (53 paused, 3
+running); all 70 public Stage-B statuses have both rolling and best checkpoints.
+The 2026-09-01 tyrelib v6 repair keeps the selected models and scientific recipe unchanged. It uses the
+conservative RegNet CUDA path, returns freed checkpoint/upload memory to the
+host, serialises one full checkpoint per epoch, batches ordinary claims into
+the 30-minute HF cycle, disables automatic stealing for NB06, and ends a worker
+after a clean safety pause instead of cascading through more models. It also
+losslessly migrates the two public epoch histories whose v5 rows had one more
+telemetry value than their v4 CSV headers.
 
 **Focus for this phase: tyre wear.** Alignment is deferred — see `docs/13 §3` for why it is the harder half, not the easier one.
 
@@ -188,7 +191,7 @@ python scripts/dataset_shortcut_probe.py --root "D:/Dataset Download/Tire Datase
 - [ ] S1 baselines (partial)
 - [x] S2 architecture sweep
 - [x] S3 masks verified
-- [ ] **S4 technique OFAT — NB06 in progress, 4/108 public**
+- [ ] **S4 technique OFAT — NB06 in progress, 14/108 complete + 56 checkpointed incomplete**
 - [ ] S5 detection/segmentation
 - [x] S6 Stage-B XAI gate
 - [ ] S7 stress tests

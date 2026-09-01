@@ -474,16 +474,26 @@ The completed public `2026-08-30-r3` gate selected `regnety016`,
 `densenet121`, and `resnet50`; cell 2 still re-downloads and verifies the
 selection and its raw evidence so the notebook never relies on this prose.
 
-**Memory-repair revision (2026-08-31):** public telemetry proved the earlier
-kernel deaths were host-RAM exhaustion in the mask-based ROI loader, not GPU
-OOM. The T4s peaked at only about 5 GB each while ROI host RAM climbed by about
-0.29 GB per epoch. This revision computes the tyre bounding box without dense
-coordinate arrays, closes image files immediately, uses a synchronous unpinned
-loader for ROI only, explicitly releases each model, and pauses/pushes if host
-RAM reaches 88%. The locked architectures, batch size, resolution, optimiser,
-and 60-epoch scientific recipe are unchanged.
+**Memory-repair revision v5 (2026-08-31):** public telemetry proved the kernel
+deaths were host-RAM exhaustion, not GPU OOM. The earlier ROI-only diagnosis was
+incomplete: full-frame arms also accumulated process RSS. Large temporary
+checkpoint/upload arenas were being left mapped in the long-lived Python
+process. v5 serialises one full checkpoint per epoch (the best file is an atomic
+snapshot, not a second serialisation), releases free Linux arenas after saves,
+loads and HF commits, and stops the whole worker after a clean 88% RAM pause.
+The ROI crop/loader repairs remain. The locked architectures, batch size,
+resolution, optimiser, and 60-epoch scientific recipe are unchanged.
 
-**CUDA/scheduler repair revision (2026-08-31):** two independent public
+**Epoch-history repair v6 (2026-09-01):** v5 added a commit-policy telemetry
+field while two 60-epoch runs still had v4 CSV headers. Positional append wrote
+178 values under 177 headings, so pandas stopped resume with `ParserError` even
+though both checkpoints were intact. v6 recognises that exact revision marker,
+inserts a blank for the older rows, verifies every row width, and atomically
+rewrites the canonical table. Future epoch writes merge by column name and can
+expand the header safely. Unknown drift raises without modifying the source
+file; no epoch or metric is silently dropped.
+
+**CUDA/scheduler/commit repair revision (2026-08-31):** two independent public
 RegNetY-16GF ROI attempts failed on their first batch in the same cuDNN grouped
 convolution with `CUDNN_STATUS_EXECUTION_FAILED` / `misaligned address`, while
 each T4 held only about 1.1 GB. RegNet therefore keeps the exact same model,
@@ -492,20 +502,21 @@ each T4 held only about 1.1 GB. RegNet therefore keeps the exact same model,
 Stage-A layout. A fatal CUDA context now stops the session only after publishing
 the error, rather than cascading into unrelated runs. Fresh work is also kept
 with its static owner: an absent run is no longer mislabelled as a dead worker
-and stolen by all four accounts at once.
+and stolen by all four accounts at once. Work stealing is now opt-in and is
+disabled here. An ordinary static-owner claim is batched into the 30-minute HF
+cycle; it no longer burns one immediate commit before every model. A paused run
+ends the training cell instead of cascading through dozens of one-epoch runs.
 
 Before planning hours of work, cell 2 runs one exact dual-T4 RegNet
 forward/backward/optimizer step in an **isolated child process** and publishes
 the log. If the Kaggle CUDA image still rejects the conservative profile, only
 the child process is poisoned and NB06 stops before claiming a training run.
 
-For four Kaggle copies set only `ACCOUNT` to `acct1`, `acct2`, `acct3`, and
-`acct4`; leave `NUM_WORKERS=4`. `WORKER_ID` is derived automatically. As of the
-repair, HF already contains the three completed DenseNet ROI seeds and
-ResNet-50 ROI seed 3. It also records failed epoch-0 RegNet seeds 1 and 2; those
-contain no checkpoint and their assigned owners restart them safely. Completed
-runs are skipped, not retrained. Account 1 has no remaining ROI run after those
-skips and should not steal accounts 2--4's fresh work.
+**Stop every older v4/v5 NB06 copy before starting v6.** For four Kaggle copies set
+only `ACCOUNT` to `acct1`, `acct2`, `acct3`, and `acct4`; leave
+`NUM_WORKERS=4`. `WORKER_ID` is derived automatically. Cell 4 reads the current
+public HF state: completed runs are skipped and every partial run resumes from
+its published `ckpt_last.pt`. No architecture or completed epoch is discarded.
 
 Every arm below changes one declared factor relative to the Stage-A recipe.
 The tyre-ROI arm runs first. Unsupported values fail before training rather
@@ -598,7 +609,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
 scaler.step(opt); scaler.update(); torch.cuda.synchronize()
 print(f"CUDA_SMOKE_PASS arch={arch} res={res} batch={bs} devices=2 "
       f"layout={fmt_name} cudnn_benchmark={torch.backends.cudnn.benchmark} "
-      f"loss={float(loss):.6f} safety={tl.CUDA_SAFETY_REVISION}")
+      f"loss={float(loss.detach()):.6f} safety={tl.CUDA_SAFETY_REVISION}")
 """
 for arch in sorted(set(TOP3) & set(tl.CUDA_CONTIGUOUS_ARCHS)):
     spec = tl.ZOO[arch]
@@ -687,9 +698,16 @@ for rid in hf_failed:
 assert len(hf_done) + len(hf_resume) + len(hf_absent) == len(run_ids)
 '''),
          md("## 5 — Run the shortcut-removing ROI control first"),
-         code("roi_summaries = sess.run_all(roi_cfgs, title='Stage B — ROI control first')"),
+         code("""# steal_stale=False keeps FRESH work with its static owner (that is what
+# stopped four accounts grabbing the same run at a simultaneous start).
+# takeover_when_idle=True lets a worker that has finished its own shard pick up
+# what is left, one run at a time, through a two-phase claim -- so no GPU sits
+# parked while another account still has twenty runs. See docs/05 Bug 24.
+roi_summaries = sess.run_all(roi_cfgs, title='Stage B — ROI control first',
+                             steal_stale=False, takeover_when_idle=True)"""),
          md("## 6 — Run the remaining one-factor arms"),
-         code("summaries = sess.run_all(other_cfgs, title='Stage B — remaining OFAT arms')"),
+         code("""summaries = sess.run_all(other_cfgs, title='Stage B — remaining OFAT arms',
+                         steal_stale=False, takeover_when_idle=True)"""),
          md("## 7 — Effects relative to the matching Stage-A base runs"),
          code(r'''import numpy as np, pandas as pd
 base_ids = [f"a-{a}-base-f1-s{s}" for a in TOP3 for s in (1,2,3)]

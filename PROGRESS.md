@@ -1,7 +1,7 @@
 # PROGRESS
 
 **Live status log. Updated every working session.**
-Last updated: **2026-08-31**
+Last updated: **2026-09-01**
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -14,7 +14,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **S2 complete; annotations verified; S6 XAI gate complete; S4 Stage B in progress (4/108 public).**
+**Stage:** **S2 complete; annotations verified; S6 XAI gate complete; S4 Stage B in progress (14/108 complete, 56 checkpointed incomplete).**
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -22,8 +22,9 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 
 ### Immediate next action
 
-> 1. Replace every Kaggle copy with the **2026-08-31 tyrelib v4 repaired**
->    `NB06_StageB_OFAT.ipynb`, then Run All. NB07 is complete and the public gate has
+> 1. **Stop every older v4/v5 NB06 session first.** Replace all four Kaggle copies
+>    with the **2026-09-01 tyrelib v6** `NB06_StageB_OFAT.ipynb`, then Run All.
+>    NB07 is complete and the public gate has
 >    been independently audited: the locked architectures are **RegNetY-16GF,
 >    DenseNet-121 and ResNet-50**, each XAI-valid and confirmed on seeds 1–3.
 > 2. In Kaggle attach the prepared dataset, enable Internet, select **GPU T4 ×2**,
@@ -32,11 +33,13 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 >    derived automatically. Cell 2 must print those exact three architectures and the raw
 >    public-evidence coverage before any training plan is built.
 > 3. NB06 runs the tyre-ROI control first and then the remaining OFAT arms on
->    fold 1 only: at most **108 runs**. HF already has four complete ROI runs,
->    which the notebook skips. It also holds failed epoch-0 records for RegNet
->    seeds 1 and 2; their assigned owners retry from scratch because there is
->    no checkpoint. It is safe to stop and restart; completed
->    runs skip, interrupted runs resume from their public HF checkpoints.
+>    fold 1 only: at most **108 runs**. The public audit now has **14 completed
+>    and 56 checkpointed incomplete runs (53 paused, 3 running); all 70 status-bearing runs have both
+>    `ckpt_last.pt` and `ckpt_best.pt`, so zero recorded epochs are at risk.**
+>    v6 repairs the mixed v4/v5 `epochs.csv` schema without dropping rows,
+>    disables work stealing for this sweep, batches normal claims into the
+>    30-minute push, and stops a worker after any safety pause. Completed runs
+>    skip and every partial run resumes from its public checkpoint.
 > 4. After NB06 completes, run NB08 → NB09 → NB10. Re-cutting the folds remains the highest-value
 >    dataset correction before making any generalisation claim.
 
@@ -53,13 +56,13 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | **Experiment design** | ✅ **Done** | `docs/13` — ~800 runs, ~440 GPU-h |
 | **XAI protocol** | ✅ **Done** | `docs/14` — TER/BAR/SAR, faithfulness, H1–H3 |
 | Model zoo reference | ✅ Done | `docs/04` — configs, CAM layers, cost table |
-| Infrastructure spec | ✅ Done | `docs/05` — multi-account, sharding, **eighteen bugs** |
+| Infrastructure spec | ✅ Done | `docs/05` — multi-account, sharding, **twenty-one bugs** |
 | Evaluation protocol | ✅ Done | `docs/06` |
-| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` v4 — current offline self-test passes; preflight raises instead of warning |
+| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v8** — idle workers take over via a two-phase claim (Bug 24); RAM guard measures live not peak; telemetry no longer leaks (Bugs 22–23). 95 selftest checks |
 | S1 baselines | 🔄 NB01 ready | 2 of 5 done (colour 0.491, structure 0.483); NB01 adds HOG+SVM, majority, random-init |
 | S2 architecture sweep | ⚠ **153 valid + 9 quarantined** | All 162 executions are public, but every `convnextv2_s` status reports 11,177,538 parameters and its sampled checkpoint has a ResNet-18 tensor signature. Those nine mislabeled runs are excluded. The other 153 are scientifically usable; NB05 remains 27/27 valid. `docs/18` |
 | Annotations `annotation_v2` | ✅ **NBT1 verified PASS** | 418 hand-drawn + 4,180 self-healed propagated masks; actual-used fingerprint `085acfb8fb83c531` |
-| S4 technique OFAT | 🔄 **NB06 in progress: 4/108 public** | Three DenseNet ROI seeds + ResNet-50 ROI seed 3 complete. RegNet ROI seeds 1/2 failed reproducibly at epoch 0 in the T4 cuDNN NHWC path; no checkpoint or epoch was lost. NB06 v4 keeps the model/recipe but uses contiguous RegNet CUDA tensors, fixes host RAM, and reserves fresh jobs for their static owners |
+| S4 technique OFAT | 🔄 **NB06 in progress: 14/108 complete + 56 checkpointed incomplete** | All 70 public Stage-B statuses have both checkpoints. v6 repairs the two malformed mixed-schema epoch files, retains all v5 memory/scheduler fixes and does not change the model recipe |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
 | S7 stress tests | ⬜ **NB08 ready** | Shuffled-label control runs first |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
@@ -190,6 +193,129 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 ---
 
 ## ⬤ Session log
+
+### 2026-09-01 (b) — "2 running, 2 stopped": the fix for duplicate training was the cause
+
+Not a crash. NB06 ran with `steal_stale=False`, which put every run owned by
+another account into `busy` **permanently**. A worker that finished its 27-run
+static shard printed
+
+```
+  reserved for other static owners: 68
+  -> will run 0 run(s) this session
+```
+
+and the notebook ended normally, while the other accounts still had twenty runs
+each. The shard is LPT-balanced on *estimated* cost and skewed further by pauses
+and resumes, so **some worker always runs dry first**.
+
+`steal_stale=False` was itself the fix for Bug 13, where aggressive stealing
+trained `a-vgg16bn-base-f1-s1` twice. The two failures sit either side of one
+question — *may I take work that is not mine?* "Always" duplicates. "Never"
+idles. Neither is the answer.
+
+**v8: yes, once I have nothing of my own, and only after checking properly.**
+`claim_or_yield` is a two-phase claim — write the claim and flush it so it is
+visible, wait out the race window, re-read, and if two accounts claimed the same
+run the lowest account name wins. Both sides compute that from the same bytes,
+so exactly one proceeds. Plus: own work always first, each worker enters the
+shared pool at a different offset, and no takeover inside the last 90 minutes of
+a session.
+
+Verified with four threads racing for six runs on a shared registry: **exactly
+one winner each**, both phases observed — two blocked at step 1, one account
+that won step 1 correctly yielding at step 2. And a worker whose shard is fully
+done now plans 27 runs where it previously planned 0.
+
+#### Delivered
+
+- `tyrelib` **v8** — `Session.claim_or_yield`, takeover pool in `plan()`,
+  `takeover_when_idle` on `run_all`. **95 selftest checks**, 9 new; the only two
+  failures are pre-existing torch-only tests that cannot run offline.
+- NB06 now calls `run_all(..., steal_stale=False, takeover_when_idle=True)`.
+- All 12 notebooks regenerated on v8. `docs/05 §7` Bug 24.
+
+#### What to do
+
+1. Stop the running sessions and upload the v8 notebooks. Cell 1 must print
+   `tyrelib v8 loaded`.
+2. The plan now prints `available if I go idle : N` — that is the pool, not
+   work being taken from anyone.
+3. When a worker finishes its shard, expect `[IDLE] my own N run(s) are done...`
+   followed by `[IDLE] <run>: claimed after settling`, or a `yielded to acctX`
+   line if another account got there first. Both are correct.
+
+---
+
+### 2026-09-01 — "the workers stop the notebooks by themselves": one guard, one leak
+
+Two bugs with one symptom. Diagnosed from the public telemetry of
+`b-densenet121-res512-f1-s3` rather than from the notebook output, because the
+notebook output showed nothing — no error, no message, just an epoch line and
+then silence.
+
+#### Bug 22 — the guard fired on a two-second spike, and a pause killed the cell
+
+The host-RAM guard compared **`ram_percent_peak`** — the maximum 1 Hz sample of
+the epoch — against 88%, and since v5 *any* pause stopped the whole worker.
+
+| epoch | peak % | RSS GB | |
+|---:|---:|---:|---|
+| 1 | **95.2** | 28.4 | pauses → stops the worker |
+| 2 | **92.8** | 27.8 | |
+| 3 | 76.7 | 22.5 | |
+| 10 | **17.8** | 3.5 | next session |
+| 26 | 46.3 | 12.1 | |
+
+Mean peak after epoch 5 is **42.9%**. The 95.2% is the first epoch of a session
+— annotation rebuild, loader warm-up, resume checkpoint load — all released
+within two epochs. **One transient ended an eight-hour session with eighteen
+runs untouched.**
+
+Fixed: measure live *after* `release_host_memory()`, not the epoch peak;
+hysteresis (pause 88%, resume 80%); and a recovered RAM pause now releases the
+model, re-measures, and **continues to the next run** instead of ending the
+cell. Watchdog and interrupt pauses still stop — those mean there is no time
+left.
+
+#### Bug 23 — and there was a real leak underneath
+
+RSS climbed **+0.54 GB per epoch**, 3.5 → 28 GB, which Kaggle kills with no
+catchable exception. `HardwareMonitor.dump()` wrote both sample buffers in full
+every ten epochs and **never cleared them** — ~300,000 dicts on a four-hour
+run, with a full DataFrame rebuilt over all of them each time. `step_traces`
+was rewritten whole with `open(..., "w")`.
+
+Fixed: each dump writes only what is new and drops it; concatenated gzip
+members still read back as one table. Telemetry flushes **every** epoch now
+that it is incremental, so a hard kill loses one epoch of trace instead of
+nine. Verified 6 × 500 rows in → buffer empty after each dump → 3,000 rows
+back, columns intact, no interior headers.
+
+> Two bugs, one symptom, and fixing either alone would have been wrong. The
+> guard turned a slow leak into an abrupt stop; because it fired on a peak it
+> also fired when there was no leak at all. Fixing only the guard hides the
+> leak until it reaches 88% honestly.
+
+#### Delivered
+
+- `tyrelib` **v7** — `host_ram_percent`, `host_ram_headroom`,
+  `HOST_RAM_RESUME_PERCENT`, incremental telemetry. **12 new selftest checks**;
+  the only two failures are pre-existing torch-only tests that cannot run
+  offline and pass on Kaggle.
+- All 12 notebooks regenerated, embedded library byte-identical, no saved error
+  outputs.
+- `docs/05 §7` Bugs 22–23.
+
+#### What to do
+
+1. **Stop the running v6 sessions** and upload the v7 notebooks.
+2. Cell 1 must print `tyrelib v7 loaded`.
+3. Expect `transient, continuing` where a session used to stop, and
+   `host RAM back to NN% ... continuing with the next run` after a real pause.
+4. Nothing is lost: every paused run resumes from its checkpoint.
+
+---
 
 ### 2026-08-30 — NB07 completed; public Stage-B gate verified
 

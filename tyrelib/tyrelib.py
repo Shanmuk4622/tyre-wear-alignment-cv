@@ -18,12 +18,15 @@ base64 blob inside a notebook.
 """
 from __future__ import annotations
 
-__version__ = "v4"
+__version__ = "v8"
 
 import atexit
+import csv
 import contextlib
+import gzip
 import gc
 import hashlib
+import io
 import json
 import math
 import os
@@ -80,6 +83,119 @@ def read_json(path: Path, default=None):
         return json.loads(Path(path).read_text())
     except Exception:
         return default
+
+
+def release_host_memory() -> bool:
+    """Return freed Python/PyTorch arenas to the Linux host when possible.
+
+    Kaggle keeps one Python process alive for many models.  Large checkpoint
+    serialisations and Hugging Face LFS uploads free their temporary buffers,
+    but glibc can keep those arenas mapped in the process.  The public NB06
+    telemetry showed that mapped RSS accumulating across epochs/runs until the
+    kernel was killed even though both T4s had ample free VRAM.  ``malloc_trim``
+    releases those already-free arenas without changing any live tensor.
+    """
+    gc.collect()
+    if not sys.platform.startswith("linux"):
+        return False
+    try:
+        import ctypes
+        return bool(ctypes.CDLL(None).malloc_trim(0))
+    except Exception:
+        return False
+
+
+def atomic_clone_file(source: Path, destination: Path) -> None:
+    """Atomically snapshot one local file, using a hard link when possible."""
+    source, destination = Path(source), Path(destination)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    tmp = destination.with_suffix(destination.suffix + ".tmp")
+    with contextlib.suppress(FileNotFoundError):
+        tmp.unlink()
+    try:
+        os.link(source, tmp)
+    except OSError:
+        shutil.copy2(source, tmp)
+    os.replace(tmp, destination)
+
+
+_KNOWN_EPOCH_SCHEMA_INSERTIONS = (
+    # v5 added this field between memory and CUDA revisions while the old
+    # writer was still appending positional rows under the v4 header.
+    ("runtime_hf_commit_policy_revision", "runtime_memory_safety_revision"),
+)
+
+
+def read_epoch_history(path: Path, repair: bool = True) -> pd.DataFrame:
+    """Read an epoch CSV and losslessly migrate known mixed-schema rows.
+
+    CSV append is positional.  If telemetry gains one field but an existing
+    file keeps its old header, every later value shifts one column and pandas
+    raises a ParserError.  This reader recognises recorded schema insertions,
+    inserts blanks into the older rows, and atomically rewrites one canonical
+    table.  Unknown width changes still raise instead of silently dropping or
+    mislabelling an epoch.
+    """
+    path = Path(path)
+    if not path.exists() or path.stat().st_size == 0:
+        return pd.DataFrame()
+    with path.open("r", newline="", encoding="utf-8") as f:
+        rows = list(csv.reader(f))
+    if not rows:
+        return pd.DataFrame()
+
+    header, data = list(rows[0]), [list(r) for r in rows[1:]]
+    changed = False
+    for field, after in _KNOWN_EPOCH_SCHEMA_INSERTIONS:
+        if field in header or after not in header:
+            continue
+        old_width = len(header)
+        insert_at = header.index(after) + 1
+        wider = [r for r in data if len(r) == old_width + 1]
+        # A revision token at the insertion point makes this migration
+        # unambiguous. Never guess where an arbitrary extra CSV value belongs.
+        if not wider or not all(re.fullmatch(r"\d{4}-\d{2}-\d{2}-r\d+", r[insert_at] or "")
+                                for r in wider):
+            continue
+        header.insert(insert_at, field)
+        for i, row in enumerate(data):
+            if len(row) == old_width:
+                data[i] = row[:insert_at] + [""] + row[insert_at:]
+        changed = True
+
+    bad = [(i + 2, len(row)) for i, row in enumerate(data) if len(row) != len(header)]
+    if bad:
+        sample = ", ".join(f"line {line}: {width}" for line, width in bad[:8])
+        raise ValueError(
+            f"unrecognised epochs.csv schema drift in {path}: header has "
+            f"{len(header)} fields; {sample}. The file is preserved unchanged."
+        )
+
+    buf = io.StringIO()
+    writer = csv.writer(buf, lineterminator="\n")
+    writer.writerow(header)
+    writer.writerows(data)
+    frame = pd.read_csv(io.StringIO(buf.getvalue()))
+    if changed and repair:
+        atomic_write_text(path, frame.to_csv(index=False))
+        _print("HISTORY", f"repaired mixed telemetry schema: {path.name} "
+                          f"({len(frame)} epoch rows, {len(frame.columns)} columns)")
+    return frame
+
+
+def append_epoch_row(path: Path, row: dict) -> pd.DataFrame:
+    """Atomically append by column name, expanding the header when needed."""
+    path = Path(path)
+    old = read_epoch_history(path, repair=True) if path.exists() else pd.DataFrame()
+    new = pd.DataFrame([row])
+    columns = list(old.columns) + [c for c in new.columns if c not in old.columns]
+    out = pd.concat([old.reindex(columns=columns), new.reindex(columns=columns)],
+                    ignore_index=True)
+    if "epoch" in out.columns:
+        out = (out.drop_duplicates(subset=["epoch"], keep="last")
+                  .sort_values("epoch", kind="stable"))
+    atomic_write_text(path, out.to_csv(index=False))
+    return out
 
 
 def config_hash(cfg: dict) -> str:
@@ -361,6 +477,10 @@ class Uploader:
                 _print("HF", f"commit #{self.commits}: {len(ops)} file(s), "
                              f"{total/1e6:.1f} MB, {now()-t0:.1f}s  "
                              f"[{self.limiter.count_last_hour()}/{self.limiter.limit} this hr]")
+                # huggingface_hub/LFS can leave large, now-free upload arenas
+                # mapped in a long-lived Kaggle process.  Trim after the batch
+                # so those buffers cannot accumulate into a host-RAM kill.
+                release_host_memory()
                 return True
             except Exception as e:
                 msg = f"{type(e).__name__}: {e}"
@@ -380,6 +500,7 @@ class Uploader:
             for repo_path, val in batch.items():
                 self._buffer.setdefault(repo_path, val)
         _print("HF", f"batch returned to buffer ({len(batch)} files) -- training continues")
+        release_host_memory()
         return False
 
 
@@ -613,7 +734,12 @@ class RemoteInventory:
         if s == "resumable":
             st = self.status.get(run_id, {})
             was = st.get("status", "interrupted")
-            return f"resume from epoch {self.epoch(run_id)+1} (was {was})"
+            ep = self.epoch(run_id)
+            with contextlib.suppress(Exception):
+                planned = int(st.get("of", st.get("epochs_planned")))
+                if planned > 0 and ep >= planned:
+                    return f"finalise {ep}-epoch checkpoint (status was {was})"
+            return f"resume from epoch {ep+1} (was {was})"
         return "not started"
 
     # -- writing back to the session disk ---------------------------------
@@ -799,9 +925,42 @@ class LifecycleGuard:
 
 CARBON_INTENSITY_G_PER_KWH = 713.0     # India grid average; recorded for reproducibility
 HOST_RAM_PAUSE_PERCENT = 88.0          # checkpoint + push before Kaggle's OOM killer
-MEMORY_SAFETY_REVISION = "2026-08-31-r1"
+HOST_RAM_RESUME_PERCENT = 80.0         # ...and carry on once the arenas come back
+RAM_GUARD_REVISION = "2026-09-01-r1"
+
+
+def host_ram_percent() -> float:
+    """Host RAM in use RIGHT NOW, as a percentage. 0.0 if psutil is missing.
+
+    ⚠ Bug 22. The guard used to read `ram_percent_peak` -- the MAXIMUM of the
+    1 Hz samples taken during the epoch. Serialising a 300 MB checkpoint and
+    handing it to the HuggingFace uploader spikes RSS for a second or two, and
+    that spike alone crossed 88%. The run was then paused, and because a pause
+    stops the whole worker, one transient buffer ended an eight-hour session
+    with eighteen runs untouched.
+
+    A peak answers "did we ever come close?". The question that matters before
+    starting another epoch is "is there room now?" -- after the buffers have
+    been freed and the arenas returned to the kernel. That is this.
+    """
+    try:
+        import psutil
+        return float(psutil.virtual_memory().percent)
+    except Exception:
+        return 0.0
+
+
+def host_ram_headroom(release: bool = True) -> tuple[float, float]:
+    """(percent_before, percent_after_release). Cheap; call it per epoch."""
+    before = host_ram_percent()
+    if release:
+        release_host_memory()
+    return before, host_ram_percent()
+MEMORY_SAFETY_REVISION = "2026-08-31-r2"
 CUDA_SAFETY_REVISION = "2026-08-31-r1"
-SCHEDULER_SAFETY_REVISION = "2026-08-31-r1"
+SCHEDULER_SAFETY_REVISION = "2026-08-31-r2"
+HF_COMMIT_POLICY_REVISION = "2026-08-31-r1"
+EPOCH_HISTORY_SCHEMA_REVISION = "2026-09-01-r1"
 
 # PyTorch 2.10.0+cu128 on Kaggle's T4 image reproducibly failed in the first
 # RegNetY-16GF ROI batch when AMP, DataParallel, cuDNN autotuning, and NHWC
@@ -1028,17 +1187,35 @@ class HardwareMonitor:
           2. **Never raise.** Telemetry is an observer. An observer that can
              kill a three-hour training run is a liability, however good its
              data is. Losing a power trace is a nuisance; losing the run is not.
+
+        ⚠ Bug 23 -- and this one grew until the kernel was killed.
+
+        The buffers were snapshotted and rewritten in full every ten epochs,
+        and **never cleared**. At 10 Hz per GPU a four-hour run accumulates
+        roughly 300,000 dicts, and every dump rebuilt a DataFrame over all of
+        them. Public NB06 telemetry shows host RSS climbing +0.54 GB per epoch,
+        3.5 GB to 28 GB across one run, at which point Kaggle killed the kernel
+        with no Python exception to catch.
+
+        Now each dump writes only the rows added since the last one and then
+        drops them. Concatenated gzip members are a valid gzip stream, so the
+        file on disk still reads back as one table with `pd.read_csv`, while
+        the process holds at most one dump-interval of samples.
         """
         try:
             with self._lock:
-                erows = list(self.energy_rows)          # snapshot, not alias
-                srows = list(self.samples)
-            if erows:
-                pd.DataFrame(erows).to_csv(
-                    self.out_dir / "energy_samples.csv.gz", index=False, compression="gzip")
-            if srows:
-                pd.DataFrame(srows).to_csv(
-                    self.out_dir / "system_samples.csv.gz", index=False, compression="gzip")
+                erows, self.energy_rows = self.energy_rows, []
+                srows, self.samples = self.samples, []
+            for rows, name in ((erows, "energy_samples.csv.gz"),
+                               (srows, "system_samples.csv.gz")):
+                if not rows:
+                    continue
+                path = self.out_dir / name
+                first = not path.exists()
+                with gzip.open(path, "at", newline="") as fh:
+                    pd.DataFrame(rows).to_csv(fh, index=False, header=first)
+                del rows
+            release_host_memory()
         except Exception as e:
             _print("HWMON", f"telemetry dump failed ({type(e).__name__}: {e}) "
                             "-- training continues, this epoch's trace is lost")
@@ -1796,8 +1973,14 @@ class Trainer:
             "dataset_version": "final_v1",
         }
         tmp = path.with_suffix(".tmp")
-        torch.save(state, tmp)
-        os.replace(tmp, path)                                # atomic
+        try:
+            torch.save(state, tmp)
+            os.replace(tmp, path)                            # atomic
+        finally:
+            # The state dict only borrows live tensors. Drop the container and
+            # return serialization buffers to the OS before the next epoch.
+            del state
+            release_host_memory()
 
     def fetch_remote_state(self) -> bool:
         """Bring this run's checkpoint back from HuggingFace before training.
@@ -1830,6 +2013,8 @@ class Trainer:
         if ck.get("config_hash") != self.cfg["config_hash"]:
             _print("RESUME", f"config_hash mismatch "
                              f"({ck.get('config_hash')} != {self.cfg['config_hash']}) -- starting fresh")
+            del ck
+            release_host_memory()
             return False
         model.load_state_dict(ck["model"])
         opt.load_state_dict(ck["optimizer"])              # load to CPU first, then move
@@ -1846,10 +2031,21 @@ class Trainer:
         # may contain epochs the checkpoint does not know about. Without this,
         # duplicate epoch numbers make every cumulative statistic wrong.
         if self.hist_path.exists():
-            h = pd.read_csv(self.hist_path)
-            h[h.epoch <= self.start_epoch].to_csv(self.hist_path, index=False)
-        _print("RESUME", f"{self.run_id}: continuing from epoch {self.start_epoch+1}"
-                         f" (best QWK so far {self.best_qwk:.4f})")
+            h = read_epoch_history(self.hist_path, repair=True)
+            if "epoch" in h.columns:
+                atomic_write_text(
+                    self.hist_path,
+                    h[h.epoch <= self.start_epoch].to_csv(index=False),
+                )
+        if self.start_epoch >= int(self.cfg.get("max_epochs", self.start_epoch + 1)):
+            _print("RESUME", f"{self.run_id}: checkpoint already contains all "
+                             f"{self.start_epoch} epochs; finalising repaired metadata "
+                             "without another training epoch")
+        else:
+            _print("RESUME", f"{self.run_id}: continuing from epoch {self.start_epoch+1}"
+                             f" (best QWK so far {self.best_qwk:.4f})")
+        del ck
+        release_host_memory()
         return True
 
     # -- the loop ---------------------------------------------------------
@@ -2002,7 +2198,7 @@ class Trainer:
                     run_loss += float(loss.detach()) * y.size(0); run_n += y.size(0)
                     step_times.append(now() - t_s)
 
-                    if len(step_traces) < 2000 * (ep + 1):
+                    if len(step_traces) < 2000:      # per EPOCH now; cleared each epoch
                         step_traces.append({"epoch": ep + 1, "step": step,
                                             "t_data": round(t_s - t_last, 4),
                                             "t_fwd": round(t_b - t_f, 4),
@@ -2088,6 +2284,8 @@ class Trainer:
                     "runtime_loader_num_workers": int(tr_dl.num_workers),
                     "runtime_loader_pin_memory": bool(tr_dl.pin_memory),
                     "runtime_memory_safety_revision": MEMORY_SAFETY_REVISION,
+                    "runtime_hf_commit_policy_revision": HF_COMMIT_POLICY_REVISION,
+                    "runtime_epoch_history_schema_revision": EPOCH_HISTORY_SCHEMA_REVISION,
                     "runtime_cuda_memory_format": memory_format_name,
                     "runtime_cudnn_benchmark": bool(torch.backends.cudnn.benchmark),
                     "runtime_cuda_safety_revision": CUDA_SAFETY_REVISION,
@@ -2107,13 +2305,11 @@ class Trainer:
                     row[f"val_acc_session_{sg}"] = float(grp.ok.mean())
                     row[f"val_n_session_{sg}"] = int(len(grp))
 
-                pd.DataFrame([row]).to_csv(self.hist_path, mode="a", index=False,
-                                           header=not self.hist_path.exists())
+                append_epoch_row(self.hist_path, row)
 
                 is_best = vm["val_qwk"] > self.best_qwk
                 if is_best:
                     self.best_qwk = vm["val_qwk"]
-                    self.save_ckpt(self.ckpt_best, model, opt, sched, scaler, ep + 1, vm)
                     pd.DataFrame(cm, index=[f"true_{c}" for c in CLASS_SHORT],
                                  columns=[f"pred_{c}" for c in CLASS_SHORT]).to_csv(
                         self.run_dir / "metrics" / "confusion_matrix.csv")
@@ -2123,7 +2319,12 @@ class Trainer:
                                   **{f"prob_{c}": probs[:, i] for i, c in enumerate(CLASS_SHORT)}
                                   }).to_parquet(self.run_dir / "per_sample" / "predictions.parquet",
                                                 index=False)
+                # Serialize the full state once. When this is the best epoch,
+                # ckpt_best snapshots that exact ckpt_last instead of doing a
+                # second 125--300 MB torch.save in the same Python process.
                 self.save_ckpt(self.ckpt_last, model, opt, sched, scaler, ep + 1, vm)
+                if is_best:
+                    atomic_clone_file(self.ckpt_last, self.ckpt_best)
                 self.last_epoch = ep + 1
                 atomic_write_json(self.run_dir / "STATUS.json",
                                   {"status": "running", "epoch": ep + 1, "of": n_ep,
@@ -2141,31 +2342,53 @@ class Trainer:
                 # push cadence: light every epoch, heavy+bulk every 10
                 self.enqueue_light()
                 self.enqueue_heavy()
+
+                # Flush telemetry EVERY epoch, not every ten (Bug 23). Both
+                # writers now append only what is new and then drop it, so the
+                # process holds at most one epoch of samples instead of the
+                # whole run. Doing it per epoch also means a hard kill loses
+                # one epoch of trace rather than nine.
+                if step_traces:
+                    with open(self.run_dir / "telemetry" / "step_traces.jsonl", "a") as f:
+                        for r in step_traces:
+                            f.write(json.dumps(r) + "\n")
+                    step_traces.clear()
+                self.mon.dump()
                 if (ep + 1) % 10 == 0 or (ep + 1) == n_ep:
-                    if step_traces:
-                        with open(self.run_dir / "telemetry" / "step_traces.jsonl", "w") as f:
-                            for r in step_traces:
-                                f.write(json.dumps(r) + "\n")
-                    self.mon.dump(); self.enqueue_bulk()
+                    self.enqueue_bulk()
                 self.sess.registry.emit(self.run_id, "running", account=self.sess.account,
                                         epoch=ep + 1, best_qwk=self.best_qwk,
                                         wall_s=self.wall_seconds)
                 self.sess.maybe_push(f"epoch {ep+1}")
 
                 # A hard host-RAM kill produces no Python exception and hence
-                # no emergency callback.  Stop while we still have enough
-                # headroom to publish the just-written checkpoint.  A fresh
-                # Kaggle session resumes at the next epoch.
+                # no emergency callback. Stop while we still have enough
+                # headroom to publish the just-written checkpoint.
+                #
+                # Bug 22: measure NOW, after returning freed arenas to the
+                # kernel -- not the epoch's transient peak. The checkpoint we
+                # just wrote and handed to the uploader is exactly the spike
+                # that used to trip this, and it is released by the time the
+                # next epoch starts.
                 try:
                     ram_peak = float(row.get("ram_percent_peak", 0.0))
                 except (TypeError, ValueError):
                     ram_peak = 0.0
-                if ep + 1 < n_ep and ram_peak >= HOST_RAM_PAUSE_PERCENT:
+                ram_before, ram_now = host_ram_headroom()
+                row["ram_percent_after_release"] = ram_now
+                if ram_now >= HOST_RAM_PAUSE_PERCENT and ram_peak >= HOST_RAM_PAUSE_PERCENT:
+                    _print("RAM", f"host RAM {ram_now:.1f}% still above "
+                                  f"{HOST_RAM_PAUSE_PERCENT:.0f}% after releasing "
+                                  f"(epoch peak {ram_peak:.1f}%)")
+                if ep + 1 < n_ep and ram_now >= HOST_RAM_PAUSE_PERCENT:
                     status = "paused"
                     pause_reason = "host_ram_guard"
-                    _print("RAM", f"host RAM reached {ram_peak:.1f}% after epoch {ep+1}; "
+                    _print("RAM", f"host RAM {ram_now:.1f}% after epoch {ep+1}; "
                                   "pausing before the kernel is killed. Re-run to resume.")
                     break
+                if ram_peak >= HOST_RAM_PAUSE_PERCENT and ram_now < HOST_RAM_PAUSE_PERCENT:
+                    _print("RAM", f"epoch {ep+1} peaked at {ram_peak:.1f}% but sits at "
+                                  f"{ram_now:.1f}% now -- transient, continuing")
 
                 if self.sess.guard.near_limit():
                     _print("WATCHDOG", f"{self.sess.guard.elapsed_h:.1f} h elapsed -- pausing cleanly")
@@ -2210,9 +2433,13 @@ class Trainer:
             _shutdown_loader(tr_dl)
             _shutdown_loader(va_dl)
             if step_traces:
-                with open(self.run_dir / "telemetry" / "step_traces.jsonl", "w") as f:
+                # APPEND. Bug 23: this used to open "w" and rewrite, which
+                # truncated everything the per-epoch flush had already written.
+                with open(self.run_dir / "telemetry" / "step_traces.jsonl", "a") as f:
                     for r in step_traces:
                         f.write(json.dumps(r) + "\n")
+                step_traces.clear()
+            release_host_memory()
 
         summary = {"run_id": self.run_id, "status": status, "arch": cfg["arch"],
                    "technique": cfg["technique"], "fold": cfg["fold"], "seed": cfg["seed"],
@@ -2226,6 +2453,8 @@ class Trainer:
                    "runtime_loader_num_workers": int(tr_dl.num_workers),
                    "runtime_loader_pin_memory": bool(tr_dl.pin_memory),
                    "runtime_memory_safety_revision": MEMORY_SAFETY_REVISION,
+                   "runtime_hf_commit_policy_revision": HF_COMMIT_POLICY_REVISION,
+                   "runtime_epoch_history_schema_revision": EPOCH_HISTORY_SCHEMA_REVISION,
                    "runtime_cuda_memory_format": memory_format_name,
                    "runtime_cudnn_benchmark": bool(torch.backends.cudnn.benchmark),
                    "runtime_cuda_safety_revision": CUDA_SAFETY_REVISION,
@@ -2236,7 +2465,7 @@ class Trainer:
                    "val_images": self.split_info["val_images"],
                    "cross_fold_tyre_flags": len(self.split_info["cross_fold_tyre_flags"])}
         if self.hist_path.exists():
-            h = pd.read_csv(self.hist_path)
+            h = read_epoch_history(self.hist_path, repair=True)
             if len(h):
                 b = h.loc[h.val_qwk.idxmax()]
                 summary.update({
@@ -2272,7 +2501,7 @@ class Trainer:
         # Release model/optimizer/DataParallel and CUDA caches before the next
         # architecture is constructed in this same long-lived notebook.
         del model, opt, sched, scaler, tr_dl, va_dl
-        gc.collect()
+        release_host_memory()
         if torch.cuda.is_available():
             # A fatal asynchronous CUDA fault poisons the context; even
             # empty_cache can then raise a second, misleading exception and
@@ -2629,8 +2858,53 @@ class Session:
         print(df.to_string(index=False))
         return df
 
-    def plan(self, run_ids, title: str = "plan", steal_stale: bool = True,
-             refresh: bool = True):
+    def claim_or_yield(self, run_id: str, settle_s: float = 25.0) -> tuple[bool, str]:
+        """Claim a run another worker owns, without a lock server.
+
+        Taking work off another account's shard is the only way to stop a
+        worker idling while its neighbours have twenty runs left (Bug 24). It
+        is also exactly how v2 trained `a-vgg16bn-base-f1-s1` twice (Bug 13),
+        so it needs more than "the registry looked free a moment ago".
+
+        Two phases, which is the standard answer when there is nowhere to put
+        a lock:
+
+          1. Pull the registry, check nobody holds it, write our claim, and
+             **flush it immediately** so it is visible to everyone.
+          2. Wait out the race window, pull again, and look at every claim
+             written for this run in that window. If more than one account
+             claimed it, the lowest account name wins.
+
+        Both sides compute step 2 from the same bytes and reach the same
+        answer, so exactly one proceeds and the other moves on. The cost is one
+        commit and ~30 s, paid only by a worker that would otherwise be idle.
+        """
+        self.registry.pull(self.uploader)
+        if self.inventory.refresh([run_id], verbose=False).state(run_id) == "completed":
+            return False, "finished while I was deciding"
+        ok, why = self.registry.can_claim(run_id, self.account, stale_s=2700)
+        if not ok:
+            return False, why
+
+        self.registry.emit(run_id, "claimed", account=self.account, worker=self.worker_id)
+        self.uploader.flush(timeout=120, reason=f"claim {run_id}")
+
+        t_claim = now()
+        time.sleep(settle_s + random.uniform(0.0, 10.0))
+        self.registry.pull(self.uploader)
+
+        rivals = [e for e in self.registry.entries()
+                  if e.get("run_id") == run_id and e.get("state") == "claimed"
+                  and abs(float(e.get("ts", 0.0)) - t_claim) < 600.0
+                  and e.get("account")]
+        if rivals:
+            winner = min(str(e["account"]) for e in rivals)
+            if winner != self.account:
+                return False, f"yielded to {winner} (claimed the same run)"
+        return True, "claimed after settling"
+
+    def plan(self, run_ids, title: str = "plan", steal_stale: bool = False,
+             refresh: bool = True, takeover_when_idle: bool = True):
         """Decide what to do this session.
 
         Ownership is computed over the FULL run list, never over the
@@ -2644,7 +2918,7 @@ class Session:
             self.inventory.refresh(run_ids, verbose=True)
         inv = self.inventory
         owner = assign_workers(run_ids, self.num_workers, "cost")   # STATIC costs
-        if self.num_workers > 1 and steal_stale:
+        if self.num_workers > 1 and (steal_stale or takeover_when_idle):
             # Planning against a registry that was never pulled is how fresh
             # absent work was mistaken for abandoned work. One pull gives every
             # worker the same recent claims before ownership/takeover decisions.
@@ -2662,6 +2936,28 @@ class Session:
                 continue
             if owner[r] == self.worker_id:
                 mine.append(r)
+            elif takeover_when_idle and self.num_workers > 1 and not steal_stale:
+                # ⚠ Bug 24. `steal_stale=False` made every run owned by someone
+                # else permanently untouchable, so a worker that finished its
+                # 27-run shard printed "will run 0 run(s)" and the notebook
+                # ended -- while the other accounts still had twenty runs each.
+                # Reported as "out of 4, 2 are running and 2 stopped".
+                #
+                # The shard is LPT-balanced on ESTIMATED cost and skewed further
+                # by pauses and resumes, so shards always finish at different
+                # times. Some worker always runs dry first.
+                #
+                # These go in a separate pool that is only touched once `mine`
+                # is empty, and only through the two-phase claim in
+                # `claim_or_yield`. That is what makes it safe: v2 stole
+                # aggressively and trained vgg16bn-f1-s1 twice; v4 fixed that by
+                # refusing all takeover, which is how we got here.
+                ev = latest.get(r)
+                if ev is not None and ev.get("state") in ("running", "claimed") \
+                        and now() - float(ev.get("ts", 0)) < 2700:
+                    busy.append(r)          # someone is genuinely on it
+                else:
+                    stolen.append(r)
             elif steal_stale and self.num_workers > 1:
                 # An absent run is not stale work: it is fresh work reserved by
                 # the static owner map.  Treating "no event" as "dead worker"
@@ -2690,7 +2986,15 @@ class Session:
         plan.mine, plan.stolen, plan.busy = mine, stolen, busy
         plan.scheduler_revision = SCHEDULER_SAFETY_REVISION
         plan.done = sorted(done & set(run_ids))
+        # Offset each worker's scan of the shared pool by its own id, so two
+        # workers going idle at the same moment do not both reach for the same
+        # run before the two-phase claim has to arbitrate.
+        if stolen and self.num_workers > 1:
+            k = self.worker_id % len(stolen)
+            stolen = stolen[k:] + stolen[:k]
+        plan.stolen = stolen
         plan.order = mine + stolen                    # own work ALWAYS first
+        plan.n_mine = len(mine)                       # everything after is takeover
         plan.resumable = [r for r in plan.order if inv.state(r) == "resumable"]
 
         remaining = sum(cost_of(r) * (1 - min(0.98, inv.epoch(r) / 60.0)) for r in plan.order)
@@ -2700,19 +3004,26 @@ class Session:
         print(f"  resuming mid-run       : {len(plan.resumable)}")
         print(f"  starting from scratch  : {len(plan.order) - len(plan.resumable)}")
         if stolen:
-            print(f"  picked up from a dead worker : {len(stolen)}")
+            print(f"  available if I go idle : {len(stolen)}   "
+                  f"(claimed one at a time, only after my own {len(mine)})")
         if busy:
-            print(f"  another worker is on it      : {len(busy)}")
+            label = ("another worker is on/reserved it" if steal_stale else
+                     "reserved for other static owners")
+            print(f"  {label:<31}: {len(busy)}")
         print(f"  est. GPU time for me   : ~{remaining/60:.1f} h "
               f"(credits partly-done runs)")
         print(f"  -> will run {len(plan.order)} run(s) this session\n")
         return plan
 
     # -- execution --------------------------------------------------------
-    def run_all(self, cfgs, title: str = "training", steal_stale: bool = True) -> list[dict]:
+    def run_all(self, cfgs, title: str = "training", steal_stale: bool = False,
+                takeover_when_idle: bool = True) -> list[dict]:
         by_id = {c["run_id"]: c for c in cfgs}
-        plan = self.plan(list(by_id), title=title, steal_stale=steal_stale)
+        plan = self.plan(list(by_id), title=title, steal_stale=steal_stale,
+                         takeover_when_idle=takeover_when_idle)
         out = []
+        n_mine = getattr(plan, "n_mine", len(plan.order))
+        announced_idle = False
         for i, rid in enumerate(plan.order, 1):
             # The repository decides. Only ask the registry whether somebody
             # is on it RIGHT NOW, and only when more than one worker exists.
@@ -2723,7 +3034,26 @@ class Session:
             if self.inventory.state(rid) == "completed":
                 _print("SKIP", f"{rid}: already finished on HuggingFace")
                 continue
-            if self.num_workers > 1:
+            if i > n_mine and not announced_idle:
+                announced_idle = True
+                print("\n" + "-" * 74)
+                _print("IDLE", f"my own {n_mine} run(s) are done or running elsewhere. "
+                               f"Taking work from the shared pool so this GPU is not "
+                               f"parked while other accounts still have runs left.")
+                print("-" * 74)
+            if i > n_mine and self.num_workers > 1:
+                # Takeover: two-phase claim (Bug 24). Costs one commit and ~30 s,
+                # and only an otherwise-idle worker ever pays it.
+                if self.guard.near_limit(margin_min=90):
+                    _print("IDLE", "not enough session time left to start another "
+                                   "model; stopping cleanly instead of half-training one")
+                    break
+                ok, whyc = self.claim_or_yield(rid)
+                if not ok:
+                    _print("SKIP", f"{rid}: {whyc}")
+                    continue
+                _print("IDLE", f"{rid}: {whyc}")
+            elif self.num_workers > 1 and rid in getattr(plan, "stolen", ()):
                 # ⚠ Bug 13. `can_claim` reads the LOCAL copy of the other
                 # workers' registry shards, and those were last downloaded in
                 # `sync_state` -- hours ago. So a run another account started
@@ -2733,10 +3063,11 @@ class Session:
                 # by acct1 AND acct2, same config_hash, ~1.4 GPU-hours burnt
                 # twice. Only shows up if you notice one run has two owners.
                 #
-                # Own runs do not need this -- nobody else can be on them --
-                # so pay the two requests only when about to steal.
-                if rid in getattr(plan, "stolen", ()):
-                    self.registry.pull(self.uploader)
+                # Own runs do not need this -- nobody else using the repaired
+                # static schedule can be on them -- so pay the requests and
+                # publish an immediate claim only when takeover was explicitly
+                # enabled and this run is genuinely stolen.
+                self.registry.pull(self.uploader)
                 ok, held = self.registry.can_claim(rid, self.account, stale_s=2700)
                 if not ok:
                     _print("SKIP", f"{rid}: {held}")
@@ -2745,22 +3076,50 @@ class Session:
             print("\n" + "=" * 74)
             _print("RUN", f"{i}/{len(plan.order)}  {rid}   ({why})")
             print("=" * 74)
-            self.registry.emit(rid, "claimed", account=self.account, worker=self.worker_id)
-            if self.num_workers > 1:
+            if i <= n_mine:
+                self.registry.emit(rid, "claimed", account=self.account,
+                                   worker=self.worker_id)
+            if i <= n_mine and rid in getattr(plan, "stolen", ()):
                 # A claim nobody can read is not a claim. `emit` only enqueues,
                 # and the background cycle is 30 minutes -- long enough for a
                 # second worker to start the same run and for both to be right
                 # about what they could see. One commit, at the only moment it
                 # buys anything.
-                self.uploader.flush(timeout=120, reason=f"claim {rid}")
+                self.uploader.flush(timeout=120, reason=f"stolen claim {rid}")
             self.guard.reset()
             s = Trainer(by_id[rid], self).run()
             out.append(s)
             if s["status"] == "completed":
                 self.prune_local(rid)
-            if s["status"] == "paused" and self.guard.near_limit():
-                _print("RUN", "session limit reached -- stopping cleanly. "
-                              "Start a fresh session and re-run this notebook to continue.")
+            if s["status"] == "paused":
+                why = s.get("pause_reason") or "safety pause"
+
+                # Not every pause means the session is finished.
+                #
+                # v5 stopped the worker after ANY pause, to stop the old loop
+                # marching into dozens of models after a host-RAM pause and
+                # burning one HF commit on each. That was right about the
+                # cascade and wrong about the scope: a RAM pause is a statement
+                # about this moment, not about the session. Combined with the
+                # peak-based trigger of Bug 22, one checkpoint-sized spike
+                # ended an eight-hour session with eighteen runs untouched.
+                #
+                # So: free the run's memory, look again, and only stop if the
+                # pressure is real. A watchdog pause or an interrupt still ends
+                # the cell -- those genuinely mean there is no time left.
+                if why == "host_ram_guard":
+                    release_host_memory()
+                    ram_now = host_ram_percent()
+                    if ram_now < HOST_RAM_RESUME_PERCENT:
+                        _print("RUN", f"host RAM back to {ram_now:.1f}% (under "
+                                      f"{HOST_RAM_RESUME_PERCENT:.0f}%) once this model was "
+                                      "released -- continuing with the next run")
+                        continue
+                    _print("RUN", f"host RAM still {ram_now:.1f}% after releasing this "
+                                  f"model. Stopping so the kernel is not killed.")
+                _print("RUN", f"stopping worker after {why}. The checkpoint is on "
+                              "HuggingFace; use a fresh Kaggle session and re-run "
+                              "this notebook to resume at the next epoch.")
                 break
             if s.get("cuda_restart_required"):
                 # CUDA launch faults are process-fatal in practice. Continuing
@@ -2915,12 +3274,16 @@ def selftest() -> bool:
         repo_id = "x/y"; repo_type = "dataset"; token = None
     inv = RemoteInventory(_FakeUp(), Path("."))
     inv.files = {"runs/r-done/checkpoints/ckpt_last.pt", "runs/r-done/STATUS.json",
-                 "runs/r-mid/checkpoints/ckpt_last.pt", "runs/r-mid/STATUS.json"}
+                 "runs/r-mid/checkpoints/ckpt_last.pt", "runs/r-mid/STATUS.json",
+                 "runs/r-full/checkpoints/ckpt_last.pt", "runs/r-full/STATUS.json"}
     inv.status = {"r-done": {"status": "completed", "epochs_trained": 60},
-                  "r-mid": {"status": "failed", "epoch": 47}}
+                  "r-mid": {"status": "failed", "epoch": 47},
+                  "r-full": {"status": "running", "epoch": 60, "of": 60}}
     t("inventory: completed run is completed", inv.state("r-done") == "completed")
     t("inventory: FAILED run is resumable, not lost", inv.state("r-mid") == "resumable")
     t("inventory: resume epoch read from STATUS", inv.epoch("r-mid") == 47)
+    t("inventory: full checkpoint is finalised, not called epoch 61 training",
+      inv.reason("r-full").startswith("finalise 60-epoch checkpoint"))
     t("inventory: unknown run is absent", inv.state("r-nothing") == "absent")
 
     # The heart of it: a run's state must not depend on NUM_WORKERS.
@@ -2977,9 +3340,123 @@ def selftest() -> bool:
       "inventory.state" in _insp.getsource(Session.confirm_on_hf))
     t("stolen runs re-pull the registry before claiming",
       "registry.pull" in _insp.getsource(Session.run_all))
+    t("work stealing is opt-in, not the default",
+      _insp.signature(Session.run_all).parameters["steal_stale"].default is False and
+      _insp.signature(Session.plan).parameters["steal_stale"].default is False)
+    _run_all_src = _insp.getsource(Session.run_all)
+    t("only a genuinely stolen claim forces an immediate HF commit",
+      'rid in getattr(plan, "stolen", ())' in _run_all_src and
+      'reason=f"stolen claim {rid}"' in _run_all_src)
+    t("a run from my own shard is never double-claimed by the takeover path",
+      "if i <= n_mine:" in _run_all_src)
+    t("a paused model stops the worker instead of cascading into more runs",
+      'if s["status"] == "paused"' in _run_all_src)
+
+    # --- Bug 24: an idle worker must not sit parked ------------------------
+    class _TInv:
+        files = set(); status = {}
+        def refresh(self, ids=None, verbose=True): return self
+        def state(self, r): return "completed" if r in _t_done else "absent"
+        def epoch(self, r): return 0
+        def reason(self, r): return "not started"
+    class _TReg:
+        def latest(self): return {}
+        def pull(self, u): return 0
+        def can_claim(self, r, a, stale_s=2700): return True, "unclaimed"
+    _t_ids = [f"b-a{a}-t{k}-f1-s{s}" for a in range(3) for k in range(4) for s in (1, 2, 3)]
+    _t_owner = assign_workers(_t_ids, 4, "cost")
+    _t_done = {r for r, w in _t_owner.items() if w == 0}      # worker 0 finished its shard
+    _ts = Session.__new__(Session)
+    _ts.inventory, _ts.registry, _ts.uploader = _TInv(), _TReg(), None
+    _ts.num_workers, _ts.worker_id, _ts.account = 4, 0, "acct1"
+    _tp = Session.plan(_ts, _t_ids, title="selftest idle takeover", refresh=False,
+                       steal_stale=False, takeover_when_idle=True)
+    t("a worker with an empty shard still has work to do",
+      _tp.n_mine == 0 and len(_tp.order) == len(_t_ids) - len(_t_done))
+    t("its own runs are always ordered before any takeover",
+      list(_tp.order[:_tp.n_mine]) == list(_tp.mine))
+    _tp_off = Session.plan(_ts, _t_ids, title="", refresh=False, steal_stale=False,
+                           takeover_when_idle=True)
+    _ts.worker_id = 2
+    _tp2 = Session.plan(_ts, _t_ids, title="", refresh=False, steal_stale=False,
+                        takeover_when_idle=True)
+    t("two idle workers do not start the pool at the same run",
+      not _tp_off.stolen or not _tp2.stolen or _tp_off.stolen[0] != _tp2.stolen[0])
+    t("takeover can be switched off",
+      len(Session.plan(_ts, _t_ids, title="", refresh=False, steal_stale=False,
+                       takeover_when_idle=False).stolen) == 0)
+    t("takeover claims go through the two-phase protocol",
+      "claim_or_yield" in _run_all_src and "near_limit(margin_min=90)" in _run_all_src)
+    _coy = _insp.getsource(Session.claim_or_yield)
+    t("two-phase claim flushes, settles, then re-reads",
+      "uploader.flush" in _coy and "time.sleep" in _coy and _coy.count("registry.pull") >= 2)
+    t("two-phase claim breaks ties deterministically, not by luck",
+      'min(str(e["account"]) for e in rivals)' in _coy)
+
+    # --- Bug 22/23: the RAM guard must not end a session over a spike ------
+    _trainer_run = _insp.getsource(Trainer.run)
+    t("RAM guard reads a live post-release value, not the epoch peak",
+      "host_ram_headroom()" in _trainer_run and "ram_now >= HOST_RAM_PAUSE_PERCENT" in _trainer_run)
+    t("RAM guard no longer pauses on ram_percent_peak alone",
+      "ep + 1 < n_ep and ram_peak >= HOST_RAM_PAUSE_PERCENT" not in _trainer_run)
+    t("a recovered RAM pause continues instead of ending the cell",
+      'why == "host_ram_guard"' in _run_all_src and "continue" in _run_all_src)
+    t("resume threshold sits below the pause threshold",
+      HOST_RAM_RESUME_PERCENT < HOST_RAM_PAUSE_PERCENT)
+    t("host_ram_percent returns a sane number",
+      0.0 <= host_ram_percent() <= 100.0)
+
+    _dump_src = _insp.getsource(HardwareMonitor.dump)
+    t("telemetry dump drains its buffers instead of accumulating",
+      "self.energy_rows = self.energy_rows, []" in _dump_src)
+    t("telemetry dump appends rather than rewriting the whole run",
+      'gzip.open(path, "at"' in _dump_src)
+    t("step traces are capped per epoch and appended, never rewritten",
+      "len(step_traces) < 2000:" in _trainer_run
+      and 'step_traces.jsonl", "w"' not in _trainer_run)
+
+    import tempfile as _tf
+    _mon = HardwareMonitor(Path(_tf.mkdtemp()))
+    for _ in range(3):
+        with _mon._lock:
+            for i in range(50):
+                _mon.energy_rows.append({"ts": now(), "gpu_index": 0, "power_w": 1.0,
+                                         "energy_joules_cumulative": float(i),
+                                         "temp_c": 40, "util_pct": 50})
+        _mon.dump()
+    t("telemetry buffer is empty after a dump", len(_mon.energy_rows) == 0)
+    _back = pd.read_csv(Path(_mon.out_dir) / "energy_samples.csv.gz")
+    t(f"appended gzip members read back as one table ({len(_back)} rows)", len(_back) == 150)
+    _trainer_src = _insp.getsource(Trainer.run)
+    t("each epoch serialises one full checkpoint, not best plus last",
+      _trainer_src.count("self.save_ckpt(") == 1 and
+      "atomic_clone_file(self.ckpt_last, self.ckpt_best)" in _trainer_src)
+    _hist = Path(tempfile.mkdtemp()) / "epochs.csv"
+    _buf = io.StringIO(); _cw = csv.writer(_buf, lineterminator="\n")
+    _cw.writerow(["epoch", "runtime_memory_safety_revision",
+                  "runtime_cuda_memory_format", "val_qwk"])
+    _cw.writerow([1, "2026-08-31-r1", "channels_last", 0.5])
+    _cw.writerow([2, "2026-08-31-r2", "2026-08-31-r1", "channels_last", 0.6])
+    atomic_write_text(_hist, _buf.getvalue())
+    _hh = read_epoch_history(_hist, repair=True)
+    t("mixed epoch schemas are repaired without dropping or shifting rows",
+      len(_hh) == 2 and
+      "runtime_hf_commit_policy_revision" in _hh.columns and
+      pd.isna(_hh.loc[0, "runtime_hf_commit_policy_revision"]) and
+      _hh.loc[1, "runtime_cuda_memory_format"] == "channels_last" and
+      abs(float(_hh.loc[1, "val_qwk"]) - 0.6) < 1e-9)
+    append_epoch_row(_hist, {"epoch": 3, "runtime_memory_safety_revision": "r2",
+                             "runtime_epoch_history_schema_revision": "r1",
+                             "runtime_cuda_memory_format": "channels_last",
+                             "val_qwk": 0.7})
+    _hh2 = read_epoch_history(_hist)
+    t("epoch writer expands columns atomically and remains readable",
+      len(_hh2) == 3 and
+      "runtime_epoch_history_schema_revision" in _hh2.columns and
+      list(_hh2.epoch.astype(int)) == [1, 2, 3])
     t("fresh absent work is reserved for its static owner",
       "if event is None" in _insp.getsource(Session.plan))
-    t("multi-worker planning refreshes registry claims first",
+    t("takeover planning refreshes registry claims first",
       "registry.pull" in _insp.getsource(Session.plan))
     class _PlanInventory:
         def refresh(self, *args, **kwargs): return self
@@ -2994,8 +3471,15 @@ def selftest() -> bool:
     _ps.num_workers, _ps.worker_id, _ps.account = 4, 0, "acct1"
     _pp = Session.plan(_ps, ids, title="selftest fresh ownership", refresh=False)
     _owned = {r for r, w in assign_workers(ids, 4, "cost").items() if w == 0}
-    t("an all-absent four-worker plan contains only this worker's fresh runs",
-      set(_pp.order) == _owned and not _pp.stolen)
+    # Bug 13's guarantee, restated for the takeover era: at a simultaneous cold
+    # start every worker must do its OWN fresh runs first. The pool exists, but
+    # nothing in it is reachable until `mine` is exhausted, so four accounts
+    # starting together still cannot collide.
+    t("an all-absent four-worker plan does this worker's own fresh runs first",
+      set(_pp.mine) == _owned and set(_pp.order[:_pp.n_mine]) == _owned)
+    _pp_noto = Session.plan(_ps, ids, title="", refresh=False, takeover_when_idle=False)
+    t("with takeover off, an all-absent plan is exactly this worker's shard",
+      set(_pp_noto.order) == _owned and not _pp_noto.stolen)
     import tempfile as _tempfile
     _reg = Registry(Path(_tempfile.mkdtemp()), None, "acct1", 0, "selftest")
     _reg.emit("recent-failure", "failed", account="acct2")

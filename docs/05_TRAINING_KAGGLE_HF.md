@@ -80,12 +80,13 @@ plainly:
 | **what epoch did it reach** | the same file | **no** |
 | **is someone on it right now** | registry heartbeat, ≤45 min old | no |
 
-Ownership reserves only **fresh absent** work; it is never a claim about truth.
-A worker starts with its own shard. It may take over somebody else's job only
-when HF contains a real claim/run event older than 45 minutes. Absence is not
-staleness. Halving the worker count therefore changes the owner map, while HF
-still determines the facts: finished runs are skipped and half-done runs are
-resumed.
+Ownership reserves work; it is never a claim about truth. A worker starts with
+its own static shard and resumes partial runs from HF. Work stealing is
+**opt-in and disabled in NB06 v5**. An explicit recovery run may take over
+somebody else's job only when HF contains a real claim/run event older than 45
+minutes. Absence is not staleness. Halving the worker count therefore changes
+the owner map, while HF still determines the facts: finished runs are skipped
+and half-done runs are resumed.
 
 The test that pins this down (`selftest`):
 
@@ -133,10 +134,12 @@ owner = assign_workers(universe, N, STATIC_HINTS)  # never `display_costs`
 
 **Calibrate the static table once, early.** A first guess predicted 1.73 h for a run that took 2.89 h — a 40% underestimate. Two measured runs fixed both scale and ratio. Anchor any printed "this will take N hours" on a measurement.
 
-### Work stealing as a safety net
+### Optional work stealing as a recovery tool
 
-After a worker exhausts its own slice, let it pick up runs whose real HF event
-is stale (>45 min). A run with no event remains reserved for its static owner:
+The default is `steal_stale=False`. Only a deliberate recovery launch should
+enable it after confirming the old workers are stopped. It can then pick up
+runs whose real HF event is stale (>45 min). A run with no event remains
+reserved for its static owner:
 
 ```python
 if steal_stale:
@@ -509,7 +512,7 @@ ROI path decoded a full mask, formed `mask > 0`, then materialised two int64
 coordinate arrays for every tyre pixel; persistent workers and pinned batch
 buffers retained the resulting host allocations.
 
-**Fix (`2026-08-31-r1`, introduced in tyrelib v3 and retained in v4):** use the mask image's non-zero bounding
+**Fix (`2026-08-31-r1`, introduced in tyrelib v3 and retained in v5):** use the mask image's non-zero bounding
 box directly, close both image files immediately, and preserve the old
 max-minus-min padding exactly. ROI alone uses `num_workers=0` and
 `pin_memory=False`; normal full-frame arms keep the proven Stage-A loader.
@@ -518,8 +521,9 @@ released between runs, and an 88% host-RAM guard finishes the current epoch,
 writes the checkpoint, publishes it, and returns `paused` before the OS can
 kill the kernel. Scientific settings and the locked model set are unchanged.
 
-The same audit found exactly four completed Stage-B runs on public HF. RegNet
-had no checkpoint or completed epoch, so a clean retry discards no training.
+That was the first repair. The later full Stage-B audit in Bugs 19–20 showed
+that the ROI diagnosis was incomplete: standard full-frame arms could also
+accumulate host RSS in the same long-lived process.
 
 ### ⚠ Bug 18 — a CUDA fault is not an OOM, and absence is not staleness
 
@@ -533,7 +537,7 @@ so neither GPU nor host capacity was the cause. The repeated stack and the
 successful Stage-A controls make the T4 cuDNN grouped-convolution path selected
 by AMP + `channels_last` + autotune the supported diagnosis.
 
-**GPU fix (`2026-08-31-r1`, tyrelib v4):** RegNet alone uses contiguous NCHW
+**GPU fix (`2026-08-31-r1`, retained in tyrelib v6):** RegNet alone uses contiguous NCHW
 and `cudnn.benchmark=False`. It remains the exact NB07-locked `regnety_016`
 model at 384px, batch 32, FP16/GradScaler, AdamW and 60 epochs. All other models
 retain the Stage-A `channels_last` path. Epoch rows, `summary.json`,
@@ -555,13 +559,218 @@ event, `can_claim` returned “unclaimed”; simultaneous notebooks could theref
 race before the first claim commit became visible. Public seed 1 was in fact
 attempted by its rightful account while account 1 also launched it.
 
-**Scheduler fix:** a fresh absent run stays with its static owner. Only a real
-event older than 45 minutes is eligible for takeover; a recent `failed` or
-`paused` event is protected too, while the same account may retry immediately.
-The public state after diagnosis is six Stage-B status files: four completed
-and two RegNet epoch-0 failures with no checkpoints. The assigned owners retry
-those two; account 1 correctly has no remaining ROI job and does not duplicate
-them.
+**Scheduler fix:** a fresh absent run stays with its static owner. Work stealing
+is now disabled by default. If a recovery session explicitly enables it, only a
+real event older than 45 minutes is eligible; a recent `failed` or `paused`
+event is protected too, while the same account may retry immediately.
+
+### ⚠ Bug 19 — claim commits and pause cascades exhausted HF while the GPUs idled
+
+The executed NB06 output shows the exact chain. `run_all()` forced an immediate
+HF commit for every ordinary static-owner `claimed` event. Separately, after a
+run returned `pause_reason=host_ram_guard`, the outer loop started the next
+model unless the 8.5-hour watchdog was also near its limit. One high-RAM process
+therefore produced dozens of one-to-three-epoch partial runs, and every partial
+run produced both a pause commit and the next claim commit. The session reached
+45 commits, spent its 25/hour worker allowance, and stopped at:
+
+```text
+[HF] flush (claim b-regnety016-wd_low-f1-s2): 1 file(s)
+[RATE] budget spent (25/hr); sleeping 197s
+```
+
+This wait was scheduler I/O, not training and not a slow GPU.
+
+**Fix (`SCHEDULER_SAFETY_REVISION=2026-08-31-r2`):** NB06 explicitly runs with
+`steal_stale=False`. A normal claim is only enqueued and is folded into the
+30-minute/major-step batch. Only a genuinely stolen job forces an immediate
+claim commit, because only that claim coordinates two possible owners. Any
+`paused` result now ends the worker's training cell after the trainer publishes
+its checkpoint. Re-run in a fresh Kaggle session; HF resumes the same run at the
+next epoch.
+
+### ⚠ Bug 20 — the ROI-only memory diagnosis was incomplete
+
+The expanded public audit now contains 65 Stage-B statuses: **12 completed and
+53 paused**, and all 53 pauses report `host_ram_guard`. Those pauses include
+ordinary full-frame arms using the standard loader, so dense ROI coordinates
+could not be the only source. Epoch telemetry also shows process RSS rising
+across otherwise normal runs while VRAM remains well below T4 capacity.
+
+The long-lived process performed a full `torch.save` for both `ckpt_best` and
+`ckpt_last` on every improving epoch, and HF/LFS handled the same large files
+repeatedly. Freed serialization/upload arenas can remain mapped in glibc and
+inflate process RSS until process exit. That matches the reset seen between
+fresh Kaggle sessions and gives a direct repair target without changing a
+model, batch, image, optimiser or epoch budget.
+
+**Fix (`MEMORY_SAFETY_REVISION=2026-08-31-r2`, tyrelib v5 and retained in v6):** serialize the
+complete state once per epoch; on an improving epoch atomically hard-link/copy
+that exact file to `ckpt_best`. After checkpoint save/load, HF commit and final
+model cleanup, collect unreachable objects and call Linux `malloc_trim(0)` to
+return already-free arenas to the host. The 88% guard remains as the fail-safe.
+Epoch rows and summaries record both the memory and commit-policy revisions so
+the v5 Kaggle result can be distinguished from all prior partial runs.
+
+Public verification at this repair point: **12/108 complete, 53 resumable; all
+65 status-bearing Stage-B runs have `ckpt_last.pt` and `ckpt_best.pt`.** No
+published epoch needs to be retrained.
+
+### ⚠ Bug 21 — telemetry schema drift made a valid checkpoint look unresumable
+
+Tyrelib v5 added `runtime_hf_commit_policy_revision` immediately after
+`runtime_memory_safety_revision`, but the epoch writer still used positional
+CSV append. Two DenseNet runs already had 177-column v4 headers. Their first
+three rows matched that header; v5 then appended 178 values per row. The
+checkpoint reached epoch 60, but resume stopped before finalisation with:
+
+```text
+ParserError: Error tokenizing data. C error:
+Expected 177 fields in line 5, saw 178
+```
+
+The model, optimiser, RNG and both checkpoints were intact. Only the telemetry
+table's header was stale. A public audit of all 70 Stage-B epoch files found
+exactly two mixed-width files; 68 were internally consistent.
+
+**Fix (`EPOCH_HISTORY_SCHEMA_REVISION=2026-09-01-r1`, tyrelib v6):** parse with
+Python's CSV reader, recognise the known revision token at the exact insertion
+position, add the missing heading, pad only the older rows, validate every row
+width, and atomically rewrite one canonical table. Future writes read the
+existing table, union columns by name, de-duplicate the epoch key and atomically
+replace the file. Unknown drift raises and leaves the source untouched instead
+of guessing or dropping a row.
+
+The repair was run against the exact public 60-epoch failure file: all epochs
+1–60, all 178 columns and the shifted CUDA/validation fields were preserved.
+An epoch-60 checkpoint whose status still says `running` is now described and
+finalised as completed metadata without training an impossible epoch 61.
+
+Public state at this repair: **14/108 completed, 56 checkpointed incomplete
+(53 paused, 3 running); all 70 status-bearing runs have both checkpoints.**
+
+### ⚠ Bug 22 — a guard that ended the session over a two-second spike
+
+Reported as *"sometimes the workers are stopping the notebooks by themselves."*
+
+The host-RAM guard read `ram_percent_peak` — the **maximum** of the 1 Hz samples
+taken during the epoch — and compared it against 88%. Above that, the run
+paused; and since v5, *any* pause stopped the entire worker.
+
+The measured trajectory of `b-densenet121-res512-f1-s3`, from public telemetry:
+
+| epoch | `ram_percent_peak` | RSS GB | |
+|---:|---:|---:|---|
+| 1 | **95.2** | 28.4 | pauses, and stops the worker |
+| 2 | **92.8** | 27.8 | |
+| 3 | 76.7 | 22.5 | |
+| … | | | |
+| 10 | **17.8** | 3.5 | (next session) |
+| 26 | 46.3 | 12.1 | |
+
+Mean peak after epoch 5: **42.9%**. The 95.2% was the first epoch of a session —
+the annotation rebuild, the loader warm-up and the resume checkpoint load, all
+released within two epochs. One transient ended an eight-hour session with
+eighteen runs untouched.
+
+A peak answers *"did we ever come close?"*. Before starting another epoch the
+question is *"is there room now?"*.
+
+**Fix (`RAM_GUARD_REVISION=2026-09-01-r1`, tyrelib v7):**
+
+* `host_ram_percent()` reads the live value **after** `release_host_memory()`
+  has returned freed arenas to the kernel — the checkpoint that was just
+  serialised and handed to the uploader is exactly the spike that used to trip
+  this, and it is gone by the time the next epoch starts.
+* A transient peak now prints `transient, continuing` instead of pausing.
+* Hysteresis: pause at 88%, resume below **80%**.
+* **A recovered RAM pause no longer ends the cell.** `run_all` releases the
+  finished model, re-measures, and continues to the next run if the pressure
+  was the model rather than the session. A watchdog pause or an interrupt still
+  stops — those genuinely mean there is no time left.
+
+### ⚠ Bug 23 — the telemetry buffers were the leak
+
+Bug 22 explains why one spike stopped a session. It does not explain the slope:
+RSS climbed **+0.54 GB per epoch**, 3.5 GB → 28 GB over one run, and Kaggle
+kills that kernel with no Python exception to catch.
+
+`HardwareMonitor.dump()` snapshotted both sample buffers, wrote them out in
+full, and **never cleared them**. At 10 Hz per GPU a four-hour run accumulates
+~300,000 dicts, and every dump rebuilt a DataFrame over all of them. Same for
+`step_traces`, which was rewritten whole with `open(..., "w")`.
+
+**Fix (tyrelib v7):** each dump writes only the rows added since the last one
+and drops them. Concatenated gzip members are a valid gzip stream, so the file
+still reads back as one table with `pd.read_csv` while the process holds at
+most one dump-interval of samples. Telemetry now flushes **every** epoch rather
+than every ten — cheap once it is incremental, and a hard kill loses one epoch
+of trace instead of nine. `step_traces` is capped per epoch, appended, and the
+finaliser appends instead of truncating what the per-epoch flush already wrote.
+
+Verified: 6 × 500 rows in, buffer empty after each dump, 3,000 rows read back
+with columns intact and no interior header rows.
+
+> Two bugs, one symptom. The guard turned a slow leak into an abrupt stop, and
+> because the guard fired on a peak it also fired when there was no leak at all.
+> Fixing only the guard would have hidden the leak until it hit 88% for real.
+
+### ⚠ Bug 24 — two workers running, two parked, and the fix for that was the cause
+
+Reported as *"out of 4, 2 are running and 2 stopped"*.
+
+NB06 called `run_all(..., steal_stale=False)`. That put every run owned by
+another account into `busy` **permanently** — not "busy until they finish",
+just unreachable. So a worker that got through its 27-run static shard printed
+
+```
+  reserved for other static owners: 68
+  -> will run 0 run(s) this session
+```
+
+and the notebook ended normally, while the other accounts still had twenty runs
+each. The shard is LPT-balanced on *estimated* cost and skewed further by pauses
+and resumes, so shards always finish at different times. **Some worker always
+runs dry first.** It was not a crash; it was a scheduler with no idea what to
+do next.
+
+And `steal_stale=False` was itself a fix — for Bug 13, where aggressive stealing
+trained `a-vgg16bn-base-f1-s1` twice on two accounts. The two failure modes sit
+either side of the same question: *may I take work that is not mine?* "Always"
+duplicates; "never" idles.
+
+**The answer is "yes, once I have nothing of my own, and only after checking
+properly."** `claim_or_yield` is a two-phase claim, which is the standard
+protocol when there is nowhere to put a lock:
+
+1. Pull the registry, confirm nobody holds it, write the claim, and **flush it
+   immediately** so every other worker can see it.
+2. Wait out the race window (25 s + jitter), pull again, and look at every claim
+   written for that run in the window. If more than one account claimed it, the
+   **lowest account name wins**.
+
+Both sides compute step 2 from the same bytes and get the same answer, so
+exactly one proceeds. Cost: one commit and ~30 s, paid only by a worker that
+would otherwise be parked.
+
+Three further guards:
+
+* **Own work always first.** `plan.order = mine + pool`, and the pool is only
+  reached past `plan.n_mine`. At a simultaneous cold start every worker has its
+  own shard to do, so nobody touches the pool and Bug 13 cannot recur.
+* **Each worker enters the pool at a different offset** (`worker_id % len`), so
+  two workers going idle together do not even reach for the same run before the
+  protocol has to arbitrate.
+* **No takeover inside the last 90 minutes** of a session — better to stop
+  cleanly than half-train a model.
+
+Verified with four threads racing for six runs on a shared registry: **exactly
+one winner each**, with both phases observed — two blocked at step 1, and one
+account that won step 1 correctly yielding at step 2.
+
+> A scheduler needs a rule for the idle case, not just the contended one. Both
+> bugs here came from answering only the half of the question that had recently
+> hurt.
 
 ### The checkpoint contract
 
@@ -694,6 +903,11 @@ if ok and not missing: shutil.rmtree(run_dir)
 | light | config, status, metrics CSVs | every 30 min |
 | heavy | checkpoints | every 30 min |
 | bulk | raw telemetry, saliency `.npz`, parquet | every N epochs + at end |
+
+Normal static-owner claim events are light files and wait for the same batch.
+Run completion, a clean pause, an important notebook cell, Stop/SIGTERM, and an
+explicitly stolen claim are major boundaries and flush immediately. An ordinary
+claim must never consume a standalone commit.
 
 Saliency arrays reach several MB per run; re-uploading them every half hour churns LFS for data nobody reads until the run finishes.
 

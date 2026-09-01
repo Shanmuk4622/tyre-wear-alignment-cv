@@ -339,20 +339,23 @@ All three public selection rows have `xai_status=ok`, `eligible=True`, and
 public selection and the raw 1,208-row evidence table and verifies both before
 constructing any training configuration.
 
-### Stage-B execution state — 2026-08-31
+### Stage-B execution state — 2026-09-01
 
-Public HF contains four completed ROI runs: all three DenseNet-121 seeds and
-ResNet-50 seed 3. Their epoch files and both checkpoints are present. It also
-contains failed epoch-0 run records for RegNet seeds 1 and 2; neither has a
-checkpoint, so no trained epoch is being discarded. Earlier telemetry
-isolated a host-RAM leak in the former ROI input path (up to 31.1 GB system
-RAM) while GPU peaks remained about 4–5 GB per T4. Tyrelib v4 repairs only the
-loader/memory lifecycle and preserves identical crop coordinates; the three
-architectures, batch sizes, resolutions, optimiser settings and 60-epoch
-budget remain the registered experiment. The two RegNet failures then isolated
-a T4/cuDNN `channels_last` fault at only ~1.1 GB/card. RegNet now uses a
-contiguous NCHW runtime with cuDNN autotuning off; no model or experimental
-factor changed.
+Public HF now contains **14 completed and 56 checkpointed incomplete Stage-B
+runs** (53 paused, 3 running). Every one of the 70 status-bearing runs has
+`ckpt_last.pt` and `ckpt_best.pt`;
+no recorded epoch is at risk. The larger sample corrected the earlier
+ROI-only memory diagnosis: all 53 pauses report `host_ram_guard`, including
+standard full-frame arms, while T4 memory remains well below capacity.
+
+Tyrelib v6 preserves the three architectures, batch sizes, resolutions,
+optimiser settings and 60-epoch budget. RegNet retains its verified contiguous
+NCHW/cuDNN-safe runtime. v5 additionally serialises the full state once per
+epoch, returns freed checkpoint/upload arenas to Linux, disables automatic work
+stealing in NB06, batches ordinary claim events into the 30-minute HF cycle,
+and ends the worker after any clean safety pause. It also migrates the two
+mixed v4/v5 epoch histories by revision-aware column insertion and atomic
+rewrite. These are execution repairs, not experimental factors.
 
 ---
 

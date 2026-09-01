@@ -109,37 +109,59 @@ the faithfulness table has 35 rows.
 
 ## What to run now
 
-1. Upload the **2026-08-31 tyrelib v4 repaired `NB06_StageB_OFAT.ipynb`** to all four
-   Kaggle accounts, attach the prepared dataset, choose **T4 ×2**, enable
-   Internet, expose `HF_TOKEN`, and Run All. Leave `NUM_WORKERS=4`; change only
-   `ACCOUNT` to `acct1`, `acct2`, `acct3`, and `acct4`. `WORKER_ID` is derived
-   automatically.
+1. **Stop every older NB06 session — v4 through v7.** Upload the
+   **tyrelib v8 `NB06_StageB_OFAT.ipynb`** to all four Kaggle accounts, attach
+   the prepared dataset, choose **T4 ×2**, enable Internet, expose `HF_TOKEN`,
+   and Run All. Leave `NUM_WORKERS=4`; change only `ACCOUNT` to `acct1`,
+   `acct2`, `acct3`, `acct4`. `WORKER_ID` is derived automatically.
+   **Cell 1 must print `tyrelib v8 loaded`.**
 2. Cell 2 must load public revision `2026-08-30-r3` and print exactly these
    locked architectures: **RegNetY-16GF, DenseNet-121, ResNet-50**. It also
    reconstructs their raw evidence coverage from
    `tables/xai_evidence_all.csv` before it allows training.
-3. Public HF currently has **4/108 complete**: DenseNet-121 ROI seeds 1–3 and
-   ResNet-50 ROI seed 3. It also has failed epoch-0 records for RegNet seeds 1
-   and 2; both have no checkpoint, so their assigned owners retry them cleanly.
-   Completed runs will be skipped. NB06 runs the remaining ROI jobs
+3. Public HF currently has **14/108 complete and 56 checkpointed incomplete**
+   (53 paused, 3 running). Every one of the 70 status-bearing Stage-B runs has
+   both checkpoints, so nothing
+   recorded needs to be retrained. Completed runs will be skipped. NB06 runs the remaining ROI jobs
    first, then the other 11 OFAT factors, three seeds each, on fold 1 only. It
-   pushes every epoch, on each run's
-   completion, every 30 minutes, and immediately on Stop/exception; rerunning
+   saves a rolling checkpoint every epoch, batches HF pushes every 30 minutes,
+   and flushes on run completion, a clean pause, important cells, or
+   Stop/exception; rerunning
    skips complete jobs and resumes interrupted checkpoints from HF.
-4. The previous ROI loader retained roughly 0.29 GB of host RAM per epoch and
-   eventually reached 31 GB, although each T4 used only about 5 GB. Revision
-   `2026-08-31-r1` uses identical crop coordinates without dense coordinate
-   arrays, closes images immediately, disables ROI pinning/workers, releases
-   each model, and checkpoints/pushes before host RAM reaches 88%. No model,
-   batch size, resolution, optimiser, or epoch-budget change was made.
-5. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
+4. v6 repairs the `ParserError: Expected 177 fields ... saw 178` found while
+   resuming two 60-epoch DenseNet histories. It recognises the v5 revision
+   field, inserts a blank for v4 rows, verifies every width, and atomically
+   rewrites by column name. The exact public 60-row failure file passes the
+   migration with epochs 1–60 and all metrics preserved.
+5. **v7 fixes the self-stopping workers (Bugs 22–23).** All 53 pauses were
+   host-RAM guards — and most were false. The guard compared the epoch's
+   transient **peak** against 88%, and any pause ended the whole cell, so a
+   two-second checkpoint spike on the first epoch of a session stopped a worker
+   with eighteen runs left. Measured on `b-densenet121-res512-f1-s3`: epoch 1
+   peaked at 95.2% and epoch 10 sat at 17.8%; the mean after epoch 5 is 42.9%.
+   Underneath it there was a real leak — the telemetry buffers were never
+   cleared and grew **0.54 GB/epoch**, 3.5 GB to 28 GB across a run.
+   v7 measures live RAM *after* releasing freed arenas, uses 88/80 hysteresis,
+   continues to the next run when a pause clears, and writes telemetry
+   incrementally. No model, batch size, resolution, optimiser or epoch budget
+   changed. See `docs/05 §7`.
+6. **v8 fixes the idle workers (Bug 24).** `steal_stale=False` made other
+   accounts' runs permanently unreachable, so a worker that finished its 27-run
+   shard planned zero runs and exited while two accounts still had twenty each
+   — the "2 running, 2 stopped" report. Own work still runs first, but an
+   exhausted worker now takes from the shared pool through a two-phase claim
+   (write, flush, settle, re-read, lowest account wins a tie). Four accounts
+   racing for six runs produced exactly one winner each. No takeover starts in
+   the last 90 minutes of a session.
+7. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
    `channels_last` fault at only ~1.1 GB/card. RegNet remains unchanged but now
    runs contiguous NCHW with cuDNN autotuning off; other architectures keep
-   `channels_last`. Fresh absent runs remain with their static owners, so
-   account 1 will no longer duplicate account 2's RegNet job. Before claiming
+   `channels_last`. FRESH runs stay with their static owner, so account 1 will
+   no longer duplicate account 2's RegNet job; an exhausted worker takes leftover
+   work only through the v8 two-phase claim (step 6). Before claiming
    work, NB06 proves the exact RegNet batch/resolution in a disposable dual-T4
    child process and publishes the log; look for `CUDA_SMOKE_PASS`.
-6. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
+8. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
    artifacts before doing work, pushes at major milestones and on the
    30-minute cadence, and can continue in a fresh Kaggle session. NB09 also
    rebuilds and publishes a missing predictions parquet from its public best
@@ -244,8 +266,10 @@ comparison fair and makes the time estimates honest.
 **Yes — each fresh run has one deterministic owner.**
 
 Each account starts with its own shard (LPT-balanced on the static cost table).
-An absent run stays reserved for that owner. Another account can take it over
-only when HF contains a real claim/run event older than 45 minutes. Before
+An absent run stays reserved for that owner. Automatic work stealing is
+disabled in NB06 v6. A deliberate recovery launch may opt in and can take over
+another account's run only when HF contains a real claim/run event older than
+45 minutes. Before
 starting any run the notebook re-reads its state from HuggingFace, so a run
 another account finished five minutes ago is skipped rather than repeated.
 
@@ -267,8 +291,82 @@ the 30-minute cycle. Both workers were correct on what they could see. Stolen
 runs now re-pull the registry and flush the claim immediately. NB06 revealed a
 second race: all accounts interpreted a fresh absent run as a dead worker and
 could converge before the first claim became visible. Absent work is now
-reserved for its static owner; only genuinely stale events can be stolen.
+reserved for its static owner; stealing is opt-in and only genuinely stale
+events qualify. Ordinary claims ride the 30-minute HF batch; only a genuinely
+stolen claim needs an immediate coordination commit.
 `aggregate_remote()` also warns if any `run_id` has two owners.
+
+---
+
+## A worker that finishes its shard now helps the others
+
+Before v8, `steal_stale=False` made other accounts' runs permanently
+unreachable, so a worker that got through its 27-run shard printed
+`will run 0 run(s) this session` and ended — while two other accounts still had
+twenty runs each. That is the "2 running, 2 stopped" report.
+
+The plan now shows the shared pool:
+
+```
+  starting from scratch  : 19
+  available if I go idle : 68   (claimed one at a time, only after my own 19)
+```
+
+Nothing is taken from anyone. Own work always runs first; the pool is only
+reached once `mine` is empty. Then:
+
+```
+[IDLE] my own 19 run(s) are done or running elsewhere. Taking work from the
+       shared pool so this GPU is not parked while other accounts still have
+       runs left.
+[IDLE] b-resnet50-mixup-f1-s2: claimed after settling
+```
+
+or, if another account reached for the same run in the same 30-second window:
+
+```
+[SKIP] b-resnet50-mixup-f1-s2: yielded to acct2 (claimed the same run)
+```
+
+Both are correct. The claim is two-phase — write it, flush it so others can see
+it, wait out the race, re-read, and the lowest account name wins a tie. Four
+accounts racing for the same six runs produce exactly one winner each.
+
+No takeover starts inside the last 90 minutes of a session: better to stop
+cleanly than half-train a model. `docs/05 §7`, Bug 24.
+
+---
+
+## If a worker stops on its own
+
+Two messages mean two different things:
+
+```
+[RAM] epoch 12 peaked at 91.4% but sits at 43.1% now -- transient, continuing
+```
+
+Normal. The spike was the checkpoint being serialised and handed to the
+uploader; it is gone by the next epoch. Nothing stopped.
+
+```
+[RAM] host RAM 89.2% after epoch 12; pausing before the kernel is killed.
+[RUN] host RAM back to 61.0% (under 80%) once this model was released
+      -- continuing with the next run
+```
+
+Also fine. The pressure was that model; the worker carries on.
+
+```
+[RUN] host RAM still 88.4% after releasing this model. Stopping so the
+      kernel is not killed.
+```
+
+Real. Start a fresh Kaggle session — the checkpoint is on HuggingFace and the
+run resumes at the next epoch.
+
+> Before v7 the guard compared the epoch's **peak** RAM against 88% and any
+> pause stopped the whole worker, so a two-second spike on the first epoch of a
+> session ended it with eighteen runs untouched. `docs/05 §7`, Bugs 22–23.
 
 ---
 
@@ -298,7 +396,10 @@ silently starting over.
 | Background cycle, every 30 min | no |
 | Every epoch — metrics + checkpoint enqueued | rides the cycle |
 | Every 10 epochs — telemetry, per-sample predictions | rides the cycle |
+| Ordinary static-owner claim | rides the cycle |
+| Explicitly stolen claim | **yes** |
 | **A model finishes** | **yes** |
+| **A model pauses cleanly** | **yes, then this worker stops** |
 | **End of an important cell** (`sess.push_now()`) | **yes** |
 | **Stop / SIGTERM / exception** | **yes** |
 | `sess.finish()` | yes, then verifies by re-listing the repo |
