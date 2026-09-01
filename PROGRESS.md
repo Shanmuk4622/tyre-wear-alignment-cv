@@ -58,7 +58,7 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | Model zoo reference | ✅ Done | `docs/04` — configs, CAM layers, cost table |
 | Infrastructure spec | ✅ Done | `docs/05` — multi-account, sharding, **twenty-one bugs** |
 | Evaluation protocol | ✅ Done | `docs/06` |
-| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v8** — idle workers take over via a two-phase claim (Bug 24); RAM guard measures live not peak; telemetry no longer leaks (Bugs 22–23). 95 selftest checks |
+| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v9** — RAM guard now reads the cgroup, not the host (Bug 25); loader workers dropped where `dl 0%` proved them useless (Bug 26); idle takeover (24); telemetry leak (22–23). **104 selftest checks** |
 | S1 baselines | 🔄 NB01 ready | 2 of 5 done (colour 0.491, structure 0.483); NB01 adds HOG+SVM, majority, random-init |
 | S2 architecture sweep | ⚠ **153 valid + 9 quarantined** | All 162 executions are public, but every `convnextv2_s` status reports 11,177,538 parameters and its sampled checkpoint has a ResNet-18 tensor signature. Those nine mislabeled runs are excluded. The other 153 are scientifically usable; NB05 remains 27/27 valid. `docs/18` |
 | Annotations `annotation_v2` | ✅ **NBT1 verified PASS** | 418 hand-drawn + 4,180 self-healed propagated masks; actual-used fingerprint `085acfb8fb83c531` |
@@ -193,6 +193,62 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 ---
 
 ## ⬤ Session log
+
+### 2026-09-01 (c) — the RAM guard was right; it was measuring the wrong machine
+
+`b-densenet121-wd_low-f1-s3` paused at epoch 36 on a legitimate-looking 89.6%.
+Two things were wrong underneath it, and both had been sitting in the logs.
+
+#### Bug 25 — `psutil.virtual_memory()` reports the HOST, not our cgroup
+
+Inside a container `/proc/meminfo` describes the machine, not the limit the
+kernel enforces on us. Every pause decision since the guard was written was
+made on a number that does not describe our budget: on a busy host it can sit
+near 90% regardless of what the notebook does, and it would equally miss a
+container genuinely about to be killed.
+
+`container_memory()` now reads `/sys/fs/cgroup/memory.current` + `memory.max`
+(v2) or the v1 equivalents, and falls back to psutil only if neither exists.
+The source is printed. A pause now also says **where** the memory is —
+"this process 4.1 GB, 2 child proc 21.8 GB, rest 2.2 GB" — because a bare
+percentage is not something anyone can act on.
+
+#### Bug 26 — two loader workers that did nothing, and cost a cgroup's worth
+
+That run logged **`dl 0%` on every one of its 49 epochs**. Forty-nine
+consecutive zeros, at 4.2 min/epoch: the GPU is the bottleneck by a mile. And
+the loader was still starting `workers=2 pin_memory=True` — two forked
+processes counted against the same cgroup, plus PyTorch's pinned-host
+allocator, which caches and never returns.
+
+The ROI arms had already been moved to the synchronous loader when *their* RAM
+climbed 3 → 20 GB. The full-frame arms were left alone because the diagnosis
+was written up as "an ROI problem". It was a loader problem; ROI just hit it
+first.
+
+`dataloading_is_free(cfg)` now makes that an explicit rule: at ≥320 px, no
+workers and no pinned memory. Smaller configs keep them.
+
+> Both bugs were visible in data already being collected. `dl 0%` was on every
+> epoch line for days, and nobody had checked where the memory percentage came
+> from. Recording a metric is not the same as reading it.
+
+#### Delivered
+
+- `tyrelib` **v9** — `container_memory`, `memory_report`,
+  `dataloading_is_free`; `RAM_GUARD_REVISION=2026-09-01-r2`.
+  **104 selftest checks**, 9 new; the only two failures are pre-existing
+  torch-only tests that cannot run offline.
+- All 12 notebooks regenerated on v9. `docs/05 §7` Bugs 25–26.
+
+#### What to expect
+
+`[LOADER] workers=0 pin_memory=False` on the 384/512 px arms, and epoch times
+unchanged (they were never waiting for data). The RAM line now names its
+source, e.g. `[cgroup:v2]`. If a pause still happens it will state which
+process is holding the memory — which is the number we have been missing.
+
+---
 
 ### 2026-09-01 (b) — "2 running, 2 stopped": the fix for duplicate training was the cause
 

@@ -109,12 +109,12 @@ the faithfulness table has 35 rows.
 
 ## What to run now
 
-1. **Stop every older NB06 session — v4 through v7.** Upload the
-   **tyrelib v8 `NB06_StageB_OFAT.ipynb`** to all four Kaggle accounts, attach
+1. **Stop every older NB06 session — v4 through v8.** Upload the
+   **tyrelib v9 `NB06_StageB_OFAT.ipynb`** to all four Kaggle accounts, attach
    the prepared dataset, choose **T4 ×2**, enable Internet, expose `HF_TOKEN`,
    and Run All. Leave `NUM_WORKERS=4`; change only `ACCOUNT` to `acct1`,
    `acct2`, `acct3`, `acct4`. `WORKER_ID` is derived automatically.
-   **Cell 1 must print `tyrelib v8 loaded`.**
+   **Cell 1 must print `tyrelib v9 loaded`.**
 2. Cell 2 must load public revision `2026-08-30-r3` and print exactly these
    locked architectures: **RegNetY-16GF, DenseNet-121, ResNet-50**. It also
    reconstructs their raw evidence coverage from
@@ -153,7 +153,16 @@ the faithfulness table has 35 rows.
    (write, flush, settle, re-read, lowest account wins a tie). Four accounts
    racing for six runs produced exactly one winner each. No takeover starts in
    the last 90 minutes of a session.
-7. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
+7. **v9 fixes the RAM pauses at the root (Bugs 25–26).** The guard was reading
+   `/proc/meminfo`, which inside a container reports the **host's** memory, not
+   the cgroup limit the kernel enforces — so every pause decision used a number
+   that did not describe our budget. It now reads `/sys/fs/cgroup/memory.*` and
+   prints its source and which process holds the memory. And the run that
+   paused had logged **`dl 0%` on all 49 of its epochs** while still starting
+   two pinned loader workers, whose RSS counts against the same cgroup. At
+   ≥320 px the loader is now synchronous: `[LOADER] workers=0 pin_memory=False`,
+   with epoch times unchanged because nothing was ever waiting for data.
+8. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
    `channels_last` fault at only ~1.1 GB/card. RegNet remains unchanged but now
    runs contiguous NCHW with cuDNN autotuning off; other architectures keep
    `channels_last`. FRESH runs stay with their static owner, so account 1 will
@@ -161,7 +170,7 @@ the faithfulness table has 35 rows.
    work only through the v8 two-phase claim (step 6). Before claiming
    work, NB06 proves the exact RegNet batch/resolution in a disposable dual-T4
    child process and publishes the log; look for `CUDA_SMOKE_PASS`.
-8. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
+9. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
    artifacts before doing work, pushes at major milestones and on the
    30-minute cadence, and can continue in a fresh Kaggle session. NB09 also
    rebuilds and publishes a missing predictions parquet from its public best

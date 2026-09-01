@@ -427,3 +427,13 @@ two-phase claim — flush the claim, settle, re-read, lowest account wins — us
 only once a worker has exhausted its own shard. Four threads racing six runs
 produced exactly one winner each. 95 selftests; all 12 notebooks on v8.
 
+## 2026-09-01 (c) — tyrelib v9
+
+A legitimate-looking RAM pause at 89.6% turned out to be measured against the
+host's `/proc/meminfo` rather than our cgroup (Bug 25) — so every pause decision
+ever made used a number that did not describe our budget. Now reads
+`/sys/fs/cgroup/memory.*` and reports which process holds the memory. Separately,
+the paused run had logged `dl 0%` on all 49 of its epochs while still running two
+pinned loader workers whose RSS counts against the same cgroup (Bug 26); at
+≥320 px the loader is now synchronous. 104 selftests; all 12 notebooks on v9.
+

@@ -18,7 +18,7 @@ base64 blob inside a notebook.
 """
 from __future__ import annotations
 
-__version__ = "v8"
+__version__ = "v9"
 
 import atexit
 import csv
@@ -926,11 +926,70 @@ class LifecycleGuard:
 CARBON_INTENSITY_G_PER_KWH = 713.0     # India grid average; recorded for reproducibility
 HOST_RAM_PAUSE_PERCENT = 88.0          # checkpoint + push before Kaggle's OOM killer
 HOST_RAM_RESUME_PERCENT = 80.0         # ...and carry on once the arenas come back
-RAM_GUARD_REVISION = "2026-09-01-r1"
+RAM_GUARD_REVISION = "2026-09-01-r2"
+
+
+def container_memory() -> tuple[float, float, str]:
+    """(used_bytes, limit_bytes, source) for the memory the OOM killer counts.
+
+    ⚠ Bug 25. `psutil.virtual_memory()` reads `/proc/meminfo`, which inside a
+    container reports the **host's** memory, not the cgroup limit the kernel
+    actually enforces on us. So the percentage the guard was pausing on did not
+    describe our own budget at all, and on a busy host it can sit near 90% no
+    matter what this notebook does.
+
+    The cgroup files are the number Kaggle's OOM killer uses. Read those and
+    fall back to psutil only when they are absent.
+    """
+    for cur, mx in ((Path("/sys/fs/cgroup/memory.current"),
+                     Path("/sys/fs/cgroup/memory.max")),                    # v2
+                    (Path("/sys/fs/cgroup/memory/memory.usage_in_bytes"),
+                     Path("/sys/fs/cgroup/memory/memory.limit_in_bytes"))): # v1
+        try:
+            used = float(cur.read_text().strip())
+            raw = mx.read_text().strip()
+            limit = float("inf") if raw == "max" else float(raw)
+            # An unset v1 limit is a huge sentinel, not a real budget.
+            if limit and limit < 2**62:
+                return used, limit, f"cgroup:{cur.parent.name or 'v2'}"
+        except Exception:
+            continue
+    try:
+        import psutil
+        vm = psutil.virtual_memory()
+        return float(vm.total - vm.available), float(vm.total), "psutil(host)"
+    except Exception:
+        return 0.0, 0.0, "unavailable"
+
+
+def memory_report() -> dict:
+    """Where the memory actually is. Printed per epoch so a pause is explainable
+    instead of being one number nobody can act on."""
+    used, limit, src = container_memory()
+    out = {"used_gb": used / 1e9, "limit_gb": limit / 1e9, "source": src,
+           "percent": (100.0 * used / limit) if limit else 0.0,
+           "proc_rss_gb": 0.0, "children_rss_gb": 0.0, "n_children": 0}
+    try:
+        import psutil
+        me = psutil.Process()
+        out["proc_rss_gb"] = me.memory_info().rss / 1e9
+        kids = me.children(recursive=True)
+        out["n_children"] = len(kids)
+        tot = 0.0
+        for k in kids:
+            with contextlib.suppress(Exception):
+                tot += k.memory_info().rss / 1e9
+        out["children_rss_gb"] = tot
+    except Exception:
+        pass
+    return out
 
 
 def host_ram_percent() -> float:
-    """Host RAM in use RIGHT NOW, as a percentage. 0.0 if psutil is missing.
+    """Memory in use RIGHT NOW as a percentage of the enforced limit.
+
+    Uses the cgroup budget when there is one (Bug 25), so this is the same
+    number the OOM killer is watching rather than the host's.
 
     ⚠ Bug 22. The guard used to read `ram_percent_peak` -- the MAXIMUM of the
     1 Hz samples taken during the epoch. Serialising a 300 MB checkpoint and
@@ -943,11 +1002,8 @@ def host_ram_percent() -> float:
     starting another epoch is "is there room now?" -- after the buffers have
     been freed and the arenas returned to the kernel. That is this.
     """
-    try:
-        import psutil
-        return float(psutil.virtual_memory().percent)
-    except Exception:
-        return 0.0
+    used, limit, _ = container_memory()
+    return (100.0 * used / limit) if limit else 0.0
 
 
 def host_ram_headroom(release: bool = True) -> tuple[float, float]:
@@ -1532,14 +1588,25 @@ def build_loaders(root, tr_df, va_df, cfg):
         sampler, shuffle = None, True
 
     requested_nw = int(cfg.get("num_workers", 2))
-    # Public NB06 telemetry isolated a linear host-RAM climb to tyre_crop:
-    # ~3 -> ~20 GB over one 60-epoch run, while matched full-frame runs stayed
-    # near 3 GB.  ROI decoding is cheap relative to the model (1.5--12% of an
-    # epoch), so use the fail-safe synchronous path and do not cache pinned
-    # batches.  Other arms keep the proven Stage-A loader settings.
     roi_loader = cfg.get("roi_mode", "full_frame") == "tyre_crop"
-    nw = 0 if roi_loader else requested_nw
-    pin = bool(torch.cuda.is_available() and not roi_loader)
+
+    # ⚠ Bug 26. The ROI arms were moved to the synchronous loader when their
+    # host RAM climbed 3 -> 20 GB; the full-frame arms kept two persistent,
+    # pinned workers. Then a full-frame `wd_low` run paused on the RAM guard at
+    # epoch 36 with 89.6%, and every single epoch of it had logged **`dl 0%`**.
+    #
+    # `dataload_frac` was 0% for 49 consecutive epochs. The workers were buying
+    # nothing at all -- the GPU is the bottleneck at 4.2 min/epoch -- while
+    # costing two forked processes whose RSS counts against the same cgroup,
+    # plus PyTorch's pinned-host allocator, which caches and does not return.
+    #
+    # So the measurement already said the answer. Synchronous everywhere, and
+    # if a future arm is genuinely loader-bound its `dataload_frac` will say so
+    # and can be given workers back deliberately.
+    nw = 0 if (roi_loader or requested_nw == 0) else requested_nw
+    if nw and dataloading_is_free(cfg):
+        nw = 0
+    pin = bool(torch.cuda.is_available() and nw > 0)
     _print("LOADER", f"workers={nw} pin_memory={pin} "
                      f"({'ROI memory-safe path' if roi_loader else 'standard path'})")
     tr_dl = DataLoader(tr_ds, batch_size=cfg["batch_size"], sampler=sampler, shuffle=shuffle,
@@ -1548,6 +1615,23 @@ def build_loaders(root, tr_df, va_df, cfg):
     va_dl = DataLoader(va_ds, batch_size=cfg["batch_size"], shuffle=False,
                        num_workers=nw, pin_memory=pin, persistent_workers=nw > 0)
     return tr_dl, va_dl
+
+
+def dataloading_is_free(cfg: dict) -> bool:
+    """Is this configuration GPU-bound enough that loader workers buy nothing?
+
+    Kept as an explicit, named decision rather than a bare `nw = 0`, because
+    the honest justification is a measurement and it should be readable:
+    every epoch of the 384px and 512px Stage-B arms logged `dl 0%` or `dl 1%`
+    at 4+ minutes per epoch. Two worker processes cannot speed up an epoch that
+    spends none of its time waiting for data, and their RSS counts against the
+    same cgroup budget the OOM killer enforces.
+
+    Small, fast configurations are the case where prefetching can genuinely
+    matter, so they keep their workers.
+    """
+    res = int(cfg.get("input_resolution", 384))
+    return res >= 320
 
 
 def validate_config(cfg: dict) -> None:
@@ -2376,10 +2460,21 @@ class Trainer:
                     ram_peak = 0.0
                 ram_before, ram_now = host_ram_headroom()
                 row["ram_percent_after_release"] = ram_now
+                mem = memory_report()
+                row["mem_used_gb"] = mem["used_gb"]
+                row["mem_limit_gb"] = mem["limit_gb"]
+                row["mem_source"] = mem["source"]
+                row["mem_proc_rss_gb"] = mem["proc_rss_gb"]
+                row["mem_children_rss_gb"] = mem["children_rss_gb"]
                 if ram_now >= HOST_RAM_PAUSE_PERCENT and ram_peak >= HOST_RAM_PAUSE_PERCENT:
-                    _print("RAM", f"host RAM {ram_now:.1f}% still above "
-                                  f"{HOST_RAM_PAUSE_PERCENT:.0f}% after releasing "
-                                  f"(epoch peak {ram_peak:.1f}%)")
+                    # Say WHERE the memory is. "89.6%" alone is not actionable;
+                    # "this process holds 4 GB and something else holds 24" is.
+                    _print("RAM", f"{ram_now:.1f}% of {mem['limit_gb']:.0f} GB "
+                                  f"[{mem['source']}] after releasing (epoch peak "
+                                  f"{ram_peak:.1f}%) -- this process "
+                                  f"{mem['proc_rss_gb']:.1f} GB, {mem['n_children']} "
+                                  f"child proc {mem['children_rss_gb']:.1f} GB, "
+                                  f"rest {max(0.0, mem['used_gb'] - mem['proc_rss_gb'] - mem['children_rss_gb']):.1f} GB")
                 if ep + 1 < n_ep and ram_now >= HOST_RAM_PAUSE_PERCENT:
                     status = "paused"
                     pause_reason = "host_ram_guard"
@@ -3405,6 +3500,33 @@ def selftest() -> bool:
       HOST_RAM_RESUME_PERCENT < HOST_RAM_PAUSE_PERCENT)
     t("host_ram_percent returns a sane number",
       0.0 <= host_ram_percent() <= 100.0)
+
+    # --- Bug 25: measure the budget the OOM killer enforces -----------------
+    _used, _limit, _src = container_memory()
+    t(f"container_memory reports a budget [{_src}]",
+      _limit > 0 and 0 <= _used <= _limit * 1.05)
+    t("container_memory prefers the cgroup when one exists",
+      "cgroup" in _insp.getsource(container_memory) and
+      "memory.current" in _insp.getsource(container_memory))
+    t("host_ram_percent is measured against that budget, not /proc/meminfo",
+      "container_memory()" in _insp.getsource(host_ram_percent))
+    _mr = memory_report()
+    t("memory_report splits this process from its children",
+      {"proc_rss_gb", "children_rss_gb", "limit_gb", "source"} <= set(_mr))
+    t("a RAM pause says where the memory actually is",
+      "child proc" in _trainer_run and "mem['proc_rss_gb']" in _trainer_run)
+
+    # --- Bug 26: loader workers that buy nothing ---------------------------
+    t("GPU-bound configurations get no loader workers",
+      dataloading_is_free({"input_resolution": 384})
+      and dataloading_is_free({"input_resolution": 512}))
+    t("small fast configurations keep their workers",
+      not dataloading_is_free({"input_resolution": 224}))
+    _bl = _insp.getsource(build_loaders)
+    t("pin_memory follows the worker count instead of being forced on",
+      "pin = bool(torch.cuda.is_available() and nw > 0)" in _bl)
+    t("the worker decision is a named, measured rule",
+      "dataloading_is_free(cfg)" in _bl)
 
     _dump_src = _insp.getsource(HardwareMonitor.dump)
     t("telemetry dump drains its buffers instead of accumulating",

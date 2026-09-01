@@ -772,6 +772,63 @@ account that won step 1 correctly yielding at step 2.
 > bugs here came from answering only the half of the question that had recently
 > hurt.
 
+### ⚠ Bug 25 — the guard was watching the wrong machine's memory
+
+```
+[RAM] host RAM 89.6% still above 88% after releasing (epoch peak 89.9%)
+```
+
+`psutil.virtual_memory()` reads `/proc/meminfo`. Inside a container that
+reports the **host's** memory, not the cgroup limit the kernel enforces on us.
+So the percentage every pause decision was made on did not describe our budget
+at all — on a busy host it can sit near 90% no matter what the notebook does,
+and it would equally miss a container that is genuinely about to be killed.
+
+**Fix:** `container_memory()` reads `/sys/fs/cgroup/memory.current` and
+`memory.max` (v2), or `memory.usage_in_bytes` / `memory.limit_in_bytes` (v1),
+and only falls back to psutil when neither exists. That is the number Kaggle's
+OOM killer actually uses. The source is printed, so you can see which one you
+got.
+
+A pause now says **where** the memory is, because "89.6%" is not something
+anyone can act on:
+
+```
+[RAM] 89.6% of 32 GB [cgroup:v2] after releasing (epoch peak 89.9%)
+      -- this process 4.1 GB, 2 child proc 21.8 GB, rest 2.2 GB
+```
+
+### ⚠ Bug 26 — two loader workers that did nothing, at 21 GB
+
+The `wd_low` run that paused at epoch 36 had logged **`dl 0%` on every one of
+its 49 epochs**. `dataload_frac` was zero, forty-nine times in a row, at 4.2
+minutes per epoch. The GPU is the bottleneck by a wide margin.
+
+And yet:
+
+```
+[LOADER] workers=2 pin_memory=True (standard path)
+```
+
+Two forked worker processes, whose RSS counts against the same cgroup, plus
+PyTorch's pinned-host allocator, which caches its buffers and does not return
+them. Buying nothing — the measurement had been saying so for hours.
+
+The ROI arms were moved to the synchronous loader when *their* RAM climbed
+3 → 20 GB. The full-frame arms were left on two pinned workers because the
+diagnosis was framed as "an ROI problem". It was a loader problem; ROI just
+reached it first.
+
+**Fix:** `dataloading_is_free(cfg)` — a named, measured rule rather than a bare
+`nw = 0`. At ≥320 px the epoch is GPU-bound and gets no workers and no pinned
+memory. Smaller, faster configurations keep them, because that is where
+prefetching can genuinely matter. If a future arm is loader-bound its
+`dataload_frac` will say so and it can be given workers back deliberately.
+
+> Both of these were visible in data we had already been collecting for days.
+> `dl 0%` was printed on every epoch line, and the memory percentage came from
+> a source nobody had checked. Recording a metric is not the same as reading it.
+
 ### The checkpoint contract
 
 Saving weights is not enough:
