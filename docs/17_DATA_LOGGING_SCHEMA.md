@@ -165,6 +165,7 @@ runtime_cuda_memory_format · runtime_cudnn_benchmark
 runtime_cuda_safety_revision · runtime_scheduler_safety_revision
 runtime_hf_commit_policy_revision
 runtime_epoch_history_schema_revision
+runtime_process_isolation_revision · runtime_isolated_child
 ```
 
 `proc_rss_gb_peak` is the number that tells you whether the run would fit on a smaller machine, and the first thing you need when a session dies with no error.
@@ -188,6 +189,12 @@ column-name writer. Two public histories had 178-value v5 rows beneath a
 177-column v4 header; the revision-aware reader inserts the known missing
 heading, pads only the older rows, validates every width, and atomically rewrites
 the table. Unknown width changes raise while preserving the source file.
+
+`runtime_process_isolation_revision=2026-09-03-r1` and
+`runtime_isolated_child=True` identify v11 NB06 epochs trained inside a
+disposable per-model process. Public telemetry measured long-lived-kernel RSS
+slopes of 0.17–0.30 GB/epoch; process exit is now the hard reclamation boundary,
+and a RAM-paused child resumes the same HF checkpoint automatically.
 
 The same fields separated a later RegNet CUDA fault from an OOM: both failed
 epoch-0 attempts used only ~1.1 GB/card. RegNet now records

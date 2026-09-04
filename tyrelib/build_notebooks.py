@@ -138,10 +138,9 @@ def budget_md(archs, folds=3, seeds=3, extra=""):
 
 SESSION_CELL = '''# === Who am I? =============================================================
 #
-# ACCOUNT   labels this Kaggle account in the shared run log. Two accounts
-#           calling themselves the same thing makes the log useless.
-# NUM_WORKERS  how many Kaggle accounts are running this notebook in parallel.
-# WORKER_ID    0 .. NUM_WORKERS-1, DIFFERENT on each account.
+# ACCOUNT labels this Kaggle account in the shared run log.
+# ACTIVE_KAGGLE_ACCOUNTS is the ONE source of truth for parallelism.
+# NUM_WORKERS and WORKER_ID are derived from it; do not edit them.
 #
 # ---------------------------------------------------------------------------
 # THESE TWO VALUES ARE SAFE TO CHANGE AT ANY TIME.
@@ -164,18 +163,21 @@ SESSION_CELL = '''# === Who am I? ==============================================
 # All accounts push to the SAME HuggingFace account (Shanmuk4622), so the
 # 128-writes-per-hour budget is SHARED. tyrelib caps each worker at
 # 100/NUM_WORKERS automatically.
-ACCOUNT     = 'acct1'   # <<< acct1 / acct2 / acct3 / acct4 on the four copies
-NUM_WORKERS = 4         # <<< set 1 only when you are really running one notebook
+#
+# DEFAULT: exactly one Kaggle notebook. For four parallel copies, replace the
+# tuple with ('acct1', 'acct2', 'acct3', 'acct4') in every copy and set ACCOUNT
+# to that copy's label. Keeping the active labels in one tuple prevents a cell
+# that says "one worker" in one place but silently launches as worker 0/4.
+ACTIVE_KAGGLE_ACCOUNTS = ('acct1',)   # <<< one notebook; list all four only when all four run
+ACCOUNT = 'acct1'                     # <<< this copy's label
 
-# Derive the worker id from the account label so changing ACCOUNT is enough.
-# This prevents four copies that all silently identify themselves as worker 0.
-_ACCOUNT_TO_WORKER = {'acct1': 0, 'acct2': 1, 'acct3': 2, 'acct4': 3}
-if ACCOUNT not in _ACCOUNT_TO_WORKER:
-    raise ValueError(f"ACCOUNT must be one of {list(_ACCOUNT_TO_WORKER)}, got {ACCOUNT!r}")
-WORKER_ID = _ACCOUNT_TO_WORKER[ACCOUNT]
-if WORKER_ID >= NUM_WORKERS:
-    raise ValueError(f"{ACCOUNT} maps to worker {WORKER_ID}, outside NUM_WORKERS={NUM_WORKERS}. "
-                     "For a one-notebook run use acct1; for four use acct1..acct4.")
+if not ACTIVE_KAGGLE_ACCOUNTS or len(set(ACTIVE_KAGGLE_ACCOUNTS)) != len(ACTIVE_KAGGLE_ACCOUNTS):
+    raise ValueError("ACTIVE_KAGGLE_ACCOUNTS must contain unique account labels")
+if ACCOUNT not in ACTIVE_KAGGLE_ACCOUNTS:
+    raise ValueError(f"ACCOUNT={ACCOUNT!r} is not active: {ACTIVE_KAGGLE_ACCOUNTS}")
+NUM_WORKERS = len(ACTIVE_KAGGLE_ACCOUNTS)
+WORKER_ID = ACTIVE_KAGGLE_ACCOUNTS.index(ACCOUNT)
+print(f"RUN MODE CHECK: {ACCOUNT=} {ACTIVE_KAGGLE_ACCOUNTS=} -> worker {WORKER_ID}/{NUM_WORKERS}")
 
 sess = tl.Session(account=ACCOUNT, worker_id=WORKER_ID, num_workers=NUM_WORKERS,
                   stage='a',

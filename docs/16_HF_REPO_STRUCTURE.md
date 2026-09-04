@@ -294,20 +294,21 @@ Stage-B set is `regnety016`, `densenet121`, and `resnet50`; each has
 180/180 respectively. NB06 re-derives this coverage from the raw evidence
 before it starts training.
 
-### Current public Stage-B execution — verified 2026-09-01
+### Current public Stage-B execution — verified 2026-09-03
 
-There are **70 `runs/b-*` status files: 14 completed, 53 paused, and 3
-running**. All 70 have both `checkpoints/ckpt_last.pt` and `ckpt_best.pt`; the at-risk count
-is zero. Every pause currently reports `pause_reason=host_ram_guard`, including
-standard full-frame factors, which disproved the completeness of the earlier
-ROI-only diagnosis.
+There are **76 `runs/b-*` status files: 42 completed and 34 checkpointed
+incomplete**, with 32 of the planned 108 runs not yet started. All 76 have both
+`checkpoints/ckpt_last.pt` and `ckpt_best.pt`; the at-risk count is zero.
 
-Tyrelib v6 keeps the same registered models/configs and the repaired contiguous
-RegNet CUDA path. It serialises one complete state per epoch, snapshots that
-file to `ckpt_best` on improvement, trims freed Linux checkpoint/upload arenas,
-disables automatic stealing in NB06, and batches normal claims into the
-30-minute commit. Any clean pause is published and then ends that worker; the
-next fresh Kaggle session fetches the public rolling checkpoint and continues.
+Tyrelib v11 keeps the same registered models/configs and the repaired
+contiguous RegNet CUDA path. It serialises one complete state per epoch,
+snapshots that file to `ckpt_best` on improvement, trims freed Linux
+checkpoint/upload arenas, and batches normal pushes into the 30-minute commit.
+Each NB06 model runs in a disposable child process, so the operating system
+reclaims native/PyTorch/CUDA state that survived in-process cleanup. A
+RAM-paused child publishes its epoch and the parent resumes the same run in a
+clean child. A fresh Kaggle session can likewise fetch every public rolling
+checkpoint and continue.
 
 Two 60-row histories combined a 177-column v4 header with 178-value v5 rows.
 The checkpoints were valid; only pandas parsing failed. v6 migrates this known

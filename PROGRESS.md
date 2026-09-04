@@ -1,7 +1,7 @@
 # PROGRESS
 
 **Live status log. Updated every working session.**
-Last updated: **2026-09-01**
+Last updated: **2026-09-03**
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -14,7 +14,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **S2 complete; annotations verified; S6 XAI gate complete; S4 Stage B in progress (14/108 complete, 56 checkpointed incomplete).**
+**Stage:** **S2 complete; annotations verified; S6 XAI gate complete; S4 Stage B in progress (42/108 complete, 34 checkpointed incomplete, 32 not started).**
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -22,24 +22,26 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 
 ### Immediate next action
 
-> 1. **Stop every older v4/v5 NB06 session first.** Replace all four Kaggle copies
->    with the **2026-09-01 tyrelib v6** `NB06_StageB_OFAT.ipynb`, then Run All.
+> 1. **Stop every older v4-v10 NB06 session first.** Replace it with the
+>    **2026-09-03 tyrelib v11** `NB06_StageB_OFAT.ipynb`, then Run All.
 >    NB07 is complete and the public gate has
 >    been independently audited: the locked architectures are **RegNetY-16GF,
 >    DenseNet-121 and ResNet-50**, each XAI-valid and confirmed on seeds 1–3.
 > 2. In Kaggle attach the prepared dataset, enable Internet, select **GPU T4 ×2**,
->    expose `HF_TOKEN`, leave `NUM_WORKERS=4`, and set only `ACCOUNT` to
->    `acct1`, `acct2`, `acct3`, or `acct4` on the four copies. `WORKER_ID` is
->    derived automatically. Cell 2 must print those exact three architectures and the raw
+>    and expose `HF_TOKEN`. For the requested single-notebook run, leave
+>    `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` and `ACCOUNT='acct1'`. For four real
+>    parallel copies, list all four active account labels in every copy. The cell derives
+>    `NUM_WORKERS=1` and `WORKER_ID=0`, then must print `worker=0/1` and
+>    `MODE=ONE NOTEBOOK`. Cell 2 must print those exact three architectures and the raw
 >    public-evidence coverage before any training plan is built.
 > 3. NB06 runs the tyre-ROI control first and then the remaining OFAT arms on
->    fold 1 only: at most **108 runs**. The public audit now has **14 completed
->    and 56 checkpointed incomplete runs (53 paused, 3 running); all 70 status-bearing runs have both
+>    fold 1 only: at most **108 runs**. The public audit now has **42 completed,
+>    34 checkpointed incomplete, and 32 not started; all 76 status-bearing runs have both
 >    `ckpt_last.pt` and `ckpt_best.pt`, so zero recorded epochs are at risk.**
->    v6 repairs the mixed v4/v5 `epochs.csv` schema without dropping rows,
->    disables work stealing for this sweep, batches normal claims into the
->    30-minute push, and stops a worker after any safety pause. Completed runs
->    skip and every partial run resumes from its public checkpoint.
+>    v11 launches every model in a disposable child process. Its entire memory
+>    is reclaimed at process exit; if it pauses at the RAM guard, the parent
+>    immediately resumes that same HF checkpoint in a clean child instead of
+>    ending the notebook.
 > 4. After NB06 completes, run NB08 → NB09 → NB10. Re-cutting the folds remains the highest-value
 >    dataset correction before making any generalisation claim.
 
@@ -58,11 +60,11 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | Model zoo reference | ✅ Done | `docs/04` — configs, CAM layers, cost table |
 | Infrastructure spec | ✅ Done | `docs/05` — multi-account, sharding, **twenty-one bugs** |
 | Evaluation protocol | ✅ Done | `docs/06` |
-| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v9** — RAM guard now reads the cgroup, not the host (Bug 25); loader workers dropped where `dl 0%` proved them useless (Bug 26); idle takeover (24); telemetry leak (22–23). **104 selftest checks** |
+| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v11** — per-model process isolation and automatic same-run RAM resume (Bug 28); launch/progress clarity (27); cgroup RAM/loader fixes (25–26). **114 selftest checks** |
 | S1 baselines | 🔄 NB01 ready | 2 of 5 done (colour 0.491, structure 0.483); NB01 adds HOG+SVM, majority, random-init |
 | S2 architecture sweep | ⚠ **153 valid + 9 quarantined** | All 162 executions are public, but every `convnextv2_s` status reports 11,177,538 parameters and its sampled checkpoint has a ResNet-18 tensor signature. Those nine mislabeled runs are excluded. The other 153 are scientifically usable; NB05 remains 27/27 valid. `docs/18` |
 | Annotations `annotation_v2` | ✅ **NBT1 verified PASS** | 418 hand-drawn + 4,180 self-healed propagated masks; actual-used fingerprint `085acfb8fb83c531` |
-| S4 technique OFAT | 🔄 **NB06 in progress: 14/108 complete + 56 checkpointed incomplete** | All 70 public Stage-B statuses have both checkpoints. v6 repairs the two malformed mixed-schema epoch files, retains all v5 memory/scheduler fixes and does not change the model recipe |
+| S4 technique OFAT | 🔄 **NB06 in progress: 42/108 complete + 34 checkpointed incomplete; 32 not started** | All 76 public Stage-B statuses have both checkpoints. v11 isolates each model in a disposable process and automatically resumes a RAM-paused child; model recipe unchanged |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
 | S7 stress tests | ⬜ **NB08 ready** | Shuffled-label control runs first |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
@@ -193,6 +195,63 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 ---
 
 ## ⬤ Session log
+
+### 2026-09-03 — two models completed, then retained per-epoch RSS stopped the third
+
+The v10 output did not fail silently. It completed
+`b-regnety016-head_ce-f1-s3` and `b-regnety016-prep_clahe-f1-s1`, then trained
+`b-regnety016-prep_gray-f1-s2` from epoch 3 through epoch 45. At that boundary
+the cgroup reached 88.1%, the checkpoint was published, and the guard stopped
+the cell. HF confirms all three outcomes and both checkpoints for the partial
+run.
+
+#### Bug 28 — a model boundary was not a process-memory boundary
+
+The public epoch CSVs show a repeatable long-session slope: about **+0.17 GB
+RSS per epoch** for both inspected RegNet runs and **+0.30 GB/epoch** over the
+tail of the inspected DenseNet run. This persists with `num_workers=0`, drained
+telemetry, `gc.collect`, and Linux `malloc_trim`, so another in-process cleanup
+call is not a reliable fix. It is retained native/library/allocator state in
+the long-lived Jupyter process, not GPU OOM.
+
+Tyrelib **v11** gives each model a disposable Python child process. The parent
+keeps the HF-backed schedule; the child owns exactly one Trainer. On child exit
+the operating system reclaims the complete address space. If a child still
+reaches the RAM guard, the parent launches a clean child and resumes the same
+published epoch automatically. The parent also refuses to start any model in
+the last 45 minutes of the actual Kaggle session. No scientific configuration
+changed.
+
+Public HF audit: **42/108 completed, 34 checkpointed incomplete, 32 absent**;
+all 76 status-bearing runs have both checkpoints.
+
+### 2026-09-02 — requested one worker, but the saved notebook ran as 0/4
+
+The submitted NB06 output is internally conclusive: cell 1 printed
+`account=acct1 worker=0/4`, `rate cap 25/hr`, and a four-row shard table. It
+was therefore never a one-worker launch. The same output also proves the model
+was training: `b-densenet121-wd_low-f1-s3` completed epoch 37 in 3.7 minutes;
+the saved widget then showed epoch 38 at 0%, which is only the last serialized
+state of a live `tqdm` widget. HF is the authority and now records that run as
+**completed, epoch 60/60**.
+
+#### Bug 27 — two editable worker settings and a misleading saved widget
+
+`tyrelib` **v10** replaces the separate editable worker count/map with one
+tuple: `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` by default. `NUM_WORKERS` and
+`WORKER_ID` are derived. A single run must print `worker=0/1` and
+`MODE=ONE NOTEBOOK`; four copies list all four account labels. Every epoch now
+prints a plain `[LIVE] ... batch 1/N completed -- training is active` heartbeat,
+so notebook progress no longer depends on how Kaggle serializes the widget.
+`[LOADER] workers=0` is also labelled as zero **CPU input helpers**, not zero
+training workers; the model still uses both T4s.
+The PyTorch tensor-to-float warning in weight-norm telemetry is fixed with an
+explicit detached, no-gradient norm. **No model, input, batch, optimiser,
+split, seed, or 60-epoch budget changed.**
+
+Public HF audit at this repair: **36/108 completed, 39 checkpointed incomplete,
+33 absent**. All 75 status-bearing runs have both `ckpt_last.pt` and
+`ckpt_best.pt`.
 
 ### 2026-09-01 (c) — the RAM guard was right; it was measuring the wrong machine
 

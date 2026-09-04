@@ -493,6 +493,35 @@ rewrites the canonical table. Future epoch writes merge by column name and can
 expand the header safely. Unknown drift raises without modifying the source
 file; no epoch or metric is silently dropped.
 
+**Single-notebook/progress repair v10 (2026-09-02):** the submitted output did
+not run in the requested one-notebook mode: its own banner says
+`worker=0/4`, and the planner therefore reserved three quarters of the sweep
+for other accounts. The session cell now has one unambiguous source of truth,
+`ACTIVE_KAGGLE_ACCOUNTS`, and defaults to `('acct1',)`. `NUM_WORKERS` and
+`WORKER_ID` are derived and cannot silently disagree. Training now prints a
+plain-text heartbeat as soon as batch 1 finishes in every epoch, because a
+saved Kaggle `tqdm` widget may remain at `0%` even while the kernel is working.
+The attached output already completed epoch 37 in 3.7 minutes, and the public
+HF checkpoint subsequently completed all 60 epochs; no model or scientific
+setting changed. The PyTorch weight-norm telemetry warning is also removed by
+an explicit no-gradient detach. The `[LOADER] workers=0` message now states
+that it counts CPU input helpers—not training/GPU workers—so the memory-safe
+synchronous loader is not mistaken for an idle model.
+
+**Process-isolation repair v11 (2026-09-03):** v10 completed two models and
+then trained a third from epoch 3 through epoch 45, but the long-lived Jupyter
+process retained memory after every epoch. Public telemetry measures a steady
+RSS rise of 0.17 GB/epoch for both RegNet runs (and 0.30 GB/epoch on the
+inspected DenseNet run), even with synchronous loading, buffer draining,
+`gc.collect`, and `malloc_trim`. At 88.1% the safety guard correctly published
+epoch 45 and stopped the cell. v11 runs each model in a disposable child Python
+process. When that run finishes—or pauses—Linux destroys the whole child and
+reclaims its model, optimiser, CUDA, serialization, image-library, and allocator
+state. If a child reaches the RAM guard, the parent immediately starts a clean
+child that resumes the **same** HF checkpoint, instead of ending the notebook.
+The parent still owns scheduling, the 45-minute end-of-session guard, and the
+final repository reconciliation. No experimental setting changed.
+
 **CUDA/scheduler/commit repair revision (2026-08-31):** two independent public
 RegNetY-16GF ROI attempts failed on their first batch in the same cuDNN grouped
 convolution with `CUDNN_STATUS_EXECUTION_FAILED` / `misaligned address`, while
@@ -512,9 +541,11 @@ forward/backward/optimizer step in an **isolated child process** and publishes
 the log. If the Kaggle CUDA image still rejects the conservative profile, only
 the child process is poisoned and NB06 stops before claiming a training run.
 
-**Stop every older v4/v5 NB06 copy before starting v6.** For four Kaggle copies set
-only `ACCOUNT` to `acct1`, `acct2`, `acct3`, and `acct4`; leave
-`NUM_WORKERS=4`. `WORKER_ID` is derived automatically. Cell 4 reads the current
+**Stop every older v4-v10 NB06 copy before starting v11.** For one Kaggle copy,
+leave `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` and `ACCOUNT='acct1'`. For four
+parallel copies, put all four labels in `ACTIVE_KAGGLE_ACCOUNTS` in every copy
+and set `ACCOUNT` to that copy's label. `NUM_WORKERS` and `WORKER_ID` are
+derived automatically. Cell 4 reads the current
 public HF state: completed runs are skipped and every partial run resumes from
 its published `ckpt_last.pt`. No architecture or completed epoch is discarded.
 
@@ -704,10 +735,12 @@ assert len(hf_done) + len(hf_resume) + len(hf_absent) == len(run_ids)
 # what is left, one run at a time, through a two-phase claim -- so no GPU sits
 # parked while another account still has twenty runs. See docs/05 Bug 24.
 roi_summaries = sess.run_all(roi_cfgs, title='Stage B — ROI control first',
-                             steal_stale=False, takeover_when_idle=True)"""),
+                             steal_stale=False, takeover_when_idle=True,
+                             isolate_runs=True)"""),
          md("## 6 — Run the remaining one-factor arms"),
          code("""summaries = sess.run_all(other_cfgs, title='Stage B — remaining OFAT arms',
-                         steal_stale=False, takeover_when_idle=True)"""),
+                         steal_stale=False, takeover_when_idle=True,
+                         isolate_runs=True)"""),
          md("## 7 — Effects relative to the matching Stage-A base runs"),
          code(r'''import numpy as np, pandas as pd
 base_ids = [f"a-{a}-base-f1-s{s}" for a in TOP3 for s in (1,2,3)]

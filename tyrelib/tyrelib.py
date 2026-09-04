@@ -18,7 +18,7 @@ base64 blob inside a notebook.
 """
 from __future__ import annotations
 
-__version__ = "v9"
+__version__ = "v11"
 
 import atexit
 import csv
@@ -1017,6 +1017,7 @@ CUDA_SAFETY_REVISION = "2026-08-31-r1"
 SCHEDULER_SAFETY_REVISION = "2026-08-31-r2"
 HF_COMMIT_POLICY_REVISION = "2026-08-31-r1"
 EPOCH_HISTORY_SCHEMA_REVISION = "2026-09-01-r1"
+PROCESS_ISOLATION_REVISION = "2026-09-03-r1"
 
 # PyTorch 2.10.0+cu128 on Kaggle's T4 image reproducibly failed in the first
 # RegNetY-16GF ROI batch when AMP, DataParallel, cuDNN autotuning, and NHWC
@@ -1608,7 +1609,9 @@ def build_loaders(root, tr_df, va_df, cfg):
         nw = 0
     pin = bool(torch.cuda.is_available() and nw > 0)
     _print("LOADER", f"workers={nw} pin_memory={pin} "
-                     f"({'ROI memory-safe path' if roi_loader else 'standard path'})")
+                     f"({'ROI memory-safe path' if roi_loader else 'standard path'}) "
+                     "-- these are CPU input helpers, NOT the Kaggle/GPU worker count; "
+                     "GPU training remains active")
     tr_dl = DataLoader(tr_ds, batch_size=cfg["batch_size"], sampler=sampler, shuffle=shuffle,
                        num_workers=nw, pin_memory=pin, drop_last=True,
                        persistent_workers=nw > 0)
@@ -2224,6 +2227,8 @@ class Trainer:
                        f"{torch.backends.cudnn.benchmark} safety={CUDA_SAFETY_REVISION}")
         _print("TRAIN", f"train {len(tr_df)} imgs / {len(tr_dl)} batches   "
                         f"val {len(va_df)} imgs / {va_df.session_group.nunique()} sessions")
+        _print("LIVE", "Plain-text epoch heartbeats are authoritative; a saved Kaggle "
+                       "progress widget can remain at 0% while the cell is running.")
 
         step_traces: list[dict] = []
         status = "completed"
@@ -2243,6 +2248,8 @@ class Trainer:
 
                 bar = _tqdm(total=len(tr_dl), desc=f"ep {ep+1:>3}/{n_ep}", leave=False,
                             unit="b", dynamic_ncols=True)
+                _print("LIVE", f"{self.run_id}: epoch {ep+1}/{n_ep} started "
+                               f"({len(tr_dl)} training batches)")
                 t_last = now()
                 for step, (x, y, _) in enumerate(tr_dl):
                     t_s = now(); data_s += t_s - t_last
@@ -2295,6 +2302,10 @@ class Trainer:
                                     acc=f"{run_corr/max(run_n,1):.3f}",
                                     lr=f"{sched.get_last_lr()[0]:.2e}")
                     bar.update(1)
+                    if step == 0:
+                        _print("LIVE", f"{self.run_id}: epoch {ep+1}/{n_ep} "
+                                       f"batch 1/{len(tr_dl)} completed in "
+                                       f"{human_time(now() - ep_t0)} -- training is active")
                     t_last = now()
                 bar.close()
                 train_s = now() - ep_t0
@@ -2330,7 +2341,12 @@ class Trainer:
                 hw = self.mon.window(ep_t0, now()) if self.mon else {}
                 self.energy_joules += float(hw.get("energy_joules_epoch", 0) or 0)
 
-                wn = float(sum(float(p.norm()) ** 2 for p in model.parameters()) ** 0.5)
+                # Detach explicitly. PyTorch 2.10 warns when float(tensor)
+                # implicitly crosses an autograd boundary; the norm is
+                # telemetry only and must never build or retain a graph.
+                with torch.no_grad():
+                    wn = math.sqrt(sum(float(p.detach().norm().item()) ** 2
+                                       for p in model.parameters()))
                 row = {
                     "run_id": self.run_id, "stage": cfg["stage"], "arch": cfg["arch"],
                     "technique": cfg["technique"], "fold": cfg["fold"], "seed": cfg["seed"],
@@ -2374,6 +2390,8 @@ class Trainer:
                     "runtime_cudnn_benchmark": bool(torch.backends.cudnn.benchmark),
                     "runtime_cuda_safety_revision": CUDA_SAFETY_REVISION,
                     "runtime_scheduler_safety_revision": SCHEDULER_SAFETY_REVISION,
+                    "runtime_process_isolation_revision": PROCESS_ISOLATION_REVISION,
+                    "runtime_isolated_child": bool(cfg.get("_isolated_child", False)),
                     "runtime_host_ram_pause_percent": HOST_RAM_PAUSE_PERCENT,
                     "wall_seconds_cumulative": self.wall_seconds,
                     "energy_joules_cumulative": self.energy_joules,
@@ -2466,7 +2484,11 @@ class Trainer:
                 row["mem_source"] = mem["source"]
                 row["mem_proc_rss_gb"] = mem["proc_rss_gb"]
                 row["mem_children_rss_gb"] = mem["children_rss_gb"]
-                if ram_now >= HOST_RAM_PAUSE_PERCENT and ram_peak >= HOST_RAM_PAUSE_PERCENT:
+                # The first append protects metrics if checkpointing is killed.
+                # Update that same epoch by name now that the post-checkpoint,
+                # post-release memory fields exist (Bug 28 telemetry gap).
+                append_epoch_row(self.hist_path, row)
+                if ram_now >= HOST_RAM_PAUSE_PERCENT:
                     # Say WHERE the memory is. "89.6%" alone is not actionable;
                     # "this process holds 4 GB and something else holds 24" is.
                     _print("RAM", f"{ram_now:.1f}% of {mem['limit_gb']:.0f} GB "
@@ -2554,6 +2576,8 @@ class Trainer:
                    "runtime_cudnn_benchmark": bool(torch.backends.cudnn.benchmark),
                    "runtime_cuda_safety_revision": CUDA_SAFETY_REVISION,
                    "runtime_scheduler_safety_revision": SCHEDULER_SAFETY_REVISION,
+                   "runtime_process_isolation_revision": PROCESS_ISOLATION_REVISION,
+                   "runtime_isolated_child": bool(cfg.get("_isolated_child", False)),
                    "cuda_restart_required": cuda_restart_required,
                    "lib_version": __version__, "finished_iso": iso(),
                    "val_sessions": self.split_info["val_sessions"],
@@ -2717,6 +2741,12 @@ class Session:
         print()
         _print("SESSION", f"account={account}  worker={worker_id}/{num_workers}  "
                           f"stage={stage}  id={self.session_id}")
+        if self.num_workers == 1:
+            _print("SESSION", "MODE=ONE NOTEBOOK: this session owns every unfinished run; "
+                              "there are no reserved shards or takeover waits")
+        else:
+            _print("SESSION", f"MODE={self.num_workers} PARALLEL NOTEBOOKS: each account "
+                              "starts with one static shard, then safely helps when idle")
         _print("SESSION", f"staging {self.stage_dir}  |  hf {'ON' if self.uploader.enabled else 'OFF'}  "
                           f"|  cap {rate_limit}/hr  |  push every {push_interval_min} min")
         _print("SESSION", "NUM_WORKERS assigns each FRESH run to one static owner. "
@@ -3111,8 +3141,95 @@ class Session:
         return plan
 
     # -- execution --------------------------------------------------------
+    def _run_one_isolated(self, cfg: dict) -> dict:
+        """Train one model in a disposable Python process.
+
+        Public NB06 telemetry showed the long-lived Jupyter kernel retaining
+        0.17--0.30 GB of RSS after every epoch despite loader shutdown,
+        ``gc.collect`` and ``malloc_trim``. After two completed models the
+        third reached the 88% guard and the whole cell stopped. A child process
+        gives Linux a hard reclamation boundary: model, optimiser, checkpoint
+        serialization buffers, CUDA context and library caches all disappear
+        when that one run exits. The parent keeps the plan and immediately
+        resumes the same HF checkpoint if the child paused under pressure.
+        """
+        rid = cfg["run_id"]
+        iso_dir = Path(self.stage_dir) / "_isolated" / self.session_id
+        iso_dir.mkdir(parents=True, exist_ok=True)
+        nonce = hashlib.sha256(f"{rid}{now()}{random.random()}".encode()).hexdigest()[:10]
+        payload_path = iso_dir / f"{nonce}.input.json"
+        result_path = iso_dir / f"{nonce}.result.json"
+        elapsed = now() - self.guard.t_start
+        remaining_h = max(0.25, (self.guard.session_limit_s - elapsed) / 3600.0)
+        payload = {
+            "cfg": cfg,
+            "account": self.account,
+            "worker_id": self.worker_id,
+            "num_workers": self.num_workers,
+            "stage": self.stage,
+            "hf_repo": self.uploader.repo_id,
+            "enable_hf": self.uploader.enabled,
+            "rate_limit": self.uploader.limiter.limit,
+            "push_interval_min": self.uploader.interval_s / 60.0,
+            "session_limit_h": remaining_h,
+            "data_root": str(self.data_root),
+        }
+        atomic_write_json(payload_path, payload)
+        _print("ISOLATE", f"{rid}: starting a clean child process "
+                          f"(memory isolation {PROCESS_ISOLATION_REVISION}, "
+                          f"{remaining_h:.1f} h session time left)")
+        cmd = [sys.executable, str(Path(__file__).resolve()),
+               "--isolated-train", str(payload_path), str(result_path)]
+        child_env = os.environ.copy()
+        if self.uploader.token:
+            # Environment inheritance avoids putting the secret on the command
+            # line/process list while guaranteeing the clean child can publish.
+            child_env["HF_TOKEN"] = self.uploader.token
+        proc = subprocess.Popen(cmd, cwd=str(Path(__file__).resolve().parent),
+                                env=child_env)
+        try:
+            returncode = proc.wait()
+        except KeyboardInterrupt:
+            # Give the child the same graceful-stop path as an interactive
+            # notebook: checkpoint, publish, then let the interrupt return.
+            with contextlib.suppress(Exception):
+                proc.send_signal(signal.SIGINT)
+            with contextlib.suppress(Exception):
+                proc.wait(timeout=900)
+            self.push_now(f"parent interrupted during {rid}")
+            raise
+
+        summary = read_json(result_path, None)
+        with contextlib.suppress(Exception):
+            payload_path.unlink()
+        with contextlib.suppress(Exception):
+            result_path.unlink()
+        release_host_memory()
+
+        # A hard-killed child may not have time to write its tiny result file,
+        # while its previous epoch checkpoint is already public. Reconcile the
+        # repository before deciding whether any work was lost.
+        self.inventory.refresh([rid], verbose=False)
+        if summary is None:
+            state = self.inventory.state(rid)
+            epoch = self.inventory.epoch(rid)
+            status = "completed" if state == "completed" else (
+                "paused" if state == "resumable" else "failed")
+            summary = {
+                "run_id": rid, "arch": cfg["arch"], "fold": cfg["fold"],
+                "seed": cfg["seed"], "status": status,
+                "epochs_trained": epoch, "pause_reason": "isolated_child_exit",
+                "cuda_restart_required": False,
+                "error_type": f"child_exit_{returncode}",
+            }
+        _print("ISOLATE", f"{rid}: child exited rc={returncode}; "
+                          f"status={summary.get('status')} epoch="
+                          f"{summary.get('epochs_trained', self.inventory.epoch(rid))}. "
+                          "Its process memory is now fully reclaimed.")
+        return summary
+
     def run_all(self, cfgs, title: str = "training", steal_stale: bool = False,
-                takeover_when_idle: bool = True) -> list[dict]:
+                takeover_when_idle: bool = True, isolate_runs: bool = False) -> list[dict]:
         by_id = {c["run_id"]: c for c in cfgs}
         plan = self.plan(list(by_id), title=title, steal_stale=steal_stale,
                          takeover_when_idle=takeover_when_idle)
@@ -3120,6 +3237,12 @@ class Session:
         n_mine = getattr(plan, "n_mine", len(plan.order))
         announced_idle = False
         for i, rid in enumerate(plan.order, 1):
+            # This guard must apply to own work too. Isolated children have
+            # fresh clocks of their own, but the Kaggle session does not.
+            if self.guard.near_limit(margin_min=45):
+                _print("WATCHDOG", "less than 45 minutes remain in this Kaggle "
+                                   "session; not starting another model")
+                break
             # The repository decides. Only ask the registry whether somebody
             # is on it RIGHT NOW, and only when more than one worker exists.
             if self.num_workers > 1:
@@ -3182,7 +3305,32 @@ class Session:
                 # buys anything.
                 self.uploader.flush(timeout=120, reason=f"stolen claim {rid}")
             self.guard.reset()
-            s = Trainer(by_id[rid], self).run()
+            if isolate_runs:
+                last_epoch = -1
+                s = None
+                for restart in range(1, 9):
+                    s = self._run_one_isolated(by_id[rid])
+                    why_pause = s.get("pause_reason")
+                    epoch_now = int(s.get("epochs_trained") or
+                                    self.inventory.epoch(rid) or 0)
+                    if not (s.get("status") == "paused" and
+                            why_pause == "host_ram_guard"):
+                        break
+                    if epoch_now <= last_epoch:
+                        _print("ISOLATE", f"{rid}: RAM pause made no epoch progress; "
+                                          "not retrying in a loop")
+                        break
+                    last_epoch = epoch_now
+                    if self.guard.near_limit(margin_min=45):
+                        _print("WATCHDOG", f"{rid}: checkpoint is safe at epoch "
+                                           f"{epoch_now}; session is nearly over")
+                        break
+                    _print("ISOLATE", f"{rid}: child paused at epoch {epoch_now}. "
+                                      "That process has exited, so its retained RAM is "
+                                      "gone; resuming the SAME run in a fresh child.")
+                assert s is not None
+            else:
+                s = Trainer(by_id[rid], self).run()
             out.append(s)
             if s["status"] == "completed":
                 self.prune_local(rid)
@@ -3202,7 +3350,7 @@ class Session:
                 # So: free the run's memory, look again, and only stop if the
                 # pressure is real. A watchdog pause or an interrupt still ends
                 # the cell -- those genuinely mean there is no time left.
-                if why == "host_ram_guard":
+                if why == "host_ram_guard" and not isolate_runs:
                     release_host_memory()
                     ram_now = host_ram_percent()
                     if ram_now < HOST_RAM_RESUME_PERCENT:
@@ -3212,6 +3360,9 @@ class Session:
                         continue
                     _print("RUN", f"host RAM still {ram_now:.1f}% after releasing this "
                                   f"model. Stopping so the kernel is not killed.")
+                elif why == "host_ram_guard" and isolate_runs:
+                    _print("RUN", f"isolated child remained RAM-blocked at epoch "
+                                  f"{s.get('epochs_trained')}; checkpoint is safe")
                 _print("RUN", f"stopping worker after {why}. The checkpoint is on "
                               "HuggingFace; use a fresh Kaggle session and re-run "
                               "this notebook to resume at the next epoch.")
@@ -3219,6 +3370,11 @@ class Session:
             if s.get("cuda_restart_required"):
                 # CUDA launch faults are process-fatal in practice. Continuing
                 # would only mark unrelated models failed in a poisoned context.
+                if isolate_runs:
+                    _print("RUN", "fatal CUDA fault was contained inside the disposable "
+                                  "child; the parent is clean and will continue with the "
+                                  "next run. This run remains recorded for retry.")
+                    continue
                 _print("RUN", "stopping after a fatal CUDA fault. The error and "
                               "available checkpoint are on HuggingFace; restart "
                               "the Kaggle session before retrying.")
@@ -3275,6 +3431,51 @@ class Session:
         df.to_csv(out / "all_runs.csv", index=False)
         self.uploader.enqueue(out / "all_runs.csv", "tables/all_runs.csv", force=True)
         return df
+
+
+def _isolated_train_child(payload_path: str, result_path: str) -> int:
+    """CLI entry for one disposable Stage-B training process."""
+    payload = read_json(Path(payload_path), None)
+    if not isinstance(payload, dict):
+        raise ValueError(f"invalid isolated-training payload: {payload_path}")
+    cfg = dict(payload["cfg"])
+    cfg["_isolated_child"] = True       # excluded from the scientific config hash
+    child = Session(
+        account=payload["account"],
+        worker_id=int(payload["worker_id"]),
+        num_workers=int(payload["num_workers"]),
+        stage=payload["stage"],
+        hf_repo=payload["hf_repo"],
+        enable_hf=bool(payload["enable_hf"]),
+        session_limit_h=float(payload["session_limit_h"]),
+        push_interval_min=float(payload["push_interval_min"]),
+        rate_limit=int(payload["rate_limit"]),
+    )
+    child.data_root = Path(payload["data_root"])
+    rid = cfg["run_id"]
+    _print("ISOLATE", f"child pid={os.getpid()} owns only {rid}")
+    try:
+        child.inventory.refresh([rid], verbose=True)
+        summary = Trainer(cfg, child).run()
+        child.finish()
+        atomic_write_json(Path(result_path), summary)
+        return 0
+    except BaseException as exc:
+        # Trainer catches ordinary training exceptions. This covers setup and
+        # process-level failures so the parent can make a repository-backed
+        # decision instead of silently losing the rest of its plan.
+        with contextlib.suppress(Exception):
+            child.finish()
+        atomic_write_json(Path(result_path), {
+            "run_id": rid, "arch": cfg.get("arch"), "fold": cfg.get("fold"),
+            "seed": cfg.get("seed"), "status": "failed",
+            "epochs_trained": child.inventory.epoch(rid),
+            "pause_reason": "isolated_child_exception",
+            "error_type": type(exc).__name__, "error_message": str(exc)[:500],
+            "cuda_restart_required": fatal_cuda_error(exc),
+        })
+        traceback.print_exc()
+        return 1
 
 
 # --------------------------------------------------------------------------
@@ -3446,6 +3647,20 @@ def selftest() -> bool:
       "if i <= n_mine:" in _run_all_src)
     t("a paused model stops the worker instead of cascading into more runs",
       'if s["status"] == "paused"' in _run_all_src)
+    _iso_src = _insp.getsource(Session._run_one_isolated)
+    t("per-run isolation uses a fresh Python process",
+      "subprocess.Popen" in _iso_src and "--isolated-train" in _iso_src)
+    t("parent reconciles HF after an isolated child exits",
+      "self.inventory.refresh([rid]" in _iso_src)
+    t("a RAM-paused child resumes the same run after process reclamation",
+      "for restart in range(1, 9)" in _run_all_src and
+      "self._run_one_isolated(by_id[rid])" in _run_all_src and
+      'why_pause == "host_ram_guard"' in _run_all_src)
+    t("session deadline protects own runs as well as takeover work",
+      'near_limit(margin_min=45)' in _run_all_src)
+    t("fatal CUDA in an isolated child cannot poison the parent",
+      "fatal CUDA fault was contained" in _run_all_src and
+      "if isolate_runs:" in _run_all_src)
 
     # --- Bug 24: an idle worker must not sit parked ------------------------
     class _TInv:
@@ -3490,6 +3705,11 @@ def selftest() -> bool:
 
     # --- Bug 22/23: the RAM guard must not end a session over a spike ------
     _trainer_run = _insp.getsource(Trainer.run)
+    t("training has a plain-text first-batch heartbeat",
+      'batch 1/{len(tr_dl)} completed' in _trainer_run and
+      'training is active' in _trainer_run)
+    t("weight-norm telemetry is detached from autograd",
+      "p.detach().norm().item()" in _trainer_run)
     t("RAM guard reads a live post-release value, not the epoch peak",
       "host_ram_headroom()" in _trainer_run and "ram_now >= HOST_RAM_PAUSE_PERCENT" in _trainer_run)
     t("RAM guard no longer pauses on ram_percent_peak alone",
@@ -3515,6 +3735,9 @@ def selftest() -> bool:
       {"proc_rss_gb", "children_rss_gb", "limit_gb", "source"} <= set(_mr))
     t("a RAM pause says where the memory actually is",
       "child proc" in _trainer_run and "mem['proc_rss_gb']" in _trainer_run)
+    t("post-release memory fields are persisted to epoch history",
+      _trainer_run.count("append_epoch_row(self.hist_path, row)") == 2 and
+      'row["mem_source"]' in _trainer_run)
 
     # --- Bug 26: loader workers that buy nothing ---------------------------
     t("GPU-bound configurations get no loader workers",
@@ -4307,3 +4530,10 @@ def insertion_deletion(model, x, sal, target, steps=32, mode="deletion",
                  else F.softmax(logits, 1)[0, target])
             scores.append(float(p))
     return float(np.trapz(scores, dx=1.0 / steps))
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 4 and sys.argv[1] == "--isolated-train":
+        raise SystemExit(_isolated_train_child(sys.argv[2], sys.argv[3]))
+    if len(sys.argv) == 2 and sys.argv[1] == "--selftest":
+        raise SystemExit(0 if selftest() else 1)

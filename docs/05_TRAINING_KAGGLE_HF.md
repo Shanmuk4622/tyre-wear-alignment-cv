@@ -60,12 +60,13 @@
 
 ## 3. Work sharding across 4 accounts
 
-Every worker runs the **same notebook**. Two lines differ:
+Every worker runs the **same notebook**. Parallelism has one source of truth:
 
 ```python
-ACCOUNT     = "acct1"  # acct1 / acct2 / acct3 / acct4
-NUM_WORKERS = 4
-WORKER_ID   = {"acct1": 0, "acct2": 1, "acct3": 2, "acct4": 3}[ACCOUNT]
+ACTIVE_KAGGLE_ACCOUNTS = ("acct1",)  # one notebook; list all four for four copies
+ACCOUNT = "acct1"                     # this copy's label
+NUM_WORKERS = len(ACTIVE_KAGGLE_ACCOUNTS)
+WORKER_ID = ACTIVE_KAGGLE_ACCOUNTS.index(ACCOUNT)
 ```
 
 ### Sharding reserves fresh work; HF decides truth
@@ -646,8 +647,8 @@ The repair was run against the exact public 60-epoch failure file: all epochs
 An epoch-60 checkpoint whose status still says `running` is now described and
 finalised as completed metadata without training an impossible epoch 61.
 
-Public state at this repair: **14/108 completed, 56 checkpointed incomplete
-(53 paused, 3 running); all 70 status-bearing runs have both checkpoints.**
+Public state on the 2026-09-03 follow-up: **42/108 completed, 34 checkpointed
+incomplete, 32 absent; all 76 status-bearing runs have both checkpoints.**
 
 ### ⚠ Bug 22 — a guard that ended the session over a two-second spike
 
@@ -828,6 +829,58 @@ prefetching can genuinely matter. If a future arm is loader-bound its
 > Both of these were visible in data we had already been collecting for days.
 > `dl 0%` was printed on every epoch line, and the memory percentage came from
 > a source nobody had checked. Recording a metric is not the same as reading it.
+
+### ⚠ Bug 27 — “one worker” still printed `worker=0/4`
+
+The submitted NB06 output settled this without guesswork:
+
+```
+[HF] rate cap 25/hr
+[SESSION] account=acct1  worker=0/4
+```
+
+That session was configured as four Kaggle notebooks, even though only one was
+running. The same output did train: epoch 37 completed in 3.7 minutes, and HF
+later recorded the run at 60/60. The epoch-38 `0%` line was the serialized
+state of Kaggle's live widget, not evidence of an idle GPU.
+
+**Fix (tyrelib v10):** `ACTIVE_KAGGLE_ACCOUNTS` is the only editable
+parallelism setting; worker count and id are derived. One notebook prints
+`worker=0/1` and `MODE=ONE NOTEBOOK`. Training also emits a plain-text
+first-batch heartbeat every epoch, which survives notebook serialization. The
+weight-norm diagnostic uses a detached no-gradient tensor and no longer emits
+PyTorch's tensor-to-float warning. These are execution/visibility repairs;
+the model, data, split, optimiser, batch size, seeds and epoch budget did not
+change.
+
+### ⚠ Bug 28 — cleanup calls cannot guarantee process-memory reclamation
+
+The next v10 run completed two models and advanced a third from epoch 3 to 45,
+then stopped at the live cgroup guard:
+
+```
+[RAM] host RAM 88.1% after epoch 45; pausing before the kernel is killed.
+```
+
+This time the guard was correct. Public epoch telemetry shows the long-lived
+Jupyter process retaining about **0.17 GB/epoch** across both inspected RegNet
+runs and **0.30 GB/epoch** over the inspected DenseNet tail. It happens with a
+synchronous loader, drained telemetry buffers, garbage collection, and
+`malloc_trim`. Native image libraries, PyTorch serialization/allocator state,
+and CUDA runtime state do not all promise to return memory to the OS merely
+because their Python objects were deleted.
+
+**Fix (tyrelib v11): process lifetime is the memory boundary.** `run_all` can
+launch each model in a fresh Python child. The child owns exactly one Trainer
+and publishes the same rolling HF checkpoint. When it exits, Linux reclaims
+the entire address space. If the child pauses at the RAM guard after making
+epoch progress, the parent launches another clean child and resumes that same
+run automatically. The parent retains static ownership, two-phase idle
+takeover, and a 45-minute real-session deadline so a fresh child is not started
+just before Kaggle terminates the allocation.
+
+NB06 enables `isolate_runs=True`; other notebooks retain their existing
+execution path. This changes process topology only, not experimental state.
 
 ### The checkpoint contract
 

@@ -437,3 +437,32 @@ the paused run had logged `dl 0%` on all 49 of its epochs while still running tw
 pinned loader workers whose RSS counts against the same cgroup (Bug 26); at
 ≥320 px the loader is now synchronous. 104 selftests; all 12 notebooks on v9.
 
+## 2026-09-02 — tyrelib v10
+
+The latest NB06 output was described as a one-worker attempt, but its own
+session banner said `worker=0/4` and the HF cap was 25/hr. It was still using
+the four-account plan. The output also proved DenseNet was training: epoch 37
+finished in 3.7 minutes, while the serialized epoch-38 widget remained at 0%;
+HF later recorded that exact run completed at epoch 60. v10 makes
+`ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` the single default source of parallelism,
+derives `NUM_WORKERS`/`WORKER_ID`, and prints `MODE=ONE NOTEBOOK`. Every epoch
+gets a plain first-batch heartbeat, and the weight-norm telemetry warning is
+fixed with an explicit detached no-gradient norm. Public audit: 36/108 Stage-B
+runs complete, 39 checkpointed incomplete, 33 absent; all 75 status-bearing
+runs have both checkpoints. 106 selftests; model and scientific recipe
+unchanged.
+
+## 2026-09-03 — tyrelib v11
+
+v10 completed two RegNet runs, then advanced a third from epoch 3 to 45 before
+the live cgroup reached 88.1%. The checkpoint and pause were correctly pushed,
+but `run_all` ended. HF epoch telemetry shows the long-lived Jupyter process
+retaining about 0.17 GB/epoch on both inspected RegNet runs and 0.30 GB/epoch
+on the DenseNet tail even after synchronous loading, telemetry drains,
+`gc.collect`, and `malloc_trim`. v11 runs each NB06 model in a disposable child
+Python process. The OS reclaims the complete model/optimiser/CUDA/native state
+when it exits; a RAM-paused child automatically resumes the same public
+checkpoint in a clean child. The parent keeps scheduling and now guards every
+new run against the final 45 minutes of the real Kaggle session. Public state:
+42/108 complete, 34 checkpointed incomplete, 32 absent; all 76 started runs
+have both checkpoints. 114 selftests; scientific recipe unchanged.

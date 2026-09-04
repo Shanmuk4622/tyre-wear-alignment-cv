@@ -6,7 +6,7 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 
 ---
 
-## Position as of 2026-09-01
+## Position as of 2026-09-03
 
 | | |
 |---|---|
@@ -16,11 +16,13 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 | Focus | Tyre **wear**. Alignment deferred (`13 §3`) |
 | Compute | 30 GPU-h/week **per Kaggle account** |
 | Compute so far | 162 executions (153 valid) · 163.4 recorded GPU-h · 11.51 kWh |
-| Remaining training | **NB06 in progress:** 14/108 complete + 56 checkpointed incomplete; stop old v4/v5 copies and continue with tyrelib v6 on RegNetY-16GF, DenseNet-121, ResNet-50. All 70 public statuses have both checkpoints; model/recipe unchanged |
+| Remaining training | **NB06 in progress:** 42/108 complete + 34 checkpointed incomplete + 32 not started; stop old v4–v10 copies and continue with tyrelib v11 process-isolated NB06. All 76 public statuses have both checkpoints; model/recipe unchanged |
 | Annotation | ✅ NBT1 real PASS; clean IoU 0.9780, propagated IoU 0.9747 |
 
 **Current execution gate:** NB07 is complete and its public selection has been
-audited. Continue the **2026-09-01 tyrelib v6 history/memory/CUDA/scheduler/commit-repaired NB06**, then NB08 → NB09 → NB10. NB06 accepts only the
+audited. Continue the **2026-09-03 tyrelib v11 process-isolated NB06**, then
+NB08 → NB09 → NB10. Each model gets a clean child process, and any RAM pause
+automatically resumes the same HF checkpoint in another child. NB06 accepts only the
 faithfulness-tested, three-seed public top three—RegNetY-16GF, DenseNet-121 and
 ResNet-50—and runs fold 1 only while folds 0 and 2 remain leak-flagged.
 
@@ -66,7 +68,7 @@ the pre-Stage-A “do not cut folds” instruction.
 | **S1** | Baselines | Tier 0 results, all folds | Beat majority class |
 | **S2** | Architecture sweep | 17 valid architectures × 3 folds × 3 seeds | ⚠ **153 valid; 9 `convnextv2_s`/ResNet-18 substitutions quarantined** |
 | **S3** | Masks | Manual + SAM2 mask sets, audit report | Agreement reported |
-| **S4** | Technique OFAT | **RegNetY-16GF + DenseNet-121 + ResNet-50** × 12 factors | 🔄 **14/108 complete + 56 checkpointed incomplete; tyrelib v6 NB06 continues; effect sizes with CIs** |
+| **S4** | Technique OFAT | **RegNetY-16GF + DenseNet-121 + ResNet-50** × 12 factors | 🔄 **42/108 complete + 34 checkpointed incomplete + 32 not started; tyrelib v11 NB06 continues; effect sizes with CIs** |
 | **S5** | Detection + segmentation | YOLO26, SegFormer, U-Net, DeepLabV3+ | ROI-crop Δ measured |
 | **S6** | XAI | TER/BAR/SAR + faithfulness screen | ✅ **NB07 r3 gate complete; 1,208 evidence rows, top three locked** |
 | **S7** | Stress tests | Shortcut intervention matrix | Shuffled-label control at chance |

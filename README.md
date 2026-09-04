@@ -28,15 +28,16 @@ A camera mounted **below and in front of a vehicle** photographs one tyre. We ha
 **Current execution point:** NB07 is complete and its public, three-seed XAI
 gate selected **RegNetY-16GF, DenseNet-121 and ResNet-50**. NB06 Stage-B OFAT
 is in progress on those three architectures and fold 1 only. Public HF holds
-**14/108 completed runs and 56 checkpointed incomplete runs** (53 paused, 3
-running); all 70 public Stage-B statuses have both rolling and best checkpoints.
-The 2026-09-01 tyrelib v6 repair keeps the selected models and scientific recipe unchanged. It uses the
-conservative RegNet CUDA path, returns freed checkpoint/upload memory to the
-host, serialises one full checkpoint per epoch, batches ordinary claims into
-the 30-minute HF cycle, disables automatic stealing for NB06, and ends a worker
-after a clean safety pause instead of cascading through more models. It also
-losslessly migrates the two public epoch histories whose v5 rows had one more
-telemetry value than their v4 CSV headers.
+**42/108 completed runs, 34 checkpointed incomplete runs, and 32 not yet
+started**; all 76 status-bearing Stage-B runs have both rolling and best
+checkpoints. The 2026-09-03 tyrelib v11 notebook runs each model in a disposable
+child Python process. Public telemetry showed the long-lived Jupyter process
+retaining 0.17–0.30 GB after every epoch; v10 therefore completed two models,
+trained a third through epoch 45, then correctly stopped at the 88% host-RAM
+guard. In v11 the child exits after a run and Linux reclaims all model,
+optimiser, CUDA, image-library, and serialization state. A RAM-paused child is
+automatically restarted to resume the same HF checkpoint. The selected models
+and scientific recipe are unchanged.
 
 **Focus for this phase: tyre wear.** Alignment is deferred — see `docs/13 §3` for why it is the harder half, not the easier one.
 
@@ -191,7 +192,7 @@ python scripts/dataset_shortcut_probe.py --root "D:/Dataset Download/Tire Datase
 - [ ] S1 baselines (partial)
 - [x] S2 architecture sweep
 - [x] S3 masks verified
-- [ ] **S4 technique OFAT — NB06 in progress, 14/108 complete + 56 checkpointed incomplete**
+- [ ] **S4 technique OFAT — NB06 in progress, 42/108 complete + 34 checkpointed incomplete**
 - [ ] S5 detection/segmentation
 - [x] S6 Stage-B XAI gate
 - [ ] S7 stress tests

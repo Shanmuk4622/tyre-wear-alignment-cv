@@ -339,23 +339,23 @@ All three public selection rows have `xai_status=ok`, `eligible=True`, and
 public selection and the raw 1,208-row evidence table and verifies both before
 constructing any training configuration.
 
-### Stage-B execution state — 2026-09-01
+### Stage-B execution state — 2026-09-03
 
-Public HF now contains **14 completed and 56 checkpointed incomplete Stage-B
-runs** (53 paused, 3 running). Every one of the 70 status-bearing runs has
+Public HF now contains **42 completed, 34 checkpointed incomplete, and 32
+not-yet-started Stage-B runs**. Every one of the 76 status-bearing runs has
 `ckpt_last.pt` and `ckpt_best.pt`;
 no recorded epoch is at risk. The larger sample corrected the earlier
 ROI-only memory diagnosis: all 53 pauses report `host_ram_guard`, including
 standard full-frame arms, while T4 memory remains well below capacity.
 
-Tyrelib v6 preserves the three architectures, batch sizes, resolutions,
+Tyrelib v11 preserves the three architectures, batch sizes, resolutions,
 optimiser settings and 60-epoch budget. RegNet retains its verified contiguous
-NCHW/cuDNN-safe runtime. v5 additionally serialises the full state once per
-epoch, returns freed checkpoint/upload arenas to Linux, disables automatic work
-stealing in NB06, batches ordinary claim events into the 30-minute HF cycle,
-and ends the worker after any clean safety pause. It also migrates the two
-mixed v4/v5 epoch histories by revision-aware column insertion and atomic
-rewrite. These are execution repairs, not experimental factors.
+NCHW/cuDNN-safe runtime, and all earlier resume/memory/history repairs remain.
+Every model now runs in a disposable child process because public telemetry
+measured 0.17–0.30 GB of RSS retained per epoch in the long-lived kernel. A
+RAM-paused child exits and the parent resumes its same public checkpoint in a
+clean child. These are execution and memory-lifetime repairs, not experimental
+factors.
 
 ---
 

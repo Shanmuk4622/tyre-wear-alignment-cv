@@ -109,19 +109,20 @@ the faithfulness table has 35 rows.
 
 ## What to run now
 
-1. **Stop every older NB06 session — v4 through v8.** Upload the
-   **tyrelib v9 `NB06_StageB_OFAT.ipynb`** to all four Kaggle accounts, attach
-   the prepared dataset, choose **T4 ×2**, enable Internet, expose `HF_TOKEN`,
-   and Run All. Leave `NUM_WORKERS=4`; change only `ACCOUNT` to `acct1`,
-   `acct2`, `acct3`, `acct4`. `WORKER_ID` is derived automatically.
-   **Cell 1 must print `tyrelib v9 loaded`.**
+1. **Stop every older NB06 session — v4 through v10.** Upload the
+   **tyrelib v11 `NB06_StageB_OFAT.ipynb`** to Kaggle, attach the prepared
+   dataset, choose **T4 ×2**, enable Internet, expose `HF_TOKEN`, and Run All.
+   The requested one-notebook mode is now the default:
+   `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` and `ACCOUNT='acct1'`.
+   **Cell 1 must print `tyrelib v11 loaded`; the session must print
+   `worker=0/1` and `MODE=ONE NOTEBOOK`.**
 2. Cell 2 must load public revision `2026-08-30-r3` and print exactly these
    locked architectures: **RegNetY-16GF, DenseNet-121, ResNet-50**. It also
    reconstructs their raw evidence coverage from
    `tables/xai_evidence_all.csv` before it allows training.
-3. Public HF currently has **14/108 complete and 56 checkpointed incomplete**
-   (53 paused, 3 running). Every one of the 70 status-bearing Stage-B runs has
-   both checkpoints, so nothing
+3. Public HF currently has **42/108 complete, 34 checkpointed incomplete, and
+   32 not started**. Every one of the 76 status-bearing Stage-B runs has both
+   checkpoints, so nothing
    recorded needs to be retrained. Completed runs will be skipped. NB06 runs the remaining ROI jobs
    first, then the other 11 OFAT factors, three seeds each, on fold 1 only. It
    saves a rolling checkpoint every epoch, batches HF pushes every 30 minutes,
@@ -162,7 +163,21 @@ the faithfulness table has 35 rows.
    two pinned loader workers, whose RSS counts against the same cgroup. At
    ≥320 px the loader is now synchronous: `[LOADER] workers=0 pin_memory=False`,
    with epoch times unchanged because nothing was ever waiting for data.
-8. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
+8. **v10 fixes the false one-worker launch and invisible progress (Bug 27).**
+   The submitted output said `worker=0/4`, so it was not the claimed
+   one-worker run; it also completed epoch 37 in 3.7 minutes before the saved
+   widget displayed epoch 38 at 0%. The public HF status later reached 60/60.
+   Parallelism now comes from the single `ACTIVE_KAGGLE_ACCOUNTS` tuple, and a
+   plain `[LIVE] ... batch 1/N completed` line proves every epoch is active.
+   No model or experimental setting changed.
+9. **v11 fixes the two-model session ceiling (Bug 28).** v10 actually trained
+   three runs: two completed, and the third advanced from epoch 3 to 45 before
+   the 88.1% cgroup guard stopped the cell. Public telemetry shows retained RSS
+   growing about 0.17 GB/epoch on RegNet and 0.30 GB/epoch on the inspected
+   DenseNet tail. Each model now runs in a disposable child process. Linux
+   reclaims the entire child address space at exit; a RAM-paused child is
+   automatically restarted on the same HF checkpoint instead of ending NB06.
+10. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
    `channels_last` fault at only ~1.1 GB/card. RegNet remains unchanged but now
    runs contiguous NCHW with cuDNN autotuning off; other architectures keep
    `channels_last`. FRESH runs stay with their static owner, so account 1 will
@@ -170,7 +185,7 @@ the faithfulness table has 35 rows.
    work only through the v8 two-phase claim (step 6). Before claiming
    work, NB06 proves the exact RegNet batch/resolution in a disposable dual-T4
    child process and publishes the log; look for `CUDA_SMOKE_PASS`.
-9. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
+11. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
    artifacts before doing work, pushes at major milestones and on the
    30-minute cadence, and can continue in a fresh Kaggle session. NB09 also
    rebuilds and publishes a missing predictions parquet from its public best
@@ -192,13 +207,16 @@ the faithfulness table has 35 rows.
 
 ---
 
-## The three lines you change per account
+## The two lines that define active notebooks
 
 ```python
-ACCOUNT     = 'acct1'   # a different label on each Kaggle account
-NUM_WORKERS = 1         # how many accounts are running in parallel
-WORKER_ID   = 0         # 0, 1, 2, 3 — DIFFERENT on each account
+ACTIVE_KAGGLE_ACCOUNTS = ('acct1',)  # one notebook (the current default)
+ACCOUNT = 'acct1'                     # this notebook's label
 ```
+
+For four parallel copies, use
+`('acct1', 'acct2', 'acct3', 'acct4')` in every copy and change `ACCOUNT` in
+each copy. `NUM_WORKERS` and `WORKER_ID` are derived; do not edit them.
 
 All accounts push to the one HuggingFace account, so the 128-writes-per-hour
 budget is shared; `tyrelib` caps each worker at `100/NUM_WORKERS`.
