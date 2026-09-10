@@ -1,5 +1,70 @@
 # Notebooks
 
+## Run next for S4b: NB12, then NB12R
+
+**2026-09-10 runtime repair:** replace NB12 after stopping all old copies.
+Preserve ACCOUNT/active-account settings. Four runs are resumable at 28/26/25/26
+in the audited HF snapshot. ConvNeXt now uses one GPU at the same batch 32;
+MobileNet now also uses one GPU, at unchanged batch 64 (repair r2). The second
+T4 is intentionally idle. Timed preflight must pass before training. No reset
+or new annotation. See `../docs/23_S4B_CONFIRMATION.md`.
+
+`NB12_S4B_Confirmation.ipynb`: 18 new 60-epoch jobs on two additional architectures,
+fold 1 only. T4 x2, Internet, HF_TOKEN, Tire Dataset Prepared. One worker by default;
+four copies supported with matching active-account lists and distinct ACCOUNT values.
+No annotation required. After all 18 finish, run `NB12R_S4B_Report.ipynb` once on
+CPU with HF_TOKEN/Internet. It verifies per-run HF evidence and reports paired
+effects, not just notebook completion. See `../docs/23_S4B_CONFIRMATION.md`.
+
+## NB11 S3 mask comparison — deferred, do not run now
+
+The user has declined additional annotation. NB11 is **not a required next step**.
+S5 will use existing manual masks; blind repeat annotation and the separate
+SAM2 comparison remain unmeasured. The following is optional reproduction
+guidance only, not a request for more annotation.
+
+`NB11_S3_Manual_SAM2_Agreement.ipynb` is generated and locally checked, not yet
+Kaggle-verified. First run PREPARE on CPU to download the private image package;
+make independent tyre/tread rectangle prompts and 30 blind polygon reannotations.
+Attach their JSON folders, select RUN and one T4 session, and Run All. It uses
+SAM2.1 Small with image-by-image HF resume, not neural training or four workers.
+This is human-box-prompted unedited SAM2, not fully automatic labelling.
+See `../docs/22_S3_MASK_COMPARISON.md` for complete instructions.
+
+## Current recovery delivery — 2026-09-09
+
+**All four recovery notebooks are HF-verified** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`.
+NB01A: 15 baseline rows; NB01B: 9/9 runs × 60 epochs; NB03A: 153 valid / 9
+quarantined; NB10R: 10/10 readable figures. No routine rerun is needed.
+See `../docs/21_RECOVERY_COMPLETION_AUDIT.md` for evidence and remaining stages.
+
+**NB01A read fix r2 (reproduction guidance):** CPU, Internet ON, HF_TOKEN enabled,
+Tire Dataset Prepared attached.
+HF metadata/download reads now authenticate and retry temporary rate limits;
+an `[HF read] ... waiting ...` message is an intentional server-requested pause.
+No full-repository inventory is requested by NB01A. Upload timing is unchanged.
+Local fault-injection checks pass; the subsequent Kaggle outputs are now verified.
+
+All five legacy S1 baseline rows already exist on HF; do not rerun old NB01
+assuming three are missing. The four new files preserve the executed originals:
+
+| Notebook | Purpose | Run mode |
+|---|---|---|
+| `NB01A_Baseline_Recovery.ipynb` | Reproduce CPU probes; recover per-fold and final-epoch reporting | One session, CPU sufficient |
+| `NB01B_Matched_RandomInit.ipynb` | Missing matched ResNet-50: 3 folds × 3 seeds × 60 epochs, new IDs | T4 ×2; one or four explicitly labelled copies |
+| `NB03A_Architecture_Audit.ipynb` | 153 valid + 9 quarantined coverage; no model substitution/training | One session, CPU sufficient |
+| `NB10R_Analysis_Recovery.ipynb` | Generate Figure 3; fix undefined H2 and quarantine/final-epoch reporting | One T4 session |
+
+Attach Tire Dataset Prepared for NB01A/B and NB10R; enable Internet and HF_TOKEN
+for all. Run the recovery notebooks from the top. NB01B can span sessions and
+resumes at completed-epoch boundaries, not mid-batch. A hard OS kill cannot
+guarantee an emergency upload. Old notebooks and HF artifacts are unchanged.
+
+Generated with `python tyrelib/build_closure_notebooks.py`. Recovery outputs
+use `tables/closure_2026-09-09/` and `analysis/closure_2026-09-09/`.
+**S5 and S9 are still unimplemented, not silently omitted or completed.**
+See `../docs/20_FULL_PLAN_CLOSURE.md` for the entire plan and remaining gaps.
+
 NB00–NB05 are generated from `tyrelib/tyrelib.py` by
 `tyrelib/build_notebooks.py`. The corrected NB06–NB10 definitions live in
 `tyrelib/build_later_notebooks.py`; the full generator calls that builder too.
@@ -109,19 +174,36 @@ the faithfulness table has 35 rows.
 
 ## What to run now
 
-1. **Stop every older NB06 session — v4 through v10.** Upload the
-   **tyrelib v11 `NB06_StageB_OFAT.ipynb`** to Kaggle, attach the prepared
+**Superseded execution guidance:** use the recovery delivery above. The following
+paragraphs record the preceding NB08–NB10 completion audit, not full-plan closure.
+
+As of 2026-09-09, **NB08, NB09 and NB10 have executed**. NB08 has 63/63
+stress rows; NB09 has all four tables and 27 prediction files. NB10 published
+nine figures and its result tables, but skipped Figure 3 because the saliency
+examples are absent. No full rerun is required to verify these saved artifacts.
+
+Next is results review: H2 is undefined despite a saved False flag; conformal
+coverage varies outside the target band; Figure 10 needs its quarantine filter
+reviewed. See `../docs/19_NB08_NB10_COMPLETION_AUDIT.md`. The live control
+mean is now 0.375184, below 0.45, following a later fold-1 HF record.
+The executed notebooks are preserved. If inference is rerun later, use one
+session: NB08–NB10 inference loops are not sharded across account labels.
+
+### Historical NB06 recovery instructions (superseded by completion above)
+
+1. Stop every older NB06 session. Upload the
+   **tyrelib v12 `NB06_StageB_OFAT.ipynb`** to Kaggle, attach the prepared
    dataset, choose **T4 ×2**, enable Internet, expose `HF_TOKEN`, and Run All.
    The requested one-notebook mode is now the default:
    `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` and `ACCOUNT='acct1'`.
-   **Cell 1 must print `tyrelib v11 loaded`; the session must print
+   **Cell 1 must print `tyrelib v12 loaded`; the session must print
    `worker=0/1` and `MODE=ONE NOTEBOOK`.**
 2. Cell 2 must load public revision `2026-08-30-r3` and print exactly these
    locked architectures: **RegNetY-16GF, DenseNet-121, ResNet-50**. It also
    reconstructs their raw evidence coverage from
    `tables/xai_evidence_all.csv` before it allows training.
-3. Public HF currently has **42/108 complete, 34 checkpointed incomplete, and
-   32 not started**. Every one of the 76 status-bearing Stage-B runs has both
+3. Public HF currently has **101/108 complete, 3 checkpointed incomplete, and
+   4 not started**. Every one of the 104 status-bearing Stage-B runs has both
    checkpoints, so nothing
    recorded needs to be retrained. Completed runs will be skipped. NB06 runs the remaining ROI jobs
    first, then the other 11 OFAT factors, three seeds each, on fold 1 only. It
@@ -177,7 +259,12 @@ the faithfulness table has 35 rows.
    DenseNet tail. Each model now runs in a disposable child process. Linux
    reclaims the entire child address space at exit; a RAM-paused child is
    automatically restarted on the same HF checkpoint instead of ending NB06.
-10. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
+10. **v12 fixes the account typo and the misleading risk label (Bug 29).**
+   Python treats `('acct1')` as a string, which made the attached notebook stop
+   in Cell 3 before loading data. It is now normalised to `('acct1',)`
+   automatically. Untouched runs with no HF files now print `NOT STARTED`;
+   `AT RISK` is reserved for partial artifacts without a usable checkpoint.
+11. Two independent RegNet ROI attempts then exposed a separate T4/cuDNN
    `channels_last` fault at only ~1.1 GB/card. RegNet remains unchanged but now
    runs contiguous NCHW with cuDNN autotuning off; other architectures keep
    `channels_last`. FRESH runs stay with their static owner, so account 1 will
@@ -185,7 +272,7 @@ the faithfulness table has 35 rows.
    work only through the v8 two-phase claim (step 6). Before claiming
    work, NB06 proves the exact RegNet batch/resolution in a disposable dual-T4
    child process and publishes the log; look for `CUDA_SMOKE_PASS`.
-11. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
+12. Then run **NB08 → NB09 → NB10**. Each notebook reconciles public HF
    artifacts before doing work, pushes at major milestones and on the
    30-minute cadence, and can continue in a fresh Kaggle session. NB09 also
    rebuilds and publishes a missing predictions parquet from its public best

@@ -1,7 +1,7 @@
 # PROGRESS
 
 **Live status log. Updated every working session.**
-Last updated: **2026-09-03**
+Last updated: **2026-09-10**
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -14,7 +14,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **S2 complete; annotations verified; S6 XAI gate complete; S4 Stage B in progress (42/108 complete, 34 checkpointed incomplete, 32 not started).**
+**Stage:** **The implemented classification track has run, but the full experimental plan is NOT complete. S5 detection/segmentation and S9 integration have not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -22,28 +22,12 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 
 ### Immediate next action
 
-> 1. **Stop every older v4-v10 NB06 session first.** Replace it with the
->    **2026-09-03 tyrelib v11** `NB06_StageB_OFAT.ipynb`, then Run All.
->    NB07 is complete and the public gate has
->    been independently audited: the locked architectures are **RegNetY-16GF,
->    DenseNet-121 and ResNet-50**, each XAI-valid and confirmed on seeds 1–3.
-> 2. In Kaggle attach the prepared dataset, enable Internet, select **GPU T4 ×2**,
->    and expose `HF_TOKEN`. For the requested single-notebook run, leave
->    `ACTIVE_KAGGLE_ACCOUNTS=('acct1',)` and `ACCOUNT='acct1'`. For four real
->    parallel copies, list all four active account labels in every copy. The cell derives
->    `NUM_WORKERS=1` and `WORKER_ID=0`, then must print `worker=0/1` and
->    `MODE=ONE NOTEBOOK`. Cell 2 must print those exact three architectures and the raw
->    public-evidence coverage before any training plan is built.
-> 3. NB06 runs the tyre-ROI control first and then the remaining OFAT arms on
->    fold 1 only: at most **108 runs**. The public audit now has **42 completed,
->    34 checkpointed incomplete, and 32 not started; all 76 status-bearing runs have both
->    `ckpt_last.pt` and `ckpt_best.pt`, so zero recorded epochs are at risk.**
->    v11 launches every model in a disposable child process. Its entire memory
->    is reclaimed at process exit; if it pauses at the RAM guard, the parent
->    immediately resumes that same HF checkpoint in a clean child instead of
->    ending the notebook.
-> 4. After NB06 completes, run NB08 → NB09 → NB10. Re-cutting the folds remains the highest-value
->    dataset correction before making any generalisation claim.
+> **All four recovery notebooks are now verified on public HF** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`. Do not rerun them just to clear the old pending checklist.
+> 1. Resolve tyre-identity/fold leakage before committing to the next large training batch.
+> **S4b delivery:** NB12 trains 18 new fold-1 confirmation runs on ConvNeXt-V2 Tiny/MobileNetV4; NB12R audits/reports afterward. Same-fold cross-architecture confirmation, not new-tyre validation. See `docs/23`.
+> 2. **Do not run NB11 or annotate again.** User defers the SAM2 comparison and blind repeat annotation. Prepare S5 using the existing manual masks, automatically deriving detection boxes from training masks; preserve held-out folds.
+> 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Wider Tier 5/6 and Stage-C scope still need explicit decisions.
+> 4. S9 follows S5 and additional inputs. H3, original-plan missing experiments, calibration limitations and manuscript work remain open. See `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
 
 ---
 
@@ -60,16 +44,20 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | Model zoo reference | ✅ Done | `docs/04` — configs, CAM layers, cost table |
 | Infrastructure spec | ✅ Done | `docs/05` — multi-account, sharding, **twenty-one bugs** |
 | Evaluation protocol | ✅ Done | `docs/06` |
-| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v11** — per-model process isolation and automatic same-run RAM resume (Bug 28); launch/progress clarity (27); cgroup RAM/loader fixes (25–26). **114 selftest checks** |
-| S1 baselines | 🔄 NB01 ready | 2 of 5 done (colour 0.491, structure 0.483); NB01 adds HOG+SVM, majority, random-init |
-| S2 architecture sweep | ⚠ **153 valid + 9 quarantined** | All 162 executions are public, but every `convnextv2_s` status reports 11,177,538 parameters and its sampled checkpoint has a ResNet-18 tensor signature. Those nine mislabeled runs are excluded. The other 153 are scientifically usable; NB05 remains 27/27 valid. `docs/18` |
+| **S0 infrastructure code** | ✅ **Done** | `tyrelib/tyrelib.py` **v12** — account typo hardening and honest HF labels (Bug 29); per-model process isolation and automatic same-run RAM resume (Bug 28). **118 selftest checks** |
+| S1 baselines | ✅ **NB01A/B executed and HF-verified** | 15 baseline/fold rows, 1,672 CPU predictions; nine matched ResNet-50 runs each complete all 60 epochs. Matched final mean macro-F1 0.823322; majority macro-F1 0.193092. Fold leakage remains a limitation, not a completion failure. |
+| S2 architecture sweep | ✅ **Complete: retained 17-architecture sweep (153/153)** | User accepts closing this sweep with the unsupported/mislabeled Small arm excluded. Nine ResNet-18 substitutions remain quarantined, never counted as ConvNeXt-V2-S. NB05 remains 27/27 valid. This does not complete wider Tier 5/6 experiments. `docs/18` |
 | Annotations `annotation_v2` | ✅ **NBT1 verified PASS** | 418 hand-drawn + 4,180 self-healed propagated masks; actual-used fingerprint `085acfb8fb83c531` |
-| S4 technique OFAT | 🔄 **NB06 in progress: 42/108 complete + 34 checkpointed incomplete; 32 not started** | All 76 public Stage-B statuses have both checkpoints. v11 isolates each model in a disposable process and automatically resumes a RAM-paused child; model recipe unchanged |
+| S3 masks | ✅ **Existing manual-mask route ready**; ⏸ **extra comparison deferred** | Reuse 418 manual masks and validated derivative replay for supervised S5. User declines further annotation: SAM2/manual comparison and blind self-consistency remain unmeasured, not passed. NB11 is optional/deferred, not a prerequisite. |
+| S4 technique OFAT | ✅ **NB06 complete: 108/108** | Every run has completed status, last/best checkpoints and final metrics on HF |
+| S4b / Stage C confirmation | 🔄 **0 finished / 4 resumable / 14 not started** | HF 2026-09-10: checkpoints at 28/26/25/26. ConvNeXt repaired preflight passed (0.82 s/step); MobileNet dual-GPU preflight failed (12.04 s/step). Repair r2 uses one GPU for BOTH models, matching saved baselines; batches/hashes unchanged. MobileNet repaired speed still unverified. `docs/23` |
+| S5 detection/segmentation | ⬜ **Not started** | No YOLO/RT-DETR/SegFormer/DeepLab S5 artifacts found in public HF. NBT1's test U-Net and mask-based ROI classification are NOT this comparative stage. |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
-| S7 stress tests | ⬜ **NB08 ready** | Shuffled-label control runs first |
+| S7 stress tests | ✅ **NB08 executed and verified on HF** | 63/63 stress rows; nine matching per-run tables; current control mean 0.375184 passes 0.45 |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
-| S8 ensembles + calibration | ⬜ **NB09 ready** | Seed/arch ensembles + conformal sets |
-| S10 analysis + figures | ⬜ **NB10 ready** | Master tables, H1 test, 10 figures |
+| S8 ensembles + calibration | ✅ **NB09 outputs verified** | 27 prediction files / 3,762 rows; four result tables; coverage target not met across folds |
+| S9 integrated pipeline | ⬜ **Not started** | Depends on S5 and additional landmark/healthy-pool evidence; no verified `t8-*` runs. Alignment remains deferred. |
+| S10 analysis + figures | ⚠ **NB10R verified: 10/10 implemented figures** | Figure 3 and its 30-panel manifest are public; H2 explicitly inconclusive/undefined. H3, original-plan video/interaction figures and manuscript remain unfinished. |
 | Alignment | ⏸ Deferred | Needs calibration data that does not exist |
 | Optional app | ⬜ | First on the cut list |
 
@@ -79,13 +67,14 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 
 ## ⬤ What the dataset lets us do today
 
-One thing, honestly: **a three-class ordinal mileage-proxy classifier.**
+Currently supported: **mileage-proxy classification and supervised tyre/tread localisation using the available masks.** Supported does not mean implemented or evaluated.
 
 | Capability | Supported? |
 |---|---|
 | 3-class mileage-proxy classification | ✅ Yes |
 | Anomaly detection (needs curated healthy pool) | ⚠️ Partially |
 | Tyre/tread/marking/damage masks for XAI measurement | ✅ NBT1 A/B/C PASS; fingerprint `085acfb8fb83c531` |
+| Learned tyre/tread detection and segmentation (S5) | ✅ Labels available; comparative training/evaluation not yet done |
 | Tread depth in mm | ❌ No gauge data |
 | Camber / toe | ❌ No calibration, no pose, no rack data |
 | Photometric stereo · unrolling · video fusion | ❌ Wrong capture modality |
@@ -176,7 +165,13 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 
 **Science (cheap, do in parallel)**
 
-- [ ] Finish S1: HOG+SVM, majority class, random-init CNN
+- [x] Verify legacy S1 on HF: all five rows and three legacy random-init runs exist
+- [x] Execute and HF-verify NB01A reporting recovery and NB01B matched ResNet-50 comparison (9/9 × 60 epochs)
+- [x] Execute and HF-verify NB03A coverage audit (153 valid / 9 quarantined)
+- [x] Execute and HF-verify NB10R reporting recovery (10 figures); H2 remains inconclusive
+- [ ] S5: build and evaluate detection/segmentation; not covered by NBT1
+- [ ] S9: integrated pipeline and ablations, after S5
+- [ ] Resolve broader Tier 5/6, Stage C, XAI/video and original-figure scope explicitly
 - [x] Verify checkpoint architecture identity — 153 valid; nine `convnextv2_s` records quarantined as ResNet-18 substitutions
 - [ ] Verify every XAI method has a valid target layer per architecture
 
@@ -195,6 +190,156 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 ---
 
 ## ⬤ Session log
+
+### 2026-09-10 — MobileNet preflight failure repaired (NB12 r2)
+
+Saved output shows ConvNeXt single-GPU warm median 0.8216 s/step (PASS),
+MobileNet dual-GPU 12.0436 s/step (guard failure before claims). Public HF
+`e3516a22a75d4349b1e9fd5fba9d276ce159ba53` still holds four checkpoints at
+28/26/25/26; no new training lost. Original MobileNet baseline used GPU 0 only,
+~48 s/epoch, ~6.46 GB peak GPU memory. Enabled single-GPU MobileNet at unchanged
+batch 64; ConvNeXt remains single-GPU/batch 32. Smoke GPU routing now comes
+from the actual training config. Speed guard retained, not bypassed. Source
+notebook archived; regenerated NB12/NB12R. Local regression tests and preserved
+checkpoint hashes checked; MobileNet repaired Kaggle throughput remains pending.
+
+### 2026-09-10 — NB12 slow-runtime diagnosis and repair
+
+HF revision `2def8d1b1f00f7c08fd029e8f339c5ab1004b6c8`: four paused ConvNeXt
+runs at epochs 28/26/25/26; no completed runs and 14 not started. No NaN/Inf
+batches reported. Training was progressing, not restarting at epoch zero.
+Saved acct2 history shows 1,059–1,191 s/epoch, 8–11 s forward passes, ~5%
+data loading and growing process RSS. Original Stage-A ConvNeXt used one GPU,
+~90 s/epoch. Three pauses are host-RAM guards and one is session watchdog.
+Repair opts ConvNeXt into one-GPU execution, retaining batch 32/model/recipe,
+with an eight-step timed preflight (warm median must be <4 seconds). MobileNet
+retains two GPUs. Histories record the actual training GPU count going forward.
+The exact lower-level DP slowdown cause is not proven; this avoids that path.
+Existing scientific hashes/IDs are preserved; old notebook outputs archived.
+Local tests pass; corrected Kaggle throughput still needs verification. No HF
+files changed and no old progress deleted. Stop old copies before rerunning.
+
+### 2026-09-09 — S4b confirmation notebooks delivered
+
+Checked frozen public HF selection/effects. NB06 already covers three architectures;
+the remaining three-seed-confirmed eligible models are ConvNeXt-V2 Tiny/MobileNetV4.
+Declared top-three signed-mean-effect rule yields class-weighted sampling (+.052669),
+random initialisation (-.020625), uniform sampling (-.033445). Created NB12 for
+18 fresh fold-1 jobs and NB12R for a complete, paired HF audit/report. No duplicate
+baselines, new annotations or training launched. Strict resume is opt-in to new
+jobs. Local regression checks pass; dual-T4 runtime preflight remains unexecuted.
+
+### 2026-09-09 — No additional annotation; manual-supervised route retained
+
+User cannot repeat annotation and authorizes skipping the added work. Removed
+NB11 from required next actions. Existing manual masks can supervise S5; derive
+training detection boxes automatically from those masks and evaluate on held-out
+manual labels. This conversion is legitimate supervised-label preparation, not
+an independent SAM2 agreement test. SAM2/manual comparison and the 30-image
+blind consistency assessment are explicitly deferred/unmeasured. NBT1 does not
+prove annotator consistency. No new annotation, inference, training or HF writes
+performed. Fold-integrity and S9 additional-input limitations are unchanged.
+
+### 2026-09-09 — S2 retained scope closed; S3 notebook delivered
+
+At the user's request, mark the retained 17-model S2 sweep green (153/153),
+while keeping all nine mislabeled Small runs quarantined. This is a transparent
+scope closure, not relabeling invalid checkpoints. No classifier change or retraining.
+Created NB11 S3 two-pass notebook with pinned SAM2.1 Small, independent human
+box prompts, 30-image blind consistency assessment, per-image resume/fingerprints,
+30-minute HF batching and catchable-Stop flush. Human inputs and Kaggle GPU
+execution remain pending. Local tests cover 418 real masks and resume/input gates.
+S4b is separately based on NB06; S5 follows mask review; S9 needs S5 and further
+landmark/healthy-pool inputs. Protocol: `docs/22_S3_MASK_COMPARISON.md`.
+
+### 2026-09-09 — All four recovery notebooks verified on public HF
+
+Pinned revision `bf62f9e9cbedacc580aa42542da14a068b8f9215`. NB01A publishes
+15 baseline rows, 418 features and 1,672 CPU predictions. NB01B has nine completed
+60-epoch histories, matching final metrics and both checkpoint paths per run;
+final macro-F1 mean is 0.823322. NB03A confirms 162 executions with nine quarantined.
+NB10R has ten decodable PNGs including Figure 3, 30 saliency manifest rows and
+explicit inconclusive H2. Account summaries may be partial snapshots: per-run
+records confirm completion. No remote edits or new training were performed.
+S5/S9 and broader plan gaps remain open. Full evidence: `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
+
+### 2026-09-09 — NB01A read-rate-limit repair (r2)
+
+The supplied NB01A stopped before baseline computation: anonymous HF `repo_info`
+returned HTTP 429 with a 128-second retry instruction. Repaired NB01A uses the
+Session HF_TOKEN for metadata and downloads, honors server retry delays with a
+bounded retry budget, and removes its unused full-repository listing. Upload
+cadence and scientific settings are unchanged. Saved failing output is preserved
+in `notebooks/archive/NB01A_Baseline_Recovery_2026-09-09_api429.ipynb`.
+Fault-injection tests cover 429 recovery, transient server errors, pinned/authenticated
+downloads, Stop propagation and retry exhaustion; recovery regression checks pass.
+**Local repair verified; Kaggle rerun and new HF reporting outputs remain pending.**
+
+
+### 2026-09-09 — Full-plan reconciliation and targeted recovery notebooks
+
+Read all **27 existing project Markdown files completely**, including historical
+logs. Rechecked public HF at `7c5b6461815a78aae589085d0152eaa6ae9995e1`.
+The S1 "2 of 5" status was wrong: HOG and three legacy random-init runs were
+already completed on August 27. Those used ResNet-18, 224px, 15 epochs and one
+seed, not the planned ResNet-50 matched transfer comparison. Four separate
+recovery notebooks now preserve completed notebooks and old HF paths.
+
+Added the omitted S3 remainder, S4b, S5 and S9 to the board. Local full clean-mask
+inspection found marking/damage-positive image counts by fold: 67/58, 0/5, 0/0.
+Fold-1 stripe masking therefore cannot test H2's marking claim. NB10R repeats
+this coverage audit on Kaggle and records undefined correlations honestly.
+S2 remains 153 valid plus nine quarantined; timm publishes only an untrained
+Small topology, so no substitute was made. See `docs/20_FULL_PLAN_CLOSURE.md`
+for run instructions, unresolved scope and validation boundaries. No HF writes
+or production training were performed during this local repair.
+
+### 2026-09-09 — NB08, NB09, NB10 executed; public artifacts verified
+
+Audit pinned HF commit `7c5b6461815a78aae589085d0152eaa6ae9995e1`.
+NB08 has all 63 unique intervention rows and nine matching source tables;
+NB09 has 27 valid prediction files (3,762 rows), 39 ensemble, 6 TTA, 6
+calibration and 3 conformal rows. NB10 has a 17-architecture master table,
+nine quarantined runs, three hypothesis rows and nine readable figures.
+Figure 3 was explicitly skipped because no saliency examples exist.
+
+The current control mean is 0.375184 (selected-epoch 0.549365); a later HF
+fold-1 record supersedes the earlier audited values. H2 correlations are NaN,
+so its saved False is not evidence of a tested negative hypothesis. H3 is
+not testable. Coverage is 86.89/97.56/93.94%; empty conformal sets are omitted
+from the saved abstention rate. Full evidence and remaining review items are
+in `docs/19_NB08_NB10_COMPLETION_AUDIT.md`. Executed notebooks preserved;
+no HF writes or training were performed during verification.
+
+### 2026-09-08 (b) — NB06 completed; NB08 selected-epoch gate corrected
+
+HF confirms 108/108 completed Stage-B runs with last/best checkpoints and final
+metrics. The submitted NB08 used tyrelib v9 and completed three 12-epoch
+shuffled-label controls, then stopped at mean selected-epoch F1 0.498079.
+This violates docs/06's existing fixed-budget evaluation rule. Public full
+histories and final summaries agree on epoch-12 F1 values 0.263448, 0.285342,
+0.510438 (mean 0.353076). Gate revision `2026-09-08-final-epoch-r1` retains
+threshold 0.45, reports both metrics, and reuses those completed controls.
+This post-result correction is explicitly recorded; fold 2 and known dataset
+leakage still require caution. NB08 now embeds v12 and refuses interventions
+unless the control cell passes. The original executed notebook is preserved
+under `notebooks/archive/`. Local gate tests pass; GPU interventions are pending.
+
+### 2026-09-08 — 101/108 complete; the attached NB06 stopped on a missing comma
+
+The public HF audit has **101 completed runs, 3 safely resumable runs, 4 runs
+with no files, and zero genuinely at-risk runs**. All 104 started runs have both
+rolling and best checkpoints. The resumable runs are ResNet-50 `wd_low` seed 3
+at epoch 27, `prep_clahe` seed 1 at epoch 60 awaiting finalisation, and
+`prep_gray` seed 2 at epoch 28. The four untouched runs are ordinary future
+work, not lost progress.
+
+The attached notebook stopped before data loading because
+`ACTIVE_KAGGLE_ACCOUNTS=('acct1')` is a string in Python; a one-item tuple
+requires a trailing comma. Tyrelib **v12** normalises either spelling safely,
+continues to reject duplicate account labels, and changes final verification so
+an untouched run prints `NOT STARTED` rather than the misleading `AT RISK`.
+No model, checkpoint, split, or training setting changed.
 
 ### 2026-09-03 — two models completed, then retained per-epoch RSS stopped the third
 

@@ -465,3 +465,18 @@ everything or maintaining two analysis paths forever. Neither is acceptable.
 - [ ] Per-GPU columns expand correctly for 1 and 2 GPUs
 
 Run it in the preflight notebook, on every account.
+
+## Observed NB08–NB10 outputs — 2026-09-09
+
+NB10R's corrected results are now public and verified under the separate closure prefix.
+H2 adds `outcome=inconclusive_undefined` with missing `supported` when either
+correlation is undefined. A per-image intervention-region coverage table and
+saliency-panel image/run/method manifest accompany the figures. No original
+run schema or public hypothesis registration is changed. See `docs/20`.
+
+The public completion audit (`19_NB08_NB10_COMPLETION_AUDIT.md`) verified
+63 stress rows, 39 ensemble rows, 6 TTA rows, 6 calibration rows and 3 conformal
+rows. The saved conformal `abstain_rate` counts only sets of size greater than
+one; empty sets are excluded. Do not present this field as all uncertain cases.
+NB10's `supported=False` for H2 accompanies missing correlations: preserve the
+raw record but describe its outcome as undefined/inconclusive in reporting.

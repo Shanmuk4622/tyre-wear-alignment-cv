@@ -18,7 +18,7 @@ base64 blob inside a notebook.
 """
 from __future__ import annotations
 
-__version__ = "v11"
+__version__ = "v12"
 
 import atexit
 import csv
@@ -249,6 +249,31 @@ def human_time(sec: float) -> str:
 
 def _print(tag: str, msg: str) -> None:
     print(f"[{tag}] {msg}", flush=True)
+
+
+def normalise_active_accounts(value, announce: bool = True) -> tuple[str, ...]:
+    """Return a validated account tuple, repairing the one-item-tuple typo.
+
+    ``('acct1')`` is a string in Python, not a tuple. That tiny missing comma
+    used to make the NB06 session cell reject an otherwise valid one-worker
+    configuration before it could even read Hugging Face. Accept either a
+    tuple/list or a comma-separated string, then expose one canonical tuple to
+    the sharding code.
+    """
+    was_text = isinstance(value, str)
+    raw = value.split(",") if was_text else value
+    try:
+        labels = tuple(x.strip() if isinstance(x, str) else x for x in raw)
+    except TypeError as e:
+        raise ValueError("ACTIVE_KAGGLE_ACCOUNTS must be account labels") from e
+    if not labels or any(not isinstance(x, str) or not x for x in labels):
+        raise ValueError("ACTIVE_KAGGLE_ACCOUNTS must contain non-empty account labels")
+    if len(set(labels)) != len(labels):
+        raise ValueError("ACTIVE_KAGGLE_ACCOUNTS must contain unique account labels")
+    if was_text and announce:
+        _print("CONFIG", f"normalised text ACTIVE_KAGGLE_ACCOUNTS to {labels!r}; "
+                         "a one-item tuple normally needs a trailing comma")
+    return labels
 
 
 # --------------------------------------------------------------------------
@@ -2091,13 +2116,19 @@ class Trainer:
         import torch
         self.fetch_remote_state()
         if not self.ckpt_last.exists():
+            if self.cfg.get("_strict_resume") and self.sess.inventory.epoch(self.run_id) > 0:
+                raise RuntimeError("Published progress exists but its rolling checkpoint is missing; refusing a fresh restart")
             return False
         try:
             ck = torch.load(self.ckpt_last, map_location="cpu", weights_only=False)
         except Exception as e:
+            if self.cfg.get("_strict_resume"):
+                raise RuntimeError("Checkpoint unreadable; refusing to overwrite progress with fresh training") from e
             _print("RESUME", f"checkpoint unreadable ({e}) -- starting fresh")
             return False
         if ck.get("config_hash") != self.cfg["config_hash"]:
+            if self.cfg.get("_strict_resume"):
+                raise RuntimeError("Checkpoint config mismatch; refusing to restart this run ID")
             _print("RESUME", f"config_hash mismatch "
                              f"({ck.get('config_hash')} != {self.cfg['config_hash']}) -- starting fresh")
             del ck
@@ -2203,6 +2234,9 @@ class Trainer:
         resumed = self.try_resume(model, opt, sched, scaler)
         model = model.to(dev).to(memory_format=memory_format)
         gpu_count = torch.cuda.device_count() if dev.type == "cuda" else 0
+        if cfg.get("_single_gpu") and gpu_count:
+            gpu_count = 1
+            _print("CUDA", "single-GPU runtime profile; global batch and scientific recipe unchanged")
         if gpu_count > 1:
             model = torch.nn.DataParallel(model)
         for st in opt.state.values():
@@ -2392,6 +2426,7 @@ class Trainer:
                     "runtime_scheduler_safety_revision": SCHEDULER_SAFETY_REVISION,
                     "runtime_process_isolation_revision": PROCESS_ISOLATION_REVISION,
                     "runtime_isolated_child": bool(cfg.get("_isolated_child", False)),
+                    "runtime_training_gpu_count": gpu_count,
                     "runtime_host_ram_pause_percent": HOST_RAM_PAUSE_PERCENT,
                     "wall_seconds_cumulative": self.wall_seconds,
                     "energy_joules_cumulative": self.energy_joules,
@@ -2488,6 +2523,13 @@ class Trainer:
                 # Update that same epoch by name now that the post-checkpoint,
                 # post-release memory fields exist (Bug 28 telemetry gap).
                 append_epoch_row(self.hist_path, row)
+                runtime_limit = float(cfg.get("_max_epoch_seconds", 0))
+                if ep + 1 < n_ep and runtime_limit > 0 and ep_s > runtime_limit:
+                    status = "paused"
+                    pause_reason = "runtime_throughput_guard"
+                    _print("SPEED", f"epoch took {ep_s:.0f}s, over runtime guard {runtime_limit:.0f}s; "
+                                    "checkpoint saved. Stop and inspect runtime before continuing.")
+                    break
                 if ram_now >= HOST_RAM_PAUSE_PERCENT:
                     # Say WHERE the memory is. "89.6%" alone is not actionable;
                     # "this process holds 4 GB and something else holds 24" is.
@@ -2578,6 +2620,7 @@ class Trainer:
                    "runtime_scheduler_safety_revision": SCHEDULER_SAFETY_REVISION,
                    "runtime_process_isolation_revision": PROCESS_ISOLATION_REVISION,
                    "runtime_isolated_child": bool(cfg.get("_isolated_child", False)),
+                   "runtime_training_gpu_count": gpu_count,
                    "cuda_restart_required": cuda_restart_required,
                    "lib_version": __version__, "finished_iso": iso(),
                    "val_sessions": self.split_info["val_sessions"],
@@ -2801,16 +2844,23 @@ class Session:
                 state = "FINISHED"
             elif st == "resumable":
                 state = "RESUMABLE"
-            else:
+            elif any(p.startswith(f"runs/{rid}/") for p in self.inventory.files):
+                # Some run files exist but there is neither a terminal status
+                # nor a checkpoint. This is the only genuinely unsafe case.
                 state = "AT RISK"
+            else:
+                # No file was ever created for this planned run. It is future
+                # work, not lost progress, so do not frighten the operator.
+                state = "NOT STARTED"
             rows.append({"run_id": rid, "on_hf": state, "epoch": self.inventory.epoch(rid),
                          "missing_files": len(missing)})
         df = pd.DataFrame(rows)
         n_risk = int((df.on_hf == "AT RISK").sum())
         print(df.to_string(index=False))
         print(f"\nFINISHED {int((df.on_hf=='FINISHED').sum())}   "
-              f"RESUMABLE {int((df.on_hf=='RESUMABLE').sum())}   AT RISK {n_risk}")
-        print("FINISHED and RESUMABLE are both safe to close.")
+              f"RESUMABLE {int((df.on_hf=='RESUMABLE').sum())}   "
+              f"NOT STARTED {int((df.on_hf=='NOT STARTED').sum())}   AT RISK {n_risk}")
+        print("FINISHED and RESUMABLE are safe to close; NOT STARTED means no work was lost.")
         return df
 
     def aggregate_remote(self, run_ids=None, verbose: bool = True) -> pd.DataFrame:
@@ -3581,6 +3631,17 @@ def selftest() -> bool:
     t("inventory: full checkpoint is finalised, not called epoch 61 training",
       inv.reason("r-full").startswith("finalise 60-epoch checkpoint"))
     t("inventory: unknown run is absent", inv.state("r-nothing") == "absent")
+    t("account config repairs a missing one-item-tuple comma",
+      normalise_active_accounts("acct1", announce=False) == ("acct1",))
+    t("account config preserves a valid four-worker tuple",
+      normalise_active_accounts(("acct1", "acct2", "acct3", "acct4"), announce=False) ==
+      ("acct1", "acct2", "acct3", "acct4"))
+    try:
+        normalise_active_accounts(("acct1", "acct1"), announce=False)
+        _duplicate_accounts_rejected = False
+    except ValueError:
+        _duplicate_accounts_rejected = True
+    t("account config still rejects duplicate workers", _duplicate_accounts_rejected)
 
     # The heart of it: a run's state must not depend on NUM_WORKERS.
     states = {nw: {r: inv.state(r) for r in ("r-done", "r-mid", "r-nothing")}
@@ -3634,6 +3695,23 @@ def selftest() -> bool:
     t("summary.json is enqueued for upload", "summary.json" in _src)
     t("confirm_on_hf judges completion by state, not file presence",
       "inventory.state" in _insp.getsource(Session.confirm_on_hf))
+    class _ConfirmInventory:
+        files = {"runs/r-finished/STATUS.json",
+                 "runs/r-resume/checkpoints/ckpt_last.pt",
+                 "runs/r-risk/STATUS.json"}
+        def refresh(self, run_ids, verbose=False): return self
+        def state(self, rid):
+            return {"r-finished": "completed", "r-resume": "resumable"}.get(rid, "absent")
+        def epoch(self, rid): return 0
+    _confirm_session = object.__new__(Session)
+    _confirm_session.inventory = _ConfirmInventory()
+    with contextlib.redirect_stdout(io.StringIO()):
+        _confirm_df = _confirm_session.confirm_on_hf(
+            ["r-finished", "r-resume", "r-future", "r-risk"])
+    _confirm_states = dict(zip(_confirm_df.run_id, _confirm_df.on_hf))
+    t("HF confirmation separates not-started work from unsafe partial artifacts",
+      _confirm_states == {"r-finished": "FINISHED", "r-resume": "RESUMABLE",
+                          "r-future": "NOT STARTED", "r-risk": "AT RISK"})
     t("stolen runs re-pull the registry before claiming",
       "registry.pull" in _insp.getsource(Session.run_all))
     t("work stealing is opt-in, not the default",

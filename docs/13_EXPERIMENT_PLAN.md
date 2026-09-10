@@ -1,5 +1,24 @@
 # 13 — The Experiment Plan
 
+> **Latest scope decision:** the user declines additional annotation. Use the
+> existing manual masks for supervised S5; derive training boxes automatically.
+> NB11/SAM2 comparison and blind repeat annotation are deferred, not passed.
+> This supersedes their scheduling below; no new annotation is required for
+> this route. Known fold leakage and S9 input requirements remain. See `docs/22`.
+
+> **Execution reconciliation, 2026-09-09:** `20_FULL_PLAN_CLOSURE.md` maps every
+> stage to actual evidence. S5/S9 have not started. Tier 5/6 and confirmation
+> scope are not all covered by NB00–NB10. The proposal below is not a completion
+> claim. We now have manual masks; historical "classification labels only" /
+> "no annotations" wording below describes the pre-annotation proposal.
+> All five legacy baseline rows and NB01A reporting are public; NB01B completed
+> all nine matched ResNet-50 random-init runs. NB10R has ten implemented figures.
+> See `21_RECOVERY_COMPLETION_AUDIT.md`. No unsupported Small replacement is chosen.
+> Subsequent scope decision: retained S2 is complete at 17 architectures / 153
+> valid runs; nine substitutions stay excluded. NB11 implements a separately
+> labelled human-box-prompted SAM2/manual comparison, with a 30-image blind
+> self-check (`22_S3_MASK_COMPARISON.md`). Not a fully automatic SAM2 arm.
+
 > **This replaces the previous approach.** We are no longer building one pipeline. We are running a **broad, controlled, XAI-grounded comparative study** of tyre-wear recognition — and the study itself is the contribution.
 >
 > Read `12_DATASET_FINAL_V1.md` first. Everything here is designed around what that dataset can and cannot prove.
@@ -313,6 +332,13 @@ Architecture is only one dimension. These are the levers that usually matter mor
   TER_norm**: RegNetY-16GF, DenseNet-121 and ResNet-50. NB06 now runs
   **one-factor-at-a-time** over the implemented technique axis on fold 1
 - **Stage C** — confirm the top 3 technique findings on the **other two** architectures. If a factor only helps one architecture, say so
+
+  **Implementation declared 2026-09-09:** NB06 already used three architectures,
+  so NB12 adds the remaining two eligible three-seed XAI models (ConvNeXt-V2 Tiny,
+  MobileNetV4). Three highest signed-mean selected-epoch NB06 effects ×3 seeds,
+  fold 1 =18 new jobs; reuse six Stage-A baselines. This is a declared operational
+  extension, not a retroactive preregistration. Only one selected effect was
+  positive. NB12R reports primary/secondary paired effects (`23_S4B_CONFIRMATION.md`).
 - **Stage D** — detection + segmentation track
 - **Stage E** — XAI over every trained model
 - **Stage F** — shortcut stress tests
@@ -339,23 +365,28 @@ All three public selection rows have `xai_status=ok`, `eligible=True`, and
 public selection and the raw 1,208-row evidence table and verifies both before
 constructing any training configuration.
 
-### Stage-B execution state — 2026-09-03
+### Execution state — 2026-09-09
 
-Public HF now contains **42 completed, 34 checkpointed incomplete, and 32
-not-yet-started Stage-B runs**. Every one of the 76 status-bearing runs has
-`ckpt_last.pt` and `ckpt_best.pt`;
-no recorded epoch is at risk. The larger sample corrected the earlier
-ROI-only memory diagnosis: all 53 pauses report `host_ram_guard`, including
-standard full-frame arms, while T4 memory remains well below capacity.
+Public HF now contains **108/108 completed Stage-B runs**, each with
+`ckpt_last.pt`, `ckpt_best.pt`, and final metrics. No Stage-B work remains.
+NB08's three controls and all 63 intervention rows are public. The current
+fixed-final-epoch control mean is 0.375184 (selected mean 0.549365); a later
+fold-1 HF result superseded the prior snapshot. The threshold stays 0.45.
+NB09 published all four tables and NB10 its master/hypothesis tables and nine
+figures. Figure 3 is absent; H2 is undefined and H3 not testable. Coverage
+targets remain unmet across folds. See `19_NB08_NB10_COMPLETION_AUDIT.md`.
+Passing the control does not clear fold leakage or finish the broader study.
 
-Tyrelib v11 preserves the three architectures, batch sizes, resolutions,
+Tyrelib v12 preserves the three architectures, batch sizes, resolutions,
 optimiser settings and 60-epoch budget. RegNet retains its verified contiguous
 NCHW/cuDNN-safe runtime, and all earlier resume/memory/history repairs remain.
 Every model now runs in a disposable child process because public telemetry
 measured 0.17–0.30 GB of RSS retained per epoch in the long-lived kernel. A
 RAM-paused child exits and the parent resumes its same public checkpoint in a
 clean child. These are execution and memory-lifetime repairs, not experimental
-factors.
+factors. v12 also normalises the common `('acct1')` missing-comma edit and
+distinguishes never-started work from genuine partial artifacts in the final
+HF report.
 
 ---
 
@@ -422,8 +453,8 @@ Single T4, fp16, `channels_last`, averaged over the three folds, at the full 60-
 | Original full-plan total | | ~800 runs | ~440 GPU-h |
 
 The total row is retained as the original proposal budget, not the current
-remaining commitment. NB07 is inference; NB06 is the next training stage and
-is now capped at 108 runs.
+remaining commitment. NB07 is inference; NB06's 108 implemented runs are now
+complete. It does not also complete the separately listed Stage C or D.
 
 **Feasibility:** 4 accounts × 30 GPU-h/week = **120 GPU-h/week** ⇒ **~4 weeks wall-clock**, assuming sharding works and nothing needs re-running.
 

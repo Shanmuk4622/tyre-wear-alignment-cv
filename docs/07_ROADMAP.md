@@ -6,7 +6,15 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 
 ---
 
-## Position as of 2026-09-03
+## Position as of 2026-09-09
+
+**Full-plan status:** see `20_FULL_PLAN_CLOSURE.md`. All five legacy baselines
+are public, and the matched random-init ResNet-50 arm is verified (9/9 × 60 epochs).
+S5, S9, Tier-6 FGVC, broader Tier-5 modes and separate Stage-C confirmation
+are not completed. NB01A/B and NB10R recovery is HF-verified; NB03A is only
+an audit because the pretrained Small arm is unsupported. The user has now
+accepted closing the retained 17-architecture sweep (153/153), with nine
+substitutions permanently excluded. NB11 prepares the S3 independent-input comparison.
 
 | | |
 |---|---|
@@ -16,12 +24,14 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 | Focus | Tyre **wear**. Alignment deferred (`13 §3`) |
 | Compute | 30 GPU-h/week **per Kaggle account** |
 | Compute so far | 162 executions (153 valid) · 163.4 recorded GPU-h · 11.51 kWh |
-| Remaining training | **NB06 in progress:** 42/108 complete + 34 checkpointed incomplete + 32 not started; stop old v4–v10 copies and continue with tyrelib v11 process-isolated NB06. All 76 public statuses have both checkpoints; model/recipe unchanged |
+| Execution status | **NB06 complete: 108/108. All four recovery notebooks verified.** NB10R has 10/10 implemented figures; broader stages and write-up remain (`docs/21`) |
 | Annotation | ✅ NBT1 real PASS; clean IoU 0.9780, propagated IoU 0.9747 |
 
 **Current execution gate:** NB07 is complete and its public selection has been
-audited. Continue the **2026-09-03 tyrelib v11 process-isolated NB06**, then
-NB08 → NB09 → NB10. Each model gets a clean child process, and any RAM pause
+audited. NB06–NB10 and the four recovery notebooks have executed. Next is
+**fold-integrity decisions and S5 preparation**, with H2/calibration limitations
+and remaining scope recorded in `docs/21`.
+NB06 gave each model a clean child process, and any RAM pause
 automatically resumes the same HF checkpoint in another child. NB06 accepts only the
 faithfulness-tested, three-seed public top three—RegNetY-16GF, DenseNet-121 and
 ResNet-50—and runs fold 1 only while folds 0 and 2 remain leak-flagged.
@@ -68,13 +78,13 @@ the pre-Stage-A “do not cut folds” instruction.
 | **S1** | Baselines | Tier 0 results, all folds | Beat majority class |
 | **S2** | Architecture sweep | 17 valid architectures × 3 folds × 3 seeds | ⚠ **153 valid; 9 `convnextv2_s`/ResNet-18 substitutions quarantined** |
 | **S3** | Masks | Manual + SAM2 mask sets, audit report | Agreement reported |
-| **S4** | Technique OFAT | **RegNetY-16GF + DenseNet-121 + ResNet-50** × 12 factors | 🔄 **42/108 complete + 34 checkpointed incomplete + 32 not started; tyrelib v11 NB06 continues; effect sizes with CIs** |
+| **S4** | Technique OFAT | **RegNetY-16GF + DenseNet-121 + ResNet-50** × 12 factors | ✅ **108/108 completed and verified on public HF** |
 | **S5** | Detection + segmentation | YOLO26, SegFormer, U-Net, DeepLabV3+ | ROI-crop Δ measured |
 | **S6** | XAI | TER/BAR/SAR + faithfulness screen | ✅ **NB07 r3 gate complete; 1,208 evidence rows, top three locked** |
-| **S7** | Stress tests | Shortcut intervention matrix | Shuffled-label control at chance |
-| **S8** | Ensembles + calibration | Seed/arch ensembles, conformal | Coverage 88–92% |
+| **S7** | Stress tests | Shortcut intervention matrix | ✅ 63 rows public; control mean 0.375184 below gate 0.45 |
+| **S8** | Ensembles + calibration | Seed/arch ensembles, conformal | ✅ Outputs public; 88–92% coverage target not met across folds |
 | **S9** | **Tier 8 integrated pipeline** | SegFormer → best classifier → HRNet → PatchCore | Does it beat the best single model? |
-| **S10** | Write-up | Report, Review-3, paper draft | — |
+| **S10** | Write-up | Report, Review-3, paper draft | NB10R verified, 10/10 implemented figures; original-plan gaps and write-up pending |
 
 Stages overlap. **SA runs in parallel with S0** — it is people-time, not compute. S6 consumes S2's checkpoints.
 
@@ -112,7 +122,10 @@ required before the public Stage-A run.
 
 Tier 0 (`04 §3`). Minutes on CPU. Produces a full, reportable, honest result before anything risky starts.
 
-Two are already done: colour probe mean **0.491**, structure probe mean **0.483**. Add HOG+SVM, majority class, and a random-init CNN.
+All five legacy rows already exist on HF: colour .491409, structure .483308,
+HOG .653986, majority accuracy .409735, and three ResNet-18/15-epoch jobs.
+NB01A reporting and NB01B matched ResNet-50 3×3, 60-epoch comparison are now
+verified complete. This training was not "minutes on CPU".
 
 ---
 
@@ -145,6 +158,18 @@ Full protocol in `15_ANNOTATION_GUIDE.md`. Summary:
 
 ## S3 · Masks — the instrument
 
+**Superseding user decision:** no more manual annotation. Defer NB11, the blind
+repeat pass and SAM2 comparison; do not label those tests passed. Use existing
+manual masks for supervised S5 and derive its training boxes automatically.
+The delivery instructions below are retained as optional future work, not a gate
+on this manual-supervised route. Fold integrity still needs resolution.
+
+**Delivery:** `NB11_S3_Manual_SAM2_Agreement.ipynb` is ready in two passes:
+prepare independent box prompts/30 blind reannotations, then run SAM2.1 Small
+inference and report agreement. This is human-box-prompted, unedited SAM2,
+not fully automatic semantic labelling. Kaggle execution and quality review
+remain pending. Run instructions and dependencies: `22_S3_MASK_COMPARISON.md`.
+
 - Manual masks (from SA) as ground truth
 - SAM2-only masks retained as the **pseudo-label ablation arm**
 - Derived regions: `M_bg` = 1 − `M_tyre`; `M_dirt` by rule inside `M_tyre`
@@ -161,6 +186,12 @@ Top 3 architectures from S2 × 12 factors, one at a time (`04 §9`). ~324 runs.
 **Run factor 5 (ROI) first** — framing variance is the most obvious weakness in this dataset, and I expect it to matter more than architecture.
 
 Confirm the top 3 findings on two further architectures (S4b). If a factor helps only one architecture, **say so** — that is the honest reading of an OFAT design, which cannot detect interactions.
+
+**S4b delivery:** NB12 trains 18 fresh fold-1 runs on ConvNeXt-V2 Tiny and
+MobileNetV4, using the top three signed-mean NB06 factors; NB12R audits them.
+Six Stage-A baselines are reused. Only class-weighted sampling was positive;
+random initialisation and uniform sampling were the next ranked effects, not
+proven gains. No new annotation. Protocol/run instructions: `23_S4B_CONFIRMATION.md`.
 
 ---
 
@@ -200,7 +231,13 @@ Reuses checkpoints, nearly free. Seed ensembles, architecture ensembles, TTA, te
 
 ---
 
-## S9 · Write-up
+## S9 · Integrated pipeline — not started
+
+Requires the S5 winner and independently justified landmark/healthy-pool
+inputs. NBT1 is not a trained S5 model comparison; provided-mask ROI is not
+predicted-mask ROI. No Tier-8 results have been verified on HF.
+
+## S10 · Write-up
 
 Start with **empty results tables and the ten figures from `13 §9`**. Deciding what a figure must show changes what analysis you run — while there is still time to run it.
 

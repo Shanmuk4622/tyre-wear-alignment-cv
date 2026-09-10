@@ -1,5 +1,11 @@
 # 03 — Data: Collection, Labels, Annotation
 
+> **Current-state correction (2026-09-09):** the original collection programme
+> below is not delivered data. `final_v1` plus 418 manual masks supports
+> classification and tyre/tread localisation; calibrated depth/alignment and
+> detailed groove labels remain absent. S5 training is not completed by NBT1.
+> See `20_FULL_PLAN_CLOSURE.md` for verified stages and remaining label gaps.
+
 > **The dataset unit is a unique tyre, not a frame.** Everything in this document follows from that one rule.
 
 ---

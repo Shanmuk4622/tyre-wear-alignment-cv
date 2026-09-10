@@ -1,5 +1,10 @@
 # 00 — What This Project Is
 
+> **Current-state correction (2026-09-09):** this concept document contains
+> pre-annotation proposals, not completion claims. Manual tyre/tread masks now
+> exist and support supervised dense tasks, but **S5 and S9 have not started**.
+> Read `20_FULL_PLAN_CLOSURE.md` and `PROGRESS.md` for the fully reconciled state.
+
 > **Purpose of this document.** This is my understanding of the project, written plainly, so you can check whether I have it right. If anything here is wrong, correct it and everything downstream gets corrected with it.
 >
 > No jargon where plain words will do. No assumed knowledge from the other documents.

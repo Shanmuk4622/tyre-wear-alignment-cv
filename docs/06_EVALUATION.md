@@ -26,6 +26,15 @@ A model that wins block 1 and loses blocks 2 and 3 has not won.
 
 ## 2. Mandatory baselines — on every figure
 
+**Current HF versus historical local probes:** the current public colour folds
+are .886959/.464052/.123216 (mean .491409). HOG is .796021/.181818/.984118
+(mean .653986); majority accuracy .409735. Legacy random-init ResNet-18 final
+F1 is 1/.464052/1, mean .821351, not its selected mean .901914. The older
+table below remains provenance, not a current HF audit. NB01A's recovered
+per-fold metrics now agree with saved CPU predictions; NB01B's nine matched
+ResNet-50 runs are complete (final mean .823322). Majority macro-F1 is .193092,
+not its legacy accuracy. See `21_RECOVERY_COMPLETION_AUDIT.md`.
+
 | Baseline | fold 0 | fold 1 | fold 2 | **mean** |
 |---|---:|---:|---:|---:|
 | **Frame occupancy only** — `tyre_frac`, `tread_frac`, ratio | 0.181 | 0.455 | **0.968** | **0.535** ← **highest** |
@@ -162,9 +171,33 @@ Report as a matrix — **models × interventions**, cells = Δ macro-F1 with CI.
 
 The shuffled-label control is cheap, mandatory, and run **before** any result is believed.
 
+NB08 gate correction (2026-09-08): apply the existing fixed-budget rule above
+to the control too. Use macro-F1 at the final epoch (12), averaged across all
+three completed folds, and retain the threshold 0.45. Validation-selected
+best epochs are reported alongside it but cannot decide this gate. The first
+execution incorrectly used selected epochs (mean 0.498079); the same public
+histories at epoch 12 give 0.353076. This correction was made after inspecting
+the failure and is recorded as `2026-09-08-final-epoch-r1`; it is not a new
+preregistration. Fold 2 still scores 0.510438 and the known fold leakage remains.
+Passing this aggregate diagnostic does not establish leakage-free data or
+statistically prove chance performance. All original control runs are retained.
+
+2026-09-09 audit update: the same fold-1 run ID now contains a later HF result.
+The current final-epoch mean is 0.375184 (selected mean 0.549365); the dated
+values above describe the earlier snapshot. All 63 intervention rows and NB09
+tables are public. H2's correlations are undefined although NB10 saved False;
+do not interpret it as a tested negative outcome. Conformal coverage is
+86.89/97.56/93.94%, and `abstain_rate` excludes empty sets. Calibration splits
+are disjoint by image, not by tyre. See `19_NB08_NB10_COMPLETION_AUDIT.md`.
+
 ---
 
 ## 6. Detection and segmentation metrics
+
+**Not executed as S5 yet.** Manual tyre/tread/marking/damage masks now exist.
+Evaluate the manual-supervised arm against held-out manual masks; any separate
+SAM2 label-source arm must be labelled explicitly. NBT1 propagation IoU is not
+a substitute for this comparison or for blind annotator self-consistency.
 
 Against SAM2 pseudo-labels, with the pseudo-label quality stated first.
 

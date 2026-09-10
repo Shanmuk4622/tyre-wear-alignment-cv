@@ -171,8 +171,9 @@ SESSION_CELL = '''# === Who am I? ==============================================
 ACTIVE_KAGGLE_ACCOUNTS = ('acct1',)   # <<< one notebook; list all four only when all four run
 ACCOUNT = 'acct1'                     # <<< this copy's label
 
-if not ACTIVE_KAGGLE_ACCOUNTS or len(set(ACTIVE_KAGGLE_ACCOUNTS)) != len(ACTIVE_KAGGLE_ACCOUNTS):
-    raise ValueError("ACTIVE_KAGGLE_ACCOUNTS must contain unique account labels")
+# A missing comma in ('acct1') makes it a string. tyrelib deliberately repairs
+# that common edit, so a valid one-worker session cannot fail before HF sync.
+ACTIVE_KAGGLE_ACCOUNTS = tl.normalise_active_accounts(ACTIVE_KAGGLE_ACCOUNTS)
 if ACCOUNT not in ACTIVE_KAGGLE_ACCOUNTS:
     raise ValueError(f"ACCOUNT={ACCOUNT!r} is not active: {ACTIVE_KAGGLE_ACCOUNTS}")
 NUM_WORKERS = len(ACTIVE_KAGGLE_ACCOUNTS)
@@ -221,9 +222,10 @@ sess.finish()
 # Draining the upload queue is NOT the same as the files being on HuggingFace.
 # Ask the repository before you close this tab.
 #
-# Three states, not two. FINISHED and RESUMABLE are both safe -- a run paused
+# Four states. FINISHED and RESUMABLE are both safe -- a run paused
 # at epoch 34 whose ckpt_last.pt is on HF loses nothing when you close the tab.
-# Only AT RISK (no summary.json AND no checkpoint) needs action.
+# NOT STARTED means no run files exist and no work was lost. Only AT RISK means
+# partial artifacts exist without a usable checkpoint and needs attention.
 sess.confirm_on_hf(run_ids)
 '''
 

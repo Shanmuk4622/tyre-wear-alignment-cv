@@ -63,6 +63,15 @@ Early stopping is **removed entirely** from this study. Three reasons it was the
 
 ## 3. Tier 0 — non-learning baselines
 
+**Current evidence (2026-09-09):** all five legacy rows exist in HF, including
+HOG mean macro-F1 .653986 and majority accuracy .409735. The completed legacy
+random-init jobs used ResNet-18/224px/15 epochs/seed 1, not the matched recipe
+below. NB01B completed the originally planned ResNet-50 comparison at 384px, 60 epochs,
+3 folds ×3 seeds under `s1-resnet50-randmatched_r1-*`. Nothing old is overwritten.
+See `20_FULL_PLAN_CLOSURE.md` for remaining Tier 5/6/7/8 scope.
+Public completion verification: `21_RECOVERY_COMPLETION_AUDIT.md` (9/9 runs;
+final mean macro-F1 0.823322).
+
 | Model | Implementation | Established result |
 |---|---|---|
 | Colour probe | `scripts/dataset_shortcut_probe.py` | **mean 0.491** (0.952 / 0.399 / 0.123) |

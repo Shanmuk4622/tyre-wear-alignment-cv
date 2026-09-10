@@ -282,6 +282,20 @@ Qualitative saliency panels are for intuition. **Every quantitative claim is a n
 
 ## 10. Hypotheses — registered before evidence
 
+Recovery update (2026-09-09): public NB10R outputs verify undefined H2 as inconclusive
+and repeat region availability checks. The Kaggle clean masks contain **zero
+marking-positive images on fold 1**, the only NB08 intervention fold, and five
+damage-positive images. Thus stripe masking here is a no-op, not a negative
+dependence finding. H3 remains untestable; no threshold or hypothesis was
+changed to manufacture a result. The complete XAI programme in this document
+is broader than the completed NB07 Stage-B gate. `20_FULL_PLAN_CLOSURE.md`.
+
+Execution update (2026-09-09): NB08–NB10 have run and published results. NB10
+reports H1 unsupported under its implemented comparison; H2 correlations are
+undefined (its saved False is not a valid negative test); H3 remains untestable
+without the specified fine-grained architectures. Figure 3 lacks saliency
+examples. See `19_NB08_NB10_COMPLETION_AUDIT.md` before interpreting outcomes.
+
 Frozen publicly in `analysis/hypotheses.json` at
 **2026-08-30T10:06:21Z**, before the first XAI evidence row:
 

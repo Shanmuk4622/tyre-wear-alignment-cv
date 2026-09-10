@@ -1,6 +1,12 @@
 # 18 — Stage A Results
 
-**Status:** **153 scientifically valid; 9 quarantined architecture substitutions** · public audit 2026-08-30
+**2026-09-09 scope note:** NB03A's public 162-row coverage audit is verified,
+not replacement training. Small still has no published timm pretrained weights;
+choosing another model or scratch pretraining is a separate declared experiment.
+The 17-architecture implemented sweep is not the entire proposed Tier 0–6 zoo.
+See `20_FULL_PLAN_CLOSURE.md`; no completed valid model needs a blanket rerun.
+
+**Status:** ✅ **Retained 17-architecture sweep complete: 153/153**; nine substitutions stay quarantined. User accepted excluding that arm on 2026-09-09. This does not claim 18 correct architectures or finish broader Tier 5/6 experiments.
 **Source:** `Shanmuk4622/tyre-wear-study` (public) — `runs/a-*/metrics/final.csv`
 **Reproduce:** aggregate public rows, then exclude architectures whose
 `tl.ZOO[arch]["stage_a_valid"]` is false before calling `sess.honest_table(df)`.
@@ -25,10 +31,10 @@ NB07 selection. This leaves **17 architectures × 3 folds × 3 seeds = 153 valid
 runs**. NB03 no longer plans that unsupported arm, and `build_model` no longer
 permits any architecture fallback.
 
-The repository contains 161/162 per-sample
-prediction files: `a-regnety016-base-f2-s2` is missing that derived parquet,
-but its best checkpoint is public, so corrected NB09 reconstructs and publishes
-the predictions if RegNetY is selected. **160** `STATUS.json` files say
+The earlier repository audit contained 161/162 per-sample prediction files.
+NB09 has now reconstructed and published the missing
+`a-regnety016-base-f2-s2` parquet (verified 2026-09-09); all 27 selected
+prediction files are readable. In the Stage-A status audit, **160** files say
 `completed`. Two old VGG runs say `failed` even though they reached epoch 60
 and contain their checkpoints and final metrics: the pre-fix telemetry thread
 raised a `ValueError` while serialising after training. They are scientifically
@@ -181,7 +187,7 @@ of every epoch waiting for JPEGs. The fix is the loader, not the model.
 | **Bug 14** — `summary.json` | Written locally, never enqueued, while `confirm_on_hf` used its presence as the completion test. All 36 finished runs were reported `RESUMABLE`. |
 | **Bug 15** — dinov2 resolution | `build_model` never told timm what resolution it would be fed. `vit_*_patch14_dinov2` is created at `img_size=518` and asserts an exact match, so all **18** dinov2 runs died on their first batch. |
 | **Bug 16** — silent architecture substitution | The invalid `convnextv2_small.fcmae_ft_in22k_in1k` tag triggered the old emergency ResNet-18 fallback. Nine completed run ids are mislabeled and quarantined. The fallback is deleted, checkpoint signatures are checked, and NB03 no longer schedules the unsupported arm. |
-| **Derived upload gap** | `a-regnety016-base-f2-s2` has final metrics and both checkpoints but no predictions parquet. NB09 now reconstructs it from `ckpt_best` if needed and publishes the repaired derived artifact. |
+| **Derived upload gap — resolved** | NB09 reconstructed `a-regnety016-base-f2-s2` predictions from its best checkpoint; the public parquet was verified 2026-09-09. |
 
 Details in `05 §7`. Bugs 12–14 cost no scientific results. Bug 15 cost the
 first DINOv2 attempt, but all 18 repaired jobs are now complete. Bug 16 cost
@@ -229,22 +235,23 @@ now says so at build time rather than 100 lines later as a training crash.
 2. **Fixing the folds is the highest-value thing available.** Merging the
    suspect pair into one group leaves ~11 tyres and 3 folds that mean
    something. Until then, two thirds of every result is uninterpretable.
-3. **NB07 is complete; continue the repaired NB06.** The public gate selected RegNetY-16GF,
+3. **NB06–NB10 have executed; review the results before write-up.** The public gate selected RegNetY-16GF,
    DenseNet-121 and ResNet-50 after faithfulness screening and three-seed
    confirmation. Seven architectures have explicit no-faithful-CAM exclusions
    and the mislabeled ConvNeXt-V2-S checkpoint has an architecture-mismatch
    exclusion. NB06 has no fallback, re-verifies the selection against raw
-   public evidence, and runs fold-1 OFAT only. Public HF now contains **42/108
-   completed runs, 34 checkpointed incomplete runs, and 32 not started; all 76
-   status-bearing runs have both checkpoints.** The 2026-09-03 tyrelib v11
+   public evidence, and runs fold-1 OFAT only. Public HF now contains **108/108
+   completed runs, all with both checkpoints and final metrics.** The tyrelib v12
    notebook retains the conservative RegNet CUDA runtime and every earlier
    resume/memory/history repair. Each model now runs in a disposable child
    process, and a RAM-paused child automatically resumes the same public
-   checkpoint in a clean process. No architecture or scientific setting
-   changed.
-4. **NB08's shuffled-label control is now mandatory before anything else.** If
-   a shuffled-label model also reaches 1.000 on folds 0 and 2, those folds are
-   finished as evidence.
+   checkpoint in a clean process. It also repairs the one-account missing-comma
+   edit and reports never-started work separately from genuine risk. No
+   architecture or scientific setting changed.
+4. **NB08's control audit and interventions are public.** The current
+   fixed-epoch mean is 0.375184, below 0.45. Known fold leakage persists.
+   NB09 outputs and nine NB10 figures are also verified; Figure 3 is missing
+   and H2 is undefined. See `19_NB08_NB10_COMPLETION_AUDIT.md`.
 
 ---
 

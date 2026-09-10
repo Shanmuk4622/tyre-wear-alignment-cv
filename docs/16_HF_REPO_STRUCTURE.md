@@ -263,6 +263,11 @@ States: `claimed` → `running` → (`paused` | `completed` | `failed`).
 
 ## 7. Aggregation
 
+Recovery outputs (2026-09-09) are additive under `tables/closure_2026-09-09/`
+and `analysis/closure_2026-09-09/`. Matched random-init training uses new
+`s1-resnet50-randmatched_r1-*` run IDs. Original tables, nine quarantined
+Small records and the locked NB07 selection are not overwritten. See `docs/20`.
+
 ### ⚠ `tables/all_runs.csv` is a trap — use `all_runs_remote.csv`
 
 `Session.aggregate()` globs the **local staging directory**. On a four-account
@@ -294,13 +299,28 @@ Stage-B set is `regnety016`, `densenet121`, and `resnet50`; each has
 180/180 respectively. NB06 re-derives this coverage from the raw evidence
 before it starts training.
 
-### Current public Stage-B execution — verified 2026-09-03
+### Current public Stage-B execution — verified 2026-09-08
 
-There are **76 `runs/b-*` status files: 42 completed and 34 checkpointed
-incomplete**, with 32 of the planned 108 runs not yet started. All 76 have both
-`checkpoints/ckpt_last.pt` and `ckpt_best.pt`; the at-risk count is zero.
+There are **108 `runs/b-*` status files, all completed**. All 108 have both
+`checkpoints/ckpt_last.pt`, `ckpt_best.pt`, and `metrics/final.csv`.
+The three `stress-resnet18-shufflectl_r2-*` controls are completed at epoch 12.
+NB08 has published
+`tables/shuffled_control_2026-09-08-final-epoch-r1.csv` with final and selected
+epoch scores, plus 63 stress rows and nine per-run result tables. NB09's
+`ensemble_metrics.csv`, `tta.csv`, `calibration.csv`, and `conformal.csv`
+contain 39, 6, 6, and 3 rows respectively. All 27 selected prediction parquets
+are present and readable. NB10 published its 17-row master, nine quarantine
+rows, three hypothesis rows and nine figures (Figure 3 was missing in that snapshot).
+Verified 2026-09-09 at commit `7c5b6461815a78aae589085d0152eaa6ae9995e1`;
+see `19_NB08_NB10_COMPLETION_AUDIT.md` for checks and interpretation limits.
 
-Tyrelib v11 keeps the same registered models/configs and the repaired
+Recovery snapshot `bf62f9e9cbedacc580aa42542da14a068b8f9215` now contains all ten
+figures in `analysis/closure_2026-09-09/`, NB01A/B/NB03A/NB10R tables in
+`tables/closure_2026-09-09/`, and nine completed `s1-resnet50-randmatched_r1-*`
+runs. Use these revisioned reporting outputs; old top-level files are preserved.
+See `21_RECOVERY_COMPLETION_AUDIT.md`.
+
+Tyrelib v12 keeps the same registered models/configs and the repaired
 contiguous RegNet CUDA path. It serialises one complete state per epoch,
 snapshots that file to `ckpt_best` on improvement, trims freed Linux
 checkpoint/upload arenas, and batches normal pushes into the 30-minute commit.
@@ -309,6 +329,11 @@ reclaims native/PyTorch/CUDA state that survived in-process cleanup. A
 RAM-paused child publishes its epoch and the parent resumes the same run in a
 clean child. A fresh Kaggle session can likewise fetch every public rolling
 checkpoint and continue.
+
+Final verification uses four labels: `FINISHED`, `RESUMABLE`, `NOT STARTED`,
+and `AT RISK`. A planned run with no HF files is `NOT STARTED`, because no work
+exists to lose. `AT RISK` is reserved for a run directory that has partial
+artifacts but no terminal status and no rolling checkpoint.
 
 Two 60-row histories combined a 177-column v4 header with 178-value v5 rows.
 The checkpoints were valid; only pandas parsing failed. v6 migrates this known

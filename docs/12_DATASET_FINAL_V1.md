@@ -390,6 +390,12 @@ Read images directly from `/kaggle/input`; never copy 1.2 GB into the 20 GB `/ka
 
 ## 11. Verdict
 
+**Superseding annotation update (2026-09-09):** the original verdict below
+predates the 418 manual masks. Tyre/tread detection and segmentation are now
+supported by labels, but S5 training/evaluation has not been done. Marking and
+visible-damage regions also exist; fine grooves/sipes/TWI, measured depth and
+calibrated alignment remain unsupported. See `20_FULL_PLAN_CLOSURE.md`.
+
 > `final_v1` is a **well-built pilot package that supports exactly one honest experiment**: a three-class ordinal mileage-proxy classifier, evaluated across all three group folds, reported against trivial colour and structure baselines.
 >
 > It cannot support tread-depth measurement, alignment, segmentation, or damage detection — not because of any flaw in its preparation, but because those labels do not exist and, for alignment, the necessary calibration was never captured.

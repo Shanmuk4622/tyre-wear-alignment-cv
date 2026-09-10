@@ -650,6 +650,10 @@ finalised as completed metadata without training an impossible epoch 61.
 Public state on the 2026-09-03 follow-up: **42/108 completed, 34 checkpointed
 incomplete, 32 absent; all 76 status-bearing runs have both checkpoints.**
 
+Public state on the 2026-09-08 follow-up: **101/108 completed, 3 safely
+resumable, 4 not started, and 0 genuinely at risk; all 104 status-bearing runs
+have both checkpoints.**
+
 ### ⚠ Bug 22 — a guard that ended the session over a two-second spike
 
 Reported as *"sometimes the workers are stopping the notebooks by themselves."*
@@ -882,7 +886,45 @@ just before Kaggle terminates the allocation.
 NB06 enables `isolate_runs=True`; other notebooks retain their existing
 execution path. This changes process topology only, not experimental state.
 
+### ⚠ Bug 29 — `('acct1')` is text, and untouched work was called “AT RISK”
+
+The attached v11 notebook stopped in the session cell with:
+
+```text
+ValueError: ACTIVE_KAGGLE_ACCOUNTS must contain unique account labels
+```
+
+The edited value was `ACTIVE_KAGGLE_ACCOUNTS=('acct1')`. In Python the comma,
+not the parentheses, creates a one-item tuple; without the comma this is the
+six-character string `acct1`. The uniqueness check therefore inspected the
+characters rather than one account label and stopped before HF sync, data
+loading, or training.
+
+**Fix (tyrelib v12):** `normalise_active_accounts` accepts a tuple/list or a
+comma-separated string and produces one validated tuple. Thus both `('acct1',)`
+and the missing-comma edit `('acct1')` safely become `('acct1',)`, while empty
+or duplicate worker labels still fail. Four-account ownership is unchanged.
+
+The old final report also mapped every planned run with no status/checkpoint to
+`AT RISK`. Those runs had never started and contained no progress that could be
+lost. v12 reports four separate states: `FINISHED`, `RESUMABLE`, `NOT STARTED`,
+and `AT RISK`. The last label is now reserved for a run directory containing
+partial artifacts but no usable checkpoint. The 2026-09-08 public audit has
+four `NOT STARTED` runs and **zero** `AT RISK` runs.
+
 ### The checkpoint contract
+
+NB08 follow-up, 2026-09-08: all 108 Stage-B runs are now completed on HF.
+NB08's submitted v9 notebook stopped after three completed shuffled-label
+controls because it tested validation-selected best epochs against 0.45.
+The corrected notebook embeds v12 and applies docs/06's existing final-epoch
+rule, verifying complete histories and agreement with final summaries. It
+publishes both means (selected 0.498079; final 0.353076) under gate revision
+`2026-09-08-final-epoch-r1`. The threshold and trained controls are unchanged.
+The control training explicitly remains in-process because its temporary
+`load_split` permutation would not be inherited by a fresh Python child.
+Intervention execution requires the control gate to have passed in the current
+kernel. Use one NB08 session for the unsharded inference stage.
 
 Saving weights is not enough:
 

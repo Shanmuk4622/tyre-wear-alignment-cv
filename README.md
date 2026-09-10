@@ -23,21 +23,46 @@
 
 ## The current phase, in one paragraph
 
+**Current notebook delivery:** [NB12 S4b training](notebooks/NB12_S4B_Confirmation.ipynb)
+adds 18 confirmation runs; [NB12R reporting](notebooks/NB12R_S4B_Report.ipynb)
+verifies and reports them afterward. No new annotation. Local checks passed,
+Kaggle execution pending. [Run instructions](docs/23_S4B_CONFIRMATION.md).
+
+**Full-plan correction, 2026-09-09:** S5 detection/segmentation and S9 integrated
+pipeline have **not started**. All five legacy baseline rows already exist;
+the matched ResNet-50 comparison is now complete (9/9 runs × 60 epochs).
+All four recovery notebooks are HF-verified; see [the recovery audit](docs/21_RECOVERY_COMPLETION_AUDIT.md).
+Finishing NB10 is not completion of the original experimental plan.
+
+The user has accepted the retained **17-architecture S2 sweep as complete
+(153/153)**, with nine mislabeled Small runs excluded. Next, the
+manual-supervised S5 route will reuse existing masks with no new annotation.
+`NB11_S3_Manual_SAM2_Agreement.ipynb` is now optional/deferred at the user's
+request; independent SAM2 agreement and blind consistency remain unmeasured.
+See [the S3 scope decision](docs/22_S3_MASK_COMPARISON.md).
+
 A camera mounted **below and in front of a vehicle** photographs one tyre. We have a prepared, verified dataset of those images — 418 unique photographs from **12 tyres**, labelled with a three-level *mileage proxy*. We are not building hardware. We are running a **broad, controlled, explainability-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with Grad-CAM and its relatives used as a **measuring instrument** rather than a garnish.
 
 **Current execution point:** NB07 is complete and its public, three-seed XAI
 gate selected **RegNetY-16GF, DenseNet-121 and ResNet-50**. NB06 Stage-B OFAT
-is in progress on those three architectures and fold 1 only. Public HF holds
-**42/108 completed runs, 34 checkpointed incomplete runs, and 32 not yet
-started**; all 76 status-bearing Stage-B runs have both rolling and best
-checkpoints. The 2026-09-03 tyrelib v11 notebook runs each model in a disposable
+is complete on those three architectures and fold 1 only. Public HF holds
+**108/108 completed runs**, each with rolling/best checkpoints and final metrics.
+NB08 and NB09 are now executed and verified on HF: 63 stress rows, all 27
+prediction files, and all four ensemble/calibration tables. NB10 also executed
+and NB10R now publishes all ten implemented figures, including Figure 3. H2 is explicitly inconclusive/undefined,
+and the conformal coverage target was not met across folds. See
+[the completion audit](docs/19_NB08_NB10_COMPLETION_AUDIT.md) for remaining
+reporting work and the current control mean of 0.375184. Known fold leakage
+remains. The tyrelib v12 notebook runs each model in a disposable
 child Python process. Public telemetry showed the long-lived Jupyter process
 retaining 0.17–0.30 GB after every epoch; v10 therefore completed two models,
 trained a third through epoch 45, then correctly stopped at the 88% host-RAM
 guard. In v11 the child exits after a run and Linux reclaims all model,
 optimiser, CUDA, image-library, and serialization state. A RAM-paused child is
 automatically restarted to resume the same HF checkpoint. The selected models
-and scientific recipe are unchanged.
+and scientific recipe are unchanged. v12 also repairs the common
+`ACTIVE_KAGGLE_ACCOUNTS=('acct1')` missing-comma edit and reports untouched
+runs as `NOT STARTED`, not `AT RISK`.
 
 **Focus for this phase: tyre wear.** Alignment is deferred — see `docs/13 §3` for why it is the harder half, not the easier one.
 
@@ -189,14 +214,15 @@ python scripts/dataset_shortcut_probe.py --root "D:/Dataset Download/Tire Datase
 - [x] Difficulty-floor probes — the baselines every model must beat
 - [x] **Approach redesigned as a comparative XAI-grounded study**
 - [x] S0 infrastructure + public-HF resumability exercised across 4 accounts
-- [ ] S1 baselines (partial)
-- [x] S2 architecture sweep
-- [x] S3 masks verified
-- [ ] **S4 technique OFAT — NB06 in progress, 42/108 complete + 34 checkpointed incomplete**
+- [x] S1: NB01A reporting and all nine matched ResNet-50 runs HF-verified
+- [ ] S2: 153 valid runs; nine quarantined; original broader zoo incomplete
+- [ ] S3: manual masks verified; SAM2-only comparison not verified
+- [x] **S4 technique OFAT — NB06 complete, 108/108 verified on HF**
 - [ ] S5 detection/segmentation
 - [x] S6 Stage-B XAI gate
-- [ ] S7 stress tests
-- [ ] S8 ensembles
-- [ ] S9 Review-3 + paper
+- [x] S7 stress tests — 63/63 rows verified
+- [x] S8 ensembles — outputs verified; calibration limitations recorded
+- [ ] S9 integrated pipeline + component ablations
+- [ ] S10 Review-3 + paper; NB10R reporting recovery verified (10/10 implemented figures)
 
 Live detail in `PROGRESS.md`.

@@ -1,5 +1,107 @@
 # Project Logbook
 
+## 2026-09-10 — NB12 MobileNet preflight r2
+
+ConvNeXt repair passed at 0.82 s/step; MobileNet DP path was blocked at 12.04
+s/step before training. Its Stage-A baseline also used one GPU (~48 s/epoch).
+Enabled one GPU for both S4b models, preserving original batches/config hashes.
+Timed guard remains. Actual config now controls smoke routing. HF still has
+four resumable runs; repaired MobileNet throughput awaits Kaggle verification.
+
+## 2026-09-10 — NB12 slow runtime, safe checkpoints
+
+Public HF has four paused ConvNeXt runs at 28/26/25/26, not zero progress.
+Forward-pass slowdown and RAM growth dominate; three RAM pauses plus watchdog.
+Opt-in single-GPU ConvNeXt execution matches the faster Stage-A path with the
+same batch/recipe and compatible checkpoint hashes. Added timed preflight,
+recorded GPU-count telemetry, archived supplied output and rebuilt NB12/NB12R.
+No remote writes; corrected Kaggle speed still unverified. See `docs/23`.
+
+## 2026-09-09 — NB12 S4b training and NB12R reporting ready
+
+Frozen HF selection/effects determine two extra architectures and three ranked
+factors. 18 new runs; six reused baselines. No annotation or model substitution.
+Added opt-in strict resume guard and CPU regression tests; generated both Kaggle
+notebooks without changing executed notebook files. GPU training remains pending.
+Full specification: `23_S4B_CONFIRMATION.md`.
+
+## 2026-09-09 — Additional annotation declined; NB11 deferred
+
+User authorizes skipping the newly requested boxes/reannotation. Removed NB11
+as a prerequisite. Plan manual-supervised S5 using existing masks and automatic
+training-box extraction. Record SAM2 comparison and blind self-consistency as
+unmeasured, not successful. No new run or HF mutation. Other scientific/data
+limitations remain in force; this is not full-plan completion.
+
+## 2026-09-09 — S2 retained scope accepted; NB11 S3 delivered
+
+Closed the retained S2 sweep green (17 architectures / 153 valid executions),
+without counting the nine quarantined substitutions. Added NB11: PREPARE image
+package, independent human boxes and 30 blind polygons, then pinned SAM2.1 Small
+inference, agreement and per-image HF resume. CPU checks pass on all 418 native
+manual masks; GPU execution remains pending. S4b remains separate from S3;
+S5 needs mask review, S9 needs S5 plus additional inputs. `docs/22`.
+
+## 2026-09-09 — Recovery execution verified
+
+Read-only public audit at `bf62f9e9cbedacc580aa42542da14a068b8f9215` verifies
+NB01A's 15 rows, NB01B's nine 60-epoch runs and final metrics/checkpoint paths,
+NB03A's 153 valid / nine quarantined coverage, and NB10R's ten readable figures.
+Updated the live PROGRESS board, roadmap and stage ledger rather than leaving
+recovery tasks pending. S5/S9 and original-plan gaps remain unfinished.
+Evidence and interpretation: `21_RECOVERY_COMPLETION_AUDIT.md`.
+
+## 2026-09-09 — NB01A HTTP 429 repair
+
+Saved output showed anonymous metadata access failing with a 128-second retry
+instruction before computation. NB01A r2 now authenticates HF reads, retries
+429/transient server errors respecting response delays, and skips unnecessary
+repository listing. Original failing notebook archived; generated NB01A only
+replaced. Fault-injection and recovery regression tests pass. No remote writes
+or experimental changes made; Kaggle rerun remains pending. See PROGRESS session log.
+
+## 2026-09-09 — Full-plan omissions corrected; recovery notebooks generated
+
+Read all 27 existing project Markdown files completely. Public HF still at
+`7c5b6461815a78aae589085d0152eaa6ae9995e1`: all five legacy S1 rows and
+three 15-epoch ResNet-18 jobs were already present. The "2 of 5" board was
+stale. Matched ResNet-50 training is a separate nine-run completion arm.
+Generated NB01A, NB01B, NB03A (audit only), NB10R without touching executed
+notebooks. Added S3 remainder, S4b, S5, S9 and original-figure gaps to PROGRESS.
+Full mask audit: marking/damage-positive counts 67/58, 0/5, 0/0 by fold.
+NB10R records H2 as inconclusive and generates privacy-preserving saliency
+panels. No Small substitution, remote overwrite, S5 completion or scope cut
+is claimed. `20_FULL_PLAN_CLOSURE.md` is the full current stage ledger.
+
+## 2026-09-09 — NB08–NB10 completion verified against HF
+
+Pinned audit commit: `7c5b6461815a78aae589085d0152eaa6ae9995e1`.
+NB08: 63 unique stress rows, nine matching per-run tables, current control
+mean 0.375184. A later fold-1 HF status supersedes the earlier control snapshot.
+NB09: 27 prediction parquets / 3,762 rows; tables contain 39 ensemble, 6 TTA,
+6 calibration, 3 conformal rows. The missing RegNet prediction file is restored.
+NB10: 17 master rows, nine quarantine rows, three hypothesis rows, nine readable
+figures. All submitted notebooks reached final cells without a traceback.
+
+Figure 3 was skipped for absent saliency examples. H2 is undefined despite a
+saved False boolean, H3 is not testable, and conformal coverage is
+86.89/97.56/93.94%; saved abstention excludes empty sets. Figure 10's quarantine
+filter requires review. Notebook execution is complete; reporting closure is
+not. See `docs/19_NB08_NB10_COMPLETION_AUDIT.md`. This audit preserved all
+executed notebooks and made no remote writes or training changes.
+
+## 2026-09-08 — NB06 complete; NB08 evaluation gate repair
+
+Verified all 108 Stage-B statuses as completed with last/best checkpoints and
+final metrics on HF. NB08 trained all three shuffled-label controls but stopped
+on validation-selected mean F1 0.498079. The existing docs/06 rule requires
+fixed-final-epoch evaluation; full public 12-epoch histories agree with final
+summaries at mean 0.353076. The repaired NB08 retains the threshold 0.45, reports
+both scores in a revisioned audit, and reuses all completed controls. This
+post-result correction is documented, not presented as a new preregistration.
+Known fold leakage remains. NB08 embeds v12; its original error output is
+archived. Local gate regression checks pass; Kaggle interventions remain pending.
+
 > One entry per week, 30 minutes every Friday, as a group. This is not bureaucracy — at Review-3 you will need to remember why a loss weight was set the way it was, and you will not.
 
 **Template**
@@ -466,3 +568,19 @@ checkpoint in a clean child. The parent keeps scheduling and now guards every
 new run against the final 45 minutes of the real Kaggle session. Public state:
 42/108 complete, 34 checkpointed incomplete, 32 absent; all 76 started runs
 have both checkpoints. 114 selftests; scientific recipe unchanged.
+
+## 2026-09-08 — tyrelib v12
+
+Four workers advanced Stage B to 101/108 complete. The public repository now
+has 104 Stage-B status files: 101 completed and 3 session-watchdog pauses, with
+both rolling and best checkpoints for every started run. The remaining four
+planned runs have no files at all, so they are not lost work and the true
+at-risk count is zero.
+
+The attached NB06 stopped in Cell 3 because
+`ACTIVE_KAGGLE_ACCOUNTS=('acct1')` is a string, not a one-item tuple. v12
+normalises that common missing-comma edit to `('acct1',)` while preserving the
+validated four-worker tuple and rejecting duplicate labels. Final HF
+verification now prints never-created work as `NOT STARTED`; `AT RISK` is
+reserved for partial artifacts without a usable checkpoint. 118 selftests;
+model, data, split, optimiser, batch sizes, and 60-epoch recipe unchanged.
