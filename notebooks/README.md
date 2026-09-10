@@ -1,6 +1,29 @@
 # Notebooks
 
-## Run next for S4b: NB12, then NB12R
+## Next: S5 — NB13 through NB17
+
+**NB14 repair:** NB13's protocol is now public and verified; do not rerun NB13.
+Use the repaired NB14 with blank PREFIX (automatic matching-protocol discovery).
+Run PILOT in one copy first; with four configured accounts only worker0 runs
+the pilot. Original executed NB13/NB14 files are in `execution_archives/`.
+The observed crash was the blank-prefix assertion before any training, not GPU OOM.
+
+**Built, locally checked; Kaggle GPU execution not yet verified. No annotation work.**
+Run `NB13_S5_Prepare.ipynb` on CPU first and copy its PREFIX to the other notebooks.
+Then `NB14_S5_Semantic.ipynb`, `NB15_S5_YOLO.ipynb`, and
+`NB16_S5_RTDETRv2.ipynb`, in that order. Each defaults to **PILOT in one copy**;
+only after it passes change to TRAIN (one or four workers). T4×2 selected, GPU0
+used, second GPU intentionally idle. Finish with `NB17_S5_Report.ipynb` on CPU.
+All require HF_TOKEN, Internet and Tire Dataset Prepared with manual masks.
+81 planned runs; no per-claim commits, normal30min pushes, epoch-boundary resume.
+Complete setup, scope, model identities and limitations: `../docs/24_S5_MANUAL_DENSE_TASKS.md`.
+
+## S4b complete: NB12 and NB12R
+
+**Both executed and HF-verified** at `dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8`:
+18/18 runs ×60 epochs, complete paired report. No rerun needed. Next unimplemented
+training stage is S5 using the new NB13–NB17 package and existing manual masks. The instructions below are
+retained for reproduction/history only; `../docs/23_S4B_CONFIRMATION.md` has results.
 
 **2026-09-10 runtime repair:** replace NB12 after stopping all old copies.
 Preserve ACCOUNT/active-account settings. Four runs are resumable at 28/26/25/26

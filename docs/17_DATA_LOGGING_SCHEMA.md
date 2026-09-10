@@ -8,6 +8,14 @@
 
 ## 1. Principles
 
+**S5 schema extension (2026-09-10):** NB13–NB17 use a separate protocol-hashed
+namespace. Full checkpoint includes model/optimizer/scheduler/scaler/RNG and
+epoch history (YOLO native optimizer/EMA plus explicit scaler/RNG). Per-image
+native boxes/RLE masks, IoU/Dice/boundary scores, COCO AP, and five paired
+classifier-input modes are saved. Missing-detection fallback counts and initial
+weight/runtime identities are explicit. See `24_S5_MANUAL_DENSE_TASKS.md`.
+Notebook delivery is not a claim of HF experiment completion.
+
 | Rule | Why |
 |---|---|
 | **Every column always present** | Missing quantity → `NA`, never omitted, never `0`. "This term doesn't exist" and "this term was zero" are different facts |

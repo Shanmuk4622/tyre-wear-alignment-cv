@@ -14,7 +14,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **The implemented classification track has run, but the full experimental plan is NOT complete. S5 detection/segmentation and S9 integration have not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
+**Stage:** **The implemented classification track and S4b have run, but the full experimental plan is NOT complete. S5 notebooks NB13–NB17 are built; GPU pilots and experiment execution remain unverified. S9 has not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -23,10 +23,10 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 ### Immediate next action
 
 > **All four recovery notebooks are now verified on public HF** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`. Do not rerun them just to clear the old pending checklist.
-> 1. Resolve tyre-identity/fold leakage before committing to the next large training batch.
-> **S4b delivery:** NB12 trains 18 new fold-1 confirmation runs on ConvNeXt-V2 Tiny/MobileNetV4; NB12R audits/reports afterward. Same-fold cross-architecture confirmation, not new-tyre validation. See `docs/23`.
-> 2. **Do not run NB11 or annotate again.** User defers the SAM2 comparison and blind repeat annotation. Prepare S5 using the existing manual masks, automatically deriving detection boxes from training masks; preserve held-out folds.
-> 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Wider Tier 5/6 and Stage-C scope still need explicit decisions.
+> 1. **NB13 protocol is now HF-verified. Do not rerun it.** Replace NB14 with the repaired version and run **PILOT on one T4×2 copy**. Blank PREFIX now discovers the unique matching HF protocol. With four accounts configured, only worker0 runs PILOT. No annotation needed; see `docs/24`. Retain the fold-leakage limitation in all interpretation.
+> **S4b complete:** NB12 and NB12R are verified on HF: 18/18 ×60 epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. Next unfinished training stage is manual-supervised S5. See `docs/23`.
+> 2. **Do not run NB11 or annotate again.** S5 uses existing manual masks. After NB14, run NB15 YOLO and NB16 RT-DETRv2 (each PILOT first, then TRAIN); NB17 audits all81 jobs on HF. Normal pushes every30min; isolated job processes; no per-claim commits.
+> 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Declared S4b/Stage-C extension is complete; wider Tier5/6 remains open.
 > 4. S9 follows S5 and additional inputs. H3, original-plan missing experiments, calibration limitations and manuscript work remain open. See `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
 
 ---
@@ -50,8 +50,8 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | Annotations `annotation_v2` | ✅ **NBT1 verified PASS** | 418 hand-drawn + 4,180 self-healed propagated masks; actual-used fingerprint `085acfb8fb83c531` |
 | S3 masks | ✅ **Existing manual-mask route ready**; ⏸ **extra comparison deferred** | Reuse 418 manual masks and validated derivative replay for supervised S5. User declines further annotation: SAM2/manual comparison and blind self-consistency remain unmeasured, not passed. NB11 is optional/deferred, not a prerequisite. |
 | S4 technique OFAT | ✅ **NB06 complete: 108/108** | Every run has completed status, last/best checkpoints and final metrics on HF |
-| S4b / Stage C confirmation | 🔄 **0 finished / 4 resumable / 14 not started** | HF 2026-09-10: checkpoints at 28/26/25/26. ConvNeXt repaired preflight passed (0.82 s/step); MobileNet dual-GPU preflight failed (12.04 s/step). Repair r2 uses one GPU for BOTH models, matching saved baselines; batches/hashes unchanged. MobileNet repaired speed still unverified. `docs/23` |
-| S5 detection/segmentation | ⬜ **Not started** | No YOLO/RT-DETR/SegFormer/DeepLab S5 artifacts found in public HF. NBT1's test U-Net and mask-based ROI classification are NOT this comparative stage. |
+| S4b / Stage C confirmation | ✅ **18/18 complete; NB12R report verified** | 1,080 epoch records and 36 checkpoint paths checked. Random-init negative effect repeats in both models; class-weighted/uniform sampling directions each repeat in only one. Descriptive selected-epoch endpoint, not significance. `docs/23` |
+| S5 detection/segmentation | 🔄 **NB13 protocol verified; NB14 setup repaired; pilots pending** | HF `951435416dde3bc65c5a2fa0bbe9e1c90301c6ed` contains the frozen protocol, no completed S5 statuses. NB14 stopped at blank PREFIX before training; automatic unambiguous discovery now fixes it. Nine configurations/81 planned manual-supervised jobs, no new annotation. `docs/24` |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
 | S7 stress tests | ✅ **NB08 executed and verified on HF** | 63/63 stress rows; nine matching per-run tables; current control mean 0.375184 passes 0.45 |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
@@ -171,7 +171,8 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 - [x] Execute and HF-verify NB10R reporting recovery (10 figures); H2 remains inconclusive
 - [ ] S5: build and evaluate detection/segmentation; not covered by NBT1
 - [ ] S9: integrated pipeline and ablations, after S5
-- [ ] Resolve broader Tier 5/6, Stage C, XAI/video and original-figure scope explicitly
+- [x] Execute and HF-verify declared S4b / Stage C extension: 18 runs and paired report
+- [ ] Resolve broader Tier 5/6, XAI/video and original-figure scope explicitly
 - [x] Verify checkpoint architecture identity — 153 valid; nine `convnextv2_s` records quarantined as ResNet-18 substitutions
 - [ ] Verify every XAI method has a valid target layer per architecture
 
@@ -190,6 +191,19 @@ Registered on: **2026-08-30T10:06:21Z** · public HF
 ---
 
 ## ⬤ Session log
+
+### 2026-09-10 — S4b and report completed, independently verified
+
+Both saved notebooks have no error outputs. NB12 shows FINISHED 18 / RESUMABLE 0 /
+NOT STARTED 0 / AT RISK 0; NB12R publishes complete status. Live HF revision
+`dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8` independently checked: all 18 statuses,
+configs, histories 1–60, final and selected-epoch metrics, 36 checkpoint paths;
+recomputed all paired/architecture effects and checked published decisions.
+All runs report zero NaN/Inf batches. Final epoch times are 139.5–173.0 s for
+ConvNeXt and 62.1–88.2 s for MobileNet, all on one GPU. Sampling results are
+architecture/endpoint-dependent; random initialization has a negative effect in
+both. S4b execution is complete even though not every discovery direction repeats.
+No notebook regeneration, new training or HF writes. Existing executed outputs preserved.
 
 ### 2026-09-10 — MobileNet preflight failure repaired (NB12 r2)
 

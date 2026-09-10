@@ -1,11 +1,41 @@
 # S4b — two additional architectures, 2026-09-09
 
-**Status 2026-09-10: 0 finished, 4 resumable, 14 not started; runtime repair ready.**
-HF revision `2def8d1b1f00f7c08fd029e8f339c5ab1004b6c8` has classweighted
-ConvNeXt seeds 1/2/3 at epochs 28/26/25 and uniform seed 1 at epoch 26.
-All four checkpoints remain reusable; no completion claimed.
+**Status 2026-09-10: COMPLETE — 18/18 runs ×60 epochs, NB12R report verified.**
+Both saved notebook outputs agree with an independent read-only audit at
+[HF revision dd43b231](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8).
+No rerun is required. Script: `scripts/audit_s4b_completion.py`.
 
-### Runtime repair — use the updated NB12
+## Verified results
+
+Checked 18 completed statuses/configs, 1,080 unique run/epoch records, final metrics,
+F1 at recorded best-QWK epochs, and 36 best/last checkpoint paths. Large checkpoint
+tensors were not downloaded/loaded. Recomputed the published 18 paired effects,
+six architecture summaries and three direction decisions against the six pinned
+baselines. Coverage has 18 verified rows and report STATUS is complete.
+
+| Factor | ConvNeXt selected ΔF1 | MobileNet selected ΔF1 | Discovery direction repeated |
+|---|---:|---:|---|
+| Class-weighted sampling | +0.012568 | -0.028386 | One of two models |
+| Uniform sampling | 0.000000 | -0.069589 | One of two models |
+| Random initialization | -0.428566 | -0.371504 | Both models (negative effect) |
+
+These are descriptive three-seed means at the primary selected-epoch endpoint,
+not significance or independent new-tyre validation. Class weighting has positive
+**final-epoch** deltas for both models (+0.023959 / +0.018863), so do not generalize
+the primary direction verdict to every endpoint. Uniform final deltas are
++0.010271 / -0.170788; random-init final deltas are -0.387368 / -0.275250.
+Completion does not mean every factor was beneficial or replicated.
+
+All 18 histories report zero NaN/Inf batches. Final epoch times after the runtime
+repair are 139.5–173.0 seconds for ConvNeXt and 62.1–88.2 seconds for MobileNet;
+all final rows record one training GPU. The four earlier partial runs reached 60.
+Notebook-report input revision is `fd5198170f8b60bbf199231610d43ae018499fe3`;
+publication/audit revision is `dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8`.
+
+The remaining sections preserve the runtime-repair history and reproduction
+instructions, not current requests to rerun completed work.
+
+### Runtime repair history — resolved by completed execution
 
 **r2 evidence:** the next saved Kaggle output passed ConvNeXt at 0.8216 s/step,
 but stopped on MobileNet dual-GPU at 12.0436 s/step before any run claims.
@@ -13,7 +43,7 @@ HF `e3516a22a75d4349b1e9fd5fba9d276ce159ba53` still shows the same four paused
 runs. MobileNet Stage-A telemetry shows one active GPU, ~48 s/epoch and ~6.46 GB
 peak memory. r2 extends single-GPU execution to MobileNet without changing batch
 64. Preflight uses the same runtime flag as training, not its own architecture
-list. ConvNeXt speed is now measured; repaired MobileNet speed remains unverified.
+list. Subsequent full execution verified both repaired runtimes (results above).
 
 The first GPU smoke succeeded numerically but did not measure throughput. Full
 training then took ~18–20 minutes/epoch with host RAM growth, versus ~90 seconds

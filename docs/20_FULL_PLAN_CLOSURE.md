@@ -101,8 +101,8 @@ figures, not evidence that the original three experiments were performed.
 | S2 architectures | ✅ Retained 17-architecture sweep complete: 153/153; 9 excluded | Tier 6 FGVC and broader Tier 5 modes/models remain separate scope |
 | S3 masks | Existing manual-supervised route ready; NB11 optional/deferred | User declines more annotation: SAM2 comparison and blind consistency stay unmeasured; not prerequisites for manual-supervised S5 (`docs/22`) |
 | S4 techniques | **108/108 complete** for implemented fold-1 OFAT | Do not equate 12 implemented arms with every level in the original factor table |
-| S4b / Stage C | NB12/NB12R ready: 18 new confirmation runs, six reused baselines | Execute and verify; two additional three-seed-confirmed architectures, frozen top-ranked factors; `23_S4B_CONFIRMATION.md` |
-| S5 dense tasks | **Not started** | Detector/segmenter comparison and predicted-ROI downstream evaluation |
+| S4b / Stage C | ✅ Declared extension complete: 18/18 ×60 epochs and NB12R report verified | Report mixed directional replication honestly; no new-tyre/significance claim; `23_S4B_CONFIRMATION.md` |
+| S5 dense tasks | **NB13–NB17 built; GPU pilots pending** | Run81 manual-supervised jobs and NB17 HF audit; no new annotation. Learned-ROI comparison implemented but not executed. `docs/24` |
 | S6 XAI | NB07 r3 Stage-B gate complete | Full all-run/all-fold, native-method/ROAD/model-agnostic/stability programme not completed by this gate |
 | S7 stress | 63 implemented rows and 3 controls complete | H2 availability limitation; proposed dirt/session-holdout/video extensions not verified |
 | S8 ensemble/calibration | Four tables and 27 prediction files verified | Coverage target not met; empty sets omitted from old abstention; image-split calibration not new-tyre assurance |
@@ -125,11 +125,12 @@ ROI on held-out images. Existing masks make **manual-supervised S5 feasible**;
 they do not make it completed. Fine groove/sipe/TWI masks and calibrated
 alignment labels still do not exist.
 
-S5 needs a dedicated tested dense-task training/resume harness, explicit
-manual/SAM2 label-source arms, per-fold/per-seed metrics (mAP or IoU/Dice/boundary
-scores), saved predictions, and comparison of classifier performance using
-predicted rather than oracle crops. No S5 training notebook is claimed ready
-by this delivery. No S5 scope reduction has been made without approval.
+**2026-09-10 delivery:** NB13–NB17 implement the manual-supervised route with
+an isolated dense-task harness,81 planned jobs, per-fold/per-seed localisation
+metrics, native predictions, and frozen-classifier predicted/full/oracle ROI
+comparison. Local checks passed; Kaggle backend pilots and actual completion
+remain unverified. SAM2 comparison is explicitly deferred by user, not silently
+counted as done. See `24_S5_MANUAL_DENSE_TASKS.md` for run order and scope.
 
 S9 must follow that work. Manual tyre/tread masks do not supply HRNet landmark
 ground truth, curated healthy examples for PatchCore, or alignment calibration.

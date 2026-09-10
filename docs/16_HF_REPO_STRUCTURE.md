@@ -8,6 +8,16 @@
 
 ## 1. Repositories
 
+### S5 addition —2026-09-10
+
+NB13–NB17 use `s5/s5-manual-2026-09-10-r1/<protocol_sha256>/`, with
+`protocol.json`, `pilots/<model>/`, `runs/<model>-f<fold>-s<seed>/` and `report/`.
+Per-run `state.pt` is a full resumable checkpoint, not a weights-only export.
+Status/hash, epochs, identity, logs, native predictions, localisation and paired
+ROI metrics travel with it. One parent uploader per session retains the30min
+schedule/rate budget across isolated model processes. Existing `runs/a-*`,
+`runs/b-*` and confirmation artifacts remain unchanged. Details: `docs/24`.
+
 | Repo | Type | Visibility | Contents |
 |---|---|---|---|
 | `Shanmuk4622/tyre-wear-study` | **dataset** | **public since 2026-08-27** | **Everything.** Runs, metrics, XAI, annotations, tables, paper |

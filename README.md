@@ -23,10 +23,18 @@
 
 ## The current phase, in one paragraph
 
-**Current notebook delivery:** [NB12 S4b training](notebooks/NB12_S4B_Confirmation.ipynb)
-adds 18 confirmation runs; [NB12R reporting](notebooks/NB12R_S4B_Report.ipynb)
-verifies and reports them afterward. No new annotation. Local checks passed,
-Kaggle execution pending. [Run instructions](docs/23_S4B_CONFIRMATION.md).
+**Next: S5 notebooks are built, not yet GPU-verified.** Start
+[NB13 on CPU](notebooks/NB13_S5_Prepare.ipynb), then NB14 semantic, NB15 YOLO,
+NB16 genuine RT-DETRv2-R18 (each PILOT first), and NB17 HF report. Reuses existing
+manual masks; no annotation required. Nine configurations/81 planned runs,
+30-minute HF snapshots, isolated processes and learned-ROI evaluation.
+[Run instructions and scope](docs/24_S5_MANUAL_DENSE_TASKS.md).
+
+**S4b complete:** [NB12](notebooks/NB12_S4B_Confirmation.ipynb) finished all
+18 confirmation runs (60 epochs each); [NB12R](notebooks/NB12R_S4B_Report.ipynb)
+published the verified paired report. Random-init hurt both models; sampling
+directions did not repeat across both at the primary endpoint. No rerun needed.
+[Verified results](docs/23_S4B_CONFIRMATION.md). S5/S9 remain unfinished.
 
 **Full-plan correction, 2026-09-09:** S5 detection/segmentation and S9 integrated
 pipeline have **not started**. All five legacy baseline rows already exist;

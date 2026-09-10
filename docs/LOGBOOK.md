@@ -1,5 +1,14 @@
 # Project Logbook
 
+## 2026-09-10 — NB12/NB12R completed and audited
+
+Read both executed notebooks and independently audited live HF revision
+`dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8`. All 18 runs have exact histories
+1–60, completed status, matching configs/endpoints and both checkpoint paths.
+Recomputed report matches publication. S4b board is now green; mixed sampling
+results are not falsely called universal improvements. Runtime fixes completed
+all jobs. No training, notebook overwrite or HF mutations in this audit.
+
 ## 2026-09-10 — NB12 MobileNet preflight r2
 
 ConvNeXt repair passed at 0.82 s/step; MobileNet DP path was blocked at 12.04
@@ -584,3 +593,22 @@ validated four-worker tuple and rejecting duplicate labels. Final HF
 verification now prints never-created work as `NOT STARTED`; `AT RISK` is
 reserved for partial artifacts without a usable checkpoint. 118 selftests;
 model, data, split, optimiser, batch sizes, and 60-epoch recipe unchanged.
+# 2026-09-10 — S5 notebook delivery (not GPU execution)
+
+Built NB13–NB17 for nine manual-supervised detector/segmenter configurations,
+81 planned jobs, no additional annotation. Corrected RT-DETR identity to actual
+v2-R18; declared DeepLabV3+ ResNet-34 encoder. Frozen data/protocol, isolated job
+processes, one upload owner,30min snapshots, pilot/resume gate, native held-out
+predictions and paired full/predicted/oracle ROI classification. Public HF at
+`dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8` had no S5 artifacts. Existing executed
+notebooks were preserved. GPU/backend verification awaits Kaggle PILOT runs;
+S5/S9 are not marked complete. See `24_S5_MANUAL_DENSE_TASKS.md`.
+# NB14 setup repair — 2026-09-10
+
+Read the uploaded NB14 outputs: blank PREFIX assertion before training; four
+accounts configured in PILOT. Verified published NB13 at HF
+`951435416dde3bc65c5a2fa0bbe9e1c90301c6ed`, with matching model/data source hashes.
+Added unique compatible protocol discovery and explicit resolved-prefix assignment
+to NB14–NB17. Only worker0 runs PILOT with a multi-account setup. No training
+recipe/checkpoint change, no HF mutation; NB13 need not rerun. Original executed
+NB13/NB14 archived. Discovery and existing S5 regression checks pass.

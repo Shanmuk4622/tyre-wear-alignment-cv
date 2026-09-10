@@ -1,0 +1,196 @@
+# S5 — manual-supervised detection/segmentation
+
+## Position — 2026-09-10
+
+**NB14 setup repair:** NB13 is now verified at public HF revision
+`951435416dde3bc65c5a2fa0bbe9e1c90301c6ed`, protocol hash
+`1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df`.
+No need to rerun NB13. NB14's saved exception was `Paste the exact PREFIX from
+NB13`, with PREFIX blank; training had not started. The dependency conflict
+warnings were not the terminating exception in this execution.
+
+Repaired NB14–NB17 discover a unique compatible protocol when PREFIX is blank,
+pin the read revision, verify its hash and code/data compatibility, and assign
+the resolved PREFIX before execution. Zero/multiple matches stop with an
+actionable message; no arbitrary latest-protocol choice. PILOT with four accounts
+is owned by worker0 only; other workers explicitly skip. Default remains one
+copy. Original NB13/NB14 outputs are preserved in `notebooks/execution_archives/`.
+Regression checks passed for blank/explicit/missing/ambiguous discovery and
+non-owner PILOT skipping. Model/runtime source hashes still match published NB13;
+no recipe, weights, checkpoint namespace or upload interval changed.
+
+**Notebook implementation delivered; Kaggle GPU execution and S5 completion are
+not yet verified.** Public HF was read at
+`dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8`; no `s5/` artifacts existed.
+No remote training was launched or remote results altered by this delivery.
+S4b remains complete. S9 remains unimplemented.
+
+No new annotation is requested. Existing manual masks are the only label source.
+SAM2/manual comparison and blind reannotation are deferred, not passed.
+
+## Run order
+
+| Notebook | Runtime | Purpose |
+|---|---|---|
+| `NB13_S5_Prepare.ipynb` | CPU, once | Check every image/mask and split; freeze protocol and model revisions on HF; print PREFIX |
+| `NB14_S5_Semantic.ipynb` | T4×2 | Four semantic segmenters; 36 jobs |
+| `NB15_S5_YOLO.ipynb` | T4×2 | YOLO26 n/s detection and n/s instance segmentation; 36 jobs |
+| `NB16_S5_RTDETRv2.ipynb` | T4×2 | Actual RT-DETRv2-R18; nine jobs |
+| `NB17_S5_Report.ipynb` | CPU, once | Public-HF audit and paired report; partial stays partial |
+
+All require Internet, the writable `HF_TOKEN` secret, and the same attached
+Tire Dataset Prepared package, including `annotations/clean/masks`.
+Leave PREFIX blank in the other four notebooks to discover the unique matching
+protocol, or set the exact PREFIX printed by NB13 explicitly. There is
+no mutable “latest experiment” pointer that can silently switch an active worker.
+
+For EACH training notebook first run `MODE='PILOT'` in **one copy**. It tests
+each model, saves a scratch checkpoint, then reloads it in another process and
+performs additional updates. Only a passing pilot unlocks `MODE='TRAIN'`.
+Pilots are stored separately and never counted among the 81 runs. Semantic/RT
+pilots use six batches twice; YOLO uses two complete pilot epochs to exercise
+its native checkpoint callback. Pilots do not imply scientific training is done.
+
+Then run TRAIN in one or four copies. For four, set the SAME active account list
+in every Session cell and a different ACCOUNT per copy. Finish one notebook
+family before starting the next; do not run 12 copies or duplicate an account.
+Static ownership does not change as jobs finish; there is no claim polling or
+idle-worker stealing. Stop all old copies before changing the worker count.
+Rerunning TRAIN resumes remaining work and skips HF-completed jobs.
+
+GPU0 is used, GPU1 deliberately idle. This avoids the demonstrated DataParallel
+slowdown; it is not a claim that two GPUs are accelerating each job. A slow
+pilot/epoch or GPU OOM stops without substituting a smaller model or reducing
+the experiment. Measured pilot speed, not the old classification cost estimate,
+should determine how many sessions are needed.
+
+## Explicit recipe and model identity
+
+**Nine configurations × three folds × three seeds ×60 epochs =81 jobs.**
+No smaller scope is silently presented as the original S5 sweep.
+
+| Configuration | Initialization | Task |
+|---|---|---|
+| U-Net ResNet-34 | ImageNet encoder, `smp.Unet` | Two-channel semantic mask |
+| DeepLabV3+ ResNet-34 | ImageNet encoder, `smp.DeepLabV3Plus` | Two-channel semantic mask |
+| SegFormer B0/B2 | `nvidia/mit-b0`, `nvidia/mit-b2` | Two-channel semantic mask |
+| YOLO26-n/s | `yolo26n.pt`, `yolo26s.pt` | Tyre/tread boxes |
+| YOLO26-n/s-seg | `yolo26n-seg.pt`, `yolo26s-seg.pt` | Tyre/tread instances |
+| RT-DETRv2-R18 | `PekingU/rtdetr_v2_r18vd` | Tyre/tread boxes |
+
+**Identity correction:** the old `rtdetr-l.pt` entry was not RT-DETRv2-S.
+This implementation explicitly uses genuine RT-DETRv2 with an R18 backbone;
+it never labels Ultralytics RT-DETR-L as v2-S. DeepLabV3+'s previously unspecified
+encoder is explicitly ResNet-34. Both YOLO sizes are retained for both tasks.
+
+The new dense-task recipe uses **clean training originals only**, not the 4,180
+pre-generated classification derivatives. Train/validation counts are232/186,
+290/128 and314/104 in folds0/1/2. All418 image hashes and masks were checked
+locally. Notebook repeats the checks against the actual Kaggle attachment.
+
+Input512px; AdamW lr1e-4, weight decay.01; cosine scheduling; semantic batch4,
+RT-DETR batch2, YOLO batch4. Semantic uses BCE+soft Dice with two **overlapping
+sigmoid channels**, not an incorrect exclusive tyre/tread softmax. RT-DETR and
+YOLO use their native detection/instance losses. Semantic/YOLO have horizontal
+flip probability.5; RT-DETR has no online augmentation. YOLO colour/mosaic/mixup
+and geometric augmentations other than the flip are disabled. Backend-native
+EMA, schedules and pretraining differ; this is not an equal-pretraining ablation.
+
+Canonical labels: tyre=`mask>0`; tread=`mask==2 or mask==3`. Boxes are derived
+automatically from these regions. Native masks remain evaluation ground truth.
+YOLO polygons bridge disconnected components; a rasterized polygon must retain
+at least.98 IoU with its manual region or that export stops, with the affected
+image identified. Holes/detail must not silently become “perfect ground truth.”
+This representation gate may require a code repair, not new human annotation.
+
+Pinned libraries: Ultralytics8.4.20, transformers4.51.3,
+segmentation-models-pytorch0.5.0, timm1.0.15, pycocotools2.0.11.
+Installation constrains Kaggle's existing torch, torchvision and NumPy; it
+does not silently replace the CUDA stack. Exact runtime versions are recorded
+and must match the pilot and checkpoint on resume. Upstream model revisions
+for the transformer models are pinned by NB13. Initial weight fingerprints and
+actual implementation/parameter identities are recorded per run.
+
+## Evaluation: learned ROI, not oracle localisation
+
+Each trained model is evaluated in another process at fixed epoch60, not a
+validation-selected checkpoint. YOLO uses its native final-epoch EMA weights;
+other backends use final raw weights. Predictions are made on the held-out
+clean fold only and saved image by image as native-coordinate boxes and COCO
+RLE masks where available. Detection AP uses confidence≥.001; ROI detection
+uses fixed confidence≥.25, and semantic masks use probability≥.5.
+
+Outputs include COCO box AP50:95/AP50, mask AP for segmentation models, and
+per-image tyre/tread IoU, Dice and boundary F1 (2native-pixel tolerance).
+Empty-ground-truth/empty-prediction mask scores are undefined rather than
+invented as perfect. All actual manual images have both regions.
+
+The downstream classifier is the **same frozen Stage-A ResNet-50** at the
+matched fold/seed, `ckpt_last.pt`, from the pinned S4b-completion HF revision.
+Five modes: full image, predicted tyre crop, predicted tread crop, oracle tyre
+crop, oracle tread crop. Padding5%; missing prediction falls back to full image
+and is counted. Both per-sample probabilities and paired macro-F1 deltas are
+saved. The classifier is not retrained or selected using S5 results. This is
+a crop intervention on an existing full-frame classifier, not a separately
+crop-trained integrated pipeline or proof that S9 is complete.
+
+NB17 verifies all81 statuses/checkpoint hashes, 60-epoch histories, native
+prediction coverage and recomputed downstream F1. It reports each fold's
+three-seed summary without presenting photographs as independent tyres.
+The known fold0/2 suspected cross-tyre overlap and small fold1 tyre sample
+remain limitations; no independent new-tyre generalisation/significance claim.
+
+## Storage, stopping, and HF
+
+HF namespace: `s5/s5-manual-2026-09-10-r1/<protocol_sha256>/`.
+`protocol.json`, `pilots/<model>/`, `runs/<model>-f<fold>-s<seed>/`, `report/`.
+Per run: full `state.pt`, `STATUS.json`, `epochs.csv`, identity, logs, native
+per-image predictions, localisation metrics, ROI predictions and metrics.
+Existing classification run IDs/results are untouched.
+
+The **parent Session is the only upload owner**. It retains one shared rate
+budget across child processes. Normal snapshots every30min; major action end,
+including failures, and catchable Stop trigger immediate flush attempts.
+HF-requested backoff still applies; “immediate” cannot bypass a server limit.
+There are no claim/heartbeat commits. Immutable upload copies are taken under
+the same lock used for checkpoint publication.
+
+Custom checkpoints contain model, optimizer, scheduler, AMP scaler, RNG,
+history, runtime and protocol hash. YOLO additionally retains its native
+checkpoint/train arguments, full-precision training weights/optimizer, separate
+EMA, scheduler, loader generator and scaler/RNG state. This avoids resuming
+training from the native half-precision EMA substitute. Restarts resume
+at the latest **HF-published completed epoch**, not mid-batch. The native YOLO
+resume path is not promised bitwise-identical across hardware; changing the
+package environment is rejected. A forced OS/kernel kill cannot flush.
+
+Jobs run in isolated processes; parent monitors container RAM and ends the
+child before the safety margin is exhausted where possible. `/kaggle/temp`
+holds caches/checkpoints; native image exports are symlinks to the attached
+dataset. Only generated per-job scratch is removed after successful upload
+and verification. At least5GiB runtime and3GiB snapshot free-space checks are
+enforced; no assumption of1TB scratch is made. Cache storage is not permanent.
+
+## Validation and sources
+
+Sources: `tyrelib/s5_data.py`, `s5_runtime.py`, `s5_notebook.py`, and
+`build_s5_notebooks.py`; regression entrypoint `scripts/verify_s5_notebooks.py`.
+Local checks cover region/box geometry, all81 job IDs and one/four-worker
+ownership, actual dataset integrity, checkpoint/optimizer roundtrip,
+incompatible-resume rejection, notebook syntax and embedded-source equality.
+The pinned U-Net/DeepLab/SegFormer forward interfaces, RT-DETRv2 processor/loss,
+YOLO26 detection/segmentation constructors and a known-answer COCO AP fixture
+also passed CPU checks in isolated temporary libraries. All836 actual manual
+regions passed the polygon gate; minimum reconstruction IoU0.980092. No existing
+environment packages were replaced for those checks. Per-device hardware traces
+and child-process RAM samples are saved separately for each execution segment.
+Kaggle CUDA/backend/pilot execution remains unverified until the user runs it.
+
+Primary implementation references:
+[Ultralytics callbacks](https://docs.ultralytics.com/usage/callbacks),
+[YOLO26](https://docs.ultralytics.com/models/yolo26),
+[RT-DETRv2](https://huggingface.co/docs/transformers/model_doc/rt_detr_v2),
+[actual R18 checkpoint](https://huggingface.co/PekingU/rtdetr_v2_r18vd),
+[SMP API](https://smp.readthedocs.io/en/latest/models.html).
+Ultralytics licensing is AGPL-3.0 or its offered enterprise terms; check before
+redistributing an integrated application. This delivery is research notebooks.

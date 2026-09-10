@@ -280,6 +280,14 @@ Bilinear CNN · Hierarchical Bilinear Pooling · attention-bilinear (CSAB) · Co
 
 ### Tier 7 — detection and segmentation
 
+**Implementation update,2026-09-10:** NB13–NB17 now provide the manual-only
+route: nine configurations ×3folds ×3seeds ×60epochs =81 planned jobs. GPU
+pilots are pending, not execution-complete. Both YOLO26 sizes are included in
+both tasks. RT-DETRv2 uses the actual `PekingU/rtdetr_v2_r18vd` checkpoint;
+`rtdetr-l.pt` must not be called v2-S. Clean-only dense training and held-out
+predicted-ROI classification are specified in `24_S5_MANUAL_DENSE_TASKS.md`.
+SAM2 comparison remains deferred; no additional annotation requested.
+
 **YOLO26** (n/s, det + seg) · RT-DETRv2 · SegFormer-B0/B2 · U-Net · DeepLabV3+ · SAM2 (zero-shot teacher)
 
 *YOLO26 released January 2026 — NMS-free end-to-end head, ProgLoss, STAL, MuSGD. Use the current generation, not YOLO11.*
@@ -339,6 +347,11 @@ Architecture is only one dimension. These are the levers that usually matter mor
   fold 1 =18 new jobs; reuse six Stage-A baselines. This is a declared operational
   extension, not a retroactive preregistration. Only one selected effect was
   positive. NB12R reports primary/secondary paired effects (`23_S4B_CONFIRMATION.md`).
+
+  **Verified completion 2026-09-10:** all 18 runs finished 60 epochs and the
+  report matches independent HF recomputation. Random-init's negative direction
+  repeats in both models; sampling effects are model/endpoint-dependent.
+  This completes the declared S4b extension, not Stage D/S5 or S9.
 - **Stage D** — detection + segmentation track
 - **Stage E** — XAI over every trained model
 - **Stage F** — shortcut stress tests

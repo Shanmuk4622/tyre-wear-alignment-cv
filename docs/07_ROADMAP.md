@@ -6,15 +6,18 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 
 ---
 
-## Position as of 2026-09-09
+## Position as of 2026-09-10
 
 **Full-plan status:** see `20_FULL_PLAN_CLOSURE.md`. All five legacy baselines
 are public, and the matched random-init ResNet-50 arm is verified (9/9 × 60 epochs).
-S5, S9, Tier-6 FGVC, broader Tier-5 modes and separate Stage-C confirmation
-are not completed. NB01A/B and NB10R recovery is HF-verified; NB03A is only
+S5, S9, Tier-6 FGVC and broader Tier-5 modes are not completed. The declared
+S4b/Stage-C extension is complete:18/18 and NB12R HF-verified. NB13–NB17 now
+implement manual-supervised S5, with Kaggle pilots pending (`docs/24`).
+NB01A/B and NB10R recovery is HF-verified; NB03A is only
 an audit because the pretrained Small arm is unsupported. The user has now
 accepted closing the retained 17-architecture sweep (153/153), with nine
-substitutions permanently excluded. NB11 prepares the S3 independent-input comparison.
+substitutions permanently excluded. NB11/S3 independent-input comparison is
+deferred by user; no more annotation is required for S5.
 
 | | |
 |---|---|
@@ -187,8 +190,10 @@ Top 3 architectures from S2 × 12 factors, one at a time (`04 §9`). ~324 runs.
 
 Confirm the top 3 findings on two further architectures (S4b). If a factor helps only one architecture, **say so** — that is the honest reading of an OFAT design, which cannot detect interactions.
 
-**S4b delivery:** NB12 trains 18 fresh fold-1 runs on ConvNeXt-V2 Tiny and
-MobileNetV4, using the top three signed-mean NB06 factors; NB12R audits them.
+**S4b complete:** NB12's 18 fold-1 runs on ConvNeXt-V2 Tiny and MobileNetV4,
+plus NB12R's paired report, are verified on public HF. Random-init's negative
+direction repeats in both models; the two sampling directions do not both replicate.
+The following records the original selection rationale, not pending work.
 Six Stage-A baselines are reused. Only class-weighted sampling was positive;
 random initialisation and uniform sampling were the next ranked effects, not
 proven gains. No new annotation. Protocol/run instructions: `23_S4B_CONFIRMATION.md`.

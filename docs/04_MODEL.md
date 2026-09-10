@@ -172,26 +172,32 @@ Tyre wear **is** a fine-grained visual classification problem: subtle within-cla
 
 | Model | Identifier | Task | Trained on |
 |---|---|---|---|
-| **SAM2** | `sam2.1_hiera_large` | zero-shot masks | nothing — the teacher |
-| YOLO26-n / -s | `yolo26n.pt` / `yolo26s.pt` | detection | SAM2 pseudo-boxes |
-| YOLO26-n-seg | `yolo26n-seg.pt` | instance seg | SAM2 pseudo-masks |
-| RT-DETRv2-S | `rtdetr-l.pt` | detection | SAM2 pseudo-boxes |
-| SegFormer-B0 / B2 | `nvidia/mit-b0`, `mit-b2` | semantic seg | SAM2 pseudo-masks |
-| U-Net (ResNet-34) | `smp.Unet` | semantic seg | SAM2 pseudo-masks |
-| DeepLabV3+ | `smp.DeepLabV3Plus` | semantic seg | SAM2 pseudo-masks |
+| **SAM2** | `sam2.1_hiera_large` | zero-shot masks | **Deferred**, not an S5 prerequisite |
+| YOLO26-n / -s | `yolo26n.pt` / `yolo26s.pt` | detection | Boxes derived from existing manual masks |
+| YOLO26-n-seg / -s-seg | `yolo26n-seg.pt` / `yolo26s-seg.pt` | instance seg | Existing manual masks; polygon-fidelity gate |
+| RT-DETRv2-R18 | `PekingU/rtdetr_v2_r18vd` | detection | Manual-derived boxes; correct v2 identity |
+| SegFormer-B0 / B2 | `nvidia/mit-b0`, `nvidia/mit-b2` | semantic seg | Existing manual masks |
+| U-Net (ResNet-34) | `smp.Unet` | semantic seg | Existing manual masks |
+| DeepLabV3+ (ResNet-34) | `smp.DeepLabV3Plus` | semantic seg | Existing manual masks |
+
+**2026-09-10 implementation:** NB13–NB17, nine configurations/81 jobs,
+GPU pilots pending. The old `rtdetr-l.pt` entry was not RT-DETRv2-S and must
+not be used under that label. See `24_S5_MANUAL_DENSE_TASKS.md` for actual
+recipe/encoder/task definitions and validation status.
 
 **Use YOLO26, not YOLO11.** Released January 2026: NMS-free end-to-end head, DFL removal, Progressive Loss Balancing, Small-Target-Aware Label Assignment, MuSGD optimiser. Reports up to 43% faster CPU ONNX inference than YOLO11n, and YOLO26x reaches 57.5 mAP on COCO — above RT-DETRv2-x with fewer parameters.
 
 **We now have manual annotations** (`15_ANNOTATION_GUIDE.md`) — 418 hand-corrected images propagated to all 4,598. So detection and segmentation are **genuinely supervised**, not pseudo-label distillation.
 
-Train each on **both** label sources and compare:
+Original proposal (the SAM2 arm is now **deferred by user**):
 
 | Arm | Labels | What it answers |
 |---|---|---|
 | `manual` | hand-corrected masks/boxes | the real result |
 | `sam2` | SAM2 zero-shot pseudo-labels | how much does manual annotation actually buy? |
 
-That comparison is a free extra result, and it is only possible because both exist.
+Only the manual arm is implemented now. An independent SAM2 comparison is
+not a free existing result; it remains unmeasured and is not required for S5.
 
 ---
 
