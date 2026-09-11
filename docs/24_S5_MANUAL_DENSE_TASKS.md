@@ -2,6 +2,66 @@
 
 ## Position — 2026-09-10
 
+### NB16 exact-runtime resume repair —2026-09-11
+
+The uploaded NB16 stopped before resuming `rtdetrv2_r18-f0-s3`: its saved
+runtime differed from the fresh session. At HF revision
+`d1ffc44d26a4ceafcd81a4e67813a2083879596d`, the run remains resumable at52/60;
+four RT-DETR jobs are complete. Published run identities record NumPy2.4.6,
+while the pilot used2.0.2; torch2.10.0+cu128 and the pinned model packages match.
+
+**Replace NB16, start a fresh T4×2 session and Run All with MODE='TRAIN'**
+(already selected). No NB13/pilot rerun, no reset, no smaller model. For every
+resumed worker the parent reads the actual checkpoint's runtime in a short CPU
+process. If only NumPy differs, the exact saved version is installed with
+`--no-deps` into generated scratch and used only by that child's PYTHONPATH.
+Fresh jobs instead use the recorded pilot runtime. Both metadata and the loaded
+NumPy version are verified before training; non-NumPy/CUDA mismatches still stop.
+The strict checkpoint validation and epoch boundary remain unchanged.
+
+`worker_environment.json` records the expected/verified runtime and is uploaded
+with the job. Model/data source and immutable NB13 protocol hashes are unchanged;
+no HF artifacts were edited by this repair. Original NB15/NB16 outputs were
+archived before regeneration. Fault-injection tests cover isolated NumPy restore,
+checkpoint preservation and rejection of CUDA changes; notebook and existing
+policy regressions pass. Actual repaired Kaggle resume remains to be executed.
+
+### NB15 flip-only repair and AUTO execution
+
+HF at `028abb34a8395a91153b74c279bc28fe88864498` confirms all4 original YOLO
+pilot/resume checks passed, but **zero scientific YOLO run statuses** existed.
+The original pilots used unintended Ultralytics Albumentations defaults. This
+was an implementation mistake, not a reason to change the declared recipe.
+
+**Now run the repaired NB15 with MODE='AUTO' and Run All. No NB13 rerun or
+manual pilot-to-training switch.** One worker works with defaults. With four
+copies, set the same active account list and unique ACCOUNTs; start acct1 first.
+Worker0 checks the repaired pilots; others wait without claim commits, then
+all start their assigned full training. Rerunning AUTO skips valid corrected
+pilots and resumes training. A failing pilot still stops safely.
+
+Repair `flip-only-r2` passes `augmentations=[]` explicitly and inspects the
+constructed loader before any update. Blur, MedianBlur, grayscale and CLAHE
+are disabled. Model sizes, batch, resolution, folds/seeds and epochs remain
+unchanged. Old-policy YOLO checkpoints cannot be resumed or reported as repaired
+results. Original pilots remain at their original paths; new checks use
+`pilots/<yolo_model>/flip-only-r2/`. Scientific runs keep the declared IDs.
+
+The exact pre-repair runtime hash is narrowly recognized for the existing NB13
+protocol; other unknown code changes still fail validation. On Kaggle, worker0
+publishes a runtime amendment plus the corrected source under
+`runtime_amendments/flip-only-r2.*` before training. The original immutable
+protocol is not rewritten. Semantic/RT training calculations are unchanged.
+NB14–NB17 share this documented compatibility handling; old notebook outputs
+were archived before regeneration. No HF records were altered locally.
+
+Local tests passed: hidden-augmentation rejection, explicit empty override
+accepted by pinned Ultralytics8.4.20, AUTO pilot-to-training transition, rerun
+pilot skipping, narrow source compatibility and existing S5 regression checks.
+Corrected T4 execution is still validated by the automatic pilots, not claimed
+as already completed. The older manual PILOT/TRAIN instructions below apply
+to NB14/NB16; NB15 now uses AUTO.
+
 **NB14 setup repair:** NB13 is now verified at public HF revision
 `951435416dde3bc65c5a2fa0bbe9e1c90301c6ed`, protocol hash
 `1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df`.

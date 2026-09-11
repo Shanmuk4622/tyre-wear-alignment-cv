@@ -100,7 +100,8 @@ def test_notebooks():
             assert encoded in joined
         assert 'HF_TOKEN' in json.dumps(nb)
         if name.startswith(('NB14','NB15','NB16')):
-            assert "MODE = 'PILOT'" in joined and "PREFIX = ''" in joined
+            mode = 'AUTO' if name.startswith('NB15') else ('TRAIN' if name.startswith('NB16') else 'PILOT')
+            assert f"MODE = '{mode}'" in joined and "PREFIX = ''" in joined
             assert "'torch','torchvision','numpy'" in joined
 
 

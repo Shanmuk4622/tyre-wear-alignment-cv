@@ -2,6 +2,11 @@
 
 **Live status log. Updated every working session.**
 Last updated: **2026-09-10**
+Latest runtime repair: **2026-09-11 — NB16**. Four RT-DETR runs complete;
+`rtdetrv2_r18-f0-s3` safely saved at52/60 on HF
+`d1ffc44d26a4ceafcd81a4e67813a2083879596d`. Fixed exact NumPy restoration in an
+isolated child environment (saved2.4.6 vs pilot/session2.0.2), without changing
+CUDA/model/checkpoint checks. Use repaired NB16 in a fresh session, TRAIN + Run All.
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -26,6 +31,7 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 > 1. **NB13 protocol is now HF-verified. Do not rerun it.** Replace NB14 with the repaired version and run **PILOT on one T4×2 copy**. Blank PREFIX now discovers the unique matching HF protocol. With four accounts configured, only worker0 runs PILOT. No annotation needed; see `docs/24`. Retain the fold-leakage limitation in all interpretation.
 > **S4b complete:** NB12 and NB12R are verified on HF: 18/18 ×60 epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. Next unfinished training stage is manual-supervised S5. See `docs/23`.
 > 2. **Do not run NB11 or annotate again.** S5 uses existing manual masks. After NB14, run NB15 YOLO and NB16 RT-DETRv2 (each PILOT first, then TRAIN); NB17 audits all81 jobs on HF. Normal pushes every30min; isolated job processes; no per-claim commits.
+> **NB15 correction:** use the new **MODE='AUTO'** and Run All. It automatically validates the corrected flip-only policy, then trains. Old4/4 YOLO pilots passed execution/resume but included unintended Blur/MedianBlur/grayscale/CLAHE. Those records are retained, not accepted as corrected-policy evidence. No NB13 rerun. Four workers: start acct1 first; other workers wait for its corrected pilots, then train automatically.
 > 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Declared S4b/Stage-C extension is complete; wider Tier5/6 remains open.
 > 4. S9 follows S5 and additional inputs. H3, original-plan missing experiments, calibration limitations and manuscript work remain open. See `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
 

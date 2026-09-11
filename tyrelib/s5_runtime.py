@@ -16,6 +16,21 @@ from filelock import FileLock
 
 import s5_data as d
 
+YOLO_POLICY = 'flip-only-r2'
+
+
+def verify_yolo_augmentations(trainer):
+    """Check the constructed loader, not just configuration text, before updates."""
+    stack = [trainer.train_loader.dataset.transforms]
+    while stack:
+        transform = stack.pop()
+        if type(transform).__name__ == 'Albumentations':
+            inner = getattr(transform, 'transform', None)
+            assert not getattr(inner, 'transforms', []), 'Unexpected Albumentations transforms; refuse training'
+        stack.extend(getattr(transform, 'transforms', []))
+    assert trainer.args.augmentations == [], 'The explicit empty augmentation override was lost'
+    print('[S5] flip-only-r2 VERIFIED: extra Albumentations disabled; horizontal flip retained.', flush=True)
+
 
 def atomic_json(path, value):
     path = Path(path)
@@ -44,6 +59,8 @@ def check_checkpoint(state, plan, job):
     assert 0 <= state['epoch'] <= plan['epochs']
     assert [x['epoch'] for x in state['history']] == list(range(1, state['epoch']+1))
     assert state['runtime'] == runtime_versions(), 'Runtime changed: resume in the recorded package environment'
+    if job['backend']=='yolo':
+        assert state.get('yolo_policy')==YOLO_POLICY, 'Old YOLO augmentation policy; do not mix checkpoints'
 
 
 def publish_local(out, state, native=None):
@@ -61,13 +78,15 @@ def publish_local(out, state, native=None):
         pd.DataFrame(state['history']).to_csv(out/'epochs.csv', index=False)
         atomic_json(out/'STATUS.json', dict(status='trained' if state['epoch']==60 else 'resumable',
             epoch=state['epoch'], plan_hash=state['plan_hash'], job=state['job'],
-            checkpoint_sha256=d.digest(out/'state.pt'), evaluated=False))
+            checkpoint_sha256=d.digest(out/'state.pt'), evaluated=False,
+            yolo_policy=state.get('yolo_policy')))
 
 
 def state_header(plan, job, epoch, history):
     import tyrelib as tl
     return dict(plan_hash=d.signature(plan), job=job, epoch=epoch, history=history,
-                runtime=runtime_versions(), rng=tl.capture_rng())
+                runtime=runtime_versions(), rng=tl.capture_rng(),
+                yolo_policy=YOLO_POLICY if job['backend']=='yolo' else None)
 
 
 class DenseDataset:
@@ -338,6 +357,8 @@ def train_yolo(plan, job, root, annotations, out, smoke=False):
     atomic_json(out/'identity.json', initial)
 
     def on_start(trainer):
+        verify_yolo_augmentations(trainer)
+        initial['yolo_policy'] = YOLO_POLICY
         initial.update(parameters=sum(p.numel() for p in trainer.model.parameters()),
                        task=trainer.args.task, classes=trainer.model.names)
         initial['initial_weights_sha256'] = saved['identity']['initial_weights_sha256'] if saved else weight_signature(trainer.model)
@@ -390,7 +411,7 @@ def train_yolo(plan, job, root, annotations, out, smoke=False):
         project=str(out/'native'), name='train', exist_ok=True,
         mosaic=0., mixup=0., copy_paste=0., degrees=0., translate=0., scale=0., shear=0.,
         perspective=0., flipud=0., fliplr=.5, hsv_h=0., hsv_s=0., hsv_v=0.,
-        overlap_mask=False, close_mosaic=0)
+        overlap_mask=False, close_mosaic=0, augmentations=[])
     if saved:
         kwargs = dict(resume=True, device=0, workers=0, data=str(data))
     try:

@@ -612,3 +612,25 @@ Added unique compatible protocol discovery and explicit resolved-prefix assignme
 to NB14–NB17. Only worker0 runs PILOT with a multi-account setup. No training
 recipe/checkpoint change, no HF mutation; NB13 need not rerun. Original executed
 NB13/NB14 archived. Discovery and existing S5 regression checks pass.
+# NB15 flip-only correction and run-all workflow
+
+User requested the actual corrected notebook after inspection found hidden
+Albumentations. Added explicit empty augmentation list and a loader-level gate.
+NB15 AUTO validates corrected-policy pilots and then starts/resumes scientific
+training; workers1–3 wait for worker0's checks. Original4/4 pilot evidence retained
+in HF; new pilot paths carry flip-only-r2. No scientific YOLO statuses were
+present at revision028abb34a8395a91153b74c279bc28fe88864498. Preserved NB13 protocol
+with an exact-hash runtime compatibility amendment, logged before Kaggle training;
+no local HF writes. Local policy/AUTO/compatibility and existing regression checks
+passed. Corrected T4 pilot execution remains pending.
+# NB16 runtime mismatch repair —2026-09-11
+
+Read the actual child traceback: `check_checkpoint` rejected a runtime mismatch,
+not GPU OOM. HF run identities use NumPy2.4.6; pilot runtime is2.0.2. Four RT runs
+complete and f0-s3 remains saved at52/60 at revision
+d1ffc44d26a4ceafcd81a4e67813a2083879596d. Added exact checkpoint-runtime probing,
+isolated per-child NumPy restoration, loaded-version verification and published
+worker environment record. Kept strict checkpoint/model/CUDA guards; no model
+or protocol change. Fresh runs use the pilot runtime. NB16 defaults TRAIN for
+this recovery; executed originals archived. Local fault-injection and existing
+regressions pass; repaired Kaggle execution not yet claimed.

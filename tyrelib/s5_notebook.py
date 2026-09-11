@@ -16,9 +16,25 @@ from huggingface_hub import HfApi, hf_hub_download
 from huggingface_hub.errors import EntryNotFoundError
 
 import s5_data as d
-from s5_runtime import atomic_json
+from s5_runtime import atomic_json, YOLO_POLICY
 
 REPO = 'Shanmuk4622/tyre-wear-study'
+
+# Reviewed, narrow compatibility amendment: only YOLO's unintended default
+# Albumentations are removed; semantic/RT recipes and original data stay intact.
+PRE_REPAIR_RUNTIME = '67c1a33b92adfdcaf7df7f280e38284c8e4de23c385c8b8612fa0489113906d4'
+
+
+def source_compatible(plan):
+    expected = {name:d.digest(Path(d.__file__).parent/name) for name in ('s5_data.py','s5_runtime.py')}
+    actual = plan.get('implementation_sha256', {})
+    return (set(actual)==set(expected) and actual['s5_data.py']==expected['s5_data.py']
+            and actual['s5_runtime.py'] in (expected['s5_runtime.py'], PRE_REPAIR_RUNTIME))
+
+
+def pilot_prefix(prefix, name):
+    base = f'{prefix}/pilots/{name}'
+    return base+'/'+YOLO_POLICY if d.MODELS[name][0]=='yolo' else base
 
 
 def retry(operation):
@@ -106,7 +122,7 @@ def resolve_prefix(sess, prefix, rev):
             continue
         candidate = json.loads(pull(sess, entry.path, rev, Path(sess.stage_dir)/'s5_read').read_text())
         candidate_prefix = entry.path.rsplit('/', 1)[0]
-        if (candidate_prefix==plan_prefix(candidate) and candidate.get('implementation_sha256')==expected
+        if (candidate_prefix==plan_prefix(candidate) and source_compatible(candidate)
                 and candidate.get('models')=={k:list(v) for k,v in d.MODELS.items()}
                 and candidate.get('packages')==d.PACKAGES):
             matches.append(candidate_prefix)
@@ -124,15 +140,15 @@ def load_plan(sess, prefix, root, annotations):
     plan = json.loads(pull(sess, prefix+'/protocol.json', rev, Path(sess.stage_dir)/'s5_read').read_text())
     assert d.signature(plan) == prefix.split('/')[-1]
     assert plan['models']=={k:list(v) for k,v in d.MODELS.items()} and plan['packages']==d.PACKAGES
-    assert plan['implementation_sha256']=={name:d.digest(Path(d.__file__).parent/name)
-                                          for name in ('s5_data.py','s5_runtime.py')}, 'Runtime source differs from NB13; use matching notebooks'
+    assert source_compatible(plan), 'Runtime source differs from NB13; use matching notebooks'
     print('Verifying this session uses the same image, mask and split bytes...', flush=True)
     assert d.inspect_data(root, annotations)==plan['data'], 'Dataset differs from frozen NB13 protocol'
     return plan
 
 
 ARTIFACTS = ['state.pt','STATUS.json','epochs.csv','identity.json','polygon_audit.csv',
-             'metrics.json','mask_metrics.csv','roi_metrics.csv','roi_predictions.csv','SMOKE.json','hardware.json']
+             'metrics.json','mask_metrics.csv','roi_metrics.csv','roi_predictions.csv','SMOKE.json','hardware.json',
+             'worker_environment.json']
 
 
 def snapshot(sess, out, remote, reason):
@@ -171,6 +187,8 @@ def restore(sess, plan, job, out, remote):
     if status_file:
         status = json.loads(status_file.read_text())
         assert status['plan_hash']==d.signature(plan) and status['job']==job
+        if job['backend']=='yolo':
+            assert status.get('yolo_policy')==YOLO_POLICY, 'Old-policy YOLO result cannot be reused as corrected training'
         if status['status']=='completed' and status['evaluated']:
             info = retry(lambda: HfApi(token=token(sess)).get_paths_info(REPO, [remote+'/state.pt'], repo_type='dataset', revision=rev))
             assert len(info)==1 and info[0].lfs and info[0].lfs.sha256==status['checkpoint_sha256']
@@ -213,10 +231,63 @@ def restore(sess, plan, job, out, remote):
     return status['status']=='completed' and status['evaluated']
 
 
+def worker_environment(out, env, expected=None):
+    """Restore NumPy per child, without replacing notebook/CUDA packages or relaxing checks."""
+    from s5_runtime import runtime_versions
+    expected = expected or runtime_versions()
+    checkpoint = Path(out)/'state.pt'
+    if checkpoint.exists():
+        # Read recorded versions in a short CPU process; don't retain a full checkpoint
+        # in the notebook parent while the training child allocates its own state.
+        source = "import json,sys,torch; s=torch.load(sys.argv[1],map_location='cpu',weights_only=False); print(json.dumps(s['runtime']))"
+        p = subprocess.run([sys.executable,'-c',source,str(checkpoint)],env=env,
+                           capture_output=True,text=True,timeout=120)
+        if p.returncode:
+            raise RuntimeError('Could not inspect saved runtime; checkpoint was not reset:\n'+p.stderr[-3000:])
+        expected = json.loads(p.stdout.strip().splitlines()[-1])
+    probe = ("import json,importlib.metadata as m,numpy; "
+             "from s5_runtime import runtime_versions; "
+             "print(json.dumps(dict(versions=runtime_versions(),loaded_numpy=numpy.__version__)))")
+    def inspect(candidate_env):
+        p = subprocess.run([sys.executable,'-c',probe],env=candidate_env,
+                           capture_output=True,text=True,timeout=120)
+        if p.returncode:
+            raise RuntimeError('Worker runtime probe failed before training:\n'+p.stderr[-3000:])
+        return json.loads(p.stdout.strip().splitlines()[-1])
+    observed = inspect(env)
+    differences = {k:(expected.get(k),observed['versions'].get(k)) for k in set(expected)|set(observed['versions'])
+                   if expected.get(k)!=observed['versions'].get(k)}
+    if set(differences)-{'numpy'}:
+        raise RuntimeError(f'Non-NumPy runtime mismatch (saved, worker): {differences}. CUDA stack was not modified.')
+    repaired_env = dict(env)
+    if differences or observed['loaded_numpy']!=expected['numpy']:
+        wanted = expected['numpy']
+        import re
+        assert re.fullmatch(r'\d+\.\d+\.\d+',wanted), 'Unexpected NumPy version string'
+        target = Path(out).parent/'runtime_packages'/('numpy_'+wanted)
+        target.mkdir(parents=True,exist_ok=True)
+        print(f'[RUNTIME] Restoring NumPy {wanted} for this worker only; notebook and CUDA stack unchanged.',flush=True)
+        if not (target/'numpy/__init__.py').exists():
+            subprocess.run([sys.executable,'-m','pip','install','--quiet','--no-deps','--only-binary=:all:',
+                '--no-cache-dir','--disable-pip-version-check','--timeout','60',
+                '--target',str(target),'numpy=='+wanted],env=env,check=True,timeout=600)
+        repaired_env['PYTHONPATH'] = str(target)+os.pathsep+str(Path.cwd())+(os.pathsep+env['PYTHONPATH'] if env.get('PYTHONPATH') else '')
+        observed = inspect(repaired_env)
+    if observed['versions']!=expected or observed['loaded_numpy']!=expected['numpy']:
+        raise RuntimeError(f'Runtime restoration failed. Expected {expected}; got {observed}. Training not started.')
+    record = dict(expected=expected,verified=observed,checkpoint_resume=checkpoint.exists(),
+                  policy='isolated-numpy-exact-r1')
+    atomic_json(Path(out)/'worker_environment.json',record)
+    print('[RUNTIME] Worker verified against '+('checkpoint' if checkpoint.exists() else 'pilot/session')+
+          ': NumPy '+expected['numpy']+', torch '+expected['torch'],flush=True)
+    return repaired_env
+
+
 def launch(sess, plan, job, root, annotations, out, remote, action):
     request = out/'request.json'
     atomic_json(request, dict(plan=plan, job=job, root=str(root), annotations=str(annotations), out=str(out), action=action))
     env = dict(os.environ, HF_TOKEN=token(sess), PYTHONUNBUFFERED='1')
+    env = worker_environment(out, env, getattr(sess,'_s5_runtime_targets',{}).get(job['model']))
     log = out/(action+'.log')
     last_push = time.monotonic()
     print(action.upper(), job['run_id'], '— detailed progress below', flush=True)
@@ -288,9 +359,49 @@ def safe_remove_generated(path, parent):
 
 
 def run_family(sess, plan, prefix, root, annotations, family, mode):
-    assert mode in ('PILOT','TRAIN')
+    assert mode in ('PILOT','TRAIN','AUTO')
     base = Path(sess.stage_dir)/'s5_jobs'/d.signature(plan)
     base.mkdir(parents=True, exist_ok=True)
+    if family=='yolo' and sess.worker_id==0:
+        amendment = base/'yolo_runtime_amendment.json'
+        atomic_json(amendment, dict(policy=YOLO_POLICY, plan_hash=d.signature(plan),
+            original_runtime=plan['implementation_sha256']['s5_runtime.py'],
+            repaired_runtime=d.digest(Path(d.__file__).parent/'s5_runtime.py'),
+            reason='Disable unintended default Albumentations; implement the frozen flip-only recipe',
+            old_pilots='retained, not accepted as repaired-policy evidence'))
+        sess.uploader.enqueue(amendment, f'{prefix}/runtime_amendments/{YOLO_POLICY}.json')
+        sess.uploader.enqueue(Path(d.__file__).parent/'s5_runtime.py', f'{prefix}/runtime_amendments/{YOLO_POLICY}.py')
+        push(sess, 'YOLO runtime correction provenance')
+    if mode=='AUTO':
+        assert family=='yolo', 'AUTO currently applies to the repaired YOLO notebook'
+        def missing_pilots():
+            rev = revision(sess)
+            missing = []
+            from s5_runtime import runtime_versions
+            for name, spec in plan['models'].items():
+                if spec[0]!=family:
+                    continue
+                file = pull(sess, pilot_prefix(prefix,name)+'/PASS.json', rev, base/'pilot_checks', optional=True)
+                pilot = json.loads(file.read_text()) if file else {}
+                if not (pilot.get('status')=='passed' and pilot.get('resume_verified')
+                        and pilot.get('plan_hash')==d.signature(plan) and pilot.get('yolo_policy')==YOLO_POLICY
+                        and pilot.get('runtime')==runtime_versions()):
+                    missing.append(name)
+            return missing
+        missing = missing_pilots()
+        if missing and sess.worker_id==0:
+            print('AUTO: validating corrected YOLO policy, then continuing to full training.', flush=True)
+            run_family(sess, plan, prefix, root, annotations, family, 'PILOT')
+            missing = missing_pilots()
+        started = time.monotonic()
+        while missing:
+            if sess.worker_id==0 or time.monotonic()-started>2400 or sess.guard.near_limit():
+                raise RuntimeError('Corrected pilots not yet passed. Keep worker0 running; rerun AUTO to continue safely.')
+            print('Waiting for worker0 to publish corrected pilots; no claim commits:', missing, flush=True)
+            time.sleep(30)
+            missing = missing_pilots()
+        mode = 'TRAIN'
+        print('AUTO: all four corrected pilots verified. Starting/resuming the assigned full runs.', flush=True)
     if mode=='PILOT':
         if sess.worker_id!=0:
             print('PILOT runs only on the first active account (worker0). This copy will not duplicate it. '
@@ -303,16 +414,24 @@ def run_family(sess, plan, prefix, root, annotations, family, mode):
         for name, spec in plan['models'].items():
             if spec[0]!=family:
                 continue
-            pilot = json.loads(pull(sess, f'{prefix}/pilots/{name}/PASS.json', rev, base/'pilot_checks').read_text())
+            pilot = json.loads(pull(sess, pilot_prefix(prefix,name)+'/PASS.json', rev, base/'pilot_checks').read_text())
             assert pilot['plan_hash']==d.signature(plan) and pilot['status']=='passed' and pilot['resume_verified']
+            if family=='yolo':
+                assert pilot.get('yolo_policy')==YOLO_POLICY, 'Corrected policy pilot is required'
             from s5_runtime import runtime_versions
-            assert pilot['runtime']==runtime_versions(), 'Pilot ran in another package/runtime image; rerun PILOT here first'
+            current = runtime_versions()
+            changed = {k for k in set(current)|set(pilot['runtime']) if current.get(k)!=pilot['runtime'].get(k)}
+            assert not (changed-{'numpy'}), 'Pilot ran in another package/runtime image; rerun PILOT here first'
+            if not hasattr(sess,'_s5_runtime_targets'):
+                sess._s5_runtime_targets = {}
+            # Fresh workers use the proven pilot NumPy; resumed workers use their own saved runtime.
+            sess._s5_runtime_targets[name] = pilot['runtime']
         print(f'{len(selected)} statically owned jobs. No claim commits or stealing. Stop all copies before changing worker count.')
     for job in selected:
         if sess.guard.near_limit(margin_min=45):
             print('Session nearly used; restart TRAIN to continue remaining jobs.'); break
         out = base/(('pilot_' if mode=='PILOT' else '')+job['run_id']); out.mkdir(exist_ok=True)
-        remote = f'{prefix}/pilots/{job["model"]}' if mode=='PILOT' else f'{prefix}/runs/{job["run_id"]}'
+        remote = pilot_prefix(prefix,job['model']) if mode=='PILOT' else f'{prefix}/runs/{job["run_id"]}'
         if mode=='PILOT':
             # Separate pilot state can never become one of the 81 scientific results.
             safe_remove_generated(out, base); out.mkdir()
@@ -323,7 +442,8 @@ def run_family(sess, plan, prefix, root, annotations, family, mode):
             assert pilot['status']=='passed'
             launch(sess, plan, job, root, annotations, out, remote, 'resume_test')
             passed = dict(status='passed', plan_hash=d.signature(plan), resume_verified=True,
-                          runtime=pilot['runtime'], completed_at=datetime.now(timezone.utc).isoformat())
+                          runtime=pilot['runtime'], completed_at=datetime.now(timezone.utc).isoformat(),
+                          yolo_policy=YOLO_POLICY if family=='yolo' else None)
             atomic_json(out/'PASS.json', passed)
             sess.uploader.enqueue(out/'PASS.json', remote+'/PASS.json')
             push(sess, 'S5 pilot and cross-process resume check passed')
@@ -359,6 +479,8 @@ def report(sess, plan, prefix):
             rows.append(dict(**job, status='not_started', epoch=0)); continue
         st = json.loads(status_file.read_text())
         assert st['plan_hash']==d.signature(plan) and st['job']==job
+        if job['backend']=='yolo':
+            assert st.get('yolo_policy')==YOLO_POLICY, 'YOLO result uses the old augmentation policy'
         if st['status']!='completed':
             rows.append(dict(**job, status=st['status'], epoch=st['epoch'])); continue
         assert st['epoch']==60 and st['evaluated']

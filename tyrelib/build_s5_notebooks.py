@@ -103,7 +103,49 @@ unpublished progress may need repeating. Stop during an epoch replays that epoch
 not individual batches. A runtime/package/protocol mismatch stops instead of resetting.
 The first run is a Kaggle validation step: local checks do not certify GPU execution.
 ''')
-        cells += [b.code(INSTALL), b.code(f"PREFIX = ''  # automatic discovery; set explicitly only if HF has multiple matching protocols\nMODE = 'PILOT'  # PILOT first; then TRAIN\nFAMILY = {family!r}\nPLAN = sn.load_plan(sess, PREFIX, DATA_ROOT, ANN_ROOT)\nPREFIX = sn.plan_prefix(PLAN)\nprint('Using frozen protocol:', PREFIX)\n"),
+        if family=='yolo':
+            cells[0] = b.md('''# NB15 — corrected YOLO26 detection/segmentation (AUTO)
+
+**Run All. No manual PILOT → TRAIN switch is required. Do not rerun NB13.**
+
+- Select T4×2, Internet ON, HF_TOKEN enabled, and attach Tire Dataset Prepared.
+- Leave PREFIX blank and MODE='AUTO'. The notebook checks the corrected
+  flip-only policy in short pilots, then automatically starts/resumes full training.
+- One copy works with the default account settings. For four copies, use the same
+  four ACTIVE_KAGGLE_ACCOUNTS in each, and different ACCOUNT values (acct1–acct4).
+  Start acct1 first: it handles pilot checks; the others wait for those checks,
+  then each starts its own training shard. Do not run duplicate accounts.
+- Normal HF pushes every30min; major completion and catchable Stop flush.
+  Restart AUTO after a session ends to resume the latest published completed epoch.
+  A hard kernel kill cannot flush unfinished work.
+
+This repair disables implicit Blur/MedianBlur/grayscale/CLAHE. A loader-level
+check must print `flip-only-r2 VERIFIED` before updates. Old pilot evidence is
+retained separately, not mistaken for corrected-policy validation. Same four
+models,36 runs,60 epochs,512px,batch4; GPU0 used and GPU1 intentionally idle.
+The correction was tested locally; its T4 pilot is validated by this notebook.
+''')
+        if family=='rtdetr':
+            cells[0] = b.md('''# NB16 — RT-DETRv2 resume repair
+
+**Use a fresh Kaggle session and Run All. MODE='TRAIN' is already selected.**
+The existing HF pilot is verified; NB13 and the completed training runs need not be repeated.
+
+Select T4×2, Internet ON, HF_TOKEN, Tire Dataset Prepared. Leave PREFIX blank.
+One worker is configured by default: keep it unless you deliberately use separate
+accounts with matching active-account lists. Do not run duplicate copies of the same worker.
+
+The saved checkpoint used a different NumPy version from the fresh Kaggle session.
+This notebook restores the EXACT saved NumPy in an isolated child-process directory,
+without replacing notebook packages or the CUDA stack and without weakening the
+checkpoint check. Fresh jobs use the pilot's runtime; completed jobs skip.
+
+Continue TRAIN after session limits. Last published completed epoch resumes;
+30min normal HF pushes, major completion and catchable Stop flush. Forced kills
+cannot flush. No model, batch, resolution, epoch-budget or protocol change.
+''')
+        default_mode = 'AUTO' if family=='yolo' else ('TRAIN' if family=='rtdetr' else 'PILOT')
+        cells += [b.code(INSTALL), b.code(f"PREFIX = ''  # automatic discovery; set explicitly only if HF has multiple matching protocols\nMODE = {default_mode!r}  # AUTO validates corrected YOLO pilots then trains; other families use PILOT first\nFAMILY = {family!r}\nPLAN = sn.load_plan(sess, PREFIX, DATA_ROOT, ANN_ROOT)\nPREFIX = sn.plan_prefix(PLAN)\nprint('Using frozen protocol:', PREFIX)\n"),
             b.code("sn.run_family(sess, PLAN, PREFIX, DATA_ROOT, ANN_ROOT, FAMILY, MODE)\nassert sess.finish(), 'Retry the final flush before closing'\n")]
         c.save(name, cells)
     cells = start('''# NB17 — S5 public-HF completion audit and report (CPU)

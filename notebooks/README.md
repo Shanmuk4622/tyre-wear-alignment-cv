@@ -1,6 +1,20 @@
 # Notebooks
 
+## NB16 resume repair —2026-09-11
+
+Use the repaired `NB16_S5_RTDETRv2.ipynb` in a fresh T4×2 Kaggle session and
+Run All. TRAIN is already selected; no NB13 or pilot rerun. The interrupted
+run is saved at52/60. Its exact NumPy version is restored in an isolated worker
+directory, leaving the CUDA stack and notebook environment intact. Completed
+runs skip, strict checkpoint validation stays enabled. See `../docs/24`.
+
 ## Next: S5 — NB13 through NB17
+
+**NB15 now defaults to AUTO:** use the repaired notebook and Run All. It disables
+unintended Albumentations, validates the corrected pilots, then trains without
+a mode change. No NB13 rerun. With four copies start acct1 first; the other
+unique accounts wait for the corrected pilots and then start their shards.
+Old pilots are preserved separately, not counted as corrected-policy checks.
 
 **NB14 repair:** NB13's protocol is now public and verified; do not rerun NB13.
 Use the repaired NB14 with blank PREFIX (automatic matching-protocol discovery).
