@@ -1,5 +1,34 @@
 # Project Logbook
 
+## 2026-09-12 — NB14 interruption-safe local publication
+
+User traceback shows RAM-guard KeyboardInterrupt followed by local snapshot hash
+mismatch. The prior queue fix missed interruption between replacing local weights
+and sidecars. Added a pre-replacement metadata journal and journal-based recovery
+under the writer lock, including first-save interruption. Cache-aware cgroup guard
+keeps dirty/writeback and live working memory counted; no model/recipe reduction.
+HF `c9903960450f8fd9a16a5b148ff3da2100ef8654`:73 completed runs with matching
+checkpoint hashes (semantic28, YOLO36, RT-DETR9); eight semantic jobs lack public
+statuses/checkpoints. Local lost/unpublished progress is not claimed recoverable.
+Offline interrupted-save tests pass; actual Kaggle run pending. No assistant HF writes.
+
+## 2026-09-12 — NB14 upload-generation repair and progress audit
+
+Read uploaded NB14 error: `Published checkpoint/status mismatch`, after skipping22
+completed jobs. Public HF `971f0c7ad7f9e90aef8f2701e4a76f3f07367397` confirms
+67 completed S5 statuses with matching checkpoint hashes: semantic22, YOLO36,
+RT-DETR9. Directly inspected SegFormerB0 fold1 seed2 checkpoint: epoch45 with
+full history/resume fields, versus stale epoch44 status. One resumable and13
+unstarted semantic jobs remain. No GPU/model reduction needed.
+
+Fixed queue-generation splitting/in-flight staging reuse risks using immutable
+snapshot directories, atomic batch enqueue and serialized uploads/flushes.
+Added validated semantic sidecar recovery with original-status provenance;
+checkpoint is not reset or rewritten. NB14 defaults TRAIN + Run All. Added
+offline fault-injection tests; preserved all uploaded S5 execution outputs
+before rebuilding shared-source notebooks. Updated progress/run instructions.
+No remote writes or training launched by this repair; Kaggle resume pending.
+
 ## 2026-09-10 — NB12/NB12R completed and audited
 
 Read both executed notebooks and independently audited live HF revision

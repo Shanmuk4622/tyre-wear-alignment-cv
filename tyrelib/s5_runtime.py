@@ -74,12 +74,17 @@ def publish_local(out, state, native=None):
             # Includes native optimizer, EMA and train arguments plus explicit RNG/scaler.
             state = dict(state, native=torch.load(native, map_location='cpu', weights_only=False))
         torch.save(state, tmp)
+        # Journal the matching metadata BEFORE replacing the checkpoint. A
+        # SIGINT/SIGTERM/kill between the following file replacements must not
+        # strand new weights with old sidecars. The journal is small and atomic.
+        status = dict(status='trained' if state['epoch']==60 else 'resumable',
+            epoch=state['epoch'], plan_hash=state['plan_hash'], job=state['job'],
+            checkpoint_sha256=d.digest(tmp), evaluated=False,
+            yolo_policy=state.get('yolo_policy'))
+        atomic_json(out/'checkpoint_pending.json', dict(status=status, history=state['history']))
         os.replace(tmp, out/'state.pt')
         pd.DataFrame(state['history']).to_csv(out/'epochs.csv', index=False)
-        atomic_json(out/'STATUS.json', dict(status='trained' if state['epoch']==60 else 'resumable',
-            epoch=state['epoch'], plan_hash=state['plan_hash'], job=state['job'],
-            checkpoint_sha256=d.digest(out/'state.pt'), evaluated=False,
-            yolo_policy=state.get('yolo_policy')))
+        atomic_json(out/'STATUS.json', status)
 
 
 def state_header(plan, job, epoch, history):

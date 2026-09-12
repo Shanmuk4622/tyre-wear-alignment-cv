@@ -370,6 +370,7 @@ class Uploader:
         self._pushed: set[str] = set()
         self._lock = threading.Lock()
         self._wakeup = threading.Event()
+        self._push_lock = threading.Lock()
         self._stop = threading.Event()
         self._thread: threading.Thread | None = None
         self._api = None
@@ -427,15 +428,24 @@ class Uploader:
                     n += bool(self.enqueue(f, f"{repo_prefix}/{rel}", force=force))
         return n
 
+    def enqueue_batch(self, files) -> None:
+        """Publish one immutable file generation to the queue, all or nothing."""
+        pending = {}
+        for local, remote in files:
+            p = Path(local)
+            st = p.stat()
+            pending[remote] = (str(p), f"{remote}|{st.st_size}|{st.st_mtime_ns}")
+        with self._lock:
+            self._buffer.update(pending)
+
     def flush(self, timeout: float = 1800, reason: str = "manual") -> bool:
         """Push everything pending NOW and block until done."""
         if not self.enabled:
             return True
         with self._lock:
             pending = len(self._buffer)
-        if pending == 0:
-            return True
-        _print("HF", f"flush ({reason}): {pending} file(s)")
+        if pending:
+            _print("HF", f"flush ({reason}): {pending} file(s)")
         return self._push_batch(blocking=True, timeout=timeout)
 
     def stop(self) -> None:
@@ -469,6 +479,12 @@ class Uploader:
             self._push_batch(blocking=False)
 
     def _push_batch(self, blocking: bool, timeout: float = 1800) -> bool:
+        # A foreground flush must await an in-flight background commit, even
+        # when that commit has already drained the buffer.
+        with self._push_lock:
+            return self._push_batch_serial(blocking, timeout)
+
+    def _push_batch_serial(self, blocking: bool, timeout: float = 1800) -> bool:
         from huggingface_hub import CommitOperationAdd
         with self._lock:
             batch, self._buffer = dict(self._buffer), {}

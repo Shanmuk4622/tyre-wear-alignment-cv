@@ -1,5 +1,22 @@
 # Notebooks
 
+## Current action — 2026-09-12
+
+Upload repaired **NB14_S5_Semantic.ipynb** into a fresh Kaggle T4×2 session.
+Internet ON, HF_TOKEN enabled, Tire Dataset Prepared attached, blank PREFIX.
+**TRAIN is already selected; Run All.** Stop older copies first. It skips28
+completed semantic jobs. Saves now journal matching metadata before checkpoint
+replacement, so emergency snapshots can recover an interrupted local save.
+The RAM guard excludes inactive clean file cache, not live training memory.
+No smaller model or recipe change. Preserve old local scratch if still available;
+a fresh session cannot recover unpublished work. Local tests pass; Kaggle pending.
+
+HF confirms **73/81 S5 runs complete**: semantic28, YOLO36, RT-DETR9.
+Do not rerun NB13/NB15/NB16 or pilots. Finish NB14's remaining8 jobs, then NB17
+on CPU. Prior executed notebooks are preserved in `execution_archives/`.
+
+The following dated repair notes describe earlier states, not current run orders.
+
 ## NB16 resume repair —2026-09-11
 
 Use the repaired `NB16_S5_RTDETRv2.ipynb` in a fresh T4×2 Kaggle session and

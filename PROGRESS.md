@@ -1,12 +1,17 @@
 # PROGRESS
 
 **Live status log. Updated every working session.**
-Last updated: **2026-09-10**
-Latest runtime repair: **2026-09-11 — NB16**. Four RT-DETR runs complete;
-`rtdetrv2_r18-f0-s3` safely saved at52/60 on HF
-`d1ffc44d26a4ceafcd81a4e67813a2083879596d`. Fixed exact NumPy restoration in an
-isolated child environment (saved2.4.6 vs pilot/session2.0.2), without changing
-CUDA/model/checkpoint checks. Use repaired NB16 in a fresh session, TRAIN + Run All.
+Last updated: **2026-09-12**
+Latest audit/repair: **NB14 interrupted local save + RAM guard**. Public HF revision
+`c9903960450f8fd9a16a5b148ff3da2100ef8654`: **73/81 S5 runs complete**
+(semantic28/36, YOLO36/36, RT-DETR9/9); all published checkpoint/status hashes match.
+Eight semantic jobs have no published status/checkpoint. The latest error stopped
+on container RAM, then found a checkpoint/status mismatch in local scratch.
+Checkpoint publication now journals sidecars before replacing weights; emergency
+snapshots recover interrupted writes. RAM checks exclude inactive clean file cache
+while retaining the90% working-memory guard. No recipe/model change. TRAIN + Run All;
+Kaggle execution of this repair remains pending. Unpublished lost-session work cannot
+be recovered from HF.
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -19,7 +24,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **The implemented classification track and S4b have run, but the full experimental plan is NOT complete. S5 notebooks NB13–NB17 are built; GPU pilots and experiment execution remain unverified. S9 has not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
+**Stage:** **The implemented classification track and S4b have run, but the full experimental plan is NOT complete. S5 has 73/81 completed runs; NB14 needs eight remaining jobs, then NB17 reporting. S9 has not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -28,10 +33,9 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 ### Immediate next action
 
 > **All four recovery notebooks are now verified on public HF** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`. Do not rerun them just to clear the old pending checklist.
-> 1. **NB13 protocol is now HF-verified. Do not rerun it.** Replace NB14 with the repaired version and run **PILOT on one T4×2 copy**. Blank PREFIX now discovers the unique matching HF protocol. With four accounts configured, only worker0 runs PILOT. No annotation needed; see `docs/24`. Retain the fold-leakage limitation in all interpretation.
+> 1. **Run repaired NB14 on T4×2: TRAIN is already selected; Run All.** It skips28 completed semantic runs. Eight jobs remain without public checkpoints; preserve existing local scratch if still available. Leave PREFIX blank. No new annotation or pilot rerun; see `docs/24`. Retain fold-leakage limitations.
 > **S4b complete:** NB12 and NB12R are verified on HF: 18/18 ×60 epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. Next unfinished training stage is manual-supervised S5. See `docs/23`.
-> 2. **Do not run NB11 or annotate again.** S5 uses existing manual masks. After NB14, run NB15 YOLO and NB16 RT-DETRv2 (each PILOT first, then TRAIN); NB17 audits all81 jobs on HF. Normal pushes every30min; isolated job processes; no per-claim commits.
-> **NB15 correction:** use the new **MODE='AUTO'** and Run All. It automatically validates the corrected flip-only policy, then trains. Old4/4 YOLO pilots passed execution/resume but included unintended Blur/MedianBlur/grayscale/CLAHE. Those records are retained, not accepted as corrected-policy evidence. No NB13 rerun. Four workers: start acct1 first; other workers wait for its corrected pilots, then train automatically.
+> 2. **Do not rerun NB13, NB15 or NB16.** YOLO36/36 and RT-DETR9/9 are verified complete. After NB14 finishes, run NB17 on CPU to audit all81 jobs. No NB11 or extra annotation. Normal pushes every30min; isolated job processes; no per-claim commits.
 > 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Declared S4b/Stage-C extension is complete; wider Tier5/6 remains open.
 > 4. S9 follows S5 and additional inputs. H3, original-plan missing experiments, calibration limitations and manuscript work remain open. See `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
 
@@ -57,7 +61,7 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | S3 masks | ✅ **Existing manual-mask route ready**; ⏸ **extra comparison deferred** | Reuse 418 manual masks and validated derivative replay for supervised S5. User declines further annotation: SAM2/manual comparison and blind self-consistency remain unmeasured, not passed. NB11 is optional/deferred, not a prerequisite. |
 | S4 technique OFAT | ✅ **NB06 complete: 108/108** | Every run has completed status, last/best checkpoints and final metrics on HF |
 | S4b / Stage C confirmation | ✅ **18/18 complete; NB12R report verified** | 1,080 epoch records and 36 checkpoint paths checked. Random-init negative effect repeats in both models; class-weighted/uniform sampling directions each repeat in only one. Descriptive selected-epoch endpoint, not significance. `docs/23` |
-| S5 detection/segmentation | 🔄 **NB13 protocol verified; NB14 setup repaired; pilots pending** | HF `951435416dde3bc65c5a2fa0bbe9e1c90301c6ed` contains the frozen protocol, no completed S5 statuses. NB14 stopped at blank PREFIX before training; automatic unambiguous discovery now fixes it. Nine configurations/81 planned manual-supervised jobs, no new annotation. `docs/24` |
+| S5 detection/segmentation | 🔄 **73/81 complete; NB14 remaining jobs required** | Semantic28/36, YOLO36/36, RT-DETR9/9, matching published checkpoint hashes. Eight semantic jobs have no published checkpoint/status. Interrupted local-save journal and cache-aware RAM guard repaired. NB17 report pending. HF `c9903960450f8fd9a16a5b148ff3da2100ef8654`; `docs/24`. |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
 | S7 stress tests | ✅ **NB08 executed and verified on HF** | 63/63 stress rows; nine matching per-run tables; current control mean 0.375184 passes 0.45 |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |

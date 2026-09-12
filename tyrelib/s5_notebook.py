@@ -9,6 +9,7 @@ import signal
 import subprocess
 import sys
 import time
+import uuid
 
 from filelock import FileLock
 import pandas as pd
@@ -23,13 +24,14 @@ REPO = 'Shanmuk4622/tyre-wear-study'
 # Reviewed, narrow compatibility amendment: only YOLO's unintended default
 # Albumentations are removed; semantic/RT recipes and original data stay intact.
 PRE_REPAIR_RUNTIME = '67c1a33b92adfdcaf7df7f280e38284c8e4de23c385c8b8612fa0489113906d4'
+PRE_JOURNAL_RUNTIME = '284d30d0b4d4c936bccad2cd3bdcb1595814c28777cf4dba99311c4e2bffa03f'
 
 
 def source_compatible(plan):
     expected = {name:d.digest(Path(d.__file__).parent/name) for name in ('s5_data.py','s5_runtime.py')}
     actual = plan.get('implementation_sha256', {})
     return (set(actual)==set(expected) and actual['s5_data.py']==expected['s5_data.py']
-            and actual['s5_runtime.py'] in (expected['s5_runtime.py'], PRE_REPAIR_RUNTIME))
+            and actual['s5_runtime.py'] in (expected['s5_runtime.py'], PRE_REPAIR_RUNTIME, PRE_JOURNAL_RUNTIME))
 
 
 def pilot_prefix(prefix, name):
@@ -148,39 +150,115 @@ def load_plan(sess, prefix, root, annotations):
 
 ARTIFACTS = ['state.pt','STATUS.json','epochs.csv','identity.json','polygon_audit.csv',
              'metrics.json','mask_metrics.csv','roi_metrics.csv','roi_predictions.csv','SMOKE.json','hardware.json',
-             'worker_environment.json']
+             'worker_environment.json', 'resume_recovery.json', 'memory_stop.json']
 
 
-def snapshot(sess, out, remote, reason):
+def repair_local_metadata(out, allow_legacy=False):
+    """Caller holds writer lock; recover only metadata matching intact bytes."""
+    if not (out/'state.pt').exists():
+        return
+    sha = d.digest(out/'state.pt')
+    status = json.loads((out/'STATUS.json').read_text()) if (out/'STATUS.json').exists() else None
+    if status and status.get('evaluated'):
+        assert status['checkpoint_sha256']==sha, 'Completed local checkpoint mismatch; refusing automatic repair'
+        return
+    journal = json.loads((out/'checkpoint_pending.json').read_text()) if (out/'checkpoint_pending.json').exists() else None
+    if journal and journal['status']['checkpoint_sha256']==sha:
+        pending = journal['status']
+        assert [h['epoch'] for h in journal['history']]==list(range(1,pending['epoch']+1))
+        if status:
+            assert status['plan_hash']==pending['plan_hash'] and status['job']==pending['job']
+        # Restore a potentially interrupted CSV even if STATUS already matches.
+        pd.DataFrame(journal['history']).to_csv(out/'epochs.csv', index=False)
+        if not status or status['checkpoint_sha256']!=sha:
+            atomic_json(out/'STATUS.json', pending)
+            atomic_json(out/'resume_recovery.json', dict(reason='Interrupted local publication recovered from journal',
+                        original_status=status, checkpoint_sha256=sha, recovered_epoch=pending['epoch']))
+            print('Recovered interrupted local save at epoch', pending['epoch'], flush=True)
+        return
+    if status and status['checkpoint_sha256']==sha:
+        return
+    if allow_legacy and status and (out/'request.json').exists():
+        req = json.loads((out/'request.json').read_text())
+        recover_sidecars(out/'state.pt', status, req['plan'], req['job'], 'local-stopped-child')
+        return
+    raise RuntimeError('Local checkpoint has no matching journal; preserved without publishing inconsistent files')
+
+
+def snapshot(sess, out, remote, reason, allow_legacy=False):
     """Copy immutable upload files under the writer lock. Never upload an actively-written checkpoint."""
-    staging = out.parent/(out.name+'_upload')
-    staging.mkdir(exist_ok=True)
+    staging = out.parent/(out.name+'_upload')/uuid.uuid4().hex
+    staging.mkdir(parents=True)
+    queued = []
     assert shutil.disk_usage(staging).free > 3*2**30, 'Scratch nearly full; stop and preserve local state'
     with FileLock(str(out/'snapshot.lock')):
+        repair_local_metadata(out, allow_legacy)
         for name in ARTIFACTS:
             source = out/name
             if source.exists():
                 target = staging/name
                 shutil.copy2(source, target)
-                sess.uploader.enqueue(target, f'{remote}/{name}', force=True)
+                queued.append((target, f'{remote}/{name}'))
         for source in (out/'predictions').glob('*.json') if (out/'predictions').exists() else []:
             target = staging/'predictions'/source.name
             target.parent.mkdir(exist_ok=True)
             shutil.copy2(source, target)
-            sess.uploader.enqueue(target, f'{remote}/predictions/{source.name}')
+            queued.append((target, f'{remote}/predictions/{source.name}'))
         for source in out.glob('*.log'):
             target = staging/source.name
             shutil.copy2(source, target)
-            sess.uploader.enqueue(target, f'{remote}/logs/{sess.account}_{sess.session_id}_{source.name}', force=True)
+            queued.append((target, f'{remote}/logs/{sess.account}_{sess.session_id}_{source.name}'))
         for source in (out/'telemetry').rglob('*.gz') if (out/'telemetry').exists() else []:
             rel = source.relative_to(out)
             target = staging/rel; target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
-            sess.uploader.enqueue(target, f'{remote}/{rel.as_posix()}', force=True)
+            queued.append((target, f'{remote}/{rel.as_posix()}'))
+    if (staging/'state.pt').exists():
+        saved = json.loads((staging/'STATUS.json').read_text())
+        assert d.digest(staging/'state.pt')==saved['checkpoint_sha256'], 'Local snapshot mismatch; nothing queued'
+    sess.uploader.enqueue_batch(queued)
     push(sess, reason)
+    safe_remove_generated(staging, out.parent/(out.name+'_upload'))
+
+
+def recover_sidecars(state_file, status, plan, job, rev):
+    """Rebuild interrupted non-completed sidecars from the intact full checkpoint.
+
+    Called only after verifying downloaded bytes against pinned HF LFS metadata.
+    Keep original metadata and do not edit/reinitialize model or optimizer state.
+    """
+    if status.get('evaluated') or status['status'] not in ('resumable', 'trained'):
+        raise RuntimeError('Completed checkpoint mismatch: refusing automatic recovery')
+    request = state_file.parent/'recovery_request.json'
+    atomic_json(request, dict(plan_hash=d.signature(plan), job=job, original=status, revision=rev))
+    code = '''import json,sys,torch,pandas as pd
+from pathlib import Path
+import s5_data as d
+from s5_runtime import atomic_json
+p=Path(sys.argv[1]); req=json.loads(Path(sys.argv[2]).read_text())
+s=torch.load(p,map_location='cpu',weights_only=False)
+assert s['plan_hash']==req['plan_hash'] and s['job']==req['job'], 'Checkpoint identity mismatch'
+assert 1<=s['epoch']<=60 and [h['epoch'] for h in s['history']]==list(range(1,s['epoch']+1)), 'Incomplete checkpoint history'
+assert all(k in s for k in ('model','optimizer','scheduler','scaler','rng','runtime')), 'Missing resumable state'
+assert req['job']['backend']=='semantic', 'Automatic sidecar repair is restricted to semantic checkpoints'
+sha=d.digest(p)
+pd.DataFrame(s['history']).to_csv(p.parent/'epochs.csv',index=False)
+atomic_json(p.parent/'STATUS.json',dict(status='trained' if s['epoch']==60 else 'resumable',epoch=s['epoch'],plan_hash=s['plan_hash'],job=s['job'],checkpoint_sha256=sha,evaluated=False,yolo_policy=s.get('yolo_policy')))
+atomic_json(p.parent/'resume_recovery.json',dict(reason='Published sidecars mismatched intact checkpoint',source_revision=req['revision'],original_status=req['original'],checkpoint_sha256=sha,recovered_epoch=s['epoch']))
+print('Recovered intact checkpoint at epoch',s['epoch'],'; original status retained in resume_recovery.json')
+'''
+    result = subprocess.run([sys.executable, '-c', code, str(state_file), str(request)],
+                            capture_output=True, text=True, timeout=180)
+    if result.returncode:
+        raise RuntimeError('Checkpoint recovery validation failed; no fresh training allowed:\n'+result.stderr[-3000:])
+    print(result.stdout, flush=True)
+    return json.loads((state_file.parent/'STATUS.json').read_text())
 
 
 def restore(sess, plan, job, out, remote):
+    if (out/'state.pt').exists():
+        with FileLock(str(out/'snapshot.lock')):
+            repair_local_metadata(out, allow_legacy=True)
     rev = revision(sess)
     cache = out/'remote'
     status_file = pull(sess, remote+'/STATUS.json', rev, cache, optional=True)
@@ -203,7 +281,12 @@ def restore(sess, plan, job, out, remote):
     assert status_file and state_file, 'Incomplete HF generation; do not restart. Recover the publishing session first.'
     status = json.loads(status_file.read_text())
     assert status['plan_hash']==d.signature(plan) and status['job']==job
-    assert d.digest(state_file)==status['checkpoint_sha256'], 'Published checkpoint/status mismatch'
+    recovered = False
+    if d.digest(state_file)!=status['checkpoint_sha256']:
+        info = retry(lambda: HfApi(token=token(sess)).get_paths_info(REPO, [remote+'/state.pt'], repo_type='dataset', revision=rev))
+        assert len(info)==1 and info[0].lfs and info[0].lfs.sha256==d.digest(state_file), 'Downloaded checkpoint differs from pinned HF bytes'
+        status = recover_sidecars(state_file, status, plan, job, rev)
+        recovered = True
     if (out/'STATUS.json').exists():
         local = json.loads((out/'STATUS.json').read_text())
         assert local['plan_hash']==d.signature(plan) and local['job']==job
@@ -214,6 +297,9 @@ def restore(sess, plan, job, out, remote):
     shutil.copy2(status_file, out/'STATUS.json')
     for name in ARTIFACTS:
         if name in ('state.pt','STATUS.json'):
+            continue
+        if recovered and name in ('epochs.csv', 'resume_recovery.json'):
+            shutil.copy2(state_file.parent/name, out/name)
             continue
         file = pull(sess, f'{remote}/{name}', rev, cache, optional=True)
         if file:
@@ -228,6 +314,8 @@ def restore(sess, plan, job, out, remote):
         if entry.path.endswith('.json'):
             target = out/'predictions'/Path(entry.path).name; target.parent.mkdir(exist_ok=True)
             shutil.copy2(pull(sess, entry.path, rev, cache), target)
+    if recovered:
+        snapshot(sess, out, remote, 'S5 verified checkpoint sidecar recovery')
     return status['status']=='completed' and status['evaluated']
 
 
@@ -283,6 +371,24 @@ def worker_environment(out, env, expected=None):
     return repaired_env
 
 
+def memory_pressure():
+    """Exclude only reclaimable inactive clean file cache, not model RAM."""
+    import tyrelib as tl
+    used, limit, source = tl.container_memory()
+    reclaimable = 0
+    if source.startswith('cgroup:'):
+        for file in (Path('/sys/fs/cgroup/memory.stat'), Path('/sys/fs/cgroup/memory/memory.stat')):
+            try:
+                stats = {k:int(v) for k,v in (line.split() for line in file.read_text().splitlines())}
+                reclaimable = max(0, stats.get('total_inactive_file', stats.get('inactive_file',0))
+                    - stats.get('total_dirty', stats.get('file_dirty',0))
+                    - stats.get('total_writeback', stats.get('file_writeback',0)))
+                break
+            except (OSError, ValueError):
+                continue
+    return dict(raw=used, working=max(0,used-reclaimable), limit=limit, reclaimable=reclaimable, source=source)
+
+
 def launch(sess, plan, job, root, annotations, out, remote, action):
     request = out/'request.json'
     atomic_json(request, dict(plan=plan, job=job, root=str(root), annotations=str(annotations), out=str(out), action=action))
@@ -321,9 +427,10 @@ def launch(sess, plan, job, root, annotations, out, remote, action):
                     monitor.dump()
                     snapshot(sess, out, remote, 'S5 30-minute progress')
                     last_push = time.monotonic()
-                used, limit, _ = tl.container_memory()
-                if used/limit > .90:
-                    raise KeyboardInterrupt('Container RAM above90%; preserve last completed epoch before OS kill')
+                memory = memory_pressure()
+                if memory['limit'] and memory['working']/memory['limit'] > .90:
+                    atomic_json(out/'memory_stop.json', memory)
+                    raise KeyboardInterrupt('Container working RAM above90%; preserving last completed epoch (clean inactive file cache excluded)')
                 if sess.guard.near_limit(margin_min=35):
                     raise KeyboardInterrupt('Session budget nearly used; preserving last completed epoch')
         except BaseException:
@@ -338,7 +445,7 @@ def launch(sess, plan, job, root, annotations, out, remote, action):
                     except subprocess.TimeoutExpired:
                         child.kill(); child.wait()
             monitor.stop()
-            snapshot(sess, out, remote, 'S5 catchable Stop/error')
+            snapshot(sess, out, remote, 'S5 catchable Stop/error', allow_legacy=True)
             raise
         finally:
             monitor.stop()
@@ -362,6 +469,15 @@ def run_family(sess, plan, prefix, root, annotations, family, mode):
     assert mode in ('PILOT','TRAIN','AUTO')
     base = Path(sess.stage_dir)/'s5_jobs'/d.signature(plan)
     base.mkdir(parents=True, exist_ok=True)
+    if sess.worker_id==0:
+        amendment = base/'checkpoint_journal_amendment.json'
+        atomic_json(amendment, dict(plan_hash=d.signature(plan),
+            original_runtime=plan['implementation_sha256']['s5_runtime.py'],
+            repaired_runtime=d.digest(Path(d.__file__).parent/'s5_runtime.py'),
+            reason='Interrupted-save metadata journal and cache-aware RAM guard; no training recipe changes'))
+        sess.uploader.enqueue(amendment, f'{prefix}/runtime_amendments/checkpoint-journal-r1.json')
+        sess.uploader.enqueue(Path(d.__file__).parent/'s5_runtime.py', f'{prefix}/runtime_amendments/checkpoint-journal-r1.py')
+        push(sess, 'S5 checkpoint-journal repair provenance')
     if family=='yolo' and sess.worker_id==0:
         amendment = base/'yolo_runtime_amendment.json'
         atomic_json(amendment, dict(policy=YOLO_POLICY, plan_hash=d.signature(plan),

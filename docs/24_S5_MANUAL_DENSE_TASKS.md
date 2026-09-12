@@ -1,6 +1,64 @@
 # S5 — manual-supervised detection/segmentation
 
-## Position — 2026-09-10
+## Current position — 2026-09-12
+
+Latest HF revision `c9903960450f8fd9a16a5b148ff3da2100ef8654` verifies73 completed
+statuses/checkpoint hashes: semantic28/36, YOLO36/36, RT-DETR9/9. Eight semantic
+jobs have no published status/checkpoint; this does not prove no local training
+occurred. Latest traceback:90% RAM guard triggered, SIGINT interrupted local
+publication, emergency snapshot rejected mismatched checkpoint/status.
+
+The earlier upload fix did not protect interruption BETWEEN local file replacements.
+Runtime now atomically journals matching status/history before replacing weights.
+Emergency snapshot verifies the journal hash and restores sidecars under the writer
+lock, including first-save interruption. Old semantic scratch can use validated
+checkpoint-derived sidecar recovery after the child stops. Evaluated mismatches
+still fail closed. No checkpoint reset, smaller model or training recipe change.
+
+RAM guard subtracts only inactive clean file cache (dirty/writeback remain counted)
+from cgroup usage and retains90% working-memory stop. Missing cache stats retain
+the original conservative behavior. Traceback alone does not establish how much
+of this incident's RAM was cache. Memory-stop diagnostics are uploaded when saved.
+Journal runtime provenance is published by the notebook, not this assistant.
+
+Run repaired NB14, TRAIN + Run All, T4×2, Internet/HF_TOKEN/dataset enabled. It
+skips28 completed runs. Preserve local scratch if available; work lost with an old
+session and never published cannot be recovered from HF. After36/36 run NB17 CPU.
+Fault-injection checks cover stopping before/after checkpoint replacement and
+first-ever save; GPU execution of this repair remains pending.
+
+### Earlier audit and repair (superseded)
+
+HF revision `971f0c7ad7f9e90aef8f2701e4a76f3f07367397`: semantic22/36,
+YOLO36/36 and RT-DETR9/9 completed (67/81 total). Completed checkpoint hashes
+match. All22 completed semantic histories1–60, evaluation artifact hashes,
+native prediction coverage and five-mode ROI coverage passed the detailed audit.
+Semantic U-Net9/9, DeepLab9/9 and SegFormerB0 4/9 are complete;
+SegFormerB2 has not started. Remaining: one interrupted job plus13 unstarted.
+
+NB14 raised `Published checkpoint/status mismatch` on `segformer_b0-f1-s2`.
+The public checkpoint SHA is
+`eaf3107dbfd127a8a5284fce57a92c1cff0c833cc64a0c1a9063e126e8f51aaa`.
+Direct CPU inspection verified epoch45, history1–45, correct plan/job and
+model/optimizer/scheduler/scaler/RNG/runtime state. STATUS incorrectly records44
+and a different checkpoint hash. This is an upload-generation mismatch, not OOM.
+
+Repair: unique immutable staging per snapshot, all-or-nothing enqueue of its
+files, and serialized foreground/background commits. Empty-buffer flush now
+waits for in-flight publication before staging cleanup. Non-completed semantic
+sidecars can be rebuilt only after downloaded bytes match pinned HF LFS metadata
+and embedded checkpoint identity/history/resume fields pass validation. Original
+status/revision are retained in `resume_recovery.json`; checkpoint bytes remain
+unchanged. Completed mismatches still fail closed. Repair is published by the
+rerun notebook before training. No assistant HF writes occurred.
+
+**Next: upload repaired NB14, fresh T4×2, Internet/HF_TOKEN/dataset enabled,
+Run All (TRAIN already selected).** It skips22 completed runs and resumes epoch46.
+Do not rerun NB13, pilots, NB15 or NB16. Then NB17 CPU after semantic36/36.
+Models, recipe, protocol,30min cadence and catchable-Stop flush are unchanged.
+Fault-injection and notebook tests pass locally; repaired GPU resume is pending.
+
+## Historical delivery and repair notes (superseded by current position)
 
 ### NB16 exact-runtime resume repair —2026-09-11
 

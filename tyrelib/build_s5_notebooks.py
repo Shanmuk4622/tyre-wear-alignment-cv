@@ -144,7 +144,30 @@ Continue TRAIN after session limits. Last published completed epoch resumes;
 30min normal HF pushes, major completion and catchable Stop flush. Forced kills
 cannot flush. No model, batch, resolution, epoch-budget or protocol change.
 ''')
-        default_mode = 'AUTO' if family=='yolo' else ('TRAIN' if family=='rtdetr' else 'PILOT')
+        if family=='semantic':
+            cells[0] = b.md('''# NB14 — Semantic checkpoint resume repair
+
+**Upload this repaired notebook into a fresh Kaggle T4×2 session and Run All.**
+MODE='TRAIN' is already selected. Internet ON, HF_TOKEN enabled, Tire Dataset
+Prepared attached; leave PREFIX blank. Keep one worker unless deliberately
+configuring separate accounts. Stop any older copy before starting this one.
+
+Latest HF audit: 28/36 semantic runs complete; eight have no published checkpoint.
+Completed jobs skip; no NB13/pilot/YOLO/RT-DETR rerun is needed. Existing valid
+local progress is preserved when still available; a new session can recover
+only what reached HF, not unpublished work lost with an old session.
+
+Local checkpoint saves now journal matching metadata before replacing weights,
+so interruption between file writes can recover consistent sidecars. Emergency
+snapshots recover that journal before upload. The RAM guard excludes reclaimable
+inactive clean file cache but still stops above90% working RAM. No model change.
+
+Uploads use immutable generations queued together and serialized commits.
+Normal pushes remain every30min, plus major completion and catchable Stop.
+Forced kernel kills cannot flush. No model, batch, resolution or recipe change.
+After all36 semantic runs complete, run NB17 on CPU to audit all81 S5 runs.
+''')
+        default_mode = 'AUTO' if family=='yolo' else 'TRAIN'
         cells += [b.code(INSTALL), b.code(f"PREFIX = ''  # automatic discovery; set explicitly only if HF has multiple matching protocols\nMODE = {default_mode!r}  # AUTO validates corrected YOLO pilots then trains; other families use PILOT first\nFAMILY = {family!r}\nPLAN = sn.load_plan(sess, PREFIX, DATA_ROOT, ANN_ROOT)\nPREFIX = sn.plan_prefix(PLAN)\nprint('Using frozen protocol:', PREFIX)\n"),
             b.code("sn.run_family(sess, PLAN, PREFIX, DATA_ROOT, ANN_ROOT, FAMILY, MODE)\nassert sess.finish(), 'Retry the final flush before closing'\n")]
         c.save(name, cells)
