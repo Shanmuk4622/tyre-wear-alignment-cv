@@ -1,0 +1,10 @@
+.vendor/
+.cache/
+checkpoints/
+results/
+!data/
+!data/incoming/
+data/incoming/*
+!data/incoming/.gitkeep
+__pycache__/
+*.log

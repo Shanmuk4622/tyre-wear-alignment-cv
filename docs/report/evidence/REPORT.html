@@ -1,0 +1,161 @@
+<!doctype html><meta charset="utf-8"><title>Tyre study results</title><style>body{font:16px Arial;margin:32px;max-width:1500px}img{max-width:100%}table{border-collapse:collapse}td,th{padding:6px;border:1px solid #ccc}</style><h1>Results package — review draft</h1><p>Not full-project completion. See RESULTS_DRAFT.md for scope and limitations.</p><h2>Fusion mean deltas (descriptive)</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_delta</th>
+    </tr>
+    <tr>
+      <th>arm</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>full</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>full_tyre_tread_equal</th>
+      <td>-0.013238</td>
+    </tr>
+    <tr>
+      <th>tread_only</th>
+      <td>-0.014666</td>
+    </tr>
+    <tr>
+      <th>tyre_only</th>
+      <td>-0.012572</td>
+    </tr>
+    <tr>
+      <th>tyre_tread_equal</th>
+      <td>-0.015676</td>
+    </tr>
+  </tbody>
+</table><h2>Hypotheses (legacy definitions retained)</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>hypothesis</th>
+      <th>n</th>
+      <th>stat_primary</th>
+      <th>stat_reference</th>
+      <th>supported</th>
+      <th>reading</th>
+      <th>outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>H1</td>
+      <td>10</td>
+      <td>0.427095</td>
+      <td>0.907435</td>
+      <td>False</td>
+      <td>Legacy selected-epoch comparison; not a fixed-budget performance claim</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>H3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NOT TESTABLE YET: Stage A contains no preregistered fine-grained architectures</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>H2</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>corr(SAR, marking dependence); reference=corr(DmgAR, damage dependence)</td>
+      <td>inconclusive_undefined</td>
+    </tr>
+  </tbody>
+</table><h2>Achieved conformal coverage</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fold</th>
+      <th>n_cal</th>
+      <th>n_test</th>
+      <th>q</th>
+      <th>coverage_90</th>
+      <th>mean_set_size</th>
+      <th>abstain_rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>62</td>
+      <td>61</td>
+      <td>0.000000</td>
+      <td>0.868852</td>
+      <td>0.868852</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>43</td>
+      <td>41</td>
+      <td>0.676452</td>
+      <td>0.975610</td>
+      <td>1.097561</td>
+      <td>0.097561</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>35</td>
+      <td>33</td>
+      <td>0.000000</td>
+      <td>0.939394</td>
+      <td>0.939394</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table><h2>fig01_accuracy_vs_ter</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig01_accuracy_vs_ter.png" alt="fig01_accuracy_vs_ter"><h2>fig02_per_fold</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig02_per_fold.png" alt="fig02_per_fold"><h2>fig03_saliency_panels</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig03_saliency_panels.png" alt="fig03_saliency_panels"><h2>fig04_stress_matrix</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig04_stress_matrix.png" alt="fig04_stress_matrix"><h2>fig05_h1_stability</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig05_h1_stability.png" alt="fig05_h1_stability"><h2>fig06_ofat_effects</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig06_ofat_effects.png" alt="fig06_ofat_effects"><h2>fig07_faithfulness</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig07_faithfulness.png" alt="fig07_faithfulness"><h2>fig08_best_epoch</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig08_best_epoch.png" alt="fig08_best_epoch"><h2>fig09_energy</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig09_energy.png" alt="fig09_energy"><h2>fig10_per_session</h2><p>Inherited endpoint and limitations; figures8–10 are best-epoch/energy/session, not missing original experiments</p><img src="figures/legacy_fig10_per_session.png" alt="fig10_per_session"><h2>S5 box AP50:95 by model/fold</h2><p>Existing folds, three seed SD; not new-tyre validation</p><img src="figures/s10_11_box_ap.png" alt="S5 box AP50:95 by model/fold"><h2>Predicted-tread ROI change versus full image</h2><p>Existing folds, three seed SD; not new-tyre validation</p><img src="figures/s10_12_predicted_roi.png" alt="Predicted-tread ROI change versus full image"><h2>Equal full+tyre+tread fusion change versus full image</h2><p>Existing folds, three seed SD; not new-tyre validation</p><img src="figures/s10_13_fixed_fusion.png" alt="Equal full+tyre+tread fusion change versus full image"><h2>Tread mask IoU against existing manual masks</h2><p>Existing folds, three seed SD; not new-tyre validation</p><img src="figures/s10_14_manual_mask_iou.png" alt="Tread mask IoU against existing manual masks"><h2>Uncompleted/deferred work</h2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Item</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Full S9 HRNet/PatchCore</td>
+      <td>Deferred by user; not executed</td>
+    </tr>
+    <tr>
+      <td>SAM2 comparison / blind consistency</td>
+      <td>Deferred; existing masks are not independent repeat labels</td>
+    </tr>
+    <tr>
+      <td>H2</td>
+      <td>Inconclusive/undefined in the implemented intervention evidence</td>
+    </tr>
+    <tr>
+      <td>H3</td>
+      <td>Untested; preregistered fine-grained arms absent</td>
+    </tr>
+    <tr>
+      <td>Video temporal consistency</td>
+      <td>Not measured; no suitable video evidence</td>
+    </tr>
+    <tr>
+      <td>Resolution x ROI factorial interaction</td>
+      <td>Not established by separate OFAT arms</td>
+    </tr>
+    <tr>
+      <td>Independent tyre generalisation</td>
+      <td>Not established; folds0/2 leak-flagged and fold1 has few tyres</td>
+    </tr>
+    <tr>
+      <td>Broader Tier5/6 and XAI extensions</td>
+      <td>Not completed by the implemented tracks</td>
+    </tr>
+    <tr>
+      <td>Manuscript submission</td>
+      <td>Requires human review, reference checking and venue formatting</td>
+    </tr>
+  </tbody>
+</table>

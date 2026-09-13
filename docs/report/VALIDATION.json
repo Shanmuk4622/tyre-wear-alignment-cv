@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "evidence_files": 38,
+  "report_artifact_hashes": 7,
+  "visuals": 16,
+  "tables": 11,
+  "word_count": 6828,
+  "limits": [
+    "No training rerun",
+    "No large checkpoint re-download",
+    "No venue pagination certification",
+    "Inherited saliency source has disclosed title overlap"
+  ],
+  "full_original_project_complete": false
+}

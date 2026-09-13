@@ -1,6 +1,46 @@
 # Notebooks
 
+## NB19/NB20 — completed and HF-verified
+
+**No NB13–NB20 reruns needed.** NB19 published the38-file evidence bundle;
+NB20 published the14-figure HTML/Markdown reporting package. Both saved outputs
+finish with one successful commit and zero failures. HF revision
+`22d5a6bc9f953ba3bf2a75919edc7db3193b317b`. See `docs/26` for artifact locations
+and the next plan: full manuscript, scientific/editorial review and reproducibility
+handoff. This is reporting-package completion, not the whole original proposal.
+
+## NB18 — complete and HF-verified
+
+**Do not rerun NB18.** Its81 analyses,405 metrics,135 summaries and56,430
+per-image/arm predictions match independent recalculation. HF revision
+`35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b`; one commit, zero failures.
+The exploratory analysis is complete; the full S9 pipeline remains open.
+The following run/repair instructions are retained for reproduction only.
+
+`NB18_S9_Fusion_Analysis.ipynb`: Kaggle **CPU**, one copy, Internet ON,
+HF_TOKEN enabled, **Run All**. No dataset attachment, GPU training or extra
+annotation. Reuses verified S5 predictions and saves fixed-fusion results to HF.
+Completed source-run analyses resume/skip on rerun. No NB13–NB17 reruns.
+This is not the full HRNet/PatchCore integrated pipeline; see `docs/25` for
+missing inputs and the reporting gap ledger. Kaggle execution is now verified.
+
+**NB18 repair:** the saved error was a CORAL ordinal/softmax decoding mismatch,
+not bad S5 training. Download the repaired notebook and Run All on CPU. It reads
+the frozen classifier configs and preserves each decision rule; all81 public
+inputs passed tests. Four old partial analyses stay on HF; new code-version
+results are recomputed cheaply. No NB14–NB17 rerun or annotation needed.
+
 ## Current action — 2026-09-12
+
+**S5 COMPLETE. Do not rerun NB13–NB17.** NB14 semantic36/36, NB15 YOLO36/36,
+NB16 RT-DETR9/9 and NB17 report are HF-verified at
+`a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`. NB14/NB17 saved outputs finish
+successfully. All81 runs reached60epochs and completed evaluation. Report
+inventory, run tables and summaries agree with the underlying evidence.
+S9 inputs/scope and result interpretation are next; no new notebook is supplied
+by this verification. Keep uploaded execution outputs unchanged.
+
+### Earlier repair instructions (historical; no rerun now required)
 
 Upload repaired **NB14_S5_Semantic.ipynb** into a fresh Kaggle T4×2 session.
 Internet ON, HF_TOKEN enabled, Tire Dataset Prepared attached, blank PREFIX.

@@ -1,0 +1,44 @@
+{
+  "status": "exploratory_analysis_complete",
+  "processed_runs": 81,
+  "source_revision": "a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5",
+  "code_sha256": "20dca3a2d91884230d555a7a36dabdbab8a075776487f3d147f1d4f9ddd21b87",
+  "full_s9_complete": false,
+  "arms": {
+    "full": [
+      "full"
+    ],
+    "tyre_only": [
+      "pred_tyre"
+    ],
+    "tread_only": [
+      "pred_tread"
+    ],
+    "tyre_tread_equal": [
+      "pred_tyre",
+      "pred_tread"
+    ],
+    "full_tyre_tread_equal": [
+      "full",
+      "pred_tyre",
+      "pred_tread"
+    ]
+  },
+  "limitations": [
+    "folds 0/2 suspected cross-tyre leakage; fold 1 tiny tyre sample",
+    "descriptive existing-fold evaluation, not independent new-tyre testing",
+    "SAM2 comparison and blind repeat annotation deferred",
+    "backend-native losses/EMA/pretraining differ; not a controlled equal-pretraining ablation",
+    "Post-hoc fixed probability fusion, no fitted weights or independent model selection",
+    "Same frozen Stage-A ResNet50 classifier; not a winning-backbone integrated pipeline"
+  ],
+  "missing": [
+    "HRNet landmark labels",
+    "Verified healthy reference pool for PatchCore",
+    "Frozen full-pipeline specification and independent evaluation design"
+  ],
+  "artifact_sha256": {
+    "fusion_by_run.csv": "2a60ed9923e180bad1682b722dc1b689fc5146ed00fdbf7a68ba5ef6ae2bef45",
+    "fusion_summary.csv": "4bf6d1e10e837678134a3c98f2dc26892b826dcb53bca1a0f988cddeebc182f8"
+  }
+}

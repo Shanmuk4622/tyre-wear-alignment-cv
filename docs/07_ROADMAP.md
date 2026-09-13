@@ -6,13 +6,13 @@ Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; th
 
 ---
 
-## Position as of 2026-09-10
+## Position as of 2026-09-12
 
 **Full-plan status:** see `20_FULL_PLAN_CLOSURE.md`. All five legacy baselines
 are public, and the matched random-init ResNet-50 arm is verified (9/9 × 60 epochs).
-S5, S9, Tier-6 FGVC and broader Tier-5 modes are not completed. The declared
-S4b/Stage-C extension is complete:18/18 and NB12R HF-verified. NB13–NB17 now
-implement manual-supervised S5, with Kaggle pilots pending (`docs/24`).
+S9, Tier-6 FGVC and broader Tier-5 modes are not completed. The declared
+S4b/Stage-C extension is complete:18/18 and NB12R HF-verified. Manual-supervised
+S5 is now complete:81/81 ×60epochs and NB17 report HF-verified (`docs/24`).
 NB01A/B and NB10R recovery is HF-verified; NB03A is only
 an audit because the pretrained Small arm is unsupported. The user has now
 accepted closing the retained 17-architecture sweep (153/153), with nine
@@ -32,7 +32,7 @@ deferred by user; no more annotation is required for S5.
 
 **Current execution gate:** NB07 is complete and its public selection has been
 audited. NB06–NB10 and the four recovery notebooks have executed. Next is
-**fold-integrity decisions and S5 preparation**, with H2/calibration limitations
+**S5 result interpretation and S9 input/scope decisions**, with H2/calibration limitations
 and remaining scope recorded in `docs/21`.
 NB06 gave each model a clean child process, and any RAM pause
 automatically resumes the same HF checkpoint in another child. NB06 accepts only the
@@ -85,9 +85,9 @@ the pre-Stage-A “do not cut folds” instruction.
 | **S5** | Detection + segmentation | YOLO26, SegFormer, U-Net, DeepLabV3+ | ROI-crop Δ measured |
 | **S6** | XAI | TER/BAR/SAR + faithfulness screen | ✅ **NB07 r3 gate complete; 1,208 evidence rows, top three locked** |
 | **S7** | Stress tests | Shortcut intervention matrix | ✅ 63 rows public; control mean 0.375184 below gate 0.45 |
-| **S8** | Ensembles + calibration | Seed/arch ensembles, conformal | ✅ Outputs public; 88–92% coverage target not met across folds |
+| **S8** | Ensembles + calibration | Seed/arch ensembles, conformal | ✅ Outputs public; observed90% coverage .86885/.97561/.93939 across folds0/1/2. Only fold0 below nominal; dependence/empty-set caveats remain |
 | **S9** | **Tier 8 integrated pipeline** | SegFormer → best classifier → HRNet → PatchCore | Does it beat the best single model? |
-| **S10** | Write-up | Report, Review-3, paper draft | NB10R verified, 10/10 implemented figures; original-plan gaps and write-up pending |
+| **S10** | Write-up | Report, Review-3, paper draft | Full illustrated report and reproducibility handoff prepared; author/guide review and venue format pending. Original-plan gaps remain |
 
 Stages overlap. **SA runs in parallel with S0** — it is people-time, not compute. S6 consumes S2's checkpoints.
 
@@ -202,9 +202,11 @@ proven gains. No new annotation. Protocol/run instructions: `23_S4B_CONFIRMATION
 
 ## S5 · Detection and segmentation
 
-YOLO26 (det + seg), RT-DETRv2, SegFormer-B0/B2, U-Net, DeepLabV3+ on SAM2 pseudo-labels.
+Complete:81 manual-supervised runs and NB17 report. YOLO26 (det + seg), genuine
+RT-DETRv2-R18, SegFormer-B0/B2, U-Net and DeepLabV3+ used existing manual masks;
+SAM2 pseudo-label comparison remains deferred, not passed.
 
-**The metric that matters is downstream:** Δ classification macro-F1 when the ROI crop is used. Standalone mAP against pseudo-labels is secondary.
+**The metric that matters is downstream:** Δ classification macro-F1 when the ROI crop is used. Standalone mAP against manual labels is secondary. NB17 reports full/predicted/oracle ROI comparisons; this does not complete S9.
 
 ---
 
@@ -236,15 +238,28 @@ Reuses checkpoints, nearly free. Seed ensembles, architecture ensembles, TTA, te
 
 ---
 
-## S9 · Integrated pipeline — not started
+## S9 · Exploratory fusion complete; full integration still blocked
+
+NB18 completed81 saved-prediction analyses;405 metrics and135 summaries are
+HF-verified. Tested fixed fusion does not improve macro-F1 on average. No rerun
+needed. This is not the original54-run Tier8 integration/ablation experiment.
 
 Requires the S5 winner and independently justified landmark/healthy-pool
 inputs. NBT1 is not a trained S5 model comparison; provided-mask ROI is not
-predicted-mask ROI. No Tier-8 results have been verified on HF.
+predicted-mask ROI. Full Tier-8 pipeline results remain unverified; NB18's
+exploratory component results are verified separately (`docs/25`).
 
 ## S10 · Write-up
 
-Start with **empty results tables and the ten figures from `13 §9`**. Deciding what a figure must show changes what analysis you run — while there is still time to run it.
+NB19/NB20 reporting execution is complete and HF-verified:38 bundled sources,
+14 public figures, HTML report and Markdown results draft. The full manuscript
+is now prepared at [report/REPORT.html](report/REPORT.html), with16 visuals,
+source-generated tables, reviewed claims/references and reproducibility/submission
+appendices. Next: author/guide review and the required template. No GPU rerun.
+The original missing video/factorial/H3 work is not completed by these figures.
+See `26_S10_REPORTING_AND_NEXT_STEPS.md`.
+
+Use the populated, revision-pinned report package rather than restarting empty tables. Keep the original `13 §9` figure plan separate from the implemented14-figure package.
 
 ### Venue targets
 

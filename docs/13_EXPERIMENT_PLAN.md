@@ -1,13 +1,21 @@
 # 13 — The Experiment Plan
 
+> **Reporting reconciliation, 2026-09-12:** the [full illustrated report](report/REPORT.html)
+> now documents the implemented study and remaining gaps. This original proposal
+> contains hypotheses, planned components and historical wording, not proof that
+> every arm ran. Twelve sessions are not verified tyre identities; TER primarily
+> measures tyre/background attention here and its generalisation advantage is not
+> established. HRNet/PatchCore are temporarily deferred; the user is willing to
+> revisit small guided labelling later if justified, but no annotation is requested now.
+
 > **Latest scope decision:** the user declines additional annotation. Use the
 > existing manual masks for supervised S5; derive training boxes automatically.
 > NB11/SAM2 comparison and blind repeat annotation are deferred, not passed.
 > This supersedes their scheduling below; no new annotation is required for
 > this route. Known fold leakage and S9 input requirements remain. See `docs/22`.
 
-> **Execution reconciliation, 2026-09-09:** `20_FULL_PLAN_CLOSURE.md` maps every
-> stage to actual evidence. S5/S9 have not started. Tier 5/6 and confirmation
+> **Execution reconciliation, updated 2026-09-12:** `20_FULL_PLAN_CLOSURE.md` maps every
+> stage to actual evidence. S5 is complete (81/81 + NB17 report); NB18 exploratory fusion is verified, while full S9 remains blocked. Tier 5/6 and confirmation
 > scope are not all covered by NB00–NB10. The proposal below is not a completion
 > claim. We now have manual masks; historical "classification labels only" /
 > "no annotations" wording below describes the pre-annotation proposal.
@@ -280,9 +288,9 @@ Bilinear CNN · Hierarchical Bilinear Pooling · attention-bilinear (CSAB) · Co
 
 ### Tier 7 — detection and segmentation
 
-**Implementation update,2026-09-10:** NB13–NB17 now provide the manual-only
-route: nine configurations ×3folds ×3seeds ×60epochs =81 planned jobs. GPU
-pilots are pending, not execution-complete. Both YOLO26 sizes are included in
+**Completion update,2026-09-12:** NB13–NB17 executed the manual-only
+route: nine configurations ×3folds ×3seeds ×60epochs =81 completed jobs.
+All runs and NB17 report are HF-verified. Both YOLO26 sizes are included in
 both tasks. RT-DETRv2 uses the actual `PekingU/rtdetr_v2_r18vd` checkpoint;
 `rtdetr-l.pt` must not be called v2-S. Clean-only dense training and held-out
 predicted-ROI classification are specified in `24_S5_MANUAL_DENSE_TASKS.md`.
@@ -293,6 +301,18 @@ SAM2 comparison remains deferred; no additional annotation requested.
 *YOLO26 released January 2026 — NMS-free end-to-end head, ProgLoss, STAL, MuSGD. Use the current generation, not YOLO11.*
 
 ### Tier 8 — the integrated pipeline (the finale)
+
+**2026-09-12 implementation boundary:** NB18 provides CPU-only exploratory
+probability fusion from saved S5 predictions; it is not this full pipeline.
+**Subsequent user decision:** temporarily defer HRNet/PatchCore while finishing
+supported study/reporting work. Revisit only with justified input requirements
+and a small, clearly guided annotation pilot. Do not claim this original full
+pipeline complete or treat the components as permanently removed.
+NB18 is now executed and HF-verified:81 analyses,405 metrics,135 summaries;
+no average improvement from the tested fusion rules. No rerun required.
+Existing manual tyre/tread masks do NOT supply HRNet landmarks or verified
+healthy references for PatchCore. Those inputs or explicit scope changes are
+required before implementing the complete design below. See `docs/25`.
 
 The original engineered system, built **last**, on everything the study learned:
 
@@ -306,7 +326,7 @@ SegFormer  →  ConvNeXt (or whichever architecture won)  →  HRNet  →  Patch
 
 **Run budget:** 1 configuration × 3 folds × 3 seeds = 9 runs, plus ablations removing one component at a time (5 × 9 = 45). ~25 GPU-h.
 
-> This is where the earlier plan comes back — **earned rather than assumed.** Now that we have annotations (`15_ANNOTATION_GUIDE.md`), its segmentation and landmark components are genuinely supervised rather than pseudo-labelled.
+> Existing annotations supervise segmentation only. Landmark supervision remains unavailable; it must not be inferred from the presence of tyre/tread masks.
 
 ---
 
@@ -478,6 +498,11 @@ complete. It does not also complete the separately listed Stage C or D.
 ---
 
 ## 9. What the paper's figures will be
+
+**Execution update:** NB19/NB20 now provide a verified38-source evidence bundle,
+14 implemented figures (10 NB10R panels+4 S5/fusion additions) and HTML/Markdown
+results draft. This does not retroactively complete every proposed figure below.
+Full manuscript and scientific/editorial review are the next tasks; see `docs/26`.
 
 Deciding this now changes what we log, while there is still time to log it.
 

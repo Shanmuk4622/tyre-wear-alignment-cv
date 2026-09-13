@@ -65,6 +65,9 @@ The old top-level NB10 output still has nine figures; use the newer
 
 ## How far is the whole experiment?
 
+**Subsequent2026-09-12 update:** declared S4b confirmation18/18 and manual-supervised
+S5 dense tasks81/81 plus NB17 report are now verified. See `docs/23`, `docs/24`.
+
 The implemented classification track and its targeted recovery are executed:
 S1 baseline reporting/training, the 17-architecture eligible sweep, 108 OFAT
 runs, NB07's XAI gate, 63 stress rows, ensemble/calibration outputs and ten
@@ -72,12 +75,11 @@ implemented figures. Earlier NB06–NB09 counts are carried from their prior
 audits; this audit specifically rechecks the four recovery notebooks.
 
 The full proposal is **not complete**. S3's manual-versus-SAM2 comparison,
-separate Stage-C confirmation, wider Tier-5/6 and XAI programme, **S5 learned
-detection/segmentation**, **S9 integration**, original-plan extensions and
+the wider Tier-5/6 and XAI programme, **S9 integration**, original-plan extensions and
 write-up remain. NBT1's propagation U-Net is not S5.
 
 Next: resolve the tyre/fold-integrity decision before another large compute
-commitment, then build the dedicated S5 notebooks and evaluate predicted-ROI
-classification. No scope reduction or new model has been silently chosen.
+commitment, interpret the completed S5 predicted-ROI results and establish S9
+inputs/scope. No scope reduction or new model has been silently chosen.
 See `20_FULL_PLAN_CLOSURE.md` for the complete stage-by-stage map. A single
 percentage would misrepresent the unequal size and cost of these stages.

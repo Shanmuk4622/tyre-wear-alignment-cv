@@ -1,0 +1,90 @@
+[
+  {
+    "file": "figures/legacy_fig01_accuracy_vs_ter.png",
+    "kind": "inherited NB10R",
+    "caption": "fig01_accuracy_vs_ter",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig02_per_fold.png",
+    "kind": "inherited NB10R",
+    "caption": "fig02_per_fold",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig03_saliency_panels.png",
+    "kind": "inherited NB10R",
+    "caption": "fig03_saliency_panels",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig04_stress_matrix.png",
+    "kind": "inherited NB10R",
+    "caption": "fig04_stress_matrix",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig05_h1_stability.png",
+    "kind": "inherited NB10R",
+    "caption": "fig05_h1_stability",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig06_ofat_effects.png",
+    "kind": "inherited NB10R",
+    "caption": "fig06_ofat_effects",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig07_faithfulness.png",
+    "kind": "inherited NB10R",
+    "caption": "fig07_faithfulness",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig08_best_epoch.png",
+    "kind": "inherited NB10R",
+    "caption": "fig08_best_epoch",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig09_energy.png",
+    "kind": "inherited NB10R",
+    "caption": "fig09_energy",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/legacy_fig10_per_session.png",
+    "kind": "inherited NB10R",
+    "caption": "fig10_per_session",
+    "caveat": "Inherited endpoint and limitations; figures8\u201310 are best-epoch/energy/session, not missing original experiments"
+  },
+  {
+    "file": "figures/s10_11_box_ap.png",
+    "kind": "new descriptive figure",
+    "caption": "S5 box AP50:95 by model/fold",
+    "source": "tables/s5_localisation_by_run.csv",
+    "caveat": "Existing folds, three seed SD; not new-tyre validation"
+  },
+  {
+    "file": "figures/s10_12_predicted_roi.png",
+    "kind": "new descriptive figure",
+    "caption": "Predicted-tread ROI change versus full image",
+    "source": "tables/s5_roi_by_run.csv",
+    "caveat": "Existing folds, three seed SD; not new-tyre validation"
+  },
+  {
+    "file": "figures/s10_13_fixed_fusion.png",
+    "kind": "new descriptive figure",
+    "caption": "Equal full+tyre+tread fusion change versus full image",
+    "source": "tables/s9_fusion_by_run.csv",
+    "caveat": "Existing folds, three seed SD; not new-tyre validation"
+  },
+  {
+    "file": "figures/s10_14_manual_mask_iou.png",
+    "kind": "new descriptive figure",
+    "caption": "Tread mask IoU against existing manual masks",
+    "source": "tables/s5_localisation_by_run.csv",
+    "caveat": "Existing folds, three seed SD; not new-tyre validation"
+  }
+]

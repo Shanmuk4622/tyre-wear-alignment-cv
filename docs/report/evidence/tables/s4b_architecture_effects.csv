@@ -1,0 +1,7 @@
+arch,factor,n,mean_selected_delta,sd_selected_delta,mean_final_delta,discovery_delta,same_direction,interpretation
+convnextv2_t,sampler_classweighted,3,0.012568026439915466,0.021768460344802582,0.023958960274042356,0.052668783256480674,True,same_direction_descriptive
+convnextv2_t,sampler_uniform,3,0.0,0.0,0.010270602994718084,-0.03344530971032074,False,not_replicated_direction
+convnextv2_t,transfer_random,3,-0.4285661654034647,0.22065475758265826,-0.3873677782982776,-0.020624798760083045,True,same_direction_descriptive
+mobilenetv4,sampler_classweighted,3,-0.028385927674483336,0.04483841073404565,0.01886271623113726,0.052668783256480674,False,not_replicated_direction
+mobilenetv4,sampler_uniform,3,-0.06958861136262891,0.06578608362209579,-0.17078775675266908,-0.03344530971032074,True,same_direction_descriptive
+mobilenetv4,transfer_random,3,-0.3715041426397199,0.15504705318924017,-0.27524967101850495,-0.020624798760083045,True,same_direction_descriptive

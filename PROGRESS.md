@@ -2,16 +2,30 @@
 
 **Live status log. Updated every working session.**
 Last updated: **2026-09-12**
-Latest audit/repair: **NB14 interrupted local save + RAM guard**. Public HF revision
-`c9903960450f8fd9a16a5b148ff3da2100ef8654`: **73/81 S5 runs complete**
-(semantic28/36, YOLO36/36, RT-DETR9/9); all published checkpoint/status hashes match.
-Eight semantic jobs have no published status/checkpoint. The latest error stopped
-on container RAM, then found a checkpoint/status mismatch in local scratch.
-Checkpoint publication now journals sidecars before replacing weights; emergency
-snapshots recover interrupted writes. RAM checks exclude inactive clean file cache
-while retaining the90% working-memory guard. No recipe/model change. TRAIN + Run All;
-Kaggle execution of this repair remains pending. Unpublished lost-session work cannot
-be recovered from HF.
+**Latest reporting audit:** NB19 and NB20 completed successfully; public HF
+`22d5a6bc9f953ba3bf2a75919edc7db3193b317b` contains the38-file evidence bundle,
+14 figures and HTML/Markdown results package. Both notebooks:one commit,zero
+failures. **Full illustrated manuscript and documentation handoff now prepared**:
+[report](docs/report/REPORT.html),16 visuals, source-generated tables, references,
+claims/gap review, reproducibility appendix and submission checklist.
+Only3.02MiB of reporting evidence downloaded; no new training or HF writes.
+No NB13–NB20 reruns needed. Next: author/guide review and venue formatting.
+Original deferred/unmeasured scope remains open. [Documentation index](docs/DOCUMENTATION_INDEX.md).
+
+Latest audit: **S5 COMPLETE —81/81 runs + NB17 report verified** at public HF
+`a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`. Semantic36/36, YOLO36/36,
+RT-DETR9/9; all60epochs and evaluated. Verified checkpoint/artifact hashes,
+4,860 epoch records, prediction coverage, recomputed ROI F1 and published report
+tables. NB14 and NB17 saved outputs finish successfully, with zero upload failures.
+No S5 rerun needed. Full S9, wider proposal gaps and final author/venue review remain open.
+
+**NB18 complete and HF-verified:** all81 exploratory fusion analyses,405 metrics,
+135 summary rows and56,430 per-image/arm predictions independently recomputed.
+HF `35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b`; one commit, zero failures.
+No NB18 rerun needed. Equal full+tyre+tread fusion mean delta is−0.01324 macro-F1
+versus full frame; no average improvement or significance claim. Full S9 still
+needs landmark/healthy-pool evidence and a frozen design or explicit scope changes.
+This completes exploratory analysis, not the original integrated pipeline. `docs/25`.
 
 > **New to this project?** Read **`docs/00_WHAT_THIS_PROJECT_IS.md`** — a plain-language explanation of what we're building and why. Everything else follows from it.
 
@@ -24,7 +38,7 @@ Guide: Dr. E. Sreenivasa Reddy
 
 ## ⬤ Where we are right now
 
-**Stage:** **The implemented classification track and S4b have run, but the full experimental plan is NOT complete. S5 has 73/81 completed runs; NB14 needs eight remaining jobs, then NB17 reporting. S9 has not started.** NB06 is 108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
+**Stage:** **The implemented classification track, S4b and manual-supervised S5 are complete, but the full experimental plan is NOT complete. S5 has81/81 completed runs and a verified NB17 report. NB18 exploratory S9 fusion analysis is complete; the full S9 pipeline remains blocked.** NB06 is108/108 complete; NB08–NB10 outputs are public, with reporting limitations. Full stage-by-stage reconciliation: `docs/20_FULL_PLAN_CLOSURE.md`.
 
 Dataset is done and good. **No hardware is being built.** The approach has been **redesigned** (2026-08-26) from a single engineered pipeline into a **broad, controlled, XAI-grounded comparative study**: many architectures, many techniques, classification + detection + segmentation, with explainability as the measuring instrument.
 
@@ -33,11 +47,12 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 ### Immediate next action
 
 > **All four recovery notebooks are now verified on public HF** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`. Do not rerun them just to clear the old pending checklist.
-> 1. **Run repaired NB14 on T4×2: TRAIN is already selected; Run All.** It skips28 completed semantic runs. Eight jobs remain without public checkpoints; preserve existing local scratch if still available. Leave PREFIX blank. No new annotation or pilot rerun; see `docs/24`. Retain fold-leakage limitations.
-> **S4b complete:** NB12 and NB12R are verified on HF: 18/18 ×60 epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. Next unfinished training stage is manual-supervised S5. See `docs/23`.
-> 2. **Do not rerun NB13, NB15 or NB16.** YOLO36/36 and RT-DETR9/9 are verified complete. After NB14 finishes, run NB17 on CPU to audit all81 jobs. No NB11 or extra annotation. Normal pushes every30min; isolated job processes; no per-claim commits.
+> 1. **Do not rerun NB13–NB20.** The full illustrated report and reproducibility handoff are prepared from frozen evidence. Next: team/guide review and the required submission template; see `docs/report/SUBMISSION_CHECKLIST.md`. No additional GPU training or annotation now. Retain fold-leakage limitations.
+> **Latest user decision:** defer HRNet/PatchCore temporarily; prioritise supported results and reporting. No annotation now. If revisited, first provide a small guided pilot with examples and review it before requesting more labels—not a large bulk download. Original full S9 remains deferred/uncompleted, not silently scoped down. `docs/25`.
+> **S4b complete:** NB12 and NB12R are verified on HF:18/18 ×60epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. See `docs/23`.
+> 2. **No NB11 or extra annotation requested.** SAM2 comparison remains deferred. S5 completion is not proof of S9 integration or independent new-tyre generalisation.
 > 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Declared S4b/Stage-C extension is complete; wider Tier5/6 remains open.
-> 4. S9 follows S5 and additional inputs. H3, original-plan missing experiments, calibration limitations and manuscript work remain open. See `docs/21_RECOVERY_COMPLETION_AUDIT.md`.
+> 4. Full S9 needs additional inputs. H3, original-plan missing experiments, calibration limitations and final author/venue review remain open. The manuscript is prepared. See `docs/report/CLAIMS_AND_LIMITATIONS.md`.
 
 ---
 
@@ -61,13 +76,13 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | S3 masks | ✅ **Existing manual-mask route ready**; ⏸ **extra comparison deferred** | Reuse 418 manual masks and validated derivative replay for supervised S5. User declines further annotation: SAM2/manual comparison and blind self-consistency remain unmeasured, not passed. NB11 is optional/deferred, not a prerequisite. |
 | S4 technique OFAT | ✅ **NB06 complete: 108/108** | Every run has completed status, last/best checkpoints and final metrics on HF |
 | S4b / Stage C confirmation | ✅ **18/18 complete; NB12R report verified** | 1,080 epoch records and 36 checkpoint paths checked. Random-init negative effect repeats in both models; class-weighted/uniform sampling directions each repeat in only one. Descriptive selected-epoch endpoint, not significance. `docs/23` |
-| S5 detection/segmentation | 🔄 **73/81 complete; NB14 remaining jobs required** | Semantic28/36, YOLO36/36, RT-DETR9/9, matching published checkpoint hashes. Eight semantic jobs have no published checkpoint/status. Interrupted local-save journal and cache-aware RAM guard repaired. NB17 report pending. HF `c9903960450f8fd9a16a5b148ff3da2100ef8654`; `docs/24`. |
+| S5 detection/segmentation | ✅ **81/81 complete; NB17 report verified** | Semantic36/36, YOLO36/36, RT-DETR9/9, each60epochs. Checkpoints, artifacts, coverage and ROI/report calculations verified. Existing manual masks; SAM2 comparison deferred. HF `a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`; `docs/24`. |
 | S6 XAI | ✅ **NB07 r3 complete and public** | 18 seed-1 screens + 10 seed-confirmation runs; 1,208 evidence rows, 35 faithfulness rows, and verified `tables/stage_b_selection.csv`. Selected top three are XAI-valid and three-seed confirmed |
 | S7 stress tests | ✅ **NB08 executed and verified on HF** | 63/63 stress rows; nine matching per-run tables; current control mean 0.375184 passes 0.45 |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
-| S8 ensembles + calibration | ✅ **NB09 outputs verified** | 27 prediction files / 3,762 rows; four result tables; coverage target not met across folds |
-| S9 integrated pipeline | ⬜ **Not started** | Depends on S5 and additional landmark/healthy-pool evidence; no verified `t8-*` runs. Alignment remains deferred. |
-| S10 analysis + figures | ⚠ **NB10R verified: 10/10 implemented figures** | Figure 3 and its 30-panel manifest are public; H2 explicitly inconclusive/undefined. H3, original-plan video/interaction figures and manuscript remain unfinished. |
+| S8 ensembles + calibration | ✅ **NB09 outputs verified** | 27 prediction files / 3,762 rows; four result tables. Observed90% coverage: fold0 .86885, fold1 .97561, fold2 .93939; fold0 below nominal. Empty-set and dependence limitations remain. |
+| S9 integrated pipeline | 🔄 **NB18 exploratory analysis complete; full pipeline blocked** | All81 analyses,405 metrics,135 summaries and56,430 per-image/arm predictions verified. No average fusion improvement. Original Tier8 still lacks landmark/healthy-pool evidence and a frozen integration design. `docs/25`. |
+| S10 analysis + figures | ✅ **Reporting execution + full report prepared**; 🔄 **author/venue review** |38 frozen sources; full illustrated HTML/Markdown report with16 visuals, generated tables, checked selected references, reproducibility and claims/submission appendices. No rerun needed. Original-plan gaps remain; H2 inconclusive, H3 untested. `docs/report/REPORT.html`, `docs/26`. |
 | Alignment | ⏸ Deferred | Needs calibration data that does not exist |
 | Optional app | ⬜ | First on the cut list |
 
@@ -84,7 +99,7 @@ Currently supported: **mileage-proxy classification and supervised tyre/tread lo
 | 3-class mileage-proxy classification | ✅ Yes |
 | Anomaly detection (needs curated healthy pool) | ⚠️ Partially |
 | Tyre/tread/marking/damage masks for XAI measurement | ✅ NBT1 A/B/C PASS; fingerprint `085acfb8fb83c531` |
-| Learned tyre/tread detection and segmentation (S5) | ✅ Labels available; comparative training/evaluation not yet done |
+| Learned tyre/tread detection and segmentation (S5) | ✅81/81 comparative runs and NB17 report verified; existing-fold limitations retained |
 | Tread depth in mm | ❌ No gauge data |
 | Camber / toe | ❌ No calibration, no pose, no rack data |
 | Photometric stereo · unrolling · video fusion | ❌ Wrong capture modality |

@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "verified_runs": 81,
+  "planned_runs": 81,
+  "hf_revision": "8ffef81e9aebf0464b19349c1956cc3afffb08fc",
+  "plan_hash": "1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df",
+  "limitations": [
+    "folds 0/2 suspected cross-tyre leakage; fold 1 tiny tyre sample",
+    "descriptive existing-fold evaluation, not independent new-tyre testing",
+    "SAM2 comparison and blind repeat annotation deferred",
+    "backend-native losses/EMA/pretraining differ; not a controlled equal-pretraining ablation"
+  ],
+  "sam2_comparison": "deferred",
+  "s9": "not_completed"
+}

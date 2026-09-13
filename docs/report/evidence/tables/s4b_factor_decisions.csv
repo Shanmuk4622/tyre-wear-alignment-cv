@@ -1,0 +1,4 @@
+factor,architectures,same_direction_architectures,description
+sampler_classweighted,2,1,does not reproduce the discovery direction in both architectures
+sampler_uniform,2,1,does not reproduce the discovery direction in both architectures
+transfer_random,2,2,same direction in both additional architectures; descriptive only

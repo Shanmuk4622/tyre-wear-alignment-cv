@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">Implemented tyre study and deferred original components</title>
+<desc id="desc">418 clean images feed classification and manual supervised localisation. Saved predictions feed fixed fusion and reporting. HRNet landmarks and verified healthy reference PatchCore remain deferred.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#65838d"/></marker></defs>
+<rect width="1200" height="650" rx="18" fill="#f1f6f8"/>
+<g font-family="Arial,sans-serif" fill="#183746">
+<text x="40" y="48" font-size="26" font-weight="bold">One small collection. Multiple linked experiments.</text>
+<text x="40" y="78" font-size="17" fill="#536d79">Repeated seeds and models share the same underlying images and split limitations.</text>
+<rect x="40" y="140" width="250" height="210" rx="14" fill="#173c4b"/>
+<g fill="white"><text x="62" y="180" font-size="23" font-weight="bold">418 clean images</text><text x="62" y="218" font-size="18">12 capture sessions</text><text x="62" y="250" font-size="18">3 mileage-proxy classes</text><text x="62" y="282" font-size="18">Existing manual masks</text><text x="62" y="320" font-size="15">Not measured physical wear</text></g>
+<g stroke="#65838d" stroke-width="3" fill="none" marker-end="url(#arrow)"><path d="M290 205 H365"/><path d="M290 295 H330 V395 H365"/><path d="M745 205 H810 V270 H865"/><path d="M745 395 H810 V320 H865"/></g>
+<rect x="365" y="120" width="380" height="180" rx="14" fill="white" stroke="#a8c9d0"/>
+<text x="389" y="158" font-size="22" font-weight="bold">Recognition + explanation</text><text x="389" y="193" font-size="18">153 retained architecture runs</text><text x="389" y="223" font-size="18">108 OFAT + 18 confirmation runs</text><text x="389" y="259" font-size="16" fill="#536d79">Selected and final endpoints preserved</text>
+<rect x="365" y="335" width="380" height="150" rx="14" fill="white" stroke="#a8c9d0"/>
+<text x="389" y="374" font-size="22" font-weight="bold">Manual-supervised localisation</text><text x="389" y="410" font-size="18">81 runs × 60 epochs</text><text x="389" y="446" font-size="16" fill="#536d79">Semantic masks · boxes · instances</text>
+<rect x="865" y="200" width="295" height="190" rx="14" fill="#e1efed" stroke="#70a6a7"/>
+<text x="886" y="242" font-size="22" font-weight="bold">Fixed fusion + report</text><text x="886" y="281" font-size="18">Saved prediction analysis</text><text x="886" y="314" font-size="18">No fusion fitting</text><text x="886" y="351" font-size="16" fill="#536d79">Pinned public HF evidence</text>
+<rect x="40" y="535" width="1120" height="77" rx="12" fill="#fff9ef" stroke="#b18b50" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="62" y="565" font-size="18" font-weight="bold" fill="#785928">DEFERRED ORIGINAL WORK — not implemented by the fusion analysis</text><text x="62" y="593" font-size="17" fill="#785928">HRNet landmarks · verified healthy-reference PatchCore · independent tyre validation · further planned comparisons</text>
+</g></svg>

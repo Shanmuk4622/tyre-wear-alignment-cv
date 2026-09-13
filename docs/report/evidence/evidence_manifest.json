@@ -1,0 +1,306 @@
+[
+  {
+    "local": "tables/classification_master_architectures.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/master_architectures.csv",
+    "sha256": "b15762646690d0b814d83567c4e11b7e803e8b7af7ea0e3ac496208b61bbb8e1",
+    "bytes": 2839
+  },
+  {
+    "local": "tables/classification_baselines_by_fold.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/baselines_by_fold.csv",
+    "sha256": "1ff57641f7d4e43379c3cf29ed852f7ad286a0dc44783d54095ff347bec45106",
+    "bytes": 4923
+  },
+  {
+    "local": "tables/classification_baseline_summary.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/baseline_summary.csv",
+    "sha256": "76672a271f5e2da25f28fe205afc068d8271361346a0c39f61432dae4e8d28f8",
+    "bytes": 406
+  },
+  {
+    "local": "tables/classification_hypothesis_outcomes.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/hypothesis_outcomes.csv",
+    "sha256": "4ae88934fe6149885029ca753f9074332d407b91f345324e94f3572f17d40c38",
+    "bytes": 382
+  },
+  {
+    "local": "tables/classification_stage_a_quarantined.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/stage_a_quarantined.csv",
+    "sha256": "a6aada4960754c554678dd2a171a791370cf1f1558c003229badc007c714e11d",
+    "bytes": 3183
+  },
+  {
+    "local": "tables/classification_saliency_panel_manifest.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/saliency_panel_manifest.csv",
+    "sha256": "6db63e1ca60afd6fa91d1136f9ce59d10bd1f384e29c93d258bc4522f931c443",
+    "bytes": 4624
+  },
+  {
+    "local": "tables/classification_intervention_region_coverage.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/closure_2026-09-09/intervention_region_coverage.csv",
+    "sha256": "3cc93af5bfc4a919d93fd04685810323823f4730a393fb770d3910884428ffd0",
+    "bytes": 23359
+  },
+  {
+    "local": "tables/stage_b_effects.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/stage_b_effects.csv",
+    "sha256": "df8470cf31ac7ea21f40443ee50aaa325b90d5c8fa6cb0c76f7825f91b193d2a",
+    "bytes": 6881
+  },
+  {
+    "local": "tables/stage_b_selection.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/stage_b_selection.csv",
+    "sha256": "f0371460860e4a6a1fa5be37a4ff488c75a40bd13ecbca1c5979c43ca58d7b2d",
+    "bytes": 3520
+  },
+  {
+    "local": "tables/stress_tests.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/stress_tests.csv",
+    "sha256": "134b2966ec817b1f7ea7e716ff5e53c5d430de04a914527cfa32ec77bbdbd031",
+    "bytes": 7608
+  },
+  {
+    "local": "tables/calibration.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/calibration.csv",
+    "sha256": "2890069a215ed2210e5268919c923a9037ba7e750a0071d252a06fc7bfd28487",
+    "bytes": 673
+  },
+  {
+    "local": "tables/conformal.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/conformal.csv",
+    "sha256": "0f02bc64e653deb411c40e27a70ae812af6967e9da7fd88a170a279b345abcf6",
+    "bytes": 250
+  },
+  {
+    "local": "tables/ensemble_metrics.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/ensemble_metrics.csv",
+    "sha256": "8722def490e44c15c75c7452b7bdc3bbe75c1df16e4e272e83aff162f3965502",
+    "bytes": 5006
+  },
+  {
+    "local": "tables/tta.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "tables/tta.csv",
+    "sha256": "496857d741b32ca9cca6f811ba39b46b70e68eac560e7dd76f73a51a7409336f",
+    "bytes": 645
+  },
+  {
+    "local": "tables/s4b_coverage.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "confirmations/s4b-2026-09-09-r1/9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72/coverage.csv",
+    "sha256": "a0fd7af130ddcacad7d48c21ed4ce5ac2d64a128a9df7fb98fad575a474d1d8c",
+    "bytes": 1094
+  },
+  {
+    "local": "tables/s4b_architecture_effects.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "confirmations/s4b-2026-09-09-r1/9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72/architecture_effects.csv",
+    "sha256": "c8cadc5f2f25a375346a427306d18b9eebac4bf4dc384f206f8bc9da6ce0f319",
+    "bytes": 965
+  },
+  {
+    "local": "tables/s4b_factor_decisions.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "confirmations/s4b-2026-09-09-r1/9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72/factor_decisions.csv",
+    "sha256": "ec4b6d3d5c0c23ae0153ea0d05061a8205fea6bc11d8d2752e2c81ee76097d4b",
+    "bytes": 324
+  },
+  {
+    "local": "tables/s4b_paired_effects.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "confirmations/s4b-2026-09-09-r1/9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72/paired_effects.csv",
+    "sha256": "735a0ec82cc86fad5a4004d5cbc674963a004a93bdffb9b85deadb39f97c4688",
+    "bytes": 2053
+  },
+  {
+    "local": "tables/s5_inventory.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/inventory.csv",
+    "sha256": "27fb2c031f9f7a12e26343647bcd9e9d87ef7609d1b98240f271e207b4fe8c4d",
+    "bytes": 5255
+  },
+  {
+    "local": "tables/s5_roi_by_run.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/roi_by_run.csv",
+    "sha256": "bbb7f11795e2713c0b0c66ef88677b1d480a659772c40e7f37fc53caa7cd40fe",
+    "bytes": 32715
+  },
+  {
+    "local": "tables/s5_roi_summary.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/roi_summary.csv",
+    "sha256": "5b76d830425f7951e6d7d5cb32465247897ee922ea04f39faf4b8b8dfac192fe",
+    "bytes": 7988
+  },
+  {
+    "local": "tables/s5_localisation_by_run.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/localisation_by_run.csv",
+    "sha256": "77d40f55cfb8a9337009f60822d0d8179581a672ca98ed880b152da37edb4c0c",
+    "bytes": 13242
+  },
+  {
+    "local": "tables/s5_localisation_summary.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/localisation_summary.csv",
+    "sha256": "7e23031aedf6ca5c8bbd9bb8551dc0dcdf059080238dc4c3b3b948cc5c84fbd4",
+    "bytes": 8551
+  },
+  {
+    "local": "tables/s9_fusion_by_run.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s9/exploratory-fusion-r1/20dca3a2d91884230d555a7a36dabdbab8a075776487f3d147f1d4f9ddd21b87/fusion_by_run.csv",
+    "sha256": "2a60ed9923e180bad1682b722dc1b689fc5146ed00fdbf7a68ba5ef6ae2bef45",
+    "bytes": 35778
+  },
+  {
+    "local": "tables/s9_fusion_summary.csv",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s9/exploratory-fusion-r1/20dca3a2d91884230d555a7a36dabdbab8a075776487f3d147f1d4f9ddd21b87/fusion_summary.csv",
+    "sha256": "4bf6d1e10e837678134a3c98f2dc26892b826dcb53bca1a0f988cddeebc182f8",
+    "bytes": 8537
+  },
+  {
+    "local": "figures/legacy_fig01_accuracy_vs_ter.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig01_accuracy_vs_ter.png",
+    "sha256": "286e42f8ca60256abcd5dcd8c3104e17f5d27eed546a2761c056e00219ed3853",
+    "bytes": 81796
+  },
+  {
+    "local": "figures/legacy_fig02_per_fold.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig02_per_fold.png",
+    "sha256": "70b2c20795921f1e069ccbc6b7de0b5ad185190a8c8864b453b98c7cea258377",
+    "bytes": 128681
+  },
+  {
+    "local": "figures/legacy_fig03_saliency_panels.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig03_saliency_panels.png",
+    "sha256": "0e7bbb70ef20ef42622fd1940af7651baec8ac9ac58e1a2da087d43706399361",
+    "bytes": 1849946
+  },
+  {
+    "local": "figures/legacy_fig04_stress_matrix.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig04_stress_matrix.png",
+    "sha256": "ed6c7a9d53a2ada6aad6b4439bace32fa855e84c1437ee09f0e997996a6ae2b0",
+    "bytes": 64889
+  },
+  {
+    "local": "figures/legacy_fig05_h1_stability.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig05_h1_stability.png",
+    "sha256": "a34006929ad9eabf84c55bce20786133c4a4c173c7229de27b14f25c3ca3b530",
+    "bytes": 72546
+  },
+  {
+    "local": "figures/legacy_fig06_ofat_effects.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig06_ofat_effects.png",
+    "sha256": "aa8c571f162adfde4df82e42175b2ac985e61dc2f530258c95c066810c19afb3",
+    "bytes": 66402
+  },
+  {
+    "local": "figures/legacy_fig07_faithfulness.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig07_faithfulness.png",
+    "sha256": "5aa3feaed75ed83ef3d0b699b50752efc2ff911054d63d437bf0e1a86aa72637",
+    "bytes": 86122
+  },
+  {
+    "local": "figures/legacy_fig08_best_epoch.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig08_best_epoch.png",
+    "sha256": "1bccf1adfb4521bb77a60159b64ac12f79df7b03942b7a3cce503a192ccff91b",
+    "bytes": 67569
+  },
+  {
+    "local": "figures/legacy_fig09_energy.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig09_energy.png",
+    "sha256": "e54a4a223255011fe586217e5d470c2407f3ae86143b6e558c5964f7fe6ae0e6",
+    "bytes": 67866
+  },
+  {
+    "local": "figures/legacy_fig10_per_session.png",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "analysis/closure_2026-09-09/fig10_per_session.png",
+    "sha256": "1312fdce1f894b60379fd74a1a339c361520ff70f11391ed9c798808ade93814",
+    "bytes": 123211
+  },
+  {
+    "local": "provenance/s5_STATUS.json",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s5/s5-manual-2026-09-10-r1/1f6694577253e0054f7a22df6ec52d30797063cf498b345bd71fe9b98bab93df/report/STATUS.json",
+    "sha256": "c693f0f3d24aaa80fb2707e03b8d7f965d41a01c2a92d984cf822ba1e33c1291",
+    "bytes": 602
+  },
+  {
+    "local": "provenance/s9_STATUS.json",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "s9/exploratory-fusion-r1/20dca3a2d91884230d555a7a36dabdbab8a075776487f3d147f1d4f9ddd21b87/STATUS.json",
+    "sha256": "f4b5d268fc7747d8cad8f419d30040699babf4b4a549a37bbebd995261f21b04",
+    "bytes": 1453
+  },
+  {
+    "local": "provenance/s4b_STATUS.json",
+    "repo": "Shanmuk4622/tyre-wear-study",
+    "revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+    "path": "confirmations/s4b-2026-09-09-r1/9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72/STATUS.json",
+    "sha256": "ae721ec1757a41ca008fb3da3f79de884fc66b33eabad4eae0c41e1931d16170",
+    "bytes": 527
+  }
+]

@@ -1,0 +1,4 @@
+hypothesis,n,stat_primary,stat_reference,supported,reading,outcome
+H1,10,0.4270951840857751,0.9074345799804675,False,Legacy selected-epoch comparison; not a fixed-budget performance claim,
+H3,0,,,,NOT TESTABLE YET: Stage A contains no preregistered fine-grained architectures,
+H2,3,,,,"corr(SAR, marking dependence); reference=corr(DmgAR, damage dependence)",inconclusive_undefined

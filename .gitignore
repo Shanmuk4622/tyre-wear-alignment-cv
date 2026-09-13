@@ -10,6 +10,7 @@ datasets/
 raw/
 processed/
 synthetic/
+Videos/
 *.zarr/
 *.npy
 *.npz

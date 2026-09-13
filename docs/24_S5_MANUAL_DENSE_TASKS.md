@@ -2,6 +2,35 @@
 
 ## Current position — 2026-09-12
 
+**COMPLETE:81/81 runs and NB17 report independently verified.** Public HF
+revision `a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`; NB17 pinned its input
+revision `8ffef81e9aebf0464b19349c1956cc3afffb08fc`. Different input/output
+revisions are expected because the report was published after auditing training.
+
+- Semantic36/36 (U-Net9, DeepLab9, SegFormerB0 9, SegFormerB2 9).
+- YOLO36/36; genuine RT-DETRv2-R18 9/9. Every run60epochs and evaluated.
+- All81 checkpoint hashes, evaluation artifact hashes and4,860 epoch records
+  verified, with native prediction and per-region/per-mode validation coverage.
+- Recomputed all405 downstream ROI macro-F1 rows against frozen manifest labels;
+  verified deltas and report inventory,81-row localisation and405-row ROI tables.
+  ROI summary has135 model/fold/mode rows; localisation summary27 model/fold rows.
+- Six report files are public: STATUS, inventory, ROI by-run/summary and
+  localisation by-run/summary. STATUS is complete, not partial.
+- NB14 saved output:23 commits,0 failures; NB17:1 commit,0 failures and81/81.
+
+Across the81 equally weighted runs, predicted-tyre ROI mean macro-F1 delta is
+−0.01257 and predicted-tread is−0.01467 versus full frame. These are descriptive
+averages, not significance tests or proof cropping helps. Use model/fold summaries
+for interpretation; oracle ROI also does not imply a crop-trained classifier.
+
+**No rerun of NB13–NB17 needed.** S5's manual-supervised scope is complete.
+S9 integration, broader proposal gaps and writing remain. SAM2 comparison/blind
+repeat annotation remain deferred. Existing-fold leakage and limited tyre count
+still prohibit independent new-tyre generalisation claims. Notebook files and HF
+were not changed by this audit; only project Markdown progress records updated.
+
+### Historical partial-progress and repair records (superseded)
+
 Latest HF revision `c9903960450f8fd9a16a5b148ff3da2100ef8654` verifies73 completed
 statuses/checkpoint hashes: semantic28/36, YOLO36/36, RT-DETR9/9. Eight semantic
 jobs have no published status/checkpoint; this does not prove no local training

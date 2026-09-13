@@ -1,5 +1,11 @@
 # 09 — Annotated Related Work and Novelty Audit
 
+> **Submission note, 2026-09-12:** this is historical research/design material,
+> not a fully verified submission bibliography. Use the current report's
+> [checked references and scope notes](report/REFERENCES.md). Do not copy the
+> detailed performance or novelty claims below without their own primary-source
+> verification. The manuscript deliberately avoids unsupported external comparisons.
+
 > Extends the Review-1 literature review with the methods research from `10_VISION_TECHNIQUES.md`.
 > §6 is the honest novelty grading — read it before writing the Review-2 abstract.
 

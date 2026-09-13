@@ -1,5 +1,95 @@
 # Project Logbook
 
+## 2026-09-12 — Full manuscript and documentation handoff
+
+Prepared the full illustrated report in `docs/report/REPORT.md` and `REPORT.html`,
+plus references, claims/figure limitations, reproducibility and submission checks.
+Added documentation index and additive repository guide; no notebook/source
+directories moved or deleted. The source-generated tables and endpoint chart
+use the pinned HF reporting package;14 upstream figures remain byte-identical.
+With the new chart and study diagram the report contains16 visuals.
+
+Downloaded only3.02MiB of small artifacts, verified38 source hashes and seven
+report artifact hashes. No large dataset/checkpoint download, training, HF write
+or secret exposure. Corrected current-facing12-session/tyre wording and exact
+conformal coverage; retained selected/final distinctions, TER region limitation,
+negative fusion, quarantine and deferred original components. Added reproducible
+local build/validation scripts. Human/venue review remains; no false approval or
+whole-original-project completion is recorded.
+
+## 2026-09-12 — NB19/NB20 executed; S10 reporting package audit
+
+Both uploaded notebooks finish with one commit and zero failures. Public HF
+revision `22d5a6bc9f953ba3bf2a75919edc7db3193b317b`; code-version namespace
+`s10/reporting-r1/2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e`.
+Audited38 source files against pinned originals/manifest, seven report artifacts,
+14 figures and report image references. NB19 source revision35a178b5; NB20 evidence
+revisione388dd4e. Recorded report-package completion, not manuscript submission or
+whole-project completion. Added `docs/26` next plan: manuscript, claims/figure/
+reference review, reproducibility handoff, human/venue review. Original experiments
+and user-deferred components remain uncompleted. No notebooks or HF data modified.
+
+## Scope decision — temporarily defer HRNet/PatchCore
+
+User asks to put the two components aside and revisit after current project work;
+willing to label if justified, but requires small downloads and clear guidance.
+Recorded temporary deferral, not completion or permanent exclusion. Prioritise
+supported results/reporting; no annotation requested now. Future labelling must
+start with a defined scientific purpose, small pilot, worked examples, explicit
+uncertainty rules and pilot review before scaling. Healthy-reference validity is
+not established by low-wear proxy labels or unsupported image-only guesses.
+
+## 2026-09-12 — NB18 complete and independently verified
+
+Read executed NB18:81/81 processed, one successful85-file commit, zero failures.
+HF revision `35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b`; implementation hash
+`20dca3a2d91884230d555a7a36dabdbab8a075776487f3d147f1d4f9ddd21b87`.
+Verified all81 payloads by recomputing from pinned S5 probabilities and recorded
+classifier heads, including source/config/code hashes,56,430 predictions,
+405 metrics and135 summaries. Both published CSV hashes/numerical values match.
+Equal full+tyre+tread mean delta−0.01324; equal tyre+tread−0.01568, descriptive
+and not significance claims. Updated completion across Markdown records; left
+notebook/HF untouched. NB18 needs no rerun. Full S9 remains blocked rather than
+silently closed or scoped down; missing landmark/healthy inputs/design remain.
+
+## 2026-09-12 — NB18 classifier decision-rule repair
+
+Uploaded NB18 processed four runs then failed on unet_r34-f1-s2 at an argmax
+prediction check. Reviewed S5 evaluation code and frozen classifier configs:
+CORAL uses cumulative threshold counting, not argmax. Fixed NB18 to decode each
+single/fused probability vector using its recorded classifier head, with config
+hash provenance. All81 public S5 inputs and405 metric rows now pass local tests;
+single-view decisions reproduce saved S5 decisions exactly. HF
+`2951194a7bf997126222689a42ea5f1d1831130f` preserves four old partial analyses.
+Archived executed notebook before regeneration. No S5 retraining or HF writes.
+Repaired Kaggle execution remains pending. Explained masks versus landmarks and
+low-wear proxy labels versus independently verified healthy references.
+
+## 2026-09-12 — NB18 exploratory S9 component/reporting notebook delivered
+
+Reviewed Tier8 scope and remaining gaps. Full HRNet/PatchCore integration lacks
+landmark labels and a verified healthy pool; did not fabricate inputs or silently
+replace components. Built NB18 CPU fixed-fusion analysis for saved S5 predictions,
+with five fixed arms, per-run resumability and HF30min/completion/Stop policy.
+Added scope/gap ledger `docs/25`; corrected the experimental plan's misleading
+claim that current masks provide landmark supervision. Local math/coverage and
+notebook tests pass; real public-input checks passed on all three folds for
+SegFormerB2 seed1. No GPU training, full81-run analysis or HF publication performed
+by the assistant. User execution/verification remains pending.
+
+## 2026-09-12 — S5 training and NB17 report complete
+
+Read uploaded NB14/NB17 outputs: both finish successfully, zero upload failures;
+NB17 prints81/81 verified. Independently audited public HF
+`a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`: semantic36, YOLO36, RT-DETR9,
+all60epochs/evaluated with matching checkpoint and evaluation-artifact hashes.
+Validated4,860 epoch rows, native/ROI/mask coverage, recomputed405 ROI macro-F1
+rows and deltas, and compared published report inventory/run tables/summaries.
+NB17's pinned input was `8ffef81e9aebf0464b19349c1956cc3afffb08fc`.
+S5 now green; no rerun required. Updated current status across project documents,
+retaining dated repair history and scientific limitations. S9 and wider proposal
+work remain open. No notebook edits, training or HF writes in this audit.
+
 ## 2026-09-12 — NB14 interruption-safe local publication
 
 User traceback shows RAM-guard KeyboardInterrupt followed by local snapshot hash

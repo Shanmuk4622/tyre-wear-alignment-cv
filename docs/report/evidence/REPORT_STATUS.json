@@ -1,0 +1,64 @@
+{
+  "status": "report_package_ready_for_review",
+  "source_revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+  "evidence_revision": "e388dd4ec0e9f522ac8a8b107f86fbeabe5c6a96",
+  "code_sha256": "2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e",
+  "figure_count": 14,
+  "counts": {
+    "s5_runs": 81,
+    "s5_epoch_records_previously_audited": 4860,
+    "s9_source_runs": 81,
+    "roi_rows": 405,
+    "fusion_rows": 405,
+    "retained_architectures": 17,
+    "quarantined_runs": 9
+  },
+  "full_project_complete": false,
+  "remaining": [
+    [
+      "Full S9 HRNet/PatchCore",
+      "Deferred by user; not executed"
+    ],
+    [
+      "SAM2 comparison / blind consistency",
+      "Deferred; existing masks are not independent repeat labels"
+    ],
+    [
+      "H2",
+      "Inconclusive/undefined in the implemented intervention evidence"
+    ],
+    [
+      "H3",
+      "Untested; preregistered fine-grained arms absent"
+    ],
+    [
+      "Video temporal consistency",
+      "Not measured; no suitable video evidence"
+    ],
+    [
+      "Resolution x ROI factorial interaction",
+      "Not established by separate OFAT arms"
+    ],
+    [
+      "Independent tyre generalisation",
+      "Not established; folds0/2 leak-flagged and fold1 has few tyres"
+    ],
+    [
+      "Broader Tier5/6 and XAI extensions",
+      "Not completed by the implemented tracks"
+    ],
+    [
+      "Manuscript submission",
+      "Requires human review, reference checking and venue formatting"
+    ]
+  ],
+  "artifact_sha256": {
+    "RESULTS_DRAFT.md": "db37c89c3c668de0307207ee49ffcd62c714f07f9beb55eececbc48c99ccfaf5",
+    "REPORT.html": "e1d8bb525eb1ab9b3311eb2623914134dd5668d834d1ee39aa864823ddbbe555",
+    "figure_manifest.json": "218c2eab542bbf68f5e2be67e0fbd669390b52bb06936e1e698f956be5e943b9",
+    "figures/s10_11_box_ap.png": "d3de6696dda7f6fdb95da00a94b90eee23e0b0a2b743732c88b4997435ec143e",
+    "figures/s10_12_predicted_roi.png": "b26ca0e1493edef3c3521d71462a15d330507798fba255d0787ec80983f83cc3",
+    "figures/s10_13_fixed_fusion.png": "0bb4c4e754cbc3f773628c10b3acdedd152bfba55d0537f08d71b9b11a302687",
+    "figures/s10_14_manual_mask_iou.png": "bde7a805c4c7a858f5ce803ac8d3f972a5c0d74d22846dd85e62cd4d616832a8"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "revision": "s4b-2026-09-09-r1",
+  "plan_hash": "9f2e32c8c372c1c985d7827a893c6be0bd7c6801019cd4b5456f3f2913bd0e72",
+  "verified_runs": 18,
+  "expected_runs": 18,
+  "verification_revision": "fd5198170f8b60bbf199231610d43ae018499fe3",
+  "baseline_revision": "bf62f9e9cbedacc580aa42542da14a068b8f9215",
+  "status": "complete",
+  "limitation": "cross-architecture directional replication on the same fold; not an independent dataset or significance test",
+  "checkpoint_verification": "inventory presence, not tensor loading"
+}

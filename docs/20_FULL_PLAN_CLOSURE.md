@@ -6,6 +6,10 @@ All 27 Markdown files present before this reconciliation were read in full.
 Historical logs retain their dated claims; this ledger and PROGRESS are the
 current completion record.
 
+**2026-09-12 update:** S5 is now complete:81/81 ×60epochs and NB17 report,
+verified at HF `a3b29a71f8e6af6c50e68eb64a5bbae9ccf6d1c5`. See `docs/24`.
+S9 and wider proposal gaps remain open; manual/SAM2 comparison stays deferred.
+
 ## Evidence and corrections
 
 Latest recovery verification: HF revision `bf62f9e9cbedacc580aa42542da14a068b8f9215`.
@@ -102,15 +106,15 @@ figures, not evidence that the original three experiments were performed.
 | S3 masks | Existing manual-supervised route ready; NB11 optional/deferred | User declines more annotation: SAM2 comparison and blind consistency stay unmeasured; not prerequisites for manual-supervised S5 (`docs/22`) |
 | S4 techniques | **108/108 complete** for implemented fold-1 OFAT | Do not equate 12 implemented arms with every level in the original factor table |
 | S4b / Stage C | ✅ Declared extension complete: 18/18 ×60 epochs and NB12R report verified | Report mixed directional replication honestly; no new-tyre/significance claim; `23_S4B_CONFIRMATION.md` |
-| S5 dense tasks | **NB13–NB17 built; GPU pilots pending** | Run81 manual-supervised jobs and NB17 HF audit; no new annotation. Learned-ROI comparison implemented but not executed. `docs/24` |
+| S5 dense tasks | ✅ **81/81 ×60epochs + NB17 report verified** | Manual-supervised localisation and frozen-classifier learned/full/oracle ROI comparison executed. Interpretation retains fold leakage; no new-tyre or S9 completion claim. `docs/24` |
 | S6 XAI | NB07 r3 Stage-B gate complete | Full all-run/all-fold, native-method/ROAD/model-agnostic/stability programme not completed by this gate |
 | S7 stress | 63 implemented rows and 3 controls complete | H2 availability limitation; proposed dirt/session-holdout/video extensions not verified |
 | S8 ensemble/calibration | Four tables and 27 prediction files verified | Coverage target not met; empty sets omitted from old abstention; image-split calibration not new-tyre assurance |
-| S9 integrated pipeline | **Not started** | S5 winner, landmark/healthy-pool inputs, fusion and component ablations |
-| S10 reporting | NB10R verified: 10/10 implemented figures, 30 saliency panels | Original-plan missing figures, statistical limitations, report/manuscript |
+| S9 integrated pipeline | **NB18 exploratory fusion complete and HF-verified** | All81 source-run analyses verified; no average fusion improvement. Full pipeline still needs landmark/healthy-pool inputs, frozen component selection and full ablations. NB18 is not the54-run Tier8 experiment. `docs/25` |
+| S10 reporting | NB19/NB20 verified; full illustrated manuscript and reproducibility handoff now prepared,16 visuals | Author/guide review and venue format remain. Statistical limitations and original-plan missing experiments are retained. No notebook rerun. `docs/report/REPORT.html`, `docs/26` |
 
 Do not give an overall percentage: these stages have very different scope and
-cost. Classification execution is far ahead of dense tasks and integration.
+cost. Implemented classification and dense tasks have executed; integration remains open.
 
 ## What exactly is S5?
 
@@ -128,8 +132,8 @@ alignment labels still do not exist.
 **2026-09-10 delivery:** NB13–NB17 implement the manual-supervised route with
 an isolated dense-task harness,81 planned jobs, per-fold/per-seed localisation
 metrics, native predictions, and frozen-classifier predicted/full/oracle ROI
-comparison. Local checks passed; Kaggle backend pilots and actual completion
-remain unverified. SAM2 comparison is explicitly deferred by user, not silently
+comparison. **Subsequent2026-09-12 audit verifies all81 runs and NB17 report.**
+SAM2 comparison is explicitly deferred by user, not silently
 counted as done. See `24_S5_MANUAL_DENSE_TASKS.md` for run order and scope.
 
 S9 must follow that work. Manual tyre/tread masks do not supply HRNet landmark

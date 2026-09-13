@@ -1,5 +1,12 @@
 # 00 — What This Project Is
 
+> **Current edition, 2026-09-12:** S5 is complete (81/81 runs), exploratory S9
+> fusion and S10 notebooks are verified, and the [full report](report/REPORT.html)
+> is prepared for author review. Full original S9 remains deferred. The collection
+> has12 capture sessions, not12 independently verified tyres. Older statements
+> below about unstarted stages or guaranteed attribution/generalisation are
+> historical design language, not current evidence. See the [documentation index](DOCUMENTATION_INDEX.md).
+
 > **Current-state correction (2026-09-09):** this concept document contains
 > pre-annotation proposals, not completion claims. Manual tyre/tread masks now
 > exist and support supervised dense tasks, but **S5 and S9 have not started**.

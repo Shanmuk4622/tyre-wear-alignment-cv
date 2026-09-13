@@ -1,0 +1,31 @@
+run_id,image_id,method,target_layer,pred,zero_map,source_revision
+a-coatnet0-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,gradcam,gradcam(stages),1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-coatnet0-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,gradcam,gradcam(stages),1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-coatnet0-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,gradcam,gradcam(stages),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-convnextv2_t-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,hirescam,hirescam(stages),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-convnextv2_t-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,hirescam,hirescam(stages),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-convnextv2_t-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,hirescam,hirescam(stages),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-densenet121-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,hirescam,hirescam(features),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-densenet121-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,hirescam,hirescam(features),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-densenet121-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,hirescam,hirescam(features),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-effnetv2s-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,hirescam,hirescam(conv_head),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-effnetv2s-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,hirescam,hirescam(conv_head),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-effnetv2s-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,hirescam,hirescam(conv_head),2,True,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-maxvit_t-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,gradcam,gradcam(stages),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-maxvit_t-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,gradcam,gradcam(stages),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-maxvit_t-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,gradcam,gradcam(stages),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-mobilenetv4-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,hirescam,hirescam(blocks),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-mobilenetv4-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,hirescam,hirescam(blocks),1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-mobilenetv4-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,hirescam,hirescam(blocks),2,True,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-regnety016-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,hirescam,hirescam(s4),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-regnety016-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,hirescam,hirescam(s4),0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-regnety016-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,hirescam,hirescam(s4),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-resnet50-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,gradcam,gradcam(layer4),1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-resnet50-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,gradcam,gradcam(layer4),1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-resnet50-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,gradcam,gradcam(layer4),2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_s-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,gradcam,"gradcam(layers, reshape=channels_last)",0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_s-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,gradcam,"gradcam(layers, reshape=channels_last)",1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_s-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,gradcam,"gradcam(layers, reshape=channels_last)",2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_t-base-f1-s1,mileage_000100_005000__session_002__b000__4ec306b800,gradcam,"gradcam(layers, reshape=channels_last)",0,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_t-base-f1-s1,mileage_040000__session_001__b000__1dff80a8cd,gradcam,"gradcam(layers, reshape=channels_last)",1,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78
+a-swin_t-base-f1-s1,mileage_100000_plus__session_003__b000__34e79ff30c,gradcam,"gradcam(layers, reshape=channels_last)",2,False,542b53bc8bd84c679ce1a447ea797fcdc713fe78

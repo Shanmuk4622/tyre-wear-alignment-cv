@@ -1,0 +1,19 @@
+arch,seeds,n_images,n_valid,ter_norm,ter_sd,bar,sar,dmgar,xai_status,xai_coverage,eligible,selected_top3,selection_revision,selection_rule
+regnety016,3,180,180,1.578536507533776,0.18277294745267783,0.031011563766636132,0.0,0.0013921596808359016,ok,1.0,True,True,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+densenet121,3,178,178,1.551341692907521,0.19512568170891523,0.045465617826557905,0.0,0.0006309674504694381,ok,1.0,True,True,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+resnet50,3,180,180,1.5145825277260372,0.32323446943957573,0.051215141056955966,0.0,0.0019066552890257685,ok,1.0,True,True,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+convnextv2_t,3,180,180,1.4806111478930815,0.2441814309205614,0.08120696342375594,0.0,0.0008241583806281076,ok,1.0,True,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+maxvit_t,1,60,60,1.4670509667636324,0.1781104170981736,0.09138506598149733,0.0,0.0002510138102176481,ok,1.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+effnetv2s,1,40,40,1.4471279131886166,0.2668411601636528,0.1044860775582492,0.0,0.0,ok,1.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+mobilenetv4,3,133,133,1.4413203549680969,0.24713305312940068,0.10212087915524055,0.0,0.0,ok,1.0,True,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+swin_s,1,60,60,1.1744613254952347,0.2148428213438591,0.26640019984527796,0.0,0.0004004111254895743,ok,1.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+swin_t,1,60,60,1.107869961954497,0.5105444450105767,0.3219173257549604,0.0,0.0007038352574454584,ok,1.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+coatnet0,1,58,58,0.8155163592924369,0.44973217868794,0.4575829037689957,0.0,0.0006314895180021863,ok,1.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+clip_b16,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+convnextv2_s,0,0,0,,,,,,excluded_checkpoint_arch_mismatch,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+deit3_s,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+dinov2_b,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+dinov2_s,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+resnext50,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+vgg16bn,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded
+vit_s,0,0,0,,,,,,excluded_no_faithful_cam,0.0,False,False,2026-08-30-r3,top TER_norm among five seed-confirmed screens; BAR tie-break; accuracy excluded

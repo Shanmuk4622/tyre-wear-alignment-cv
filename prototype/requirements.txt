@@ -1,0 +1,12 @@
+# Install into .vendor; retain cv_conda's existing CUDA torch/torchvision.
+timm==1.0.15
+ultralytics==8.4.20
+ultralytics-thop==2.0.18
+PySide6-Essentials==6.8.3
+shiboken6==6.8.3
+transformers==4.51.3
+tokenizers==0.21.4
+opencv-python-headless==4.11.0.86
+numpy==1.26.4
+# Existing cv_conda supplies torch, torchvision,
+# huggingface_hub, requests, Pillow and pandas. See README.

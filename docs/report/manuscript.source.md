@@ -1,0 +1,359 @@
+# Explainability-Guided Mileage-Proxy Recognition and Manual-Supervised Tyre Localisation
+
+## A reproducible pilot study under small-sample and split-dependence constraints
+
+**Full project report · Author-review edition · 12 September 2026**
+
+Bonala Shanmukesh · Gunnamneni Nehru · GV Manu Rohith · Nettem Harish Kumar  
+Department of AI & ML, SCOPE, VIT-AP University  
+Guide: Dr. E. Sreenivasa Reddy, Professor-HAG
+
+Original capstone title: *Vision-Based Detailed Tyre-Wear Recognition and Single-Wheel Alignment Screening*. The narrower report title describes the evidence actually available; it does not permanently remove the deferred components of the original proposal.
+
+> **Reading this report:** Results concern three mileage-proxy classes in a small image collection. They do not establish measured tread depth, roadworthiness, alignment, or independent new-tyre generalisation. Training and reporting execution are complete for the implemented tracks; original-plan extensions and final institutional approval are not.
+
+## Abstract
+
+Visual tyre analysis is attractive because cameras can provide non-contact observations of the tyre surface. However, a classifier can exploit background, capture conditions, or tyre identity instead of wear-related appearance. This project investigates that problem through an explanation-guided comparative study, followed by manual-supervised localisation and fixed downstream crop/fusion interventions. The prepared dataset contains 418 unique photographs and 4,180 synthetic derivatives, grouped into 12 timestamp-derived capture sessions and three mileage-proxy classes. The number of independently observed tyres is not verified. Suspected same-tyre overlap affects folds 0 and 2, while fold 1 remains a small internal evaluation rather than an external test.
+
+The retained architecture sweep comprises 153 valid runs across 17 architectures; nine mislabeled substitutions are excluded. An explanation-gated shortlist supports 108 one-factor-at-a-time runs, followed by 18 same-fold confirmation runs. The dense-task extension completes 81 runs across semantic segmentation, YOLO detection/instance segmentation, and RT-DETRv2 detection, each evaluated at the final epoch of a 60-epoch budget. Saved predictions support five fixed fusion arms without additional fitting. Across 81 equally weighted source runs, predicted-tyre and predicted-tread crops change macro-F1 by −0.01257 and −0.01467 relative to full-frame classification; equal full-frame/tyre/tread probability fusion changes it by −0.01324. These are descriptive paired results, not independent-sample significance estimates. Selected-epoch classification scores can substantially exceed fixed-final scores, and calibration behaviour differs by fold.
+
+The contribution is an auditable pilot workflow and an explicit account of what its evidence does and does not support. Strong internal scores and localisation agreement do not establish deployment validity or demonstrate that explanation-guided selection improves generalisation. The released reporting snapshot preserves negative results, model-identity quarantine, uncertain hypotheses, and deferred annotation-dependent work.
+
+**Keywords:** tyre imagery; mileage proxy; shortcut learning; explainability; semantic segmentation; detection; reproducibility; small datasets.
+
+## Executive summary
+
+The project has produced a substantial implemented study, not a certified tyre-inspection system. Classification, explanation screening, controlled interventions, manual-supervised dense tasks, exploratory fusion, and the S10 evidence package have public execution records. The important conclusion is not simply that some models have high scores. It is that score interpretation depends on the split, checkpoint endpoint, task, and label meaning.
+
+Three practical findings organise the report. First, a selected validation checkpoint and the final checkpoint answer different questions; their results must remain separate. Second, recovering tyre or tread regions does not automatically help an existing full-frame classifier. Third, the current data cannot settle the original physical claims: images labeled by mileage are not calibrated wear measurements, and many photographs of a few capture sessions do not constitute many independent tyres.
+
+No new GPU execution was required to prepare this document. The local evidence cache was downloaded from a pinned public Hugging Face snapshot and occupies approximately 3.02 MiB of downloaded content. It contains small tables, figures, manifests and status records, not model weights or image datasets. The report is designed for offline reading, printing, and author review. A venue-specific template, author declarations and approval remain human submission tasks.
+
+## 1. Introduction and motivation
+
+### 1.1 Problem setting
+
+The original project proposed a multi-component vision system for detailed tyre-wear recognition and single-wheel alignment screening. During development, the available labels and collection conditions required a more careful experimental interpretation. The executed classification target is an ordered, three-level mileage proxy. Although mileage and wear may be related in a particular collection, that relationship is not a measured physical calibration: road surface, loading, tyre construction, inflation and driving conditions can change it. Consequently, a correct proxy label cannot be translated into a millimetre tread-depth estimate or a safety decision.
+
+The study therefore asks how image classifiers behave on this collection, where their attribution falls, how stable their results are across the existing folds, and whether learned localisation changes downstream classification. The intended use is research into limitations and failure modes. No hardware prototype, alignment estimator, or roadworthy/unroadworthy decision system is validated here.
+
+### 1.2 Why accuracy alone is insufficient
+
+A background cue or capture-session signature can predict a dataset label without representing the intended tyre property. A model with high validation accuracy may therefore be useful only within the collection. The problem is particularly acute when the effective sampling unit is a tyre or session but the reported sample count is the number of photographs. Synthetic derivatives provide optimisation variation; they do not create independent evidence.
+
+The project responds with simple baselines, model-identity checks, explanation-method gates, controlled image interventions, and paired downstream evaluations. These diagnostics can expose weaknesses, but none converts a dependent internal split into an independent test. Attribution on the tread is a spatial association, not proof that a model reasons causally about wear.
+
+### 1.3 Contributions and boundaries
+
+The implemented contribution comprises: a documented prepared dataset and split audit; a retained multi-architecture comparison with quarantined identity failures; explanation-informed model selection and controlled follow-up experiments; a manual-supervised detection/segmentation extension; fixed, paired ROI and probability-fusion analyses; and a versioned evidence-to-report workflow. These are engineering and empirical contributions within one pilot collection. We do not claim state-of-the-art tyre inspection, a new validated wear metric, or superiority over studies that use measured physical ground truth.
+
+## 2. Related work and conceptual foundations
+
+### 2.1 Physical measurement versus image-label recognition
+
+TireEye describes an optical on-board approach that analyses groove geometry and uses a physical scale reference [1]. It is relevant because it illustrates a different target: measuring a physical property rather than recognising a proxy class. Its numerical results are not directly comparable with this project's macro-F1. A fair comparison would require compatible targets, physical reference measurements and independent test conditions, none of which can be reconstructed from the current labels.
+
+### 2.2 Recognition and ordinal targets
+
+Residual learning provides a widely used image-recognition backbone family [2]. This study compares convolutional and transformer-based implementations rather than treating one family as a presumed winner. The three class labels have an order, which motivates retaining ordinal decision semantics where CORAL heads are used [3]. A CORAL output is not interpreted by applying a softmax-style argmax to its thresholds. Implementation identity and decision rule are part of the experiment, not interchangeable reporting details.
+
+### 2.3 Explanation is a diagnostic, not a certificate
+
+Grad-CAM produces class-related localisation using gradients and feature activations [4]. The sanity-check literature shows why attractive saliency maps need tests of dependence on learned parameters [5]. Accordingly, NB07 evaluates method faithfulness and randomisation sensitivity before using spatial attribution summaries. This project-specific gate is useful for rejecting unsuitable methods, but passing it does not establish all possible notions of explanation validity or physical causality.
+
+### 2.4 Dense prediction and uncertainty
+
+U-Net, DeepLabV3+ and SegFormer supply distinct encoder/decoder approaches to dense prediction [6–8]. The detection branch additionally uses YOLO26 software and a genuine RT-DETRv2-R18 checkpoint [9–10]. Their native objectives and pretraining differ, so the comparison is not an equal-pretraining architecture-only ablation. Temperature scaling and conformal prediction motivate the uncertainty analyses [11–12], while their interpretation remains constrained by finite samples and dependence in the available splits. References distinguish primary papers from software documentation; unverified claims from earlier planning notes are not imported as established related work.
+
+## 3. Research questions and experimental scope
+
+| Question | Implemented evidence | What it can answer |
+|---|---|---|
+| RQ1: How sensitive are classification results to architecture, fold and endpoint? | Baselines, retained Stage A, final/selected metrics | Internal comparative behaviour; not an external leaderboard |
+| RQ2: Can spatial explanation diagnostics inform follow-up selection? | NB07 gates, seed confirmation, Stage B | Which candidates satisfy the implemented selection rule |
+| RQ3: Do selected training interventions repeat on other architectures? | 18 S4b runs | Same-fold directional confirmation, not independent replication |
+| RQ4: Can existing masks supervise tyre/tread localisation? | 81 S5 runs and native-coordinate evaluation | Agreement against the existing manual reference |
+| RQ5: Do predicted crops or fixed fusion improve a frozen classifier? | Paired ROI and NB18 fusion tables | Fixed intervention effects in the existing folds |
+
+Historical H1 asks whether normalised tread evidence predicts cross-fold stability better than accuracy. Its inherited analysis uses selected-epoch statistics and is not supported by the recorded result. H2 is inconclusive/undefined in the implemented evidence. H3 lacks the planned fine-grained model arms and remains untested. These outcomes are retained rather than replaced with post-hoc favourable hypotheses.
+
+![Study overview: evidence collection, implemented branches, and deferred components](assets/study_overview.svg)
+
+*Figure 1. Implemented evidence flow. Shared images and folds connect the branches; they do not create independent replications. The dashed branch marks work not executed in this study.*
+
+| Stage | Verified implementation | Completion boundary |
+|---|---|---|
+| S1 | Legacy baselines and matched random-init recovery | Legacy 15-epoch baseline remains distinct from matched 60-epoch control |
+| S2 | 17 architectures, 153 valid runs | Nine mislabeled Small runs excluded, not repaired by relabeling |
+| S3 | Manual/replay checks | Blind repeat annotation and SAM2 comparison deferred |
+| S4 / S4b | 108 OFAT + 18 confirmation runs | Wider original technique tiers not all executed |
+| S5 | 81 dense-task runs, all 60 epochs, NB17 report | Manual-supervised scope only |
+| Explanation/stress/uncertainty tracks | NB07–NB10 and recovery reporting | Original video/factorial/FGVC extensions remain missing |
+| S9 | 81 saved-input fusion analyses, five arms | Full HRNet/PatchCore design deferred |
+| S10 | NB19/NB20 execution and this full documentation package | Author review and venue-specific submission outstanding |
+
+## 4. Dataset, labels and sampling limitations
+
+### 4.1 Preparation and class composition
+
+The frozen preparation record describes 888 raw files, of which 470 byte-identical duplicates were removed, leaving 418 clean photographs. Ten pre-generated derivatives per clean image produce 4,180 derivative files, or 4,598 files when clean originals are included. The clean images are 1152 × 1536 RGB; derivatives are 768 × 768. The collection was captured within approximately 22 minutes on 25 August 2026. That narrow acquisition window limits evidence about changes in weather, illumination, cameras and operating conditions.
+
+| Proxy class | Clean images | Timestamp-derived sessions |
+|---|---:|---:|
+| Low | 169 | 3 |
+| Mid | 97 | 3 |
+| High | 152 | 6 |
+| Total | 418 | 12 |
+
+The word *session* is deliberate. A timestamp-gap rule, rather than independently verified tyre identity, defines the 12 groups. Earlier planning documents sometimes called these “12 tyres”; this report does not adopt that assumption. The full preparation record and known split caveats remain available in [the dataset specification](../12_DATASET_FINAL_V1.md).
+
+### 4.2 Folds and leakage flags
+
+| Fold | Clean training originals | Clean validation originals | Interpretation |
+|---|---:|---:|---|
+| 0 | 232 | 186 | Suspected same-tyre cross-fold overlap flagged |
+| 1 | 290 | 128 | No listed overlap flag; still a small internal split |
+| 2 | 314 | 104 | Suspected same-tyre cross-fold overlap flagged |
+
+Classification training can include derivatives linked to training originals; S5 uses clean originals only. Validation uses clean held-out photographs. Group-aware construction prevents some obvious derivative leakage, but does not prove independent tyre identity when session boundaries are imperfect proxies. Folds 0 and 2 are descriptive diagnostics, not credible independent-generalisation estimates. Fold 1 has only a few sessions and cannot alone resolve the problem.
+
+The large number of optimisation runs must not obscure this small underlying evidence base. Three random seeds characterise training variation conditional on the data; they do not triple the tyre sample size. Standard deviations over seeds are therefore not tyre-population confidence intervals. A future external evaluation requires tyres collected independently, recorded identities, and labels that match the intended physical claim.
+
+### 4.3 Manual mask reference and annotation limits
+
+Existing manual masks supply the S5 supervision. The canonical tyre region is `mask > 0`; the tread region is `(mask == 2) OR (mask == 3)`. These are overlapping regions: tread belongs within tyre. A mutually exclusive tyre/tread softmax would misrepresent this label geometry. Boxes are derived from these regions, so hundreds of new box annotations are not required for the implemented route.
+
+NBT1 tests annotation propagation/replay. It is not an independent second annotation of the images. Consequently, model-versus-manual IoU cannot be described as annotator self-consistency, inter-annotator agreement or unedited-SAM2 agreement. Those studies remain deferred. Mask quality affects both training and evaluation, so systematic annotation conventions may be learned and reproduced without proving that every boundary is physically exact.
+
+## 5. Methods and execution protocol
+
+### 5.1 Classification sweep and endpoints
+
+The retained sweep covers 17 configurations across three folds and three seeds. It includes residual/dense/VGG-style networks, modern convolutional models, transformer and hybrid architectures, and foundation-pretrained representations. The recorded architecture identifiers in Table 2 below are the reproducible names. The excluded `convnextv2_s` statuses reported 11,177,538 parameters and a sampled checkpoint exhibited a ResNet-18 tensor signature. Those nine executions cannot support a ConvNeXtV2-Small claim, regardless of their score. Their public records remain preserved in the quarantine table.
+
+Two endpoints must be distinguished throughout: validation-selected checkpoint performance and fixed-final performance. Selection can reward an early transient peak; a final-epoch score reflects the declared training budget. This report preserves both instead of silently treating the larger value as the experiment's endpoint. Exact per-run configuration and runtime records, not a generic environment file alone, define a reproducible training run.
+
+### 5.2 Explanation screening and follow-up selection
+
+The NB07 implementation screens 18 initial candidates and adds ten confirmation runs for shortlisted screens. Recorded evidence includes 1,208 explanation rows and 35 method-faithfulness rows. Candidate CAM methods undergo the locked randomisation and faithfulness gate. Randomisation sensitivity must exceed 0.05; faithfulness is based on insertion/deletion behaviour. An architecture with no surviving method is excluded from this explanation-based selection, rather than being assigned an invented valid explanation or stopping all remaining architectures.
+
+Normalised tread evidence compares the fraction of nonnegative saliency inside the tread with the tread's image-area fraction: `TER_norm = (saliency mass in tread / total saliency mass) / (tread area / image area)`, where defined. A value above one indicates concentration beyond area share, not causality. On this dataset tread and tyre nearly coincide: the implementation documents a median area ratio of 0.990 and 114 images without visible shoulder. TER therefore primarily distinguishes tyre from background here, not tread from shoulder or groove-level wear evidence. Zero or invalid maps must remain invalid evidence rather than being interpreted as successful localisation. The gate and spatial ranking selected RegNetY-016, DenseNet-121 and ResNet-50 for Stage B; this was not an accuracy-only shortlist.
+
+Precisely, the implemented gate requires `sanity_delta > 0.05` and a non-missing insertion-minus-deletion AUC value, then ranks survivors by that difference. It does not enforce a separate positive faithfulness threshold. The name “faithfulness gate” must not be interpreted as a stronger mathematical guarantee than this actual rule.
+
+### 5.3 OFAT and S4b confirmation
+
+Stage B contains 108 runs: three selected architectures, 12 one-factor changes and three seeds on fold 1. Holding other recipe fields fixed supports a local intervention comparison, but does not identify interactions between factors. A resolution arm and a crop arm run separately do not establish a crossed resolution × ROI effect.
+
+S4b evaluates three selected factors on ConvNeXtV2-Tiny and MobileNetV4, with three seeds each: 18 runs at 60 epochs. The factors are class-weighted sampling, uniform sampling and random initialisation. Their discovery effects are signed; selection did not mean all three were beneficial. Confirmation uses the same fold, so it tests transfer of an intervention across these architectures, not replication on new tyres. Selected and final deltas are both reported because conclusions about sampling depend on the endpoint.
+
+### 5.4 Manual-supervised dense tasks
+
+S5 comprises nine model/task configurations × three folds × three seeds = 81 runs. The semantic group contains U-Net/ResNet-34, DeepLabV3+/ResNet-34, SegFormer-B0 and SegFormer-B2. YOLO26-n and YOLO26-s each supply detection and instance-segmentation configurations. Genuine RT-DETRv2-R18 supplies the final detector; it is not an Ultralytics RT-DETR-L checkpoint renamed as v2.
+
+All runs use 512-pixel inputs and 60 epochs. The declared optimiser is AdamW with learning rate 0.0001 and weight decay 0.01, with cosine scheduling. Batch sizes are four for semantic and YOLO models and two for RT-DETR. Semantic training uses binary cross-entropy plus soft Dice on two sigmoid channels. YOLO and RT-DETR retain native task losses. Horizontal flipping has probability 0.5 for semantic and YOLO training; RT-DETR has no online augmentation. The repaired YOLO policy explicitly disables hidden additional augmentations. Backend-native EMA, pretraining and objective details differ and remain part of the comparison.
+
+YOLO polygon export is checked against each native manual region: rasterised polygons must retain at least 0.98 IoU. All 836 region exports passed, with minimum approximately 0.980092. This validates the representation conversion to the stated tolerance; it does not independently validate the original human mask. Native masks, rather than the approximated polygons, remain the evaluation reference.
+
+### 5.5 Localisation and downstream evaluation
+
+S5 evaluates epoch 60, using native final-epoch EMA for YOLO and final raw weights for the other backends. Box AP and mask AP use COCO-style IoU thresholds from 0.50 to 0.95. Region metrics include IoU, Dice, and boundary F1 at a two-native-pixel tolerance. A high overlap score with a modest boundary score means that area agreement and fine boundary accuracy should not be conflated. Missing quantities for detector-only models are undefined, not zero performance.
+
+For downstream evaluation, the same frozen Stage-A ResNet-50 final checkpoint is matched by fold and seed. Five modes are compared: full frame, predicted tyre crop, predicted tread crop, oracle tyre crop and oracle tread crop. Crops have 5% padding; a missing predicted region falls back to the full image and is recorded. Classification is not retrained on crops. This means a degraded crop result can reflect a distribution shift for the classifier as well as localisation error. Oracle crops are diagnostic upper-information interventions, not deployable learned predictions.
+
+The CORAL class decision is obtained by counting thresholds greater than 0.5; softmax models retain argmax. Preserving that distinction is essential when recomputing F1 from saved predictions. Native coordinates, image identities and per-image probabilities allow the paired comparisons to be checked rather than inferred from summary scores.
+
+### 5.6 Exploratory fusion
+
+NB18 uses saved prediction sets; it does not train another network. Its five fixed arms are full frame, tyre only, tread only, equal tyre/tread probabilities, and equal full-frame/tyre/tread probabilities. There are 405 run/arm metric rows and 56,430 per-image/arm prediction rows. The analysis deliberately does not search for an optimal test-set weight or choose a favourable arm after observing the result. Equally weighting the 81 source runs gives a descriptive summary, not 81 independent samples from a tyre population.
+
+### 5.7 Resource-aware execution and resumability
+
+Training runs in Kaggle sessions with Hugging Face as the persistent record. The later dense-task workflow isolates jobs in child processes, checks working RAM and free space, and uses GPU 0 intentionally rather than claiming unmeasured two-GPU acceleration. The parent owns publication. Normal snapshots are batched at approximately 30-minute intervals; major action completion and catchable interruption request a flush. Rate limits can still delay a request.
+
+Checkpoints retain optimisation state, history, runtime identity and random-generator state as supported by the backend. Resume starts at the latest successfully published completed epoch, not an arbitrary interrupted batch. An uncatchable OS kill or loss of unpublished local state cannot be guaranteed recoverable. Immutable staging, checkpoint/status hash checks and journal recovery address publication consistency; they do not make a remote service or a temporary session infallible. These boundaries are central to honest reproducibility claims.
+
+## 6. Results
+
+### 6.1 Baselines expose split sensitivity
+
+**Table 1. Legacy baseline macro-F1 on the three existing folds.** The random-init ResNet-18 row is a historical 15-epoch experiment and is not the matched 60-epoch ResNet-50 control. Means are descriptive fold means. [Source table](evidence/tables/classification_baselines_by_fold.csv).
+
+{{BASELINES}}
+
+The simple baselines vary markedly across folds. This supports investigating capture-specific cues, but does not identify a unique shortcut mechanism. The later matched ResNet-50 random-init recovery completed nine 60-epoch runs; its audited mean final-epoch macro-F1 is approximately 0.82332, documented separately in [the recovery audit](../21_RECOVERY_COMPLETION_AUDIT.md). It must not be substituted for the legacy ResNet-18 row because backbone, budget and provenance differ.
+
+### 6.2 Architecture results depend on the checkpoint endpoint
+
+**Table 2. Retained architecture results, nine runs each.** “Selected” is the preserved mean selected-checkpoint macro-F1; “final” is the preserved mean fixed-final macro-F1. This table retains the source ordering and is not an independent-test ranking. [Source table](evidence/tables/classification_master_architectures.csv).
+
+{{ARCHITECTURES}}
+
+MobileNetV4 has a selected mean of 0.99746 and a final mean of 0.91310. EfficientNetV2-S changes from 0.97615 to 0.70874, and VGG16-BN from 0.89194 to 0.45870. These differences are too large to hide behind a generic “accuracy” label. They motivate reporting checkpoint policy alongside every main comparison. They do not establish that early stopping would generalise externally, because the selection itself uses the existing validation evidence.
+
+![Selected versus final macro-F1 for the retained architectures](assets/endpoint_comparison.png)
+
+*Figure 2. Report-derived endpoint comparison from the frozen master table. Each connected pair is a mean over nine runs, not an independent-test confidence interval. Both endpoints include the known problematic folds.*
+
+![Per-fold classification results](evidence/figures/legacy_fig02_per_fold.png)
+
+*Figure 3. Preserved NB10R final-epoch per-fold classification panel, as labeled in the source image. It is not a selected-checkpoint plot. Fold differences are substantive and folds 0/2 remain leak-flagged. Dashed reference lines are inherited diagnostic baselines, not certified physical-wear thresholds.*
+
+### 6.3 Explanations and hypotheses
+
+The gate-based shortlist differs from a pure selected-F1 ranking. This is a procedural outcome: it shows that the rule prioritises a different property, not that it has already solved generalisation. The inherited H1 result does not support its proposed advantage; the evidence ledger retains H2 as undefined/inconclusive and H3 as untested.
+
+![Accuracy and normalised tread evidence](evidence/figures/legacy_fig01_accuracy_vs_ter.png)
+
+*Figure 4. Preserved accuracy–tread-evidence diagnostic. Despite the generic “accuracy” title, the vertical axis is mean final-epoch macro-F1, consistent with the source's plotted values; H1 in Appendix A separately retains its legacy selected endpoint. Spatial concentration is not proof of reliance on physically meaningful wear features.*
+
+![Insertion and deletion faithfulness diagnostic](evidence/figures/legacy_fig07_faithfulness.png)
+
+*Figure 5. Preserved insertion-AUC minus deletion-AUC panel. Displayed bars include methods/architectures that do not survive the separate randomisation gate; a positive bar alone does not establish selection eligibility. Gate failures remain exclusions. The complete 30-panel saliency visual is retained in Appendix A.*
+
+### 6.4 S4b confirms some directions, not a universal sampling gain
+
+**Table 3. Same-fold confirmation effects relative to matched baselines.** Deltas are macro-F1; each row summarises three seeds. Direction refers to the source selected-endpoint comparison. [Source table](evidence/tables/s4b_architecture_effects.csv).
+
+{{S4B}}
+
+Random initialisation is negative on both confirmation architectures at selected and final endpoints. The sampling results are more qualified: class weighting improves the selected ConvNeXt result but reduces the selected MobileNet result, while their final deltas are both positive. Uniform sampling is likewise not a consistent selected-endpoint gain. Thus, “sampling helps” is too broad. The defensible claim specifies architecture, endpoint and this fold. No interaction or population-level significance is inferred.
+
+![One-factor intervention results](evidence/figures/legacy_fig06_ofat_effects.png)
+
+*Figure 6. Preserved discovery OFAT panel. This is Stage B, not S4b confirmation. The source labels its whiskers “95% normal CIs”; these inherited run-based normal-approximation intervals are not independent-tyre population confidence intervals and are not used here to assert significance. Shared data, architectures and selection constrain interpretation.*
+
+### 6.5 Dense-task completion and localisation
+
+All 81 dense-task runs have completed 60 epochs and evaluation, yielding 4,860 epoch records. The previous S5 audit checked statuses, checkpoint/artifact hashes, native prediction coverage and recomputed downstream F1. This report reuses the pinned small reporting tables rather than downloading those checkpoints again.
+
+**Table 4. Fold-1 localisation means across three seeds.** AP is on the 0–1 scale. Dashes denote unavailable quantities for box-only models. Restricting this table to fold 1 avoids presenting flagged-fold averages as the main localisation estimate, but fold 1 is still not an external test. [Source table](evidence/tables/s5_localisation_by_run.csv).
+
+{{LOCALISATION}}
+
+![Box AP across model and fold](evidence/figures/s10_11_box_ap.png)
+
+*Figure 7. Box AP50:95 by model and fold. Bars summarise the existing folds; error bars are standard deviations across three seeds, not confidence intervals across independent tyres.*
+
+![Predicted tread mask overlap against manual reference](evidence/figures/s10_14_manual_mask_iou.png)
+
+*Figure 8. Predicted tread-mask IoU against existing manual masks. Detector-only configurations do not supply mask IoU. This is model/reference agreement, not independent repeat annotation or a SAM2 comparison.*
+
+Overlap and boundary metrics answer different questions. A predicted region may capture most tread area while missing narrow boundary details. Moreover, agreement with a reference mask does not by itself establish that the extracted region contains the causal signal for the proxy label. These distinctions motivate the downstream crop analysis rather than assuming that localisation quality guarantees classification benefit.
+
+### 6.6 Predicted crops and fusion do not improve the overall mean
+
+The mean predicted-tyre crop delta is −0.01257 macro-F1 and the predicted-tread delta is −0.01467, equally weighted across the 81 source runs. These averages do not imply every architecture/fold is negative. Shared classifier predictions and repeated use of the same images also mean the runs are dependent. The per-model/fold source summaries should accompany any narrower interpretation.
+
+![Predicted tread crop change versus full image](evidence/figures/s10_12_predicted_roi.png)
+
+*Figure 9. Predicted-tread crop macro-F1 change relative to the matched frozen full-frame classifier. Zero means no change. Seed standard deviations describe run variation, not tyre-level uncertainty. The classifier was not retrained on crops.*
+
+**Table 5. Fixed fusion analysis, descriptive mean paired deltas.** All five arms have 81 source-run rows; the full-frame arm is the paired reference. [Source table](evidence/tables/s9_fusion_by_run.csv).
+
+{{FUSION}}
+
+![Equal full-frame, tyre and tread fusion change](evidence/figures/s10_13_fixed_fusion.png)
+
+*Figure 10. Equal-probability full-frame/tyre/tread fusion relative to full frame. The rule was fixed; no learned fusion, weight optimisation or post-hoc winning-arm selection is claimed.*
+
+The negative mean is scientifically useful: it rejects the assumption that adding localised views automatically improves this frozen classifier. Possible explanations include lost context, crop-induced scale changes, localisation errors and correlated information between views. The present experiment does not isolate their relative contributions. A crop-trained classifier or learned fusion model would be a new experiment requiring its own design and evaluation, not a wording change to this result.
+
+### 6.7 Stress tests and uncertainty
+
+NB08 contributes 63 stress-test rows. The shuffled-label fixed-final control mean of approximately 0.37518 is below the declared 0.45 audit threshold. Passing that specific control does not demonstrate absence of all leakage; the known session/tyre concerns remain. Perturbation responses are diagnostic and can involve distribution shift beyond the intended intervention.
+
+![Stress intervention matrix](evidence/figures/legacy_fig04_stress_matrix.png)
+
+*Figure 11. Preserved stress-test panel. The source title says “causal”, but these are controlled image perturbations, not identified causal effects of physical wear. The fold-1 marking intervention is a no-op because that validation fold has no marking-positive reference images; a near-zero cell therefore cannot establish marking independence.*
+
+**Table 6. Calibration on the retained held-out calibration-test subsets.** The `n` column is the test subset count, not the full validation-fold size. Temperature scaling changes confidence; macro-F1 is unchanged in these recorded rows. [Source table](evidence/tables/calibration.csv).
+
+{{CALIBRATION}}
+
+**Table 7. Conformal diagnostics at nominal 90% coverage.** [Source table](evidence/tables/conformal.csv).
+
+{{CONFORMAL}}
+
+Fold 0 achieves 0.86885 coverage, below nominal; folds 1 and 2 achieve 0.97561 and 0.93939, respectively. It would be incorrect to say that every fold misses nominal coverage, or that all future data are guaranteed covered. The small test subsets and dependent acquisition structure constrain the interpretation. Mean set sizes below one indicate empty sets occur; the inherited abstention field does not by itself count all empty-set failures. It must not be presented as a complete uncertainty-based rejection policy. Extremely small calibrated errors on flagged folds are not evidence of deployment-grade certainty.
+
+## 7. Discussion
+
+### 7.1 What the project establishes
+
+The strongest evidence is that a broad, auditable workflow has been executed on this collection, with explicit endpoint preservation, model-identity checks, manual-supervised dense tasks and fixed paired analyses. It demonstrates the feasibility of collecting comparable prediction artifacts across heterogeneous backends while preserving the failures and negative results needed for interpretation. It also shows why a final report should not merely repeat the largest accuracy number.
+
+The sweep is descriptive rather than a universal architecture ranking. The explanation shortlist is a reproducible selection procedure, not proof that selected models generalise better. S4b reveals endpoint-dependent sampling effects and consistently harmful random initialisation for the two tested confirmation models. Dense localisation and downstream classification should be evaluated separately: a good region estimate does not ensure a gain when inserted into a classifier trained on full frames.
+
+### 7.2 What cannot be concluded
+
+No result here establishes a relationship between class probability and millimetres of remaining tread, a safety threshold, an alignment angle, or a failure diagnosis. No external tyre-level benchmark is available. No claim of causal explanation follows from a high TER or a visually appealing CAM. No claim of SAM2 superiority or annotator consistency follows from manual-mask supervision. No full HRNet/PatchCore pipeline was implemented by the fixed-fusion notebook.
+
+It is also inappropriate to manufacture one overall completion percentage. Completing 81/81 dense runs is precise within that frozen scope. It does not supply the missing data for unexecuted original experiments. The stage ledger is a more faithful account of progress than turning every stage green.
+
+### 7.3 Threats to validity
+
+**Construct validity:** Mileage is a proxy for the desired property, and manually drawn regions are not physical wear measurements. Alignment requires additional geometric references. **Internal validity:** Known overlap flags, repeated validation use, selected-checkpoint reporting and architecture-specific runtime differences can affect comparisons. **External validity:** One brief acquisition session, few identity groups and limited environments constrain transfer. **Conclusion validity:** Multiple architectures and interventions share the same data; seed variation is not independent sampling uncertainty and post-hoc favourable comparisons would inflate confidence.
+
+**Measurement validity:** IoU is insensitive to some boundary details; CAM resolution and target-layer choices influence spatial metrics; empty conformal sets need explicit treatment. **Operational validity:** Temporary sessions and upload windows limit recoverability. Public status and matching hashes establish artifact consistency, not automatic scientific correctness. **Reporting validity:** Historical proposal documents mix planned and completed components, which is why this report carries explicit scope and source mappings.
+
+### 7.4 Ethical, safety and licensing considerations
+
+This pilot should not be used to decide whether a vehicle is safe to drive or a tyre should remain in service. Any deployment claim requires appropriate physical inspection and independent validation. Before wider redistribution, authors should review image ownership, incidental identifying content, dataset terms and model licences. A public Hugging Face repository is not by itself proof of permission to redistribute every asset. The project code's MIT licence does not override external dataset, pretrained-weight or backend obligations.
+
+## 8. Reproducibility and artifact provenance
+
+The authoritative reporting snapshot is the public dataset repository [Shanmuk4622/tyre-wear-study](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/22d5a6bc9f953ba3bf2a75919edc7db3193b317b), revision `22d5a6bc9f953ba3bf2a75919edc7db3193b317b`. The S10 namespace is `s10/reporting-r1/2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e/`.
+
+NB19 collected 38 source files: 25 tables, ten inherited figures and three upstream status records. NB20 added four figures and the reporting artifacts, producing 14 inherited/public figures in total. The [evidence manifest](evidence/evidence_manifest.json) maps each local source to its original HF path, revision, byte count and SHA256. The [report status](evidence/REPORT_STATUS.json) lists report artifact hashes. Different collection and publication revisions are expected; they do not mean the data were silently changed.
+
+This edition adds a study-flow diagram and an endpoint-comparison chart, with the latter generated directly from the cached master table. All upstream evidence remains unchanged under `evidence/`. Generated report tables come from those CSVs. The manuscript source, build script, local validation script and [reproducibility appendix](REPRODUCIBILITY.md) distinguish documentation reproduction from expensive scientific retraining. Local provenance also records report outputs and the source-code hashes used to build them.
+
+Artifact verification is layered. This documentation build verifies cached evidence and report hashes, row-count invariants, local links, images, unresolved markers and output integrity. Earlier audit records document full training checkpoint and prediction verification. This documentation pass does not re-download or re-audit every large checkpoint, and it does not claim an independent re-execution of training.
+
+## 9. Conclusions and next work
+
+The completed implemented tracks support an evidence-grounded pilot study of mileage-proxy recognition and tyre/tread localisation. They expose substantial endpoint and fold sensitivity and show no average gain from the tested frozen-classifier crop/fusion interventions. The appropriate conclusion is qualified: the workflow is reproducible and its limitations are visible, while physical wear validity and independent generalisation remain unestablished.
+
+The immediate next step is author review of this report, its claims ledger, figures and references, followed by the required institutional or venue template. No notebook rerun is needed merely to prepare the document. HRNet/PatchCore remain temporarily deferred. If revisited, first freeze the physical task and label definitions, then provide a small guided annotation pilot with examples and review it before requesting a larger batch. HRNet would need defined landmark targets; PatchCore would need an independently justified healthy-reference pool. Existing mileage labels cannot simply be renamed to satisfy either requirement.
+
+A stronger future study should prioritise independently identified tyres, wider acquisition conditions and target-matched measurements before multiplying model runs. A new tyre-held-out split should be frozen before evaluating additional crop-trained models, learned fusion or calibration policies. Negative current results should remain part of the record even if future experiments improve them.
+
+## Appendix A. Supplementary figure archive
+
+These figures are preserved from NB10R rather than redrawn as if they represented new experiments. Their original file identifiers differ from this report's sequential main-text numbering. The saliency image is unusually tall and its source title overlaps the top labels; open the original at full resolution for inspection. This known source-layout issue is not concealed by editing the scientific pixels.
+
+![Thirty inherited saliency panels](evidence/figures/legacy_fig03_saliency_panels.png)
+
+*Figure A1. Thirty saliency panels: ten surviving architecture/method rows and three sampled fold-1 images. Cyan marks the tyre boundary; these are saliency maps, not new raw-image overlays. Zero maps remain explicitly visible. Qualitative samples do not represent a quantitative independent test.*
+
+![Inherited H1 stability diagnostic](evidence/figures/legacy_fig05_h1_stability.png)
+
+*Figure A2. Legacy selected-endpoint H1 stability diagnostic. It does not establish the proposed superiority of TER-based stability prediction or replace a fixed-final analysis. Several source point labels overlap; the numeric H1 result is retained in the linked hypothesis table rather than inferred from those labels.*
+
+![Selected epoch distribution](evidence/figures/legacy_fig08_best_epoch.png)
+
+*Figure A3. Best-epoch diagnostic. This is not the original proposed video temporal-consistency experiment.*
+
+![Recorded energy diagnostic](evidence/figures/legacy_fig09_energy.png)
+
+*Figure A4. Recorded energy comparison under the observed execution conditions. Do not treat this as a controlled hardware-efficiency benchmark or a full lifecycle carbon estimate.*
+
+![Session-level classification diagnostic](evidence/figures/legacy_fig10_per_session.png)
+
+*Figure A5. Final-epoch per-session accuracy under the existing grouping, not macro-F1. Sessions are not independently verified tyre identities. Some long source session labels are abbreviated; original IDs remain in source records. This figure does not supply the missing crossed factorial or video experiments.*
+
+## Appendix B. Submission and documentation map
+
+- [Reproducibility appendix](REPRODUCIBILITY.md): notebook order, environment, evidence map, resume semantics and reproduction commands.
+- [Claims, limitations and figure audit](CLAIMS_AND_LIMITATIONS.md): permitted wording, unsupported claims, source-layout caveats and open research gaps.
+- [References and verification notes](REFERENCES.md): primary literature and software references, with scope of use.
+- [Submission checklist](SUBMISSION_CHECKLIST.md): author review, rights, required template, declarations and final checks.
+- [Repository guide](../REPOSITORY_GUIDE.md): active documentation, historical design records, notebooks, code and generated artifacts.
+
+No author contribution roles, funding declaration, ethics approval, permissions or supervisor sign-off have been invented. They must be completed by the authors where required.
+
+## References
+
+{{REFERENCES}}

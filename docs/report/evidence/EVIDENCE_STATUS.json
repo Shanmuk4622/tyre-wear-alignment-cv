@@ -1,0 +1,54 @@
+{
+  "status": "evidence_bundle_ready",
+  "source_revision": "35a178b5a94878bdee95a0aa9ed8cb25cd1aeb6b",
+  "code_sha256": "2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e",
+  "manifest_sha256": "2922f8d6a000ec44b5776bff0cabfaf74a5cd2bd31f135a76958ce9a5b76a33c",
+  "counts": {
+    "s5_runs": 81,
+    "s5_epoch_records_previously_audited": 4860,
+    "s9_source_runs": 81,
+    "roi_rows": 405,
+    "fusion_rows": 405,
+    "retained_architectures": 17,
+    "quarantined_runs": 9
+  },
+  "full_project_complete": false,
+  "remaining": [
+    [
+      "Full S9 HRNet/PatchCore",
+      "Deferred by user; not executed"
+    ],
+    [
+      "SAM2 comparison / blind consistency",
+      "Deferred; existing masks are not independent repeat labels"
+    ],
+    [
+      "H2",
+      "Inconclusive/undefined in the implemented intervention evidence"
+    ],
+    [
+      "H3",
+      "Untested; preregistered fine-grained arms absent"
+    ],
+    [
+      "Video temporal consistency",
+      "Not measured; no suitable video evidence"
+    ],
+    [
+      "Resolution x ROI factorial interaction",
+      "Not established by separate OFAT arms"
+    ],
+    [
+      "Independent tyre generalisation",
+      "Not established; folds0/2 leak-flagged and fold1 has few tyres"
+    ],
+    [
+      "Broader Tier5/6 and XAI extensions",
+      "Not completed by the implemented tracks"
+    ],
+    [
+      "Manuscript submission",
+      "Requires human review, reference checking and venue formatting"
+    ]
+  ]
+}
