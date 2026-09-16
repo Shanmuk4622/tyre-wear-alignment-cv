@@ -1,5 +1,9 @@
 # GitHub Setup
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 Repo is initialised and committed locally. This file has everything you need to paste into GitHub.
 
 ---

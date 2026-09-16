@@ -1,5 +1,9 @@
 # 07 — Roadmap and Team Plan
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **Capstone Fall-Sem 2026–27 · Review-1 complete · dataset in hand.**
 
 Companion to `13_EXPERIMENT_PLAN.md`. That document says what the study *is*; this one says who does what, in what order.
@@ -253,7 +257,7 @@ exploratory component results are verified separately (`docs/25`).
 
 NB19/NB20 reporting execution is complete and HF-verified:38 bundled sources,
 14 public figures, HTML report and Markdown results draft. The full manuscript
-is now prepared at [report/REPORT.html](report/REPORT.html), with16 visuals,
+is now refreshed at [report/REPORT.html](report/REPORT.html), with22 visuals,
 source-generated tables, reviewed claims/references and reproducibility/submission
 appendices. Next: author/guide review and the required template. No GPU rerun.
 The original missing video/factorial/H3 work is not completed by these figures.

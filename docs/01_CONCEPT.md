@@ -1,5 +1,9 @@
 # 01 — Problem Formulation and Observability
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > What a low-front camera can and cannot see, stated precisely, before any model is chosen.
 
 ---

@@ -1,5 +1,9 @@
 # Reproducibility appendix
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 ## 1. Three different reproduction tasks
 
 1. **Read the report:** open [REPORT.html](REPORT.html). All scientific figures are local; no internet, token or GPU is needed. Keep the `assets/` and `evidence/figures/` folders beside it.
@@ -7,6 +11,14 @@
 3. **Reproduce scientific training:** follow the frozen notebooks, protocol and checkpoint runtime records. This is expensive, is not required for documentation, and should not overwrite completed namespaces. Independent reruns need an explicitly authorised new run namespace and compatible environment.
 
 ## 2. Frozen source map
+
+The 15 September extension additionally pins HRNet report
+`a92c0f9c5c1b78c6a06e13d51e18722195230658` and matched SegFormer comparison
+`bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb`. The separate
+[geometry manifest](evidence/geometry_manifest.json) hashes copied audited JSON,
+local prototype test records and source screenshots. Prototype artifacts are
+local software evidence, not a newly published HF experiment. The old 38-file
+manifest is preserved unchanged.
 
 Public dataset repository: [Shanmuk4622/tyre-wear-study](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study).
 
@@ -56,6 +68,9 @@ This is an interpretation/run-order map, **not a request to rerun completed work
 | Dense report | NB17 | Verify all 81 evaluations before reporting |
 | Exploratory fusion | NB18 | Consume saved S5 predictions, not new training |
 | Evidence/report | NB19, NB20 | CPU-only reporting collection and draft generation |
+| Point labels and HRNet | NB21–NB29 | Pilot, 120-image annotations, frozen 72/24/24 split, completed three-seed training and report |
+| Matched geometry | NB30–NB32 | Same-split SegFormer comparison, completed; no rerun |
+| Native integration | prototype/ | Existing seed-1 epoch-60 optional learned geometry and target-assisted software; no NB33 required to acknowledge implementation |
 
 See [the notebook directory](../../notebooks/) and [S5 execution specification](../24_S5_MANUAL_DENSE_TASKS.md) for exact filenames and the current-position section. Older repair instructions below historical headings are not fresh rerun requests.
 
@@ -76,6 +91,12 @@ Model identity includes architecture implementation, head, parameter/tensor iden
 - Conformal empty sets require explicit handling. The inherited `abstain_rate` field alone is not a complete rejection policy.
 
 ## 7. Persistence and interruption guarantees
+
+Later geometry notebooks differ from the older dense-task workflow below:
+NB28/NB31 save every completed optimiser step with next-batch cursor and RNG,
+while HF snapshots retain the roughly 30-minute/catchable-stop cadence. The T4
+deterministic resize repair is recorded separately with its source hash. Local
+integration uses FP32; it is not a numerical replay of the AMP benchmark.
 
 The parent uploader batches normal publication at approximately 30 minutes and requests a flush at major completion or catchable Stop. Server backoff still applies. There are no claim/heartbeat commits in the corrected static-owner workflow. Each active worker/account must have unique static ownership; changing worker count requires stopping old copies first.
 

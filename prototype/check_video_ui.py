@@ -42,6 +42,12 @@ def main():
             assert window.rgb.shape[1] <= 1280
             assert window.viewer.processed is not None
             assert window.viewer.preview is not None
+            assert set(window.geometry_frames) == set(window.masks)
+            for name, geometry in window.geometry_frames.items():
+                if 'mask' in geometry:
+                    assert geometry['mask'].shape == window.captured_rgb.shape[:2]
+                if geometry['stable']:
+                    assert geometry['valid'] and geometry['count'] >= 3
             times=list(window.result_times)
             hz=(len(times)-1)/(times[-1]-times[0])
             # Seek while inference is in progress; the prior result must not

@@ -1,5 +1,9 @@
 # Video update and real-clip verification
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 The original prototype was verified with a video made from a study photograph. That did not establish that YOLO could generalize to actual video. This update was tested with the three supplied files in the repository's `Videos/` folder.
 
 ## What changed

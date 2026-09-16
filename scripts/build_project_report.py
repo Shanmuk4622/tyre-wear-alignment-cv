@@ -145,7 +145,7 @@ def render(text):
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
             '<meta name="description" content="Evidence-grounded tyre image pilot study: full author-review report.">'
             '<title>Tyre Study — Full Project Report</title><style>' + CSS + '</style></head><body>'
-            '<header class="masthead">VIT-AP · Research report · Evidence frozen 12 September 2026</header>'
+            '<header class="masthead">VIT-AP · Research report · Updated 15 September 2026 · Versioned evidence</header>'
             '<div class="layout"><nav aria-label="Contents"><strong>Report contents</strong>' + ''.join(contents) +
             '<a href="REPRODUCIBILITY.md">Reproducibility appendix</a><a href="SUBMISSION_CHECKLIST.md">Submission checklist</a>'
             '</nav><main>' + body + '<footer class="footer">Author-review edition · Local documentation build · '
@@ -156,7 +156,8 @@ def main():
     verify_evidence()
     (REPORT / 'assets').mkdir(exist_ok=True)
     source = (REPORT / 'manuscript.source.md').read_text(encoding='utf-8')
-    for key, value in report_tables().items():
+    from build_report_geometry import build_geometry
+    for key, value in {**report_tables(),**build_geometry(table)}.items():
         source = source.replace('{{' + key + '}}', value)
     refs = (REPORT / 'REFERENCES.md').read_text(encoding='utf-8').split('<!-- bibliography:start -->')[1].split('<!-- bibliography:end -->')[0].strip()
     source = source.replace('{{REFERENCES}}', refs)
@@ -166,16 +167,18 @@ def main():
     (REPORT / 'REPORT.html').write_text(render(source), encoding='utf-8')
     files = [p for p in REPORT.rglob('*') if p.is_file() and 'evidence' not in p.relative_to(REPORT).parts
              and p.name not in {'BUILD_PROVENANCE.json', 'VALIDATION.json'}]
-    scripts = [ROOT / 'scripts' / n for n in ['build_project_report.py', 'verify_project_documentation.py', 'fetch_report_evidence.py']]
-    record = {'edition_date': '2026-09-12', 'status': 'full_report_prepared_for_author_review',
+    scripts = [ROOT / 'scripts' / n for n in ['build_project_report.py', 'build_report_geometry.py', 'verify_project_documentation.py', 'fetch_report_evidence.py']]
+    record = {'edition_date': '2026-09-15', 'status': 'full_report_refreshed_for_author_review',
               'full_original_project_complete': False, 'python': sys.version.split()[0],
               'packages': {p: importlib.metadata.version(p) for p in ['markdown-it-py', 'matplotlib', 'numpy', 'Pillow']},
               'evidence_revision': '22d5a6bc9f953ba3bf2a75919edc7db3193b317b',
+              'geometry_revision':'bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb',
+              'geometry_manifest_sha256':hashlib.sha256((REPORT/'evidence/geometry_manifest.json').read_bytes()).hexdigest(),
               'word_count': len(re.findall(r"\b[\w’-]+\b", source)),
               'artifacts_sha256': {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                                    for p in sorted(files + scripts)}}
     (REPORT / 'BUILD_PROVENANCE.json').write_text(json.dumps(record, indent=2), encoding='utf-8')
-    print(f'Built full report: {record["word_count"]:,} words, 16 visuals. No network or training used.')
+    print(f'Built full report: {record["word_count"]:,} words, 22 visuals. No network or training used.')
 
 if __name__ == '__main__':
     main()

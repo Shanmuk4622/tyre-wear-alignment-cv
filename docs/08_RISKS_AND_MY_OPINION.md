@@ -1,5 +1,9 @@
 # 08 — Risks and My Honest Opinion
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > ### ⚑ Update, 2026-08-26 — the approach changed, and I think it changed correctly
 >
 > Sections 1–9 below were written for the **engineered-system** plan: build a rig, collect 300 tyres, chain SegFormer → ConvNeXt → HRNet → PatchCore. That plan is superseded by `13_EXPERIMENT_PLAN.md` — a broad comparative study with XAI as the measuring instrument.

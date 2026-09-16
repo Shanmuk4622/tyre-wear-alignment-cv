@@ -1,7 +1,125 @@
 # PROGRESS
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+**Prototype integration update — 15 September:** seed-1/final-epoch HRNet and
+matched SegFormer checkpoints are downloaded, hash-verified and integrated as
+optional learned boundary overlays. Full-image adapters, GPU inference, native
+diagram, video resets and evidence restoration passed local checks. Workshop
+video frames reveal crossed/missing/disagreeing boundaries, so proposals remain
+flagged research evidence. No training rerun or physical-accuracy claim.
+[Integration log and results](prototype/LEARNED_GEOMETRY_LOG.md).
+
 **Live status log. Updated every working session.**
-Last updated: **2026-09-12**
+Last updated: **2026-09-15**
+
+**Latest: report refreshed and prototype work reconciled.**
+The report now includes the matched geometry results, local integration evidence,
+video failures and target-assisted alignment software: **22 visuals, Markdown + HTML**.
+The learned-geometry integration and optional desktop app already exist and are
+locally tested. Alignment software exists; physical accuracy remains unvalidated.
+No new integration notebook or training rerun is requested by this update.
+[Current status](docs/CURRENT_STATUS.md) supersedes older next-build notes below.
+
+**Current: NB31/NB32 complete and HF-verified. No rerun.**
+HF `bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb`: SegFormer 3/3 seeds ×60 epochs,
+6,480 finite step records, 432 paired test points, 100% boundary coverage.
+Repaired T4 resume delta 0.0. HRNet mean error **1.312% width / 15.10 px** versus
+SegFormer **1.721% / 19.80 px**: 23.75% lower mean point error in this experiment.
+Next: freeze checkpoint selection, validate geometry integration, then prototype
+and manuscript updates. Two test tyres and different supervision limit claims.
+[Audit/results/next plan](docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md).
+All older rerun/preflight-pending instructions below are historical.
+
+**Current: NB30 HF-verified; NB31 resume-check repair ready — rerun NB31 only.**
+Preflight passed at `e32a80300ac415a60e8f142e099b0af7b0969dc7`.
+NB31 stopped before training: T4 resume parameter delta 0.000166565 exceeded
+the unchanged 0.00001 limit (HF `465112532cdac878904b9fff41a125f58eac2c58`).
+No seed runs exist at that snapshot. Added deterministic resize-backward adapter;
+actual-model CPU resume and gradient checks passed. GPU repair validation pending.
+Original protocol, NB30 and HRNet remain valid. [Repair details](docs/35_MATCHED_SEGFORMER_COMPARISON.md).
+Earlier “run NB30” and preflight-pending notes below are historical.
+
+**Next notebooks implemented: NB30 → NB31 → NB32 (matched SegFormer comparison).**
+Same HRNet 72/24/24 images and 8/2/2 tyres; existing 72 dense training masks,
+three seeds ×60 epochs. CPU preflight → GPU smoke/resumable training → CPU paired
+report. Local checks passed; Kaggle execution/results pending. No new annotations
+or HRNet rerun. Different mask/point supervision is explicit; not an equal-label
+architecture ablation. [Run guide and protocol](docs/35_MATCHED_SEGFORMER_COMPARISON.md).
+
+**Current: NB28/NB29 complete and HF-verified — HRNet 3/3 seeds ×60 epochs.**
+Report HF `a92c0f9c5c1b78c6a06e13d51e18722195230658`. Verified 6,480 step records,
+three checkpoint metadata hashes and all 432 held-out point records. Mean across
+seeds: 1.312% width error / 15.10 px; constant training-mean baseline 3.555%.
+No NB26–NB29 rerun. Next: execute NB30–NB32 same-split segmentation comparison, then geometry
+integration decision. Only two test tyres; PatchCore and physical-angle gaps remain.
+[Full audit/results](docs/34_HRNET_COMPLETION_AND_RESULTS.md).
+Older repair/rerun/pending-training notes below are history.
+
+**Current: NB26/NB27 HF-verified; NB28 repaired — rerun updated NB28 only.**
+T4 smoke parameter difference 0.0; preflight 72/24/24 split verified. HF seed 1
+checkpoint preserves 18 batches of epoch 1 (0 complete epochs), commit
+`92f580df3ae5a5231a4b446f2752dd0014b19a12`. Nonfinite-gradient guard now retries
+the same batch with AMP scale reduction and bounded FP32 fallback, never skipping
+updates. Original protocol/checkpoint path preserved. CPU recovery tests pass;
+real GPU repair replay pending. NB29 updated to report repair provenance.
+[Repair audit and instructions](docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md).
+Earlier run-all-stage and GPU-pending statements below are historical.
+
+**Run now: NB26 → NB27 → NB28 → NB29 (HRNet).** User confirms 12 sessions are
+12 different physical tyres. Locked split: 72/24/24 images across 8/2/2 tyres.
+NB26 CPU preflight; NB27 T4 resume smoke; NB28 T4, three sequential 60-epoch seeds;
+NB29 CPU report. HRNet-W18 coordinate-only adapter, 9,603,962 parameters; all labels
+visible, so no visibility-classifier claim. Local CPU forward, checkpoint tests and
+pinned pretrained tensor-header checks pass. Kaggle GPU/upload/long runs pending.
+[Exact run guide](docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md). No more annotation requested.
+Matched segmentation comparison and PatchCore/physical-angle evidence remain open.
+
+**Current: NB24/NB25 complete and HF-verified — 120/120 annotations received.**
+HF `2b4773914e6eefe421d8ddd74e79c5b84606c9aa`; local export matches public bytes,
+all 120 original hashes and published review records verified. 720 visible points;
+no rerun or additional annotation batch requested. Next: full point-quality review,
+physical-tyre identity confirmation (all 12 session IDs still blank), split lock,
+then HRNet smoke test/training notebook. No training approval or healthy reference
+inferred from format completion. [Audit and next steps](docs/31_S9_120_ANNOTATION_COMPLETION.md).
+Earlier NB24/NB25 run instructions below are reproduction history.
+
+**Current action: NB24/NB25 redesigned — ALL 120 images in ONE package.**
+Run NB24 CPU with prepared dataset attached; no BATCH setting or 12-image pause.
+Download one 89.51 MiB ZIP, annotate all 120 across sittings using JSON save/load,
+then NB25 CPU with only that JSON. Local tests pass; Kaggle execution pending.
+Physical-tyre identity and
+train/dev/test split review required before training. HRNet training notebook is
+planned, not implemented yet; PatchCore/reference and physical-angle gaps remain.
+[Full plan](docs/30_S9_HRNET_AND_COMPLETION_PLAN.md).
+
+**NB23 now complete and HF-verified:** `84bcbdd61b39b9dfccd2461af86a5de562995d38`;
+66/66 eligible points, median 8 px, mean error 0.90% of image width. All 72 boundaries
+independently reconstructed; P06 excluded. No NB23 rerun. Older run-next notes below
+describe the prior step, not the current action.
+
+**Run next: NB23_S9_Geometry_Baseline.ipynb — CPU, one copy, Internet/HF_TOKEN,
+attach nothing, Run All.** Reuses saved SegFormer-B0 seed-1 native predictions;
+no weights, dataset download or training. P06 excluded while review is pending,
+so its correction does not block this diagnostic. Public identities/splits for
+all 12 images and logic tests passed; Kaggle decoding/execution/upload pending.
+[Run guide and limitations](docs/29_S9_GEOMETRY_BASELINE.md).
+
+**Current action: second NB22 upload HF-verified; 11/12 mechanically complete.**
+Local manifest/annotations match public HF byte-for-byte at
+`05bf37c0f2067b0119ef057a2442d7759cf9ac51`. P06's left cropped points are corrected;
+right-middle/right-lower still need Outside frame, and its Visible issue choice
+needs a description (the missing description causes 11/12). Other 11 records
+are unchanged. No rerun of unchanged input or bulk reannotation.
+NB23 now implements the comparison of existing predicted segmentation
+boundaries before committing to HRNet training. All 12 independent records are
+unknown: no verified healthy PatchCore pool. Full S9 remains open.
+[Review and exact next steps](docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md).
+Only 20,838 remote bytes read this audit; no assistant HF writes, training, label edits or
+changes to the user's prototype geometry/calibration work.
+
 **Latest reporting audit:** NB19 and NB20 completed successfully; public HF
 `22d5a6bc9f953ba3bf2a75919edc7db3193b317b` contains the38-file evidence bundle,
 14 figures and HTML/Markdown results package. Both notebooks:one commit,zero
@@ -47,10 +165,10 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 ### Immediate next action
 
 > **All four recovery notebooks are now verified on public HF** at `bf62f9e9cbedacc580aa42542da14a068b8f9215`. Do not rerun them just to clear the old pending checklist.
-> 1. **Do not rerun NB13–NB20.** The full illustrated report and reproducibility handoff are prepared from frozen evidence. Next: team/guide review and the required submission template; see `docs/report/SUBMISSION_CHECKLIST.md`. No additional GPU training or annotation now. Retain fold-leakage limitations.
-> **Latest user decision:** defer HRNet/PatchCore temporarily; prioritise supported results and reporting. No annotation now. If revisited, first provide a small guided pilot with examples and review it before requesting more labels—not a large bulk download. Original full S9 remains deferred/uncompleted, not silently scoped down. `docs/25`.
+> 1. **New NB22 upload verified, 11/12 complete; do not rerun unchanged input.** In P06, mark right-middle/right-lower Outside frame and describe the selected visible issue. Save at 12/12 and return only JSON; NB22 CPU is only for publishing that revision. Next: predicted-mask geometry baseline, not GPU training. See `docs/28`.
+> **Latest user decision,14 September:** reopen small input feasibility for HRNet/PatchCore, with worked examples and annotation-only transfer. No full training approval yet. Original full S9 remains uncompleted. `docs/27_S9_SMALL_ANNOTATION_PILOT.md`.
 > **S4b complete:** NB12 and NB12R are verified on HF:18/18 ×60epochs and published paired report. No rerun needed. Same-fold confirmation, not new-tyre validation. See `docs/23`.
-> 2. **No NB11 or extra annotation requested.** SAM2 comparison remains deferred. S5 completion is not proof of S9 integration or independent new-tyre generalisation.
+> 2. **No NB11 or bulk annotation requested.** Only the12-image NB21 pilot is requested now. SAM2 comparison remains deferred; S5 completion is not proof of full S9 integration or independent new-tyre generalisation.
 > 3. S2 is closed for the retained 17 architectures; nine mislabeled runs remain excluded. Declared S4b/Stage-C extension is complete; wider Tier5/6 remains open.
 > 4. Full S9 needs additional inputs. H3, original-plan missing experiments, calibration limitations and final author/venue review remain open. The manuscript is prepared. See `docs/report/CLAIMS_AND_LIMITATIONS.md`.
 
@@ -81,10 +199,10 @@ Dataset is done and good. **No hardware is being built.** The approach has been 
 | S7 stress tests | ✅ **NB08 executed and verified on HF** | 63/63 stress rows; nine matching per-run tables; current control mean 0.375184 passes 0.45 |
 | **Annotation test** | ✅ **Real Kaggle PASS** | NBT1 `2026-08-30-r1`: A/B/C all PASS; clean IoU 0.9780, propagated 0.9747, ratio 0.9966; all seven revisioned artifacts public. The epoch-18 data-loader cleanup warning is fixed with in-memory `num_workers=0` |
 | S8 ensembles + calibration | ✅ **NB09 outputs verified** | 27 prediction files / 3,762 rows; four result tables. Observed90% coverage: fold0 .86885, fold1 .97561, fold2 .93939; fold0 below nominal. Empty-set and dependence limitations remain. |
-| S9 integrated pipeline | 🔄 **NB18 exploratory analysis complete; full pipeline blocked** | All81 analyses,405 metrics,135 summaries and56,430 per-image/arm predictions verified. No average fusion improvement. Original Tier8 still lacks landmark/healthy-pool evidence and a frozen integration design. `docs/25`. |
-| S10 analysis + figures | ✅ **Reporting execution + full report prepared**; 🔄 **author/venue review** |38 frozen sources; full illustrated HTML/Markdown report with16 visuals, generated tables, checked selected references, reproducibility and claims/submission appendices. No rerun needed. Original-plan gaps remain; H2 inconclusive, H3 untested. `docs/report/REPORT.html`, `docs/26`. |
-| Alignment | ⏸ Deferred | Needs calibration data that does not exist |
-| Optional app | ⬜ | First on the cut list |
+| S9 integrated pipeline | ✅ **Implemented prototype integration + matched experiment**; ⚠ **research validation remains** | HRNet/SegFormer learned modes, overlays, raw evidence and local image/video checks exist. HF comparison: 1.312% vs 1.721% width error. Video failures are documented. End-to-end accuracy, PatchCore and original full Tier8 remain open. `docs/CURRENT_STATUS.md`. |
+| S10 analysis + figures | ✅ **Updated full report and 22 visuals complete** | New geometry methods/results, prototype and alignment evidence are in Markdown + HTML with reproducibility/claims updates. Author/guide approval and venue formatting remain human tasks, not an unbuilt-report status. |
+| Alignment | ✅ **Target-assisted software implemented**; ⚠ **physical validation pending** | Camera-profile/dual-target workflow and synthetic tests exist. Real calibration, fixture/reference accuracy and repeated mounting tests remain required. |
+| Optional app | ✅ **Tread Station implemented and locally tested** | Native image/video inspection, model comparison, learned geometry, calibrated-target interface and evidence save/restore exist. External field accuracy and physical webcam testing remain separate. |
 
 **Legend:** ✅ done · 🔄 in progress · ⬜ not started · ⏸ deferred
 

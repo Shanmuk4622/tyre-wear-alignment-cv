@@ -1,5 +1,120 @@
 # Notebooks
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+## Latest: NB31/NB32 complete — no rerun
+
+HF verifies all three SegFormer seeds ×60 epochs and the paired report.
+The T4 repair passed with zero resume difference. Next is geometry integration
+validation (proposed NB33, not yet built), not another training run or more labels.
+[Results and next plan](../docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md).
+All older “rerun NB31” and NB30–NB32 run-now instructions below are historical.
+
+## Current: rerun repaired NB31 only
+
+NB30 is HF-verified; NB31 previously failed the resume-equivalence check before
+training. Open updated NB31 in a fresh T4 session, attach the same dataset,
+enable Internet/HF_TOKEN and Run All in one session. No NB30 or HRNet rerun.
+The strict check remains enabled with a deterministic resize repair. Local
+checks passed; GPU repair verification pending. NB32 follows completed training.
+[Details](../docs/35_MATCHED_SEGFORMER_COMPARISON.md). Earlier run sequences below
+describe the original workflow.
+
+## Run now: NB30 → NB31 → NB32
+
+Matched SegFormer comparison against completed HRNet: NB30 CPU preflight,
+NB31 T4 automatic smoke + resumable three-seed training, NB32 CPU report.
+Use ONE NB31 session, not four workers. Attach the same prepared dataset with
+manual masks for NB30/NB31; NB32 needs no dataset. Internet and HF_TOKEN enabled.
+No new annotations or NB26–NB29 rerun. [Full instructions](../docs/35_MATCHED_SEGFORMER_COMPARISON.md).
+Implemented/local-tested; Kaggle results pending.
+
+## NB28/NB29 complete — no rerun
+
+All three HRNet seeds completed 60 epochs; NB29 report verified on HF at
+`a92c0f9c5c1b78c6a06e13d51e18722195230658`. Seed-average mean boundary error:
+1.312% width (15.10 px), versus 3.555% for the training-mean constant baseline.
+Next is a matched segmentation comparison, not more annotations or another
+NB26–NB29 run. [Audit](../docs/34_HRNET_COMPLETION_AND_RESULTS.md).
+Earlier repair/run-now instructions below are historical.
+
+## Run now: repaired NB28 only
+
+NB26 and NB27 are HF-verified; no rerun. Updated [NB28](NB28_HRNet_Training.ipynb)
+resumes the preserved seed-1 checkpoint after batch 18 of epoch 1. T4, one copy,
+same prepared dataset, Internet/HF_TOKEN, Run All. Numerical recovery retries the
+same batch rather than aborting before AMP scale adjustment. Protocol unchanged.
+Use updated NB29 after completion; it includes repair provenance. GPU replay pending.
+[Details](../docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md).
+
+## Run now: HRNet notebooks NB26 → NB29
+
+1. [NB26 Preflight](NB26_HRNet_Preflight.ipynb): CPU, prepared dataset, Internet/HF_TOKEN, Run All.
+2. [NB27 Smoke/Resume](NB27_HRNet_Smoke_Resume.ipynb): T4, same dataset, Run All. Must pass before training.
+3. [NB28 Training](NB28_HRNet_Training.ipynb): T4, same dataset, Run All. Three seeds sequentially; one copy only.
+4. [NB29 Report](NB29_HRNet_Report.ipynb): CPU, no dataset, Run All after all seeds complete.
+
+Internet and HF_TOKEN enabled throughout. Dual T4 is acceptable; only cuda:0 is used.
+No new annotation, NB24/NB25 rerun or manual split setting needed. User-confirmed
+12 distinct tyres; 72/24/24 image split. Local tests pass; Kaggle GPU runs pending.
+[Persistence, limits and scientific scope](../docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md).
+
+## NB24/NB25 completed — no rerun needed
+
+Verified 15 September at HF `2b4773914e6eefe421d8ddd74e79c5b84606c9aa`:
+120/120 records, local/public annotation bytes and all 120 image hashes match.
+Next is quality review and identity/split approval before HRNet training, not
+another annotation batch. [Audit](../docs/31_S9_120_ANNOTATION_COMPLETION.md).
+Older run-now instructions below are reproduction history.
+
+## Run now: NB24, then NB25 — new geometry annotations
+
+- [NB24](NB24_S9_Geometry_Annotation_Batches.ipynb): CPU, one copy, Internet/HF_TOKEN,
+  prepared dataset attached, Run All. No BATCH setting. Download the one 89.51 MiB ZIP,
+  extract everything, open ANNOTATE.html beside its images folder. Annotate all 120;
+  save/load one JSON across sittings. No intermediate review pause.
+- [NB25](NB25_S9_Geometry_Annotation_Intake.ipynb): CPU, one copy, Internet/HF_TOKEN,
+  attach only the saved annotation JSON, Run All. Partial work is preserved.
+
+One package / 120 new images, no duplicates from the old pilot. No GPU
+training yet; reviewed labels and identity/split lock come first.
+[HRNet and full S9 plan](../docs/30_S9_HRNET_AND_COMPLETION_PLAN.md).
+NB23 is now executed and HF-verified; its instructions below are reproduction only.
+
+## Run now: NB23 S9 geometry baseline
+
+[NB23_S9_Geometry_Baseline.ipynb](NB23_S9_Geometry_Baseline.ipynb): **CPU, one copy,
+Internet ON, HF_TOKEN enabled, attach nothing, Run All.** Reads saved SegFormer-B0
+predicted masks; no dataset or weights, no training. Last verified labels are
+pinned; P06 is excluded from scores pending review. No NB22 rerun needed first.
+Uploads small summaries, point records and mask diagrams to HF. Public source
+and logic checks passed; Kaggle execution pending. [Guide](../docs/29_S9_GEOMETRY_BASELINE.md).
+
+## NB22 completed: review before more work
+
+NB22's revised annotation bytes are verified against public HF
+`05bf37c0f2067b0119ef057a2442d7759cf9ac51`. The upload succeeded with 11/12
+complete: P06's Visible issue description is blank. Its left-middle/lower are
+now Outside frame; right-middle/lower still need that visibility correction.
+Save corrected JSON at 12/12; rerun NB22 only to publish revised labels, not
+unchanged input. No NB21 rerun or new GPU training now.
+Next proposed notebook: existing predicted-mask geometry baseline before HRNet.
+[Audit and plan](../docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md).
+
+## NB21/NB22 original run instructions — reproduction only
+
+1. **NB21_S9_Annotation_Pilot.ipynb** — CPU, one copy, Internet/HF_TOKEN,
+   existing prepared dataset attached, Run All. Download9.46MiB ZIP, extract,
+   open ANNOTATE.html. Mark only12 images with built-in guidance; save JSON.
+2. **NB22_S9_Pilot_Review.ipynb** — after NB21, CPU with only annotation JSON
+   attached. Mechanical validation and small HF upload; no original-image upload.
+3. Send JSON/HF revision for human review. Stop before a larger batch or training.
+
+Local/browser checks passed; NB22 execution and public intake now verified. Neither notebook trains
+HRNet/PatchCore or certifies a healthy reference. [Detailed guide](../docs/27_S9_SMALL_ANNOTATION_PILOT.md).
+
 ## NB19/NB20 — completed and HF-verified
 
 **No NB13–NB20 reruns needed.** NB19 published the38-file evidence bundle;
@@ -580,12 +695,13 @@ run resumes at the next epoch.
 
 ## What happens when you press Stop
 
-Nothing is lost. SIGTERM, Ctrl-C, an uncaught exception and the 8.5-hour
-watchdog all trigger an immediate blocking push. Re-run the same notebook in a
-fresh session and it resumes at the exact epoch — optimizer, scheduler, AMP
-scaler and all four RNG streams restored, **on any account, at any worker
-count**, because the checkpoint is fetched back from HuggingFace rather than
-looked for on a disk Kaggle has already wiped.
+Catchable Stop/error handling attempts a blocking push of durable progress.
+Resume granularity and watchdog duration depend on the notebook; follow its
+current run guide. A fresh session restores the latest successfully published
+compatible checkpoint. Forced kernel death, exhausted RAM or lost Internet can
+lose work since the last successful HF push: no notebook can guarantee an upload
+after a hard kill. Do not change worker ownership or launch extra copies unless
+the notebook explicitly supports that arrangement. NB31 uses one session only.
 
 An exception is not different from a Stop. `failed` runs resume too.
 

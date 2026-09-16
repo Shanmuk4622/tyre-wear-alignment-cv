@@ -1,0 +1,1 @@
+{"actual_segformer_cpu_resume_exact":true,"kaggle_gpu_execution":"unverified; NB31 must pass smoke before training","max_cpu_gradient_difference":7.62939453125e-06,"protocol_unchanged":true,"status":"passed","strict_smoke_tolerance_unchanged":true}

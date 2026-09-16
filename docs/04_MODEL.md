@@ -1,5 +1,9 @@
 # 04 — Model Zoo and Training Recipes
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > Implementation reference for `13_EXPERIMENT_PLAN.md`. **That document says what we run and why; this one says exactly how.**
 >
 > Every entry: exact `timm`/library identifier, input size, batch size, LR, CAM target layer, and a runtime estimate to calibrate the work-sharding cost table (`05 §3`).

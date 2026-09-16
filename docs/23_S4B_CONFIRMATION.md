@@ -1,5 +1,9 @@
 # S4b — two additional architectures, 2026-09-09
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **Status 2026-09-10: COMPLETE — 18/18 runs ×60 epochs, NB12R report verified.**
 Both saved notebook outputs agree with an independent read-only audit at
 [HF revision dd43b231](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/dd43b231cfbdd92dd6d8c01b47166ddec4ab05f8).

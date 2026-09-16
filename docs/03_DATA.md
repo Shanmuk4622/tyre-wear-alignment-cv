@@ -1,5 +1,9 @@
 # 03 — Data: Collection, Labels, Annotation
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Current-state correction (2026-09-09):** the original collection programme
 > below is not delivered data. `final_v1` plus 418 manual masks supports
 > classification and tyre/tread localisation; calibrated depth/alignment and

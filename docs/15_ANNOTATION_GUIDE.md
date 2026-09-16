@@ -1,5 +1,9 @@
 # 15 — Annotation Guide (Windows)
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Tool: labelme.** Runs entirely on your own Windows machine. No account, no login, no task limits, no uploading. Segment Anything (SAM2) is built in and runs offline.
 >
 > **Watch first (~10 min):** [How to Install and Use LabelMe — Step-by-Step Tutorial for Beginners](https://www.youtube.com/watch?v=PtUO_H3DEc8)

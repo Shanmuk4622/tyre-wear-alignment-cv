@@ -1,5 +1,36 @@
 # S9 component analysis and remaining research gaps —2026-09-12
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+**15 September update:** The 120-image point dataset, HRNet training and matched
+SegFormer comparison are now complete. HRNet has lower mean point error in all
+three seeds on both test tyres. Geometry integration/end-to-end evaluation remain
+next; PatchCore reference evidence remains unresolved. [Verified results](36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md).
+Earlier missing-landmark/pilot-only descriptions below are historical, not current blockers.
+
+## 14 September update — pilot reopened, not full training
+
+**Latest revised intake:** HF `05bf37c0f2067b0119ef057a2442d7759cf9ac51`
+matches local labels. Upload succeeded, 11/12 complete: P06's new Visible issue
+selection has no description. Left cropped points corrected; right-middle/lower
+visibility remains unresolved. See docs/28; the 12/12 audit below is the first submission.
+
+**Subsequent execution verified:** NB22 published all 12 submitted annotations at
+HF `1dad525affd32b06dc73f907edad73eb4096b782`; local bytes match. Visual review
+requests P06 visibility correction, then a predicted-mask baseline before HRNet.
+No verified healthy references or training approval yet.
+[Current audit and next plan](28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md).
+
+User now authorises the small guided input pilot. NB21/NB22 are implemented;
+12 native images,9.46MiB ZIP, offline six-point/visibility annotation and visual
+triage. Human review precedes any next batch or training. Neither a visual
+observation nor an operator record claim automatically certifies health.
+See [the pilot guide](27_S9_SMALL_ANNOTATION_PILOT.md). The earlier deferral below
+is historical; full S9 remains uncompleted. Prototype geometry and target-assisted
+calibration work is separate and has been read, not modified by this task.
+
 ## Verified completion — NB18
 
 NB18 finished successfully:81/81 source runs processed, one commit, zero upload

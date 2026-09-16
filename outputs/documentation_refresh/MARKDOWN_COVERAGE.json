@@ -1,0 +1,300 @@
+{
+  "files": [
+    {
+      "path": "PROGRESS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ba128cc001879d346fe3a7bb1a9a5cd83689d238e40be7bed4b54c6b0de41529"
+    },
+    {
+      "path": "README.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ee282293a268165cfd39531a939bd835d0f803af65893abb06893623193af457"
+    },
+    {
+      "path": "prototype/VIDEO_NOTES.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "253e8524bf5c4ddd530bbce6e7ecc579f171c11f994bff9e42a8cb1dd54ccce0"
+    },
+    {
+      "path": "prototype/VALIDATION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "80c11cf1b83e89b92f46472325bd8c85b7f57923b412720ba00791763b00733b"
+    },
+    {
+      "path": "prototype/README.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "79ccae08b390f9f1a216cffb76cb640d49afea4125960b9d697181709be07f7a"
+    },
+    {
+      "path": "prototype/LEARNED_GEOMETRY_LOG.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "46f6ec05914b181dc259ebab45334f73739a20f6c1ed41fd6712f3475d102897"
+    },
+    {
+      "path": "prototype/ALIGNMENT_PLAN.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "2c588b9915878eb8b210e59e96595a5aba885a52a213a406247540a26bb71abd"
+    },
+    {
+      "path": "prototype/CALIBRATED_ALIGNMENT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "2fbc6384df2658443cc76a68bb54e2d80bf39d2370e20c8733993e794418a826"
+    },
+    {
+      "path": "ENVIRONMENT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "9228c5b908ca3a46483902f0a7d7e3df326f3196efb63279c60c8591a3cb0946"
+    },
+    {
+      "path": "notebooks/README.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "c75d4b2725d8b53acf9f97f1a29ccf28e6d83d59443cf09203edff034c863bcc"
+    },
+    {
+      "path": "docs/REPOSITORY_GUIDE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "922dbbaa37cdec83188664386675d7dace40b041e896deeb21199bc7da6fddb6"
+    },
+    {
+      "path": "docs/19_NB08_NB10_COMPLETION_AUDIT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "cb31ff9300a0c5b399537e949935c032a4da087c45976e9ec7ef9c49147c9764"
+    },
+    {
+      "path": "docs/18_STAGE_A_RESULTS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "68413e578a3f4593b4ac21c94ae05680909cdbfc48fd9211ee37682860b01c4f"
+    },
+    {
+      "path": "docs/17_DATA_LOGGING_SCHEMA.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "84c093ba3ce9b78e567dcd6869d614f35039d72a9c105bb6e2018528df8fde06"
+    },
+    {
+      "path": "docs/16_HF_REPO_STRUCTURE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "a3932f8ed0a9bcc45c96e301421bb5a89dd45140a9f46369c081b27b670622e9"
+    },
+    {
+      "path": "docs/15_ANNOTATION_GUIDE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "5a1f3936be9d3981c40ec04eae26965ea22684a382bcc5217a47017c3c09b1bb"
+    },
+    {
+      "path": "docs/14_XAI_PROTOCOL.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ade075a002448215815babcaa54ac77066d6a5c3fc453e226efd53f542b3a027"
+    },
+    {
+      "path": "docs/13_EXPERIMENT_PLAN.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "6a8dcee4a3dc78335efcb60a2fa26e72dcfa222a6d09edea65051560f8815a9e"
+    },
+    {
+      "path": "docs/12_DATASET_FINAL_V1.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "6b21c9c134efece4a4188b90587794fd8cc654eb24f4f0263eb5e9e3cc570d29"
+    },
+    {
+      "path": "docs/11_APP.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "83cbe52074ceeaa3bbc72aa77e92922de3c7d0eabc0c79a0602b5783ec0b2be8"
+    },
+    {
+      "path": "docs/10_VISION_TECHNIQUES.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "56e7fbf75501ec015283b1d8fadeb18bfbc5584f12e322725dd8da66a01cd876"
+    },
+    {
+      "path": "docs/09_RELATED_WORK.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "4559d4a0425fc264c308ac07fb86a9b87ae45ed22dbfedde73f3d865cbd9427d"
+    },
+    {
+      "path": "docs/08_RISKS_AND_MY_OPINION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "2dfba4e74d814b0bd824aef2fd65196cde7f25a177cceaa2574bd8954a22ff19"
+    },
+    {
+      "path": "docs/07_ROADMAP.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "78f52d7d3a826ba2baaa63b6f2ae4a65748c9957e7bf53443427923a15ba8b4f"
+    },
+    {
+      "path": "docs/06_EVALUATION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "a0ac875a5db016580e31fd2f5e34ff71eca3ac7704cf6265ca31e2be2e46595d"
+    },
+    {
+      "path": "docs/05_TRAINING_KAGGLE_HF.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ee59a9e2ef05cf63189af32bac12bed1954476de5def8f7fe6b480175ed41f0d"
+    },
+    {
+      "path": "docs/04_MODEL.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "f1d51a976a56721300df4435e9169e7211a6a60a38eda82221d09e0dfd4ae2e8"
+    },
+    {
+      "path": "docs/03_DATA.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "3cd94464ef4017470f3091723311b551e882d3ceeb26cec5f58d40ac709c94c9"
+    },
+    {
+      "path": "docs/02_RIG_BUILD.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "4d24f10c883866cd6ca2eac00e412215483978db9558e9441f31fa55faa11db5"
+    },
+    {
+      "path": "docs/02_CAPTURE_AND_PREPROCESSING.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "8aeaf4e60a018204ba07e9bf906cd5a9cceefb9fcb0c297c1aa0085361d73c0d"
+    },
+    {
+      "path": "docs/01_CONCEPT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "b1b404e5eeb95466b1347e897752026106929f49e633a1f8fafa29b5650b461c"
+    },
+    {
+      "path": "docs/00_WHAT_THIS_PROJECT_IS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "6daef615c255bcb77a8941defa02a046e4b0cff99788009ec391ae6a4ade25c0"
+    },
+    {
+      "path": "docs/30_S9_HRNET_AND_COMPLETION_PLAN.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "182601517e924211501623bd2aa1c11f75eab20160feeca69e86c29c45624944"
+    },
+    {
+      "path": "docs/29_S9_GEOMETRY_BASELINE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "1d9246505af06ec1a4038105cdde161aa043c8299ba9a849e305c7c347eaae4a"
+    },
+    {
+      "path": "docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "e8c290017ea0e21c50b88ff6e99ff9fcc0564ca008d901ac36432fe6e643d96f"
+    },
+    {
+      "path": "docs/27_S9_SMALL_ANNOTATION_PILOT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ff80b4ea821d79a7b12065e6d53d87847443ce358b782c31a0fce1f6d7c3855e"
+    },
+    {
+      "path": "docs/26_S10_REPORTING_AND_NEXT_STEPS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "2b13527f06f3683b3f1551f89dfd3f356ed66579bc57aa5caf003e413c8d3f03"
+    },
+    {
+      "path": "docs/25_S9_FUSION_AND_REMAINING_GAPS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "261c3dd373723642885d652d80a0dbd4647da9d8e0aa2bda34a860d5fb979e2e"
+    },
+    {
+      "path": "docs/24_S5_MANUAL_DENSE_TASKS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "059464dadd6a2b068cb7dc40adba69860561939a07d92126e9ece0f6777e8703"
+    },
+    {
+      "path": "docs/23_S4B_CONFIRMATION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "270dee153643d36723b50f3e08fa19251fc2c930914de379a5611ced02382213"
+    },
+    {
+      "path": "docs/22_S3_MASK_COMPARISON.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "979002caafc0f857226d13217244f7628aa4d7c81fed8d44861e6cf4849bcbb8"
+    },
+    {
+      "path": "docs/21_RECOVERY_COMPLETION_AUDIT.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "70145c69e292e5680f742e548810d66c5a78e96707308ec650ebcaa1a290fc67"
+    },
+    {
+      "path": "docs/20_FULL_PLAN_CLOSURE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "210a088316c03b5cd748f35fac5e2d5b3aaaa815f7ebfa5787be32c25d77e092"
+    },
+    {
+      "path": "docs/35_MATCHED_SEGFORMER_COMPARISON.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "3b4f4bf5459250bf28bc9efa2a0685678a1dc57b960bf9124dd0d911bbf9252a"
+    },
+    {
+      "path": "docs/34_HRNET_COMPLETION_AND_RESULTS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "a41c0a244fad32cc965b8c3594ebb40552b2857d29c428d0cab5637669a3e227"
+    },
+    {
+      "path": "docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "82fb110b3ea3589cd6ecdc03815f7eb6b8422ed0544e9f47810f983f982c427c"
+    },
+    {
+      "path": "docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "ce7b259ea7c29cc95f0249fc0148c1078d86b94bf4f66201b0c5e14f7bdc047e"
+    },
+    {
+      "path": "docs/31_S9_120_ANNOTATION_COMPLETION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "e721f0c71d28b6d2b0c41c5ce2ae4141873fb350d2c39369f41d49b52d5d7c4d"
+    },
+    {
+      "path": "docs/DOCUMENTATION_INDEX.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "9d592674c8d55ce32a0ea29afde32d20ea74e4233779aeb8167c052dcb797a82"
+    },
+    {
+      "path": "docs/CURRENT_STATUS.md",
+      "status": "special/generated or canonical",
+      "sha256": "8390d3346c5b55bc6c3da57ccb2a55fbc849a17c90c0be6cb789bb7ad2a949cb"
+    },
+    {
+      "path": "docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "cbe054118f1c00f990079559c427b527f56d17677e1d569be496e9d3fdd9afe1"
+    },
+    {
+      "path": "docs/GITHUB_SETUP.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "05acc4e9aa8e43e46cedad1732ecbe13982e06d6f32b4bc83c14e608f8976168"
+    },
+    {
+      "path": "docs/LOGBOOK.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "d1e05c156bf20c0fe3f60df666c8f785d2a232d051147f37e5520b2f171c93f6"
+    },
+    {
+      "path": "docs/report/SUBMISSION_CHECKLIST.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "0dacd6d3392e23cbe5d7d0bd6dc9d65bb89f0a2d5f8da27f647874014720f256"
+    },
+    {
+      "path": "docs/report/REPRODUCIBILITY.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "d44867bfe38c8f73ad973889bf558b56254f55b5ece392f6d5bae1c406d20953"
+    },
+    {
+      "path": "docs/report/REPORT.md",
+      "status": "special/generated or canonical",
+      "sha256": "087ba3044a38a397074427faeaed134fd7fc95b4c58e0eb442d71005483b6c9e"
+    },
+    {
+      "path": "docs/report/REFERENCES.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "e069e2ddd508e3fc62118efac526c20ab5c54f52ea4c80bd5c9540375175e417"
+    },
+    {
+      "path": "docs/report/manuscript.source.md",
+      "status": "special/generated or canonical",
+      "sha256": "5d958cb65944f1774e961e5effb7d2f46cdd00f2aa27fa6e6b26fda99ca7b520"
+    },
+    {
+      "path": "docs/report/CLAIMS_AND_LIMITATIONS.md",
+      "status": "current_status_link_synchronised",
+      "sha256": "c43719a230def7f1307419b8541ae837191a02480094c69951d913358bf288f8"
+    }
+  ],
+  "preserved": "Frozen evidence, generated report source/output handled by builder, ignored caches and annotation packages are not mechanically rewritten"
+}

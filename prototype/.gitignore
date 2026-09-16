@@ -1,10 +1,12 @@
-.vendor/
-.cache/
-checkpoints/
-results/
-!data/
-!data/incoming/
-data/incoming/*
-!data/incoming/.gitkeep
-__pycache__/
-*.log
+# Native app code, launcher, requirements and docs stay in Git.
+/.vendor/
+/.cache/
+/checkpoints/
+/results/
+
+# Reopen data only for the incoming placeholder. Print targets are regenerated.
+!/data/
+/data/*
+!/data/incoming/
+/data/incoming/*
+!/data/incoming/.gitkeep

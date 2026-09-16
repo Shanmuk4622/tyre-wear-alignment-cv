@@ -1,5 +1,9 @@
 # 02 — Capture Guidance and Preprocessing
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **No hardware is being built.** We work from `final_v1` plus separately-captured video.
 >
 > This document keeps the two things that remain useful: **how to photograph a tyre so the images are worth training on**, and **which image-processing operations belong in the pipeline and why**. Everything about rigs, illumination arrays and calibration has been removed.

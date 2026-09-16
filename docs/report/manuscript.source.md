@@ -1,8 +1,8 @@
-# Explainability-Guided Mileage-Proxy Recognition and Manual-Supervised Tyre Localisation
+# Explainability-Guided Mileage-Proxy Recognition, Tyre Localisation and Learned Image-Space Geometry
 
 ## A reproducible pilot study under small-sample and split-dependence constraints
 
-**Full project report · Author-review edition · 12 September 2026**
+**Full project report · Updated author-review edition · 15 September 2026**
 
 Bonala Shanmukesh · Gunnamneni Nehru · GV Manu Rohith · Nettem Harish Kumar  
 Department of AI & ML, SCOPE, VIT-AP University  
@@ -14,21 +14,21 @@ Original capstone title: *Vision-Based Detailed Tyre-Wear Recognition and Single
 
 ## Abstract
 
-Visual tyre analysis is attractive because cameras can provide non-contact observations of the tyre surface. However, a classifier can exploit background, capture conditions, or tyre identity instead of wear-related appearance. This project investigates that problem through an explanation-guided comparative study, followed by manual-supervised localisation and fixed downstream crop/fusion interventions. The prepared dataset contains 418 unique photographs and 4,180 synthetic derivatives, grouped into 12 timestamp-derived capture sessions and three mileage-proxy classes. The number of independently observed tyres is not verified. Suspected same-tyre overlap affects folds 0 and 2, while fold 1 remains a small internal evaluation rather than an external test.
+Visual tyre analysis is attractive because cameras can provide non-contact observations of the tyre surface. However, classifiers can exploit background or capture identity instead of wear-related appearance. The prepared dataset contains 418 unique photographs and 4,180 synthetic derivatives in 12 timestamp-derived sessions and three mileage-proxy classes. On 15 September the operator confirmed that the sessions represent 12 different physical tyres, without an independent identity audit. Original classification folds retain their historical overlap flags; the later geometry comparison uses a separately frozen tyre-group allocation.
 
 The retained architecture sweep comprises 153 valid runs across 17 architectures; nine mislabeled substitutions are excluded. An explanation-gated shortlist supports 108 one-factor-at-a-time runs, followed by 18 same-fold confirmation runs. The dense-task extension completes 81 runs across semantic segmentation, YOLO detection/instance segmentation, and RT-DETRv2 detection, each evaluated at the final epoch of a 60-epoch budget. Saved predictions support five fixed fusion arms without additional fitting. Across 81 equally weighted source runs, predicted-tyre and predicted-tread crops change macro-F1 by −0.01257 and −0.01467 relative to full-frame classification; equal full-frame/tyre/tread probability fusion changes it by −0.01324. These are descriptive paired results, not independent-sample significance estimates. Selected-epoch classification scores can substantially exceed fixed-final scores, and calibration behaviour differs by fold.
 
-The contribution is an auditable pilot workflow and an explicit account of what its evidence does and does not support. Strong internal scores and localisation agreement do not establish deployment validity or demonstrate that explanation-guided selection improves generalisation. The released reporting snapshot preserves negative results, model-identity quarantine, uncertain hypotheses, and deferred annotation-dependent work.
+A later 120-image, six-point annotation study compares HRNet-W18 with freshly trained SegFormer-B0 on the same 72/24/24 training/validation/test images, representing 8/2/2 user-confirmed distinct tyres. Both complete three seeds and 60 epochs. Mean horizontal point error is 1.312% of image width for HRNet and 1.721% for SegFormer, a 23.75% relative reduction, with complete SegFormer boundary coverage. Supervision differs—point targets versus dense masks—so this is not an architecture-only comparison. The native Tread Station app now integrates both models and a target-assisted alignment workflow. Saved software tests pass, but real-video examples expose crossed boundaries and model disagreement; physical alignment accuracy remains unvalidated. The contribution is an auditable pilot workflow that distinguishes completed software from established physical or deployment validity.
 
 **Keywords:** tyre imagery; mileage proxy; shortcut learning; explainability; semantic segmentation; detection; reproducibility; small datasets.
 
 ## Executive summary
 
-The project has produced a substantial implemented study, not a certified tyre-inspection system. Classification, explanation screening, controlled interventions, manual-supervised dense tasks, exploratory fusion, and the S10 evidence package have public execution records. The important conclusion is not simply that some models have high scores. It is that score interpretation depends on the split, checkpoint endpoint, task, and label meaning.
+The project has produced a substantial implemented study and a functioning native inspection prototype, not a certified tyre-inspection system. Classification, explanation screening, controlled interventions, manual-supervised dense tasks, exploratory fusion and the matched HRNet–SegFormer experiment have public execution records. The desktop app, learned-geometry integration and target-assisted alignment interface have saved local software-test evidence. Their implementation is complete; independent field accuracy and the original full PatchCore/Tier8 experiment are not.
 
 Three practical findings organise the report. First, a selected validation checkpoint and the final checkpoint answer different questions; their results must remain separate. Second, recovering tyre or tread regions does not automatically help an existing full-frame classifier. Third, the current data cannot settle the original physical claims: images labeled by mileage are not calibrated wear measurements, and many photographs of a few capture sessions do not constitute many independent tyres.
 
-No new GPU execution was required to prepare this document. The local evidence cache was downloaded from a pinned public Hugging Face snapshot and occupies approximately 3.02 MiB of downloaded content. It contains small tables, figures, manifests and status records, not model weights or image datasets. The report is designed for offline reading, printing, and author review. A venue-specific template, author declarations and approval remain human submission tasks.
+No new GPU execution or download was required for this document refresh. The earlier evidence cache contains approximately 3.02 MiB of downloaded content; the subsequent geometry audit added about 1.01 MB of metadata. Existing local prototype screenshots and test records are reused. This updated report contains 22 visuals and incorporates the new results directly into its methods, results, discussion and conclusions. A venue-specific template, author declarations and approval remain human submission tasks.
 
 ## 1. Introduction and motivation
 
@@ -36,7 +36,7 @@ No new GPU execution was required to prepare this document. The local evidence c
 
 The original project proposed a multi-component vision system for detailed tyre-wear recognition and single-wheel alignment screening. During development, the available labels and collection conditions required a more careful experimental interpretation. The executed classification target is an ordered, three-level mileage proxy. Although mileage and wear may be related in a particular collection, that relationship is not a measured physical calibration: road surface, loading, tyre construction, inflation and driving conditions can change it. Consequently, a correct proxy label cannot be translated into a millimetre tread-depth estimate or a safety decision.
 
-The study therefore asks how image classifiers behave on this collection, where their attribution falls, how stable their results are across the existing folds, and whether learned localisation changes downstream classification. The intended use is research into limitations and failure modes. No hardware prototype, alignment estimator, or roadworthy/unroadworthy decision system is validated here.
+The study asks how classifiers behave on this collection, where attribution falls, whether localisation changes classification and whether dedicated point learning improves boundary localisation. A native inspection app and target-assisted alignment software are now implemented. No physical rig performance, real alignment accuracy or roadworthiness decision system is validated here.
 
 ### 1.2 Why accuracy alone is insufficient
 
@@ -46,7 +46,7 @@ The project responds with simple baselines, model-identity checks, explanation-m
 
 ### 1.3 Contributions and boundaries
 
-The implemented contribution comprises: a documented prepared dataset and split audit; a retained multi-architecture comparison with quarantined identity failures; explanation-informed model selection and controlled follow-up experiments; a manual-supervised detection/segmentation extension; fixed, paired ROI and probability-fusion analyses; and a versioned evidence-to-report workflow. These are engineering and empirical contributions within one pilot collection. We do not claim state-of-the-art tyre inspection, a new validated wear metric, or superiority over studies that use measured physical ground truth.
+Implemented contributions include a prepared-data audit, architecture comparison with quarantines, explanation-informed follow-ups, manual-supervised dense tasks, paired ROI/fusion analysis, matched boundary learning, a native evidence-preserving prototype and a versioned reporting workflow. These are pilot engineering and empirical contributions, not a validated physical wear metric or universal architecture ranking.
 
 ## 2. Related work and conceptual foundations
 
@@ -64,6 +64,8 @@ Grad-CAM produces class-related localisation using gradients and feature activat
 
 ### 2.4 Dense prediction and uncertainty
 
+HRNet's high-resolution representation design [13] motivates the later point-learning adapter; the tyre targets and evaluation are project-specific. The target-assisted alignment interface uses ChArUco board detection/pose concepts documented by OpenCV [14]. Neither reference establishes this project's field or physical accuracy.
+
 U-Net, DeepLabV3+ and SegFormer supply distinct encoder/decoder approaches to dense prediction [6–8]. The detection branch additionally uses YOLO26 software and a genuine RT-DETRv2-R18 checkpoint [9–10]. Their native objectives and pretraining differ, so the comparison is not an equal-pretraining architecture-only ablation. Temperature scaling and conformal prediction motivate the uncertainty analyses [11–12], while their interpretation remains constrained by finite samples and dependence in the available splits. References distinguish primary papers from software documentation; unverified claims from earlier planning notes are not imported as established related work.
 
 ## 3. Research questions and experimental scope
@@ -75,12 +77,14 @@ U-Net, DeepLabV3+ and SegFormer supply distinct encoder/decoder approaches to de
 | RQ3: Do selected training interventions repeat on other architectures? | 18 S4b runs | Same-fold directional confirmation, not independent replication |
 | RQ4: Can existing masks supervise tyre/tread localisation? | 81 S5 runs and native-coordinate evaluation | Agreement against the existing manual reference |
 | RQ5: Do predicted crops or fixed fusion improve a frozen classifier? | Paired ROI and NB18 fusion tables | Fixed intervention effects in the existing folds |
+| RQ6: Does a dedicated point model improve boundary localisation? | Matched HRNet/SegFormer, three seeds, two test tyres | Point-error difference under matched split/budget, not equal supervision |
+| RQ7: Can the components support an auditable inspection interface? | Tread Station and saved local software checks | Operational integration and failure display, not field accuracy certification |
 
 Historical H1 asks whether normalised tread evidence predicts cross-fold stability better than accuracy. Its inherited analysis uses selected-epoch statistics and is not supported by the recorded result. H2 is inconclusive/undefined in the implemented evidence. H3 lacks the planned fine-grained model arms and remains untested. These outcomes are retained rather than replaced with post-hoc favourable hypotheses.
 
 ![Study overview: evidence collection, implemented branches, and deferred components](assets/study_overview.svg)
 
-*Figure 1. Implemented evidence flow. Shared images and folds connect the branches; they do not create independent replications. The dashed branch marks work not executed in this study.*
+*Figure 1. Implemented evidence flow, including learned geometry and the desktop prototype. Shared source images do not create independent replications. The dashed strip separates remaining research validation from software already built.*
 
 | Stage | Verified implementation | Completion boundary |
 |---|---|---|
@@ -90,8 +94,10 @@ Historical H1 asks whether normalised tread evidence predicts cross-fold stabili
 | S4 / S4b | 108 OFAT + 18 confirmation runs | Wider original technique tiers not all executed |
 | S5 | 81 dense-task runs, all 60 epochs, NB17 report | Manual-supervised scope only |
 | Explanation/stress/uncertainty tracks | NB07–NB10 and recovery reporting | Original video/factorial/FGVC extensions remain missing |
-| S9 | 81 saved-input fusion analyses, five arms | Full HRNet/PatchCore design deferred |
-| S10 | NB19/NB20 execution and this full documentation package | Author review and venue-specific submission outstanding |
+| S9 | Fixed fusion, matched geometry study and optional learned-geometry prototype integration complete | PatchCore, original Tier8 ablations and independent end-to-end/video accuracy remain open |
+| S10 | Reporting execution and refreshed 22-visual manuscript complete | Author review and venue-specific submission outstanding |
+| Alignment | Target-assisted calibration/measurement software and synthetic checks implemented | Physical calibration, fixture/rack comparisons and real error validation remain open |
+| App | Native Tread Station implemented and locally tested | Physical webcam and wider deployment validation remain open |
 
 ## 4. Dataset, labels and sampling limitations
 
@@ -106,7 +112,7 @@ The frozen preparation record describes 888 raw files, of which 470 byte-identic
 | High | 152 | 6 |
 | Total | 418 | 12 |
 
-The word *session* is deliberate. A timestamp-gap rule, rather than independently verified tyre identity, defines the 12 groups. Earlier planning documents sometimes called these “12 tyres”; this report does not adopt that assumption. The full preparation record and known split caveats remain available in [the dataset specification](../12_DATASET_FINAL_V1.md).
+The groups were originally defined by a timestamp-gap rule. On 15 September the operator explicitly confirmed that the 12 sessions represent 12 different physical tyres. This report says **user-confirmed distinct tyres**, not independently audited identities. That clarification does not retroactively rerun the old fold audit or make the collection external data. The full preparation record and historical split caveats remain in [the dataset specification](../12_DATASET_FINAL_V1.md).
 
 ### 4.2 Folds and leakage flags
 
@@ -127,6 +133,10 @@ Existing manual masks supply the S5 supervision. The canonical tyre region is `m
 NBT1 tests annotation propagation/replay. It is not an independent second annotation of the images. Consequently, model-versus-manual IoU cannot be described as annotator self-consistency, inter-annotator agreement or unedited-SAM2 agreement. Those studies remain deferred. Mask quality affects both training and evaluation, so systematic annotation conventions may be learned and reproduced without proving that every boundary is physically exact.
 
 ## 5. Methods and execution protocol
+
+### Geometry annotation extension
+
+The later annotation package contains 120 images and 720 visible targets: left/right tread boundaries on three fixed horizontal guide rows. These are six horizontal coordinates, not arbitrary anatomical landmarks or physical wheel angles. The original 12 pilot photographs are excluded from the 120-image set, but some tyre identities informed pilot development; the cohort is not untouched external validation. A frozen allocation uses 72 training images from eight tyres, 24 validation images from two tyres and 24 test images from two tyres. Image hashes, guide rows, point order and role assignments are identical in the matched comparison. The test tyres are `mileage_100000_plus__session_006` and `new_tire__session_001`.
 
 ### 5.1 Classification sweep and endpoints
 
@@ -172,7 +182,17 @@ NB18 uses saved prediction sets; it does not train another network. Its five fix
 
 Training runs in Kaggle sessions with Hugging Face as the persistent record. The later dense-task workflow isolates jobs in child processes, checks working RAM and free space, and uses GPU 0 intentionally rather than claiming unmeasured two-GPU acceleration. The parent owns publication. Normal snapshots are batched at approximately 30-minute intervals; major action completion and catchable interruption request a flush. Rate limits can still delay a request.
 
-Checkpoints retain optimisation state, history, runtime identity and random-generator state as supported by the backend. Resume starts at the latest successfully published completed epoch, not an arbitrary interrupted batch. An uncatchable OS kill or loss of unpublished local state cannot be guaranteed recoverable. Immutable staging, checkpoint/status hash checks and journal recovery address publication consistency; they do not make a remote service or a temporary session infallible. These boundaries are central to honest reproducibility claims.
+Checkpoint granularity depends on the backend: the earlier dense-task engine restores completed epochs; the later geometry engine checkpoints completed optimiser steps and the next-batch cursor. Both retain compatible optimisation/RNG state and depend on the last successful HF publication for cross-session recovery. A forced OS kill or lost unpublished state cannot be guaranteed recoverable. Immutable staging and hash checks protect consistency, not remote-service availability.
+
+### 5.8 Matched geometry method and operational integration
+
+HRNet-W18 is trained on Gaussian horizontal coordinate targets for six boundary points. SegFormer-B0 learns two overlapping dense-mask channels using the existing manual masks of the same 72 training images; no validation/test dense mask enters its training loader. The matched settings are input height/width 512/384, batch size two, AdamW learning rate 0.0001, weight decay 0.01, cosine epoch scheduling, no augmentation, frozen batch-normalisation running statistics, three seeds and a fixed epoch-60 endpoint. The two models have different pretrained backbones and supervision. Their parameter counts are 9,603,962 for the HRNet adapter and 3,714,658 for the matched SegFormer decoder. The previously trained S5 SegFormer checkpoint is not the matched comparator.
+
+SegFormer logits are interpolated to native resolution and thresholded at sigmoid 0.5. Left/right extrema at the fixed guide rows produce points. Empty or frame-clipped boundaries are rejected. The predeclared full-set metric substitutes a training-only mean coordinate for a missing point and also reports raw coverage and conditional error; no substitution was required on the final test set. Horizontal error is `abs(predicted_x − reference_x) / (native_width − 1)`. There are 144 target points per seed and 432 paired records in the three-seed comparison, not 432 independent test subjects.
+
+The geometry engine saves each completed optimiser step with weights, optimiser, scheduler, scaler, RNG state and next-batch cursor. It publishes consistent snapshots at roughly 30-minute intervals and on major completion/catchable Stop. Its deterministic resizing repair retains the strict resume check; the T4 test subsequently passed with zero parameter difference. This is distinct from the older epoch-granularity dense-task engine. A forced kill or failed upload can still lose unpublished work.
+
+Tread Station uses seed 1 / final epoch 60 for both optional geometry models, fixed for local integration without selecting the lowest published test error. Full RGB images are resized to 384×512 with ImageNet normalisation and no crop, rotation search or test-driven augmentation. Native coordinates use width minus one and the frozen guide-row fractions. The operational adapter runs in FP32, whereas training evaluation used AMP; the integration check is not presented as a fresh reproduction of the aggregate benchmark. HRNet coordinates are unconditional proposals, not calibrated confidence or invisible-boundary detection. Display smoothing preserves raw coordinates and resets after seeks, source/mode changes, gaps or flags.
 
 ## 6. Results
 
@@ -278,6 +298,58 @@ NB08 contributes 63 stress-test rows. The shuffled-label fixed-final control mea
 
 Fold 0 achieves 0.86885 coverage, below nominal; folds 1 and 2 achieve 0.97561 and 0.93939, respectively. It would be incorrect to say that every fold misses nominal coverage, or that all future data are guaranteed covered. The small test subsets and dependent acquisition structure constrain the interpretation. Mean set sizes below one indicate empty sets occur; the inherited abstention field does not by itself count all empty-set failures. It must not be presented as a complete uncertainty-based rejection policy. Extremely small calibrated errors on flagged folds are not evidence of deployment-grade certainty.
 
+### 6.8 Matched boundary localisation: benefit within the study
+
+**Table 8. Same-split, fixed-final geometry results.** Values are percentages of native image width; lower is better. Each seed evaluates the same 24 images from two tyres. [Audited inputs](evidence/geometry/comparison_REPORT.json).
+
+{{GEOMETRY_RESULTS}}
+
+HRNet's three-seed mean is **1.312% / 15.10 px**, compared with **1.721% / 19.80 px** for SegFormer. This is a 0.409 percentage-point or 4.70-pixel absolute reduction, and a **23.75% relative reduction in mean point error**, not a classification-accuracy improvement. HRNet has lower mean error in all three seeds and on both test tyres. All SegFormer boundaries are present, so raw and fallback-assisted scores coincide. No test-selected winner seed or evaluated ensemble is claimed.
+
+![Matched HRNet and SegFormer boundary errors across three seeds](assets/geometry_seed_comparison.png)
+
+*Figure 12. Recomputed geometry comparison from frozen HF records. Equal training budget and identical test points do not imply equal supervision. No significance interval is inferred from three seeds.*
+
+![Per-tyre geometry error with all seed values retained](assets/geometry_per_tyre.png)
+
+*Figure 13. Both test tyres have lower mean HRNet error in each seed, but the new-tyre example has larger error for both models. Dots are individual seeds and horizontal marks their means, not population confidence intervals.*
+
+### 6.9 Native app and learned-geometry integration
+
+The optional app is no longer an unbuilt proposal. Tread Station is a native PySide6/PyTorch desktop workstation with image/video loading, asynchronous inference, model comparison, portrait-aware playback, overlays, saved evidence and restoration. Four existing classifier/region models remain available; HRNet and matched SegFormer are optional geometry components, not silent replacements for the S5 region model. Learned overlays expose widths, midpoint lines, raw coordinates, model hashes and disagreement flags. Evidence records preserve the actual analysed frame rather than painting an old result on a new preview.
+
+Saved local checks verify strict checkpoint loading, original preprocessing/coordinate decoding, repeatability, blank-input flags, temporal resets and lossless evidence restoration. UI tests exercise all three supplied videos, overlay toggles, seek reset, diagrams, PNG/JSON export and model release. These are existing test artifacts inspected for this report, not new test runs performed during writing. A local GPU operational check on one internal still recorded the following five warm measurements:
+
+{{GEOMETRY_TIMING}}
+
+Both timings include preprocessing, forward pass, extraction and GPU synchronisation, but exclude weight loading and file decoding. Hardware is a GTX 1650, not the training T4. Peak allocated memory in the two-model check was 182.0 MiB; full-pipeline video snapshots reported roughly 271–279 MiB. These small samples are not guaranteed camera FPS, sustained throughput or an independently controlled efficiency benchmark. HRNet's point-error advantage therefore carries additional observed inference cost; accuracy and speed must not be conflated.
+
+![Saved native Tread Station workstation with learned geometry enabled](assets/video1-learned-workstation.png)
+
+*Figure 14. Existing desktop prototype on a supplied video. The app is implemented; its visible flags and overlays do not establish field accuracy or physical webcam performance.*
+
+![HRNet and matched SegFormer points overlaid on one study photograph](assets/learned-image-check.png)
+
+*Figure 15. Existing qualitative still-image integration check. Amber points/lines are HRNet, cyan squares are matched SegFormer, and the purple line is an image-space midpoint line. Widths are pixels, not millimetres or alignment angles. This is a selected operational example, not a new held-out aggregate result.*
+
+### 6.10 Deployment-domain failures are part of the result
+
+The local video tests passed their software assertions but also exposed model limitations. The reviewed video1 and Video2 frames contain crossed or collapsed HRNet boundaries; all three clips trigger HRNet/matched disagreement, and some matched boundaries are missing. Crossed pairs withhold widths/connecting geometry; raw proposals remain visible for review. Display smoothing is not proof of correctness: a stable wrong prediction can remain stable. The clips have no point ground truth, so no video localisation accuracy or temporal robustness score is claimed. Their framing, appearance and motion differ from the small training collection.
+
+![Video-domain failure with crossed HRNet boundaries and model disagreement](assets/video1-learned-diagram.png)
+
+*Figure 16. Preserved failure example from video1. Red proposals, missing entries and crossed-boundary flags are intentionally shown. A passing UI test and a lower still-image benchmark error do not imply deployment-ready predictions.*
+
+### 6.11 Alignment software exists; physical validation remains separate
+
+The implemented target-assisted path generates two distinct ChArUco boards, creates/loads camera profiles, solves ground and wheel target poses in the same frame and computes single-wheel camber/toe in an explicitly defined vehicle coordinate frame. The interface accepts independent reference readings and exports images, camera profiles, pose residuals and measurements. It withholds results when a required target or setup confirmation is missing. Learned tread points and mask/rim hypotheses are supporting image evidence, not the physical reference frame.
+
+The saved alignment check uses rendered target/calibration images, known synthetic poses and UI controls. It exercises signed angles on both sides, missing targets, scaling/orientation, setup gating and evidence export. These tests validate software behaviour; the supplied videos do not contain the calibrated dual-target setup. Real camera calibration, level/heading reference, verified wheel-plane mounting, repeat-remount trials and comparison with an independent instrument are still required to quantify physical error. No fixture/runout compensation, universal vehicle tolerance, roadworthiness verdict or target-free 3-D alignment claim is supported.
+
+![Target-assisted alignment dialog using explicitly synthetic test images](assets/alignment-bench-check.png)
+
+*Figure 17. Existing software-test screenshot, explicitly labelled SYNTHETIC TEST CAMERA. Displayed angles and residuals are synthetic test outputs, not a real-wheel calibration result or claimed measurement accuracy.*
+
 ## 7. Discussion
 
 ### 7.1 What the project establishes
@@ -304,19 +376,19 @@ This pilot should not be used to decide whether a vehicle is safe to drive or a 
 
 ## 8. Reproducibility and artifact provenance
 
-The authoritative reporting snapshot is the public dataset repository [Shanmuk4622/tyre-wear-study](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/22d5a6bc9f953ba3bf2a75919edc7db3193b317b), revision `22d5a6bc9f953ba3bf2a75919edc7db3193b317b`. The S10 namespace is `s10/reporting-r1/2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e/`.
+The earlier S10 reporting snapshot is [Shanmuk4622/tyre-wear-study at 22d5a6bc](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/22d5a6bc9f953ba3bf2a75919edc7db3193b317b), namespace `s10/reporting-r1/2a333e2a6469905ad8cb822821ea46a357364e6d17bdd53c153c8b7e51fd217e/`. Geometry is separately pinned to HRNet report `a92c0f9c5c1b78c6a06e13d51e18722195230658` and matched report `bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb`. Local prototype evidence has filesystem hashes, not an invented HF publication.
 
 NB19 collected 38 source files: 25 tables, ten inherited figures and three upstream status records. NB20 added four figures and the reporting artifacts, producing 14 inherited/public figures in total. The [evidence manifest](evidence/evidence_manifest.json) maps each local source to its original HF path, revision, byte count and SHA256. The [report status](evidence/REPORT_STATUS.json) lists report artifact hashes. Different collection and publication revisions are expected; they do not mean the data were silently changed.
 
-This edition adds a study-flow diagram and an endpoint-comparison chart, with the latter generated directly from the cached master table. All upstream evidence remains unchanged under `evidence/`. Generated report tables come from those CSVs. The manuscript source, build script, local validation script and [reproducibility appendix](REPRODUCIBILITY.md) distinguish documentation reproduction from expensive scientific retraining. Local provenance also records report outputs and the source-code hashes used to build them.
+This refreshed edition retains the original 14 public figures, updates its study-flow diagram and keeps the endpoint chart. Two geometry charts and four saved prototype screenshots bring the total to 22 visuals. The original 38-file evidence cache remains byte-for-byte unchanged. A separate [geometry/local evidence manifest](evidence/geometry_manifest.json) records the added JSON and screenshot sources and hashes. Rebuilding uses only local inputs and performs no training or publication.
 
 Artifact verification is layered. This documentation build verifies cached evidence and report hashes, row-count invariants, local links, images, unresolved markers and output integrity. Earlier audit records document full training checkpoint and prediction verification. This documentation pass does not re-download or re-audit every large checkpoint, and it does not claim an independent re-execution of training.
 
 ## 9. Conclusions and next work
 
-The completed implemented tracks support an evidence-grounded pilot study of mileage-proxy recognition and tyre/tread localisation. They expose substantial endpoint and fold sensitivity and show no average gain from the tested frozen-classifier crop/fusion interventions. The appropriate conclusion is qualified: the workflow is reproducible and its limitations are visible, while physical wear validity and independent generalisation remain unestablished.
+The completed tracks support a pilot study of mileage-proxy recognition, tyre/tread localisation and learned image-space geometry. They expose endpoint/fold sensitivity and no average gain from frozen-classifier crop/fusion interventions. HRNet reduces point error in the matched two-tyre test, while integrated video examples reveal domain limitations. The native app and target-assisted measurement software are implemented; physical accuracy, external generalisation and the original full Tier8/PatchCore experiment remain unestablished.
 
-The immediate next step is author review of this report, its claims ledger, figures and references, followed by the required institutional or venue template. No notebook rerun is needed merely to prepare the document. HRNet/PatchCore remain temporarily deferred. If revisited, first freeze the physical task and label definitions, then provide a small guided annotation pilot with examples and review it before requesting a larger batch. HRNet would need defined landmark targets; PatchCore would need an independently justified healthy-reference pool. Existing mileage labels cannot simply be renamed to satisfy either requirement.
+The documentation refresh is complete: Markdown and rendered report now include the matched results and implemented prototype. Next are author/template review and deployment-domain research validation, not another annotation pilot or duplicate integration build. Review the crossed-boundary failures on supplied clips, define a held-out video evaluation and evaluate full-system/component effects under a frozen scope. Physical alignment needs real target/camera/fixture measurements and independent references. PatchCore needs an independently justified healthy-reference pool; mileage labels alone cannot supply it.
 
 A stronger future study should prioritise independently identified tyres, wider acquisition conditions and target-matched measurements before multiplying model runs. A new tyre-held-out split should be frozen before evaluating additional crop-trained models, learned fusion or calibration policies. Negative current results should remain part of the record even if future experiments improve them.
 

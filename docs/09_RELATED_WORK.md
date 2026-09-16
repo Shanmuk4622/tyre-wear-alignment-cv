@@ -1,5 +1,9 @@
 # 09 — Annotated Related Work and Novelty Audit
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Submission note, 2026-09-12:** this is historical research/design material,
 > not a fully verified submission bibliography. Use the current report's
 > [checked references and scope notes](report/REFERENCES.md). Do not copy the

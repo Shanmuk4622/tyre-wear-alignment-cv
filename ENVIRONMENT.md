@@ -1,5 +1,13 @@
 # Environment Setup — `cv_conda`
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Every Python command in this project runs inside `cv_conda`.** No exceptions.
 > ```bash
 > conda activate cv_conda

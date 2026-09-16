@@ -1,5 +1,9 @@
 # Local verification — 13 September 2026
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 Tested on NVIDIA GeForce GTX 1650 (4 GB), using the existing `cv_conda` environment and its CUDA-enabled PyTorch. No training or model substitution occurred.
 
 ## Real-model checks

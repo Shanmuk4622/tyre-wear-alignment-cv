@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "platform": "offscreen",
+  "checks": [
+    "image load",
+    "real four-model GPU worker",
+    "comparison rows",
+    "overlay switching",
+    "evidence save/restore",
+    "native screenshot",
+    "video decoding",
+    "freeze/resume",
+    "live inference",
+    "shutdown"
+  ],
+  "camera": "Physical webcam not exercised"
+}

@@ -1,5 +1,9 @@
 # 17 — Data Logging Schema
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **We train once.** The cost of an extra column is bytes. The cost of a missing one is a re-run we cannot afford.
 >
 > This is the complete list of what gets recorded. Freeze it **before Stage A** — changing the schema mid-sweep means re-deriving results from 279 runs.

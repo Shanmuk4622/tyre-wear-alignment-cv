@@ -1,5 +1,184 @@
 # Project Logbook
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+## 2026-09-15 — Full report refresh and prototype/status reconciliation
+
+Reconciled the user's later prototype work: native app, learned-geometry integration
+and target-assisted alignment software already exist. Saved local evidence supports
+software completion, not physical accuracy; video failures are retained. Refreshed
+manuscript source, Markdown and HTML with new methods/results/discussion, 22 visuals
+and 14 references. Original immutable evidence is unchanged; the new geometry/local
+manifest is separate. All maintained Markdown has current-status navigation.
+No model/notebook/prototype code edit, new inference or HF publication performed.
+
+## 2026-09-15 — NB31/NB32 complete and independently HF-verified
+
+Compared saved notebook outputs with current HF bbe586c6. NB31's saved logs are
+incomplete, but HF verifies 3×60 epochs, 6,480 finite step records, 180 validation
+files, three checkpoint LFS/status hash matches and the repaired zero-delta smoke.
+Recomputed 432 paired points and all seed/tyre report means. HRNet 1.3118% width
+versus SegFormer 1.7205%, 23.75% lower mean error; SegFormer coverage 100%.
+Downloaded 1,013,075 bytes of metadata, no weights/images. Added docs/36 and
+updated current status/claims. No notebook rerun, prototype edit or HF write.
+Next: validation-only/predeclared checkpoint selection and integration validation.
+
+## 2026-09-15 — NB30 verified; NB31 resume mismatch repaired
+
+Read both executed notebooks and pinned HF preflight/smoke metadata. Preflight
+passed (e32a8030); smoke failed (46511253), max weight delta 0.000166565, before
+training. No run checkpoints exist in that snapshot. Added a separately hashed
+deterministic resize adapter without changing the original contract or weakening
+the smoke threshold. CPU native-gradient comparison and real-model stochastic
+resume passed; T4 verification awaits rerunning updated NB31. Archived failed
+NB31 before regenerating only that notebook. NB30/NB32 and HRNet outputs preserved.
+
+## 2026-09-15 — Matched SegFormer comparison implemented
+
+Added NB30 CPU preflight, NB31 single-session T4 smoke/resumable training and
+NB32 CPU paired report. Frozen HRNet 72/24/24 image and 8/2/2 tyre allocation
+reused, with the existing 72 training masks verified against S5 hashes. No old
+S5 weights, new annotations, HRNet reruns or prototype changes. Matched budget
+and endpoint; different dense-mask versus point supervision is documented.
+Local real-model CPU forward/backward, overflow retry, stochastic continuation,
+boundary failure cases and notebook validation passed. Kaggle results pending.
+See [protocol/run guide](35_MATCHED_SEGFORMER_COMPARISON.md).
+
+## 2026-09-15 — HRNet training and report completed and verified
+
+NB28 final training commit 96166fb1 and NB29 report a92c0f9c verified. Three seeds
+each 60 epochs, 2,160 finite step records; all 432 test-point records and constant
+baseline recalculated. Checkpoint LFS hashes match STATUS, no tensor downloads.
+Mean seed width error 1.3118%, mean pixel error 15.099; constant baseline 3.5547%.
+Only two held-out tyres; unequal per-tyre error and no matched SegFormer comparison.
+Repair provenance and passed GPU regression retained. Read 702,000 result/metadata
+bytes; no HF writes, code/notebook rebuilds or label changes. Added docs/34 and
+updated live status. Next same-split baseline and geometry integration decision;
+PatchCore, physical-angle evidence and full S9 remain open.
+
+## 2026-09-15 — NB26/NB27 verified and NB28 AMP recovery repaired
+
+Public preflight 32d13296 and smoke 240dbb9e match notebook outputs and contract.
+T4 smoke max parameter delta 0, peak allocation 613,136,384 bytes. NB28 emergency
+commit 92f580df preserves seed1 epoch0 cursor18, 117 MB checkpoint; published LFS
+hash equals STATUS. Read 135,573 metadata bytes, no checkpoint payload or HF writes.
+Root failure: nonfinite-gradient guard raised before scaler recovery. Added explicit
+checkpoint-compatible runtime adapter with same-batch retry, RNG restore, bounded
+FP32 fallback and persistent-corruption guard. Model/split/LR/checkpoint protocol
+unchanged; repair source/events published on future snapshots and included in NB29.
+CPU real-scaler regressions and original-hash checks pass. New GPU regression runs
+before NB28; actual repaired full training still unverified. Rebuilt NB28 and NB29
+only, archived failed NB28 evidence, preserved executed NB26/NB27 and user labels.
+
+## 2026-09-15 — HRNet preflight, smoke, training and report implemented
+
+Recorded user's explicit confirmation of 12 different physical tyres. Added
+NB26–NB29: frozen 8/2/2 tyre split (72/24/24 images), all 120 overlay QA outputs,
+pinned HRNet-W18 feature adapter (9,603,962 parameters), GPU checkpoint-continuation
+smoke gate, three sequential 60-epoch seeds with per-step local durable state,
+30-minute/major/Stop HF commits, and small audited test report. All-visible labels
+mean coordinate-only training, not visibility classification or healthy references.
+NB29 constant baseline uses only training labels; matched SegFormer baseline remains
+separate to avoid train/test overlap. No full S9 claim.
+Passed local real-model CPU 512x384 forward, channel/parameter identity, split/hash,
+notebook syntax, CPU optimizer/RNG continuation and pinned pretrained tensor-header
+shape checks. Downloaded small code/metadata only, no pretrained tensor payload,
+dataset or HF writes. GPU/AMP, pretrained loading and long training unverified;
+NB27 is the required next runtime test after NB26. Existing annotations/notebooks
+and prototype changes preserved. Updated PROGRESS and docs/32.
+
+## 2026-09-15 — NB24/NB25 120-image submission verified
+
+Both notebooks finish without exception outputs. HF package 78d90571 and intake
+2b477391 match saved commits. Public/local manifest and annotation bytes match;
+all 120 native image hashes and independently validated review records pass.
+720 points marked visible, 120 no-visible-issue observations, 120 unknown records;
+12 blank physical-tyre identities. Read 250,884 remote JSON bytes, no large download
+or HF writes. Inspected two near-edge flagged originals; no automatic label changes.
+Full point-overlay review remains pending. Updated docs/31 and live entry points;
+next identity/split lock and HRNet smoke/training implementation. No new batch asked.
+
+## 2026-09-14 — Single 120-image redesign requested by user
+
+NB24 now delivers one ZIP and NB25 accepts one 120-image JSON. No BATCH setting
+or review-after-12 gate. Native images are external files beside the small HTML;
+all 120 hashes verified. ZIP 93,854,472 bytes (89.51 MiB), capped at 160 MiB.
+Navigation/counter/import and server validation support 120, partial resume and
+duplicate rejection. New r2-all120 namespace preserves old HF data. Local package
+and syntax tests pass; Kaggle/browser execution pending. No labels or prototype
+modified. Earlier ten-batch notes are history; final label/split review remains.
+
+## 2026-09-14 — HRNet annotation expansion authorised and prepared
+
+User accepts a larger annotation budget. Added NB24/NB25: 120 new originals,
+ten 12-image batches, old pilot excluded, deterministic session-rotating allocation,
+native JPEG preservation, blank factual identity ledger, hash-addressed HF package
+and annotation intake. First-batch ZIP 9,785,017 bytes; local selection, validation
+and notebook syntax tests pass. Kaggle execution and human labels pending.
+Wrote docs/30: HRNet training design, identity-disjoint split gate, matched segmentation
+comparison, checkpoint/resume requirements and separate PatchCore/alignment gaps.
+No training notebook falsely claimed ready; it follows approved targets/splits.
+NB23 verified separately at 84bcbdd61: 66/66 coverage, 8 px median, 0.90% mean width
+error, P06 held out of scores. Existing notebooks/prototype/labels untouched;
+no assistant HF publication. Current action is first annotation batch, not all 120.
+
+## 2026-09-14 — NB23 saved-mask geometry baseline implemented
+
+Added CPU-only NB23 and embedded runtime: fixed SegFormer-B0 seed-1 native
+predictions, pinned verified annotation/source revision, P06 review hold,
+per-run split/hash/epoch checks, explicit clipped/empty rejection and coverage,
+mask diagrams and content-addressed HF output. No model/dataset download or
+training. Public checks pass for all 12 source predictions; unit/syntax tests
+pass. Local pycocotools installation stalled and was stopped, so end-to-end
+decoding and Kaggle upload remain unverified. User execution is next. Updated
+PROGRESS and run guides; no existing notebooks, labels, prototype or HF modified.
+
+## 2026-09-14 — Revised NB22 intake verified (11/12)
+
+Public HF and saved notebook commit match `05bf37c0f2067b0119ef057a2442d7759cf9ac51`.
+New local annotation SHA `4110bdcc413ff327d7ab2e6d107efac071008dc73b1bf04143a6c9a116516e18`
+matches HF bytes; independent validation matches review records. Only P06 changed:
+left-middle/lower now Outside frame, right-middle/lower still visible; new Visible
+issue choice lacks a note, causing 11/12 complete. This is successfully preserved
+partial annotation, not a notebook failure. Read 20,838 remote bytes and inspected
+native P06. Audit outputs now use annotation-hash subdirectories, preserving the
+first audit. Updated live guides and docs/28 with exact small follow-up. No labels,
+notebooks, prototype, manuscript or HF files changed. Predicted-mask baseline is
+still the next planned notebook; no training or new annotation batch requested.
+
+## 2026-09-14 — NB22 execution and real pilot reviewed
+
+Verified saved NB22 success against public HF commit
+`1dad525affd32b06dc73f907edad73eb4096b782`: local manifest/export match remote
+bytes and independent validation matches published review records (12/12).
+Read only 20,824 remote bytes; verified local embedded image hashes and reviewed
+all 12 overlays, plus native P06. P06 middle/lower boundary clicks are cropped;
+request targeted visibility review, not another batch. Median distance to manual
+tread-mask extrema is 7 px, a redundancy diagnostic, not independent accuracy.
+All independent records unknown; healthy-pool and training approval remain false.
+Next proposed experiment uses fold-matched predicted masks before HRNet training.
+Added docs/28 and refreshed live status. No labels, notebooks, prototype code,
+frozen report or HF artifacts changed. Earlier pending notes below are history.
+
+## 2026-09-14 — S9 small input pilot implemented
+
+Read the prototype's inspection, video, geometry and calibrated-alignment updates;
+preserved all prototype code/Markdown edits. Reopened only input feasibility,
+not full pipeline training. Added NB21 CPU preparation and NB22 annotation-only
+intake,12 original JPEGs from12 sessions,9.46MiB lossless package, offline point
+visibility/triage page, three schematic worked examples, JSON save/import and
+partial-safe validation. Proposed2-D boundary targets are not physical angles;
+healthy-reference eligibility and training approval always remain false until
+separate human review/design. No automatic new batch.
+
+Local contracts, source identity, original-image hash/size checks and browser
+skip/navigation/export/import passed. Test exports are software fixtures only.
+Kaggle execution/human annotation pending. Read-only HF refs still22d5a6bc9;
+no network downloads of models/images and no assistant HF publication. Current
+instructions and scope recorded in docs/27, README, PROGRESS and notebook index.
+
 ## 2026-09-12 — Full manuscript and documentation handoff
 
 Prepared the full illustrated report in `docs/report/REPORT.md` and `REPORT.html`,

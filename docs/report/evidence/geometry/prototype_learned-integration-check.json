@@ -1,0 +1,180 @@
+{
+  "status": "passed",
+  "image": "D:\\Dataset Download\\Tire Dataset Prepared\\FINAL\\images\\clean\\fold_1\\high_mileage_proxy\\mileage_100000_plus__session_006__b004__1848a9a495.jpg",
+  "precision": "FP32",
+  "checks": [
+    "strict checkpoint loading",
+    "original preprocessing exact",
+    "original coordinate decoding",
+    "matched native-logit boundary extraction",
+    "repeatability",
+    "blank proposals flagged",
+    "temporal resets",
+    "immutable source pixels"
+  ],
+  "timings_ms": [
+    {
+      "hrnet": 72.6,
+      "matched": 33.84
+    },
+    {
+      "hrnet": 51.41,
+      "matched": 33.32
+    },
+    {
+      "hrnet": 88.46,
+      "matched": 33.48
+    },
+    {
+      "hrnet": 79.07,
+      "matched": 33.51
+    },
+    {
+      "hrnet": 61.79,
+      "matched": 33.34
+    }
+  ],
+  "gpu": "NVIDIA GeForce GTX 1650",
+  "peak_allocated_mb": 182.01220703125,
+  "result": {
+    "mode": "paired",
+    "models": {
+      "hrnet": {
+        "points": [
+          [
+            201.29008494317532,
+            384
+          ],
+          [
+            900.278421998024,
+            384
+          ],
+          [
+            168.63010004162788,
+            768
+          ],
+          [
+            911.5506262779236,
+            768
+          ],
+          [
+            197.98444136977196,
+            1151
+          ],
+          [
+            884.5191798210144,
+            1151
+          ]
+        ],
+        "names": [
+          "left_upper",
+          "right_upper",
+          "left_middle",
+          "right_middle",
+          "left_lower",
+          "right_lower"
+        ],
+        "provenance": {
+          "revision": "96166fb19f9bf63d1acb2bd2ee8b55b0ffdacadd",
+          "protocol": "351c6638783996f46cf9efd99ec6689de726e045288054f240193cea61385712",
+          "namespace": "hrnet-geometry-2026-09-15-r1",
+          "audit": "hrnet_final_audit",
+          "contract": "report_CONTRACT.json",
+          "repo": "Shanmuk4622/tyre-wear-study",
+          "path": "s9/hrnet-geometry-2026-09-15-r1/351c6638783996f46cf9efd99ec6689de726e045288054f240193cea61385712/runs/seed1/state.pt",
+          "seed": 1,
+          "epoch": 60,
+          "source_sha256": "4f4067529ec9b793d1d40c02138b7ce609acf41f9b3f101a0fc9b8fd09d951d3",
+          "inference_sha256": "0d71f6d72b3a2c3eaead4f152a1873541a5cf29918e52c1d3d4a070b2ea8661e",
+          "bytes": 39271570
+        },
+        "inference_ms": 376.83,
+        "load_ms": 0.32,
+        "widths_px": [
+          698.9883370548487,
+          742.9205262362957,
+          686.5347384512424
+        ],
+        "ordered": true
+      },
+      "matched": {
+        "points": [
+          [
+            191,
+            384
+          ],
+          [
+            915,
+            384
+          ],
+          [
+            166,
+            768
+          ],
+          [
+            924,
+            768
+          ],
+          [
+            185,
+            1151
+          ],
+          [
+            895,
+            1151
+          ]
+        ],
+        "names": [
+          "left_upper",
+          "right_upper",
+          "left_middle",
+          "right_middle",
+          "left_lower",
+          "right_lower"
+        ],
+        "provenance": {
+          "revision": "aeee706c3aa60dad2706fff56939d7ed86ab01ca",
+          "protocol": "8013bf1e6418e6f884a353efa7ce892c31fbaac450f9d7caede636d9e61e2a18",
+          "namespace": "segformer-matched-2026-09-15-r1",
+          "audit": "segformer_completion_audit",
+          "contract": "comparison_CONTRACT.json",
+          "repo": "Shanmuk4622/tyre-wear-study",
+          "path": "s9/segformer-matched-2026-09-15-r1/8013bf1e6418e6f884a353efa7ce892c31fbaac450f9d7caede636d9e61e2a18/runs/seed1/state.pt",
+          "seed": 1,
+          "epoch": 60,
+          "source_sha256": "32a9fde7abda8ba927acfdfb9794db1b3ee5ea8cf9efd24cb1ddc2755eda16db",
+          "inference_sha256": "40d15ccd0367dce9b4695a93eba332e74e308d7380ab1f4471e5459bbf54f36e",
+          "bytes": 15090566
+        },
+        "inference_ms": 186.98,
+        "load_ms": 3997.37,
+        "widths_px": [
+          724,
+          758,
+          710
+        ],
+        "ordered": true
+      }
+    },
+    "frame_size": [
+      1152,
+      1536
+    ],
+    "input_hw": [
+      512,
+      384
+    ],
+    "precision": "FP32",
+    "limitation": "Unconditional image-space proposals. Not visibility confidence or physical alignment.",
+    "differences_px": [
+      10.290084943175316,
+      14.721578001976013,
+      2.630100041627884,
+      12.449373722076416,
+      12.984441369771957,
+      10.480820178985596
+    ],
+    "paired_coverage": 1.0,
+    "flags": []
+  }
+}

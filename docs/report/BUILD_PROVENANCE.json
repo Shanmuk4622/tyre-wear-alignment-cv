@@ -1,6 +1,6 @@
 {
-  "edition_date": "2026-09-12",
-  "status": "full_report_prepared_for_author_review",
+  "edition_date": "2026-09-15",
+  "status": "full_report_refreshed_for_author_review",
   "full_original_project_complete": false,
   "python": "3.11.15",
   "packages": {
@@ -10,19 +10,28 @@
     "Pillow": "12.1.1"
   },
   "evidence_revision": "22d5a6bc9f953ba3bf2a75919edc7db3193b317b",
-  "word_count": 6828,
+  "geometry_revision": "bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb",
+  "geometry_manifest_sha256": "b42e3150b3e7baa1287c26a0b8408328ab561c520b2295337a178daf2607d49a",
+  "word_count": 8652,
   "artifacts_sha256": {
+    "docs/report/assets/alignment-bench-check.png": "bc2b7d90ac8adac36b835183786d9aeb00c5bb8382b2174a7430bba1a107c752",
     "docs/report/assets/endpoint_comparison.png": "04cd2f1bf2eb4f18c109a77d7aa24d5b157091582438df77bf524f2029605559",
-    "docs/report/assets/study_overview.svg": "f3c60180a6a201443c4d72c846dd7314b9a180256e8626a594e19258dc6a3af8",
-    "docs/report/CLAIMS_AND_LIMITATIONS.md": "a219fbd5bf9b7b6ea91d2298b4cd6ba8c3e3b3cad87db940b3f0793e8bc0d544",
-    "docs/report/manuscript.source.md": "266cb74e6835a90d949d545d20afe38e7135e91bb14743909e41ad53a28fcf8b",
-    "docs/report/REFERENCES.md": "786ffaa88a9867cfbae6c84b88089da0dbd36f7628538bb72c5401a4128ae211",
-    "docs/report/REPORT.html": "bd0b3a6a12ba36bdee6774cc13fd70f1632e743fdcf1c594b271f1819320a70c",
-    "docs/report/REPORT.md": "081c320f0b8b8b3b4fa5f1dfe4c54198b0ee46b33152acb0886f59f2945ef4db",
-    "docs/report/REPRODUCIBILITY.md": "82e8bf5a0bc4055321bec6bca9d3c243724a3e22e44de47a18b095567db6317e",
-    "docs/report/SUBMISSION_CHECKLIST.md": "73bac3eb99dae650eb64a970a32e4848c06c514f3f6f224adfc708c8d11fd885",
-    "scripts/build_project_report.py": "b19f203b95df82c1d5af45a1268d9b88fd9b147f69291e8826494b165cda2404",
+    "docs/report/assets/geometry_per_tyre.png": "c2c1bdb7d697e983cfc91e7a2b2761ba82c376236a0fc90eb200ba7ea9aef1cf",
+    "docs/report/assets/geometry_seed_comparison.png": "ca6be619ff05e15c29ee36f1722b4a7d7beb964f9b676181f2d30272c5bb0fe0",
+    "docs/report/assets/learned-image-check.png": "a6226bd9a63b03d6b21f1ea16bd64ac99c7d8e6383fd44d24377a8a8b43c328f",
+    "docs/report/assets/study_overview.svg": "cd7ebfabd0238d3ffb0b0a08067bb5cecc80deceebd6759cdb8fe47ea77742cc",
+    "docs/report/assets/video1-learned-diagram.png": "6fb5c7089932ee7f99fee1dffc6019c68ec5a5f965b5fcbfb9226cfb751fea55",
+    "docs/report/assets/video1-learned-workstation.png": "925352bd62bad09e01c952f2a9cf5c3823cb519dc5d296e6435fd39bbb6091e3",
+    "docs/report/CLAIMS_AND_LIMITATIONS.md": "c43719a230def7f1307419b8541ae837191a02480094c69951d913358bf288f8",
+    "docs/report/manuscript.source.md": "5d958cb65944f1774e961e5effb7d2f46cdd00f2aa27fa6e6b26fda99ca7b520",
+    "docs/report/REFERENCES.md": "e069e2ddd508e3fc62118efac526c20ab5c54f52ea4c80bd5c9540375175e417",
+    "docs/report/REPORT.html": "6f06e032d73e44e6a9f2e0478087de7a8a99feec5cb3b6d03693780eccd3cc88",
+    "docs/report/REPORT.md": "087ba3044a38a397074427faeaed134fd7fc95b4c58e0eb442d71005483b6c9e",
+    "docs/report/REPRODUCIBILITY.md": "d44867bfe38c8f73ad973889bf558b56254f55b5ece392f6d5bae1c406d20953",
+    "docs/report/SUBMISSION_CHECKLIST.md": "0dacd6d3392e23cbe5d7d0bd6dc9d65bb89f0a2d5f8da27f647874014720f256",
+    "scripts/build_project_report.py": "9fd21ac5dfae28527a33c47db02073a19d4ad1349fea50d77920d6c74470a629",
+    "scripts/build_report_geometry.py": "5023da6cc466655bd17781a75cc7cbaf38c1f196eaedbb80a691def6a1ef1f89",
     "scripts/fetch_report_evidence.py": "491989a7b8a27eb75cab945f4daefd7183fdfd5b8fc89ec8f05b6d7c7000f775",
-    "scripts/verify_project_documentation.py": "a8d5ad3421252b3099173fa878764eac13b2af939c634960314340c73155183e"
+    "scripts/verify_project_documentation.py": "3f417949162e3384574694eab625273fb7e9164222d68efe5c2c3a96ba83e310"
   }
 }

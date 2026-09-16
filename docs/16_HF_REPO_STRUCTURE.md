@@ -1,5 +1,9 @@
 # 16 — Hugging Face Repository Structure
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > HF is **the only permanent store**. Kaggle sessions are disposable; `/kaggle/temp` is wiped; `/kaggle/working` is 20 GB. If it is not on HF, it does not exist.
 >
 > Decide this layout **before the first run**. Restructuring after 800 runs means rewriting every analysis path.

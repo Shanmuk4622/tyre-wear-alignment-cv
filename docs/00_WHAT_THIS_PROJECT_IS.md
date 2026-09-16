@@ -1,5 +1,9 @@
 # 00 — What This Project Is
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Current edition, 2026-09-12:** S5 is complete (81/81 runs), exploratory S9
 > fusion and S10 notebooks are verified, and the [full report](report/REPORT.html)
 > is prepared for author review. Full original S9 remains deferred. The collection

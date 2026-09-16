@@ -1,5 +1,9 @@
 # 11 — Optional Camera-Connected Application
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **Scope note:** the app is an engineering deliverable, not a research contribution. It is **first on the cut list** (`07_ROADMAP.md`). Build it only after the pipeline and evaluation are done. This document exists so the design is ready when there is time — not to justify starting it early.
 
 ---
@@ -120,7 +124,7 @@ Include `model_version` and `calibration_id` in **every** response. Without them
 
 ---
 
-## 7. Build order
+## 7. Historical proposed build order
 
 1. Gradio Space — upload clip → report card *(afternoon)*
 2. FastAPI wrapper around the same inference code *(1–2 days)*

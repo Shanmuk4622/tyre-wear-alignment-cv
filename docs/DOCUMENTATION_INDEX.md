@@ -1,6 +1,49 @@
 # Documentation index
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 ## Start here
+
+**Latest:** [NB31/NB32 verified results and integration plan](36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md).
+No rerun. Matched geometry comparison complete; S9 integration remains next.
+Older repair/run-now entries below are historical.
+
+**Current:** [NB30 verified; rerun repaired NB31 only](35_MATCHED_SEGFORMER_COMPARISON.md).
+Resume-check numerical repair passed local tests; GPU check pending. NB30 remains valid.
+
+**Run next:** [Matched SegFormer comparison — NB30–NB32](35_MATCHED_SEGFORMER_COMPARISON.md).
+Implemented, local checks passed; GPU results pending. No new annotation or HRNet rerun.
+
+**Current:** [HRNet completion and results](34_HRNET_COMPLETION_AND_RESULTS.md).
+NB28/NB29 verified, three seeds ×60 epochs; next matched segmentation comparison.
+No rerun. Older pending/repair entries below are history.
+
+**Current:** [NB26/NB27 verified; NB28 numerical repair](33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md).
+Resume updated NB28 only, from 18 completed batches in epoch 1. Older stage-run
+instructions below are retained as history.
+
+**Current:** [HRNet NB26–NB29 run guide](32_HRNET_NOTEBOOK_RUN_GUIDE.md).
+User-confirmed 12 distinct tyres, frozen 72/24/24 image split; implemented notebooks,
+local checks passed, Kaggle GPU execution pending. Older identity questions below
+are historical, not a new blocker.
+
+**15 September:** [120-image intake complete and HF-verified](31_S9_120_ANNOTATION_COMPLETION.md).
+Next: point-quality review and tyre-identity/split lock, then HRNet training.
+No NB24/NB25 rerun needed; older preparation notes below are history.
+
+**Current:** [HRNet annotation expansion and full S9 plan](30_S9_HRNET_AND_COMPLETION_PLAN.md).
+NB24 prepares ALL 120 in one ZIP; NB25 saves one JSON. No intermediate batch review.
+NB23 is verified, not pending. Training implementation follows approved inputs/splits.
+
+**Run next:** [NB23 saved-mask geometry baseline](29_S9_GEOMETRY_BASELINE.md).
+CPU, no attachments or training; P06 remains excluded. Kaggle execution pending.
+
+**Current action,14 September:** [NB22 verified; pilot review and next plan](28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md).
+Revised upload verified (11/12); P06 right visibility and issue description remain,
+then predicted-mask baseline before training. [Prototype updates](../prototype/README.md)
+include geometry and target-assisted calibration, separate from the frozen report.
 
 1. [Full illustrated report](report/REPORT.html) — detailed author-review manuscript, 16 visuals and evidence-linked tables.
 2. [Current progress](../PROGRESS.md) — stage completion and next actions.
@@ -43,6 +86,8 @@ Current edition: 12 September 2026. Historical design prose is not proof of impl
 | [24 — S5](24_S5_MANUAL_DENSE_TASKS.md) | 81 dense runs and dated repairs |
 | [25 — S9](25_S9_FUSION_AND_REMAINING_GAPS.md) | Exploratory fusion and deferred full pipeline |
 | [26 — S10](26_S10_REPORTING_AND_NEXT_STEPS.md) | Frozen reporting snapshot and documentation handoff |
+| [27 — S9 pilot](27_S9_SMALL_ANNOTATION_PILOT.md) | 12-image guided labels, JSON export/intake, review before training |
+| [28 — Pilot audit and next plan](28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md) | NB22/HF verified, visual review, targeted P06 follow-up and segmentation-first decision |
 | [Logbook](LOGBOOK.md) | Dated project history |
 | [GitHub setup](GITHUB_SETUP.md) | Earlier setup instructions |
 

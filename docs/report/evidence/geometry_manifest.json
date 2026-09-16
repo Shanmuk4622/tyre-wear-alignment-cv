@@ -1,0 +1,138 @@
+{
+  "hf_revision": "bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb",
+  "scope": "Matched geometry HF audit plus locally saved software-test evidence; no new execution",
+  "files": [
+    {
+      "source": "outputs/segformer_completion_audit/AUDIT.json",
+      "local": "evidence/geometry/AUDIT.json",
+      "bytes": 1837,
+      "sha256": "2cd6349e064bbd395a49b61e3b6a2c5f71ee1e85a875637e642f1fa971667e5d"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/comparison_REPORT.json",
+      "local": "evidence/geometry/comparison_REPORT.json",
+      "bytes": 1997,
+      "sha256": "3e202edf982cefb59f2008488274ad97d192ea9f8446b7aecdeedd4b9fc16dd4"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/comparison_CONTRACT.json",
+      "local": "evidence/geometry/comparison_CONTRACT.json",
+      "bytes": 74004,
+      "sha256": "8013bf1e6418e6f884a353efa7ce892c31fbaac450f9d7caede636d9e61e2a18"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/comparison_PAIRED_POINTS.json",
+      "local": "evidence/geometry/comparison_PAIRED_POINTS.json",
+      "bytes": 103436,
+      "sha256": "f6217e395d2eeadf2ac4d721e37fd9254297d06e39f917c8c2777015de127e3b"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/smoke_STATUS.json",
+      "local": "evidence/geometry/smoke_STATUS.json",
+      "bytes": 430,
+      "sha256": "234716bec71c21acbd1d14b83fd216e4d55555becac49e2102e63fcf97c90e1e"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/runs_seed1_TEST_FINAL.json",
+      "local": "evidence/geometry/runs_seed1_TEST_FINAL.json",
+      "bytes": 39399,
+      "sha256": "3d5d84f1191baaf05a91344affd4ea5038692a1f063885ee3cd01a569b9a2e32"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/hrnet_runs_seed1_TEST_FINAL.json",
+      "local": "evidence/geometry/hrnet_runs_seed1_TEST_FINAL.json",
+      "bytes": 30681,
+      "sha256": "596b586063991f45f04691b79d37fcb7e11367a67ed2b18a45ec73790c721199"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/runs_seed2_TEST_FINAL.json",
+      "local": "evidence/geometry/runs_seed2_TEST_FINAL.json",
+      "bytes": 39435,
+      "sha256": "972d0a2c2d4c410544b7f70d0b5f4ffd80a9834073e2df6edbec117d75086a3a"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/hrnet_runs_seed2_TEST_FINAL.json",
+      "local": "evidence/geometry/hrnet_runs_seed2_TEST_FINAL.json",
+      "bytes": 30661,
+      "sha256": "a2060a6f130bd086d5a17c056472f764cf3f8eebaabbf85de434a086158389c6"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/runs_seed3_TEST_FINAL.json",
+      "local": "evidence/geometry/runs_seed3_TEST_FINAL.json",
+      "bytes": 39376,
+      "sha256": "55fb02637ace4caa34e99f5fabdf51e13c4d3f54becde5c0734c9e59c7285be9"
+    },
+    {
+      "source": "outputs/segformer_completion_audit/hrnet_runs_seed3_TEST_FINAL.json",
+      "local": "evidence/geometry/hrnet_runs_seed3_TEST_FINAL.json",
+      "bytes": 30646,
+      "sha256": "0f1004a7c5567f8408f5e687852d8c41ea444160819318d276bb53f492289e2b"
+    },
+    {
+      "source": "prototype/results/learned-integration-check.json",
+      "local": "evidence/geometry/prototype_learned-integration-check.json",
+      "bytes": 4780,
+      "sha256": "e903025f0c217a4c9e65846802119a2e8de5377cbb7b3e43e14a27b379c2bfe6"
+    },
+    {
+      "source": "prototype/results/learned-ui-check.json",
+      "local": "evidence/geometry/prototype_learned-ui-check.json",
+      "bytes": 1621,
+      "sha256": "bfde8415f6eedcaf74fbd7c450dc6b5dc6990d21d1dcbab3b533071752eef6b7"
+    },
+    {
+      "source": "prototype/results/smoke-check.json",
+      "local": "evidence/geometry/prototype_smoke-check.json",
+      "bytes": 1058,
+      "sha256": "cf2db9a5f021a62a9af1dd084d91d798355723244ace86365e637890797c0a6a"
+    },
+    {
+      "source": "prototype/results/ui-check.json",
+      "local": "evidence/geometry/prototype_ui-check.json",
+      "bytes": 365,
+      "sha256": "3f9b81209e8ba811a20e30996b17a4d1756f2b810c28f890ae72d9d3b8dff944"
+    },
+    {
+      "source": "prototype/results/portrait-controls-check.json",
+      "local": "evidence/geometry/prototype_portrait-controls-check.json",
+      "bytes": 862,
+      "sha256": "34669ea54c4b145fc54fa3025d8bee5da016193060a77683a14f2fc182e5c19c"
+    },
+    {
+      "source": "prototype/results/learned-image-check.png",
+      "local": "assets/learned-image-check.png",
+      "bytes": 2389687,
+      "sha256": "a6226bd9a63b03d6b21f1ea16bd64ac99c7d8e6383fd44d24377a8a8b43c328f"
+    },
+    {
+      "source": "prototype/results/video1-learned-diagram.png",
+      "local": "assets/video1-learned-diagram.png",
+      "bytes": 283823,
+      "sha256": "6fb5c7089932ee7f99fee1dffc6019c68ec5a5f965b5fcbfb9226cfb751fea55"
+    },
+    {
+      "source": "prototype/results/video1-learned-workstation.png",
+      "local": "assets/video1-learned-workstation.png",
+      "bytes": 167588,
+      "sha256": "925352bd62bad09e01c952f2a9cf5c3823cb519dc5d296e6435fd39bbb6091e3"
+    },
+    {
+      "source": "prototype/results/alignment-bench-check.png",
+      "local": "assets/alignment-bench-check.png",
+      "bytes": 78663,
+      "sha256": "bc2b7d90ac8adac36b835183786d9aeb00c5bb8382b2174a7430bba1a107c752"
+    },
+    {
+      "source": "prototype/LEARNED_GEOMETRY_LOG.md",
+      "kind": "local_source_document",
+      "bytes": 5570,
+      "sha256": "46f6ec05914b181dc259ebab45334f73739a20f6c1ed41fd6712f3475d102897"
+    },
+    {
+      "source": "prototype/CALIBRATED_ALIGNMENT.md",
+      "kind": "local_source_document",
+      "bytes": 6416,
+      "sha256": "2fbc6384df2658443cc76a68bb54e2d80bf39d2370e20c8733993e794418a826"
+    }
+  ]
+}

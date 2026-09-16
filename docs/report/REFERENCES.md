@@ -1,5 +1,9 @@
 # References and source-verification notes
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 Primary landing pages, abstracts and official documentation were checked on 12 September 2026. This is bibliographic and claim-scope verification, not a claim that every cited paper was independently reproduced. Preprint records are explicitly identified; software documentation is not described as peer-reviewed research. The report makes no numerical state-of-the-art comparison with these external studies.
 
 <!-- bibliography:start -->
@@ -26,6 +30,12 @@ Primary landing pages, abstracts and official documentation were checked on 12 S
 11. Guo, C., Pleiss, G., Sun, Y., and Weinberger, K. Q. (2017). **On Calibration of Modern Neural Networks.** *ICML*, PMLR 70, 1321–1330. [Primary publication](https://proceedings.mlr.press/v70/guo17a.html).
 
 12. Angelopoulos, A. N., and Bates, S. (2021). **A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification.** arXiv:2107.07511, preprint record. [Primary preprint](https://arxiv.org/abs/2107.07511).
+13. Sun, K., Xiao, B., Liu, D., and Wang, J. (2019). **Deep High-Resolution Representation Learning for Human Pose Estimation.** *CVPR*. [Primary publication](https://openaccess.thecvf.com/content_CVPR_2019/html/Sun_Deep_High-Resolution_Representation_Learning_for_Human_Pose_Estimation_CVPR_2019_paper.html). Architecture foundation, not a tyre-accuracy claim.
+
+14. OpenCV. **Detection of ChArUco Boards.** Official software documentation, accessed 15 September 2026. [Board detection and pose documentation](https://docs.opencv.org/4.13.0/df/d4a/tutorial_charuco_detection.html). The prototype's tested runtime remains OpenCV 4.11; this reference is not a version upgrade or physical-accuracy certificate.
+13. Sun, K., Xiao, B., Liu, D., and Wang, J. (2019). **Deep High-Resolution Representation Learning for Human Pose Estimation.** *CVPR*. [Primary publication](https://openaccess.thecvf.com/content_CVPR_2019/html/Sun_Deep_High-Resolution_Representation_Learning_for_Human_Pose_Estimation_CVPR_2019_paper.html). Architecture foundation, not a tyre-accuracy claim.
+
+14. OpenCV. **Detection of ChArUco Boards.** Official software documentation, accessed 15 September 2026. [Board detection and pose documentation](https://docs.opencv.org/4.13.0/df/d4a/tutorial_charuco_detection.html). The prototype's tested runtime remains OpenCV 4.11; this reference is not a version upgrade or physical-accuracy certificate.
 <!-- bibliography:end -->
 
 ## Scope of citation use

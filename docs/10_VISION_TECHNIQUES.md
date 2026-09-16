@@ -1,5 +1,9 @@
 # 10 — Vision Technique Catalogue
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > Every computer-vision technique considered for this project, with a verdict and a reason.
 > The organising question throughout: **"recognise the wheel in every single detail."** A technique earns a place only if it makes fine tread structure — grooves, sipes, rib edges, TWI bars, cracks — more measurable than it was without it.
 

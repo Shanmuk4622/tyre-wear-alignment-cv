@@ -14,7 +14,7 @@ from PySide6.QtCore import Qt, QThread, Signal, Slot, QTimer, QRectF, QUrl, QPoi
 from PySide6.QtGui import QColor, QPainter, QPen, QFont, QImage, QPixmap, QShortcut, QKeySequence, QDesktopServices
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, QPushButton, QVBoxLayout,
     QHBoxLayout, QFrame, QComboBox, QLineEdit, QFileDialog, QListWidget, QListWidgetItem,
-    QSplitter, QScrollArea, QSpinBox, QMessageBox, QLayout, QSlider, QDoubleSpinBox, QCheckBox)
+    QSplitter, QScrollArea, QSpinBox, QMessageBox, QLayout, QSlider, QDoubleSpinBox, QCheckBox, QDialog)
 import cv2
 import numpy as np
 
@@ -24,6 +24,9 @@ from engine import Engine, LABELS, overlay, read_image
 from evidence import save_capture
 from theme import apply_theme
 from video import configure_capture, portrait_frame
+from shape_geometry import GeometryTracker, draw_geometry
+from edge_geometry import edge_fit, draw_edge_fit
+from learned_geometry import PointTracker, draw_learned
 
 
 def label(text, kind=None):
@@ -166,7 +169,7 @@ class InferenceThread(QThread):
             try:
                 rgb = job['rgb']
                 result, masks = self.engine.inspect(rgb, job['classifier'], job['region'], job['compare'],
-                    self.progress.emit, rotation=job['rotation'], threshold=job['threshold'], assist=job['assist'])
+                    self.progress.emit, rotation=job['rotation'], threshold=job['threshold'], assist=job['assist'], learned=job.get('learned', 'off'))
                 result.update(source_time_ms=job['frame_time_ms'], generation=job['generation'],
                               source_frame_size=job['source_size'],
                               video_rotation_clockwise=job['video_rotation'], encoded_frame_size=job['encoded_size'])
@@ -262,6 +265,11 @@ class Station(QMainWindow):
         self.engine = Engine(device)
         self.rgb = self.captured_rgb = None
         self.result, self.masks = None, {}
+        self.geometry_tracks, self.geometry_frames = {}, {}
+        self.geometry_context = None
+        self.edge_cache = {}
+        self.point_tracker = PointTracker()
+        self.learned_frame = None
         self.source = self.result_source = ''
         self.worker = self.stream = None
         self._job_busy = False
@@ -388,6 +396,28 @@ class Station(QMainWindow):
         self.zoom.currentIndexChanged.connect(self.set_zoom)
         layers.addWidget(self.zoom)
         leftlayout.addLayout(layers)
+        self.show_geometry = QCheckBox('Track geometry on image')
+        self.show_geometry.setChecked(True)
+        self.show_geometry.toggled.connect(self.render_capture)
+        geometry_controls = QHBoxLayout()
+        geometry_controls.addWidget(self.show_geometry)
+        self.edge_mode = QComboBox()
+        self.edge_mode.addItem('Boundary lines / tread view', 'boundary')
+        self.edge_mode.addItem('Rim candidate / side view', 'rim')
+        self.edge_mode.addItem('Image edge fitting off', '')
+        self.edge_mode.setToolTip('Choose the visible view. Rim mode requires a visible rim; fits remain camera-relative.')
+        self.edge_mode.currentIndexChanged.connect(self.render_capture)
+        geometry_controls.addWidget(self.edge_mode, 1)
+        geometry_controls.addWidget(button('Explain edge fit', self.explain_edges))
+        leftlayout.addLayout(geometry_controls)
+        self.edge_status = label('Image edges will appear after inspection.', 'muted')
+        leftlayout.addWidget(self.edge_status)
+        self.geometry_btn = button('Shape Compass — explain geometry', self.explain_geometry)
+        leftlayout.addWidget(self.geometry_btn)
+        alignment_controls = QHBoxLayout()
+        alignment_controls.addWidget(button('Compare boundaries + rim', self.compare_geometry))
+        alignment_controls.addWidget(button('Calibrated alignment', self.open_alignment))
+        leftlayout.addLayout(alignment_controls)
         self.note = QLineEdit()
         self.note.setPlaceholderText('Inspection note — lighting, tyre position, observed issue…')
         leftlayout.addWidget(self.note)
@@ -408,6 +438,22 @@ class Station(QMainWindow):
         self.region.setCurrentIndex(self.region.findData('segformer_b0'))
         rl.addWidget(self.classifier)
         rl.addWidget(self.region)
+        self.learned_mode = QComboBox()
+        self.learned_mode.addItem('Learned boundaries off', 'off')
+        self.learned_mode.addItem('HRNet · six tread-boundary points', 'hrnet')
+        self.learned_mode.addItem('HRNet + Matched SegFormer · compare points', 'paired')
+        from prepare_learned import path as learned_path
+        if learned_path('hrnet').exists():
+            self.learned_mode.setCurrentIndex(2 if learned_path('matched').exists() else 1)
+        self.learned_mode.currentIndexChanged.connect(self.reset_analysis)
+        rl.addWidget(self.learned_mode)
+        self.show_learned = QCheckBox('Show learned point overlay')
+        self.show_learned.setChecked(True)
+        self.show_learned.toggled.connect(self.render_capture)
+        rl.addWidget(self.show_learned)
+        rl.addWidget(button('Explain learned overlay', self.explain_learned))
+        self.learned_status = label('Amber dots: HRNet · cyan squares: matched SegFormer · purple: tread centreline. Image-space proposals, not measured alignment.', 'muted')
+        rl.addWidget(self.learned_status)
         rl.addWidget(label('Video orientation follows the file’s portrait display tag. Models process this same vertical frame.', 'muted'))
         sensitivity = QHBoxLayout()
         sensitivity.addWidget(label('YOLO minimum score', 'muted'))
@@ -485,10 +531,20 @@ class Station(QMainWindow):
 
     def reset_analysis(self, value=None):
         self.generation += 1
+        self.point_tracker = PointTracker()
+        self.learned_frame = None
+        self.geometry_tracks.clear()
+        self.geometry_frames.clear()
         self._has_fresh_frame = self.rgb is not None
         self.result_times.clear()
 
     def clear_result(self):
+        self.point_tracker = PointTracker()
+        self.learned_frame = None
+        self.edge_cache.clear()
+        self.edge_status.setText('Image edges will appear after inspection.')
+        self.geometry_tracks.clear()
+        self.geometry_frames.clear()
         self.overlay_preference = None
         self.result, self.masks, self.captured_rgb = None, {}, None
         self.save_btn.setEnabled(False)
@@ -735,7 +791,7 @@ class Station(QMainWindow):
             compare=compare, source=self.source, frame_time_ms=self.frame_time_ms, generation=self.generation,
             source_size=self.source_size, rotation=0, threshold=self.threshold.value(), assist=self.assist.isChecked(),
             video_rotation=self.stream.rotation_degrees if self.stream else 0,
-            encoded_size=self.stream.encoded_size if self.stream else self.source_size)
+            encoded_size=self.stream.encoded_size if self.stream else self.source_size, learned=self.learned_mode.currentData())
 
     @Slot()
     def job_finished(self):
@@ -751,6 +807,28 @@ class Station(QMainWindow):
             self.rgb = rgb.copy()
             self.frame_time_ms = result.get('source_time_ms')
         self.captured_rgb, self.result, self.masks, self.result_source = rgb, result, masks, source
+        self.edge_cache.clear()
+        context = (self.generation, source)
+        if context != self.geometry_context or not self.stream:
+            self.geometry_tracks.clear()
+        self.geometry_context = context
+        stamp = result.get('source_time_ms')
+        if stamp is None:
+            stamp = time.monotonic()*1000
+        learned = result.get('learned_geometry')
+        if not self.stream:
+            self.point_tracker = PointTracker()
+        self.learned_frame = learned if learned and not self.stream and 'display_points' in learned else self.point_tracker.update(learned, stamp, context)
+        if self.learned_frame:
+            hr = self.learned_frame['models']['hrnet']
+            widths = ' / '.join('—' if v is None else f'{v:.0f}' for v in hr['widths_px'])
+            state = 'REVIEW: '+'; '.join(learned['flags']) if learned['flags'] else f"{self.learned_frame.get('stable_frames', 1)} consistent frames (not confidence)"
+            times = ' · '.join(f'{n} {r["inference_ms"]:.0f}ms' for n, r in learned['models'].items())
+            self.learned_status.setText(f'Raw HRNet tread widths U/M/L: {widths} px\n{state}\n{times}\nAmber dots / cyan squares / purple centreline. Red = review. Image-relative only.')
+        else:
+            self.learned_status.setText('Learned boundaries off. Select HRNet or the matched comparison to add points.')
+        self.geometry_tracks = {name: self.geometry_tracks.get(name, GeometryTracker()) for name in masks}
+        self.geometry_frames = {name: self.geometry_tracks[name].update(mm[0], stamp) for name, mm in masks.items()}
         if self.warming and self.live_enabled and self.stream:
             self.warming = False
             self.stream.paused.clear()
@@ -822,8 +900,79 @@ class Station(QMainWindow):
         self.viewer.mode = mode
         processed = overlay(self.captured_rgb, self.masks[name], self.opacity.value()/100,
             (self.show_tyre.isChecked(), self.show_tread.isChecked())) if name in self.masks and mode != 'Original' else None
+        if self.show_geometry.isChecked() and mode != 'Original':
+            processed = draw_geometry(processed if processed is not None else self.captured_rgb, self.geometry_frames.get(name))
+        fit = self.current_edge_fit()
+        if fit is not None:
+            detail = fit['reason']
+            if fit['valid']:
+                detail += f" · Fit residual {fit['residual_px']:.1f}px"
+                if 'angle' in fit:
+                    detail += f" · Midline {fit['angle']:+.1f}° (image-relative)"
+            self.edge_status.setText(detail)
+            if mode != 'Original':
+                processed = draw_edge_fit(processed if processed is not None else self.captured_rgb, fit)
+        else:
+            self.edge_status.setText('Image edge fitting off.')
+        if self.show_learned.isChecked() and mode != 'Original' and self.learned_frame is not None:
+            processed = draw_learned(processed if processed is not None else self.captured_rgb, self.learned_frame)
         self.viewer.wipe = .5 if mode == 'Compare wipe' else 0.
         self.viewer.set_frame(self.captured_rgb, processed)
+
+    def current_edge_fit(self):
+        mode = self.edge_mode.currentData()
+        if not mode or self.captured_rgb is None:
+            return None
+        name = self.overlay_select.currentData()
+        key = (name, mode)
+        if key not in self.edge_cache:
+            mm = self.masks.get(name)
+            self.edge_cache[key] = edge_fit(self.captured_rgb, mm[0] if mm is not None else None, mode)
+        return self.edge_cache[key]
+
+    def explain_edges(self):
+        fit = self.current_edge_fit()
+        if fit is None:
+            self.statusBar().showMessage('Inspect a frame and select an edge-fitting view first.')
+            return
+        from edge_diagram import EdgeDiagram
+        self.edge_dialog = EdgeDiagram(self.captured_rgb.copy(), fit, self.overlay_select.currentText(), self)
+        self.edge_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        self.edge_dialog.show()
+
+    def compare_geometry(self):
+        if self.captured_rgb is None:
+            self.statusBar().showMessage('Inspect a frame first to compare its geometry.')
+            return
+        from geometry_comparison import GeometryComparison
+        self.comparison_dialog = GeometryComparison(self.captured_rgb.copy(), self.masks, self)
+        self.comparison_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        self.comparison_dialog.show()
+
+    def open_alignment(self):
+        from alignment_ui import AlignmentDialog
+        self.alignment_dialog = AlignmentDialog(self)
+        self.alignment_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        self.alignment_dialog.show()
+
+    def explain_learned(self):
+        if self.captured_rgb is None or self.learned_frame is None:
+            self.statusBar().showMessage('Enable learned boundaries and inspect a frame first.')
+            return
+        from learned_diagram import LearnedDiagram
+        self.learned_dialog = LearnedDiagram(self.captured_rgb.copy(), self.learned_frame, self)
+        self.learned_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        self.learned_dialog.show()
+
+    def explain_geometry(self):
+        from geometry_diagram import GeometryDialog
+        name = self.overlay_select.currentData()
+        masks = self.masks.get(name)
+        rgb = self.captured_rgb.copy() if self.captured_rgb is not None else None
+        mask = masks[0].copy() if masks is not None else None
+        self.geometry_dialog = GeometryDialog(rgb, mask, name or 'No selected mask', self)
+        self.geometry_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        self.geometry_dialog.show()
 
     def set_zoom(self, index):
         self.viewer.zoom = self.zoom.currentData()
@@ -840,6 +989,12 @@ class Station(QMainWindow):
         try:
             record = dict(self.result, display_options=dict(opacity=self.opacity.value()/100,
                 visible=[self.show_tyre.isChecked(), self.show_tread.isChecked()], mode=self.view_mode.currentText()))
+            record['learned_geometry'] = self.learned_frame
+            fit = self.current_edge_fit()
+            if fit is not None:
+                record['edge_geometry'] = json.loads(json.dumps(dict(fit,
+                    model=self.overlay_select.currentData(), algorithm='image-edges-v1'),
+                    default=lambda value: value.tolist()))
             path = save_capture(self.captured_rgb, record, self.masks, self.result_source, self.note.text())
             self.refresh_tray()
             self.statusBar().showMessage(f'Saved {path.name}. Click a tray entry to restore; double-click to open its evidence card.')
@@ -894,6 +1049,12 @@ class Station(QMainWindow):
         QMessageBox.warning(self, 'Inspection could not finish', message)
 
     def closeEvent(self, event):
+        for dialog in self.findChildren(QDialog):
+            calibration_worker = getattr(dialog, 'worker', None)
+            if calibration_worker is not None and calibration_worker.isRunning():
+                self.statusBar().showMessage('Camera calibration is running. Close when it finishes.')
+                event.ignore()
+                return
         if self.busy():
             self.live_enabled = False
             self.statusBar().showMessage('Finishing the current inference. Close again when it completes.')

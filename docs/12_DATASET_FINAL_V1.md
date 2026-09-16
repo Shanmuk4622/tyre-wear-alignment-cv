@@ -1,5 +1,9 @@
 # 12 — Dataset `final_v1`: What It Is, and What It Can Actually Support
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **Package:** `D:\Dataset Download\Tire Dataset Prepared\FINAL`
 **Version:** `final_v1` · prepared 26 Aug 2026 · verification status **PASS**
 **Analysed:** 26 Aug 2026 · re-read against the expanded dataset README (428 lines) same day

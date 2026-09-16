@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "videos": [
+    {
+      "video": "video1.mp4",
+      "flags": [
+        "Crossed or collapsed HRNet boundaries",
+        "Matched segmentation has missing/crossed boundaries",
+        "HRNet / matched segmentation disagree (>5% image width)"
+      ],
+      "model_ms": {
+        "hrnet": 63.07,
+        "matched": 34.44
+      },
+      "full_pipeline_peak_mb": 278.5,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260915-215346-fe348b"
+    },
+    {
+      "video": "Video2.mp4",
+      "flags": [
+        "Crossed or collapsed HRNet boundaries",
+        "HRNet / matched segmentation disagree (>5% image width)"
+      ],
+      "model_ms": {
+        "hrnet": 48.35,
+        "matched": 28.46
+      },
+      "full_pipeline_peak_mb": 271.4,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260915-215349-fbb63a"
+    },
+    {
+      "video": "Video3.mp4",
+      "flags": [
+        "Matched segmentation has missing/crossed boundaries",
+        "HRNet / matched segmentation disagree (>5% image width)"
+      ],
+      "model_ms": {
+        "hrnet": 59.55,
+        "matched": 32.96
+      },
+      "full_pipeline_peak_mb": 277.6,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260915-215352-6bde72"
+    }
+  ],
+  "checks": [
+    "GPU paired video",
+    "portrait inputs",
+    "toggle",
+    "original view",
+    "seek resets",
+    "frozen explanation",
+    "JSON/PNG evidence",
+    "restoration",
+    "off releases model references"
+  ]
+}

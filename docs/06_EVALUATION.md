@@ -1,5 +1,9 @@
 # 06 — Evaluation Protocol
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > Decide these metrics **now**, before there are results. Choosing metrics after seeing results is how honest people accidentally produce dishonest reports.
 >
 > Companion to `13_EXPERIMENT_PLAN.md` and `14_XAI_PROTOCOL.md`.

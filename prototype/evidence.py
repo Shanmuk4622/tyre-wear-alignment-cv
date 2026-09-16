@@ -15,6 +15,12 @@ def save_capture(rgb, result, masks, source, note=''):
     folder = ROOT / 'results' / capture_id
     folder.mkdir(parents=True)
     Image.fromarray(rgb).save(folder / 'frame.png')
+    if result.get('learned_geometry'):
+        from learned_geometry import draw_learned
+        Image.fromarray(draw_learned(rgb, result['learned_geometry'])).save(folder/'learned-boundaries.png')
+    if result.get('edge_geometry'):
+        from edge_geometry import draw_edge_fit
+        Image.fromarray(draw_edge_fit(rgb, result['edge_geometry'])).save(folder/'edge-fit.png')
     display = result.get('display_options', {})
     for name, mm in masks.items():
         Image.fromarray(overlay(rgb, mm, display.get('opacity', .26), display.get('visible', (True, True)))).save(folder / f'{name}-overlay.png')
@@ -34,6 +40,10 @@ def save_capture(rgb, result, masks, source, note=''):
             detail += ' · scores L/M/H: ' + ' / '.join(f'{v:.3f}' for v in r['scores'])
         rows.append(f'<tr><td>{esc(r["title"])}</td><td>{esc(detail)}</td><td>{r["inference_ms"]:.0f} ms</td></tr>')
     pictures = '<figure><img src="frame.png"><figcaption>Recorded analysis frame (video may be resized)</figcaption></figure>'
+    if result.get('learned_geometry'):
+        pictures += '<figure><img src="learned-boundaries.png"><figcaption>Learned tread boundaries: HRNet dots, matched SegFormer squares. Uncalibrated image geometry; flags and provenance in JSON.</figcaption></figure>'
+    if result.get('edge_geometry'):
+        pictures += '<figure><img src="edge-fit.png"><figcaption>Image-edge geometry hypothesis; camera-relative, not camber/toe. '+esc(result['edge_geometry']['reason'])+'</figcaption></figure>'
     for name in masks:
         pictures += f'<figure><img src="{name}-overlay.png"><figcaption>{esc(name)} · amber tyre / mint tread</figcaption></figure>'
     page = f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>Tread Station · {capture_id}</title>

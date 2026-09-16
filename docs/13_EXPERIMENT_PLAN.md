@@ -1,5 +1,15 @@
 # 13 — The Experiment Plan
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+> **14 September amendment:** user reopens only the small HRNet/PatchCore input
+> feasibility pilot. NB21/NB22 deliver12 native images and annotation-only intake;
+> human review before scaling or training. The six image-plane tread-boundary
+> points are a proposed operational target, not calibrated wheel landmarks.
+> Healthy-reference evidence remains a separate requirement. [Pilot contract](27_S9_SMALL_ANNOTATION_PILOT.md).
+
 > **Reporting reconciliation, 2026-09-12:** the [full illustrated report](report/REPORT.html)
 > now documents the implemented study and remaining gaps. This original proposal
 > contains hypotheses, planned components and historical wording, not proof that

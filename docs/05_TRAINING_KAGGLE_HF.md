@@ -1,5 +1,9 @@
 # 05 — Experiment Infrastructure: Multi-Account Kaggle + Hugging Face
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 > **This is the spec for the training infrastructure.** When you ask for code, the `.ipynb` will be built exactly to this. Read it first so we agree on the contract before any code exists.
 >
 > Built on the Replication Playbook you supplied. Every "⚠ Bug" below was found by running the pattern, not by reading it — you will hit all of them otherwise.

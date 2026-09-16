@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "orientation": [
+    {
+      "video": "video1.mp4",
+      "clockwise_rotation": 90,
+      "portrait_size": [
+        3840,
+        2160
+      ]
+    },
+    {
+      "video": "Video2.mp4",
+      "clockwise_rotation": 90,
+      "portrait_size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "video": "Video3.mp4",
+      "clockwise_rotation": 90,
+      "portrait_size": [
+        3840,
+        2160
+      ]
+    }
+  ],
+  "checks": [
+    "file metadata equals OpenCV display orientation",
+    "portrait model input",
+    "no model rotation search",
+    "previous/next frame",
+    "speed control",
+    "five-second jump",
+    "loop across video end",
+    "original/overlay/wipe",
+    "mask toggles",
+    "overlay opacity",
+    "display zoom",
+    "light palette",
+    "evidence export"
+  ]
+}

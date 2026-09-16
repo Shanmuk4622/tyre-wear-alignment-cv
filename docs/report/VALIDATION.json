@@ -2,9 +2,10 @@
   "status": "passed",
   "evidence_files": 38,
   "report_artifact_hashes": 7,
-  "visuals": 16,
-  "tables": 11,
-  "word_count": 6828,
+  "visuals": 22,
+  "tables": 13,
+  "word_count": 8652,
+  "geometry_and_local_evidence": "hash_verified",
   "limits": [
     "No training rerun",
     "No large checkpoint re-download",

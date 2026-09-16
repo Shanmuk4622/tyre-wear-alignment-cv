@@ -1,11 +1,15 @@
 # S10 evidence/report package and next steps
 
-## Current documentation handoff — 12 September 2026
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+## Current documentation handoff — refreshed 15 September 2026
 
 The [full illustrated report](report/REPORT.html) and [Markdown version](report/REPORT.md)
-are now prepared for author review, with16 visuals (14 preserved public figures,
-one data-derived endpoint chart and one study diagram), generated result tables,
-methods, related work, discussion, limitations and12 selected checked references.
+are refreshed for author review, with22 visuals (14 preserved public figures,
+three data-derived charts, one study diagram and four prototype screenshots),
+matched geometry results, video failures, alignment software and14 references.
 Companions: [reproducibility](report/REPRODUCIBILITY.md),
 [claims/figure audit](report/CLAIMS_AND_LIMITATIONS.md),
 [submission checklist](report/SUBMISSION_CHECKLIST.md), and

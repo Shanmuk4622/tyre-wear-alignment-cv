@@ -1,6 +1,21 @@
 # Tread Station
 
-A native desktop inspection console for the tyre study. It loads four existing final-epoch checkpoints from Hugging Face and runs inference with PyTorch in `cv_conda`. No training is performed.
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+**Learned geometry is available:** HRNet + Matched SegFormer overlays on the exact
+photo/video frame, with six points, tread-width guides, a centreline, temporal
+smoothing and disagreement flags. Choose the learned-boundary mode in the recipe;
+**Explain learned overlay** shows the diagram and raw coordinates. Both models
+are shown by default when their weights are present. Read
+[LEARNED_GEOMETRY_LOG.md](LEARNED_GEOMETRY_LOG.md) for verification and video limits.
+
+New: **Compare boundaries + rim** and **Calibrated alignment**. See
+[CALIBRATED_ALIGNMENT.md](CALIBRATED_ALIGNMENT.md) for printable targets, camera
+calibration, live target measurements, reference comparisons and evidence export.
+
+A native desktop inspection console for the tyre study. It loads four original final-epoch checkpoints plus two optional learned-geometry checkpoints from Hugging Face and runs inference with PyTorch in `cv_conda`. No training is performed.
 
 The workflow is **bring a tyre into view → freeze → compare → preserve the evidence**. The original/overlay wipe lets you inspect region boundaries directly. The comparison bench runs all four models on exactly the same pixels. An evidence tray restores earlier inspections without rerunning a model.
 

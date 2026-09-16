@@ -1,5 +1,9 @@
 # NB08–NB10 completion audit — 2026-09-09
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **Follow-up:** `20_FULL_PLAN_CLOSURE.md` corrects the broader-stage omissions
 and stale S1 status. NB10R is a new recovery notebook; this document remains
 the audit of the original public snapshot. S5/S9 were not completed or cut

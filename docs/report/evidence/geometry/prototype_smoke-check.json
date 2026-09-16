@@ -1,0 +1,37 @@
+{
+  "device": "NVIDIA GeForce GTX 1650",
+  "image": "D:\\Dataset Download\\Tire Dataset Prepared\\FINAL\\images\\clean\\fold_1\\high_mileage_proxy\\mileage_100000_plus__session_003__b000__34e79ff30c.jpg",
+  "frame_size": [
+    1152,
+    1536
+  ],
+  "timings": {
+    "mobilenetv4": {
+      "median_ms": 32.99,
+      "min_ms": 28.77,
+      "max_ms": 34.45,
+      "repeats": 3
+    },
+    "resnet50": {
+      "median_ms": 36.35,
+      "min_ms": 34.73,
+      "max_ms": 37.5,
+      "repeats": 3
+    },
+    "yolo26n_seg": {
+      "median_ms": 50.9,
+      "min_ms": 49.55,
+      "max_ms": 51.26,
+      "repeats": 3
+    },
+    "segformer_b0": {
+      "median_ms": 54.17,
+      "min_ms": 48.0,
+      "max_ms": 54.84,
+      "repeats": 3
+    }
+  },
+  "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260913-141446-159d11",
+  "peak_vram_mb": 224.4,
+  "note": "Single internal photo; warm inference includes preprocessing/postprocessing, excludes model loading. Not camera FPS or an accuracy benchmark."
+}

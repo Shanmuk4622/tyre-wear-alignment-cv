@@ -1,5 +1,9 @@
 # 02_RIG_BUILD.md — SUPERSEDED
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **This document is obsolete. See `02_CAPTURE_AND_PREPROCESSING.md`.**
 
 ---

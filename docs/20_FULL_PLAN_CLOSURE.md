@@ -1,5 +1,9 @@
 # Full experimental-plan reconciliation — 2026-09-09
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **The full plan is not complete.** Notebook numbers are not experimental stage
 numbers. NB10 finishing does not complete S5, S9, or every proposed experiment.
 All 27 Markdown files present before this reconciliation were read in full.
@@ -110,8 +114,8 @@ figures, not evidence that the original three experiments were performed.
 | S6 XAI | NB07 r3 Stage-B gate complete | Full all-run/all-fold, native-method/ROAD/model-agnostic/stability programme not completed by this gate |
 | S7 stress | 63 implemented rows and 3 controls complete | H2 availability limitation; proposed dirt/session-holdout/video extensions not verified |
 | S8 ensemble/calibration | Four tables and 27 prediction files verified | Coverage target not met; empty sets omitted from old abstention; image-split calibration not new-tyre assurance |
-| S9 integrated pipeline | **NB18 exploratory fusion complete and HF-verified** | All81 source-run analyses verified; no average fusion improvement. Full pipeline still needs landmark/healthy-pool inputs, frozen component selection and full ablations. NB18 is not the54-run Tier8 experiment. `docs/25` |
-| S10 reporting | NB19/NB20 verified; full illustrated manuscript and reproducibility handoff now prepared,16 visuals | Author/guide review and venue format remain. Statistical limitations and original-plan missing experiments are retained. No notebook rerun. `docs/report/REPORT.html`, `docs/26` |
+| S9 integrated pipeline | **Matched experiment and native learned-geometry integration complete** | Local seed-1 geometry integration/tests exist; crossed video boundaries and disagreement are documented. End-to-end/field accuracy, PatchCore and original full Tier8 remain open. `CURRENT_STATUS.md` |
+| S10 reporting | **Refreshed 22-visual Markdown/HTML report complete** | Includes matched results, prototype, video failures and synthetic alignment evidence. Author/guide review and venue format remain. No notebook rerun. |
 
 Do not give an overall percentage: these stages have very different scope and
 cost. Implemented classification and dense tasks have executed; integration remains open.

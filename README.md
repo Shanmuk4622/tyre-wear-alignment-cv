@@ -1,5 +1,9 @@
 # Vision-Based Detailed Tyre-Wear Recognition and Single-Wheel Alignment Screening
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 **Capstone Project · Fall-Sem 2026–27 · Department of AI & ML, SCOPE, VIT-AP**
 
 | Reg. No. | Name |
@@ -15,6 +19,9 @@
 
 > ### 📍 Start here
 >
+> - **Latest: NB31/NB32 verified complete — no rerun** → [Matched geometry results and next integration plan](docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md). HRNet 1.312% vs SegFormer 1.721% width error on the two-tyre test set. Earlier run-now links below are historical.
+> - **Current: NB30 passed; rerun repaired NB31 only** → [Repair/run instructions](docs/35_MATCHED_SEGFORMER_COMPARISON.md). No repeat annotation or HRNet training.
+> - **Run next: NB30–NB32 matched SegFormer comparison** → [Instructions](docs/35_MATCHED_SEGFORMER_COMPARISON.md). No new labels; completed HRNet stays unchanged. Kaggle execution pending.
 > - **Full illustrated report** → [Read the report](docs/report/REPORT.html) · [Markdown](docs/report/REPORT.md)
 > - **All documentation** → [Documentation index](docs/DOCUMENTATION_INDEX.md) · [Repository guide](docs/REPOSITORY_GUIDE.md)
 > - **New to the project?** → `docs/00_WHAT_THIS_PROJECT_IS.md`
@@ -25,9 +32,49 @@
 
 ## The current phase, in one paragraph
 
+**HRNet NB28/NB29 completed and HF-verified:** three seeds ×60 epochs, seed-average
+mean error 15.10 px / 1.312% width on two test tyres. No rerun needed. Next is the
+same-split segmentation comparison and integration decision, not full S9 closure.
+[Verified results](docs/34_HRNET_COMPLETION_AND_RESULTS.md). Older repair notes follow.
+
+**NB26/NB27 are HF-verified; NB28 numerical repair is ready.** Seed 1 has 18 saved
+batches of epoch 1. Run updated NB28 only; checkpoint compatibility is preserved.
+[Audit and next run](docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md).
+
+**HRNet notebooks are ready: NB26 preflight → NB27 smoke → NB28 training → NB29 report.**
+User confirms 12 distinct tyres; split locked at 72/24/24 images. CPU preflight/report,
+T4 smoke/training, one copy only. No new annotations requested. Local tests pass;
+Kaggle GPU execution pending. [Run instructions](docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md).
+
+**15 September: NB24/NB25 completed and HF-verified, 120/120 labels received.**
+No rerun needed. Next: label-quality review and physical-tyre identity/split lock
+before HRNet training. [Verification](docs/31_S9_120_ANNOTATION_COMPLETION.md).
+The preparation instructions below are retained for reproduction.
+
+**Current: NB24/NB25 redesigned for ALL 120 images in ONE package.** One 89.51 MiB
+ZIP, one annotation page/JSON, no batch switching. CPU, no training. NB23 is verified
+(66/66 eligible points; median 8 px). HRNet training follows label and identity/split
+review. [Exact run instructions and S9 plan](docs/30_S9_HRNET_AND_COMPLETION_PLAN.md).
+The earlier NB23 run-next note below is historical.
+
+**Run next: [NB23 geometry baseline](notebooks/NB23_S9_Geometry_Baseline.ipynb)** —
+CPU, Internet/HF_TOKEN, no attachments, Run All. Reuses published segmentation
+masks and excludes unresolved P06; no new training. Ready for Kaggle execution,
+not yet a completed experiment. [Guide](docs/29_S9_GEOMETRY_BASELINE.md).
+
+**14 September — revised NB22 upload HF-verified:** local annotations match
+HF `05bf37c0f2067b0119ef057a2442d7759cf9ac51`; 11/12 mechanically complete.
+P06 still needs a visible-issue description and right-middle/lower visibility
+correction; its left pair is corrected. No new image batch.
+Next: test existing predicted-mask geometry before HRNet training; verified
+healthy references remain unavailable. Do not rerun unchanged annotations.
+[Audit and next steps](docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md).
+These are proposed components, not an already validated final model. The native
+prototype and its new calibrated alignment workflow remain separate and untouched.
+
 **Full report prepared for author review, 2026-09-12:** the illustrated
 [manuscript](docs/report/REPORT.html) expands the verified S10 evidence into
-methods, results, discussion, limitations and references, with16 visuals and
+methods, results, discussion, limitations and references, with22 visuals and
 source-generated tables. Reproducibility, claims review, submission checklist
 and repository navigation are included. Only3.02MiB of small reporting evidence
 was downloaded; no training or HF writes. Next: team/guide review and the required
@@ -197,7 +244,7 @@ Segmentation earns its place by being **the instrument that makes the evidence m
 | `docs/08_RISKS_AND_MY_OPINION.md` | Honest assessment |
 | `docs/09_RELATED_WORK.md` | Annotated bibliography |
 | `docs/10_VISION_TECHNIQUES.md` | Technique catalogue |
-| `docs/11_APP.md` | Optional app (first on the cut list) |
+| `docs/11_APP.md` | Original app proposal; implemented native Tread Station documented in `prototype/README.md` |
 | `docs/LOGBOOK.md` | Long-form decision record |
 | `scripts/dataset_shortcut_probe.py` | Reproduces the difficulty-floor baselines |
 

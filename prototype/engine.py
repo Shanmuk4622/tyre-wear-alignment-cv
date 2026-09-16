@@ -61,6 +61,7 @@ class Engine:
         torch.set_num_threads(min(4, torch.get_num_threads()))
         self.cache = OrderedDict()
         self.verified = set()
+        self.learned = None
 
     def load(self, name):
         if name in self.cache:
@@ -161,7 +162,7 @@ class Engine:
         return record, masks
 
     def inspect(self, rgb, classifier='mobilenetv4', region='segformer_b0', compare=False, progress=None,
-                rotation=0, threshold=.25, assist=False):
+                rotation=0, threshold=.25, assist=False, learned='off'):
         start = time.perf_counter()
         orientation_scores = {}
         if rotation == 'auto':
@@ -208,7 +209,19 @@ class Engine:
             for k, label in enumerate(['tyre', 'tread']):
                 union = (a[k] | b[k]).sum()
                 agreement['region_iou'][label] = float((a[k] & b[k]).sum() / union) if union else None
-        return dict(created_at=datetime.now(timezone.utc).isoformat(),
+        learned_record = None
+        if learned != 'off':
+            if rotation != 0:
+                raise ValueError('Learned geometry requires the original display orientation')
+            if self.learned is None:
+                from learned_geometry import LearnedEngine
+                self.learned = LearnedEngine(self.device)
+            if progress:
+                progress('Locating learned tread boundaries on the same full frame…')
+            learned_record = self.learned.inspect(rgb, learned)
+        elif self.learned is not None:
+            self.learned.inspect(rgb, 'off')
+        return dict(created_at=datetime.now(timezone.utc).isoformat(), learned_geometry=learned_record,
                     frame_sha256=hashlib.sha256(rgb.tobytes()).hexdigest(),
                     frame_size=[rgb.shape[1], rgb.shape[0]], models=records, agreement=agreement,
                     analysis_rotation_degrees=rotation, orientation_scores=orientation_scores,

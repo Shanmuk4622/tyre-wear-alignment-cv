@@ -1,26 +1,105 @@
-# credentials — never commit
-kaggle.json
-.env
-*.token
-hf_token*
+# Source, runnable notebooks, docs, curated report assets and small audit metadata
+# belong in Git. Datasets, weights and generated runs stay local / on HF.
+# Existing tracked artifacts also need git rm --cached; ignore rules alone do not.
 
-# data
+# Secret rules are last so audit-file exceptions cannot override them.
+
+# Environments, downloaded dependencies and caches at any depth
+.venv/
+venv/
+env/
+.conda/
+.vendor/
+.cache/
+deps/
+node_modules/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Datasets, annotation packages and captures
 data/
 datasets/
 raw/
 processed/
 synthetic/
-Videos/
+/Videos/
+/ALL_120_IMAGES/
+/PILOT_12_IMAGES/
+/BATCH_*_IMAGES/
+/ANNOTATE.html
 *.zarr/
 *.npy
 *.npz
-*.mp4
-*.avi
+*.h5
+*.hdf5
+*.parquet
+*.arrow
+*.tfrecord*
 
-# model artefacts
+# Archives, installers and copied binaries
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+*.whl
+*.dll
+*.so
+*.dylib
+*.exe
+
+# Photos/video are data; curated docs and UI images are explicitly allowed below
+*.[jJ][pP][gG]
+*.[jJ][pP][eE][gG]
+*.[pP][nN][gG]
+*.[wW][eE][bB][pP]
+*.bmp
+*.tif
+*.tiff
+*.heic
+*.mp4
+*.MP4
+*.avi
+*.mov
+*.MOV
+*.mkv
+*.webm
+*.m4v
+*.wmv
+*.wav
+*.mp3
+*.m4a
+!/docs/**/*.png
+!/docs/**/*.jpg
+!/docs/**/*.jpeg
+!/docs/**/*.webp
+!/prototype/assets/**/*.png
+!/prototype/assets/**/*.jpg
+!/prototype/assets/**/*.webp
+!/prototype/assets/**/*.ico
+
+# Weights and run outputs
 runs/
 checkpoints/
 ckpt_local/
+results/
+wandb/
+mlruns/
+lightning_logs/
 *.pt
 *.pth
 *.ckpt
@@ -28,24 +107,49 @@ ckpt_local/
 *.engine
 *.tflite
 *.safetensors
+*.pkl
+*.pickle
+*.joblib
+events.out.tfevents.*
 
-# but keep small calibration outputs
-!calib/*.yaml
-!calib/*.json
+# Validation trees: keep small top-level JSON evidence, not images/deps/snapshots.
+# prepare_learned.py requires the frozen contracts and seed-1 STATUS files.
+/outputs/*
+!/outputs/*/
+/outputs/*/**
+!/outputs/*/*.json
+/outputs/*/*HISTORY*.json
+/outputs/*/*_tree.json
+!/outputs/README.md
 
-# python
-__pycache__/
-*.py[cod]
-.venv/
-.ipynb_checkpoints/
-.pytest_cache/
-.ruff_cache/
+# Retain current runnable notebooks; exclude archived executions and root scratch
+/notebooks/archive/
+/notebooks/execution_archives/
+/test.ipynb
 
-# blender
+# Diagnostics, temporary files and workstation-specific state
+*.log
+*.tmp
+*.part
+*.bak
+*.swp
+*.swo
 *.blend1
 *.blend2
-
-# os
 .DS_Store
 Thumbs.db
 desktop.ini
+.idea/
+.vscode/
+
+# Secrets (must stay after all allow-list exceptions)
+.env
+.env.*
+!.env.example
+!.env.template
+kaggle.json
+*.token
+hf_token*
+*credentials*.json
+*.pem
+*.key

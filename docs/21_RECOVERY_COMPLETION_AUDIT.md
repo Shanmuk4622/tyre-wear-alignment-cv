@@ -1,5 +1,9 @@
 # Recovery completion audit — 2026-09-09
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
 All four recovery notebooks have public outputs. Verified read-only against
 [HF snapshot bf62f9e9](https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/tree/bf62f9e9cbedacc580aa42542da14a068b8f9215).
 No remote files were changed and no training was launched during verification.

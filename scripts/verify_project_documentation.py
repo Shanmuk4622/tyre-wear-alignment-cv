@@ -73,7 +73,7 @@ def main():
     assert not re.search(r'\{\{[A-Z_]+\}\}', text)
     doc=Document(); doc.feed((REPORT/'REPORT.html').read_text(encoding='utf-8'))
     assert len(doc.ids)==len(set(doc.ids))
-    assert len(doc.images)==16, len(doc.images)
+    assert len(doc.images)==22, len(doc.images)
     assert doc.tables >= 11, doc.tables
     for link in doc.links + doc.images:
         check_link(REPORT, link)
@@ -89,8 +89,13 @@ def main():
         for match in re.finditer(r'!?\[[^\]]*\]\(([^)]+)\)', path.read_text(encoding='utf-8')):
             check_link(path.parent, match.group(1))
     used={int(n) for n in re.findall(r'\[(\d+)\](?!\()',text)}
-    assert used.issubset(set(range(1,13))), used
+    assert used.issubset(set(range(1,15))), used
     build=json.loads((REPORT/'BUILD_PROVENANCE.json').read_text())
+    extension=REPORT/'evidence/geometry_manifest.json'
+    assert sha(extension)==build['geometry_manifest_sha256']
+    for item in json.loads(extension.read_text())['files']:
+        path=REPORT/item['local'] if 'local' in item else ROOT/item['source']
+        assert path.stat().st_size==item['bytes'] and sha(path)==item['sha256'],item
     for name, expected in build['artifacts_sha256'].items(): assert sha(ROOT/name)==expected, name
     # Compare only in memory; never display token or .env content.
     env=ROOT/'.env'; token=''
@@ -104,7 +109,7 @@ def main():
             assert not token or token not in raw, 'Secret detected in report output'
             assert not re.search(r'hf_[A-Za-z0-9]{25,}',raw), 'Token-like credential detected'
     result={'status':'passed','evidence_files':38,'report_artifact_hashes':7,
-            'visuals':len(doc.images),'tables':doc.tables,'word_count':build['word_count'],
+            'visuals':len(doc.images),'tables':doc.tables,'word_count':build['word_count'],'geometry_and_local_evidence':'hash_verified',
             'limits':['No training rerun','No large checkpoint re-download','No venue pagination certification',
                       'Inherited saliency source has disclosed title overlap'],
             'full_original_project_complete':False}

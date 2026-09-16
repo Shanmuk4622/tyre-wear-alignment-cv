@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
 <title id="title">Implemented tyre study and deferred original components</title>
-<desc id="desc">418 clean images feed classification and manual supervised localisation. Saved predictions feed fixed fusion and reporting. HRNet landmarks and verified healthy reference PatchCore remain deferred.</desc>
+<desc id="desc">418 images support classification, segmentation and a 120-image matched geometry study. Native prototype integration and target-assisted alignment software exist. Physical validation and PatchCore remain open.</desc>
 <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#65838d"/></marker></defs>
-<rect width="1200" height="650" rx="18" fill="#f1f6f8"/>
+<rect width="1200" height="820" rx="18" fill="#f1f6f8"/>
 <g font-family="Arial,sans-serif" fill="#183746">
 <text x="40" y="48" font-size="26" font-weight="bold">One small collection. Multiple linked experiments.</text>
 <text x="40" y="78" font-size="17" fill="#536d79">Repeated seeds and models share the same underlying images and split limitations.</text>
@@ -15,6 +15,11 @@
 <text x="389" y="374" font-size="22" font-weight="bold">Manual-supervised localisation</text><text x="389" y="410" font-size="18">81 runs × 60 epochs</text><text x="389" y="446" font-size="16" fill="#536d79">Semantic masks · boxes · instances</text>
 <rect x="865" y="200" width="295" height="190" rx="14" fill="#e1efed" stroke="#70a6a7"/>
 <text x="886" y="242" font-size="22" font-weight="bold">Fixed fusion + report</text><text x="886" y="281" font-size="18">Saved prediction analysis</text><text x="886" y="314" font-size="18">No fusion fitting</text><text x="886" y="351" font-size="16" fill="#536d79">Pinned public HF evidence</text>
-<rect x="40" y="535" width="1120" height="77" rx="12" fill="#fff9ef" stroke="#b18b50" stroke-width="2" stroke-dasharray="8 6"/>
-<text x="62" y="565" font-size="18" font-weight="bold" fill="#785928">DEFERRED ORIGINAL WORK — not implemented by the fusion analysis</text><text x="62" y="593" font-size="17" fill="#785928">HRNet landmarks · verified healthy-reference PatchCore · independent tyre validation · further planned comparisons</text>
+<rect x="40" y="520" width="1120" height="140" rx="12" fill="#e1efed" stroke="#70a6a7"/>
+<text x="62" y="555" font-size="21" font-weight="bold">MATCHED GEOMETRY + NATIVE PROTOTYPE — implemented</text>
+<text x="62" y="589" font-size="18">120 images · 72 / 24 / 24 split · HRNet 1.312% vs SegFormer 1.721% width error</text>
+<text x="62" y="625" font-size="17">Learned overlays · evidence capture · video failure flags · target-assisted alignment software</text>
+<rect x="40" y="690" width="1120" height="87" rx="12" fill="#fff9ef" stroke="#b18b50" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="62" y="722" font-size="18" font-weight="bold" fill="#785928">RESEARCH VALIDATION STILL OPEN — not a software-not-built claim</text>
+<text x="62" y="751" font-size="17" fill="#785928">Video-domain accuracy · physical camera/fixture validation · PatchCore references · full Tier8 ablations</text>
 </g></svg>

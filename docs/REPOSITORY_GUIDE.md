@@ -1,5 +1,25 @@
 # Repository structure and maintenance
 
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+<!-- current-status:start -->
+> **Current status (15 September 2026):** [Completed work and remaining validation](CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
+<!-- current-status:end -->
+
+15 September comparison addition: NB30–NB32 are built by
+`tyrelib/build_segformer_matched_notebooks.py`, with readable runtime in
+`tyrelib/segformer_matched.py` and checks in `scripts/verify_segformer_matched.py`.
+Only new notebooks are generated; executed HRNet notebooks and prototype changes
+are preserved. [Matched comparison guide](35_MATCHED_SEGFORMER_COMPARISON.md).
+
+14 September addition: `prototype/` contains the user's native inspection and
+geometry/calibration work; it is separate from training. NB21/NB22 and
+`tyrelib/s9_pilot.py` add the small annotation pilot; generated packages are in
+`outputs/s9_pilot/`, test-only fixtures in `outputs/s9_pilot_qa/`. Do not treat
+software-test annotations as human labels. [Pilot guide](27_S9_SMALL_ANNOTATION_PILOT.md).
+
 Organisation is additive. Existing notebooks, embedded sources and execution archives were not moved or deleted: their paths and saved outputs are part of reproducibility.
 
 ```text
