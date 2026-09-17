@@ -1,0 +1,30 @@
+\begin{table}[t]
+\caption{Classification endpoints on the historical folds. Each row averages nine runs (three folds and three seeds); folds 0 and 2 retain overlap concerns. These are internal validation results, not an independent-test ranking.}
+\label{tab:architectures}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrr}
+\toprule
+Architecture & Selected & Final \\
+\midrule
+MobileNetV4 & 0.99746 & 0.91310 \\
+Swin-T & 0.97673 & 0.83478 \\
+EfficientNetV2-S & 0.97615 & 0.70874 \\
+Swin-S & 0.95259 & 0.85744 \\
+CLIP ViT-B/16 & 0.95076 & 0.78897 \\
+ResNet-50 & 0.93651 & 0.82922 \\
+RegNetY-016 & 0.93495 & 0.74087 \\
+ViT-S & 0.93235 & 0.75858 \\
+ResNeXt-50 & 0.92260 & 0.76566 \\
+MaxViT-T & 0.92189 & 0.85982 \\
+DINOv2-B & 0.91277 & 0.88380 \\
+ConvNeXtV2-T & 0.90891 & 0.90238 \\
+DenseNet-121 & 0.89660 & 0.83852 \\
+VGG16-BN & 0.89194 & 0.45870 \\
+DINOv2-S & 0.87346 & 0.78842 \\
+CoAtNet-0 & 0.80537 & 0.72041 \\
+DeiT-III-S & 0.74726 & 0.72855 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,37 @@
+\section{Introduction}
+\label{sec:intro}
+\PARstart{V}{ision}-based tyre inspection is attractive because a photograph can preserve the visible condition of a tyre and support repeatable review. However, the meaning of a model output depends on the target used to train it. Recognising a mileage category is different from measuring tread depth; locating a tread boundary is different from recovering a wheel plane; and displaying an angle is different from validating that angle against a physical reference. These distinctions become especially important when a large number of network runs is supported by a small collection of tyres.
+
+This study investigates an evidence-preserving workflow for such a setting. The available collection contains three ordered mileage-proxy labels, manual tyre/tread masks, and a later six-point boundary annotation set. It does not contain measured tread depths or independently measured alignment angles. We therefore evaluate classification against the recorded proxy labels, localisation against the manual references, and boundary learning against fixed image-space coordinates. We treat the inspection workstation as an implemented integration artifact whose software behaviour can be tested separately from prediction accuracy.
+
+A practical motivation is to test whether adding apparently useful components improves the intended output. A region model may agree closely with a manual mask yet fail to improve classification after cropping. A dedicated point model may improve still-image localisation yet produce crossed boundaries on a new video. Reporting these outcomes together is more informative than presenting the largest internal score as overall system accuracy. The general problem of leakage and mismatched generalisation claims in machine-learning research further motivates explicit sampling units, split descriptions, and reproducible provenance \cite{leakage}.
+
+The contribution is an empirical pilot and inspectable implementation, rather than a new backbone or a validated physical instrument. Specifically, we provide: (1) an endpoint-aware comparison of 17 retained classification configurations, with identity-based quarantine and explanation-guided follow-ups; (2) manually supervised localisation and paired crop/fusion evaluations that preserve negative results; (3) a same-split, fixed-budget comparison of point learning and segmentation-derived boundaries; and (4) a native workstation that preserves the analysed frame and separates model proposals, supported image geometry, and target-assisted measurement.
+
+The main research questions are whether classification conclusions change with checkpoint endpoint; whether localisation improves a frozen full-image classifier; whether a dedicated point model reduces horizontal boundary error under the matched protocol; and whether these components can be integrated without concealing invalid geometry or domain failures. The historical explanation hypotheses are retained as diagnostics rather than rewritten after observing their outcomes. Figure~\ref{fig:workflow} summarises the evidence flow and its physical-validation boundary.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{workflow.pdf}
+\caption{Study and workstation overview. The diagram separates completed empirical and software components from physical validation still requiring real reference measurements. The matched geometry study reuses a subset of the source cohort; arrows do not imply independent data collections.}
+\label{fig:workflow}
+\end{figure*}
+
+\section{Related Work}
+\label{sec:related}
+\subsection{Physical Measurement and Proxy Recognition}
+TireEye uses optical observations of longitudinal groove cross-sections, image edges, and tread-wear indicators as a scale reference \cite{tireeye}. Its relevance here is the distinction between a physically referenced measurement and a classification target. Our mileage labels do not supply the scale or reference measurements needed for an equivalent depth estimate. Consequently, we do not compare our macro-F1 to a millimetre error or claim a physical-wear improvement from a classification score.
+
+Residual networks provide a standard recognition baseline \cite{resnet}, while MobileNetV4 targets efficient architectures across mobile hardware \cite{mobilenet}. We use available implementations and pretrained representations as experimental configurations, not as evidence that one architecture family is universally appropriate for tyres. For models with ordinal heads, CORAL provides a threshold-based formulation for ordered labels \cite{coral}. Its decision rule must be preserved when reconstructing predictions: counting positive ordinal thresholds is not generally interchangeable with taking the largest displayed class score.
+
+\subsection{Explanation and Dense Localisation}
+Grad-CAM uses class-related gradients and feature maps to construct coarse localisation maps \cite{gradcam}. Such maps can help identify where a model responds, but visual plausibility alone is insufficient. Parameter-randomisation sanity checks demonstrate why a saliency method must depend meaningfully on learned parameters before it is used as model evidence \cite{sanity}. We combine a project-specific randomisation screen with insertion/deletion diagnostics and explicitly limit the interpretation of spatial saliency ratios.
+
+U-Net, DeepLabV3+, and SegFormer represent different dense-prediction designs \cite{unet,deeplab,segformer}. Our dense-task branch also uses YOLO26 software and a specified RT-DETRv2-R18 model \cite{yolo,rtdetr}. These configurations differ in pretraining, losses, and backend behaviour. A common image set and epoch budget make their outputs comparable within the declared protocol, but do not create a controlled architecture-only experiment. We distinguish the official research papers from mutable software documentation and preserve executed package versions separately.
+
+HRNet maintains high-resolution representations through parallel multiresolution processing \cite{hrnet}. This motivates its use as a boundary-coordinate component, but human-pose benchmarks do not establish tyre performance. Our six fixed-row coordinates, coordinate decoder, and error definition are task-specific. The matched comparator is a newly trained SegFormer on the same geometry split, not a segmentation checkpoint trained on a broader image allocation.
+
+\subsection{Confidence and Geometric Reference Frames}
+Temperature scaling addresses confidence calibration without requiring a new recognition backbone \cite{calibration}. Conformal prediction provides a framework for prediction sets under its statistical assumptions \cite{conformal}; coverage observed on a small, dependent collection does not establish deployment coverage. We therefore report achieved coverage, set size, and the limitations of the inherited abstention field.
+
+ChArUco board detection and pose estimation provide the software foundations for the prototype's target-assisted alignment workflow \cite{charuco}. A detected target can define a reference plane only when camera calibration, board scale, orientation, and mounting are appropriate. These assumptions are distinct from segmentation quality. The present contribution integrates the software workflow and exercises synthetic cases; it does not supply the missing real-wheel reference study.

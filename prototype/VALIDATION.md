@@ -1,5 +1,27 @@
 # Local verification — 13 September 2026
 
+## Overlay downloads — 16 September 2026
+
+Verified in `cv_conda` with `check_media_export.py`,
+`check_media_export.py --real`, and `check_edge_geometry.py`:
+
+- Exact PNG pixels for Original, Full overlay, and a non-central Compare wipe.
+- 30 fps and 5 fps inputs exported at 10 fps with correct frame selection,
+  repeated low-rate frames, portrait dimensions, duration and visible overlays.
+- Failed inference leaves no finished or partial MP4; UI cancellation cleans up
+  its subprocess without replacing the inspection frame.
+- Real GPU inspection followed by a separate CPU export with the default paired
+  learned models on a three-frame portrait excerpt of a supplied video. Output
+  decoded as three frames at 10 fps, 360 × 640. Controls remained usable while
+  exporting, and changing opacity did not change the export's settings snapshot.
+- Existing synthetic boundary/rim acceptance and rejection checks still pass.
+  The explanation now distinguishes the predicted search outline from accepted
+  geometry and displays a withheld-fit notice instead of empty-looking panels.
+
+Local screenshots and a sample MP4 are in `results/export-check/` (ignored by
+Git). These checks verify export behavior, not geometric accuracy. Full-length
+export throughput and unusual variable-frame-rate videos have not been tested.
+
 <!-- current-status:start -->
 > **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
 <!-- current-status:end -->

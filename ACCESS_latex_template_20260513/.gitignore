@@ -1,0 +1,20 @@
+# Rebuildable LaTeX intermediates and supplied template sample outputs.
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+access.pdf
+.build/
+# Keep only publication assets from this folder despite the root media ignore.
+!logo.png
+!notaglinelogo.png
+!bullet.png
+!figures/
+!figures/*.png
+!figures/*.pdf

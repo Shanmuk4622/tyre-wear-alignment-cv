@@ -151,4 +151,13 @@ def draw_edge_fit(rgb, result, points_only=False):
                      (200, 70, 215) if i == 2 else (30, 185, 215), radius+1, cv2.LINE_AA)
         if 'ellipse' in result:
             cv2.polylines(out, [np.round(result['ellipse']).astype(np.int32)], True, (200, 70, 215), radius+1, cv2.LINE_AA)
+    elif not result['valid'] and not points_only:
+        # Keep a withheld fit visible in both the workstation and exported media.
+        message = 'Edge fit withheld: ' + result['reason']
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        h, w = out.shape[:2]
+        size = min(.65, max(.1, (w-16)/cv2.getTextSize(message, font, 1, 1)[0][0]))
+        row = max(22, round(34*min(w/800, h/700)))
+        cv2.rectangle(out, (0, h-row), (w, h), (255, 239, 210), -1)
+        cv2.putText(out, message, (8, h-8), font, size, (120, 65, 20), 1, cv2.LINE_AA)
     return out

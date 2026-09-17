@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\caption{Fold-1 localisation means over three seeds. AP denotes COCO-style AP at IoU thresholds 0.50:0.95. Boundary F1 uses a two-native-pixel tolerance. Dashes denote undefined mask metrics for box-only models.}
+\label{tab:localisation}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Box AP & Mask AP & Tread IoU & Boundary F1 \\
+\midrule
+DeepLabV3+/R34 & 0.98612 & 0.99675 & 0.97176 & 0.35988 \\
+RT-DETRv2-R18 & 0.94073 & -- & -- & -- \\
+SegFormer-B0 & 0.91189 & 0.99836 & 0.97372 & 0.37258 \\
+SegFormer-B2 & 0.97657 & 0.99982 & 0.97569 & 0.37412 \\
+U-Net/R34 & 0.91413 & 0.99704 & 0.97216 & 0.35820 \\
+YOLO26-n det. & 0.95278 & -- & -- & -- \\
+YOLO26-n seg. & 0.95204 & 0.95890 & 0.85815 & 0.18926 \\
+YOLO26-s det. & 0.96081 & -- & -- & -- \\
+YOLO26-s seg. & 0.95227 & 0.96215 & 0.85627 & 0.22623 \\
+\bottomrule
+\end{tabular}
+\end{table*}

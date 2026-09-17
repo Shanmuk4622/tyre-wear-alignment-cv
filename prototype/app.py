@@ -6,11 +6,12 @@ import sys
 import threading
 import queue
 import time
+import uuid
 from pathlib import Path
 from collections import deque
 
 # Load the isolated Qt DLLs before Conda OpenCV can load its own Qt build.
-from PySide6.QtCore import Qt, QThread, Signal, Slot, QTimer, QRectF, QUrl, QPointF
+from PySide6.QtCore import Qt, QThread, Signal, Slot, QTimer, QRectF, QUrl, QPointF, QProcess, QStandardPaths
 from PySide6.QtGui import QColor, QPainter, QPen, QFont, QImage, QPixmap, QShortcut, QKeySequence, QDesktopServices
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, QPushButton, QVBoxLayout,
     QHBoxLayout, QFrame, QComboBox, QLineEdit, QFileDialog, QListWidget, QListWidgetItem,
@@ -272,6 +273,8 @@ class Station(QMainWindow):
         self.learned_frame = None
         self.source = self.result_source = ''
         self.worker = self.stream = None
+        self.export_process = None
+        self.export_cancelled = False
         self._job_busy = False
         self.generation = 0
         self.overlay_preference = None
@@ -424,7 +427,21 @@ class Station(QMainWindow):
         self.save_btn = button('Save evidence card   [Ctrl+S]', self.save_evidence)
         self.save_btn.setEnabled(False)
         leftlayout.addWidget(self.save_btn)
-        split.addWidget(left)
+        downloads = QHBoxLayout()
+        downloads.addWidget(button('Download shown frame', self.download_frame))
+        self.export_btn = button('Download video · 10 fps', self.download_video)
+        downloads.addWidget(self.export_btn)
+        self.cancel_export_btn = button('Cancel export', self.cancel_export)
+        self.cancel_export_btn.setEnabled(False)
+        downloads.addWidget(self.cancel_export_btn)
+        leftlayout.addLayout(downloads)
+        self.export_status = label('Downloads: PNG frame or full silent MP4 · background CPU export.', 'muted')
+        leftlayout.addWidget(self.export_status)
+        self.left_scroll = QScrollArea()
+        self.left_scroll.setWidgetResizable(True)
+        self.left_scroll.setFrameShape(QFrame.NoFrame)
+        self.left_scroll.setWidget(left)
+        split.addWidget(self.left_scroll)
         right, rl = panel()
         rl.setSizeConstraint(QLayout.SetMinimumSize)
         right.setMinimumWidth(340)
@@ -936,7 +953,9 @@ class Station(QMainWindow):
             self.statusBar().showMessage('Inspect a frame and select an edge-fitting view first.')
             return
         from edge_diagram import EdgeDiagram
-        self.edge_dialog = EdgeDiagram(self.captured_rgb.copy(), fit, self.overlay_select.currentText(), self)
+        mm = self.masks.get(self.overlay_select.currentData())
+        self.edge_dialog = EdgeDiagram(self.captured_rgb.copy(), fit, self.overlay_select.currentText(), self,
+                                      mask=mm[0] if mm is not None else None)
         self.edge_dialog.setAttribute(Qt.WA_DeleteOnClose)
         self.edge_dialog.show()
 
@@ -982,6 +1001,116 @@ class Station(QMainWindow):
     def choose_overlay(self, index):
         self.overlay_preference = self.overlay_select.currentData()
         self.render_capture()
+
+    def download_path(self, suffix, source):
+        folder = Path(QStandardPaths.writableLocation(QStandardPaths.DownloadLocation) or Path.home()/'Downloads')
+        folder.mkdir(parents=True, exist_ok=True)
+        stem = Path(source).stem if source and not source.startswith('camera:') else 'camera'
+        return folder / f'{stem}-overlay-{time.strftime("%Y%m%d-%H%M%S")}-{uuid.uuid4().hex[:6]}{suffix}'
+
+    def download_frame(self):
+        if self.captured_rgb is None or self.viewer.original is None:
+            self.export_status.setText('Inspect a frame before downloading it.')
+            return
+        try:
+            # Save the exact analysed frame and current wipe, without UI chrome
+            # or zoom cropping. QImage copies freeze it against new live results.
+            image = self.viewer.original.copy()
+            if self.viewer.processed is not None and self.viewer.mode != 'Original':
+                painter = QPainter(image)
+                if self.viewer.mode == 'Compare wipe':
+                    split = round(image.width()*self.viewer.wipe)
+                    painter.setClipRect(split, 0, image.width()-split, image.height())
+                painter.drawImage(0, 0, self.viewer.processed)
+                painter.end()
+            path = self.download_path('.png', self.result_source)
+            if not image.save(str(path), 'PNG'):
+                raise OSError('Could not write the PNG to Downloads')
+            self.export_status.setText(f'Saved to Downloads: {path.name}')
+        except Exception as exc:
+            self.export_status.setText(f'Download failed: {exc}')
+
+    def download_video(self):
+        if self.export_process is not None:
+            return
+        if not Path(self.source).is_file() or Path(self.source).suffix.lower() not in ('.mp4', '.avi', '.mov', '.mkv'):
+            self.export_status.setText('Open a video file to export it. For a live camera, download the shown frame.')
+            return
+        try:
+            destination = self.download_path('.mp4', self.source)
+            # Snapshot controls once; subsequent inspection changes stay local.
+            name = self.overlay_preference
+            region = name if name else self.region.currentData()
+            job = dict(source=self.source, destination=str(destination), classifier=self.classifier.currentData(),
+                region=region, overlay=name, threshold=self.threshold.value(), assist=self.assist.isChecked(),
+                learned=self.learned_mode.currentData(), opacity=self.opacity.value()/100,
+                layers=[self.show_tyre.isChecked(), self.show_tread.isChecked()], geometry=self.show_geometry.isChecked(),
+                edges=self.edge_mode.currentData(), show_learned=self.show_learned.isChecked())
+            self.export_job_path = ROOT/'.cache'/f'export-{uuid.uuid4().hex}.json'
+            self.export_job_path.write_text(json.dumps(job), encoding='utf-8')
+            self.export_destination = destination
+            self.export_cancelled = False
+            self.export_output = ''
+            self.export_errors = ''
+            process = QProcess(self)
+            self.export_process = process
+            process.setWorkingDirectory(str(ROOT))
+            process.readyReadStandardOutput.connect(self.export_progress)
+            process.readyReadStandardError.connect(self.export_error_output)
+            process.finished.connect(self.export_finished)
+            process.errorOccurred.connect(self.export_process_error)
+            self.export_btn.setEnabled(False)
+            self.cancel_export_btn.setEnabled(True)
+            self.export_status.setText('Export starting on CPU · full clip, 10 fps, no audio · inspection remains available.')
+            process.start(sys.executable, ['-u', str(ROOT/'media_export.py'), str(self.export_job_path)])
+        except Exception as exc:
+            self.export_status.setText(f'Could not start export: {exc}')
+            self.export_process = None
+            self.export_btn.setEnabled(True)
+            self.cancel_export_btn.setEnabled(False)
+
+    def export_progress(self):
+        self.export_output += bytes(self.export_process.readAllStandardOutput()).decode('utf-8', errors='replace')
+        while '\n' in self.export_output:
+            line, self.export_output = self.export_output.split('\n', 1)
+            try:
+                item = json.loads(line)
+                self.export_status.setText(f'Exporting on CPU: {item["done"]}/{item["total"]} frames · 10 fps · you can keep inspecting.')
+            except (ValueError, KeyError, TypeError):
+                pass
+
+    def export_error_output(self):
+        self.export_errors = (self.export_errors + bytes(self.export_process.readAllStandardError()).decode('utf-8', errors='replace'))[-4000:]
+
+    def export_process_error(self, error):
+        if error == QProcess.FailedToStart:
+            self.export_errors = self.export_process.errorString()
+            self.export_finished(-1)
+
+    def export_finished(self, exit_code, exit_status=None):
+        if self.export_process is None:
+            return
+        self.export_error_output()
+        success = exit_code == 0 and self.export_destination.exists()
+        if success:
+            message = f'Saved to Downloads: {self.export_destination.name} · 10 fps, no audio'
+        elif self.export_cancelled:
+            message = 'Video export cancelled. No incomplete download was kept.'
+        else:
+            message = 'Video export failed: ' + (self.export_errors.strip().splitlines()[-1] if self.export_errors.strip() else 'No completed video was produced.')
+        self.export_destination.with_suffix('.partial.mp4').unlink(missing_ok=True)
+        self.export_job_path.unlink(missing_ok=True)
+        self.export_process.deleteLater()
+        self.export_process = None
+        self.export_btn.setEnabled(True)
+        self.cancel_export_btn.setEnabled(False)
+        self.export_status.setText(message)
+
+    def cancel_export(self):
+        if self.export_process is not None:
+            self.export_cancelled = True
+            self.export_process.kill()
+            self.export_status.setText('Cancelling background export…')
 
     def save_evidence(self):
         if self.result is None or self.captured_rgb is None:
@@ -1049,6 +1178,10 @@ class Station(QMainWindow):
         QMessageBox.warning(self, 'Inspection could not finish', message)
 
     def closeEvent(self, event):
+        if self.export_process is not None:
+            self.export_status.setText('Export is running. Let it finish or use Cancel export before closing.')
+            event.ignore()
+            return
         for dialog in self.findChildren(QDialog):
             calibration_worker = getattr(dialog, 'worker', None)
             if calibration_worker is not None and calibration_worker.isRunning():

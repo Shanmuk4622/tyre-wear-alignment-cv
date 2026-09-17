@@ -1,0 +1,19 @@
+\begin{table}[t]
+\caption{Confidence diagnostics on held-out calibration-test subsets. ECE is the recorded expected calibration error; values near zero on flagged folds do not imply external reliability.}
+\label{tab:calibration}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+Fold & Scores & $n$ & F1 & ECE & NLL \\
+\midrule
+0 & Raw & 61 & 1.0000 & 0.2115 & 0.2425 \\
+0 & Temp. & 61 & 1.0000 & 0.0000 & 0.0000 \\
+1 & Raw & 41 & 0.8030 & 0.1896 & 0.3563 \\
+1 & Temp. & 41 & 0.8030 & 0.0738 & 0.1623 \\
+2 & Raw & 33 & 1.0000 & 0.1293 & 0.1438 \\
+2 & Temp. & 33 & 1.0000 & 0.0000 & 0.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -56,6 +56,17 @@ Video is displayed and processed vertically using the file's orientation metadat
 
 Records contain `frame.png`, separate binary tyre/tread masks, model overlay images, `inspection.json` and `card.html`. JSON includes scores, model revisions and hashes, device, package versions, timings, capture hints and the operator note. Keep a record folder together when sharing its HTML card. Records are local; there are no automatic uploads.
 
+### Download the overlay (16 September 2026)
+
+- **Download shown frame** writes a PNG directly to your Windows Downloads folder. It saves the exact analysed pixels with the current Original / Full overlay / Compare wipe setting, including the wipe position. Zoom, UI controls and the live preview inset are excluded.
+- **Download video · 10 fps** processes the entire opened video separately, sampling at 0.0, 0.1, 0.2 seconds and so on. It creates a silent MP4 at 10 fps with the clip's duration preserved to within one output frame. Sources below 10 fps repeat frames. Portrait orientation and the workstation's maximum 1280-pixel analysis size are preserved; odd dimensions receive a one-pixel border for encoding.
+- The video uses the recipe, region selection, opacity, visible layers, geometry and learned-overlay controls captured when you click. It exports the full overlay without the display wipe or zoom. With automatic region selection, separately labelled SegFormer assistance can take over on frames where YOLO misses. Changing controls or opening another source does not change the running export.
+- Export runs in a separate process using PyTorch on CPU (two threads), leaving the GPU available to the workstation. It can be slower than playback. Progress and **Cancel export** sit below the evidence button; cancellation removes the unfinished video. Finish or cancel before closing the app. Files receive unique names and are published only after the encoded frame count is checked. Camera feeds support frame downloads; full-video export requires a video file.
+
+**Why an edge diagram can have no fitted lines:** the image fitter deliberately withholds geometry when its evidence is insufficient. For example, a predicted mask that touches the side of the frame produces “Side boundary clipped by frame”, even if the visible tyre appears to fit inside the photo. The diagram now shows the amber mask outline, red clipped frame edge, and an explicit **FIT WITHHELD** panel. Capture both sides with a background margin or inspect another frame. Mask outlines and learned point proposals remain separate from an accepted image-edge fit; they do not establish alignment accuracy.
+
+Checks: `python check_media_export.py` covers sampling, PNG view fidelity, cancellation and failure cleanup. `python check_media_export.py --real` exercises a short portrait clip from the supplied videos with real models and the background export process. Local results are under `results/export-check/`.
+
 ## Models and interpretation
 
 | Model | Role | Endpoint |

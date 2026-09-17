@@ -1,0 +1,71 @@
+\input{engine_compat}
+\documentclass[nolineno]{ieeeaccess}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{iftex}
+\usepackage{etoolbox}
+\usepackage{needspace}
+% Explicit aliases for two shapes requested by the supplied class.
+\makeatletter
+\InputIfFileExists{t1pcr.fd}{}{}
+\DeclareFontShape{T1}{pcr}{n}{n}{<->ssub*pcr/m/n}{}
+\DeclareFontShape{T1}{formata}{m}{sl}{<->ssub*formata/m/it}{}
+\makeatother
+% Retain the venue's layout without inheriting its sample volume/year.
+\makeatletter
+\newcommand{\draftfooter}{\hbox to\textwidth{\footervolfont AUTHOR-REVIEW DRAFT -- SEPTEMBER 2026\hfill\footerpagefont\thepage}}
+\apptocmd{\ps@titlepage}{\let\@oddfoot\draftfooter\let\@evenfoot\draftfooter}{}{}
+\apptocmd{\ps@headings}{\let\@oddfoot\draftfooter\let\@evenfoot\draftfooter}{}{}
+\makeatother
+% The supplied class's Type-1 fonts also work with Tectonic/XeTeX.
+\ifXeTeX
+\special{pdf:mapfile t1-times.map}
+\special{pdf:mapfile t1-formata.map}
+\special{pdf:mapfile t1-giovannistd.map}
+\fi
+\graphicspath{{figures/}}
+% The supplied class aliases these lengths; allocate a separate abstract box
+% so its bullet and inset fit inside the title width without an overfull box.
+\newlength{\paperabstractwidth}
+\setlength{\paperabstractwidth}{\dimexpr\titlewidth-10pt\relax}
+\let\abstractwidth\paperabstractwidth
+\setcounter{dbltopnumber}{3}
+\renewcommand{\dbltopfraction}{.9}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\textfraction}{.08}
+\hypersetup{pdftitle={From Mileage Proxies to Tread Boundaries: An Auditable Pilot Study of Vision-Based Tyre Inspection},pdfauthor={Shanmukesh Bonala, Nehru Gunnamneni, Manu Rohith GV, Harish Kumar Nettem}}
+\begin{document}
+\pagestyle{headings}
+\history{Author-review manuscript, September 17, 2026.}
+\doi{Not assigned}
+\title{From Mileage Proxies to Tread Boundaries: An Auditable Pilot Study of Vision-Based Tyre Inspection}
+\author{\uppercase{Shanmukesh Bonala}\authorrefmark{1},
+\uppercase{Nehru Gunnamneni}\authorrefmark{1},
+\uppercase{Manu Rohith GV}\authorrefmark{1}, AND
+\uppercase{Harish Kumar Nettem}\authorrefmark{1}}
+\address[1]{SCOPE, VIT-AP University, India}
+\corresp{Corresponding author: Shanmukesh Bonala (e-mail: shanmukeshbonal4622@gmail.com).}
+\tfootnote{Author details are reproduced from the repository citation metadata and await author confirmation. This manuscript has not been accepted for publication.}
+\markboth{Bonala \headeretal: An Auditable Pilot Study of Vision-Based Tyre Inspection}{Bonala \headeretal: An Auditable Pilot Study of Vision-Based Tyre Inspection}
+\begin{abstract}
+Camera-based tyre inspection requires a distinction between recognising collection labels, locating visible boundaries, and measuring physical condition. This paper presents an auditable pilot workflow covering these tasks without treating them as interchangeable. The collection contains 418 unique photographs from 12 operator-confirmed distinct tyres and three ordered mileage-proxy classes. We analyse 153 retained classification runs, explanation-based screening, controlled training interventions, and 81 manually supervised localisation runs. Classification results depend strongly on checkpoint policy: MobileNetV4 obtains mean macro-F1 values of 0.99746 at validation-selected checkpoints and 0.91310 at the fixed-final endpoint. Two historical folds retain identity-overlap concerns. Despite high region overlap, predicted crops and fixed equal-probability fusion do not improve the frozen classifier on average; combining full, tyre, and tread views changes macro-F1 by -0.01324. A separate matched experiment uses 120 annotated images, a fixed 72/24/24 split, and three training seeds. A high-resolution point model reduces mean horizontal boundary error from 1.721\% to 1.312\% of image width relative to segmentation-derived points, with complete comparator coverage. This 23.75\% relative reduction concerns only two test tyres and differing supervision. A native workstation preserves analysed frames, displays geometric evidence and rejection states, and exposes failures on unlabelled videos. The results support an inspectable research workflow, while external generalisation, physical wear estimation, and real alignment accuracy remain unvalidated.
+\end{abstract}
+\begin{keywords}
+Boundary localisation, explainable artificial intelligence, image segmentation, mileage proxy, reproducibility, tyre inspection.
+\end{keywords}
+\titlepgskip=-21pt
+\maketitle
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\EOD
+\end{document}

@@ -1,0 +1,46 @@
+\section{Discussion}
+\label{sec:discussion}
+\subsection{What the Evidence Establishes}
+The results support three distinct empirical conclusions. First, checkpoint endpoint materially changes the internal classification picture: selected validation performance and fixed-final performance cannot be combined into one accuracy claim. Second, high agreement with a manual region does not guarantee benefit to a full-image classifier after cropping or fixed fusion. Third, dedicated point learning reduces horizontal error in the matched still-image experiment, while integrated video observations reveal limitations outside that evaluation setting.
+
+The engineering contribution is to preserve these distinctions through the workflow. Identity checks prevent a substituted model from entering an architecture comparison. Saved probabilities support paired downstream evaluation without retraining. Explicit coverage prevents a point extractor from reporting only its successful cases. Exact-frame overlays make a displayed prediction auditable, and withholding unsupported geometry prevents an attractive line from being mistaken for an accepted measurement. These design choices improve traceability; they do not create independent data or remove model error.
+
+The matched point result is useful for component choice, but should be interpreted alongside operational cost and failure visibility. HRNet has more parameters and a higher observed warm inference time in the local check. Conversely, SegFormer provides dense regions that a six-point output cannot replace. The two models can therefore serve complementary roles: dense support for the search region and point proposals for boundary inspection. An evaluated improvement to the full inspection task would require a predefined end-to-end metric and component-removal study; it cannot be inferred by adding component scores.
+
+\subsection{Threats to Validity}
+\textit{Construct validity:} The classification labels describe source mileage groups, not tread depth, damage, or roadworthiness. Manual regions and fixed-row points are image-space references. There is no independently measured physical-alignment outcome for the current photographs or videos.
+
+\textit{Sampling and internal validity:} The effective cohort is small and acquisition is concentrated in one brief window. Two historical folds retain identity-overlap concerns, and the unflagged fold remains internal. Operator-confirmed tyre identities improve the documentation but are not an independent audit. Multiple architectures and follow-ups reuse the same data, and selected-checkpoint evaluation reuses validation information. The geometry test contains only two tyres and comes from a cohort already inspected during development.
+
+\textit{Comparison validity:} The backends have different pretraining, native objectives, parameter counts, and exponential-moving-average behaviour. HRNet receives point supervision and SegFormer receives dense masks. Equal image allocations and budgets do not isolate architecture alone. The S5 region SegFormer and the later matched geometry SegFormer have different training allocations and must not be conflated.
+
+\textit{Measurement and conclusion validity:} IoU and boundary F1 emphasise different spatial properties. The saliency ratio is limited by near-coincident tyre/tread regions. Empty conformal sets require explicit handling. Seed standard deviations describe repeated optimisation on fixed data; 432 point records, 405 fusion rows, and hundreds of training runs do not create corresponding numbers of independent subjects. We therefore avoid population significance or universal superiority claims.
+
+\textit{Operational validity:} Still-image adapter checks and short video software tests do not establish field robustness, sustained throughput, or physical webcam performance. The observed video failures indicate a domain gap, although their causes cannot be isolated without labelled video evaluation. Recoverability depends on the last successful durable publication and the exercised checkpoint path, not an unconditional guarantee against interruption.
+
+\subsection{Implications for Physical Alignment and Future Studies}
+A projected boundary or ellipse can change with viewpoint, lens distortion, occlusion, and tyre shape. Converting its image slope directly into toe or camber would require assumptions not supplied by the current images. The target-assisted workflow provides an explicit route to a reference frame, but only a real calibration/fixture study can assess whether the reference frame corresponds to the wheel plane and vehicle axes with useful accuracy.
+
+The next data collection should prioritise independently identified tyres and varied cameras, illumination, views, and operating conditions. For boundary learning, a tyre-disjoint video test should be frozen before tuning and should measure point error, missing/crossed-boundary rates, and temporal behaviour. For recognition, crop-trained models and learned fusion should be evaluated as new hypotheses under a selection rule that does not reuse the final test set. Physical studies should include calibrated reference captures, independently measured wheel angles, repeated target mounting, and runout assessment. A healthy-reference anomaly branch also requires justified healthy labels; low mileage alone is insufficient. These are proposed extensions rather than completed results.
+
+\section{Artifact Availability and Reproducibility}
+\label{sec:artifacts}
+Source code and maintained documentation are available at
+\url{https://github.com/Shanmuk4622/tyre-wear-alignment-cv}.
+The study's persistent artifact repository is
+\url{https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study}.
+The reporting snapshot is pinned to revision
+\path{22d5a6bc9f953ba3bf2a75919edc7db3193b317b}; the HRNet report to
+\path{a92c0f9c5c1b78c6a06e13d51e18722195230658}; and the matched comparison to
+\path{bbe586c6f00cf12ae4cac8b2e9cb4f875b272abb}.
+The manuscript package records full source paths and SHA-256 digests and recomputes the main geometry aggregates from paired records. Prototype screenshots are local software evidence with recorded hashes, not an invented remote experiment.
+
+Scientific reproduction requires the frozen notebooks, data lineage, manual references, split allocation, and per-run runtime records. The local development environment is not a universal replay lock. Relevant dense-task versions include Ultralytics 8.4.20, Transformers 4.51.3, segmentation-models-pytorch 0.5.0, and timm 1.0.15. Local workstation checks use PyTorch 2.5.1 with CUDA 12.1 and OpenCV 4.11.0. Different phases have separately recorded numerical environments and should not be presented as one identical runtime.
+
+The paper build uses the provided IEEE Access class and independently regenerated vector plots and numeric tables. It preserves the frozen upstream evidence. Rebuilding the paper is a CPU-only documentation task, distinct from rerunning training or independently replicating the study. Public artifact access does not by itself establish redistribution permission for every source image or external weight; those permissions require author review before submission.
+
+\section{Conclusion}
+This pilot connects mileage-proxy recognition, manually supervised localisation, matched boundary learning, and an inspectable desktop workflow. On the available collection, classification depends strongly on endpoint and fold; predicted crops and fixed probability fusion do not improve the frozen classifier on average. HRNet reduces matched horizontal boundary error by 23.75\% relative to segmentation-derived points on a two-tyre test, with complete comparator coverage and differing supervision. The implemented workstation preserves frame identity, exposes failure states, and supports target-assisted measurement software. These results justify continued component and data validation, while leaving physical wear, external generalisation, and real alignment accuracy unresolved. Stronger evidence now requires better independent measurements and sampling, rather than a larger count of model runs on the same small cohort.
+
+\section*{Author Declarations for Review}
+Author names, order, affiliation, and corresponding-author details in this draft follow the repository's citation metadata and require confirmation. Funding, competing interests, individual contributions, and image-use/collection permissions must be supplied or confirmed by the authors before submission; no approval, exemption, or absence of funding is asserted here. AI-assisted tools were used to help draft, format, and check this manuscript against the available records. The authors must review the final text, verify the interpretation, and take responsibility for the submitted version.
