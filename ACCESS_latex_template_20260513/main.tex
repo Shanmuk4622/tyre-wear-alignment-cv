@@ -11,12 +11,14 @@
 \usepackage{iftex}
 \usepackage{etoolbox}
 \usepackage{needspace}
+\usepackage{placeins}
 % Explicit aliases for two shapes requested by the supplied class.
 \makeatletter
 \InputIfFileExists{t1pcr.fd}{}{}
 \DeclareFontShape{T1}{pcr}{n}{n}{<->ssub*pcr/m/n}{}
 \DeclareFontShape{T1}{formata}{m}{sl}{<->ssub*formata/m/it}{}
 \makeatother
+\patchcmd{\IEEEbiographynophoto}{\vskip 4\baselineskip plus 1fil minus 0\baselineskip}{\vskip 2\baselineskip}{}{}
 % Retain the venue's layout without inheriting its sample volume/year.
 \makeatletter
 \newcommand{\draftfooter}{\hbox to\textwidth{\footervolfont AUTHOR-REVIEW DRAFT -- SEPTEMBER 2026\hfill\footerpagefont\thepage}}
@@ -39,22 +41,21 @@
 \renewcommand{\dbltopfraction}{.9}
 \renewcommand{\topfraction}{.9}
 \renewcommand{\textfraction}{.08}
-\hypersetup{pdftitle={From Mileage Proxies to Tread Boundaries: An Auditable Pilot Study of Vision-Based Tyre Inspection},pdfauthor={Shanmukesh Bonala, Nehru Gunnamneni, Manu Rohith GV, Harish Kumar Nettem}}
+\hypersetup{pdftitle={Evaluating Vision-Based Tyre Inspection: Checkpoint Sensitivity, Region Interventions, and Boundary Localisation},pdfauthor={Sreenivasa Reddy Edara, Shanmukesh Bonala}}
 \begin{document}
+\raggedbottom
 \pagestyle{headings}
-\history{Author-review manuscript, September 17, 2026.}
+\history{Author-review manuscript, September 18, 2026.}
 \doi{Not assigned}
-\title{From Mileage Proxies to Tread Boundaries: An Auditable Pilot Study of Vision-Based Tyre Inspection}
-\author{\uppercase{Shanmukesh Bonala}\authorrefmark{1},
-\uppercase{Nehru Gunnamneni}\authorrefmark{1},
-\uppercase{Manu Rohith GV}\authorrefmark{1}, AND
-\uppercase{Harish Kumar Nettem}\authorrefmark{1}}
-\address[1]{SCOPE, VIT-AP University, India}
-\corresp{Corresponding author: Shanmukesh Bonala (e-mail: shanmukeshbonal4622@gmail.com).}
-\tfootnote{Author details are reproduced from the repository citation metadata and await author confirmation. This manuscript has not been accepted for publication.}
-\markboth{Bonala \headeretal: An Auditable Pilot Study of Vision-Based Tyre Inspection}{Bonala \headeretal: An Auditable Pilot Study of Vision-Based Tyre Inspection}
+\title{Evaluating Vision-Based Tyre Inspection: Checkpoint Sensitivity, Region Interventions, and Boundary Localisation}
+\author{\uppercase{Sreenivasa Reddy Edara}\authorrefmark{1}, AND
+\uppercase{Shanmukesh Bonala}\authorrefmark{1}}
+\address[1]{School of Computer Science and Engineering, VIT-AP University, Amaravati, India}
+\corresp{Corresponding author (proposed): Shanmukesh Bonala (e-mail: shanmukesh.23BCE20070@vitapstudent.ac.in).}
+\tfootnote{Sreenivasa Reddy Edara is a Professor (e-mail: sreenivasareddy.e@vitap.ac.in); Shanmukesh Bonala is a student. This is an author-review draft.}
+\markboth{Edara and Bonala: Evaluating Vision-Based Tyre Inspection}{Edara and Bonala: Evaluating Vision-Based Tyre Inspection}
 \begin{abstract}
-Camera-based tyre inspection requires a distinction between recognising collection labels, locating visible boundaries, and measuring physical condition. This paper presents an auditable pilot workflow covering these tasks without treating them as interchangeable. The collection contains 418 unique photographs from 12 operator-confirmed distinct tyres and three ordered mileage-proxy classes. We analyse 153 retained classification runs, explanation-based screening, controlled training interventions, and 81 manually supervised localisation runs. Classification results depend strongly on checkpoint policy: MobileNetV4 obtains mean macro-F1 values of 0.99746 at validation-selected checkpoints and 0.91310 at the fixed-final endpoint. Two historical folds retain identity-overlap concerns. Despite high region overlap, predicted crops and fixed equal-probability fusion do not improve the frozen classifier on average; combining full, tyre, and tread views changes macro-F1 by -0.01324. A separate matched experiment uses 120 annotated images, a fixed 72/24/24 split, and three training seeds. A high-resolution point model reduces mean horizontal boundary error from 1.721\% to 1.312\% of image width relative to segmentation-derived points, with complete comparator coverage. This 23.75\% relative reduction concerns only two test tyres and differing supervision. A native workstation preserves analysed frames, displays geometric evidence and rejection states, and exposes failures on unlabelled videos. The results support an inspectable research workflow, while external generalisation, physical wear estimation, and real alignment accuracy remain unvalidated.
+Vision-based tyre inspection often combines classification, segmentation, and geometric localisation, yet strong component scores need not produce a useful downstream improvement. This study evaluates three links in such a workflow: checkpoint policy, region-based interventions, and boundary representation. A collection of 418 unique photographs supports grouped internal classification and localisation experiments; a separately allocated 120-image subset supports matched boundary learning. Reanalysis of saved epoch histories shows substantial fold-specific checkpoint sensitivity: MobileNetV4's validation-selected macro-F1 on fold 1 is 0.9924, compared with 0.7393 at epoch 60. Ordinal error metrics and an explicit group-allocation audit complement these scores. Across 81 localisation runs, high region overlap coexists with modest two-pixel boundary agreement. Fixed full/tyre/tread probability fusion changes the frozen classifier's mean macro-F1 by -0.01324, with losses concentrated on one fold rather than uniform across allocations. On the matched 24-image boundary test, point-supervised HRNet and mask-supervised SegFormer obtain horizontal errors of 1.312\% and 1.721\% of image width, respectively. The 23.75\% mean reduction favours point learning on 22 image averages, with complete mask-derived point coverage. Threshold sensitivity and preserved video failures identify further operating limits. The contribution is a traceable evaluation of component choices, with conclusions restricted to mileage-proxy recognition and image-space localisation rather than physical wear or alignment accuracy.
 \end{abstract}
 \begin{keywords}
 Boundary localisation, explainable artificial intelligence, image segmentation, mileage proxy, reproducibility, tyre inspection.
@@ -65,7 +66,10 @@ Boundary localisation, explainable artificial intelligence, image segmentation, 
 \input{sections/methods}
 \input{sections/results}
 \input{sections/discussion}
+\input{sections/appendix}
+\FloatBarrier
 \bibliographystyle{IEEEtran}
 \bibliography{references}
+\input{sections/biographies}
 \EOD
 \end{document}

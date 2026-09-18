@@ -5,6 +5,8 @@ try {
     if ($RefreshFigures) {
         python build_assets.py
         if ($LASTEXITCODE -ne 0) { throw 'Evidence/figure build failed' }
+        python revision_analysis.py
+        if ($LASTEXITCODE -ne 0) { throw 'Revision analysis failed' }
     }
     $paperCompiler = Get-Command tectonic -ErrorAction SilentlyContinue
     $localCompiler = Join-Path $PSScriptRoot '../prototype/.cache/latex-tools/tectonic.exe'

@@ -1,3 +1,9 @@
+# Current status: revised bibliography, 18 September 2026
+
+31 unique references. The revision audit at the end supersedes the original
+counts, split interpretation, and figure inventory below. The earlier audit is
+retained as a record of what was checked for the first draft.
+
 # Citation audit — 16 September 2026
 
 The manuscript has 16 unique references. Citations support the adjacent concept;
@@ -56,3 +62,47 @@ population confidence intervals. The per-tyre comparison retains all seed values
 Full numerical inputs and their SHA-256 hashes are in `NUMERICAL_AUDIT.json`.
 Rendering/layout findings and build integrity are recorded separately in
 `VERIFICATION.json` after the final PDF build.
+
+## Revision audit — 18 September 2026 (supersedes original counts)
+
+The revised bibliography contains 31 unique entries. The original 16 entries
+remain, with 11 application/validation articles or reports, three localisation
+method references, and one explicit AI-software disclosure reference added.
+The 10-row related-study comparison distinguishes tasks, references, and assessed
+validation scope; NR means not established in the consulted primary text, not
+an allegation that the original work omitted it. No external performance number
+is ranked against this project's results.
+
+Publisher-deposited DOI metadata for 11 additions is preserved in
+`revision_evidence/citation_metadata.json`; none reports an `update-to` notice
+in the fetched record. This metadata check is not an exhaustive retraction audit.
+Primary sources consulted:
+
+- Tread segmentation (2025): https://doi.org/10.1016/j.pes.2025.100080
+- Behaviour-aware wear classification (2026): https://doi.org/10.1016/j.measurement.2026.121509
+- Tyre-level multiple-instance decisions (2025): https://doi.org/10.1007/s00170-025-15740-3
+- Laser-plane depth (2019): https://doi.org/10.1177/1687814019837828
+- Drive-over sensors (2014): https://doi.org/10.4271/2014-01-0069
+- Camera camber measurement (2010): https://doi.org/10.1016/j.sna.2010.04.004
+- Rim/point-cloud alignment (2026): https://re.public.polimi.it/handle/11311/1312834 ; https://doi.org/10.3390/metrology6010004
+- Surface damage (2024): https://www.mdpi.com/1424-8220/24/9/2778
+- RGB-depth tread dimensions (2024): https://www.mdpi.com/2076-3417/14/15/6625
+- Grouped validation: https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.02881
+- Shortcut learning: https://doi.org/10.1038/s42256-020-00257-z
+- Boundary-sensitive evaluation: https://openaccess.thecvf.com/content/CVPR2021/html/Cheng_Boundary_IoU_Improving_Object-Centric_Image_Segmentation_Evaluation_CVPR_2021_paper.html
+- Coordinate expectation: https://arxiv.org/abs/1801.07372
+- Coordinate classification: https://arxiv.org/abs/2107.03332v3
+- AI software identification: https://openai.com/codex/
+
+Some publisher pages were available only through indexed primary excerpts or
+abstracts; comparisons are limited to those supported claims. SimCC is cited as
+the explicitly verified revised preprint rather than guessing conference pages.
+Author diacritics are encoded with LaTeX accents for the supplied Type-1 fonts.
+
+The old blanket interpretation of classification overlap concerns is superseded:
+`REVISION_ANALYSIS.json` verifies zero shared recorded group IDs per fold. The
+paper differentiates this audit, the operator's physical identity confirmation,
+and the earlier appearance-similarity suspicion. The new per-image plot is a
+retrospective aggregation of existing errors, not a new independent experiment.
+The outdated workstation screenshot and synthetic alignment interface are removed
+from the article. The historical evidence files themselves remain unchanged.

@@ -63,19 +63,21 @@ plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.spines.top'
 teal, orange, navy = '#087f83', '#b75a18', '#24394c'
 
 arch = table('classification_master_architectures.csv')
+arch = sorted(arch, key=lambda r: names[r['arch']].lower())
 assert len(arch) == 17 and sum(int(r['n']) for r in arch) == 153
-tex_table('architectures', 'Classification endpoints on the historical folds. Each row averages nine runs (three folds and three seeds); folds 0 and 2 retain overlap concerns. These are internal validation results, not an independent-test ranking.',
+tex_table('architectures', 'Archival classification summary in alphabetical order. Each row averages nine runs (three grouped folds and three seeds). These internal validation summaries are retained for completeness; fold-specific analysis is primary.',
           'lrr', ['Architecture','Selected','Final'],
           [[names[r['arch']],f"{float(r['f1_mean']):.5f}",f"{float(r['final_f1']):.5f}"] for r in arch])
-fig, ax = plt.subplots(figsize=(6.8,4.7))
+fig, ax = plt.subplots(figsize=(3.4,4.6))
 for i, row in enumerate(arch):
     a, b = float(row['f1_mean']), float(row['final_f1'])
     ax.plot([b,a],[i,i],color='#aab5be',linewidth=1.5)
 ax.scatter([float(r['f1_mean']) for r in arch], range(17), color=teal, label='Validation-selected', s=27,zorder=3)
 ax.scatter([float(r['final_f1']) for r in arch], range(17), color=orange, marker='s',label='Fixed final',s=23,zorder=3)
 ax.set_yticks(range(17),[names[r['arch']] for r in arch]); ax.invert_yaxis()
-ax.set(xlim=(.4,1.025),xlabel='Mean macro-F1 (nine runs; dependent internal folds)')
-ax.grid(axis='x',alpha=.18); ax.legend(loc='lower left',frameon=False)
+ax.set(xlim=(.4,1.025),xlabel='Mean macro-F1\n(nine runs; internal folds)')
+ax.tick_params(axis='y',labelsize=7)
+ax.grid(axis='x',alpha=.18); ax.legend(loc='lower center',bbox_to_anchor=(.5,1.01),frameon=False,fontsize=7)
 fig.tight_layout(); fig.savefig(FIG/'endpoints.pdf'); plt.close(fig)
 
 base = table('classification_baselines_by_fold.csv')
@@ -128,7 +130,7 @@ ax.axvline(0,color=navy,linewidth=.8);ax.set_xlabel('Mean macro-F1 change\n(perc
 ax.invert_yaxis();ax.grid(axis='x',alpha=.2);fig.tight_layout();fig.savefig(FIG/'fusion.pdf');plt.close(fig)
 
 cal=table('calibration.csv');conf=table('conformal.csv')
-tex_table('calibration','Confidence diagnostics on held-out calibration-test subsets. ECE is the recorded expected calibration error; values near zero on flagged folds do not imply external reliability.',
+tex_table('calibration','Confidence diagnostics on held-out calibration-test subsets. ECE is the recorded expected calibration error; values near zero on internal folds do not imply external reliability.',
     'llrrrr',['Fold','Scores',r'$n$','F1','ECE','NLL'],
     [[r['fold'],'Temp.' if r['kind']=='temperature' else 'Raw',r['n']]+[f"{float(r[k]):.4f}" for k in ['f1_macro','ece','nll']] for r in cal])
 tex_table('conformal','Prediction-set diagnostics at nominal 90\% coverage. The recorded abstention field does not count every empty-set event.',
@@ -165,7 +167,7 @@ for i,tyre in enumerate(tyres):
         axes[1].scatter([i+offset]*3,values,color=color,marker=marker,s=27)
         axes[1].plot([i+offset-.08,i+offset+.08],[st.mean(values)]*2,color=color)
 axes[1].set_xticks([0,1],['High-mileage tyre','New tyre']);axes[1].set_ylim(0,3)
-axes[1].set_title('(b) Only two test tyres',loc='left',fontsize=10)
+axes[1].set_title('(b) Test-group estimates',loc='left',fontsize=10)
 fig.tight_layout();fig.savefig(FIG/'geometry.pdf');plt.close(fig)
 
 # Diagram is a schematic, not a measured result. All labels are embedded.
@@ -175,7 +177,7 @@ def box(x,y,w,h,title,body,color=teal):
     ax.text(x+w/2,y+h-.22,title,ha='center',va='top',fontsize=8,fontweight='bold',color=color)
     ax.text(x+w/2,y+h-.65,body,ha='center',va='top',fontsize=7.5,linespacing=1.45,color=navy)
 def arrow(a,b):ax.annotate('',xy=b,xytext=a,arrowprops={'arrowstyle':'->','color':navy,'lw':1.2})
-box(.1,3.1,2.65,1.65,'SOURCE COLLECTION','418 clean photographs\n12 confirmed tyre identities\nMileage labels + masks')
+box(.1,3.1,2.65,1.65,'SOURCE COLLECTION','418 clean photographs\nGroup-disjoint allocation\nMileage labels + masks')
 box(3.35,3.1,2.9,1.65,'RECOGNITION / REGIONS','153 retained classifier runs\n81 localisation runs\nFixed crops and fusion')
 box(6.9,3.1,2.9,1.65,'MATCHED POINT STUDY','120 images; 72 / 24 / 24 split\nHRNet vs. SegFormer\n3 seeds; 2 test tyres')
 arrow((2.8,3.9),(3.25,3.9));arrow((6.3,3.9),(6.8,3.9))

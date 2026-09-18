@@ -1,76 +1,78 @@
-# Tyre inspection paper — author-review draft
+# Revised tyre inspection paper — 18 September 2026
 
-Open `main.pdf` to read the paper. Edit `main.tex` and `sections/*.tex`.
-The supplied `access.tex` is the original template example, not the manuscript.
+Read `main.pdf`; edit `main.tex` and `sections/*.tex`. `access.tex` remains the
+original supplied template example and is not the manuscript.
 
-**Title:** From Mileage Proxies to Tread Boundaries: An Auditable Pilot Study of Vision-Based Tyre Inspection
+**Title:** Evaluating Vision-Based Tyre Inspection: Checkpoint Sensitivity,
+Region Interventions, and Boundary Localisation
 
-The draft presents the recorded classification, localisation, matched boundary,
-and workstation results. It distinguishes mileage labels from physical wear,
-selected checkpoints from fixed-final results, and image geometry from physical
-alignment. It does not claim an independent field trial or calibrated accuracy.
+This revision focuses on three empirical questions. It adds fold-specific ordinal
+metrics, a split-membership audit, explanation-threshold sensitivity, fold-specific
+fusion effects, and per-image/per-location boundary analyses. The literature
+comparison covers ten related application studies; the bibliography has 31 entries.
+`REVIEW_RESPONSE.md` addresses the supplied review point by point, including what
+still needs new data or training. No new neural-network training was performed.
 
-## Compile
+## Read and edit
 
-For Overleaf, upload `tyre-paper-source.zip`, set the main document to `main.tex`,
-and select pdfLaTeX. The package includes the supplied class, bibliography style,
-fonts, plots, screenshots, and generated tables. Standard LaTeX packages are
-provided by the TeX installation. Overleaf compilation itself has not been tested.
+- `main.pdf`: compiled author-review manuscript.
+- `main.tex`: title, authors, abstract, template settings and section order.
+- `sections/`: body, related-study table, appendices and factual author biographies.
+- `references.bib`: verified citation entries.
+- `REVIEW_RESPONSE.md`: changes, new analyses, unresolved evidence and author actions.
+- `CITATION_AUDIT.md`: original audit followed by the superseding revision audit.
+- `NUMERICAL_AUDIT.json`: original aggregates and source hashes.
+- `REVISION_ANALYSIS.json`: revised diagnostics and their source hashes.
+- `VERIFICATION.json`: build/content checks and exact delivered PDF hash.
+- `PACKAGE_VERIFICATION.json`: isolated source-package compile check.
 
-The delivered PDF was compiled locally with Tectonic 0.17.0. `engine_compat.tex`
-provides XeTeX colour compatibility without editing the supplied class; pdfLaTeX
-uses the original spot-colour implementation. Two explicit font aliases and a
-separate abstract width address requests made by the supplied template.
-
-In this repository, use PowerShell:
+## Build locally
 
 ```powershell
 conda activate cv_conda
 ./ACCESS_latex_template_20260513/build.ps1
 ```
 
-The script uses Tectonic if available (including the local ignored compiler
-cache), otherwise pdfLaTeX and BibTeX. Python verification needs `pypdf`.
-For a standalone extracted package, run `./build.ps1` from that folder with a
-compiler installed. First-time Tectonic use may download standard packages.
+The delivered PDF uses Tectonic 0.17.0 with the supplied IEEE Access class and
+fonts. The script uses Tectonic (including the existing ignored local cache), or
+pdfLaTeX/BibTeX when available. Python verification requires `pypdf`.
 
-To regenerate tables and analytic figures from the repository evidence:
+To regenerate all tables and plots from repository evidence:
 
 ```powershell
 conda activate cv_conda
 ./ACCESS_latex_template_20260513/build.ps1 -RefreshFigures
 ```
 
-This requires the full repository evidence and Python `numpy`/`matplotlib`.
-It performs no training. The standalone ZIP already includes the generated
-assets and does not contain datasets, model weights, or dependency caches.
+This runs `build_assets.py` and `revision_analysis.py` using `numpy`, `pandas`, and
+`matplotlib`; it performs no training. It needs the repository's frozen report
+evidence as well as the downloaded `revision_evidence` files. Hugging Face source
+URLs, pinned revision, and SHA-256 hashes are in `revision_evidence/manifest.json`.
+No network calls are made by the analysis or build scripts.
 
-## Verification records
+## Overleaf / standalone source
 
-- `CITATION_AUDIT.md`: primary-source citation checks and claim boundaries.
-- `NUMERICAL_AUDIT.json`: recomputed headline results and source-file hashes.
-- `VERIFICATION.json`: checks for this exact delivered PDF, including its hash.
-- `PACKAGE_VERIFICATION.json`: isolated source-package compilation check.
-- `verify_paper.py`: citation, cross-reference, build, PDF, and evidence checks.
+Upload `tyre-paper-source.zip`, select `main.tex` as the main document, and use
+pdfLaTeX. Standard packages come from the TeX installation. The source ZIP contains
+all generated manuscript assets and template dependencies; the locally extracted
+package is compiled separately with Tectonic as a portability check. The Overleaf
+service itself has not been tested.
 
-The manuscript has 16 references, 8 figures, and 8 tables. Original screenshots
-are reproduced without changing predictions. Plots use saved results; the
-workflow figure is a schematic. Local PDF review checks every rendered page.
-Remaining underfull-box warnings concern spacing, not missing content or
-unresolved citations. Recompiling clears the recorded visual-review flag until
-the new PDF has been reviewed. Automated checks are not independent scientific
-replication or a guarantee of publication suitability.
+The supplied class is unchanged. The compatibility file supports XeTeX colour
+handling; the main file explicitly handles template font aliases, abstract width,
+biography spacing, and draft footers. No dataset, model weights, dependency cache,
+or training notebook is included in the manuscript ZIP.
 
-## Required author review before submission
+## Before submission
 
-1. Confirm the four names, order, affiliation, and email imported from `CITATION.cff`.
-2. Supply funding, competing-interest, and contribution statements.
-3. Confirm image collection, image publication, data redistribution, and model-use permissions.
-4. Review all scientific interpretations, the AI-assistance disclosure, and the limitations.
-5. Recheck the journal's current submission requirements and replace draft declarations
-   only with author-confirmed information. Add biographies if requested by the journal.
+Author order, positions, affiliations, emails, and no external funding are updated
+from the user's 18 September confirmation. Still confirm the proposed corresponding
+author, proposed contribution assignments, conflicts of interest, and image
+permissions. Expand the factual biographies if desired. The manuscript explicitly
+marks these outstanding declarations and discloses AI assistance in Acknowledgment.
 
-No acceptance date, publication DOI, ethics approval, funding declaration, or
-absence of conflicts has been invented. The original supplied template files
-remain in this directory; unrelated template example images are excluded from
-the clean manuscript ZIP.
+Do not interpret the revision as new independent physical or external validation.
+Rotated geometry training, shared-backbone ablation, independent annotation checks,
+and labelled video/physical reference data remain future work. No acceptance score
+is assigned. Rebuilding resets the visual-review flag until the new PDF is checked.
+Original review comments and previous manuscript copies remain locally preserved.

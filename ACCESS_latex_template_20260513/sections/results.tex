@@ -1,26 +1,24 @@
 \section{Results}
 \label{sec:results}
 \subsection{Classification Is Sensitive to Fold and Endpoint}
-Simple baselines reveal substantial fold dependence. The colour probe obtains macro-F1 values of 0.88696, 0.46405, and 0.12322 on folds 0, 1, and 2. The histogram-of-oriented-gradients support-vector machine obtains 0.79602, 0.18182, and 0.98412. These patterns motivate scrutiny of capture-specific cues, but do not identify a unique shortcut mechanism. A historical random-initialised ResNet-18 trained for 15 epochs averages 0.82135, whereas the later matched nine-run, 60-epoch ResNet-50 control averages 0.82332 at the final endpoint. The two controls differ in backbone and budget and are not interchangeable.
+Simple baselines reveal substantial fold dependence. The colour probe obtains macro-F1 values of 0.88696, 0.46405, and 0.12322 on folds 0, 1, and 2. The histogram-of-oriented-gradients support-vector machine obtains 0.79602, 0.18182, and 0.98412. These patterns motivate scrutiny of capture-specific cues, but do not identify a unique shortcut mechanism. A historical randomly initialised ResNet-18 trained for 15 epochs averages 0.82135, whereas the later matched nine-run, 60-epoch ResNet-50 control averages 0.82332 at the final endpoint. The two controls differ in backbone and budget and are not interchangeable.
 
-Table~\ref{tab:architectures} and Fig.~\ref{fig:endpoints} show the retained sweep. MobileNetV4 has a selected mean macro-F1 of 0.99746 and final mean of 0.91310. The endpoint gap is larger for EfficientNetV2-S (0.97615 versus 0.70874) and VGG16-BN (0.89194 versus 0.45870), while ConvNeXtV2-Tiny is comparatively stable (0.90891 versus 0.90238). Consequently, a near-perfect selected score cannot stand alone as a performance summary. These values include the historically flagged folds and do not establish external generalisation, physical-wear recognition, or the optimal checkpoint policy for new tyres.
+The fold-specific reconstruction in Table~\ref{tab:fold_endpoints} reveals information hidden by pooled means. On fold 1, MobileNetV4 changes from validation-selected macro-F1 0.9924 to fixed-final 0.7393, while its fixed-final QWK is 0.9381 and class-index MAE is 0.1094. ResNet-50 changes from 0.8095 to 0.6159 on the same fold, with fixed-final QWK 0.9131 and MAE 0.1563. MobileNetV4 has F1 1.0000 on folds 0 and 2 at both endpoints; ResNet-50's fold-2 F1 falls to 0.8718. These are held-group results within the acquisition cohort, not external validation. The high QWK alongside lower macro-F1 also illustrates why an ordinal task should not be described by one metric.
 
-\input{generated/architectures}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.88\textwidth]{endpoints.pdf}
-\caption{Validation-selected and fixed-final macro-F1 means for all 17 retained configurations. Each point averages nine runs on the same historical folds; connecting segments highlight endpoint differences and are not uncertainty intervals. No test-set architecture ranking is implied.}
-\label{fig:endpoints}
-\end{figure*}
+The full 17-configuration archive is retained alphabetically in Appendix~\ref{app:archive}. Its pooled endpoints are useful for provenance, but the primary analysis preserves folds and explicitly identifies checkpoint selection. The endpoint differences establish sensitivity of the reported conclusion; they do not prove that epoch 60 is the best policy for future data.
+\input{generated/fold_endpoints}
 
 \subsection{Explanation Diagnostics and Same-Fold Confirmation}
-The inherited hypothesis that normalised tread evidence predicts cross-fold stability better than accuracy is not supported: the recorded primary and reference statistics are 0.42710 and 0.90743, respectively, across ten entries. This analysis uses legacy selected-endpoint statistics and is not relabelled as a fixed-budget result. The marking/damage hypothesis is inconclusive or undefined, and the fine-grained architecture hypothesis remains untested because its planned model arms are absent. In particular, fold-1 marking removal operates on zero active marking images; its near-zero effect cannot establish marking independence.
+The original project hypothesis that normalised tread evidence predicts cross-fold stability better than accuracy is not supported: the recorded primary and reference statistics are 0.42710 and 0.90743, respectively, across ten entries. This analysis uses legacy selected-endpoint statistics and is not relabelled as a fixed-budget result. The marking/damage hypothesis is inconclusive or undefined, and the fine-grained architecture hypothesis remains untested because its planned model arms are absent. In particular, fold-1 marking removal operates on zero active marking images; its near-zero effect cannot establish marking independence.
 
 Table~\ref{tab:confirmation} reports the confirmation stage. Random initialisation is negative for both architectures at both endpoints. Class-weighted sampling has a positive selected effect for ConvNeXtV2-Tiny but a negative selected effect for MobileNetV4, while both final effects are positive. Uniform sampling is not consistently beneficial. The supported interpretation therefore specifies architecture, endpoint, and the existing fold. The experiment neither isolates factor interactions nor establishes a population-level sampling benefit.
 \input{generated/confirmation}
 
+The threshold analysis (Table~\ref{tab:gate_sensitivity}) finds identical initial eligibility and method choices at 0.03 and 0.05: 20 passing method rows across ten models. At 0.10, 16 method rows across eight models remain; RegNetY-016 and MobileNetV4 are excluded. Since RegNetY-016 was one of the subsequent explanation-selected architectures, the downstream selection cannot be described as threshold invariant. We preserve the original experiment and report this sensitivity instead of retrospectively choosing a gate that gives the preferred shortlist.
+\input{generated/gate_sensitivity}
+
 \subsection{Region Overlap and Boundary Fidelity Differ}
-All 81 localisation runs complete 60 epochs and evaluation, corresponding to 4,860 epoch records. Table~\ref{tab:localisation} restricts the principal summary to fold 1; this avoids treating flagged-fold averages as the main estimate but does not make fold 1 an external test. Semantic models have tread IoU between approximately 0.972 and 0.976, whereas their two-pixel boundary F1 is approximately 0.358--0.374. YOLO instance-segmentation models obtain tread IoU near 0.856--0.858 and boundary F1 near 0.189--0.226.
+All 81 localisation runs complete 60 epochs and evaluation, corresponding to 4,860 epoch records. Table~\ref{tab:localisation} restricts the principal summary to fold 1; this retains the original detailed comparison on a challenging held-group fold and does not make fold 1 an external test. Semantic models have tread IoU between approximately 0.972 and 0.976, whereas their two-pixel boundary F1 is approximately 0.358--0.374. YOLO instance-segmentation models obtain tread IoU near 0.856--0.858 and boundary F1 near 0.189--0.226.
 
 Figure~\ref{fig:localisation} makes the metric distinction explicit. Region overlap rewards agreement across a large interior area; boundary F1 is sensitive to contour displacement under its narrow tolerance. Neither metric alone establishes that the model has recovered the information needed for proxy classification, let alone physical tread condition. The evaluation is against one existing manual reference set rather than an independently repeated annotation standard.
 \input{generated/localisation}
@@ -36,19 +34,14 @@ The paired frozen-classifier analysis does not show an overall gain from the pre
 
 Fixed probability fusion also has negative mean effects (Table~\ref{tab:fusion}, Fig.~\ref{fig:fusion}). Equal tyre/tread fusion gives -0.01568; equal full/tyre/tread fusion gives -0.01324. The latter is a decrease of about 1.324 macro-F1 percentage points, not a 1.324\% relative error reduction. The result argues against assuming that localisation or additional views automatically help an existing classifier. Lost context, changed scale, crop distribution shift, localisation errors, and correlated predictions are plausible explanations, but the present design does not separate their contributions. Crop-trained recognition and learned fusion would require new experiments.
 \input{generated/fusion}
+\input{generated/fusion_folds}
+The stratified results in Table~\ref{tab:fusion_folds} show zero change on fold 0 and small positive changes on fold 2. Fold 1 accounts for the negative pooled mean: full/tyre/tread fusion changes F1 by -0.04107 there, compared with +0.00136 on fold 2. Thus the pooled result is not evidence of uniformly harmful cropping.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{fusion.pdf}
 \caption{Mean paired changes from the full-frame classifier for four fixed crop/fusion arms. Bars average 81 dependent source runs; no independent-sample uncertainty or favourable-arm selection is implied.}
 \label{fig:fusion}
 \end{figure}
-
-\subsection{Confidence Diagnostics Are Fold-Dependent}
-Temperature scaling leaves the recorded macro-F1 unchanged and reduces confidence-error metrics on the retained calibration-test subsets (Table~\ref{tab:calibration}). On fold 1, expected calibration error decreases from 0.18955 to 0.07377, and negative log-likelihood from 0.35630 to 0.16226, with 41 test images. Extremely small calibrated errors on the flagged folds are not evidence of deployment-grade certainty.
-
-At nominal 90\% coverage, the observed conformal coverages are 0.86885, 0.97561, and 0.93939 on folds 0, 1, and 2, respectively (Table~\ref{tab:conformal}). Thus only fold 0 is below nominal in these observed subsets. Mean set sizes below one on folds 0 and 2 imply empty sets. The inherited abstention field does not count all empty-set events and cannot be presented as a complete rejection policy. Small subset sizes, dependent acquisition, and reuse of internal evidence constrain generalisation of these diagnostics.
-\input{generated/calibration}
-\input{generated/conformal}
 
 \subsection{Matched Point Learning Reduces Still-Image Error}
 Table~\ref{tab:geometry} reports the fixed-final comparison, independently recomputed here from the 432 paired point records. Mean horizontal error is 1.312\% of native width for HRNet and 1.721\% for matched SegFormer, corresponding to approximately 15.10 and 19.80 native pixels. The absolute difference is 0.409 percentage points of width, or 4.70 pixels. Relative to the SegFormer mean, HRNet reduces error by 23.75\%. SegFormer raw coverage is 100\%, with zero fallback substitutions, so its raw and fallback-assisted means coincide.
@@ -62,21 +55,19 @@ HRNet has lower mean error in every seed and on each of the two test tyres (Fig.
 \label{fig:geometry}
 \end{figure*}
 
-\subsection{Workstation Integration and Observed Video Failures}
-Tread Station is a native PySide6/PyTorch application with photo/video loading, portrait-aware playback, asynchronous inference, comparison, geometric overlays, and saved evidence restoration. Existing classifier and region checkpoints remain separate from the optional HRNet/matched-SegFormer geometry components. An inference result is attached to its analysed frame; a newer live preview is shown separately rather than receiving a stale mask. Figure~\ref{fig:station} shows the implemented interface, and Fig.~\ref{fig:qualitative} pairs an operational still example with a preserved video failure.
-
-The saved adapter checks cover strict checkpoint loading, preprocessing, coordinate decoding, repeatability, blank-input flags, temporal resets, and immutable source pixels. A local check on one internal still measured five warm inference calls on an NVIDIA GTX 1650. HRNet's median was 72.60 ms (range 51.41--88.46 ms); matched SegFormer's median was 33.48 ms (33.32--33.84 ms). These timings include preprocessing, inference, extraction, and GPU synchronisation, but exclude model loading and file decoding. Peak allocated memory in the two-component check was approximately 182 MiB. These small operational samples are not a controlled training-hardware comparison, sustained camera throughput, or a guaranteed frame rate.
-
-The supplied videos expose crossed or collapsed HRNet boundaries, missing matched boundaries, and disagreement between models. Crossed pairs withhold widths and connecting geometry while retaining raw proposals for review. No video point ground truth is available, so the passing playback/UI tests establish software behaviour rather than localisation accuracy. Temporal smoothing cannot correct a systematically wrong proposal, and still-image gains cannot be transferred to video by assertion.
-
-The workstation additionally exports the shown analysed frame as PNG and processes an opened video separately at ten output frames per second. The latter runs with a separate CPU engine and frozen display/recipe settings, leaving the GPU available for inspection. The software checks cover frame selection, output duration, portrait dimensions, cancellation, and incomplete-output cleanup; a short real-model portrait excerpt verifies the complete export path. Export frame rate describes the saved playback, not inference speed. This facility supports evidence sharing and does not add an accuracy result.
-
+A more detailed paired analysis averages six points and three seeds within each image. Point learning has lower mean error on 22 of 24 images; image-level differences (mask-derived minus point error) range from -0.556 to +0.857 percentage points of width (Fig.~\ref{fig:image_effects}). Table~\ref{tab:boundary_detail} shows that improvement is not spatially uniform: it is 0.029 at the left-middle point and 0.847 at the right-upper point. Every location has a positive mean difference, but two image averages favour the mask-derived pipeline. These retrospective summaries reveal where the aggregate gain occurs; images still share test tyres and are not independent subjects for a population significance test.
+\input{generated/boundary_detail}
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.92\textwidth]{video1-learned-workstation.png}
-\caption{Saved native workstation view with learned geometry enabled. This operational screenshot predates the additional download controls. The inspected frame, source preview, model observations, and review flags are distinct. Interface completion is not field-accuracy validation.}
-\label{fig:station}
+\includegraphics[width=.9\textwidth]{image_effects.pdf}
+\caption{Paired image-level boundary differences after averaging the six targets and three seeds. Positive values favour the point-learning pipeline. Images are ordered within each test group for display; their order is not temporal. Two images favour mask-derived boundaries. No confidence interval over new tyres is claimed.}
+\label{fig:image_effects}
 \end{figure*}
+
+\subsection{Failure Visibility in Integration}
+The saved still-image and portrait-video examples in Fig.~\ref{fig:qualitative} show the intended integration behaviour. A valid still-image result can coexist with crossed point predictions, missing mask-derived boundaries, and disagreement on a video frame. The display preserves raw proposals and withholds invalid widths or connecting geometry. There are no video point labels for a quantitative transfer test, so these examples establish observable failure modes rather than their prevalence.
+
+A local five-call warm inference check on an NVIDIA GTX 1650 measured medians of 72.60 ms for HRNet and 33.48 ms for matched SegFormer, including preprocessing, inference, extraction, and GPU synchronisation. This is a small software check, not a controlled deployment benchmark. The current artifact also exports analysed PNGs and separately processes video at ten output frames per second; this export setting is not an inference-throughput claim. Full-window interface screenshots and synthetic alignment outputs are omitted from the scientific result figures because their small text and software-only evidence do not strengthen the three research questions.
 
 \begin{figure*}[t]
 \centering
@@ -93,6 +84,3 @@ The workstation additionally exports the shown analysed frame as PNG and process
 \caption{Qualitative operational evidence, not a new held-out benchmark. Amber HRNet proposals, cyan matched-SegFormer points, and the image-space centreline are shown on the still. The video explanation retains crossed/missing boundaries and disagreement rather than concealing failure. All widths and slopes are image-relative. The images are reproduced from the saved integration checks without altering predicted coordinates.}
 \label{fig:qualitative}
 \end{figure*}
-
-\subsection{Alignment Software Is Tested Synthetically}
-The target-assisted interface generates distinct ground/wheel boards, creates or loads a camera profile, solves target poses, applies the declared side convention, and records signed outputs with pose residuals. It also accepts an independent reference reading for comparison. Synthetic tests exercise known poses, both wheel sides, missing targets, scaling/orientation, setup gating, and evidence export (Fig.~\ref{fig:alignment}). The supplied videos do not contain this calibrated dual-target setup. No result here measures real wheel-angle error, fixture mounting error, or runout compensation.

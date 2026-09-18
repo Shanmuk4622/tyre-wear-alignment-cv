@@ -53,7 +53,7 @@ def main():
     full = '\n'.join(pages)
     assert all(len(t) > 150 for t in pages), 'Potentially blank output page'
     assert '??' not in full, 'Unresolved reference in PDF'
-    for expected in ['23.75','1.312','1.721','0.91310','0.99746','0.01324','REFERENCES','Calibration and Prediction Sets']:
+    for expected in ['23.75','1.312','1.721','0.91310','0.99746','0.01324','REFERENCES','Confidence Diagnostics','0.7393','0.1094']:
         assert expected.lower() in full.lower(), f'Missing expected content: {expected}'
     assert 'AUTHOR-REVIEW DRAFT' in full
     assert 'VOLUME 11, 2023' not in full, 'Inherited false publication metadata'
@@ -61,10 +61,14 @@ def main():
     bbl=(HERE/'main.bbl').read_text(encoding='utf-8')
     assert len(re.findall(r'\\bibitem\{', bbl)) == len(entries)
     numerical=json.loads((HERE/'NUMERICAL_AUDIT.json').read_text())
+    revision=json.loads((HERE/'REVISION_ANALYSIS.json').read_text())
     source_checks=0
     if (REPO/'docs/report/evidence').is_dir():
         for rel, digest in numerical['sources_sha256'].items():
             assert sha(REPO/rel)==digest, f'Changed evidence: {rel}'
+            source_checks+=1
+        for rel, digest in revision['sources_sha256'].items():
+            assert sha(REPO/rel)==digest, f'Changed revision evidence: {rel}'
             source_checks+=1
         upstream=json.loads((REPO/'docs/report/evidence/evidence_manifest.json').read_text())
         for entry in upstream:
@@ -79,7 +83,7 @@ def main():
         checked_source_hashes=source_checks, pdf_sha256=sha(pdf),
         compile_errors=0, unresolved_citations_or_references=0, overfull_boxes=0,
         visual_review_of_exact_pdf=args.visual_reviewed,
-        remaining_author_actions=['Confirm names/order and affiliation','Supply funding/conflict/contribution declarations',
+        remaining_author_actions=['Confirm proposed corresponding author','Confirm competing interests and proposed contributions',
                                   'Confirm collection and figure-use permissions','Review scientific interpretation and approve submission'],
         files_sha256={p.relative_to(HERE).as_posix():sha(p) for p in files})
     (HERE/'VERIFICATION.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')

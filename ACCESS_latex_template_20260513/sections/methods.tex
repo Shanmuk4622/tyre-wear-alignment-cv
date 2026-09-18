@@ -13,17 +13,19 @@ The low-, mid-, and high-mileage proxy groups contain 169, 97, and 152 clean ima
 \toprule
 Fold & Train & Validation & Interpretation\\
 \midrule
-0 & 232 & 186 & Historical identity-overlap concern\\
-1 & 290 & 128 & No listed overlap flag; small internal split\\
-2 & 314 & 104 & Historical identity-overlap concern\\
+0 & 232 & 186 & 8 training / 4 validation groups\\
+1 & 290 & 128 & 8 training / 4 validation groups\\
+2 & 314 & 104 & 8 training / 4 validation groups\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:folds} preserves the existing folds. Folds 0 and 2 carry historical suspected same-tyre overlap flags. The later operator clarification does not constitute an independent re-audit of these allocations, so the flags remain visible. Classification training can use derivatives of training originals; validation uses clean held-out photographs. The dense-task branch uses clean originals only. Results pooled over folds are descriptive internal summaries. Repeating training with three seeds characterises optimisation variation conditional on the same data and does not triple the number of tyres.
+Table~\ref{tab:folds} uses a three-fold group allocation: every session is assigned to exactly one validation fold. A post-review audit of all 418 image records finds zero train/validation session intersections in each fold. Under the operator's identity confirmation, these are tyre-group-disjoint internal folds. An earlier appearance-similarity audit flagged the 70,000- and 90,000-mileage sessions as potentially identical, affecting folds 0 and 2; visual resemblance is not proof of identity, and the later operator confirmation states they are different tyres. We retain this provenance distinction rather than describe the folds as confirmed leakage. The audit verifies recorded allocations, not independent physical identity or every historical loader execution.
+
+Classification training can use derivatives of training originals; validation uses clean held-out photographs. The dense-task branch uses clean originals only. Repeated seeds measure optimisation variation on fixed data. Validation-selected results reuse the evaluated fold for checkpoint selection; group disjointness does not make these selected results untouched test estimates.
 
 \subsection{Manual Regions and Geometry Annotations}
-The existing manual label map $M$ defines overlapping binary regions:
+The available manually annotated label map $M$ defines overlapping binary regions:
 \begin{equation}
 Y_{\mathrm{tyre}}=\mathbb{1}[M>0],\qquad
 Y_{\mathrm{tread}}=\mathbb{1}[M\in\{2,3\}].
@@ -33,8 +35,10 @@ The tread lies within the tyre; treating these labels as mutually exclusive soft
 
 The geometry extension contains 120 photographs with 720 visible boundary targets. Each image has a left and right tread coordinate on each of three guide rows at 25\%, 50\%, and 75\% of image height. These targets encode horizontal location at a fixed row, not arbitrary landmarks or three-dimensional orientation. The original 12 pilot photographs are excluded from the 120-image package, but the cohort had already informed development. A frozen allocation uses 72 images from eight tyres for training, 24 from two tyres for validation, and 24 from two tyres for testing. Test identities are \texttt{mileage\_100000\_plus} session 006 and \texttt{new\_tire} session 001. This geometry split is separate from the historical classification folds.
 
+The point annotation interface fixes the three guide rows and records visibility state and horizontal left/right positions. The completion audit verifies 120 complete records and 720 visible coordinates, package/image hashes, and schema consistency. Two near-frame-edge coordinates were specifically inspected. These checks establish data integrity, not inter-annotator reliability: a second blinded annotator and repeated-label error estimate are unavailable. The all-``no visible issue'' observation fields are not used as healthy-reference or physical-wear labels. The labels must therefore be interpreted as one annotation protocol rather than an independent metrological standard.
+
 \subsection{Endpoints and Analysis Units}
-For classification, we preserve both validation-selected and fixed-final checkpoint statistics. They answer different questions, and selection on the evaluated validation data prevents the larger selected score from being treated as an untouched test result. Localisation and the matched geometry comparison use a fixed epoch-60 endpoint. Unless stated otherwise, numerical differences are descriptive; no population significance claim is inferred from repeated seeds, correlated points, or reused image sets. Missing metrics for a box-only model are undefined rather than zero.
+For classification, the validation-selected checkpoint is the earliest epoch attaining the maximum validation quadratic weighted kappa (QWK), using the original strict-improvement rule. The fixed-final checkpoint is epoch 60. We preserve both endpoints. They answer different questions, and selection on the evaluated validation data prevents the larger selected score from being treated as an untouched test result. Localisation and the matched geometry comparison use a fixed epoch-60 endpoint. Unless stated otherwise, numerical differences are descriptive; no population significance claim is inferred from repeated seeds, correlated points, or reused image sets. Missing metrics for a box-only model are undefined rather than zero.
 
 \Needspace{5\baselineskip}
 \section{Methods}
@@ -47,11 +51,13 @@ Macro-F1 averages the class-specific F1 values over the three proxy classes. For
 \hat y(x)=\sum_{k=0}^{1}\mathbb{1}[q_k(x)>0.5].
 \label{eq:ordinal}
 \end{equation}
+We additionally report class-index mean absolute error, $\mathrm{MAE}=N^{-1}\sum_i|\hat y_i-y_i|$, with labels $0,1,2$, and QWK, $1-\sum_{ab}w_{ab}O_{ab}/\sum_{ab}w_{ab}E_{ab}$, where $w_{ab}=(a-b)^2/4$, $O$ is the observed confusion matrix, and $E$ is its chance-agreement counterpart derived from class marginals. These ordinal diagnostics penalise a two-category mistake more than an adjacent error. They are not errors in kilometres or tread depth. Post-review endpoint reconstruction uses all 60 epoch records for MobileNetV4, the former headline configuration, and ResNet-50, the frozen downstream classifier: two configurations, three folds, and three seeds. This is an illustrative audit, not a fresh architecture-selection exercise.
+
 Models trained with a softmax head retain their argmax decision rule. Saved predictions record which rule applies; downstream reconstruction does not replace the ordinal decision with a class-score argmax.
 
 The common classification recipe uses full-frame raw RGB inputs, pretrained full-backbone fine-tuning, a CORAL binary-cross-entropy head, session-balanced sampling, AdamW with initial learning rate $3\times10^{-4}$ and weight decay 0.05, five warm-up epochs, cosine scheduling, and a 60-epoch budget without early stopping. Gradient clipping is 5.0 and training uses half precision. Resolution and batch size follow the architecture registry rather than an identical-resolution assumption: most inputs are 384 pixels, Swin and CoAtNet use 224, and DINOv2 uses 392. Batch sizes range from 16 to 64. Exact per-run configurations and the dataset augmentation policy remain part of the reproducible record.
 
-The explanation screen covers 18 initial candidates and ten shortlist confirmation runs, with 1,208 explanation rows and 35 method-faithfulness rows. A method survives the implemented gate if its randomisation sensitivity exceeds 0.05 and its insertion-minus-deletion area-under-curve value is non-missing. Surviving methods are ranked by that difference. There is no additional requirement that the difference be positive, and passing this gate is not a general certificate of explanation validity.
+The explanation screen covers 18 initial candidates and ten shortlist confirmation runs, with 1,208 explanation rows and 35 method-faithfulness rows. A method survives the implemented gate if its randomisation sensitivity exceeds 0.05 and its insertion-minus-deletion area-under-curve value is non-missing. Surviving methods are ranked by that difference. There is no additional requirement that the difference be positive. The threshold is a recorded project heuristic, not a literature-derived validity boundary. We retrospectively repeat the initial-screen gate at 0.03, 0.05, and 0.10 on the same 34 method rows from 17 retained configurations, excluding the quarantined identity. No attribution maps are regenerated and no subsequent models are retrained. Thus the analysis tests initial eligibility sensitivity, not invariance of the complete explanation-guided pipeline.
 
 For a nonnegative saliency map $A$ and tread region $T$, the normalised tread evidence ratio is
 \begin{equation}
@@ -68,9 +74,9 @@ The localisation branch comprises nine configurations: U-Net/ResNet-34, DeepLabV
 
 Semantic models use binary cross-entropy plus soft Dice on two sigmoid channels consistent with~\eqref{eq:masks}; the other backends retain their native task losses. Horizontal flipping has probability 0.5 for semantic and repaired YOLO training, while RT-DETR has no online augmentation. YOLO's amended policy disables other hidden augmentations. Final native exponential-moving-average weights are evaluated for YOLO, and final raw weights for the other backends. Differences in pretraining, loss, and backend behaviour are retained as experimental qualifications.
 
-YOLO polygon conversion is verified against the native manual regions. All 836 exported regions meet the required rasterised intersection-over-union (IoU) of at least 0.98; the minimum is approximately 0.980092. This tests the representation conversion, not annotation accuracy. Native masks remain the evaluation reference. Box and mask average precision (AP) use IoU thresholds from 0.50 to 0.95. Region evaluation additionally reports IoU, Dice, and boundary F1 at a two-native-pixel tolerance.
+YOLO polygon conversion is verified against the native manual regions. All 836 exported regions meet the required rasterised intersection-over-union (IoU) of at least 0.98; the minimum is approximately 0.980092. This tests the representation conversion, not annotation accuracy. Native masks remain the evaluation reference. For a semantic model, native-resolution sigmoid probabilities are thresholded at 0.5 independently for the tyre and tread channels. Each nonempty binary channel produces one enclosing axis-aligned box and one mask detection; its confidence is the mean probability over threshold-positive pixels. Empty channels produce no detection. These scored class-wise detections enter the same COCO evaluator used for the other backends; they are not a learned object-detection head. Box and mask average precision (AP) use IoU thresholds from 0.50 to 0.95. Region evaluation additionally reports IoU, Dice, and boundary F1 at a two-native-pixel tolerance.
 
-To test downstream usefulness, each localisation run is paired with the frozen final Stage-A ResNet-50 checkpoint of the same fold and seed. Five inputs are evaluated: the full frame, predicted tyre crop, predicted tread crop, oracle tyre crop, and oracle tread crop. Crops include 5\% padding. A missing predicted region causes a recorded full-frame fallback. The classifier is not retrained on crops; therefore changes can reflect both localisation errors and input-distribution shift.
+To test downstream usefulness, each localisation run is paired with the frozen epoch-60 ResNet-50 classification checkpoint of the same fold and seed. Five inputs are evaluated: the full frame, predicted tyre crop, predicted tread crop, oracle tyre crop, and oracle tread crop. Crops include 5\% padding. A missing predicted region causes a recorded full-frame fallback. The classifier is not retrained on crops; therefore changes can reflect both localisation errors and input-distribution shift.
 
 The fusion analysis uses saved probabilities rather than new training. Five fixed arms are evaluated: full frame, tyre only, tread only, equal tyre/tread fusion, and equal full/tyre/tread fusion. For the last arm,
 \begin{equation}
@@ -80,11 +86,6 @@ The fusion analysis uses saved probabilities rather than new training. Five fixe
 \label{eq:fusion}
 \end{equation}
 Class decisions are reconstructed with the saved head semantics. Each arm is paired with the corresponding full-frame result. There are 405 run/arm metric rows and 56,430 image/arm prediction rows. These counts are not numbers of independent tyres or independently trained fusion systems. Fusion weights are fixed rather than selected for a favourable test result.
-
-\subsection{Calibration and Prediction Sets}
-The inherited confidence analysis averages the saved probabilities from the three explanation-selected architectures and their three seeds within each fold. Each fold's held-out photographs are stratified into three disjoint image subsets for temperature fitting, conformal calibration, and final diagnostics, using the recorded seed $100+\mathrm{fold}$. This subdivision is image-level, not a new tyre-disjoint split. Temperature is fitted by minimising negative log-likelihood on the first subset. Expected calibration error uses 15 equal-width confidence bins. Unlike the standalone ordinal decision in~\eqref{eq:ordinal}, this inherited ensemble diagnostic explicitly uses the argmax of its averaged class probabilities.
-
-Conformal nonconformity is $1-p_y$ on the separate calibration subset. The implementation uses the higher empirical quantile at $\min\{1,\lceil(n_{cal}+1)0.9\rceil/n_{cal}\}$ and includes test class $k$ when $1-p_k$ does not exceed that threshold. Coverage and mean set size are then measured on the third subset. The recorded abstention rate counts sets larger than one, leaving empty sets outside that field. We preserve this implementation detail rather than interpreting the field as a complete reject-option metric.
 
 \subsection{Matched Boundary Learning}
 The HRNet adapter projects its four feature maps to 16 channels each, upsamples them to the highest feature resolution, concatenates them, and produces six coordinate-logit maps. Bilinear sampling at the fixed guide rows yields a horizontal distribution for each point. The target Gaussian has standard deviation 1.5 feature pixels; training minimises mean cross-entropy with the normalised target distribution. Decoding takes the softmax-weighted expected horizontal coordinate, scaled back to native width minus one. Vertical position is prescribed by the guide, not estimated by the network.
@@ -100,30 +101,15 @@ E_s=\frac{1}{6N}\sum_{i=1}^{N}\sum_{j=1}^{6}e_{ijs},
 \end{equation}
 where $N=24$ test images. The reported percentage is $100E_s$. Each seed contributes 144 target points, giving 432 paired records across seeds on the same two tyres. Relative error reduction uses the SegFormer mean as denominator, not the number of correctly classified images. The mean over seeds is not an evaluated ensemble.
 
-\subsection{Inspectable Geometry and Target-Assisted Alignment}
+\subsection{Geometry Integration}
 \label{sec:geometry}
-The workstation applies the deployed models to the exact displayed analysis frame. Orientation follows the video metadata and the established portrait policy. HRNet and matched SegFormer use seed 1, final epoch 60, with full-image resizing, ImageNet normalisation, and no test-selected crop or rotation search. Local inference uses full precision; the saved training evaluation used automatic mixed precision. Adapter checks therefore verify coordinate/preprocessing consistency without claiming a new aggregate benchmark reproduction.
+The workstation keeps the analysed frame, portrait orientation, model settings, and predictions together. Deployed geometry uses seed 1, epoch 60, full-image resizing, ImageNet normalisation, and no test-selected rotation search. Local full-precision checks are adapter checks rather than a repetition of the mixed-precision benchmark.
 
-Image geometry is fitted to observed image evidence rather than obtained by translating class scores into angles. A segmentation mask guides the search region. The boundary path samples Canny edges near the two silhouette sides and uses deterministic consensus followed by least-squares fits of $x=ay+b$. Accepted supports must be sufficiently long and consistent; disagreeing sides, collapsed fits, fragmented masks, and clipping can withhold the fit. A separate side-view mode fits an inner ellipse candidate only when image-edge support and angular coverage are sufficient. A tyre silhouette is not automatically called a rim. Accepted side lines yield an image-space midpoint line, not camber or toe.
+A segmentation mask restricts the search for Canny edge supports. Deterministic consensus and least-squares fits estimate side lines $x=ay+b$ only when support is sufficiently long and consistent. The midpoint line is image-relative. Missing, crossed, clipped, or collapsed boundaries remain visible as rejected hypotheses. A side-view ellipse candidate additionally requires edge support and angular coverage; a detected tyre silhouette is not automatically interpreted as a rim. Temporal smoothing resets at invalid results and discontinuities. It can stabilise a display but cannot correct systematic localisation error.
 
-Temporal display tracking smooths consistent proposals and resets on discontinuities, source changes, or invalid results. Raw learned coordinates remain available, and crossed or missing boundaries receive review flags. A stable display is not treated as evidence of accuracy. The explanation view distinguishes the predicted search outline from accepted edges and explicitly labels a withheld fit.
-
-The physical-measurement path instead requires calibrated camera intrinsics and two separately identified ChArUco targets \cite{charuco}. The ground target defines the reference frame and the wheel target supplies a candidate wheel-plane normal. With vehicle axes $X$ forward, $Y$ left, and $Z$ up, and outward-facing normal $\boldsymbol n$ after the wheel-side convention is applied, the implemented angles are
-\begin{align}
-\gamma &= \operatorname{atan2}(-n_z,\sqrt{n_x^2+n_y^2}),\\
-\tau &= \operatorname{atan2}(n_x,|n_y|),
-\label{eq:angles}
-\end{align}
-for camber and toe-in under that explicit setup convention. The workflow requires setup confirmation and rejects missing or unsuitable pose evidence. These equations are software definitions contingent on target orientation and wheel-plane mounting; they do not validate physical accuracy. Real fixture alignment, reference measurements, and remount/runout studies remain necessary.
+The separate target-assisted software requires camera intrinsics, a ground-reference target, and a wheel-mounted target, using ChArUco detection \cite{charuco}. It has synthetic pose tests but no physical reference comparison for the current captures. It is an artifact extension rather than a fourth experimental contribution.
 
 \subsection{Execution and Reproducibility}
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{alignment-bench-check.png}
-\caption{Target-assisted alignment interface exercised with a \emph{synthetic test camera}. The displayed angles and residuals are software-test outputs from rendered targets, not measured accuracy on a physical wheel.}
-\label{fig:alignment}
-\end{figure}
-
 Kaggle sessions provide training compute and Hugging Face stores persistent records. Jobs retain model/optimiser state, scheduler and scaler state where applicable, random-number-generator state, and execution position. The older dense engine resumes completed epochs; the later geometry engine checkpoints completed optimiser steps and the next-batch cursor. Normal publication is batched at roughly 30-minute intervals, with major completion and catchable interruption requesting a flush. Remote rate limits, failed uploads, or a forced operating-system kill can still lose unpublished progress.
 
-The geometry engine's deterministic resizing repair passed a Tesla T4 resume check with zero maximum parameter difference. This verifies that exercised interruption path, not every possible hardware failure. Immutable revisions and hashes identify the reviewed artifacts. The present paper regenerates its numeric tables and plots from those frozen local records; it does not rerun training or claim independent replication of the original experiments.
+The geometry engine's deterministic resizing repair passed a Tesla T4 resume check with zero maximum parameter difference. This verifies the exercised interruption path, not every possible hardware failure. Immutable revisions and hashes identify the reviewed artifacts. The present paper regenerates its numeric tables and plots from those frozen local records; it does not rerun training or claim independent replication of the original experiments.

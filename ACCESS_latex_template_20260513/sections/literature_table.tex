@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\caption{Task-level comparison of closely related inspection studies. NR means that an independent-tyre count or identity-disjoint evaluation could not be established from the consulted primary text; it does not mean absent. Physical validation requirements differ across tasks, so numerical scores are not directly compared.}
+\label{tab:related}
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{p{2.65cm}XXXX}
+\toprule
+Study & Input / output & Reference or supervision & Evaluation unit / scope & Relation to this study\\
+\midrule
+Nevin--Daoud (2014) \cite{laser2014} & Laser/camera scans; tread depth & Mechanical depth gauges & Hundreds of tyres in reported comparison & Physical depth measurement\\
+Wang et al. (2019) \cite{depth2019} & Laser-plane images; tread depth & Calibrated geometry; depth gauge & Two tyre types in reported tests & Metric reconstruction rather than proxy labels\\
+TireEye (2022) \cite{tireeye} & Optical groove observation & Tread-wear indicators as scale & Independent cohort count NR & Explicit physical scale\\
+Surface damage (2024) \cite{damage2024} & Local surface images; damage & Image-processing damage features & Independent cohort count NR & Defect task, not mileage recognition\\
+RGB-depth dimensions (2024) \cite{depth2024} & RGB-depth point clouds; dimensions & Physical dimension comparison & Rubber tread measurement setup & Depth sensing supplies geometry\\
+Petrovi\'c et al. (2025) \cite{tread2025} & RGB; tread segmentation and condition & Mask R-CNN; HOG features & 247 training / 62 test images; tyre count NR & Closest region-to-classification pipeline\\
+Mignot et al. (2025) \cite{mil2025} & Defect observations; repair decision & Tyre-level decision labels & Defects grouped into tyre bags & Global decision after local detection\\
+Vivekanandan--Rajeswari (2026) \cite{edge2026} & Images and behaviour; wear class & Multi-condition classification & Unseen-brand evaluation reported & Multimodal adaptation, distinct target\\
+Lamy--Basset (2010) \cite{camber2010} & Camera observations; camber & Physical prototype / vehicle tests & On-track feasibility evaluation & Reference-based angle measurement\\
+Shi et al. (2026) \cite{alignment2026} & Rim masks / 3D points; wheel angles & Zero-angle reference registration & Repeated measurement experiments & Segmentation supports calibrated geometry\\
+Present study & RGB; proxy class / regions / points & Mileage groups, masks, fixed-row points & Grouped internal folds; fixed geometry split & Paired crop interventions, endpoint sensitivity, coverage-aware boundaries\\
+\bottomrule
+\end{tabularx}
+\end{table*}

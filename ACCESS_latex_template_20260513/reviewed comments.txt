@@ -1,0 +1,725 @@
+I reviewed the complete 13-page manuscript, including the experimental design, equations, tables, figures, results, limitations, reproducibility section, conclusion, declarations, and references. I also checked it against the current IEEE Access reviewer and submission criteria. IEEE Access explicitly evaluates contribution to knowledge, technical soundness, adequacy of data/analysis, presentation, references, and whether conclusions are supported; importantly, it does **not require extremely high algorithmic novelty**, but the contribution must be distinct and technically sound. ([IEEE Access][1])
+
+## Overall reviewer assessment
+
+**Current manuscript score: 6.8/10**
+
+**IEEE Access scope suitability: 8.5/10**
+
+**IEEE Access submission readiness in its present form: 6.0/10**
+
+**My reviewer recommendation for this exact version:** **Reject with resubmission encouraged after major revision.**
+
+That judgment is driven mainly by **independent validation, experimental-unit problems, and insufficient literature positioning**, not by poor writing. The manuscript is unusually transparent about its limitations, which is one of its strongest characteristics.
+
+IEEE Access is a reasonable target because its scope explicitly includes application-oriented engineering work and meaningful negative results. ([IEEE Access][2]) IEEE's official site currently reports a 2025 JCR impact factor of 4.2, while the latest SCImago result available in the search data lists IEEE Access as Q1; quartile classification can vary by year/category/database. ([IEEE Access][3])
+
+### Detailed scoring
+
+| Criterion                        | Score /10 | Reviewer assessment                                                  |
+| -------------------------------- | --------: | -------------------------------------------------------------------- |
+| Research relevance               |   **8.5** | Important automotive computer-vision problem                         |
+| Novelty                          |   **6.5** | Workflow/audit novelty stronger than algorithmic novelty             |
+| Research problem                 |   **8.0** | Clearly formulated and appropriately cautious                        |
+| Literature review                |   **4.5** | Currently one of the weakest sections                                |
+| Dataset quality                  |   **5.5** | Too few independent tyres and concentrated acquisition               |
+| Experimental design              |   **6.0** | Thoughtful, but historical splits seriously limit conclusions        |
+| Methodology description          |   **8.0** | Detailed and mostly reproducible                                     |
+| Technical soundness              |   **6.5** | Several comparison/confounding issues remain                         |
+| Statistical rigor                |   **6.5** | Good avoidance of pseudoreplication, but weak subject-level evidence |
+| Results/findings                 |   **7.5** | Interesting negative and positive findings                           |
+| Reproducibility                  |   **9.0** | Excellent provenance philosophy and artifact tracking                |
+| Figures/tables                   |   **8.0** | Generally strong; some figures need improvement                      |
+| Grammar/language                 |   **8.2** | Strong overall, but several terminology/clarity issues               |
+| Discussion                       |   **9.0** | One of the strongest parts                                           |
+| Limitations/threats              |   **9.5** | Exceptionally transparent                                            |
+| Conclusion                       |   **8.5** | Well calibrated to available evidence                                |
+| IEEE Access scope fit            |   **8.5** | Very suitable as applied/auditable research                          |
+| **Overall scientific readiness** |   **6.8** | Major revision before submission                                     |
+
+---
+
+# 1. Novelty — **6.5/10**
+
+The paper itself correctly states that the contribution is an **“empirical pilot and inspectable implementation, rather than a new backbone or a validated physical instrument.”** It identifies four contributions involving checkpoint-aware classification, localisation/crop studies, matched boundary learning, and an inspectable workstation. 
+
+That is a scientifically sensible positioning.
+
+Your strongest novelty is **not MobileNetV4, HRNet, SegFormer, YOLO, Grad-CAM, temperature scaling, or conformal prediction**. All are established.
+
+The stronger contribution is the combination of:
+
+**evaluation auditing + provenance + negative-result preservation + failure-aware integration + explicit separation between proxy classification, image geometry, and physical measurement.**
+
+That is genuinely useful.
+
+The manuscript is particularly unusual in openly showing that:
+
+* validation-selected and fixed-final checkpoints tell different stories;
+* high segmentation IoU does not necessarily improve classification;
+* crop/fusion intervention can make performance worse;
+* good still-image localisation does not automatically transfer to video;
+* attractive image geometry should not be presented as a physical wheel-angle measurement without a real reference.
+
+Those are valuable findings.
+
+However, the related-work section does not establish clearly enough that this **audit-oriented combination** is new.
+
+Recent literature is substantially broader than the manuscript currently suggests. For example, there is recent work on tyre tread-area segmentation, visual tire-wear classification under multi-condition settings, industrial tire defect inspection, and even tire/wheel-alignment estimation. ([ScienceDirect][4])
+
+Therefore, I would not claim novelty as:
+
+> “a novel tyre-wear detection method.”
+
+I would claim novelty around an **auditable evaluation framework for small-cohort vision-based tyre inspection**.
+
+That would be much more defensible.
+
+---
+
+# 2. Literature review — **4.5/10**
+
+This is currently the biggest manuscript-writing weakness.
+
+The paper has only **16 references** for a 13-page manuscript spanning:
+
+classification, ordinal learning, tyre inspection, explainability, semantic segmentation, object detection, instance segmentation, calibration, conformal prediction, HRNet, wheel alignment, ChArUco geometry, computer vision measurement, and deployment.
+
+The actual reference list confirms this narrow coverage.  
+
+Most references are foundational method papers rather than recent application-specific studies.
+
+This is unlikely to satisfy a strong reviewer asking:
+
+> “How does the proposed system differ from the most recent vision-based tyre inspection literature?”
+
+The related-work section should contain substantially more **2022-2026 tyre-specific literature**.
+
+For example, recent relevant research includes a 2025 tread-area segmentation study using Mask R-CNN and 2026 work on edge-based visual tire-wear classification under multi-brand/multi-condition settings. ([ScienceDirect][4]) Earlier work has also performed calibrated machine-vision tread-depth measurement, while vision-based camber measurement was reported well before the present manuscript. ([Sage Journals][5])
+
+Therefore the novelty cannot be established using TireEye alone.
+
+### What I would expect in a Q1-level version
+
+Add a **Related-Work Comparison Table** containing approximately 8-15 closely related works and columns such as:
+
+| Study | Input | Task | Physical ground truth | Independent tyres | Segmentation | Boundary/keypoint | Wear measurement | Alignment | External validation | Failure handling |
+| ----- | ----- | ---- | --------------------- | ----------------: | ------------ | ----------------- | ---------------- | --------- | ------------------- | ---------------- |
+
+Then add your proposed work as the final row.
+
+That single table would substantially improve the novelty argument.
+
+---
+
+# 3. Dataset and experimental design — **5.5/10**
+
+This is the most serious scientific concern.
+
+The source collection contains **418 clean photographs but only 12 distinct tyres**, and acquisition occurred within approximately **22 minutes**. 
+
+Furthermore, the paper acknowledges that historical folds 0 and 2 have suspected identity overlap. 
+
+This creates an important distinction:
+
+> **418 photographs ≠ 418 independent experimental subjects.**
+
+The true independent unit is much closer to the **tyre/session**, not the photograph.
+
+Your manuscript understands this very well, which is excellent. But acknowledging the problem does not completely solve the problem scientifically.
+
+### The classification experiment has no independent test set
+
+This is the major concern.
+
+You explicitly state that selected checkpoint statistics are based on evaluated validation data and must not be interpreted as untouched test performance. 
+
+Therefore, values such as:
+
+> MobileNetV4 = 0.99746 validation-selected macro-F1
+
+should **not be treated as evidence of strong generalisation**.
+
+You already say this, but Table 2 and the abstract still give that value considerable prominence.
+
+For a Q1-level paper, I would strongly prefer:
+
+**tyre-disjoint GroupKFold / leave-one-tyre-out / leave-two-tyres-out evaluation.**
+
+Since you already have 12 identified tyres, this may not require new image collection for the classification branch.
+
+This is the single most important experiment I would request.
+
+---
+
+# 4. Mileage labels are proxies, not wear measurements
+
+The manuscript correctly states that mileage groups are **source-group labels rather than measured tread severity** and that there are no measured tread depths. 
+
+That is scientifically responsible.
+
+But it also creates a fundamental interpretation problem.
+
+A model could potentially learn:
+
+* tread design,
+* tyre identity,
+* manufacturer,
+* surface markings,
+* capture position,
+* lighting,
+* background,
+* session characteristics,
+
+rather than wear.
+
+Your own colour/HOG baseline variations strongly hint at this possibility.
+
+Consequently, I would describe the classification branch as:
+
+> **mileage-proxy recognition**
+
+throughout.
+
+Do not use wording suggesting actual **wear classification** unless physical wear labels are collected.
+
+The paper already generally follows this rule; maintain it rigidly.
+
+---
+
+# 5. Classification methodology — **7/10**
+
+The methodology is documented well.
+
+You provide the optimizer, learning rate, weight decay, warm-up schedule, epoch budget, gradient clipping, precision, image resolutions, and batch ranges. 
+
+That is above average.
+
+I particularly like the model-identity audit. Quarantining nine runs because a supposed ConvNeXtV2-Small checkpoint actually had a ResNet-18 signature is exactly the type of reproducibility issue most papers hide. 
+
+That substantially strengthens the paper's **auditability contribution**.
+
+However, there are three methodological issues.
+
+First, because the labels are ordinal, macro-F1 alone is incomplete. I recommend reporting an ordinal metric such as **MAE in class index and/or quadratic weighted kappa** in addition to macro-F1.
+
+Second, Table 2 averages results across folds 0, 1, and 2 even though two folds are explicitly flagged for identity overlap. A pooled mean therefore combines conditions of different validity.
+
+Third, Table 2 is visually ordered like an architecture ranking even though the caption says that no independent-test ranking is implied.
+
+I would either show individual fold results or move the pooled architecture table to supplementary material.
+
+---
+
+# 6. Explainability component — **6.5/10**
+
+I appreciate that the manuscript does not overinterpret Grad-CAM.
+
+The paper explicitly says that saliency concentration does not demonstrate causal feature use and notes that tyre and tread regions are almost coincident, which limits the TER metric. 
+
+That is strong scientific reasoning.
+
+However, the gate:
+
+> randomisation sensitivity > 0.05
+
+requires stronger justification.
+
+Why **0.05**?
+
+Was that value predetermined?
+
+Would the selected method change at 0.03 or 0.10?
+
+Because the explanation branch influences later experimentation, the threshold should either be justified, referenced, or sensitivity-tested.
+
+Otherwise it looks project-specific.
+
+---
+
+# 7. Dense localisation — **7.5/10**
+
+The segmentation/localisation evaluation is fairly comprehensive:
+
+U-Net, DeepLabV3+, SegFormer, YOLO, and RT-DETR are included.
+
+The paper correctly acknowledges that differences in pretraining, loss functions, augmentations, and backend behaviour mean this is **not an architecture-only controlled experiment**.
+
+That acknowledgement is important.
+
+The finding that very high tread IoU coexists with much lower two-pixel boundary F1 is scientifically useful. It demonstrates that **area overlap and boundary fidelity answer different questions**.
+
+I regard this as one of the stronger findings of the manuscript.
+
+One clarification is still needed:
+
+### Explain how “Box AP” is produced for semantic segmentation models.
+
+For example, Table 4 reports Box AP for DeepLabV3+, SegFormer and U-Net.
+
+Readers need an explicit statement describing how predicted semantic masks are converted into boxes before AP computation.
+
+---
+
+# 8. Crop and fusion experiment — **8/10**
+
+This is a strong part of the paper.
+
+Rather than assuming localisation improves classification, you tested it.
+
+The negative results are valuable:
+
+* tyre crop: −0.01257
+* tread crop: −0.01467
+* tyre+tread fusion: −0.01568
+* full+tyre+tread: −0.01324
+
+The paper also correctly interprets −0.01324 as approximately **−1.324 macro-F1 percentage points**, rather than “1.324%”. That is good reporting.
+
+This experiment has a clear scientific conclusion:
+
+> Better localisation does not automatically make an existing full-frame classifier better.
+
+That is publishable insight.
+
+The limitation is also correctly stated: because the classifier was trained on full images, cropping causes distribution shift. Therefore this experiment evaluates the intervention on a **frozen full-image classifier**, not the potential performance of a classifier trained specifically on crops.
+
+Good.
+
+---
+
+# 9. Calibration and conformal prediction — **6/10**
+
+This section is technically interesting but weakens the manuscript's overall focus.
+
+The image-level calibration split is not tyre-disjoint, which you explicitly acknowledge.
+
+The fold-0 and fold-2 temperature-scaled values of:
+
+> ECE = 0.0000
+> NLL = 0.0000
+
+will immediately attract reviewer attention.
+
+You correctly avoid interpreting them as deployment reliability, but I would consider moving much of this calibration material to supplementary information unless uncertainty estimation is one of the principal contributions.
+
+There is also a conceptual issue that deserves further explanation:
+
+The main ordinal classifier uses CORAL threshold semantics, while the ensemble confidence analysis uses an argmax over averaged class probabilities.
+
+You mention the distinction, but readers need a precise description of **how CORAL outputs were converted into valid class probabilities before averaging**.
+
+---
+
+# 10. Matched HRNet vs SegFormer boundary experiment — **6.5/10**
+
+The numerical finding is clear:
+
+HRNet:
+
+> **1.312% image-width error**
+
+SegFormer-derived points:
+
+> **1.721%**
+
+Relative reduction:
+
+> **23.75%**
+
+The paper appropriately states that this comparison consists of **432 point records from the same 24 images and only two test tyres**, rather than 432 independent samples. This is excellent methodological restraint. 
+
+But there are two substantial problems.
+
+### Problem 1 — only two test tyres
+
+This is far too small for a broad conclusion.
+
+The manuscript itself correctly says that two tyres cannot establish a class effect.
+
+For a stronger paper, rotate tyre identities across multiple tyre-disjoint test folds.
+
+Since the geometry collection already uses 12 tyres—8 training, 2 validation, 2 testing—you may be able to perform grouped cross-validation **without collecting new photographs**.
+
+That would substantially increase the paper's strength.
+
+### Problem 2 — HRNet and SegFormer do not receive equivalent supervision
+
+HRNet receives six point targets.
+
+SegFormer receives dense masks.
+
+They also use different pretrained representations and parameter counts.
+
+The paper admits this. 
+
+Therefore the result demonstrates:
+
+> point-learning formulation versus segmentation-derived boundary extraction under the stated pipelines
+
+—not—
+
+> HRNet is intrinsically superior to SegFormer.
+
+Your present wording is mostly careful, but this distinction needs to remain absolutely consistent.
+
+A more powerful ablation would compare the two formulations using a shared backbone.
+
+---
+
+# 11. Statistical methodology — **6.5/10**
+
+There is something important here that I consider a **strength**, not a weakness:
+
+You deliberately do **not manufacture p-values from 432 correlated points**.
+
+Many manuscripts would incorrectly perform a t-test treating all coordinates as independent.
+
+You explicitly state that repeated seeds and point records do not increase the number of independent tyres. 
+
+Excellent.
+
+However, the appropriate solution is not merely “no statistical testing.”
+
+The stronger solution is **more independent experimental units**.
+
+If you obtain results across more tyre identities, you can provide:
+
+* per-tyre effects,
+* clustered bootstrap intervals,
+* grouped cross-validation distributions,
+* or subject-level paired comparisons.
+
+Currently the evidence is descriptive.
+
+That is appropriate, but limited.
+
+---
+
+# 12. Findings — **7.5/10**
+
+The strongest findings are not actually the largest numerical values.
+
+I would rank the scientific contributions conceptually as:
+
+**Checkpoint selection materially changes conclusions.**
+
+This is important because the selected and final results differ dramatically for some architectures.
+
+**Localisation quality does not guarantee downstream classification gain.**
+
+Strong and useful negative result.
+
+**Area-overlap metrics and boundary-fidelity metrics can disagree substantially.**
+
+Strong methodological observation.
+
+**Dedicated point localisation improves the matched still-image boundary metric, but fails in some videos.**
+
+Useful, provided it remains limited to the observed conditions.
+
+**System outputs and physical measurements must be separated.**
+
+This is a valuable engineering lesson.
+
+The manuscript's discussion states these distinctions clearly. 
+
+---
+
+# 13. Reproducibility — **9/10**
+
+This is probably the strongest aspect of the manuscript.
+
+You document:
+
+* model identity checking,
+* immutable artifact revisions,
+* model/optimizer state,
+* scheduler state,
+* scaler state,
+* RNG state,
+* interruption/resume behaviour,
+* exact-frame evidence,
+* hash-based provenance,
+* repository revisions,
+* package versions.
+
+The artifact section even provides pinned revisions and explains that manuscript regeneration is different from experiment replication. 
+
+That is very good.
+
+However, the manuscript itself states that redistribution permission for every source image remains unresolved.
+
+That must be settled before submission.
+
+---
+
+# 14. Discussion and limitations — **9.5/10**
+
+This section is unusually strong.
+
+The manuscript explicitly separates:
+
+* construct validity,
+* sampling/internal validity,
+* comparison validity,
+* measurement validity,
+* operational validity.
+
+It acknowledges small cohort size, identity-overlap concerns, reused data, selected-checkpoint bias, differences in pretraining/supervision, and lack of physical alignment ground truth. 
+
+This is exactly how limitations should be written.
+
+Do **not remove these limitations merely to make the paper look stronger**.
+
+They increase credibility.
+
+The solution is to strengthen the experiments where possible, not hide the restrictions.
+
+---
+
+# 15. Workstation and physical alignment — **7/10**
+
+The workstation is useful as an engineering artifact.
+
+I particularly like the decision to withhold geometry when model outputs are crossed, missing, clipped, or otherwise unsupported.
+
+However, the workstation material currently occupies substantial manuscript space.
+
+Because real wheel-angle accuracy is not measured, the alignment component is currently an **implemented software pathway**, not a validated measurement contribution.
+
+The manuscript admits this clearly. Your future-work section correctly says that real calibration, independent wheel-angle measurement, repeated mounting, and runout assessment are needed. 
+
+A reviewer could still ask:
+
+> Why is the alignment subsystem a major part of this article if it has no real physical validation?
+
+You therefore have two choices:
+
+**Keep it**, but frame it strictly as failure-aware integration architecture.
+
+Or **reduce it**, moving implementation details and GUI screenshots to supplementary material.
+
+For scientific focus, I prefer the second.
+
+---
+
+# 16. Figures and tables — **8/10**
+
+The paper is visually professional.
+
+Figure 1 is a very good overview and correctly separates empirical work from unvalidated physical measurement.
+
+Figure 3 is effective for visualising selected versus final checkpoint differences.
+
+Figure 4 is particularly good because it directly demonstrates the difference between area overlap and boundary agreement.
+
+Figure 6 is informative but also visually reveals the major limitation: **only two tyres**.
+
+Figure 8 showing failure is scientifically valuable. Most papers show only successful examples.
+
+However:
+
+### Figure 7 should be replaced before submission.
+
+Its caption states:
+
+> “This operational screenshot predates the additional download controls.”
+
+A final paper should not knowingly use an outdated software screenshot.
+
+Update it.
+
+Also, Figures 2 and 7 contain very small GUI text at IEEE two-column scale. The important portions should be cropped/enlarged.
+
+Table 2 should probably not be sorted like a ranking when the manuscript explicitly says no independent-test architecture ranking is intended.
+
+---
+
+# 17. Grammar and academic writing — **8.2/10**
+
+The English is much stronger than in many submitted manuscripts.
+
+The tone is cautious and professional, and I found no pervasive grammatical problem that would justify rejection on language grounds.
+
+IEEE Access explicitly requires standard English and may reject papers with poor grammar. ([IEEE Access][6]) Your manuscript is **well above that threshold**, but it still needs final proofreading.
+
+Some examples I would correct:
+
+| Current wording                                        | Recommended wording                                                            |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| “12 operator-confirmed distinct tyres”                 | “12 distinct tyres, as confirmed by the collection operator”                   |
+| “complete comparator coverage”                         | “100% comparator point coverage” or explain precisely what coverage means      |
+| “This verifies that exercised interruption path”       | “This verifies the exercised interruption path”                                |
+| “A tyre silhouette is not automatically called a rim.” | “A detected tyre silhouette is therefore not interpreted as the rim boundary.” |
+| “historical random-initialised ResNet-18”              | “historical randomly initialized ResNet-18”                                    |
+| “inherited confidence analysis”                        | Clarify what “inherited” means                                                 |
+| “existing manual reference set”                        | Consider “available manually annotated reference set”                          |
+
+There are also terminology consistency issues.
+
+Use one form throughout for:
+
+> validation-selected checkpoint
+> fixed-final checkpoint
+
+Currently you use combinations of “selected,” “validation-selected,” “fixed final,” and “fixed-final endpoint.”
+
+Standardise them.
+
+---
+
+# 18. Undefined manuscript-specific terminology
+
+I identified at least two terms that appear without adequate definition:
+
+> **“Stage-A ResNet-50 checkpoint”**
+
+and later:
+
+> **“S5 region SegFormer”**
+
+These appear to originate from the internal experimental pipeline rather than terminology introduced clearly in the manuscript.
+
+They should either be formally defined earlier or removed.
+
+A journal reader should not need repository knowledge to understand them.
+
+---
+
+# 19. Abstract — **8/10**
+
+The abstract is approximately **213 words**, so its length is reasonable.
+
+Its biggest strength is that it does not overclaim.
+
+It even states that:
+
+> external generalisation, physical wear estimation, and real alignment accuracy remain unvalidated. 
+
+Excellent.
+
+However, I would change one thing.
+
+Do not make the **0.99746 MobileNetV4 validation-selected F1** such a prominent headline result because it comes from historical internal folds with identity-overlap concerns.
+
+The more scientifically meaningful message is the **difference between selected and fixed-final endpoints**.
+
+For example, the abstract should emphasize:
+
+> checkpoint-dependent conclusions
+
+rather than:
+
+> near-perfect classification.
+
+That better represents what the study actually establishes.
+
+---
+
+# 20. Conclusion — **8.5/10**
+
+The conclusion is well written.
+
+It accurately states that HRNet's 23.75% error reduction applies to a two-tyre test and that physical wear, external generalisation, and real alignment remain unresolved. 
+
+The final sentence is particularly strong:
+
+> stronger evidence requires better independent measurements and sampling rather than simply more model runs on the same cohort.
+
+That captures the fundamental methodological lesson of the study.
+
+Keep that philosophy.
+
+---
+
+# 21. References — **4.5/10**
+
+This needs substantial revision before IEEE Access submission.
+
+Sixteen references are too few for the breadth of this work.
+
+More importantly, the missing references are precisely where the novelty must be established:
+
+* recent tyre wear computer vision,
+* tread segmentation,
+* tyre defect inspection,
+* non-contact tread-depth measurement,
+* vision-based wheel/camber measurement,
+* keypoint/boundary localisation,
+* small-data grouped validation,
+* multimodal tyre monitoring,
+* deployment/failure-aware automotive vision.
+
+A recent 2025 study already investigates deep-learning-based tyre tread-area segmentation, while a 2026 Measurement article reports visual tyre-wear classification across multiple conditions. ([ScienceDirect][4])
+
+There is also established work on machine-vision tread-depth measurement and vision-based camber measurement. ([Sage Journals][5])
+
+Those areas need to be discussed explicitly.
+
+I would expect approximately **30-45 carefully selected references**, not because a paper needs an arbitrary citation count, but because the present literature review does not yet establish the research gap.
+
+---
+
+# 22. Scope and coherence
+
+This manuscript currently contains at least seven research strands:
+
+classification → explainability → segmentation → crop/fusion → calibration/conformal prediction → point localisation → workstation/alignment.
+
+That demonstrates effort, but it also creates a Q1-paper problem:
+
+> **What exactly is the central scientific contribution?**
+
+At present, the manuscript sometimes reads like an excellent audit of an entire project rather than one tightly focused research study.
+
+I recommend making the central thesis:
+
+> **Auditable evaluation of small-cohort vision-based tyre inspection, showing how evaluation endpoint, localisation intervention, and domain shift affect apparently strong internal performance.**
+
+Then everything else supports that thesis.
+
+The manuscript becomes much more coherent immediately.
+
+---
+
+# 23. Submission-specific IEEE Access issues
+
+There are several items that must be fixed even if no experimental changes are made.
+
+Your own draft states that author details, funding, competing interests, author contributions, and image permissions still require confirmation. 
+
+Those are submission blockers.
+
+IEEE Access also currently requires short biographies for **all authors**, yet the manuscript ends after the references without biographies. ([IEEE Access][7])
+
+There is also an AI disclosure issue.
+
+Your present text says that AI-assisted tools helped draft, format, and check the manuscript. IEEE Access's current guidance says AI-generated text must be disclosed in the **Acknowledgments**, identifying the AI system and the specific sections in which it was used, together with the level of use. ([IEEE Access][6])
+
+Therefore the current generic declaration should be adjusted to comply with the journal's precise requirement.
+
+---
+
+# 24. What I would require before recommending acceptance
+
+These are the priority levels I would assign as a reviewer:
+
+| Priority       | Required change                                                                                    | Importance |
+| -------------- | -------------------------------------------------------------------------------------------------- | ---------: |
+| **Critical**   | Reanalyse classification using a genuinely tyre-disjoint split/grouped evaluation                  |      ★★★★★ |
+| **Critical**   | Strengthen geometry evaluation beyond only two fixed test tyres if possible                        |      ★★★★★ |
+| **Critical**   | Expand recent tyre-specific literature and clearly establish the novelty gap                       |      ★★★★★ |
+| **Critical**   | Resolve author details, permissions, funding/conflict declarations                                 |      ★★★★★ |
+| **Major**      | Clarify that HRNet vs SegFormer is a pipeline/formulation comparison, not architecture superiority |      ★★★★☆ |
+| **Major**      | Strengthen annotation protocol/reliability description                                             |      ★★★★☆ |
+| **Major**      | Add ordinal classification metrics                                                                 |      ★★★★☆ |
+| **Major**      | Explain semantic-model Box AP computation                                                          |      ★★★★☆ |
+| **Major**      | Clarify CORAL probability conversion in calibration/conformal analysis                             |      ★★★★☆ |
+| **Major**      | Strengthen central narrative and reduce peripheral workstation/calibration material                |      ★★★★☆ |
+| **Moderate**   | Replace outdated Figure 7                                                                          |      ★★★☆☆ |
+| **Moderate**   | Define/remove “Stage-A” and “S5” terminology                                                       |      ★★★☆☆ |
+| **Moderate**   | Standardise checkpoint terminology                                                                 |      ★★★☆☆ |
+| **Moderate**   | Final grammar and reference-format proofreading                                                    |      ★★★☆☆ |
+| **Submission** | Add author biographies and IEEE-compliant AI disclosure                                            |      ★★★★★ |
+
