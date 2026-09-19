@@ -26,6 +26,8 @@ dist/
 .coverage
 htmlcov/
 
+ACCESS_latex_template_20260513/
+
 # Datasets, annotation packages and captures
 data/
 datasets/

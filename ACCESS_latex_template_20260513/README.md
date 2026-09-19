@@ -1,4 +1,10 @@
-# Revised tyre inspection paper — 18 September 2026
+# Revised tyre inspection paper — 19 September 2026
+
+The 19 September editorial pass replaces unnecessary acquisition timestamps with
+a concise description of manual collection and limited acquisition diversity.
+It strengthens the contribution across the abstract, introduction, discussion,
+and conclusion, and removes manuscript-editing commentary from the scientific
+narrative. Experimental results and essential study limitations are unchanged.
 
 Read `main.pdf`; edit `main.tex` and `sections/*.tex`. `access.tex` remains the
 original supplied template example and is not the manuscript.

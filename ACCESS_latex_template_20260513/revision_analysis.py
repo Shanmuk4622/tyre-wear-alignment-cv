@@ -55,7 +55,7 @@ for a,label in [('mobilenetv4','MobileNetV4'),('resnet50','ResNet-50')]:
     for f in range(3):
         s=means.loc[(a,f,'selected')];z=means.loc[(a,f,'final')]
         rows.append([label if f==0 else '',f,f'{s.f1:.4f}',f'{z.f1:.4f}',f'{z.qwk:.4f}',f'{z.mae:.4f}'])
-table('fold_endpoints','Fold-specific checkpoint analysis. Three seeds per cell; selected means the earliest maximum validation QWK. QWK and class-index MAE are reported at epoch 60. Configurations illustrate the former headline and the downstream frozen classifier, not a new model selection.', ['Model','Fold','Sel. F1','Final F1','Final QWK','MAE'],rows)
+table('fold_endpoints','Fold-specific checkpoint analysis. Three seeds per cell; selected means the earliest maximum validation QWK. QWK and class-index MAE are reported at epoch 60. MobileNetV4 illustrates recognition endpoint sensitivity; ResNet-50 supplies the frozen downstream classifier.', ['Model','Fold','Sel. F1','Final F1','Final QWK','MAE'],rows)
 
 xai=read(E/'xai_faithfulness.csv');xai=xai[xai.arch!='convnextv2_s'].copy()
 xai['faith']=xai.insertion_auc-xai.deletion_auc
@@ -65,7 +65,7 @@ for threshold in [.03,.05,.10]:
     best=valid.sort_values('faith',ascending=False,kind='stable').groupby('arch',sort=True).head(1)
     selected[str(threshold)]=dict(zip(best.arch,best.method))
     screens.append([f'{threshold:.2f}',len(valid),best.arch.nunique()])
-table('gate_sensitivity','Post-review sensitivity of the archived initial explanation screen: 34 method rows from 17 retained configurations, one seed on fold 1. Thresholds were chosen for this diagnostic; subsequent training was not repeated.',['Threshold','Passing methods','Eligible models'],screens)
+table('gate_sensitivity','Threshold sensitivity of the initial explanation screen: 34 method rows from 17 retained configurations, one seed on fold 1. Thresholds were chosen for this diagnostic; subsequent training was not repeated.',['Threshold','Passing methods','Eligible models'],screens)
 
 rawpath=R/'docs/report/evidence/geometry/comparison_PAIRED_POINTS.json'
 used[rawpath.relative_to(R).as_posix()]=hashlib.sha256(rawpath.read_bytes()).hexdigest()

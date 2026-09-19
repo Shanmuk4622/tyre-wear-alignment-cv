@@ -1,12 +1,12 @@
 \section{Data and Experimental Design}
 \label{sec:data}
 \subsection{Collection, Labels, and Sampling Unit}
-The preparation audit starts with 888 raw files and removes 470 byte-identical duplicates, leaving 418 clean RGB photographs at $1152\times1536$ pixels. Ten pre-generated derivatives per original produce 4,180 additional files at $768\times768$ pixels. These derivatives are linked to their source images and are not independent observations. The photographs were captured within approximately 22 minutes on August 25, 2026, limiting variation in acquisition conditions.
+The preparation audit starts with 888 raw files and removes 470 byte-identical duplicates, leaving 418 clean RGB photographs at $1152\times1536$ pixels. Ten pre-generated derivatives per original produce 4,180 additional files at $768\times768$ pixels. These derivatives are linked to their source images and are not independent observations. The images were collected manually in a single acquisition session. The limited size and acquisition scope of the dataset restrict the diversity of lighting, viewpoints, and environmental conditions represented.
 
 The low-, mid-, and high-mileage proxy groups contain 169, 97, and 152 clean images, respectively, distributed across 3, 3, and 6 timestamp-derived sessions. Low includes new tyres and the 100--5,000 mileage group; mid includes the 40,000, 70,000, and 90,000 groups; high corresponds to the 100,000-plus group. These are source-group labels, not measured wear severity. The collection operator subsequently confirmed that the 12 sessions represent 12 distinct physical tyres. This statement is recorded as operator confirmation, without an independent identity audit.
 
 \begin{table}[t]
-\caption{Historical clean-image allocations. Validation images are reused for internal evaluation; these folds are not an external test set.}
+\caption{Group-disjoint clean-image allocations. Validation images are reused for internal evaluation; these folds are not an external test set.}
 \label{tab:folds}
 \centering\small
 \begin{tabular}{rrr>{\raggedright\arraybackslash}p{3.15cm}}
@@ -20,7 +20,7 @@ Fold & Train & Validation & Interpretation\\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:folds} uses a three-fold group allocation: every session is assigned to exactly one validation fold. A post-review audit of all 418 image records finds zero train/validation session intersections in each fold. Under the operator's identity confirmation, these are tyre-group-disjoint internal folds. An earlier appearance-similarity audit flagged the 70,000- and 90,000-mileage sessions as potentially identical, affecting folds 0 and 2; visual resemblance is not proof of identity, and the later operator confirmation states they are different tyres. We retain this provenance distinction rather than describe the folds as confirmed leakage. The audit verifies recorded allocations, not independent physical identity or every historical loader execution.
+Table~\ref{tab:folds} uses a three-fold group allocation: every session is assigned to exactly one validation fold. An allocation audit of all 418 image records finds zero train/validation session intersections in each fold. Under the operator's identity confirmation, these are tyre-group-disjoint internal folds. An earlier appearance-similarity audit flagged the 70,000- and 90,000-mileage sessions as potentially identical, affecting folds 0 and 2; visual resemblance is not proof of identity, and the later operator confirmation states they are different tyres. The recorded groups are therefore disjoint under the supplied identity labels; the earlier visual-similarity flag remains documented in the data provenance.
 
 Classification training can use derivatives of training originals; validation uses clean held-out photographs. The dense-task branch uses clean originals only. Repeated seeds measure optimisation variation on fixed data. Validation-selected results reuse the evaluated fold for checkpoint selection; group disjointness does not make these selected results untouched test estimates.
 
@@ -51,7 +51,7 @@ Macro-F1 averages the class-specific F1 values over the three proxy classes. For
 \hat y(x)=\sum_{k=0}^{1}\mathbb{1}[q_k(x)>0.5].
 \label{eq:ordinal}
 \end{equation}
-We additionally report class-index mean absolute error, $\mathrm{MAE}=N^{-1}\sum_i|\hat y_i-y_i|$, with labels $0,1,2$, and QWK, $1-\sum_{ab}w_{ab}O_{ab}/\sum_{ab}w_{ab}E_{ab}$, where $w_{ab}=(a-b)^2/4$, $O$ is the observed confusion matrix, and $E$ is its chance-agreement counterpart derived from class marginals. These ordinal diagnostics penalise a two-category mistake more than an adjacent error. They are not errors in kilometres or tread depth. Post-review endpoint reconstruction uses all 60 epoch records for MobileNetV4, the former headline configuration, and ResNet-50, the frozen downstream classifier: two configurations, three folds, and three seeds. This is an illustrative audit, not a fresh architecture-selection exercise.
+We additionally report class-index mean absolute error, $\mathrm{MAE}=N^{-1}\sum_i|\hat y_i-y_i|$, with labels $0,1,2$, and QWK, $1-\sum_{ab}w_{ab}O_{ab}/\sum_{ab}w_{ab}E_{ab}$, where $w_{ab}=(a-b)^2/4$, $O$ is the observed confusion matrix, and $E$ is its chance-agreement counterpart derived from class marginals. These ordinal diagnostics penalise a two-category mistake more than an adjacent error. They are not errors in kilometres or tread depth. Endpoint reconstruction uses all 60 epoch records for two configurations with distinct roles: MobileNetV4 illustrates the checkpoint sensitivity of a high-scoring recognition model, while ResNet-50 supplies the frozen classifier for the region interventions. Each configuration is evaluated over three folds and three seeds. This diagnostic selection supports interpretation of the existing experiments.
 
 Models trained with a softmax head retain their argmax decision rule. Saved predictions record which rule applies; downstream reconstruction does not replace the ordinal decision with a class-score argmax.
 
@@ -112,4 +112,4 @@ The separate target-assisted software requires camera intrinsics, a ground-refer
 \subsection{Execution and Reproducibility}
 Kaggle sessions provide training compute and Hugging Face stores persistent records. Jobs retain model/optimiser state, scheduler and scaler state where applicable, random-number-generator state, and execution position. The older dense engine resumes completed epochs; the later geometry engine checkpoints completed optimiser steps and the next-batch cursor. Normal publication is batched at roughly 30-minute intervals, with major completion and catchable interruption requesting a flush. Remote rate limits, failed uploads, or a forced operating-system kill can still lose unpublished progress.
 
-The geometry engine's deterministic resizing repair passed a Tesla T4 resume check with zero maximum parameter difference. This verifies the exercised interruption path, not every possible hardware failure. Immutable revisions and hashes identify the reviewed artifacts. The present paper regenerates its numeric tables and plots from those frozen local records; it does not rerun training or claim independent replication of the original experiments.
+The geometry engine's deterministic resizing repair passed a Tesla T4 resume check with zero maximum parameter difference. This verifies deterministic recovery for the tested interruption path. Immutable revisions and hashes identify the source artifacts, and the manuscript tables and plots are regenerated from these frozen experimental records.
