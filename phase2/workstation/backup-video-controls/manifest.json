@@ -1,0 +1,8 @@
+{
+  "app.py": "0b932dec71395182a2f08894a4a7fb4e394d7d91ba8ce74b73511337e997bcfe",
+  "media_export.py": "1643b3dbe0e4c68e27624f0091059a0d6d535abfbddb90560a1a6eac1ac31943",
+  "learned_geometry.py": "58237a387d5fad91cb83504849cfa36971c35b7f33ccaed96235dc7a147625b0",
+  "alignment.py": "8752fb6fa7342ce54fea4bcf690e71acae9cf999ab9f76def9e5e3a06724e3be",
+  "shape_geometry.py": "9143c04d833359502a457b8df8e9d0e41320d8a2941074f17c1d87e915bd048f",
+  "check_media_export.py": "c129008859c54c8bbc6dc1cdc7bf9b0703f6d087c5d38787834b6464ca58ef67"
+}

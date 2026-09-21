@@ -1,5 +1,7 @@
 # Tread Station
 
+> **Current — 21 September 2026:** Phase 2 models are installed in Tread Station: MobileNet V4, ResNet50, YOLO26 Medium, SegFormer B0 and HRNet. All fifteen training runs and final NB06 are HF-verified complete. Installed model selections remain unchanged. GPU/video/UI checks passed. Restart the existing launcher. [Results, limitations and current instructions](../phase2/workstation/README.md). Old checkpoints remain available for rollback. Earlier dated status sections below are historical.
+
 <!-- current-status:start -->
 > **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
 <!-- current-status:end -->
@@ -56,11 +58,11 @@ Video is displayed and processed vertically using the file's orientation metadat
 
 Records contain `frame.png`, separate binary tyre/tread masks, model overlay images, `inspection.json` and `card.html`. JSON includes scores, model revisions and hashes, device, package versions, timings, capture hints and the operator note. Keep a record folder together when sharing its HTML card. Records are local; there are no automatic uploads.
 
-### Download the overlay (16 September 2026)
+### Download the overlay (updated 21 September 2026)
 
 - **Download shown frame** writes a PNG directly to your Windows Downloads folder. It saves the exact analysed pixels with the current Original / Full overlay / Compare wipe setting, including the wipe position. Zoom, UI controls and the live preview inset are excluded.
-- **Download video · 10 fps** processes the entire opened video separately, sampling at 0.0, 0.1, 0.2 seconds and so on. It creates a silent MP4 at 10 fps with the clip's duration preserved to within one output frame. Sources below 10 fps repeat frames. Portrait orientation and the workstation's maximum 1280-pixel analysis size are preserved; odd dimensions receive a one-pixel border for encoding.
-- The video uses the recipe, region selection, opacity, visible layers, geometry and learned-overlay controls captured when you click. It exports the full overlay without the display wipe or zoom. With automatic region selection, separately labelled SegFormer assistance can take over on frames where YOLO misses. Changing controls or opening another source does not change the running export.
+- **Download video** exports the entire opened clip at the **Video export FPS** you choose (1–60, including fractional rates; default 10). It creates a silent MP4 and preserves duration to within one output frame. Rates above the source repeat frames; higher rates take longer. Portrait orientation and maximum 1280-pixel analysis size are preserved; odd dimensions receive a one-pixel encoding border. The optional **Include video information panel** appends a footer below the image with time, export FPS, region model, mileage-proxy prediction/model score, tread tilt, raw widths and point-review status. It adds height without hiding or stretching the image.
+- The video uses the recipe, region selection, opacity, visible layers, geometry, FPS, information-panel and learned-overlay controls captured when you click. It exports the full overlay without the display wipe or zoom. With automatic region selection, separately labelled SegFormer assistance can take over on frames where YOLO misses. Changing controls or opening another source does not change the running export.
 - Export runs in a separate process using PyTorch on CPU (two threads), leaving the GPU available to the workstation. It can be slower than playback. Progress and **Cancel export** sit below the evidence button; cancellation removes the unfinished video. Finish or cancel before closing the app. Files receive unique names and are published only after the encoded frame count is checked. Camera feeds support frame downloads; full-video export requires a video file.
 
 **Why an edge diagram can have no fitted lines:** the image fitter deliberately withholds geometry when its evidence is insufficient. For example, a predicted mask that touches the side of the frame produces “Side boundary clipped by frame”, even if the visible tyre appears to fit inside the photo. The diagram now shows the amber mask outline, red clipped frame edge, and an explicit **FIT WITHHELD** panel. Capture both sides with a background margin or inspect another frame. Mask outlines and learned point proposals remain separate from an accepted image-edge fit; they do not establish alignment accuracy.
@@ -130,3 +132,5 @@ Windows CUDA inference uses a worker with a 32 MB stack because the default Pyth
 - `results/`: saved captures and local validation outputs.
 
 The prototype is separate from the completed training notebooks and report pipeline.
+
+**Visible angles:** learned tread overlays show signed centreline tilt relative to image vertical, using displayed/smoothed points when available; positive means the top leans right. This is not physical camber/toe. The calibrated-target bench prints its measured camber/toe values on its preview and saved image after its existing calibration/target checks pass. No angle or alignment verdict is invented for an invalid fit.

@@ -1,0 +1,10 @@
+{
+  "portable_verifier": "PASS",
+  "checksummed_files": 2882,
+  "image_and_mask_sets": 570,
+  "raw_label_relative_paths_verified": 152,
+  "notebook_schema_and_syntax": "PASS",
+  "kaggle_execution": "NOT_RUN",
+  "huggingface_publication": "NOT_RUN",
+  "training_started": false
+}

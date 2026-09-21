@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "zip_path": "releases/Tire_Dataset_Prepared_phase2_v1.zip",
+  "bytes": 777988937,
+  "sha256": "07c7aa41e84135f578a8cf1d8a1ec42a947b3d5062cbcfa935732799c15ab836",
+  "members": 2883,
+  "all_members_decompressed_and_sha256_verified": true,
+  "checksum_manifest_sha256": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a",
+  "dataset": {
+    "status": "VERIFIED_SOURCE_RELEASE_WITH_DOCUMENTED_WARNINGS",
+    "images": 570,
+    "original_images": 418,
+    "new_images": 152,
+    "class_counts": {
+      "high_mileage_proxy": 152,
+      "low_mileage_proxy": 169,
+      "mid_mileage_proxy": 249
+    },
+    "original_physical_tyres": 12,
+    "new_additional_physical_tyres": 0,
+    "new_manual_polygons": 304,
+    "original_human_geometry_images": 120,
+    "new_derived_point_proposals": 912,
+    "new_human_accepted_point_labels": 0,
+    "new_tread_outside_tyre_frames": 45,
+    "conflict_pixels": 172439,
+    "handling": "Raw masks and annotations preserved; ignore mask = human ignore OR tread outside tyre. Never train on ignored pixels as background.",
+    "original_images_and_masks_hash_verified": 418,
+    "all_images_decode_verified": true,
+    "original_geometry_hash_and_identity_matches": 120,
+    "raw_annotations_unchanged": true,
+    "training_ready": false,
+    "upload_ready": true,
+    "open_items": [
+      "Confirm exact physical tyre mapping and freeze group split",
+      "Review/correct conflict pixels before trainers without ignore support (including stock YOLO)",
+      "Human acceptance/correction of new geometry point proposals",
+      "Build and GPU-verify training notebooks; no training performed"
+    ]
+  }
+}

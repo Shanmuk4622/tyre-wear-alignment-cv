@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "gpu": "GTX 1650; Kaggle T4 execution remains pending",
+  "models": {
+    "hrnet": {
+      "differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "estimated_training_compute_hours_excluding_checkpoint_validation_upload": 5.448712499999976,
+      "gpu": "NVIDIA GeForce GTX 1650",
+      "job": {
+        "condition": "combined",
+        "id": "hrnet-combined-seed1",
+        "model": "hrnet",
+        "seed": 1
+      },
+      "measured_step_seconds": [
+        3.3279999999999745,
+        2.859000000000151,
+        2.8129999999998745,
+        2.780999999999949
+      ],
+      "peak_gpu_bytes": 1482591744,
+      "protocol": "local-pretrained-final-gpu-validation",
+      "scope": "real model, real transformed batches; independent-process mid-epoch state restoration; noninitial scheduler state",
+      "seconds": 26.187999999999874,
+      "source_sha256": "f5bd0bfdcb997c34414a8e94b7032b6106d8ca8e25e445b13d904a6dd4b5edba",
+      "status": "passed",
+      "torch": "2.5.1+cu121"
+    },
+    "mobilenetv4": {
+      "differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "estimated_training_compute_hours_excluding_checkpoint_validation_upload": 0.9697916666666667,
+      "gpu": "NVIDIA GeForce GTX 1650",
+      "job": {
+        "condition": "combined",
+        "id": "mobilenetv4-combined-seed1",
+        "model": "mobilenetv4",
+        "seed": 1
+      },
+      "measured_step_seconds": [
+        1.6569999999999254,
+        1.3590000000000373,
+        0.9379999999999882,
+        0.7960000000000491
+      ],
+      "peak_gpu_bytes": 773945344,
+      "protocol": "local-pretrained-final-gpu-validation",
+      "scope": "real model, real transformed batches; independent-process mid-epoch state restoration; noninitial scheduler state",
+      "seconds": 16.65599999999995,
+      "source_sha256": "f5bd0bfdcb997c34414a8e94b7032b6106d8ca8e25e445b13d904a6dd4b5edba",
+      "status": "passed",
+      "torch": "2.5.1+cu121"
+    },
+    "resnet50": {
+      "differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "estimated_training_compute_hours_excluding_checkpoint_validation_upload": 5.502904166666661,
+      "gpu": "NVIDIA GeForce GTX 1650",
+      "job": {
+        "condition": "combined",
+        "id": "resnet50-combined-seed1",
+        "model": "resnet50",
+        "seed": 1
+      },
+      "measured_step_seconds": [
+        11.515999999999849,
+        5.0620000000001255,
+        5.3279999999999745,
+        5.0470000000000255
+      ],
+      "peak_gpu_bytes": 3517039104,
+      "protocol": "local-pretrained-final-gpu-validation",
+      "scope": "real model, real transformed batches; independent-process mid-epoch state restoration; noninitial scheduler state",
+      "seconds": 55.375,
+      "source_sha256": "f5bd0bfdcb997c34414a8e94b7032b6106d8ca8e25e445b13d904a6dd4b5edba",
+      "status": "passed",
+      "torch": "2.5.1+cu121"
+    },
+    "segformer": {
+      "differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "estimated_training_compute_hours_excluding_checkpoint_validation_upload": 2.0988749999999197,
+      "gpu": "NVIDIA GeForce GTX 1650",
+      "job": {
+        "condition": "combined",
+        "id": "segformer-combined-seed1",
+        "model": "segformer",
+        "seed": 1
+      },
+      "measured_step_seconds": [
+        1.094000000000051,
+        0.6099999999999,
+        0.45299999999997453,
+        0.45299999999997453
+      ],
+      "peak_gpu_bytes": 617147904,
+      "protocol": "local-pretrained-final-gpu-validation",
+      "scope": "real model, real transformed batches; independent-process mid-epoch state restoration; noninitial scheduler state",
+      "seconds": 14.280999999999949,
+      "source_sha256": "f5bd0bfdcb997c34414a8e94b7032b6106d8ca8e25e445b13d904a6dd4b5edba",
+      "status": "passed",
+      "torch": "2.5.1+cu121"
+    },
+    "yolo26m": {
+      "differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "estimated_training_compute_hours_excluding_checkpoint_validation_upload": 4.636825000000061,
+      "gpu": "NVIDIA GeForce GTX 1650",
+      "job": {
+        "condition": "combined",
+        "id": "yolo26m-combined-seed1",
+        "model": "yolo26m",
+        "seed": 1
+      },
+      "measured_step_seconds": [
+        2.125,
+        1.2970000000000255,
+        1.1720000000000255,
+        1.1720000000000255
+      ],
+      "peak_gpu_bytes": 1490106880,
+      "protocol": "local-pretrained-final-gpu-validation",
+      "scope": "real model, real transformed batches; independent-process mid-epoch state restoration; noninitial scheduler state",
+      "seconds": 20.82899999999995,
+      "source_sha256": "f5bd0bfdcb997c34414a8e94b7032b6106d8ca8e25e445b13d904a6dd4b5edba",
+      "status": "passed",
+      "torch": "2.5.1+cu121"
+    }
+  },
+  "writer_followup": "After GPU tests, the checkpoint fsync writer was made portable; full pause/resume/export lifecycle passed with that writer."
+}

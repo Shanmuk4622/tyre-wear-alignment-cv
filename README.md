@@ -1,5 +1,7 @@
 # Vision-Based Detailed Tyre-Wear Recognition and Single-Wheel Alignment Screening
 
+> **Current — 21 September 2026:** Phase 2 models are installed in Tread Station: MobileNet V4, ResNet50, YOLO26 Medium, SegFormer B0 and HRNet. All fifteen training runs and final NB06 are HF-verified complete. Installed model selections remain unchanged. GPU/video/UI checks passed. Restart the existing launcher. [Results, limitations and current instructions](phase2/phase2CompletionAudit.md). Old checkpoints remain available for rollback. Earlier dated status sections below are historical.
+
 <!-- current-status:start -->
 > **Current status (15 September 2026):** [Completed work and remaining validation](docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
 <!-- current-status:end -->

@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "videos": [
+    {
+      "video": "video1.mp4",
+      "flags": [],
+      "model_ms": {
+        "hrnet": 72.77,
+        "matched": 37.12
+      },
+      "full_pipeline_peak_mb": 311.4,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260921-090403-823119"
+    },
+    {
+      "video": "Video2.mp4",
+      "flags": [],
+      "model_ms": {
+        "hrnet": 85.56,
+        "matched": 35.7
+      },
+      "full_pipeline_peak_mb": 311.4,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260921-090409-716963"
+    },
+    {
+      "video": "Video3.mp4",
+      "flags": [],
+      "model_ms": {
+        "hrnet": 72.7,
+        "matched": 34.86
+      },
+      "full_pipeline_peak_mb": 311.4,
+      "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260921-090415-f14389"
+    }
+  ],
+  "checks": [
+    "GPU paired video",
+    "portrait inputs",
+    "toggle",
+    "original view",
+    "seek resets",
+    "frozen explanation",
+    "JSON/PNG evidence",
+    "restoration",
+    "off releases model references"
+  ]
+}

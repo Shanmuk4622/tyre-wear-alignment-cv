@@ -68,6 +68,16 @@ class Engine:
             self.cache.move_to_end(name)
             return self.cache[name], 0.0
         start = time.perf_counter()
+        import phase2_adapter
+        if phase2_adapter.enabled():
+            while len(self.cache) >= 3:
+                _, old = self.cache.popitem(last=False)
+                del old
+                gc.collect()
+                if self.device.startswith('cuda'): torch.cuda.empty_cache()
+            item = phase2_adapter.load(name, self.device)
+            self.cache[name] = item
+            return item, (time.perf_counter() - start) * 1000
         path = checkpoint(name)
         if not path.exists():
             raise FileNotFoundError(f'{MODELS[name]["title"]} is not downloaded. Run python prepare_models.py first.')
@@ -122,7 +132,11 @@ class Engine:
         h, w = rgb.shape[:2]
         record = dict(model=name, title=MODELS[name]['title'], task=MODELS[name]['task'], provenance=provenance)
         masks = None
-        if record['task'] == 'classifier':
+        import phase2_adapter
+        if phase2_adapter.enabled():
+            details, masks = phase2_adapter.predict(model, rgb, name, self.device, threshold)
+            record.update(details)
+        elif record['task'] == 'classifier':
             from classification import decision
             transform, cfg = extra
             scores = model(transform(im).unsqueeze(0).to(self.device)).float()

@@ -1,0 +1,13 @@
+{
+  "changed": [
+    "README.md",
+    "prototype/README.md",
+    "prototype/app.py",
+    "prototype/engine.py",
+    "prototype/learned_diagram.py",
+    "prototype/learned_geometry.py",
+    "prototype/prepare_models.py",
+    "prototype/registry.py"
+  ],
+  "note": "Existing-app integration and documentation explicitly authorized on 2026-09-21; compare backup manifest for pre-change bytes."
+}

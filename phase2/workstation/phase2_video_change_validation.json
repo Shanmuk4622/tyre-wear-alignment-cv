@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": [
+    "all 15 HF runs and complete NB06 verified",
+    "installed selection unchanged against final registry",
+    "synthetic source/export FPS combinations and frame counts",
+    "signed angle and invalid point cases",
+    "fixed footer canvas and source pixels preserved",
+    "existing export sampling/PNG/cancellation/failure tests",
+    "real 12.5 FPS independent CPU export and UI setting snapshot",
+    "calibrated alignment synthetic pose/UI/evidence tests"
+  ],
+  "preview": "prototype\\results\\export-check\\real-overlay-1789973755812783000.mp4",
+  "source_hashes": {
+    "prototype/app.py": "f6e3cc2092766d4fe117f97b351221917f1ab3457ad935ecacf2f93173384adb",
+    "prototype/media_export.py": "eb88f3ba0583ae413badaf14f2a2e155e1027ed8789e83d3f2d2390e69ee1d99",
+    "prototype/phase2_video_labels.py": "846665ea1db1003dd87b91b2984ceb56aaa802caf83ddd9e64ec82a8fbb4db0d",
+    "prototype/learned_geometry.py": "9097d13a7fb3ec2a809e7492e1206e9335b2d230cdc0285688cba4250c8a06ee",
+    "prototype/alignment.py": "c80f7b36c9a143cf70c29a3d01352611b8554ebb9f6f23edbb8e608bb0b70fef",
+    "prototype/shape_geometry.py": "14ad4291df668ef6f9e3995016ef8e84598921171c7d75bb5650ea54d2c0d1a8"
+  }
+}

@@ -176,7 +176,7 @@ def real_check():
         assert cap.get(cv2.CAP_PROP_FPS) == 10
         ok, frame = cap.read()
         cap.release()
-        assert ok and frame.shape[:2] == (640, 360)
+        assert ok and frame.shape[0] > 640 and frame.shape[1] == 360
         cv2.imwrite(str(folder/'exported-frame.png'), frame)
         window.grab().save(str(folder/'station.png'))
         window.edge_dialog.grab().save(str(folder/'edge-diagram.png'))

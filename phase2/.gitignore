@@ -1,0 +1,9 @@
+# Phase 2 local data remains outside source control; small manifests/docs stay visible.
+data/
+review/
+annotation_work/
+checkpoints/
+cache/
+results/
+*.zip
+__pycache__/

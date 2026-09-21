@@ -1,0 +1,21 @@
+{
+  "settings_version": "0.0.6",
+  "datasets_dir": "D:\\Documents\\norse\\web Applicarion\\datasets",
+  "weights_dir": "D:\\Documents\\norse\\web Applicarion\\Tyre\\weights",
+  "runs_dir": "D:\\Documents\\norse\\web Applicarion\\Tyre\\runs",
+  "uuid": "b5b59dc790954ad22e0b8e647dd9dc5947331afde812dfbd949646abeac97e8b",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "hub": true,
+  "mlflow": true,
+  "neptune": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

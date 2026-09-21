@@ -81,6 +81,11 @@ def download(repo, filename, revision, destination, repo_type='dataset'):
 
 
 def prepare(name):
+    from phase2_adapter import enabled, load
+    if enabled():
+        load(name, 'cpu')
+        print(f'{name}: verified Phase 2 offline model', flush=True)
+        return
     import torch
     spec = MODELS[name]
     target = checkpoint(name)

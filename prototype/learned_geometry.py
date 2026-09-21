@@ -61,6 +61,9 @@ class LearnedEngine:
             return None
         if mode not in ('hrnet', 'paired'):
             raise ValueError('Unknown learned geometry mode')
+        import phase2_adapter
+        if phase2_adapter.enabled():
+            return phase2_adapter.learned_inspect(self, rgb, mode)
         h, w = rgb.shape[:2]
         output = dict(mode=mode, models={}, frame_size=[w, h],
                       input_hw=[512, 384], precision='FP32',
@@ -174,4 +177,13 @@ def draw_learned(rgb, record):
                     cv2.putText(out, text, position, cv2.FONT_HERSHEY_SIMPLEX, font_scale, (70, 40, 20), thickness, cv2.LINE_AA)
             if name == 'hrnet':
                 cv2.polylines(out, [np.array(centers, np.int32)], False, (160, 70, 205), thickness, cv2.LINE_AA)
+                from phase2_video_labels import tread_angle
+                angle = tread_angle(record)
+                if angle is not None:
+                    text = f'Tread tilt {angle:+.1f} deg (image-relative)'
+                    font = cv2.FONT_HERSHEY_SIMPLEX
+                    size = min(.7, (w-16)/cv2.getTextSize(text, font, 1., 1)[0][0])
+                    origin = (8, min(h-12, centers[-1][1]+36))
+                    cv2.putText(out, text, origin, font, size, (255, 255, 255), thickness+2, cv2.LINE_AA)
+                    cv2.putText(out, text, origin, font, size, (80, 40, 110), thickness, cv2.LINE_AA)
     return out

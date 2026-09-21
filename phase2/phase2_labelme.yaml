@@ -1,0 +1,17 @@
+auto_save: true
+with_image_data: false
+keep_prev: false
+display_label_popup: true
+sort_labels: false
+validate_label: exact
+labels:
+  - tyre
+  - tread
+  - ignore
+flags:
+  reviewed: false
+  blurred: false
+  occluded: false
+  clipped: false
+  no_target: false
+  unusable: false

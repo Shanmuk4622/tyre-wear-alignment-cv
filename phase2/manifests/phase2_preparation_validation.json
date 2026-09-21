@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "verified_pngs": 152,
+  "bytes": 434995206,
+  "independent_orientation_pixel_checks": [
+    "phase2_video1_t0000000_f000000",
+    "phase2_video1_t0006500_f000196",
+    "phase2_video1_t0013000_f000391",
+    "phase2_video2_t0000000_f000000",
+    "phase2_video2_t0023000_f000683",
+    "phase2_video2_t0046000_f001365",
+    "phase2_video3_t0000000_f000000",
+    "phase2_video3_t0008000_f000240",
+    "phase2_video3_t0015500_f000465"
+  ],
+  "labelme_config_and_paths_checked": 3,
+  "phase2_python_syntax": "PASS",
+  "local_markdown_links": "PASS",
+  "frames_manifest_sha256": "5a54d9438def6e090342aa853905b9bc611a8f8d851f9eee37d38861041eae6e",
+  "limits": [
+    "Not an interactive LabelMe save/reopen test",
+    "No annotation accuracy or model training tested",
+    "Exact original tyre matching and splits still pending"
+  ]
+}

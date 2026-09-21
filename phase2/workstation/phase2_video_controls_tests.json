@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "rates": [
+    {
+      "source_fps": 5,
+      "export_fps": 1,
+      "frames": 1
+    },
+    {
+      "source_fps": 5,
+      "export_fps": 7.5,
+      "frames": 8
+    },
+    {
+      "source_fps": 5,
+      "export_fps": 24,
+      "frames": 24
+    },
+    {
+      "source_fps": 5,
+      "export_fps": 60,
+      "frames": 60
+    },
+    {
+      "source_fps": 30,
+      "export_fps": 1,
+      "frames": 1
+    },
+    {
+      "source_fps": 30,
+      "export_fps": 7.5,
+      "frames": 8
+    },
+    {
+      "source_fps": 30,
+      "export_fps": 24,
+      "frames": 24
+    },
+    {
+      "source_fps": 30,
+      "export_fps": 60,
+      "frames": 60
+    }
+  ],
+  "angles": "signed/vertical/invalid passed",
+  "panel": "fixed canvas; source pixels preserved"
+}

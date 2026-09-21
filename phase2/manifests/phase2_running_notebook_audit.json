@@ -1,0 +1,177 @@
+{
+  "phase2_NB02_Classification.ipynb": {
+    "latest": {
+      "mobilenetv4-combined-seed1": {
+        "cursor": 10,
+        "epoch": 27,
+        "job": {
+          "condition": "combined",
+          "id": "mobilenetv4-combined-seed1",
+          "model": "mobilenetv4",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 1333
+      },
+      "mobilenetv4-combined-seed2": {
+        "cursor": 11,
+        "epoch": 27,
+        "job": {
+          "condition": "combined",
+          "id": "mobilenetv4-combined-seed2",
+          "model": "mobilenetv4",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 1334
+      }
+    },
+    "status_records": {
+      "mobilenetv4-combined-seed1": 41,
+      "mobilenetv4-combined-seed2": 41
+    },
+    "regressions": [],
+    "special": [
+      "RUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+      "Training overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 6",
+      "GPU 0: mobilenetv4-combined-seed1 started (resume check first)",
+      "GPU 1: mobilenetv4-combined-seed2 started (resume check first)"
+    ],
+    "head": "\nHash checked 500/2882 files\nHash checked 1000/2882 files\nHash checked 1500/2882 files\nHash checked 2000/2882 files\nHash checked 2500/2882 files\n{\n  \"integrity\": \"PASS\",\n  \"checksummed_files\": 2882,\n  \"image_and_mask_sets\": 570,\n  \"domains\": {\n    \"original_photo\": 418,\n    \"new_video_frame\": 152\n  },\n  \"conflict_pixels_explicitly_ignored\": 172439,\n  \"source_package_ready\": true,\n  \"training_allowed\": false,\n  \"next_steps\": [\n    \"Resolve exact original/video tyre identities and freeze splits\",\n    \"Resolve label conflicts for YOLO or other trainers without ignore support\",\n    \"Review derived geometry proposals\",\n    \"Run the forthcoming GPU/resume preflight\"\n  ]\n}\nRUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3\nTraining overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 6\nGPU 0: mobilenetv4-combined-seed1 started (resume check first)\nGPU 1: mobilenetv4-combined-seed2 started (resume check first)\nmobilenetv4-combined-seed1 model/resume preflight running\nmobilenetv4-combined-seed2 model/resume preflight running\nmobilenetv4-combined-seed1 {'cursor': 2, 'epoch': 0, 'job': {'condition': 'combined', 'id': 'mobilenetv4-combined-seed1', 'model': 'mobilenetv4', 'seed': 1}, 'protocol': '661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3', 'status': 'resumable', 'updates': 2}\nmobilenetv4-combined-seed2 {'cursor': 1, 'epoch': 0, 'job': {'condition': 'combined', 'id': 'mobilenetv4-combined-seed2', 'model': 'mobilenetv4', 'seed': 2}, 'protocol': '661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3', 'status': 'resumable', 'updates': 1}\nmobilenetv4-combined-seed1 {'cursor': ",
+    "errors": []
+  },
+  "phase2_NB03_SegFormer.ipynb": {
+    "latest": {
+      "segformer-combined-seed1": {
+        "cursor": 141,
+        "epoch": 16,
+        "job": {
+          "condition": "combined",
+          "id": "segformer-combined-seed1",
+          "model": "segformer",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 3229
+      },
+      "segformer-combined-seed2": {
+        "cursor": 156,
+        "epoch": 16,
+        "job": {
+          "condition": "combined",
+          "id": "segformer-combined-seed2",
+          "model": "segformer",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 3244
+      }
+    },
+    "status_records": {
+      "segformer-combined-seed1": 46,
+      "segformer-combined-seed2": 46
+    },
+    "regressions": [],
+    "special": [
+      "RUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+      "Training overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3",
+      "GPU 0: segformer-combined-seed1 started (resume check first)",
+      "GPU 1: segformer-combined-seed2 started (resume check first)",
+      "HF snapshot committed and manifest verified: 64b3dba13a364155ebd9dd619dcf1f96d03979dd"
+    ],
+    "head": "\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 52.0/52.0 kB 1.7 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.4/2.4 MB 33.4 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.2/1.2 MB 60.1 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 10.4/10.4 MB 109.6 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 3.1/3.1 MB 79.0 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 566.1/566.1 kB 24.2 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 471.6/471.6 kB 28.6 MB/s eta 0:00:00\n\nHash checked 500/2882 files\nHash checked 1000/2882 files\nHash checked 1500/2882 files\nHash checked 2000/2882 files\nHash checked 2500/2882 files\n{\n  \"integrity\": \"PASS\",\n  \"checksummed_files\": 2882,\n  \"image_and_mask_sets\": 570,\n  \"domains\": {\n    \"original_photo\": 418,\n    \"new_video_frame\": 152\n  },\n  \"conflict_pixels_explicitly_ignored\": 172439,\n  \"source_package_ready\": true,\n  \"training_allowed\": false,\n  \"next_steps\": [\n    \"Resolve exact original/video tyre identities and freeze splits\",\n    \"Resolve label conflicts for YOLO or other trainers without ignore support\",\n    \"Review derived geometry proposals\",\n    \"Run the forthcoming GPU/resume preflight\"\n  ]\n}\nRUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3\nTraining overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3\nGPU 0: segformer-combined-seed1 started (resume check first)\nGPU 1: segformer-combined-seed2 started (resume check first)\nsegformer-combined-seed1 {'cursor': 1, 'epoch': 0, 'job': {'condition': 'combined', 'id': 'segformer-combined-seed1', 'model': 'segformer', 'seed': 1}, 'p",
+    "errors": []
+  },
+  "phase2_NB04_YOLO26M_Seg.ipynb": {
+    "latest": {
+      "yolo26m-combined-seed1": {
+        "cursor": 7,
+        "epoch": 3,
+        "job": {
+          "condition": "combined",
+          "id": "yolo26m-combined-seed1",
+          "model": "yolo26m",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 586
+      },
+      "yolo26m-combined-seed2": {
+        "cursor": 6,
+        "epoch": 3,
+        "job": {
+          "condition": "combined",
+          "id": "yolo26m-combined-seed2",
+          "model": "yolo26m",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 585
+      }
+    },
+    "status_records": {
+      "yolo26m-combined-seed1": 44,
+      "yolo26m-combined-seed2": 44
+    },
+    "regressions": [],
+    "special": [
+      "RUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+      "Training overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3",
+      "GPU 0: yolo26m-combined-seed1 started (resume check first)",
+      "GPU 1: yolo26m-combined-seed2 started (resume check first)",
+      "HF snapshot committed and manifest verified: ed352db4d90d21ddef5ffedec1c943a5e8497993"
+    ],
+    "head": "\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 52.0/52.0 kB 1.2 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.4/2.4 MB 19.0 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.2/1.2 MB 24.0 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 10.4/10.4 MB 66.9 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 3.1/3.1 MB 67.3 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 566.1/566.1 kB 34.6 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 471.6/471.6 kB 30.5 MB/s eta 0:00:00\n\nHash checked 500/2882 files\nHash checked 1000/2882 files\nHash checked 1500/2882 files\nHash checked 2000/2882 files\nHash checked 2500/2882 files\n{\n  \"integrity\": \"PASS\",\n  \"checksummed_files\": 2882,\n  \"image_and_mask_sets\": 570,\n  \"domains\": {\n    \"original_photo\": 418,\n    \"new_video_frame\": 152\n  },\n  \"conflict_pixels_explicitly_ignored\": 172439,\n  \"source_package_ready\": true,\n  \"training_allowed\": false,\n  \"next_steps\": [\n    \"Resolve exact original/video tyre identities and freeze splits\",\n    \"Resolve label conflicts for YOLO or other trainers without ignore support\",\n    \"Review derived geometry proposals\",\n    \"Run the forthcoming GPU/resume preflight\"\n  ]\n}\nRUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3\nTraining overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3\nGPU 0: yolo26m-combined-seed1 started (resume check first)\nGPU 1: yolo26m-combined-seed2 started (resume check first)\nyolo26m-combined-seed1 {'cursor': 3, 'epoch': 0, 'job': {'condition': 'combined', 'id': 'yolo26m-combined-seed1', 'model': 'yolo26m', 'seed': 1}, 'protocol': '",
+    "errors": []
+  },
+  "phase2_NB05_HRNet.ipynb": {
+    "latest": {
+      "hrnet-combined-seed1": {
+        "cursor": 96,
+        "epoch": 9,
+        "job": {
+          "condition": "combined",
+          "id": "hrnet-combined-seed1",
+          "model": "hrnet",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 1095
+      },
+      "hrnet-combined-seed2": {
+        "cursor": 89,
+        "epoch": 9,
+        "job": {
+          "condition": "combined",
+          "id": "hrnet-combined-seed2",
+          "model": "hrnet",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 1088
+      }
+    },
+    "status_records": {
+      "hrnet-combined-seed1": 41,
+      "hrnet-combined-seed2": 41
+    },
+    "regressions": [],
+    "special": [
+      "RUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+      "Training overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3",
+      "GPU 0: hrnet-combined-seed1 started (resume check first)",
+      "GPU 1: hrnet-combined-seed2 started (resume check first)",
+      "HF snapshot committed and manifest verified: 9278e2a65ab45f1831810505d66523f7a6cd1930"
+    ],
+    "head": "\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 52.0/52.0 kB 3.6 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.4/2.4 MB 75.3 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.2/1.2 MB 46.9 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 10.4/10.4 MB 103.7 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 3.1/3.1 MB 78.6 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 566.1/566.1 kB 20.8 MB/s eta 0:00:00\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 471.6/471.6 kB 31.1 MB/s eta 0:00:00\n\nHash checked 500/2882 files\nHash checked 1000/2882 files\nHash checked 1500/2882 files\nHash checked 2000/2882 files\nHash checked 2500/2882 files\n{\n  \"integrity\": \"PASS\",\n  \"checksummed_files\": 2882,\n  \"image_and_mask_sets\": 570,\n  \"domains\": {\n    \"original_photo\": 418,\n    \"new_video_frame\": 152\n  },\n  \"conflict_pixels_explicitly_ignored\": 172439,\n  \"source_package_ready\": true,\n  \"training_allowed\": false,\n  \"next_steps\": [\n    \"Resolve exact original/video tyre identities and freeze splits\",\n    \"Resolve label conflicts for YOLO or other trainers without ignore support\",\n    \"Review derived geometry proposals\",\n    \"Run the forthcoming GPU/resume preflight\"\n  ]\n}\nRUN_PREFIX = phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3\nTraining overlay: {'train': 386, 'validation': 81, 'test': 103} GPU processes: 2 assigned jobs: 3\nGPU 0: hrnet-combined-seed1 started (resume check first)\nGPU 1: hrnet-combined-seed2 started (resume check first)\nhrnet-combined-seed1 {'cursor': 14, 'epoch': 0, 'job': {'condition': 'combined', 'id': 'hrnet-combined-seed1', 'model': 'hrnet', 'seed': 1}, 'protocol': '661e9764",
+    "errors": []
+  }
+}

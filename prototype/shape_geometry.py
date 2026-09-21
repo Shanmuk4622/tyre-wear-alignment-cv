@@ -58,7 +58,7 @@ def draw_geometry(rgb, geometry):
             d = np.array([np.sin(a), -np.cos(a)])*length
             cv2.line(out, tuple(np.round(c-d).astype(int)), tuple(np.round(c+d).astype(int)), color, width, cv2.LINE_AA)
         cv2.circle(out, center, thick+3, (15, 125, 135), -1)
-        message = (f"Stable shape {g['smooth_angle']:+.1f} deg | {g['count']} frames" if g['stable'] else f"Acquiring shape | {g['count']}/3 frames")
+        message = (f"Stable shape {g['smooth_angle']:+.1f} deg | {g['count']} frames" if g['stable'] else f"Raw shape {g['angle']:+.1f} deg | acquiring {g['count']}/3 frames")
         legend = 'Amber: smoothed | Gray: raw | Blue: image vertical'
     else:
         message = 'Shape withheld: '+(g['reason'] if g else 'No tyre mask')

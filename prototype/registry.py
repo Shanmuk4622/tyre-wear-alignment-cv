@@ -18,3 +18,12 @@ MODELS = {
 
 def checkpoint(name):
     return ROOT / 'checkpoints' / name / 'inference.pt'
+
+# Preserve legacy identifiers for evidence/recipes; the title identifies Medium.
+from phase2_adapter import enabled as phase2_enabled, spec as phase2_spec
+if phase2_enabled():
+    for name, item in MODELS.items():
+        selected = phase2_spec(name)
+        item.update(revision=selected['revision'], path=selected['weights'], phase2=True)
+        item['title'] = {'mobilenetv4': 'MobileNet V4 · Phase 2', 'resnet50': 'ResNet 50 · Phase 2',
+                         'yolo26n_seg': 'YOLO26 Medium · Phase 2', 'segformer_b0': 'SegFormer B0 · Phase 2'}[name]

@@ -1,0 +1,3621 @@
+{
+  "device": "NVIDIA GeForce GTX 1650",
+  "models": {
+    "mobilenetv4": {
+      "seed": 1,
+      "inference_ms": 41.91,
+      "load_ms": 3108.33,
+      "repeatable": true,
+      "training_adapter_parity": true
+    },
+    "resnet50": {
+      "seed": 2,
+      "inference_ms": 44.19,
+      "load_ms": 929.73,
+      "repeatable": true,
+      "training_adapter_parity": true
+    },
+    "segformer_b0": {
+      "seed": 2,
+      "inference_ms": 61.6,
+      "load_ms": 29284.82,
+      "repeatable": true,
+      "training_adapter_parity": true
+    },
+    "yolo26n_seg": {
+      "seed": 1,
+      "inference_ms": 150.95,
+      "load_ms": 1942.88,
+      "repeatable": true,
+      "training_adapter_parity": true
+    },
+    "hrnet": {
+      "seed": 3,
+      "inference_ms": 137.95,
+      "export_prediction_matches": true
+    }
+  },
+  "videos": [
+    {
+      "video": "video1.mp4",
+      "frames": [
+        {
+          "fraction": 0.1,
+          "total_ms": 2518.72,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.025798078626394272,
+                0.9499713778495789,
+                0.024230558425188065
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 113.37,
+              "load_ms": 738.26
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 1,
+                "threshold": 0.25,
+                "max_confidence": 0.9630849957466125,
+                "class_max": {
+                  "tyre": 0.21057720482349396,
+                  "tread": 0.9630849957466125
+                }
+              },
+              "coverage": {
+                "tyre": 0.0,
+                "tread": 0.5021784577546297
+              },
+              "tyre_found": false,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 182.32,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    416.91661673784256,
+                    960
+                  ],
+                  [
+                    1575.0258795022964,
+                    960
+                  ],
+                  [
+                    304.9954243451357,
+                    1921
+                  ],
+                  [
+                    1684.0692251324654,
+                    1921
+                  ],
+                  [
+                    310.06930500268936,
+                    2879
+                  ],
+                  [
+                    1667.1541662812233,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 156.4,
+                "load_ms": 829.81,
+                "widths_px": [
+                  1158.109262764454,
+                  1379.0738007873297,
+                  1357.084861278534
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    400,
+                    960
+                  ],
+                  [
+                    1608,
+                    960
+                  ],
+                  [
+                    327,
+                    1921
+                  ],
+                  [
+                    1681,
+                    1921
+                  ],
+                  [
+                    332,
+                    2879
+                  ],
+                  [
+                    1659,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 107.91,
+                "load_ms": 202.33,
+                "widths_px": [
+                  1208,
+                  1354,
+                  1327
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              16.91661673784256,
+              32.97412049770355,
+              22.00457565486431,
+              3.0692251324653625,
+              21.93069499731064,
+              8.154166281223297
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.5,
+          "total_ms": 674.44,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.007353792432695627,
+                0.9756419062614441,
+                0.017004309222102165
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 123.01,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9835520386695862,
+                "class_max": {
+                  "tyre": 0.8694498538970947,
+                  "tread": 0.9835520386695862
+                }
+              },
+              "coverage": {
+                "tyre": 0.5474045138888889,
+                "tread": 0.5195914110725308
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 162.55,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    341.9458662122488,
+                    960
+                  ],
+                  [
+                    1703.6195246577263,
+                    960
+                  ],
+                  [
+                    301.40558774769306,
+                    1921
+                  ],
+                  [
+                    1717.6005329489708,
+                    1921
+                  ],
+                  [
+                    380.26630379259586,
+                    2879
+                  ],
+                  [
+                    1620.0841454267502,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 132.75,
+                "load_ms": 0.05,
+                "widths_px": [
+                  1361.6736584454775,
+                  1416.1949452012777,
+                  1239.8178416341543
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    332,
+                    960
+                  ],
+                  [
+                    1715,
+                    960
+                  ],
+                  [
+                    299,
+                    1921
+                  ],
+                  [
+                    1715,
+                    1921
+                  ],
+                  [
+                    366,
+                    2879
+                  ],
+                  [
+                    1642,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 92.39,
+                "load_ms": 0.04,
+                "widths_px": [
+                  1383,
+                  1416,
+                  1276
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              9.945866212248802,
+              11.380475342273712,
+              2.405587747693062,
+              2.6005329489707947,
+              14.266303792595863,
+              21.915854573249817
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.9,
+          "total_ms": 769.29,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.0057687885127961636,
+                0.9753106832504272,
+                0.01892049051821232
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 164.97,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9769954681396484,
+                "class_max": {
+                  "tyre": 0.9405286312103271,
+                  "tread": 0.9769954681396484
+                }
+              },
+              "coverage": {
+                "tyre": 0.6299263358410494,
+                "tread": 0.5982212094907408
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 185.24,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    130.86116436123848,
+                    960
+                  ],
+                  [
+                    1613.393094599247,
+                    960
+                  ],
+                  [
+                    84.11412231251597,
+                    1921
+                  ],
+                  [
+                    1634.80226957798,
+                    1921
+                  ],
+                  [
+                    210.36983265727758,
+                    2879
+                  ],
+                  [
+                    1586.9744143486023,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 173.17,
+                "load_ms": 0.05,
+                "widths_px": [
+                  1482.5319302380085,
+                  1550.688147265464,
+                  1376.6045816913247
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    74,
+                    960
+                  ],
+                  [
+                    1625,
+                    960
+                  ],
+                  [
+                    85,
+                    1921
+                  ],
+                  [
+                    1636,
+                    1921
+                  ],
+                  [
+                    209,
+                    2879
+                  ],
+                  [
+                    1591,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 84.56,
+                "load_ms": 0.03,
+                "widths_px": [
+                  1551,
+                  1551,
+                  1382
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              56.86116436123848,
+              11.606905400753021,
+              0.885877687484026,
+              1.1977304220199585,
+              1.369832657277584,
+              4.025585651397705
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        }
+      ]
+    },
+    {
+      "video": "Video2.mp4",
+      "frames": [
+        {
+          "fraction": 0.1,
+          "total_ms": 280.86,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.01953566074371338,
+                0.9549220204353333,
+                0.025542281568050385
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 37.71,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9855951070785522,
+                "class_max": {
+                  "tyre": 0.824479877948761,
+                  "tread": 0.9855951070785522
+                }
+              },
+              "coverage": {
+                "tyre": 0.5070746527777777,
+                "tread": 0.47508825231481483
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 72.93,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    341.50016444921494,
+                    480
+                  ],
+                  [
+                    887.9281337857246,
+                    480
+                  ],
+                  [
+                    256.69407193362713,
+                    960
+                  ],
+                  [
+                    931.6004775762558,
+                    960
+                  ],
+                  [
+                    258.4399077296257,
+                    1439
+                  ],
+                  [
+                    909.7793871760368,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 80.07,
+                "load_ms": 0.25,
+                "widths_px": [
+                  546.4279693365097,
+                  674.9064056426287,
+                  651.3394794464111
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    341,
+                    480
+                  ],
+                  [
+                    891,
+                    480
+                  ],
+                  [
+                    279,
+                    960
+                  ],
+                  [
+                    933,
+                    960
+                  ],
+                  [
+                    262,
+                    1439
+                  ],
+                  [
+                    908,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 48.02,
+                "load_ms": 0.12,
+                "widths_px": [
+                  550,
+                  654,
+                  646
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              1080,
+              1920
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              0.5001644492149353,
+              3.07186621427536,
+              22.30592806637287,
+              1.3995224237442017,
+              3.560092270374298,
+              1.7793871760368347
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.5,
+          "total_ms": 281.95,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.0142478933557868,
+                0.9610517024993896,
+                0.024700380861759186
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 40.45,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9886330962181091,
+                "class_max": {
+                  "tyre": 0.9823136925697327,
+                  "tread": 0.9886330962181091
+                }
+              },
+              "coverage": {
+                "tyre": 0.5079099151234568,
+                "tread": 0.473837287808642
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 73.07,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    280.0727849304676,
+                    480
+                  ],
+                  [
+                    829.6347789764404,
+                    480
+                  ],
+                  [
+                    213.4150528907776,
+                    960
+                  ],
+                  [
+                    875.9444228410721,
+                    960
+                  ],
+                  [
+                    217.09646512567997,
+                    1439
+                  ],
+                  [
+                    864.9187244772911,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 82.76,
+                "load_ms": 0.04,
+                "widths_px": [
+                  549.5619940459728,
+                  662.5293699502945,
+                  647.8222593516111
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    285,
+                    480
+                  ],
+                  [
+                    849,
+                    480
+                  ],
+                  [
+                    211,
+                    960
+                  ],
+                  [
+                    871,
+                    960
+                  ],
+                  [
+                    203,
+                    1439
+                  ],
+                  [
+                    860,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 43.7,
+                "load_ms": 0.03,
+                "widths_px": [
+                  564,
+                  660,
+                  657
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              1080,
+              1920
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              4.927215069532394,
+              19.36522102355957,
+              2.415052890777588,
+              4.9444228410720825,
+              14.09646512567997,
+              4.918724477291107
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.9,
+          "total_ms": 274.96,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.005123594310134649,
+                0.9812747836112976,
+                0.013601568527519703
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 40.12,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.987495481967926,
+                "class_max": {
+                  "tyre": 0.987495481967926,
+                  "tread": 0.893316388130188
+                }
+              },
+              "coverage": {
+                "tyre": 0.4719169560185185,
+                "tread": 0.4458550347222222
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 71.48,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    330.30027320981026,
+                    480
+                  ],
+                  [
+                    821.6839691400528,
+                    480
+                  ],
+                  [
+                    240.7013040781021,
+                    960
+                  ],
+                  [
+                    877.9967924356461,
+                    960
+                  ],
+                  [
+                    242.62797310948372,
+                    1439
+                  ],
+                  [
+                    877.1335135102272,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 77.94,
+                "load_ms": 0.06,
+                "widths_px": [
+                  491.38369593024254,
+                  637.295488357544,
+                  634.5055404007435
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    324,
+                    480
+                  ],
+                  [
+                    832,
+                    480
+                  ],
+                  [
+                    237,
+                    960
+                  ],
+                  [
+                    866,
+                    960
+                  ],
+                  [
+                    234,
+                    1439
+                  ],
+                  [
+                    869,
+                    1439
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 46.16,
+                "load_ms": 0.04,
+                "widths_px": [
+                  508,
+                  629,
+                  635
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              1080,
+              1920
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              6.300273209810257,
+              10.316030859947205,
+              3.701304078102112,
+              11.996792435646057,
+              8.627973109483719,
+              8.133513510227203
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        }
+      ]
+    },
+    {
+      "video": "Video3.mp4",
+      "frames": [
+        {
+          "fraction": 0.1,
+          "total_ms": 681.5,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.004785275086760521,
+                0.9813014268875122,
+                0.01391325518488884
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 106.02,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9806079864501953,
+                "class_max": {
+                  "tyre": 0.44535428285598755,
+                  "tread": 0.9806079864501953
+                }
+              },
+              "coverage": {
+                "tyre": 0.48474681712962964,
+                "tread": 0.4442250192901235
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 191.84,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    412.5877018123865,
+                    960
+                  ],
+                  [
+                    1652.1623260974884,
+                    960
+                  ],
+                  [
+                    373.14273788034916,
+                    1921
+                  ],
+                  [
+                    1661.0866011977196,
+                    1921
+                  ],
+                  [
+                    436.5407822728157,
+                    2879
+                  ],
+                  [
+                    1572.7162154912949,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 135.71,
+                "load_ms": 0.41,
+                "widths_px": [
+                  1239.574624285102,
+                  1287.9438633173704,
+                  1136.1754332184792
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    422,
+                    960
+                  ],
+                  [
+                    1659,
+                    960
+                  ],
+                  [
+                    360,
+                    1921
+                  ],
+                  [
+                    1653,
+                    1921
+                  ],
+                  [
+                    422,
+                    2879
+                  ],
+                  [
+                    1586,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 94.49,
+                "load_ms": 0.04,
+                "widths_px": [
+                  1237,
+                  1293,
+                  1164
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              9.412298187613487,
+              6.837673902511597,
+              13.14273788034916,
+              8.086601197719574,
+              14.540782272815704,
+              13.28378450870514
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.5,
+          "total_ms": 572.23,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.007337617687880993,
+                0.9705101251602173,
+                0.02215225249528885
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 87.18,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9838802218437195,
+                "class_max": {
+                  "tyre": 0.9834144711494446,
+                  "tread": 0.9838802218437195
+                }
+              },
+              "coverage": {
+                "tyre": 0.5270469232253087,
+                "tread": 0.4927895929783951
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 140.92,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    402.41709865629673,
+                    960
+                  ],
+                  [
+                    1748.3060154914856,
+                    960
+                  ],
+                  [
+                    387.9897093176842,
+                    1921
+                  ],
+                  [
+                    1761.2532857060432,
+                    1921
+                  ],
+                  [
+                    509.09509122371674,
+                    2879
+                  ],
+                  [
+                    1686.4997256994247,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 123.35,
+                "load_ms": 0.09,
+                "widths_px": [
+                  1345.8889168351889,
+                  1373.263576388359,
+                  1177.404634475708
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    400,
+                    960
+                  ],
+                  [
+                    1743,
+                    960
+                  ],
+                  [
+                    377,
+                    1921
+                  ],
+                  [
+                    1743,
+                    1921
+                  ],
+                  [
+                    484,
+                    2879
+                  ],
+                  [
+                    1693,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 84.54,
+                "load_ms": 0.03,
+                "widths_px": [
+                  1343,
+                  1366,
+                  1209
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              2.41709865629673,
+              5.306015491485596,
+              10.989709317684174,
+              18.253285706043243,
+              25.095091223716736,
+              6.500274300575256
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        },
+        {
+          "fraction": 0.9,
+          "total_ms": 712.03,
+          "peak_vram_mb": 326.9,
+          "models": [
+            {
+              "model": "mobilenetv4",
+              "title": "MobileNet V4",
+              "task": "classifier",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "low",
+                    "mid",
+                    "high"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 8,
+                      "file": "model.safetensors",
+                      "hw": [
+                        384,
+                        384
+                      ],
+                      "model": "mobilenetv4_conv_medium.e500_r256_in1k",
+                      "repo": "timm/mobilenetv4_conv_medium.e500_r256_in1k",
+                      "revision": "ad66898c045c1b5223ea3f2c0830b74cf2e75bac"
+                    },
+                    "parameters": 8438355,
+                    "tensor_signature": "0517a1e5ad5e72b89ad9f534343ed15756c88d07fc592aee3a319765a3ac3608"
+                  },
+                  "input_hw": [
+                    384,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "mobilenetv4-combined-seed1",
+                    "model": "mobilenetv4",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "mobilenetv4-combined-seed1",
+                  "model": "mobilenetv4",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+                "validation_score": 1.0,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\mobilenetv4\\weights.pt",
+                "test_score": 0.5
+              },
+              "prediction": 1,
+              "label": "Mid mileage proxy",
+              "scores": [
+                0.014262886717915535,
+                0.9605640769004822,
+                0.025173049420118332
+              ],
+              "head": "softmax",
+              "input_resolution": 384,
+              "inference_ms": 121.28,
+              "load_ms": 0.0
+            },
+            {
+              "model": "yolo26n_seg",
+              "title": "YOLO26 Nano",
+              "task": "regions",
+              "provenance": {
+                "contract": {
+                  "classes": [
+                    "tyre",
+                    "tread"
+                  ],
+                  "identity": {
+                    "model": {
+                      "batch": 2,
+                      "hw": [
+                        512,
+                        384
+                      ],
+                      "model": "yolo26m-seg.yaml",
+                      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+                      "url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+                    },
+                    "parameters": 26971750,
+                    "tensor_signature": "fcdbf2b677f5260d8b8ec29d6f62bb728a3c6c0f127b96706b9ea439cfef1b8a"
+                  },
+                  "input_hw": [
+                    512,
+                    384
+                  ],
+                  "job": {
+                    "condition": "combined",
+                    "id": "yolo26m-combined-seed1",
+                    "model": "yolo26m",
+                    "seed": 1
+                  },
+                  "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                  "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                  "runtime_sources": {
+                    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                    "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                    "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                    "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                    "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                    "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                  },
+                  "selected_by": "validation only",
+                  "weights_sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+                },
+                "job": {
+                  "condition": "combined",
+                  "id": "yolo26m-combined-seed1",
+                  "model": "yolo26m",
+                  "seed": 1
+                },
+                "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                "sha256": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+                "validation_score": 0.9921617682229407,
+                "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt",
+                "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\yolo26m\\weights.pt",
+                "test_score": 0.9878987927597535
+              },
+              "detector": {
+                "candidates": 300,
+                "accepted": 2,
+                "threshold": 0.25,
+                "max_confidence": 0.9823358654975891,
+                "class_max": {
+                  "tyre": 0.9823358654975891,
+                  "tread": 0.9566173553466797
+                }
+              },
+              "coverage": {
+                "tyre": 0.5750276089891976,
+                "tread": 0.5370005063657407
+              },
+              "tyre_found": true,
+              "tread_found": true,
+              "target_found": true,
+              "inference_ms": 172.08,
+              "load_ms": 0.0
+            }
+          ],
+          "learned_geometry": {
+            "mode": "paired",
+            "models": {
+              "hrnet": {
+                "points": [
+                  [
+                    364.7575623989105,
+                    960
+                  ],
+                  [
+                    1812.140918135643,
+                    960
+                  ],
+                  [
+                    352.67744567990303,
+                    1921
+                  ],
+                  [
+                    1779.8743405342102,
+                    1921
+                  ],
+                  [
+                    479.09947519004345,
+                    2879
+                  ],
+                  [
+                    1697.1940826177597,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "left_upper",
+                      "right_upper",
+                      "left_middle",
+                      "right_middle",
+                      "left_lower",
+                      "right_lower"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "model.safetensors",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "hrnet_w18.ms_aug_in1k",
+                        "repo": "timm/hrnet_w18.ms_aug_in1k",
+                        "revision": "7e2c5583769f54514fd87e3ba9de408e33eaba0f"
+                      },
+                      "parameters": 9603962,
+                      "tensor_signature": "a618613ba11ad1c51649279091b7328aa2971d06d6e1bd7ac759d2e6cb8ee560"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "hrnet-combined-seed3",
+                      "model": "hrnet",
+                      "seed": 3
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "hrnet-combined-seed3",
+                    "model": "hrnet",
+                    "seed": 3
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+                  "validation_score": -0.004223972531035542,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\hrnet\\weights.pt",
+                  "test_score": -0.008592266878113151
+                },
+                "inference_ms": 136.92,
+                "load_ms": 0.11,
+                "widths_px": [
+                  1447.3833557367325,
+                  1427.1968948543072,
+                  1218.0946074277163
+                ],
+                "ordered": true
+              },
+              "matched": {
+                "points": [
+                  [
+                    389,
+                    960
+                  ],
+                  [
+                    1811,
+                    960
+                  ],
+                  [
+                    338,
+                    1921
+                  ],
+                  [
+                    1783,
+                    1921
+                  ],
+                  [
+                    462,
+                    2879
+                  ],
+                  [
+                    1693,
+                    2879
+                  ]
+                ],
+                "names": [
+                  "left_upper",
+                  "right_upper",
+                  "left_middle",
+                  "right_middle",
+                  "left_lower",
+                  "right_lower"
+                ],
+                "provenance": {
+                  "contract": {
+                    "classes": [
+                      "tyre",
+                      "tread"
+                    ],
+                    "identity": {
+                      "model": {
+                        "batch": 2,
+                        "file": "pytorch_model.bin",
+                        "hw": [
+                          512,
+                          384
+                        ],
+                        "model": "nvidia/mit-b0",
+                        "repo": "nvidia/mit-b0",
+                        "revision": "80983a413c30d36a39c20203974ae7807835e2b4"
+                      },
+                      "parameters": 3714658,
+                      "tensor_signature": "d23f37df5057f18ab34afc40d42ae54f5b78cc0b317b554a1c88d6297d8f2838"
+                    },
+                    "input_hw": [
+                      512,
+                      384
+                    ],
+                    "job": {
+                      "condition": "combined",
+                      "id": "segformer-combined-seed2",
+                      "model": "segformer",
+                      "seed": 2
+                    },
+                    "preprocessing": "RGB direct resize; YOLO [0,1], others ImageNet normalization",
+                    "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+                    "runtime_sources": {
+                      "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+                      "phase2_hub.py": "267e35aa3b5d32df84c15ed162be8514702b50d3f44dbe3fc0994d37162cbf5f",
+                      "phase2_models.py": "6e6d22f46c55653e35fe8628f0bf2c095ebd8b9b275d7d856d57c906d1ff0f35",
+                      "phase2_report.py": "d814f6ce35b94817b0a742df39812d067fff2b0671ca2d331b06472b33fca418",
+                      "phase2_run.py": "424b7da43af357649516083d4124ef79a0ac5f660fc2131082f0b57fa3d52005",
+                      "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+                      "phase2_worker.py": "56732495ff60a6131c20605a9317d6e5f401e5d4d59730f18260f4c5f6f880ac"
+                    },
+                    "selected_by": "validation only",
+                    "weights_sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+                  },
+                  "job": {
+                    "condition": "combined",
+                    "id": "segformer-combined-seed2",
+                    "model": "segformer",
+                    "seed": 2
+                  },
+                  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+                  "sha256": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+                  "validation_score": 0.9937317381736286,
+                  "weights": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt",
+                  "local_weights": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\workstation\\models\\segformer\\weights.pt",
+                  "test_score": 0.9895663729263021
+                },
+                "inference_ms": 88.97,
+                "load_ms": 0.04,
+                "widths_px": [
+                  1422,
+                  1445,
+                  1231
+                ],
+                "ordered": true
+              }
+            },
+            "frame_size": [
+              2160,
+              3840
+            ],
+            "input_hw": [
+              512,
+              384
+            ],
+            "precision": "FP32",
+            "limitation": "Phase 2 training-cohort adaptation. Unconditional image-space proposals, not visibility confidence or physical alignment.",
+            "differences_px": [
+              24.242437601089478,
+              1.1409181356430054,
+              14.67744567990303,
+              3.125659465789795,
+              17.09947519004345,
+              4.194082617759705
+            ],
+            "paired_coverage": 1.0,
+            "flags": []
+          }
+        }
+      ]
+    }
+  ],
+  "evidence": "D:\\Documents\\norse\\web Applicarion\\Tyre\\prototype\\results\\20260921-090128-2e6836",
+  "status": "passed"
+}

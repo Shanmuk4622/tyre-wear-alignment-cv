@@ -1,0 +1,10 @@
+{
+  "prototype/engine.py": "1ff9557dbab7bdae45828a3967a0b1b990822ca31b914a2638cd47c500d54ee7",
+  "prototype/registry.py": "088cae4ae3f8da1d92aa882b2c727642358ba1558fd294c151deca5024285e32",
+  "prototype/learned_geometry.py": "4c092c63e1cd68286fd034ff21239f9c9a1fa02929bd01618333e81c09f5a5e9",
+  "prototype/app.py": "c124ca606aecd2be6adfc81277d8929af33c9a37d14f335a86a1ae101e562396",
+  "prototype/prepare_models.py": "e1d59711436a241fa1eaf54c3c7e741b10cb37449b56487652564cc17bd668e4",
+  "README.md": "ee282293a268165cfd39531a939bd835d0f803af65893abb06893623193af457",
+  "prototype/README.md": "89de396e81da4dac6019396d7e1f725ca18872e15e66b91fdd993afde057f7ef",
+  "prototype/learned_diagram.py": "1cb8e7f6c99d5bade8c00e954e7be449f681040b54bf3387da0ce1a582f5496b"
+}

@@ -1,0 +1,1378 @@
+{
+  "revision": "9278e2a65ab45f1831810505d66523f7a6cd1930",
+  "prefix": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+  "runs": {
+    "hrnet-combined-seed1": {
+      "status": "resumable",
+      "epoch": 7,
+      "cursor": 9,
+      "updates": 786,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 786,
+      "all_losses_finite": true,
+      "first20_loss": 3.188329589366913,
+      "last20_loss": 1.7740848243236542,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.00636841855943203
+        },
+        {
+          "epoch": 2,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.00608846097253263
+        },
+        {
+          "epoch": 3,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.0058124767616391185
+        },
+        {
+          "epoch": 4,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.0058610636461526155
+        },
+        {
+          "epoch": 5,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.005888406140729785
+        },
+        {
+          "epoch": 6,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.006216149926185608
+        },
+        {
+          "epoch": 7,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.005080607440322638
+        }
+      ],
+      "first_batch": [
+        "new_tire__session_001__b010__43610bda78",
+        "new_tire__session_001__b009__1b39e62f1e"
+      ]
+    },
+    "hrnet-combined-seed2": {
+      "status": "resumable",
+      "epoch": 7,
+      "cursor": 5,
+      "updates": 782,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 782,
+      "all_losses_finite": true,
+      "first20_loss": 2.952325540781021,
+      "last20_loss": 1.6012499362230301,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.010201528761535883
+        },
+        {
+          "epoch": 2,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.004707349645905197
+        },
+        {
+          "epoch": 3,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.0069948663748800755
+        },
+        {
+          "epoch": 4,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.0051823002938181165
+        },
+        {
+          "epoch": 5,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.0074636201560497285
+        },
+        {
+          "epoch": 6,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.006072977092117071
+        },
+        {
+          "epoch": 7,
+          "metric": "negative_mean_width_fraction_error",
+          "score": -0.005575698530301452
+        }
+      ],
+      "first_batch": [
+        "phase2_video2_t0032000_f000950",
+        "new_tire__session_001__b011__8fd46fed9f"
+      ]
+    },
+    "mobilenetv4-combined-seed1": {
+      "status": "resumable",
+      "epoch": 16,
+      "cursor": 30,
+      "updates": 814,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 814,
+      "all_losses_finite": true,
+      "first20_loss": 1.701621276885271,
+      "last20_loss": 0.16925786808133125,
+      "numerical_retries": 2,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 2,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.075
+        },
+        {
+          "epoch": 3,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 4,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 1.0
+        },
+        {
+          "epoch": 5,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 6,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.7
+        },
+        {
+          "epoch": 7,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 8,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 9,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 10,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 11,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 12,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 13,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 14,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 15,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 16,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        }
+      ],
+      "first_batch": [
+        "new_tire__session_001__b013__203b6d0ebf",
+        "new_tire__session_001__b011__e14391453e",
+        "mileage_100000_plus__session_003__b000__b0003e9c58",
+        "phase2_video3_t0010500_f000315",
+        "new_tire__session_001__b013__6fcf972cd2",
+        "mileage_100000_plus__session_002__b000__49298988f7",
+        "new_tire__session_001__b006__7723ec8d49",
+        "new_tire__session_001__b000__d2c4e87a00"
+      ],
+      "classification_diagnostics": [
+        {
+          "epoch": 1,
+          "score": 0.5,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 2,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        },
+        {
+          "epoch": 4,
+          "score": 1.0,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 0,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        },
+        {
+          "epoch": 16,
+          "score": 0.5,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 1,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        }
+      ]
+    },
+    "mobilenetv4-combined-seed2": {
+      "status": "resumable",
+      "epoch": 16,
+      "cursor": 35,
+      "updates": 819,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 819,
+      "all_losses_finite": true,
+      "first20_loss": 2.214818748831749,
+      "last20_loss": 0.1692525066435337,
+      "numerical_retries": 1,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 2,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 3,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 4,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 5,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 6,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 7,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 8,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 9,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 10,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 11,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 12,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 13,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 14,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 15,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        },
+        {
+          "epoch": 16,
+          "metric": "balanced_accuracy_on_observed_low_high_classes",
+          "score": 0.5
+        }
+      ],
+      "first_batch": [
+        "phase2_video2_t0032000_f000950",
+        "new_tire__session_001__b016__e946ed97b0",
+        "phase2_video1_t0012000_f000361",
+        "new_tire__session_001__b007__b4a03e304d",
+        "mileage_090000__session_001__b004__e2a920f1db",
+        "mileage_100000_plus__session_003__b000__662b4f0c00",
+        "mileage_100000_plus__session_004__b019__9926861a74",
+        "mileage_090000__session_001__b001__997bf425c9"
+      ],
+      "classification_diagnostics": [
+        {
+          "epoch": 1,
+          "score": 0.5,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 2,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        },
+        {
+          "epoch": 1,
+          "score": 0.5,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 2,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        },
+        {
+          "epoch": 16,
+          "score": 0.5,
+          "confusion": [
+            {
+              "true_class": 0,
+              "predicted_class": 1,
+              "count": 40
+            },
+            {
+              "true_class": 2,
+              "predicted_class": 2,
+              "count": 41
+            }
+          ]
+        }
+      ]
+    },
+    "resnet50-combined-seed1": {
+      "status": "not_started",
+      "epoch": null,
+      "cursor": null,
+      "updates": 0,
+      "checks": {
+        "state.pt": false,
+        "SMOKE.json": true,
+        "VALIDATION.json": false,
+        "HISTORY.json": false
+      }
+    },
+    "segformer-combined-seed1": {
+      "status": "resumable",
+      "epoch": 10,
+      "cursor": 146,
+      "updates": 2076,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 2076,
+      "all_losses_finite": true,
+      "first20_loss": 0.7397150695323944,
+      "last20_loss": 0.022558975219726562,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9872067413959431
+        },
+        {
+          "epoch": 2,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9916196232391409
+        },
+        {
+          "epoch": 3,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9922393663467699
+        },
+        {
+          "epoch": 4,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9922025024412856
+        },
+        {
+          "epoch": 5,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9929953080290771
+        },
+        {
+          "epoch": 6,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.99331683323997
+        },
+        {
+          "epoch": 7,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9928751928503068
+        },
+        {
+          "epoch": 8,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9928302219126057
+        },
+        {
+          "epoch": 9,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9929503344250098
+        },
+        {
+          "epoch": 10,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9930263658377979
+        }
+      ],
+      "first_batch": [
+        "new_tire__session_001__b013__203b6d0ebf",
+        "new_tire__session_001__b011__e14391453e"
+      ]
+    },
+    "segformer-combined-seed2": {
+      "status": "resumable",
+      "epoch": 10,
+      "cursor": 143,
+      "updates": 2073,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 2073,
+      "all_losses_finite": true,
+      "first20_loss": 0.7765163987874985,
+      "last20_loss": 0.022423452138900755,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.991531996829237
+        },
+        {
+          "epoch": 2,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.991925959132895
+        },
+        {
+          "epoch": 3,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9923560418876595
+        },
+        {
+          "epoch": 4,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9925364116655986
+        },
+        {
+          "epoch": 5,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.992779658432642
+        },
+        {
+          "epoch": 6,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.992942090385457
+        },
+        {
+          "epoch": 7,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9925355618717435
+        },
+        {
+          "epoch": 8,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9932903222215504
+        },
+        {
+          "epoch": 9,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9929092667006627
+        },
+        {
+          "epoch": 10,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.992972749556976
+        }
+      ],
+      "first_batch": [
+        "phase2_video2_t0032000_f000950",
+        "new_tire__session_001__b016__e946ed97b0"
+      ]
+    },
+    "yolo26m-combined-seed1": {
+      "status": "resumable",
+      "epoch": 2,
+      "cursor": 17,
+      "updates": 403,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 403,
+      "all_losses_finite": true,
+      "first20_loss": 4.355857712030411,
+      "last20_loss": 1.0315729230642319,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.983225175777968
+        },
+        {
+          "epoch": 2,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9903056146611618
+        }
+      ],
+      "first_batch": [
+        "new_tire__session_001__b013__203b6d0ebf",
+        "new_tire__session_001__b011__e14391453e"
+      ]
+    },
+    "yolo26m-combined-seed2": {
+      "status": "resumable",
+      "epoch": 2,
+      "cursor": 17,
+      "updates": 403,
+      "checks": {
+        "state.pt": true,
+        "state_lfs_sha_matches": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "HISTORY.json": true
+      },
+      "smoke_status": "passed",
+      "gpu": "Tesla T4",
+      "smoke_differences": {
+        "losses": 0.0,
+        "model": 0.0,
+        "optimizer": 0.0,
+        "rng": 0,
+        "scaler": 0.0,
+        "scheduler": 0
+      },
+      "history_entries": 403,
+      "all_losses_finite": true,
+      "first20_loss": 4.006384372711182,
+      "last20_loss": 0.7999846369028092,
+      "numerical_retries": 0,
+      "validation": [
+        {
+          "epoch": 1,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9869561022703734
+        },
+        {
+          "epoch": 2,
+          "metric": "mean_two_region_dice_at_input_resolution",
+          "score": 0.9177630399120611
+        }
+      ],
+      "first_batch": [
+        "phase2_video2_t0032000_f000950",
+        "new_tire__session_001__b016__e946ed97b0"
+      ]
+    }
+  },
+  "files": {
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/LEASES.json": {
+      "type": "file",
+      "oid": "8c870ffdbc64aecef9b399b5109054914bcff751",
+      "size": 1573,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/LEASES.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/HISTORY.json": {
+      "type": "file",
+      "oid": "65c24a0a3b0d0e5d1ce63f84db71939bab4e345b",
+      "size": 181096,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/IDENTITY.json": {
+      "type": "file",
+      "oid": "2f20e69417fc039bd6151ead1f68e3ca7f2f5c1c",
+      "size": 292,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/MANIFEST.json": {
+      "type": "file",
+      "oid": "cdc9a9672d1443a2d10139dcdad9bc3db5667c71",
+      "size": 718,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/SMOKE.json": {
+      "type": "file",
+      "oid": "3249f33070d79fbd527e0b6ea859a6e8efb2e2c3",
+      "size": 770,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/VALIDATION.json": {
+      "type": "file",
+      "oid": "1e24a82ac74e3908f95d135ea6afa779010f07d0",
+      "size": 81064,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/console.log": {
+      "type": "file",
+      "oid": "28473f8d81650fe8017d969b6821c2eca3a27475",
+      "size": 856,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/state.pt": {
+      "type": "file",
+      "oid": "22942992a993a92ea689a3424eccf92fe6984897",
+      "size": 156077844,
+      "lfs": {
+        "oid": "66ebd57f875608046141a55c1069f8b93e861d195579ef71668e0f832a003320",
+        "size": 156077844,
+        "pointerSize": 134
+      },
+      "xetHash": "15e49ed9748d07c5eff20e981bfb8b1b68917a0496543c818afb8b7cefa4f10a",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/HISTORY.json": {
+      "type": "file",
+      "oid": "30ca1896d1ea41af3f036463161c652f44667c4a",
+      "size": 179989,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/IDENTITY.json": {
+      "type": "file",
+      "oid": "2f20e69417fc039bd6151ead1f68e3ca7f2f5c1c",
+      "size": 292,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/MANIFEST.json": {
+      "type": "file",
+      "oid": "743691b3dc253540712650879bf71c405aa39b6b",
+      "size": 718,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/SMOKE.json": {
+      "type": "file",
+      "oid": "d871d05d49ed07b95fa5ac20d8ed7bf40a9aa78e",
+      "size": 768,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/VALIDATION.json": {
+      "type": "file",
+      "oid": "f00e465a0e871fd09480b45d0e763c9ce964c8ca",
+      "size": 81063,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/console.log": {
+      "type": "file",
+      "oid": "9ec9375e293f69bc5846a689ae66bf997d3cf8b4",
+      "size": 740,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/state.pt": {
+      "type": "file",
+      "oid": "be2a42dc83a9799929743b6cd69fa78a048fefeb",
+      "size": 156077332,
+      "lfs": {
+        "oid": "b44fc3f75aa9cfcbebfb552f92e48095b9c812b8fc0193c0a0dea06e2a25e6f9",
+        "size": 156077332,
+        "pointerSize": 134
+      },
+      "xetHash": "1dc81ff685e7010ef875f256fffebf897ae0eda351d98e60b4714ce97a1a9836",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/HISTORY.json": {
+      "type": "file",
+      "oid": "f3f12bda0c872987c6416c7ec0c496d949627bf8",
+      "size": 409754,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/IDENTITY.json": {
+      "type": "file",
+      "oid": "e41416b77971cb85c9fa5f855beddb1cd5360cf9",
+      "size": 326,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/MANIFEST.json": {
+      "type": "file",
+      "oid": "5d2195116c9ff1a49131e096b5d6ad0495382f8d",
+      "size": 732,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/SMOKE.json": {
+      "type": "file",
+      "oid": "e6a8fbe254afd005b9c01e743e2a29488a5cfeac",
+      "size": 781,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/VALIDATION.json": {
+      "type": "file",
+      "oid": "f0b5c2a8b3838be452d27b8f58641f48fcaaf7e4",
+      "size": 353180,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/console.log": {
+      "type": "file",
+      "oid": "910e65bf7476a0d9c61493ca758f682eb7fa027a",
+      "size": 1937,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/state.pt": {
+      "type": "file",
+      "oid": "9f6afb5f715f4c42703f25b3d4f0261ecba0c527",
+      "size": 136352954,
+      "lfs": {
+        "oid": "d81b49e709bf4f7139832ac70bb9cff1e3a7a360a568a4f7cee74f16108664c4",
+        "size": 136352954,
+        "pointerSize": 134
+      },
+      "xetHash": "6589e504c1aed30c5c20f75c52c96bf786fd90d0fc4fa9ac0743819a1bc298fb",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/HISTORY.json": {
+      "type": "file",
+      "oid": "f3dff6d5d86d695abb5bdc0b4a5d549156b38ee6",
+      "size": 413090,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/IDENTITY.json": {
+      "type": "file",
+      "oid": "e41416b77971cb85c9fa5f855beddb1cd5360cf9",
+      "size": 326,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/MANIFEST.json": {
+      "type": "file",
+      "oid": "db78f996fb9f2998fc668cf380b3107702726219",
+      "size": 732,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/SMOKE.json": {
+      "type": "file",
+      "oid": "8a4c6711014ea4635471ee7025236d7c037c9312",
+      "size": 782,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/VALIDATION.json": {
+      "type": "file",
+      "oid": "a942d46910c48a5e2b4b1993f507f0512a5be707",
+      "size": 354162,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/console.log": {
+      "type": "file",
+      "oid": "d56b3b96c79692cfb920e9e5e4e001acc038b83a",
+      "size": 1820,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/state.pt": {
+      "type": "file",
+      "oid": "71992e05f11ac78a80a8b1847e827d83ae3c951b",
+      "size": 136353466,
+      "lfs": {
+        "oid": "4902572f3c75ac7272f6f7b6c309c5e9b7a1b6d193e122e363cbc2028a0f6eb4",
+        "size": 136353466,
+        "pointerSize": 134
+      },
+      "xetHash": "cbf0e6401a1d1f9a727a46844a87186aaf41d21055f78ef2375d2b6b7ef3a28d",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/MANIFEST.json": {
+      "type": "file",
+      "oid": "53be2cb6a2b08d23767c145abe0fdc8c7aaafcfc",
+      "size": 375,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/SMOKE.json": {
+      "type": "file",
+      "oid": "3ac74e755852a97d39ec0a818b5bc69baa1922e4",
+      "size": 776,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/console.log": {
+      "type": "file",
+      "oid": "035bee99290382adee2b582ebdae79a2f501af37",
+      "size": 117,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/HISTORY.json": {
+      "type": "file",
+      "oid": "40dcd1030a0d5ab2d33f13f25ffb6d2d0b1159a4",
+      "size": 484321,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/IDENTITY.json": {
+      "type": "file",
+      "oid": "915be804b0ea75dd42753a2e66890a99e20f0a92",
+      "size": 271,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MANIFEST.json": {
+      "type": "file",
+      "oid": "a682ec85b2e94f0aa3e69faf3bdb8f01ac9a84d4",
+      "size": 817,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MODEL_CONFIG.json": {
+      "type": "file",
+      "oid": "b3ed4ef43a3ee88c84b38221c8fee098e13469fe",
+      "size": 1925,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MODEL_CONFIG.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/SMOKE.json": {
+      "type": "file",
+      "oid": "f4f9576a5585e5af819055a221c56a4ed661bf78",
+      "size": 777,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/VALIDATION.json": {
+      "type": "file",
+      "oid": "f76685cdf935912da72d80366706574bee07e725",
+      "size": 312074,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/console.log": {
+      "type": "file",
+      "oid": "7eed5a79843012ead5e00f29564b7c720492f7da",
+      "size": 1215,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/state.pt": {
+      "type": "file",
+      "oid": "1ee6a30b62d4db3be8edff5d10691bfe777f0956",
+      "size": 60151438,
+      "lfs": {
+        "oid": "0bf975dcf335402809827bba48c8bfc00d0f7d83d2e85092464f9f199df76690",
+        "size": 60151438,
+        "pointerSize": 133
+      },
+      "xetHash": "13deac3c3abaca9ab6441d007079641be4e6c8c2b4d4a9486ef04be172b4eba9",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/HISTORY.json": {
+      "type": "file",
+      "oid": "4db9fed16d6c6b962e650dc865ba76256fa68059",
+      "size": 484018,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/IDENTITY.json": {
+      "type": "file",
+      "oid": "915be804b0ea75dd42753a2e66890a99e20f0a92",
+      "size": 271,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MANIFEST.json": {
+      "type": "file",
+      "oid": "4db59b73fce2c9752c30c3faeb3a328d54a02d35",
+      "size": 817,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MODEL_CONFIG.json": {
+      "type": "file",
+      "oid": "b3ed4ef43a3ee88c84b38221c8fee098e13469fe",
+      "size": 1925,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MODEL_CONFIG.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/SMOKE.json": {
+      "type": "file",
+      "oid": "7a1e5fb8b8285263bb1a47204b6df8e10b8642ee",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/VALIDATION.json": {
+      "type": "file",
+      "oid": "9258485942ec9ea1d69f30818ad8ca90eee71808",
+      "size": 312099,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/console.log": {
+      "type": "file",
+      "oid": "560eb56ff909187749d5259246c2825eeb879e04",
+      "size": 1098,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/state.pt": {
+      "type": "file",
+      "oid": "7af556be07537907aa04f023cb1c561ebdd15a7b",
+      "size": 60150990,
+      "lfs": {
+        "oid": "56207dce22cc14fbd467d9ce5c581c9f1560cf58ef32796d7e2042701d4552ea",
+        "size": 60150990,
+        "pointerSize": 133
+      },
+      "xetHash": "35f62afec9505446708602da2dfd66cd933f633f739268b5169fbe147e8a3600",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/HISTORY.json": {
+      "type": "file",
+      "oid": "9cdc7799b50d0dd15d1b1180435a1963bd1f5615",
+      "size": 90613,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/IDENTITY.json": {
+      "type": "file",
+      "oid": "bd2d503e1054e72fc09c73b4c985300b14eb7061",
+      "size": 333,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MANIFEST.json": {
+      "type": "file",
+      "oid": "35428e0e3c0c43bed35538d557b1565aba3d4c0f",
+      "size": 810,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MODEL_CONFIG.json": {
+      "type": "file",
+      "oid": "43757bcbb44377523b3f68eb3e147924ca044cb5",
+      "size": 883,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MODEL_CONFIG.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/SMOKE.json": {
+      "type": "file",
+      "oid": "b2b825d49196918e4913138bdd9bb40306ea19d4",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/VALIDATION.json": {
+      "type": "file",
+      "oid": "734c0636b63416f6d7e83d95da54a61b06c01f9b",
+      "size": 62412,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/console.log": {
+      "type": "file",
+      "oid": "47e5c35fc74e355d5650000d337560f146e963bd",
+      "size": 1307,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/state.pt": {
+      "type": "file",
+      "oid": "594c376396204e6653629f8940d9b0ca0eba0f06",
+      "size": 423687637,
+      "lfs": {
+        "oid": "f4b9b2e6c69808e4021405deeebe27e4ff1d7b0bbeb02117d728f89fd1991a33",
+        "size": 423687637,
+        "pointerSize": 134
+      },
+      "xetHash": "de219b947c199a5a5c634dcef87864ef120a043643a05c3adad4e3b61395dedc",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/HISTORY.json": {
+      "type": "file",
+      "oid": "86830d1be6b8634a0d27b93c01231c784edb5212",
+      "size": 91189,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/HISTORY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/IDENTITY.json": {
+      "type": "file",
+      "oid": "bd2d503e1054e72fc09c73b4c985300b14eb7061",
+      "size": 333,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/IDENTITY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MANIFEST.json": {
+      "type": "file",
+      "oid": "46b10dee92165bc0b234d76239a06a935e80c096",
+      "size": 810,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MANIFEST.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MODEL_CONFIG.json": {
+      "type": "file",
+      "oid": "43757bcbb44377523b3f68eb3e147924ca044cb5",
+      "size": 883,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MODEL_CONFIG.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/SMOKE.json": {
+      "type": "file",
+      "oid": "b471ee8a5f07b1603d1f14ec01ff9a849f38afdf",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/SMOKE.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/VALIDATION.json": {
+      "type": "file",
+      "oid": "40a2d0c57d81bb50de7ac47bd841655515ec349a",
+      "size": 62399,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/VALIDATION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/console.log": {
+      "type": "file",
+      "oid": "c567ce35c304bd37583e161897401557a4141087",
+      "size": 1178,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/console.log"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/state.pt": {
+      "type": "file",
+      "oid": "d828e62ec9527f54ad4e686622a7ab864baa0161",
+      "size": 423687701,
+      "lfs": {
+        "oid": "d0544218635480ba48d177e711af011ada1ed8fb65a5fc289495419acd0c4c36",
+        "size": 423687701,
+        "pointerSize": 134
+      },
+      "xetHash": "6a629c44c1d4f7ca10065b2dfdcd88944be245334ea3600468360e34f813df47",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/state.pt"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ASSETS.json": {
+      "type": "file",
+      "oid": "46cd6d3d29c40923ee1b939fa7408f8da654da32",
+      "size": 204,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ASSETS.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/CONTRACT.json": {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/CONTRACT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ENVIRONMENT.json": {
+      "type": "file",
+      "oid": "43e93c33ecf69b96600c01ad97af655c54b07bf2",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ENVIRONMENT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/OVERLAY.json": {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/OVERLAY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/SESSION.json": {
+      "type": "file",
+      "oid": "53dc42ef8eca643230dfbfe7d41ddb2def45969d",
+      "size": 610,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/SESSION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ASSETS.json": {
+      "type": "file",
+      "oid": "f7b9c5a3a9b1d44416ade52b01f90e745cd5218d",
+      "size": 98,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ASSETS.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/CONTRACT.json": {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/CONTRACT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ENVIRONMENT.json": {
+      "type": "file",
+      "oid": "8f816be570a0b6bdbb275736eeb670233985a344",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ENVIRONMENT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/OVERLAY.json": {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/OVERLAY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/SESSION.json": {
+      "type": "file",
+      "oid": "c90eebc4e21901d2753773ac20c35ee19805daac",
+      "size": 322,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/SESSION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ASSETS.json": {
+      "type": "file",
+      "oid": "50e2793434c7e1be7c672fb35ae9dbf754d7d1e8",
+      "size": 579,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ASSETS.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/CONTRACT.json": {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/CONTRACT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ENVIRONMENT.json": {
+      "type": "file",
+      "oid": "f833f0d364b539d868f868fe8a13b7589afc04e8",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ENVIRONMENT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/OVERLAY.json": {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/OVERLAY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/SESSION.json": {
+      "type": "file",
+      "oid": "fae691297ee3e032a0b51090f58ecc9b5e3ef298",
+      "size": 1348,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/SESSION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ASSETS.json": {
+      "type": "file",
+      "oid": "ac810c53630d451cdf5da880457a3c6881bf7cab",
+      "size": 97,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ASSETS.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/CONTRACT.json": {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/CONTRACT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ENVIRONMENT.json": {
+      "type": "file",
+      "oid": "4589503fd071218ee6cdaeab254f817abe9a4b79",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ENVIRONMENT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/OVERLAY.json": {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/OVERLAY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/SESSION.json": {
+      "type": "file",
+      "oid": "ac99ebbfee75eaaac562708d4a69309583e0402b",
+      "size": 334,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/SESSION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ASSETS.json": {
+      "type": "file",
+      "oid": "56324ac1f8610998f8ac13dcc172e7901cd83b5f",
+      "size": 183,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ASSETS.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/CONTRACT.json": {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/CONTRACT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ENVIRONMENT.json": {
+      "type": "file",
+      "oid": "c85b41807a3e22d99cc23a1bb3206ee245e05262",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ENVIRONMENT.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/OVERLAY.json": {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/OVERLAY.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/SESSION.json": {
+      "type": "file",
+      "oid": "97948cb40b1a005da37f8a4954cb5ae325b6c2f6",
+      "size": 346,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/SESSION.json"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_dataset_verify.py": {
+      "type": "file",
+      "oid": "fb56d398e842e588555f888d0277d135fefadf47",
+      "size": 3426,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_dataset_verify.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_hub.py": {
+      "type": "file",
+      "oid": "e472502677cb1b16406edddc953e7e826c7aa62d",
+      "size": 7440,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_hub.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_models.py": {
+      "type": "file",
+      "oid": "5f73afaa5f0da334a4f2625467e8fdd7edb2c18c",
+      "size": 8955,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_models.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_report.py": {
+      "type": "file",
+      "oid": "bce8ac8df24042c8e34f873138679ec3c0ec16ec",
+      "size": 4889,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_report.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_run.py": {
+      "type": "file",
+      "oid": "b612b44f55b56e039fc4335740fd0bf5c73c9db8",
+      "size": 12559,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_run.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_training_data.py": {
+      "type": "file",
+      "oid": "6d11e7c99b8e373b930378f797e4030bab8fe799",
+      "size": 7154,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_training_data.py"
+    },
+    "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_worker.py": {
+      "type": "file",
+      "oid": "6f1a968a6ab96984d154f096373450ac788758ea",
+      "size": 14827,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_worker.py"
+    }
+  }
+}

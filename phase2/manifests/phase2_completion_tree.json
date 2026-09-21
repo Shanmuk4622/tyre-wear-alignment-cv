@@ -1,0 +1,1644 @@
+{
+  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+  "prefix": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+  "entries": [
+    {
+      "type": "directory",
+      "oid": "105346f70ab2974fac6405655ad10b6dfa1363e8",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/reports"
+    },
+    {
+      "type": "directory",
+      "oid": "3cc0285b4a0180cbb1b3310638a2710deaf3a96b",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/reports/1789959917"
+    },
+    {
+      "type": "directory",
+      "oid": "5b3aaa62fe2f76dea107213bbe99ed95ed64bab7",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs"
+    },
+    {
+      "type": "directory",
+      "oid": "aa21735a247e6c340fa9c61f4135dbebcf5b1af5",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1"
+    },
+    {
+      "type": "directory",
+      "oid": "054ef7613ad6a543167b8758c0d6cab710e72e86",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2"
+    },
+    {
+      "type": "directory",
+      "oid": "13262d7cea94af7539e5b1848d6a38da03991ad0",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3"
+    },
+    {
+      "type": "directory",
+      "oid": "549cfce2e98b9b19357c90519a1513c02a6c72e7",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1"
+    },
+    {
+      "type": "directory",
+      "oid": "0176b13deaacbf4bf3db6aa82b1308bf9a0ca083",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2"
+    },
+    {
+      "type": "directory",
+      "oid": "45e365435ac223910ca93cf60800ab34ebcee48b",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3"
+    },
+    {
+      "type": "directory",
+      "oid": "ebf5a3eed0a11b242e687ee0aad40b70cf9b32d6",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1"
+    },
+    {
+      "type": "directory",
+      "oid": "7897f2ad5ebb92f3f0433a3c3c40dd0b5fd80ba4",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2"
+    },
+    {
+      "type": "directory",
+      "oid": "32980ae9c3c3ff1d27fddbde8db2c6091af49c7b",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3"
+    },
+    {
+      "type": "directory",
+      "oid": "63c3f128c0989817d5cb906a6379b5b055c7c67b",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1"
+    },
+    {
+      "type": "directory",
+      "oid": "fe5d2f15e617793e127bf231c0a62b7ecae8b734",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2"
+    },
+    {
+      "type": "directory",
+      "oid": "aef7fb27d9f1e6a4875631c06d3c55ecd5bdbfc1",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3"
+    },
+    {
+      "type": "directory",
+      "oid": "194954e0abed01349792673fd17567fb28284974",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1"
+    },
+    {
+      "type": "directory",
+      "oid": "380cf23ee8500bbfb69ef61ffc736701947f43ba",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2"
+    },
+    {
+      "type": "directory",
+      "oid": "433253c1a63e26f6da1f081144d1999ae99bf2cf",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3"
+    },
+    {
+      "type": "directory",
+      "oid": "341d7c7b3fc35b2ef3653348f8d4c3ad84e66939",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions"
+    },
+    {
+      "type": "directory",
+      "oid": "c8782bfc4af300e8d9533a65e3c0f65889290ce2",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf"
+    },
+    {
+      "type": "directory",
+      "oid": "5ce11378173759ede81bddce14c229d848a18d98",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca"
+    },
+    {
+      "type": "directory",
+      "oid": "183f7e24bbb3271b0561aae45dd6a2a10379a9b0",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4"
+    },
+    {
+      "type": "directory",
+      "oid": "2824185aeaf88bc492823385cc0646736ea1bd95",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca"
+    },
+    {
+      "type": "directory",
+      "oid": "8e2403ca0040287e48ddf0b8c0b57942053ddb86",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716"
+    },
+    {
+      "type": "directory",
+      "oid": "6dba36f8ff6e81534b387084226ad0f6dd54d7a5",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2"
+    },
+    {
+      "type": "directory",
+      "oid": "a009b853f6c6a35f353742646d2599eddfa051a8",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19"
+    },
+    {
+      "type": "directory",
+      "oid": "c1684525dd1e522f7ea8e81f405304b778b280cc",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0"
+    },
+    {
+      "type": "directory",
+      "oid": "b0d1f0fa69e3ac4c974e9ed34eeb16409cfc5dc8",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731"
+    },
+    {
+      "type": "directory",
+      "oid": "256cd40967db61e519326ca83ef9cc181e4c18bd",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84"
+    },
+    {
+      "type": "directory",
+      "oid": "29885f9b9921c8489923e7c8b40981809bafca4d",
+      "size": 0,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources"
+    },
+    {
+      "type": "file",
+      "oid": "724c7fc8f8c5fb986a8d59853b1924ed2cd757df",
+      "size": 870,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/LEASES.json"
+    },
+    {
+      "type": "file",
+      "oid": "c6b24adc5a734ae86723c3263d40c7826b8ab69f",
+      "size": 8971,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/reports/1789959917/EXPORT_REGISTRY.json"
+    },
+    {
+      "type": "file",
+      "oid": "8f8bb586df30e687fd0e573fe38c23623b14015f",
+      "size": 201,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/reports/1789959917/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "9960f90c6af5a1b4878569129f51a91dc1cb2bc4",
+      "size": 5766,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/reports/1789959917/REPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "725db6ec189d2a6d1b70da5a1280d65b73a106fa",
+      "size": 1409,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "f6b5f472a55c8198824f46bd9adcd0d517a5e65e",
+      "size": 12347,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "219e0b742c0f1cb2a3e6e5ee41be0fd055bca957",
+      "size": 1553623,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "2f20e69417fc039bd6151ead1f68e3ca7f2f5c1c",
+      "size": 292,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "9779dff8acb74b4dfb0c232229e6c8f228c463ab",
+      "size": 961,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "3249f33070d79fbd527e0b6ea859a6e8efb2e2c3",
+      "size": 770,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "7a815e8add27edb931e6df9717ff31ce5aea5ad6",
+      "size": 694838,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "686d9bdf2b2e93a1e84e53d01e02865346b10c03",
+      "size": 5624,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "26b843b5e8639291c9c929f15d6a495c8d3c2981",
+      "size": 156849684,
+      "lfs": {
+        "oid": "1b4faffe69a1712035cdef49f5dbc1a07332e6da9d014c5a870b83d06fa01df7",
+        "size": 156849684,
+        "pointerSize": 134
+      },
+      "xetHash": "b1f8665d483015bb9aa02601877737b62f616d515163b1823651d855e51975aa",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "09ea49a482944a6c200fd2c330c0c15992cd92bb",
+      "size": 39117029,
+      "lfs": {
+        "oid": "fd262ea24087360bd76a8b19f35814d97fc4396344f4cbf1500f22e9d7341a35",
+        "size": 39117029,
+        "pointerSize": 133
+      },
+      "xetHash": "3a497af31777e8958988db5b528104885d81d5248ce3f9fec3fc33b2a61be386",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed1/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "0a0adcaf2442395fe85e1f77220e8d902b0f25df",
+      "size": 1409,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "45f73a8b04806b5eb9fd5cab5d111e66fccc2859",
+      "size": 12352,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "ea599d2c73e91404c79a8c33f0d8366f5d24e99b",
+      "size": 1553960,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "2f20e69417fc039bd6151ead1f68e3ca7f2f5c1c",
+      "size": 292,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "4d05cd08429a0d054525d8f36107ae00b0b76137",
+      "size": 961,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "d871d05d49ed07b95fa5ac20d8ed7bf40a9aa78e",
+      "size": 768,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "191f19a2c4b0ddd6d1224ee0f1166890337691f1",
+      "size": 694847,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "bc7014f630329837029ba4b4fdd6bf069b2d1c4c",
+      "size": 5508,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "f7d5cbc0dd1939c49632ef667affaeb36b7abfb3",
+      "size": 156849684,
+      "lfs": {
+        "oid": "39cd0cda20d97f9f7ec664ecbb6308d64b706cd5e7547e4bf0cbd2b7058491ba",
+        "size": 156849684,
+        "pointerSize": 134
+      },
+      "xetHash": "a76a2856f5c99e65b12e25e446e22145eafd620c205bb2deb87e69677e6c0af6",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "96b3388651ab4ab03d872c8376d993b602cb60b9",
+      "size": 39117029,
+      "lfs": {
+        "oid": "886e921795e2427f6654f791ca5cf330755615df24bae4dfecd9f90816f44c7a",
+        "size": 39117029,
+        "pointerSize": 133
+      },
+      "xetHash": "cf16a97df06b45ede7742ec1f9498248187fed1cdfca682d620548d32e65449d",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed2/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "71a4e49a7d549ee91f2c4ab8ea66113cb74b3482",
+      "size": 1409,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "b8e04decd8b51401ef56ea58b36fa07355ccf99a",
+      "size": 12341,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "17b257e36e94291617d279b234a5ba1805d3f8b2",
+      "size": 1555829,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "2f20e69417fc039bd6151ead1f68e3ca7f2f5c1c",
+      "size": 292,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "3a9d3ef557f6f4efe14962d3c7bbe2f4dc7fba0f",
+      "size": 961,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "7ae216a6b96314035a347c9885f2041da604e99f",
+      "size": 773,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "e63e40a116167316bff2a88ba8c39e2447602646",
+      "size": 695074,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "eceb6dfca1d8b972c8569f4052d5fd7f102c2ada",
+      "size": 5625,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "c611484ec4ebe83fed9aa86f2cd7e7a2ba8a0c45",
+      "size": 156862996,
+      "lfs": {
+        "oid": "785b96e5fe91ce15d0248ecb7916926a87df9d8ae57c3362c38cb25389074367",
+        "size": 156862996,
+        "pointerSize": 134
+      },
+      "xetHash": "098af8e8fc40e5326c750c56694484ed1f2e27944cd3ac6f43ac95ecb73d382f",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "fdc92c342a6d4813fb638d3267ca73caf01fa926",
+      "size": 39117029,
+      "lfs": {
+        "oid": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675",
+        "size": 39117029,
+        "pointerSize": 133
+      },
+      "xetHash": "d83de9f1b43055cdd23c5829ff166bb701ab3f0cd1bfd295c23c2f275b138d7b",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/hrnet-combined-seed3/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "a4ff9dc78561b2039c429b51966773ba3ce93994",
+      "size": 1391,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "98e97ae7aa5d1537f812b2514ab6ca3e6e7ffc2c",
+      "size": 28859,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "89759700a63f5a430185cfb3aebd8bb1f6ac85e1",
+      "size": 1486311,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "e41416b77971cb85c9fa5f855beddb1cd5360cf9",
+      "size": 326,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "5efe041fe60a8c6b4bc0b401413005a8e33ad898",
+      "size": 973,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "e6a8fbe254afd005b9c01e743e2a29488a5cfeac",
+      "size": 781,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "c8bab066fcfe19229aeeb4bcf161ccbcfc602de4",
+      "size": 1324640,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "d9aa65c5e56d95d3035d8715f6a5e4f383e65942",
+      "size": 6645,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "eb6f36d948ae0ff47a8ee3f61170981ec299db2a",
+      "size": 137007354,
+      "lfs": {
+        "oid": "8a8fc268ac86c98b42370917705308dea14a5490ff2bfa6947cab78bbdd00e10",
+        "size": 137007354,
+        "pointerSize": 134
+      },
+      "xetHash": "01cf70f51e61510ea8264872e3b652e1fe150f96513ca7a40ed76c9b7e819577",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "b18c8def1df52ea88b1f34e1998413ef7edb2347",
+      "size": 34166239,
+      "lfs": {
+        "oid": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806",
+        "size": 34166239,
+        "pointerSize": 133
+      },
+      "xetHash": "cefc803e712a1ad8edbb185b2aafd8ef5a1c80d3b318dc12fb18e6cb201d3c6b",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed1/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "43c77ac68b4aec00696dd6004feb40e7fbfd687e",
+      "size": 1391,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "c6b650730a1e160c361dbff612677f96f3ba5ee6",
+      "size": 28885,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "f7987e75b569a7129db9de6098dce2bd62ef7fd8",
+      "size": 1486304,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "e41416b77971cb85c9fa5f855beddb1cd5360cf9",
+      "size": 326,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "9a1d5ccc9cc7d4b842c2ada3a2aaa16e02b977d8",
+      "size": 973,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "8a4c6711014ea4635471ee7025236d7c037c9312",
+      "size": 782,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "a69185595b6a3726c7128535b511c033075ca986",
+      "size": 1328425,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "d405cd49a0e5d325644d2eeca5ed29a9eae305f7",
+      "size": 6528,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "3e177a22c9b1ebdb2c9b83ad984250b05e62178f",
+      "size": 137007290,
+      "lfs": {
+        "oid": "9d7075eb4d8c8fe7a7673e07b30895aa910c38aa55a84f99fd39ffac5276a9b5",
+        "size": 137007290,
+        "pointerSize": 134
+      },
+      "xetHash": "1f06a23bab280eb46c1ba3c1278a4395312fc8c58e830ca30414e991ee3d012f",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "e36181222ef13d21884c0f3843a37ae23a1e6904",
+      "size": 34166239,
+      "lfs": {
+        "oid": "bf065825599be02a361697c2377a1759a77501bcd4d0e03e2bb27d5759812f47",
+        "size": 34166239,
+        "pointerSize": 133
+      },
+      "xetHash": "32c792f75c7a06ac876c25628d5cb0b42b54d689eedd54776b885985328702ca",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed2/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "91ace649890223ad662de39154aa3ddb30e2ac58",
+      "size": 1391,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "84c2b28ea7cf9902f5c67dddb71092e27c14dd8e",
+      "size": 28892,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "ed6e1ed49657da7b21d66bcc58baa46f276f6af2",
+      "size": 1485567,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "e41416b77971cb85c9fa5f855beddb1cd5360cf9",
+      "size": 326,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "f96ff976779393c3b08b7616c4e75b2787df0f8c",
+      "size": 973,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "333e07018a3244c3549ad9c85427fffb02d761b4",
+      "size": 780,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "a15b039a580b35b408c9d7acf668342ff0023bd4",
+      "size": 1327870,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "614a2bbe31fc76a4e9edef61b2f36b54091c46f9",
+      "size": 6528,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "6f3cf367df8d50529deceb022ce14ff7b6797f0b",
+      "size": 137007354,
+      "lfs": {
+        "oid": "38f096a7ce6e053945de127e0c51cc39578984460c25cf186832f97b35ab308c",
+        "size": 137007354,
+        "pointerSize": 134
+      },
+      "xetHash": "45b413e9ce0d21509aadc3809d2eeb92856005bb074873013b48a9c67c8a41ed",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "2d91f80b4e8715d644b65e12ed831679f8395c80",
+      "size": 34166239,
+      "lfs": {
+        "oid": "70a7bf21b651b50da245bbe3b22e3a6bdb55186e72185c9983584c14c110d8d2",
+        "size": 34166239,
+        "pointerSize": 133
+      },
+      "xetHash": "2a1a2a177c31686e13c6bd574d4302c5b0e4cb07b49cbde06c1239a314157987",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/mobilenetv4-combined-seed3/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "68b1bf4eac14e0b06ce141af65f4c3387fa76733",
+      "size": 1342,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "328211aca1614cd85eb556907f73ceafbd2a9eea",
+      "size": 28755,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "94f0f4c0a4d66ce16441d07d74e858deafe407a9",
+      "size": 1485759,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "deb9ce52a6ce65aaf9fc8cf30311aeba1123732e",
+      "size": 283,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "b5cf8e659329b5eb0cbaa508a4e279aa67de3ca5",
+      "size": 967,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "3d0b10e7f86f76c8c681d448b1a67e317f1922d9",
+      "size": 777,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "31b92d09f866cde1b4be9b01c6638aa48001f4b9",
+      "size": 1324593,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "a8d886fd8d4e2e3f3d76765323c1beeb53f83510",
+      "size": 6465,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "3745a43d4196fb8dc9ee8f729b850c74bac1d505",
+      "size": 377930802,
+      "lfs": {
+        "oid": "1d9af8153b6422885e794d2bd13d52b3d36b47105687d0a081d8adc9d6d181f2",
+        "size": 377930802,
+        "pointerSize": 134
+      },
+      "xetHash": "7c874a7de9b386f29159205dc3454ee399fea1ae444335ccb52c48f0bfff2f14",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "31b7b97cb0fbff3590c3898dce8d2561d7c222e4",
+      "size": 94364159,
+      "lfs": {
+        "oid": "9eb304a80e0bc0f555b12754f2be4aadc16fcd6d8e5d3d3a9df55eff08212b8f",
+        "size": 94364159,
+        "pointerSize": 133
+      },
+      "xetHash": "7805f333dbc4dadc882246e346257f7949d8465cf017b162e991cac964efade6",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed1/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "ee36645e61ca6721104fb73db333538637142f23",
+      "size": 1342,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "c18e6cf3d3e891899a43cca4116094a56314af3f",
+      "size": 28815,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "3c63920cc532590eb53b249c54f1a8c1ec24f3a7",
+      "size": 1485923,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "deb9ce52a6ce65aaf9fc8cf30311aeba1123732e",
+      "size": 283,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "75440f58c3c2098964b826c54e8422879c138263",
+      "size": 967,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "5898134bbc3e150b3ba0b790ef318e509fb13305",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "abd4d5ac368f5cfa8c4e30568ad2555969e01e2c",
+      "size": 1325178,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "cc12562146962ec01be4c71d5d8aeef8d11ea4b0",
+      "size": 6465,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "57dbbf49eb6aa51f63a47e9769e0796b04856096",
+      "size": 377957234,
+      "lfs": {
+        "oid": "6051a37c74b256fb2688254532fe4400208baf0493fd428468a829c2367fc269",
+        "size": 377957234,
+        "pointerSize": 134
+      },
+      "xetHash": "6c4cb0b12ee04c6b0d8a27c802390830ea96b49d53b6575b493d15e4fa45bd21",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "3e36e836a5eb3f67c4c41047f7ecc71e8fc62176",
+      "size": 94364159,
+      "lfs": {
+        "oid": "2845f063439d399c7e7b71292292facdffb5f300eb1534be4f06d73c8b872fd5",
+        "size": 94364159,
+        "pointerSize": 133
+      },
+      "xetHash": "beaac17fd15fa32d3b738f0984c37848ce3fe40d427b5d1f7a07358f4c0a8b75",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed2/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "601cacc193a237cd43b8ba3f2e0f8c98592ef702",
+      "size": 1342,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "5a186e48e6b5b4bdb41d622a133a193fadd2c7fc",
+      "size": 28814,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "5376a31331e0723c3e5bb5f7a71c93249a1ae96d",
+      "size": 1485052,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "deb9ce52a6ce65aaf9fc8cf30311aeba1123732e",
+      "size": 283,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "a43411d6e214c76409a2bb8676d91d0fad15adf2",
+      "size": 967,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "d58e7d2e227003529dd9d625c8b5d77cb091188d",
+      "size": 776,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "9b51b33dcb96952e4d260a1909fb61f18f419084",
+      "size": 1322938,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "d1947a3f47c6d127994030726498d6d002847e2e",
+      "size": 6465,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "84afaba1cf5f7b2a418fd8c2764a31372e5765c5",
+      "size": 377957234,
+      "lfs": {
+        "oid": "cffb702adc109de80b374d5304cc23b8b01a8a1c87ed3189acc89f1c966c4c32",
+        "size": 377957234,
+        "pointerSize": 134
+      },
+      "xetHash": "b6fa7f641890bb061b4af2ce167d18f315f815d475d2483141f72aa41c1d5398",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "1105811f765cdb1c191d8dc5d9e38851def34039",
+      "size": 94364159,
+      "lfs": {
+        "oid": "a3e7e0994c55b6aa30e0f9874fa89abd09f05725dbc1bb43fe243be29d0653f1",
+        "size": 94364159,
+        "pointerSize": 133
+      },
+      "xetHash": "9a315343633e1f32053a53e345b6155cc9eccd51cec317c7021d836bbd51dad3",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/resnet50-combined-seed3/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "febab98678bb74bc685011d1bc3ac3cd948bf3c0",
+      "size": 1328,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "fe814054888e20683a2d1e3ad81e55ae75bc3d96",
+      "size": 40464,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "becd0e39e1e5a1981b3906963f4c3bdd55cc6b64",
+      "size": 2733937,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "915be804b0ea75dd42753a2e66890a99e20f0a92",
+      "size": 271,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "e77d100040ad1dbd733624394a014bcf168d9b18",
+      "size": 1057,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "b3ed4ef43a3ee88c84b38221c8fee098e13469fe",
+      "size": 1925,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "f4f9576a5585e5af819055a221c56a4ed661bf78",
+      "size": 777,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "1fffcfce200b94338fb1d7249f5f511911c7d048",
+      "size": 1872230,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "4b6442167cd1fcb23f46c5040484e40aced808b3",
+      "size": 6165,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "43d1df721b44355ec6950b694c7363cf2ac6d16d",
+      "size": 61805070,
+      "lfs": {
+        "oid": "65746b70f701999fa1a4fc648ffd1c4fc766d67304bd980a85e7f1c80e947748",
+        "size": 61805070,
+        "pointerSize": 133
+      },
+      "xetHash": "aef2ae91091ae626fc57c75989637100fcdfb6d2aeb68f95e11827a2332aff74",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "f7794ade7e0cd5cc6732f4c1bb00920a3eb878d2",
+      "size": 14927903,
+      "lfs": {
+        "oid": "5e29623a697b11e3220324bfb6fe1bdf138c00a0aee8fea3f5089e57e14fab9a",
+        "size": 14927903,
+        "pointerSize": 133
+      },
+      "xetHash": "2b7baeac01e80e16ba3ec48bccd7d075117820ecb2ba959585a0dbb8e4b88d40",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed1/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "62503c28a73c2f42e4e285811f6ad805f47332f2",
+      "size": 1328,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "0f48d1a81bbc4ad057c696007af8d7a8aa049fcb",
+      "size": 40462,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "9a9a713a603078fc884260c1667f12e477710847",
+      "size": 2734211,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "915be804b0ea75dd42753a2e66890a99e20f0a92",
+      "size": 271,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "61789e42c5f1505195305bd0605d956a7c134ae1",
+      "size": 1057,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "b3ed4ef43a3ee88c84b38221c8fee098e13469fe",
+      "size": 1925,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "7a1e5fb8b8285263bb1a47204b6df8e10b8642ee",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "6b165670711e2091074fd30a5f270582cc487cc1",
+      "size": 1872281,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "0c2013dc31d4bb43ac73b0b2dbc03130a395bbfc",
+      "size": 6048,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "c2ef95621562933b3246588041ea546eaeb91281",
+      "size": 61805070,
+      "lfs": {
+        "oid": "46e70ffac5d9dc8de56c5a149380fc9c996c2dc02335e899cce05d3a67271634",
+        "size": 61805070,
+        "pointerSize": 133
+      },
+      "xetHash": "c27bcb5926b6923766a57a8bf889d2bdf4d144ac63011f6fb94ed22049a2468a",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "cb82471d13c134238d5e7a4c545231c95daee24e",
+      "size": 14927903,
+      "lfs": {
+        "oid": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd",
+        "size": 14927903,
+        "pointerSize": 133
+      },
+      "xetHash": "a53430410cc8a914c1c43f530e66c55746b6971823df636fd79e308428a948d5",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed2/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "64a5412005d0208ae06ae3e35832fb14025f0999",
+      "size": 1328,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "d0b5a877b9619a8dd371e61c162751fd5035c948",
+      "size": 40455,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "a279e7e03f4fe59262e3b29e725d5adeb945a5e8",
+      "size": 2733577,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "915be804b0ea75dd42753a2e66890a99e20f0a92",
+      "size": 271,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "83a72a39b46733440f5d897deb2e5d18fbbe5272",
+      "size": 1057,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "b3ed4ef43a3ee88c84b38221c8fee098e13469fe",
+      "size": 1925,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "43d008e401ad3bd53a30d4f97b7683f2202daf2e",
+      "size": 777,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "beeb3ad757be3a6e027abaf3bdfdeca9a1ba661d",
+      "size": 1872377,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "f81d69bb84e9ce922e06569e53c9c0172ebbd27a",
+      "size": 6048,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "0d20ef67b2f0620252fc2835a6890e507f9ccc53",
+      "size": 61805070,
+      "lfs": {
+        "oid": "d51c9fe547d4d0563804c09618c5792b16b539a783ba833b2816d28bf310d9a2",
+        "size": 61805070,
+        "pointerSize": 133
+      },
+      "xetHash": "598e53069ca74d44259c252e4bfbf27361c89257f5eb1324344441c0e29f1936",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "0de17e658ef28fc35709f1f3bab7efaacaa9a378",
+      "size": 14927903,
+      "lfs": {
+        "oid": "e6aecaf9d7429aa5545d488334df1112e4c283611246da691d9fe43657bec623",
+        "size": 14927903,
+        "pointerSize": 133
+      },
+      "xetHash": "d2c9697d2967575131330cdb80abec57a57973708eb5dddaab70dac69519aa2f",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/segformer-combined-seed3/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "35a804f5485ef69b5685f0ff0833d631de75c00d",
+      "size": 1386,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "126ee89b471a82bdc9d831376badd7a5f2ee9ea7",
+      "size": 40446,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "16857e05d8e2c620cba182ec8d3a24e17b32449f",
+      "size": 2718259,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "bd2d503e1054e72fc09c73b4c985300b14eb7061",
+      "size": 333,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "9b6d80433fd9167cd76e3a6b9398985a1fdeab83",
+      "size": 1053,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "43757bcbb44377523b3f68eb3e147924ca044cb5",
+      "size": 883,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "400749a887f3714ce60de762f7841130126ed56e",
+      "size": 775,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "383ad5742cab87ab24d4f98645a3a76ae0f55348",
+      "size": 1872486,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "30d73051f0abdcc8e23ae5b135959ffbcb8d29cf",
+      "size": 7502,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "cd57b6f0412cbfe2e3fdf2b1a9b23db5fe28cd99",
+      "size": 425652245,
+      "lfs": {
+        "oid": "923fe8c0a74bc9fd1146899a9416b1acfe23c4fb9e9db854f2f23ff5d57af7df",
+        "size": 425652245,
+        "pointerSize": 134
+      },
+      "xetHash": "44e20f3f48e5f93d526c1d3ed2a916b4f75a250dd582295f481e4b2a60e621f1",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "4fb690b5fd8e3d683311f8e394b8fd2bba020510",
+      "size": 108408239,
+      "lfs": {
+        "oid": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e",
+        "size": 108408239,
+        "pointerSize": 134
+      },
+      "xetHash": "daca1dee221064b5d6a2daf2e2d5775ef9dfa7910b8d2c2e434b680130c92967",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed1/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "a33e90eaab6805c53f621b1dc2d4ca73e5eed351",
+      "size": 1386,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/EXPORT.json"
+    },
+    {
+      "type": "file",
+      "oid": "9f500893a4ada035775beb7b3748fa2d066eff6a",
+      "size": 40451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/FINAL.json"
+    },
+    {
+      "type": "file",
+      "oid": "4bd134891a5c9796e1abb573500683a294497b03",
+      "size": 2718362,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "bd2d503e1054e72fc09c73b4c985300b14eb7061",
+      "size": 333,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "7af002e82f418a5594bbff3497c33b5544d88bd5",
+      "size": 1053,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "43757bcbb44377523b3f68eb3e147924ca044cb5",
+      "size": 883,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "000ff62f4d54377dd89a60e3b867b8736fa93ee4",
+      "size": 776,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "0d12f5d0712fe1cfc42f3bebcaf42e58d44ca2d0",
+      "size": 1872436,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "b90f9644e04e7cb4ee32a35074584686b57a2fe2",
+      "size": 7374,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "55f16351443d57d5bc354c7d2a73ec9fd23b6969",
+      "size": 425652373,
+      "lfs": {
+        "oid": "66ea1de77221d02f508fba0c77d86fb87a050f69945926d25b1c61c4ab48070a",
+        "size": 425652373,
+        "pointerSize": 134
+      },
+      "xetHash": "290043d1c2243bc94480d272b36591a3e58d081e9c0fe009f883aefb335bad11",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "d9a475360ef8d83b769ff6a5992f30dd4955fe18",
+      "size": 108408239,
+      "lfs": {
+        "oid": "c13e290ad25118c55eaf84dc0235bbff4c9e460f0aba95263abdc71b45746e8d",
+        "size": 108408239,
+        "pointerSize": 134
+      },
+      "xetHash": "1215cc8ca633b739a00a813af46dcd997d2d3496f30188e76afa263ddd73a150",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed2/weights.pt"
+    },
+    {
+      "type": "file",
+      "oid": "5fe608fe626fb11f1434d495a466d578232e42a1",
+      "size": 2352341,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/HISTORY.json"
+    },
+    {
+      "type": "file",
+      "oid": "bd2d503e1054e72fc09c73b4c985300b14eb7061",
+      "size": 333,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/IDENTITY.json"
+    },
+    {
+      "type": "file",
+      "oid": "7e0220164c3404e85b2794768929c076eda2a6c5",
+      "size": 814,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/MANIFEST.json"
+    },
+    {
+      "type": "file",
+      "oid": "43757bcbb44377523b3f68eb3e147924ca044cb5",
+      "size": 883,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/MODEL_CONFIG.json"
+    },
+    {
+      "type": "file",
+      "oid": "2fe56458c85f19f52f1349236171c51907df9c1c",
+      "size": 772,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/SMOKE.json"
+    },
+    {
+      "type": "file",
+      "oid": "0d23b4bb8a7126b576239ee6d918e0406d78f137",
+      "size": 1591757,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/VALIDATION.json"
+    },
+    {
+      "type": "file",
+      "oid": "ed3cd47cf1f03662a7fa9638de3a7c10b3351c3d",
+      "size": 5514,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/console.log"
+    },
+    {
+      "type": "file",
+      "oid": "97b1e7b02f294c56c9900b8ff7cb59c2b2d92bd4",
+      "size": 425344277,
+      "lfs": {
+        "oid": "a4f3e6b19696fafc2b21509cc02caacf1e032ea9f1b79ed85e1b8df41909cc55",
+        "size": 425344277,
+        "pointerSize": 134
+      },
+      "xetHash": "883088973a786f9a3b8ba63ec57d3783e46f30b23faa3c4674c41896b8308d64",
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/runs/yolo26m-combined-seed3/state.pt"
+    },
+    {
+      "type": "file",
+      "oid": "ac810c53630d451cdf5da880457a3c6881bf7cab",
+      "size": 97,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "41a483e52307024ef75c89ea1b7743bf7bbcc1a8",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "38f2fb02dee105d1c53c1868a45a3b0693a906a8",
+      "size": 170,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/0bddab93047a4cc5b75e50d2b00baddf/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "46cd6d3d29c40923ee1b939fa7408f8da654da32",
+      "size": 204,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "43e93c33ecf69b96600c01ad97af655c54b07bf2",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "53dc42ef8eca643230dfbfe7d41ddb2def45969d",
+      "size": 610,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/275c960ceccb48d08a401519842e46ca/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "f7b9c5a3a9b1d44416ade52b01f90e745cd5218d",
+      "size": 98,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "8f816be570a0b6bdbb275736eeb670233985a344",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "c90eebc4e21901d2753773ac20c35ee19805daac",
+      "size": 322,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51588bcfd81a4d4086773cd5544276f4/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "ac810c53630d451cdf5da880457a3c6881bf7cab",
+      "size": 97,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "e86a5378fee4cd814a2db3f7e7268b2fa89ed7b8",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "fc6032f9e62cfcdc9c240a2b5666801ad94b6c96",
+      "size": 170,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/51f3ec9cbd7a478da141cbbc9e6802ca/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "50e2793434c7e1be7c672fb35ae9dbf754d7d1e8",
+      "size": 579,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "f833f0d364b539d868f868fe8a13b7589afc04e8",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "fae691297ee3e032a0b51090f58ecc9b5e3ef298",
+      "size": 1348,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/59286a999f4e452c89e1906dd9707716/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "f7b9c5a3a9b1d44416ade52b01f90e745cd5218d",
+      "size": 98,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "3f4821ff7b4f6391b0987dda586b70481eba8750",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "c90eebc4e21901d2753773ac20c35ee19805daac",
+      "size": 322,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/6575a3d7a3194261b4375c5917c2bbe2/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "46cd6d3d29c40923ee1b939fa7408f8da654da32",
+      "size": 204,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "526c41301677c0e6dedded0174ecf70d32a373c8",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "53dc42ef8eca643230dfbfe7d41ddb2def45969d",
+      "size": 610,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/83d0f56fb4a94e319293e9d8472fba19/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "ac810c53630d451cdf5da880457a3c6881bf7cab",
+      "size": 97,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "4589503fd071218ee6cdaeab254f817abe9a4b79",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "ac99ebbfee75eaaac562708d4a69309583e0402b",
+      "size": 334,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/86480d16ed12457a8a1733c6fd7167b0/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "ac810c53630d451cdf5da880457a3c6881bf7cab",
+      "size": 97,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "3476cc10eae119f3410ce1d669e2ce6e2af65611",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "8bf08d4edbfe47ab49163c7c2436e10ddd8a0824",
+      "size": 170,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/bdb31b59efe04bf88fa1aab5fcc19731/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "56324ac1f8610998f8ac13dcc172e7901cd83b5f",
+      "size": 183,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ASSETS.json"
+    },
+    {
+      "type": "file",
+      "oid": "7809a49ba182f5c6fe2a9c6974efeb7d32bd3caf",
+      "size": 3066,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/CONTRACT.json"
+    },
+    {
+      "type": "file",
+      "oid": "c85b41807a3e22d99cc23a1bb3206ee245e05262",
+      "size": 451,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/ENVIRONMENT.json"
+    },
+    {
+      "type": "file",
+      "oid": "2e296c102679d50cdc806d82de77026e4c1f430f",
+      "size": 763101,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/OVERLAY.json"
+    },
+    {
+      "type": "file",
+      "oid": "97948cb40b1a005da37f8a4954cb5ae325b6c2f6",
+      "size": 346,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sessions/ec3fb31984b64220939896759a2dfa84/SESSION.json"
+    },
+    {
+      "type": "file",
+      "oid": "fb56d398e842e588555f888d0277d135fefadf47",
+      "size": 3426,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_dataset_verify.py"
+    },
+    {
+      "type": "file",
+      "oid": "e472502677cb1b16406edddc953e7e826c7aa62d",
+      "size": 7440,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_hub.py"
+    },
+    {
+      "type": "file",
+      "oid": "5f73afaa5f0da334a4f2625467e8fdd7edb2c18c",
+      "size": 8955,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_models.py"
+    },
+    {
+      "type": "file",
+      "oid": "bce8ac8df24042c8e34f873138679ec3c0ec16ec",
+      "size": 4889,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_report.py"
+    },
+    {
+      "type": "file",
+      "oid": "b612b44f55b56e039fc4335740fd0bf5c73c9db8",
+      "size": 12559,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_run.py"
+    },
+    {
+      "type": "file",
+      "oid": "6d11e7c99b8e373b930378f797e4030bab8fe799",
+      "size": 7154,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_training_data.py"
+    },
+    {
+      "type": "file",
+      "oid": "6f1a968a6ab96984d154f096373450ac788758ea",
+      "size": 14827,
+      "path": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3/sources/phase2_worker.py"
+    }
+  ]
+}

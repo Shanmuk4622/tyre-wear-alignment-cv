@@ -21,6 +21,7 @@ import numpy as np
 
 from bootstrap import ROOT
 from registry import MODELS, checkpoint
+from phase2_adapter import enabled as phase2_enabled
 from engine import Engine, LABELS, overlay, read_image
 from evidence import save_capture
 from theme import apply_theme
@@ -429,12 +430,25 @@ class Station(QMainWindow):
         leftlayout.addWidget(self.save_btn)
         downloads = QHBoxLayout()
         downloads.addWidget(button('Download shown frame', self.download_frame))
-        self.export_btn = button('Download video · 10 fps', self.download_video)
+        self.export_btn = button('Download video', self.download_video)
         downloads.addWidget(self.export_btn)
         self.cancel_export_btn = button('Cancel export', self.cancel_export)
         self.cancel_export_btn.setEnabled(False)
         downloads.addWidget(self.cancel_export_btn)
         leftlayout.addLayout(downloads)
+        export_options = QHBoxLayout()
+        export_options.addWidget(label('Video export FPS'))
+        self.export_fps = QDoubleSpinBox()
+        self.export_fps.setRange(1., 60.)
+        self.export_fps.setDecimals(3)
+        self.export_fps.setValue(10.)
+        self.export_fps.setToolTip('1–60 fps. Higher values take longer to export. Source frames repeat when the requested rate exceeds the original.')
+        export_options.addWidget(self.export_fps)
+        self.export_labels = QCheckBox('Include video information panel')
+        self.export_labels.setChecked(True)
+        export_options.addWidget(self.export_labels)
+        export_options.addStretch()
+        leftlayout.addLayout(export_options)
         self.export_status = label('Downloads: PNG frame or full silent MP4 · background CPU export.', 'muted')
         leftlayout.addWidget(self.export_status)
         self.left_scroll = QScrollArea()
@@ -458,7 +472,7 @@ class Station(QMainWindow):
         self.learned_mode = QComboBox()
         self.learned_mode.addItem('Learned boundaries off', 'off')
         self.learned_mode.addItem('HRNet · six tread-boundary points', 'hrnet')
-        self.learned_mode.addItem('HRNet + Matched SegFormer · compare points', 'paired')
+        self.learned_mode.addItem('HRNet + Phase 2 SegFormer · compare points' if phase2_enabled() else 'HRNet + Matched SegFormer · compare points', 'paired')
         from prepare_learned import path as learned_path
         if learned_path('hrnet').exists():
             self.learned_mode.setCurrentIndex(2 if learned_path('matched').exists() else 1)
@@ -469,7 +483,7 @@ class Station(QMainWindow):
         self.show_learned.toggled.connect(self.render_capture)
         rl.addWidget(self.show_learned)
         rl.addWidget(button('Explain learned overlay', self.explain_learned))
-        self.learned_status = label('Amber dots: HRNet · cyan squares: matched SegFormer · purple: tread centreline. Image-space proposals, not measured alignment.', 'muted')
+        self.learned_status = label('Amber dots: HRNet · cyan squares: SegFormer · purple: tread centreline. Image-space proposals, not measured alignment.', 'muted')
         rl.addWidget(self.learned_status)
         rl.addWidget(label('Video orientation follows the file’s portrait display tag. Models process this same vertical frame.', 'muted'))
         sensitivity = QHBoxLayout()
@@ -841,7 +855,10 @@ class Station(QMainWindow):
             widths = ' / '.join('—' if v is None else f'{v:.0f}' for v in hr['widths_px'])
             state = 'REVIEW: '+'; '.join(learned['flags']) if learned['flags'] else f"{self.learned_frame.get('stable_frames', 1)} consistent frames (not confidence)"
             times = ' · '.join(f'{n} {r["inference_ms"]:.0f}ms' for n, r in learned['models'].items())
-            self.learned_status.setText(f'Raw HRNet tread widths U/M/L: {widths} px\n{state}\n{times}\nAmber dots / cyan squares / purple centreline. Red = review. Image-relative only.')
+            from phase2_video_labels import tread_angle
+            angle = tread_angle(self.learned_frame)
+            angle_text = 'Tread tilt unavailable' if angle is None else f'Tread tilt {angle:+.1f}° vs image vertical'
+            self.learned_status.setText(f'Raw HRNet tread widths U/M/L: {widths} px\n{angle_text}\n{state}\n{times}\nAmber dots / cyan squares / purple centreline. Red = review. Image-relative only.')
         else:
             self.learned_status.setText('Learned boundaries off. Select HRNet or the matched comparison to add points.')
         self.geometry_tracks = {name: self.geometry_tracks.get(name, GeometryTracker()) for name in masks}
@@ -1045,7 +1062,9 @@ class Station(QMainWindow):
                 region=region, overlay=name, threshold=self.threshold.value(), assist=self.assist.isChecked(),
                 learned=self.learned_mode.currentData(), opacity=self.opacity.value()/100,
                 layers=[self.show_tyre.isChecked(), self.show_tread.isChecked()], geometry=self.show_geometry.isChecked(),
-                edges=self.edge_mode.currentData(), show_learned=self.show_learned.isChecked())
+                edges=self.edge_mode.currentData(), show_learned=self.show_learned.isChecked(),
+                fps=self.export_fps.value(), information_panel=self.export_labels.isChecked())
+            self.active_export_fps = job['fps']
             self.export_job_path = ROOT/'.cache'/f'export-{uuid.uuid4().hex}.json'
             self.export_job_path.write_text(json.dumps(job), encoding='utf-8')
             self.export_destination = destination
@@ -1061,7 +1080,7 @@ class Station(QMainWindow):
             process.errorOccurred.connect(self.export_process_error)
             self.export_btn.setEnabled(False)
             self.cancel_export_btn.setEnabled(True)
-            self.export_status.setText('Export starting on CPU · full clip, 10 fps, no audio · inspection remains available.')
+            self.export_status.setText(f'Export starting on CPU · full clip, {self.active_export_fps:g} fps, no audio · inspection remains available.')
             process.start(sys.executable, ['-u', str(ROOT/'media_export.py'), str(self.export_job_path)])
         except Exception as exc:
             self.export_status.setText(f'Could not start export: {exc}')
@@ -1075,7 +1094,7 @@ class Station(QMainWindow):
             line, self.export_output = self.export_output.split('\n', 1)
             try:
                 item = json.loads(line)
-                self.export_status.setText(f'Exporting on CPU: {item["done"]}/{item["total"]} frames · 10 fps · you can keep inspecting.')
+                self.export_status.setText(f'Exporting on CPU: {item["done"]}/{item["total"]} frames · {self.active_export_fps:g} fps · you can keep inspecting.')
             except (ValueError, KeyError, TypeError):
                 pass
 
@@ -1093,7 +1112,7 @@ class Station(QMainWindow):
         self.export_error_output()
         success = exit_code == 0 and self.export_destination.exists()
         if success:
-            message = f'Saved to Downloads: {self.export_destination.name} · 10 fps, no audio'
+            message = f'Saved to Downloads: {self.export_destination.name} · {self.active_export_fps:g} fps, no audio'
         elif self.export_cancelled:
             message = 'Video export cancelled. No incomplete download was kept.'
         else:

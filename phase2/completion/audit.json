@@ -1,0 +1,582 @@
+{
+  "revision": "be0eadb2bbb698091b563d699e2519b1e262a31c",
+  "prefix": "phase2/training-r1/661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+  "runs": [
+    {
+      "run": "hrnet-combined-seed1",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "c2bc83282025f54219bf31c4928e44292cf98ca8bfd7e545c164cdcca84609e7",
+          "FINAL.json": "b09e509ff12da8966ca3c5bd06cef3212832592274b13dd46280fdf502d544af",
+          "HISTORY.json": "4efa5c762efe6b1562aaa5b981ed4b0fd338dad1b48642dfa9040d389927828f",
+          "IDENTITY.json": "6059c0fddd8e0c95bd0fe1eef6768a814b07f08f6f46dc200ab09e130f264ddf",
+          "SMOKE.json": "e15f7efde2935c7f34662e5672a6e5d57d74a962a1928e8afe28ae158425245f",
+          "VALIDATION.json": "79640bd9a6431c208aff2ce4b019cfbc1ec2ee547ac1251bd1c60cc3b8d5ea33",
+          "console.log": "98dad581edd1267b0244e401046fd66b98dced025bcf902b6e54fc39bfe95884",
+          "state.pt": "1b4faffe69a1712035cdef49f5dbc1a07332e6da9d014c5a870b83d06fa01df7",
+          "weights.pt": "fd262ea24087360bd76a8b19f35814d97fc4396344f4cbf1500f22e9d7341a35"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "hrnet-combined-seed1",
+          "model": "hrnet",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 6660
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "hrnet-combined-seed2",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "c8cb72500a3f22e68cd5ab240209c5b84e6563626753d6023630c1e0c64edba1",
+          "FINAL.json": "850932a5d66c65e0d21655fc22f9ae22e11ed6931965426cd71e0e110d610a4f",
+          "HISTORY.json": "94ffacdec05ee59298ccaa9e61549784a6fb21023fb70c70405fccbaf9309fc0",
+          "IDENTITY.json": "6059c0fddd8e0c95bd0fe1eef6768a814b07f08f6f46dc200ab09e130f264ddf",
+          "SMOKE.json": "ef042c7501c1f40db830c0b124923077afb31c200f05999bc20b662e38ae67f9",
+          "VALIDATION.json": "1196ff937801a749f3f452ddc434a7b06cc6b78372badb8c0d5db27be06b91c8",
+          "console.log": "8737b906e00a8d2256ff9be8acdc00330ca91395e448c274f1bf0b4668ed74c3",
+          "state.pt": "39cd0cda20d97f9f7ec664ecbb6308d64b706cd5e7547e4bf0cbd2b7058491ba",
+          "weights.pt": "886e921795e2427f6654f791ca5cf330755615df24bae4dfecd9f90816f44c7a"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "hrnet-combined-seed2",
+          "model": "hrnet",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 6660
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "hrnet-combined-seed3",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "568f3bf35b82c61a7e9625433cc3b6db491cefe656d27406dd2a964b279a0594",
+          "FINAL.json": "26aa7114c1b58b36d47fab772cffafc0d7d12c9a4792180eda3d193800feb46b",
+          "HISTORY.json": "1991ba6e793e418047f38ee21f20b09e82c2683e2733a78062cb093015d6a302",
+          "IDENTITY.json": "6059c0fddd8e0c95bd0fe1eef6768a814b07f08f6f46dc200ab09e130f264ddf",
+          "SMOKE.json": "f2a24c6e3a76a11c46c1a949cae0d1ac24dc9e5a1f80255e0060d5035978ca60",
+          "VALIDATION.json": "0614b9706e160cf699d7d62ac37f226770ae6a00a5c3600e733c1774a1b9a736",
+          "console.log": "f441364d6f22bf72ada3f311a4e84a8251c52940c33735cd88bd782e65560072",
+          "state.pt": "785b96e5fe91ce15d0248ecb7916926a87df9d8ae57c3362c38cb25389074367",
+          "weights.pt": "1cc3bec7c2a8cca9d907cd2a2c8ea3e7701f45c18f76657f5e2bdb812f267675"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "hrnet-combined-seed3",
+          "model": "hrnet",
+          "seed": 3
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 6660
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "mobilenetv4-combined-seed1",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "bf82a933d8a2b72b1f46c92407063ad2a999da53c2a35b463e3703ea4af1087a",
+          "FINAL.json": "58ab47adf5468de934613428c87daf8a6025e6947779709f08d6c24cfa5704dd",
+          "HISTORY.json": "f529ab094d4f7e5021392e6ba8baab42aca20e946455398d148539b690ba6888",
+          "IDENTITY.json": "cfc5146ab05b62da14db6cd72079d759e2367657467ffe8e225adda5b87bc698",
+          "SMOKE.json": "ffb1c13a389d79ee22b31926bd5a1260027a6945987a4023f6055857518cb74c",
+          "VALIDATION.json": "cc459cee10e65033f89d122ccc3381608f43168b4bf06eefd52fccc205f57d43",
+          "console.log": "68b03ef83938e9a269f2cd4421a3071465eb892aa171c42f05f86e68465b1500",
+          "state.pt": "8a8fc268ac86c98b42370917705308dea14a5490ff2bfa6947cab78bbdd00e10",
+          "weights.pt": "80a54dec88acaadc7bb29cdf56f01fbde1349d7cdb5d63107be69a130d57f806"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "mobilenetv4-combined-seed1",
+          "model": "mobilenetv4",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "mobilenetv4-combined-seed2",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "f58cca06a4b7297917b32c8cc1fa60e589da9f0f02698fe1a1465fb32d6bbcc6",
+          "FINAL.json": "b3c59f4a6ffcbaec24b2b86ca3e81f8a82506d056bf9d04397b8de07dba4cb70",
+          "HISTORY.json": "e3734a7ce61fc562058cdc404ce6e6f2ff49de81c3a8b8aad9b6d698fed7d8fa",
+          "IDENTITY.json": "cfc5146ab05b62da14db6cd72079d759e2367657467ffe8e225adda5b87bc698",
+          "SMOKE.json": "c0fd4d3f05ee9a22267cd7f43ec881d860596532e7a0648b0733b0f51913b110",
+          "VALIDATION.json": "b291dacf4633ace05d430204d2eb6896a277dcacb66efe04cdbaf093b7b84347",
+          "console.log": "a9f41260f04577838758c255f69ed1db3d6986ec0807a53e978f8975a9739122",
+          "state.pt": "9d7075eb4d8c8fe7a7673e07b30895aa910c38aa55a84f99fd39ffac5276a9b5",
+          "weights.pt": "bf065825599be02a361697c2377a1759a77501bcd4d0e03e2bb27d5759812f47"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "mobilenetv4-combined-seed2",
+          "model": "mobilenetv4",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "mobilenetv4-combined-seed3",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "ccac2ad71b034e2d279b79c41e13e6299b64ae372b67bcc01de248747499e74d",
+          "FINAL.json": "718ba9f2f09b2cebc0e068569e93ff0541191274439420baa099c67c17cd1cf4",
+          "HISTORY.json": "35b9416ff3ff430c42380afa9ab261714f4f6915e0410be153306cb314c2faf4",
+          "IDENTITY.json": "cfc5146ab05b62da14db6cd72079d759e2367657467ffe8e225adda5b87bc698",
+          "SMOKE.json": "25e9858b31f8d1f77ef24361d1f8df3440f32e3141253a325e13ffbe12793126",
+          "VALIDATION.json": "0933e53ca7dea856f798c1e5ee1dfcd361b9553798a488ad63c7c62bd7661718",
+          "console.log": "217d4ce1b5b274b2c521abd739c21e6f164239fbfab7b41ddb9fa54d3b331389",
+          "state.pt": "38f096a7ce6e053945de127e0c51cc39578984460c25cf186832f97b35ab308c",
+          "weights.pt": "70a7bf21b651b50da245bbe3b22e3a6bdb55186e72185c9983584c14c110d8d2"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "mobilenetv4-combined-seed3",
+          "model": "mobilenetv4",
+          "seed": 3
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "resnet50-combined-seed1",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "22d29e0ab1291d697c9f14b77fe19ecafe2749981ed0b4d7d8b3853763d92199",
+          "FINAL.json": "6810729627d71db9653d1a51547775d7f0e9d63b925ae04af4706b4aced37191",
+          "HISTORY.json": "b4206faba283752f3f09aeae17ba2257256618451ef590e771e2bc0ff292da69",
+          "IDENTITY.json": "6e888f49959ee0bf2b8f8855595543598bc1600d660cecb58acc2023b6d488e1",
+          "SMOKE.json": "4bb6120dce7297f9d759da50164cbeff4c5f48365b07f3562544b0dedbd1a6be",
+          "VALIDATION.json": "503560d304d6fb4e11f33a2a9393ec808f5553a16da9af4ee63a059d501fadb1",
+          "console.log": "89c978be7d89f0a6c24f185ccc8af3ff19f10f50e2979e5db053455fb4578c46",
+          "state.pt": "1d9af8153b6422885e794d2bd13d52b3d36b47105687d0a081d8adc9d6d181f2",
+          "weights.pt": "9eb304a80e0bc0f555b12754f2be4aadc16fcd6d8e5d3d3a9df55eff08212b8f"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "resnet50-combined-seed1",
+          "model": "resnet50",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "resnet50-combined-seed2",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "f185d5b4da2dc9600c4b97a47d83fccf2fc8c9e6848073f0ebe5cad6f8286591",
+          "FINAL.json": "6b88cc151b5f5cc2dd795c90146995a77ba8b0f66930b68d8daa5e978d21956f",
+          "HISTORY.json": "0b8e978cda562c5d54eeb22bfcf83cb76b1be2a95105fe05529ffe484f99e72a",
+          "IDENTITY.json": "6e888f49959ee0bf2b8f8855595543598bc1600d660cecb58acc2023b6d488e1",
+          "SMOKE.json": "28dacca7bc27fa4c5d64cea6eb942c1301482b7b961b93b662cebde77d1ce001",
+          "VALIDATION.json": "1bc4c2324d18b5d5402615810b2b5705cc0d5443b6378cbaf63987bfe4e53b6a",
+          "console.log": "10d35db291f3e2bca730efc954b08050129c133c45b934696340640999fdd62a",
+          "state.pt": "6051a37c74b256fb2688254532fe4400208baf0493fd428468a829c2367fc269",
+          "weights.pt": "2845f063439d399c7e7b71292292facdffb5f300eb1534be4f06d73c8b872fd5"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "resnet50-combined-seed2",
+          "model": "resnet50",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "resnet50-combined-seed3",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "8717a31f833b1f2dded9ea3b23bd75e4525cc4781ddce50b5d162eb350144603",
+          "FINAL.json": "bd09056ebc415b997c64f79bb90225ad2c87329a997ac5bc192a32994a78e9ad",
+          "HISTORY.json": "8ae0c3d61155029a5b0de63dc68adb644135b5b0e643247dee9d51c99d012c14",
+          "IDENTITY.json": "6e888f49959ee0bf2b8f8855595543598bc1600d660cecb58acc2023b6d488e1",
+          "SMOKE.json": "ac6c2a537635500743888b229aada6caa35435f19d27a7afb2207abcf5768465",
+          "VALIDATION.json": "3950c40bcce651b51d830504d170b05f9a936d29962564da19962000313073ab",
+          "console.log": "6b067ace86c1b29e8b2a59c2438bfed9a0e577c0ba974516cfde49e175d7b57e",
+          "state.pt": "cffb702adc109de80b374d5304cc23b8b01a8a1c87ed3189acc89f1c966c4c32",
+          "weights.pt": "a3e7e0994c55b6aa30e0f9874fa89abd09f05725dbc1bb43fe243be29d0653f1"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "resnet50-combined-seed3",
+          "model": "resnet50",
+          "seed": 3
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 2940
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "segformer-combined-seed1",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "8d8192c8ca5103350ff26963deaaa0a71b9dc473366cb37cdaffb576fff572b7",
+          "FINAL.json": "9dd00ed4093219d95da7bbec2449f95e67c754d5ff3998366b0d9e3895d958a7",
+          "HISTORY.json": "f715d400897e3a52d5b87bd9cc00d21a7b5ccea0f3c5e250c8d4e71ef635dd8c",
+          "IDENTITY.json": "6c524d4147f207650b45193ad7a34fd7ce0dd5d709be86e1a6108d146435dd86",
+          "MODEL_CONFIG.json": "ae57e3c33803d492915be5e8b0c9f796e45e1ddf83ee545ee0417cafd565ff37",
+          "SMOKE.json": "f148e920ed8a00fb3020fe5e856950703825760e8c29ab4b162d54f115ab41f6",
+          "VALIDATION.json": "fdd309f0f1b800e91a5d7a871bec5f495c83120d68163f15ae4df6eaf86a4f03",
+          "console.log": "7af35bb12b4918401362b18d7a5401b8b54258c09edee55be60433e96dd088f9",
+          "state.pt": "65746b70f701999fa1a4fc648ffd1c4fc766d67304bd980a85e7f1c80e947748",
+          "weights.pt": "5e29623a697b11e3220324bfb6fe1bdf138c00a0aee8fea3f5089e57e14fab9a"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "segformer-combined-seed1",
+          "model": "segformer",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 11580
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "segformer-combined-seed2",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "39d7da7a6f1be3395646454dd114880d0b6ea581e07b541571c5f5a2e1ddbcb4",
+          "FINAL.json": "89df59a3b06ca5e639231ed449d1ead3b67f5ae07b45d68a3774dbdc7a4dddef",
+          "HISTORY.json": "95afde4eb7e2d9f5b5e899741fcf6dc475321558f46f176a8443e85c8a612fc1",
+          "IDENTITY.json": "6c524d4147f207650b45193ad7a34fd7ce0dd5d709be86e1a6108d146435dd86",
+          "MODEL_CONFIG.json": "ae57e3c33803d492915be5e8b0c9f796e45e1ddf83ee545ee0417cafd565ff37",
+          "SMOKE.json": "b0572fe382ba9b5f39641fc556c67e4d9bc27a39e23673eda98c5c1f3d309dc2",
+          "VALIDATION.json": "90c1dedc4cce9a61424915c360c2bb1400fb204fb6419681ee63aabd604f8955",
+          "console.log": "05e6dda8dcce964bd990257cd9ccfa496f45bc729c96cfeaed64388c0a87b5eb",
+          "state.pt": "46e70ffac5d9dc8de56c5a149380fc9c996c2dc02335e899cce05d3a67271634",
+          "weights.pt": "96d6e536ee7c6fab69be52d21886b7ba9f4c0cddb7b381f7c6fc39c9fea0d3fd"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "segformer-combined-seed2",
+          "model": "segformer",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 11580
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "segformer-combined-seed3",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "cc4862253ff9937a83af5e91bd905f9b5c44c518a3ebde9127171aac7085bf00",
+          "FINAL.json": "29091d47ff741f7b245f6ded7851526202c09a79e852a48fe01ce3b71dfec068",
+          "HISTORY.json": "f41dbe5f45ced3b29ba7559a8cd2668436862ac12da2b176bce3b443a291325d",
+          "IDENTITY.json": "6c524d4147f207650b45193ad7a34fd7ce0dd5d709be86e1a6108d146435dd86",
+          "MODEL_CONFIG.json": "ae57e3c33803d492915be5e8b0c9f796e45e1ddf83ee545ee0417cafd565ff37",
+          "SMOKE.json": "fd0608e9ace12236764b1d19fead4a08a0b60ad2e9c448994c50857345e9815f",
+          "VALIDATION.json": "df47a7501270568b6734756fd63fad252d4d3ff28945592560ccd79621e55e66",
+          "console.log": "437e71053a7e931c5df88dfdc8cc2d22b9676fc5f5fdca776e631e7b453e7351",
+          "state.pt": "d51c9fe547d4d0563804c09618c5792b16b539a783ba833b2816d28bf310d9a2",
+          "weights.pt": "e6aecaf9d7429aa5545d488334df1112e4c283611246da691d9fe43657bec623"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "segformer-combined-seed3",
+          "model": "segformer",
+          "seed": 3
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 11580
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "yolo26m-combined-seed1",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "bbcd1663ac2b6c31ae0675e142f41548c71bd07bb45348dcdb4d6ba1a4565c64",
+          "FINAL.json": "3eb7fa9b4b9a48a828a41378cc6bcf4de06dc1c85e70bd5db7e8cd3a7a1209a0",
+          "HISTORY.json": "093091d6d10af58f765cfb2315c082e5d897ad875dade62ac5390b49a645004d",
+          "IDENTITY.json": "ac8d33dbc1b5e4f0dcad4da19448823fe17a55c8e201fcf1ffc3eb9cc8a45488",
+          "MODEL_CONFIG.json": "8b36df7c48c0a1e2019597ff907bbd47b27f9e2b6e55619808e7400e188f0c10",
+          "SMOKE.json": "f0ea73f1a1f3435e9b71549508f83480642ddd5fe4ef401d20862c0fb43f5c13",
+          "VALIDATION.json": "41d30ec1adfd6a2d5fd118643ebade7b1a7d3af9f696b93a66ccb22b3f19ac09",
+          "console.log": "f4cb89710c5a1951a94a13c377c5f7d5fcbb781263ffe494a8d5a27f784052ea",
+          "state.pt": "923fe8c0a74bc9fd1146899a9416b1acfe23c4fb9e9db854f2f23ff5d57af7df",
+          "weights.pt": "733eb9b402dcb8af9524d4c13dcff31312629ffc6ede9249e594b2e99e6d102e"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "yolo26m-combined-seed1",
+          "model": "yolo26m",
+          "seed": 1
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 11580
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "yolo26m-combined-seed2",
+      "manifest": {
+        "cursor": 0,
+        "epoch": 60,
+        "files": {
+          "EXPORT.json": "889ed9122fb8e811b3c3aec15413104279735b72393e23759bcae461524c5c74",
+          "FINAL.json": "389b16a3683ce0fe9fac2731cbeedd95e6b363b640322918618ee1b2473c4768",
+          "HISTORY.json": "26f193c13d1898e481d2229c1bf2abd4991403afa6958be76b7f57c7e3dc2918",
+          "IDENTITY.json": "ac8d33dbc1b5e4f0dcad4da19448823fe17a55c8e201fcf1ffc3eb9cc8a45488",
+          "MODEL_CONFIG.json": "8b36df7c48c0a1e2019597ff907bbd47b27f9e2b6e55619808e7400e188f0c10",
+          "SMOKE.json": "166f3e9c521b45d019767ef990638d76b8c4d7f2b2a8a51ebec6ccf96c74f82e",
+          "VALIDATION.json": "d3d413660339c25c9498b1c32f76647016f71c93b29ac522b3ff6def15e1576f",
+          "console.log": "649a94d0de349abe23ed7676980864f51f63cb24bf61e5b808b3da877e6caf5f",
+          "state.pt": "66ea1de77221d02f508fba0c77d86fb87a050f69945926d25b1c61c4ab48070a",
+          "weights.pt": "c13e290ad25118c55eaf84dc0235bbff4c9e460f0aba95263abdc71b45746e8d"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "yolo26m-combined-seed2",
+          "model": "yolo26m",
+          "seed": 2
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "completed",
+        "updates": 11580
+      },
+      "checks": {
+        "EXPORT.json": true,
+        "FINAL.json": true,
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true,
+        "weights.pt": true
+      }
+    },
+    {
+      "run": "yolo26m-combined-seed3",
+      "manifest": {
+        "cursor": 193,
+        "epoch": 51,
+        "files": {
+          "HISTORY.json": "2847c43bc0a828fd733128e46519617808c0dc7acb025f95176804c2b2781b35",
+          "IDENTITY.json": "ac8d33dbc1b5e4f0dcad4da19448823fe17a55c8e201fcf1ffc3eb9cc8a45488",
+          "MODEL_CONFIG.json": "8b36df7c48c0a1e2019597ff907bbd47b27f9e2b6e55619808e7400e188f0c10",
+          "SMOKE.json": "b0323e5d1b14f141e17a39ef2e74c4a8c19981e90348ea2661dbc568dedca588",
+          "VALIDATION.json": "cb2e5727b5ea2abe7573590452c207a37d0f2fb623059d2a25b811738f7e2f1e",
+          "console.log": "35c912705142cde4179d0144dcaae37b9051de14dac97358b6ab737852ec8d0d",
+          "state.pt": "a4f3e6b19696fafc2b21509cc02caacf1e032ea9f1b79ed85e1b8df41909cc55"
+        },
+        "job": {
+          "condition": "combined",
+          "id": "yolo26m-combined-seed3",
+          "model": "yolo26m",
+          "seed": 3
+        },
+        "protocol": "661e97642e10bf8cfcbb8f581142069733789eb8f413dc70654aa00dd7854af3",
+        "status": "resumable",
+        "updates": 10036
+      },
+      "checks": {
+        "HISTORY.json": true,
+        "IDENTITY.json": true,
+        "MODEL_CONFIG.json": true,
+        "SMOKE.json": true,
+        "VALIDATION.json": true,
+        "console.log": true,
+        "state.pt": true
+      }
+    }
+  ]
+}

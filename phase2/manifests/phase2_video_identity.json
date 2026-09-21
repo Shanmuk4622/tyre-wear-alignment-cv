@@ -1,0 +1,17 @@
+{
+  "status": "user_confirmed_class_and_distinctness_original_mapping_pending",
+  "confirmation_date": "2026-09-19",
+  "user_statements": ["those are mid milage tyres from 12 tyres.", "different tyres."],
+  "interpretation": "The three clips show three different physical tyres, all from the original 12 and all mid-mileage. They add views, not new tyre identities.",
+  "original_mid_session_candidates_from_existing_geometry_contract": [
+    "mileage_040000__session_001",
+    "mileage_070000__session_001",
+    "mileage_090000__session_001"
+  ],
+  "videos": [
+    {"video_id":"video1", "source_video":"video1.mp4", "provisional_tyre_id":"phase2_existing_mid_A", "original_session_id":null, "mileage_proxy":"mid_mileage_proxy", "label_source":"user confirmation", "split":"UNASSIGNED"},
+    {"video_id":"video2", "source_video":"Video2.mp4", "provisional_tyre_id":"phase2_existing_mid_B", "original_session_id":null, "mileage_proxy":"mid_mileage_proxy", "label_source":"user confirmation", "split":"UNASSIGNED"},
+    {"video_id":"video3", "source_video":"Video3.mp4", "provisional_tyre_id":"phase2_existing_mid_C", "original_session_id":null, "mileage_proxy":"mid_mileage_proxy", "label_source":"user confirmation", "split":"UNASSIGNED"}
+  ],
+  "rule": "Never treat provisional IDs as additional tyres, infer exact mappings from class alone, or assign independent frame splits. Join this metadata to the immutable extraction manifest by video_id."
+}

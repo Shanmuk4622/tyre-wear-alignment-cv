@@ -1,0 +1,36 @@
+{
+  "revision": "fea0ed40fe78f0e7d3074a19ee4b5785ffb68543",
+  "checked_utc": "2026-09-20T12:37:40.507311+00:00",
+  "runs": {
+    "yolo26m-combined-seed1": {
+      "lease": {
+        "owner": "fdc49b57cc60436da09059b80d38ea20",
+        "expires": 1789912520.1495159
+      },
+      "expires_utc": "2026-09-20T13:55:20.149516+00:00",
+      "status": "resumable",
+      "epoch": 23,
+      "updates": 4628
+    },
+    "yolo26m-combined-seed2": {
+      "lease": {
+        "owner": "d1760b4179b64531b709baaa8d20591a",
+        "expires": 1789912507.3898323
+      },
+      "expires_utc": "2026-09-20T13:55:07.389832+00:00",
+      "status": "resumable",
+      "epoch": 23,
+      "updates": 4627
+    },
+    "yolo26m-combined-seed3": {
+      "lease": {
+        "owner": "fdc49b57cc60436da09059b80d38ea20",
+        "expires": 1789912520.1495192
+      },
+      "expires_utc": "2026-09-20T13:55:20.149519+00:00",
+      "status": null,
+      "epoch": null,
+      "updates": null
+    }
+  }
+}

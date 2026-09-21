@@ -1,0 +1,64 @@
+{
+  "version": "phase2-native-2fps-v1",
+  "status": "extracted_candidates_not_labelled_or_split",
+  "videos": [
+    {
+      "video_id": "video1",
+      "source_video": "video1.mp4",
+      "source_video_sha256": "89cfae138fdf74f9cf2c13fcd22ad6979afb89b00101280fee48f71264296cf5",
+      "video_duration_seconds": 13.0996,
+      "decoded_frames": 393,
+      "extracted_frames": 27,
+      "clockwise_rotation": 90,
+      "output_width": 2160,
+      "output_height": 3840,
+      "skipped_targets_past_last_pts": [],
+      "sampling": "first source frame at or after k/2 seconds from first PTS"
+    },
+    {
+      "video_id": "video2",
+      "source_video": "Video2.mp4",
+      "source_video_sha256": "ede61beae3361da86253c295dddf9ff3ac5e0c9901d07e1fe8161dc9c2d66ea7",
+      "video_duration_seconds": 46.455067,
+      "decoded_frames": 1378,
+      "extracted_frames": 93,
+      "clockwise_rotation": 90,
+      "output_width": 1080,
+      "output_height": 1920,
+      "skipped_targets_past_last_pts": [],
+      "sampling": "first source frame at or after k/2 seconds from first PTS"
+    },
+    {
+      "video_id": "video3",
+      "source_video": "Video3.mp4",
+      "source_video_sha256": "a8d49b9218b774f3b8ec0480dcaaaca1f3d63f72442b9593d5608792cb3f8583",
+      "video_duration_seconds": 15.8,
+      "decoded_frames": 474,
+      "extracted_frames": 32,
+      "clockwise_rotation": 90,
+      "output_width": 2160,
+      "output_height": 3840,
+      "skipped_targets_past_last_pts": [],
+      "sampling": "first source frame at or after k/2 seconds from first PTS"
+    }
+  ],
+  "total_frames": 152,
+  "total_png_bytes": 434995206,
+  "max_timestamp_error_seconds": 0.033799999999999386,
+  "exact_duplicate_groups": [],
+  "contact_sheets": [
+    "phase2_video1_contact_01.jpg",
+    "phase2_video1_contact_02.jpg",
+    "phase2_video2_contact_01.jpg",
+    "phase2_video2_contact_02.jpg",
+    "phase2_video2_contact_03.jpg",
+    "phase2_video2_contact_04.jpg",
+    "phase2_video3_contact_01.jpg",
+    "phase2_video3_contact_02.jpg"
+  ],
+  "elapsed_seconds": 109.44,
+  "opencv_version": "4.11.0",
+  "sources_rehashed_unchanged": true,
+  "labels_invented": false,
+  "frames_manifest_sha256": "5a54d9438def6e090342aa853905b9bc611a8f8d851f9eee37d38861041eae6e"
+}

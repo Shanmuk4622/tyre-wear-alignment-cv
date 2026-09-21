@@ -24,7 +24,7 @@ class LearnedDiagram(QDialog):
         explanation.setWordWrap(True); detail.addWidget(explanation)
         hr = record['models']['hrnet']; seg = record['models'].get('matched')
         table = QTableWidget(6, 4)
-        table.setHorizontalHeaderLabels(['Point', 'HRNet x', 'Matched x', 'Δ px'])
+        table.setHorizontalHeaderLabels(['Point', 'HRNet x', 'SegFormer x', 'Δ px'])
         table.setEditTriggers(QTableWidget.NoEditTriggers)
         for i, name in enumerate(hr['names']):
             p = seg['points'][i] if seg else None
@@ -34,5 +34,11 @@ class LearnedDiagram(QDialog):
         table.resizeColumnsToContents(); detail.addWidget(table)
         warning = QLabel('; '.join(record['flags']) or 'No heuristic flags. This is not verified visibility, confidence or physical alignment.')
         warning.setWordWrap(True); detail.addWidget(warning)
-        layout.addWidget(QLabel('Seed 1 / epoch 60 · full RGB image resized to 384 × 512 · no crop or inferred calibration'))
+        provenance = hr.get('provenance', {})
+        if 'job' in provenance:
+            caption = f"Phase 2 HRNet seed {provenance['job']['seed']} · validation-selected weights · full RGB 384 × 512 · no inferred calibration"
+            explanation.setText(explanation.text().replace('matched SegFormer', 'Phase 2 SegFormer'))
+        else:
+            caption = 'Seed 1 / epoch 60 · full RGB image resized to 384 × 512 · no crop or inferred calibration'
+        layout.addWidget(QLabel(caption))
         close = QPushButton('Close'); close.clicked.connect(self.close); layout.addWidget(close)

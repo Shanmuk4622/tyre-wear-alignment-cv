@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "worker_assignments": {
+    "0": [
+      "yolo26m-combined-seed1"
+    ],
+    "1": [
+      "yolo26m-combined-seed2"
+    ],
+    "2": [
+      "yolo26m-combined-seed3"
+    ]
+  },
+  "runtime_unchanged": true,
+  "source_notebook_unchanged": true,
+  "zip": "phase2\\releases\\phase2_YOLO_3workers.zip",
+  "sha256": "c103f5627e7ed8c63ee7956b08329111c5d3fd941126b7e35c1527574fb53fda"
+}

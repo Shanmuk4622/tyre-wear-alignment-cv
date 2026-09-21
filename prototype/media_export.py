@@ -15,12 +15,15 @@ from learned_geometry import PointTracker, draw_learned
 
 
 def export_video(job, engine=None, progress=lambda done, total: None):
-    """Sample the full clip at 100 ms intervals; keep its duration at 10 fps.
+    """Sample the full clip at the requested FPS (default 10), preserving duration.
 
     Lower-rate inputs repeat their latest frame. Decode sequentially to avoid
     keyframe seeking errors. The output is silent and capped at 1280 px, exactly
     like the workstation's analysis frames. Publish only a completed MP4.
     """
+    output_fps = float(job.get('fps', 10.))
+    if not math.isfinite(output_fps) or not 1 <= output_fps <= 60:
+        raise ValueError('Export FPS must be between 1 and 60')
     destination = Path(job['destination'])
     partial = destination.with_suffix('.partial.mp4')
     cap = cv2.VideoCapture(job['source'])
@@ -34,14 +37,14 @@ def export_video(job, engine=None, progress=lambda done, total: None):
         frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
         if not math.isfinite(fps) or fps <= 0 or frames <= 0:
             raise ValueError('Video has no usable duration or frame rate')
-        total = math.ceil(frames / fps * 10 - 1e-7)
+        total = math.ceil(frames / fps * output_fps - 1e-7)
         rotation = configure_capture(cap)
         engine = engine or Engine('cpu')
         progress(0, total)
         index = -1
         frame = None
         for sample in range(total):
-            target = min(int(sample * fps / 10 + 1e-7), int(frames)-1)
+            target = min(int(sample * fps / output_fps + 1e-7), int(frames)-1)
             while index < target:
                 ok, decoded = cap.read()
                 if not ok:
@@ -60,7 +63,7 @@ def export_video(job, engine=None, progress=lambda done, total: None):
                 name = 'segformer_b0' if result.get('assist_used') else job['region']
             mm = masks.get(name)
             out = overlay(rgb, mm, job['opacity'], job['layers']) if mm is not None else rgb.copy()
-            stamp = sample * 100.
+            stamp = sample * 1000. / output_fps
             if job['geometry']:
                 geometry = tracks.setdefault(name, GeometryTracker()).update(mm[0], stamp) if mm is not None else None
                 out = draw_geometry(out, geometry)
@@ -70,11 +73,14 @@ def export_video(job, engine=None, progress=lambda done, total: None):
             learned = point_tracker.update(result.get('learned_geometry'), stamp, job['source'])
             if job['show_learned'] and learned is not None:
                 out = draw_learned(out, learned)
+            if job.get('information_panel', False):
+                from phase2_video_labels import draw_footer, footer_lines
+                out = draw_footer(out, footer_lines(result, learned, stamp/1000., output_fps))
             # MPEG-4 requires even dimensions. Pad, never stretch the overlay.
             h, w = out.shape[:2]
             out = cv2.copyMakeBorder(out, 0, h % 2, 0, w % 2, cv2.BORDER_REPLICATE)
             if writer is None:
-                writer = cv2.VideoWriter(str(partial), cv2.VideoWriter_fourcc(*'mp4v'), 10., (out.shape[1], out.shape[0]))
+                writer = cv2.VideoWriter(str(partial), cv2.VideoWriter_fourcc(*'mp4v'), output_fps, (out.shape[1], out.shape[0]))
                 if not writer.isOpened():
                     raise RuntimeError('MP4 encoder could not start')
             writer.write(cv2.cvtColor(out, cv2.COLOR_RGB2BGR))
@@ -85,6 +91,8 @@ def export_video(job, engine=None, progress=lambda done, total: None):
         # Verify the complete encoded output before presenting it as a download.
         verify = cv2.VideoCapture(str(partial))
         try:
+            if abs(verify.get(cv2.CAP_PROP_FPS)-output_fps) > .01:
+                raise RuntimeError('The encoded video failed its frame-rate check')
             decoded_count = 0
             while verify.grab():
                 decoded_count += 1

@@ -139,6 +139,12 @@ def measure(rgb, profile, side, confirmed=False):
     out = rgb.copy()
     for pose in (ground, wheel):
         cv2.drawFrameAxes(out, k, d, pose['rvec'], pose['tvec'], .09, 3)
+    text = f"Camber {result['camber_deg']:+.2f} deg | Toe-in {result['toe_in_deg']:+.2f} deg"
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    scale = min(.8, (out.shape[1]-20)/cv2.getTextSize(text, font, 1., 1)[0][0])
+    for y, line in [(28, text), (52, 'Calibrated targets - research measurement')]:
+        cv2.putText(out, line, (10, y), font, scale, (255, 255, 255), 4, cv2.LINE_AA)
+        cv2.putText(out, line, (10, y), font, scale, (25, 70, 90), 1, cv2.LINE_AA)
     return result, out
 
 

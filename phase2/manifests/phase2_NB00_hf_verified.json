@@ -1,0 +1,33 @@
+{
+  "status": "VERIFIED",
+  "revision": "3da9c33dc5d1ca9e57d2c85ec87bdcd4f6fcf876",
+  "url": "https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/resolve/3da9c33dc5d1ca9e57d2c85ec87bdcd4f6fcf876/phase2/source-v1/06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a/preflight/20260919T152230Z-2adfb5c7/report.json",
+  "path": "phase2/source-v1/06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a/preflight/20260919T152230Z-2adfb5c7/report.json",
+  "report_sha256": "2f2c73b8baa024a59df18a208e5189b6628b3b79e7536cc83e1d69d10bf56108",
+  "report": {
+    "run_id": "20260919T152230Z-2adfb5c7",
+    "expected_checksum_manifest_sha256": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a",
+    "python": "3.12.13 (main, Mar  4 2026, 09:23:07) [GCC 11.4.0]",
+    "status": "integrity_pass_training_gates_pending",
+    "training_started": false,
+    "verification": {
+      "integrity": "PASS",
+      "checksummed_files": 2882,
+      "image_and_mask_sets": 570,
+      "domains": {
+        "original_photo": 418,
+        "new_video_frame": 152
+      },
+      "conflict_pixels_explicitly_ignored": 172439,
+      "source_package_ready": true,
+      "training_allowed": false,
+      "next_steps": [
+        "Resolve exact original/video tyre identities and freeze splits",
+        "Resolve label conflicts for YOLO or other trainers without ignore support",
+        "Review derived geometry proposals",
+        "Run the forthcoming GPU/resume preflight"
+      ]
+    },
+    "finished_utc": "2026-09-19T15:24:46.883869+00:00"
+  }
+}

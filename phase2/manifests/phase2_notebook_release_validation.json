@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "notebooks": {
+    "phase2_NB01_GPU_Resume_Smoke.ipynb": "6620119b9ed6a407d103bf4f18432834966e530e9bb103cbe6370684e9e4c1fa",
+    "phase2_NB02_Classification.ipynb": "cc4e5285f10c8029a87217c6870b510c0b75111598ef317a602c3421e0f09cf6",
+    "phase2_NB03_SegFormer.ipynb": "e1e97cf1b79ddc681b651fd3de59b5e9e830f9ede5ff6a22d82d67ce5ef62987",
+    "phase2_NB04_YOLO26M_Seg.ipynb": "84ed2afdcb9952dcbc74403d3207696e9a2eaceb86bfd6cd7e024415860f576a",
+    "phase2_NB05_HRNet.ipynb": "6e4d018bd0d2dfc1bd8281ff66d509336bd5b872d3d62eaf71a25a4bd752aac4",
+    "phase2_NB06_Evaluate_Export.ipynb": "b8010dc66b00341c6f0a73b251e8cd80b9b14e646503d359d96eefe0e97199d2"
+  },
+  "embedded_runtime_sources": "7 exact byte matches in each of 6 notebooks",
+  "executed_NB00_unchanged_sha256": "901b12e7493c691794caaf1c3057a3133a77160e799840dcffaf07b39c98daf6",
+  "NB00_HF_revision": "3da9c33dc5d1ca9e57d2c85ec87bdcd4f6fcf876",
+  "local_GPU_models_passed": 5,
+  "kaggle_training_started": false
+}
