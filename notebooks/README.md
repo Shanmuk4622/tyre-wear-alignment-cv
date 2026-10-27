@@ -1,5 +1,12 @@
 # Notebooks
 
+## Original paper model illustrations
+
+Use [NB33_Original_Study_Visual_Comparison.ipynb](NB33_Original_Study_Visual_Comparison.ipynb)
+for the **original final_v1 data and models**, not Phase 2 NB07. It compares all
+17 retained classifier architectures, nine localisation models and the original
+geometry pair. [Setup and scope](../docs/37_ORIGINAL_STUDY_VISUAL_COMPARISON.md).
+
 <!-- current-status:start -->
 > **Current status (15 September 2026):** [Completed work and remaining validation](../docs/CURRENT_STATUS.md). The report is refreshed; the app, learned-geometry integration and target-assisted alignment software exist. Dated plans below retain their original context.
 <!-- current-status:end -->

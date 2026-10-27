@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "notebook_valid": true,
+  "actual_model_image_pairs": 15,
+  "resume_outputs_unchanged": true,
+  "missing_clipped_boundaries_preserved": true,
+  "hf_publication_tested": false,
+  "kaggle_execution_tested": false,
+  "date": "2026-09-23",
+  "visual_review": true,
+  "device": "NVIDIA GeForce GTX 1650",
+  "sources_sha256": {
+    "phase2_visual_compare.py": "c6e2e7a14270e6f3a0cf261e359ac949161b96575eaeab30edec529d7da94c53",
+    "phase2_build_visual_notebook.py": "3ba7c87590f606f4ae5fd5aba4ae698edd52fd9773d3ccdc810bb04dd377f7f8",
+    "notebooks/phase2_NB07_Visual_Model_Comparison.ipynb": "da093c39d4ba29a1deb1d707017f325ba6cb40aa745ef7a125c2cdaccd6dbf72"
+  }
+}

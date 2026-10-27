@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "notebook_schema_and_cell_syntax": true,
+  "original_manifest_verified": true,
+  "phase2_dataset_rejected": true,
+  "checkpoint_references_pinned_and_remote_metadata_checked": 45,
+  "default_model_pipelines": 28,
+  "actual_checkpoint_pipelines_tested": [
+    "mobilenetv4-best",
+    "mobilenetv4-last",
+    "resnet50-last",
+    "segformer_b0",
+    "yolo26n_seg",
+    "geometry-hrnet",
+    "geometry-matched"
+  ],
+  "actual_model_image_pairs": 63,
+  "source_images": 9,
+  "classifier_architecture_forward_checks": [
+    "resnet50",
+    "resnext50",
+    "densenet121",
+    "vgg16bn",
+    "convnextv2_t",
+    "effnetv2s",
+    "regnety016",
+    "mobilenetv4",
+    "vit_s",
+    "deit3_s",
+    "swin_t",
+    "swin_s",
+    "coatnet0",
+    "maxvit_t",
+    "dinov2_s",
+    "dinov2_b",
+    "clip_b16"
+  ],
+  "architecture_checks_use_random_weights": true,
+  "completed_pair_resume_unchanged": true,
+  "visual_review": [
+    "low-use classifier sheet",
+    "low-use geometry overlay"
+  ],
+  "original_low_predictions": {
+    "mobilenetv4-best": [
+      "Low",
+      "Low",
+      "Low"
+    ],
+    "mobilenetv4-last": [
+      "Low",
+      "Low",
+      "Low"
+    ],
+    "resnet50-last": [
+      "Low",
+      "Low",
+      "Low"
+    ]
+  },
+  "kaggle_execution_of_corrected_notebook_tested": false,
+  "full_28_pipeline_trained_inference_tested": false,
+  "hf_publication_of_corrected_notebook_tested": false,
+  "inspected_executed_phase2_notebook_sha256": "98e120b94b18da5d1db162e93b76f3a2be7d295cdb146856df6b868382cf4ec2",
+  "corrected_notebook_sha256": "71805a770e7005e72d1a91b9a4270b1fb336aa0e02d91418cbacd04532157112"
+}

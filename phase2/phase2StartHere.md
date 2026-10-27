@@ -1,5 +1,9 @@
 # Phase 2 — current entry point
 
+New: [NB07 visual comparison notebook](phase2VisualComparison.md) runs the five
+current exports on low/medium/high examples with probability plots, mask overlays,
+boundary comparisons, a downloadable gallery and resumable HF result snapshots.
+
 **All 15 training runs and final NB06 are HF-verified complete.** No training notebook needs rerunning. [Final verification](phase2Seed3Completion.md).
 
 Tread Station uses the selected Phase 2 models; the completed registry confirms the installed selections, including YOLO seed 1. [Workstation guide and rollback](workstation/README.md).
