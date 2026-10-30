@@ -1,0 +1,211 @@
+[
+  {
+    "path": "notebooks\\phase3_NB00_Data_Preflight.ipynb",
+    "bytes": 64982,
+    "sha256": "74d045c5f53013f5f7f40547464b78141626eba6f7669339acfa00ea73b57827",
+    "cells": [
+      {
+        "index": 0,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 1,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 2,
+        "type": "code",
+        "execution_count": 1,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 8
+      },
+      {
+        "index": 3,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 4,
+        "type": "code",
+        "execution_count": 2,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 5,
+        "type": "code",
+        "execution_count": 3,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 6,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 7,
+        "type": "code",
+        "execution_count": 4,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 24
+      },
+      {
+        "index": 8,
+        "type": "code",
+        "execution_count": 5,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 60
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "display_name": "Python 3",
+        "language": "python",
+        "name": "python3"
+      },
+      "language_info": {
+        "name": "python",
+        "version": "3.13.15",
+        "mimetype": "text/x-python",
+        "codemirror_mode": {
+          "name": "ipython",
+          "version": 3
+        },
+        "pygments_lexer": "ipython3",
+        "nbconvert_exporter": "python",
+        "file_extension": ".py"
+      },
+      "kaggle": {
+        "isInternetEnabled": true,
+        "isGpuEnabled": false,
+        "datasetSources": [
+          "shanmuk4622/tire-dataset-prepared-phase2"
+        ]
+      }
+    }
+  },
+  {
+    "path": "notebooks\\phase3_NB01_TREAD_ONE.ipynb",
+    "bytes": 3757473,
+    "sha256": "54db064eb1f3dc5fc2e4fbc89d9d983270a7f6f9d6ddb8d21d0240c8b53d8a65",
+    "cells": [
+      {
+        "index": 0,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 1,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 2,
+        "type": "code",
+        "execution_count": 6,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 1
+      },
+      {
+        "index": 3,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 4,
+        "type": "code",
+        "execution_count": 7,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 5,
+        "type": "code",
+        "execution_count": 8,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 6,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 7,
+        "type": "code",
+        "execution_count": 9,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 547
+      },
+      {
+        "index": 8,
+        "type": "markdown",
+        "execution_count": null,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 0
+      },
+      {
+        "index": 9,
+        "type": "code",
+        "execution_count": 10,
+        "source_matches_delivery": true,
+        "errors": [],
+        "output_lines": 53
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "display_name": "Python 3",
+        "language": "python",
+        "name": "python3"
+      },
+      "language_info": {
+        "name": "python"
+      },
+      "kaggle": {
+        "isInternetEnabled": true,
+        "isGpuEnabled": true,
+        "datasetSources": [
+          "shanmuk4622/tire-dataset-prepared-phase2"
+        ]
+      }
+    }
+  }
+]

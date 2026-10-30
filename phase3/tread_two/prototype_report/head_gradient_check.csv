@@ -1,0 +1,23 @@
+parameter,gradient_norm,finite,scope
+raw_weights,0.008654246106743813,True,engineering backward only; no optimizer step
+bias,0.028193656355142593,True,engineering backward only; no optimizer step
+raw_temperature,0.005512713920325041,True,engineering backward only; no optimizer step
+encoder.body.0.weight,0.10133542865514755,True,engineering backward only; no optimizer step
+encoder.body.1.weight,0.00912089366465807,True,engineering backward only; no optimizer step
+encoder.body.1.bias,0.009074249304831028,True,engineering backward only; no optimizer step
+encoder.body.3.vertical.weight,0.07980750501155853,True,engineering backward only; no optimizer step
+encoder.body.3.horizontal.weight,0.07013965398073196,True,engineering backward only; no optimizer step
+encoder.body.3.mix.0.weight,0.11550296097993851,True,engineering backward only; no optimizer step
+encoder.body.3.mix.1.weight,0.014537929557263851,True,engineering backward only; no optimizer step
+encoder.body.3.mix.1.bias,0.011691412888467312,True,engineering backward only; no optimizer step
+encoder.body.4.weight,0.28339600563049316,True,engineering backward only; no optimizer step
+encoder.body.5.weight,0.011588802561163902,True,engineering backward only; no optimizer step
+encoder.body.5.bias,0.009113931097090244,True,engineering backward only; no optimizer step
+encoder.body.7.vertical.weight,0.04598081484436989,True,engineering backward only; no optimizer step
+encoder.body.7.horizontal.weight,0.04371754825115204,True,engineering backward only; no optimizer step
+encoder.body.7.mix.0.weight,0.10830789804458618,True,engineering backward only; no optimizer step
+encoder.body.7.mix.1.weight,0.007363411597907543,True,engineering backward only; no optimizer step
+encoder.body.7.mix.1.bias,0.007313420996069908,True,engineering backward only; no optimizer step
+encoder.body.8.weight,0.17211753129959106,True,engineering backward only; no optimizer step
+encoder.body.9.weight,0.0068718744441866875,True,engineering backward only; no optimizer step
+encoder.body.9.bias,0.005607218015938997,True,engineering backward only; no optimizer step

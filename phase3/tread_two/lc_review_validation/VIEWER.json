@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "case_records": 1442,
+  "reference_cases": 18,
+  "controls": [
+    "paging",
+    "six probes",
+    "flip filter",
+    "wrong filter",
+    "target",
+    "explained class",
+    "32patches",
+    "search"
+  ],
+  "native_browser_render": false
+}

@@ -1,0 +1,712 @@
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 0
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 1
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 2
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+gradio 6.26.0 requires huggingface-hub<2.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+gradio 6.26.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.
+diffusers 0.40.0 requires huggingface-hub<2.0,>=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.
+transformers 5.16.1 requires huggingface-hub<2.0,>=1.5.0, but you have huggingface-hub 0.36.2 which is incompatible.
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+diffusers 0.40.0 requires huggingface-hub<2.0,>=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.
+Verified 9 runtime files. HF_TOKEN loaded without displaying it.
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 3
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 4
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 5
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 6
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 7
+Hash checked 500/2882 files
+Hash checked 1000/2882 files
+Hash checked 1500/2882 files
+Hash checked 2000/2882 files
+Hash checked 2500/2882 files
+{
+  "integrity": "PASS",
+  "checksummed_files": 2882,
+  "image_and_mask_sets": 570,
+  "domains": {
+    "original_photo": 418,
+    "new_video_frame": 152
+  },
+  "conflict_pixels_explicitly_ignored": 172439,
+  "source_package_ready": true,
+  "training_allowed": false,
+  "next_steps": [
+    "Resolve exact original/video tyre identities and freeze splits",
+    "Resolve label conflicts for YOLO or other trainers without ignore support",
+    "Review derived geometry proposals",
+    "Run the forthcoming GPU/resume preflight"
+  ]
+}
+HF snapshot verified: 1168e2e27311e39931ca2ccc87d214df4d6721e7 {}
+NOTEBOOK phase3_NB00_Data_Preflight.ipynb CELL 8
+{
+  "geometry_counts": {
+    "test": 25,
+    "train": 222,
+    "validation": 25
+  },
+  "groups": {
+    "test": [
+      "mileage_000100_005000__session_002",
+      "mileage_100000_plus__session_005"
+    ],
+    "train": [
+      "mileage_040000__session_001",
+      "mileage_070000__session_001",
+      "mileage_090000__session_001",
+      "mileage_100000_plus__session_001",
+      "mileage_100000_plus__session_002",
+      "mileage_100000_plus__session_003",
+      "mileage_100000_plus__session_004",
+      "new_tire__session_001"
+    ],
+    "validation": [
+      "mileage_000100_005000__session_001",
+      "mileage_100000_plus__session_006"
+    ]
+  },
+  "limitations": {
+    "evaluation": "Held-out old low/high tyres only. No unseen-mid, unseen-video, three-class-generalisation or safety claim.",
+    "geometry": "New polygon-derived points are weak training targets with weight 0.25; validation/test use only existing human points.",
+    "identity": "All three original mid tyres and all new frames are training-only; unknown exact mapping is not invented.",
+    "masks": "SegFormer ignores contradictory pixels. YOLO training tyre = raw tyre OR raw tread; tread unchanged. Derived policy, not human correction."
+  },
+  "overlay_counts": {
+    "test": 103,
+    "train": 386,
+    "validation": 81
+  },
+  "overlay_sha256": "f81a80d20b60ba505d94e31c26615e7e7171a91a8506948be6c392b68107a039",
+  "phase3_training_overlay_ready": true,
+  "source": {
+    "checksummed_files": 2882,
+    "conflict_pixels_explicitly_ignored": 172439,
+    "domains": {
+      "new_video_frame": 152,
+      "original_photo": 418
+    },
+    "image_and_mask_sets": 570,
+    "integrity": "PASS",
+    "next_steps": [
+      "Resolve exact original/video tyre identities and freeze splits",
+      "Resolve label conflicts for YOLO or other trainers without ignore support",
+      "Review derived geometry proposals",
+      "Run the forthcoming GPU/resume preflight"
+    ],
+    "source_package_ready": true,
+    "training_allowed": false
+  },
+  "source_root": "/kaggle/input/datasets/shanmuk4622/tire-dataset-prepared-phase2/phase2_dataset_v1"
+}
+Preflight complete. Continue with NB01 in a dual-T4 session; no training was performed here.
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 0
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 1
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 2
+Verified 9 runtime files. HF_TOKEN loaded without displaying it.
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 3
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 4
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 5
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 6
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 7
+Hash checked 500/2882 files
+Hash checked 1000/2882 files
+Hash checked 1500/2882 files
+Hash checked 2000/2882 files
+Hash checked 2500/2882 files
+{
+  "integrity": "PASS",
+  "checksummed_files": 2882,
+  "image_and_mask_sets": 570,
+  "domains": {
+    "original_photo": 418,
+    "new_video_frame": 152
+  },
+  "conflict_pixels_explicitly_ignored": 172439,
+  "source_package_ready": true,
+  "training_allowed": false,
+  "next_steps": [
+    "Resolve exact original/video tyre identities and freeze splits",
+    "Resolve label conflicts for YOLO or other trainers without ignore support",
+    "Review derived geometry proposals",
+    "Run the forthcoming GPU/resume preflight"
+  ]
+}
+RUN_PREFIX = phase3/tread-one-r1/371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c | GPUs: 2 | three seeds; one model
+HF snapshot verified: c7e5c4cbe0907ef0e41e6702d3758ae006ee98f8 {}
+GPU 0 seed 1 started; real-model resume gate first
+GPU 1 seed 2 started; real-model resume gate first
+seed 1 smoke/resume preflight running
+seed 2 smoke/resume preflight running
+seed 1 {"status": "passed", "protocol": "371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c", "runtime_sources": {"phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579", "common.py": "3b2084ed5cd0ff83ecf0f08f1a3359dc0b1bb5727d600686e0437718350866e1", "model.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09", "evaluation.py": "a4ac050002cf904bb371e676265f06d13fec7bac881c5340b2e2cda512b19c40", "worker.py": "33079ea1d39ed99aeb93bde375ae818e8fe7a925190a1bb044c7b9efb7f61524", "run.py": "9a3ec8406ac9eaf4bace4279d0cd87d751abe5cc6f82ae8a861506961cd99a0d", "hub.py": "235e607881479788e482884e1ece7290f380bed60e097ff28ad271da4123171b", "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f", "data.py": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae"}, "differences": {"model": 0.0, "optimizer": 0.0, "scaler": 0.0, "scheduler": 0, "rng": 0, "losses": 0.0}, "parameters": 1372159, "device": {"python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]", "packages": {"torch": "2.11.0+cu128", "numpy": "2.1.3", "Pillow": "13.0.0", "huggingface_hub": "0.36.2", "filelock": "3.29.5"}, "device": "Tesla T4"}, "batch": 8, "input_hw": [512, 384], "scope": "Real model and real transformed images, fresh-process restore, noninitial scheduler, counterfactual branch", "step_seconds": [9.018681088999983, 0.0767020749999574, 0.07744844400008333, 0.07702177800001664, 0.1372169149999536], "peak_allocated_gpu_bytes": 1246766592, "estimated_compute_hours_per_seed": 0.07940372062779236, "estimate_excludes": "Per-update durable saves, validation, image decoding and uploads"}
+seed 2 {"status": "passed", "protocol": "371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c", "runtime_sources": {"phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579", "common.py": "3b2084ed5cd0ff83ecf0f08f1a3359dc0b1bb5727d600686e0437718350866e1", "model.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09", "evaluation.py": "a4ac050002cf904bb371e676265f06d13fec7bac881c5340b2e2cda512b19c40", "worker.py": "33079ea1d39ed99aeb93bde375ae818e8fe7a925190a1bb044c7b9efb7f61524", "run.py": "9a3ec8406ac9eaf4bace4279d0cd87d751abe5cc6f82ae8a861506961cd99a0d", "hub.py": "235e607881479788e482884e1ece7290f380bed60e097ff28ad271da4123171b", "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f", "data.py": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae"}, "differences": {"model": 0.0, "optimizer": 0.0, "scaler": 0.0, "scheduler": 0, "rng": 0, "losses": 0.0}, "parameters": 1372159, "device": {"python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]", "packages": {"torch": "2.11.0+cu128", "numpy": "2.1.3", "Pillow": "13.0.0", "huggingface_hub": "0.36.2", "filelock": "3.29.5"}, "device": "Tesla T4"}, "batch": 8, "input_hw": [512, 384], "scope": "Real model and real transformed images, fresh-process restore, noninitial scheduler, counterfactual branch", "step_seconds": [9.00363262899998, 0.077996819999953, 0.07951178200005415, 0.07704972900000939, 0.13684326200007035], "peak_allocated_gpu_bytes": 1246766592, "estimated_compute_hours_per_seed": 0.07987129931670311, "estimate_excludes": "Per-update durable saves, validation, image decoding and uploads"}
+seed 1 seed1 epoch 1/60 | joint 0.58966 | balanced 0.5000 | Dice 0.9705 | point width error 0.05664
+seed 2 seed2 epoch 1/60 | joint 0.59034 | balanced 0.5000 | Dice 0.9724 | point width error 0.05665
+seed 1 seed1 epoch 2/60 | joint 0.59501 | balanced 0.5000 | Dice 0.9857 | point width error 0.05241
+seed 2 seed2 epoch 2/60 | joint 0.59335 | balanced 0.5000 | Dice 0.9810 | point width error 0.05293
+seed 1 seed1 epoch 3/60 | joint 0.61927 | balanced 0.5000 | Dice 0.9859 | point width error 0.04193
+seed 2 seed2 epoch 3/60 | joint 0.62673 | balanced 0.5000 | Dice 0.9869 | point width error 0.03956
+seed 1 seed1 epoch 4/60 | joint 0.67918 | balanced 0.5000 | Dice 0.9874 | point width error 0.02213
+seed 2 seed2 epoch 4/60 | joint 0.66119 | balanced 0.5000 | Dice 0.9870 | point width error 0.02809
+seed 1 seed1 epoch 5/60 | joint 0.69006 | balanced 0.5000 | Dice 0.9860 | point width error 0.01834
+seed 2 seed2 epoch 5/60 | joint 0.70443 | balanced 0.5000 | Dice 0.9885 | point width error 0.01385
+seed 1 seed1 epoch 6/60 | joint 0.45166 | balanced 0.0000 | Dice 0.9826 | point width error 0.01408
+seed 2 seed2 epoch 7/60 | joint 0.68579 | balanced 0.4634 | Dice 0.9893 | point width error 0.01406
+seed 1 seed1 epoch 8/60 | joint 0.70548 | balanced 0.5000 | Dice 0.9843 | point width error 0.01301
+seed 2 seed2 epoch 8/60 | joint 0.45558 | balanced 0.0000 | Dice 0.9881 | point width error 0.01342
+seed 1 seed1 epoch 9/60 | joint 0.46808 | balanced 0.0000 | Dice 0.9889 | point width error 0.00935
+seed 2 seed2 epoch 9/60 | joint 0.45543 | balanced 0.0000 | Dice 0.9897 | point width error 0.01365
+seed 1 seed1 epoch 10/60 | joint 0.51613 | balanced 0.1098 | Dice 0.9885 | point width error 0.01157
+seed 2 seed2 epoch 10/60 | joint 0.53434 | balanced 0.1625 | Dice 0.9887 | point width error 0.01432
+seed 1 seed1 epoch 11/60 | joint 0.45711 | balanced 0.0000 | Dice 0.9889 | point width error 0.01300
+seed 2 seed2 epoch 11/60 | joint 0.51065 | balanced 0.1250 | Dice 0.9893 | point width error 0.01603
+seed 1 seed1 epoch 12/60 | joint 0.44167 | balanced 0.0000 | Dice 0.9898 | point width error 0.01825
+seed 2 seed2 epoch 12/60 | joint 0.45905 | balanced 0.0000 | Dice 0.9896 | point width error 0.01244
+seed 1 seed1 epoch 13/60 | joint 0.45603 | balanced 0.0000 | Dice 0.9890 | point width error 0.01337
+seed 2 seed2 epoch 13/60 | joint 0.45432 | balanced 0.0000 | Dice 0.9887 | point width error 0.01391
+seed 1 seed1 epoch 14/60 | joint 0.43615 | balanced 0.0000 | Dice 0.9889 | point width error 0.01999
+seed 2 seed2 epoch 14/60 | joint 0.71099 | balanced 0.5000 | Dice 0.9893 | point width error 0.01176
+seed 1 seed1 epoch 15/60 | joint 0.45307 | balanced 0.0000 | Dice 0.9893 | point width error 0.01440
+seed 2 seed2 epoch 15/60 | joint 0.53159 | balanced 0.1500 | Dice 0.9900 | point width error 0.01330
+seed 1 seed1 epoch 16/60 | joint 0.44996 | balanced 0.0000 | Dice 0.9891 | point width error 0.01541
+seed 2 seed2 epoch 16/60 | joint 0.70166 | balanced 0.5000 | Dice 0.9891 | point width error 0.01484
+seed 1 seed1 epoch 17/60 | joint 0.46273 | balanced 0.0366 | Dice 0.9894 | point width error 0.01729
+seed 2 seed2 epoch 17/60 | joint 0.44284 | balanced 0.0000 | Dice 0.9895 | point width error 0.01783
+seed 1 seed1 epoch 18/60 | joint 0.45878 | balanced 0.0000 | Dice 0.9895 | point width error 0.01251
+seed 2 seed2 epoch 18/60 | joint 0.52406 | balanced 0.1723 | Dice 0.9895 | point width error 0.01946
+seed 1 seed1 epoch 19/60 | joint 0.71361 | balanced 0.5000 | Dice 0.9891 | point width error 0.01085
+seed 2 seed2 epoch 19/60 | joint 0.68125 | balanced 0.4625 | Dice 0.9898 | point width error 0.01548
+seed 1 seed1 epoch 20/60 | joint 0.64885 | balanced 0.3902 | Dice 0.9890 | point width error 0.01414
+seed 2 seed2 epoch 20/60 | joint 0.70009 | balanced 0.5000 | Dice 0.9897 | point width error 0.01544
+seed 1 seed1 epoch 21/60 | joint 0.46002 | balanced 0.0000 | Dice 0.9891 | point width error 0.01205
+seed 2 seed2 epoch 21/60 | joint 0.57589 | balanced 0.2500 | Dice 0.9897 | point width error 0.01516
+seed 1 seed1 epoch 22/60 | joint 0.68213 | balanced 0.4512 | Dice 0.9896 | point width error 0.01328
+seed 2 seed2 epoch 23/60 | joint 0.46178 | balanced 0.0000 | Dice 0.9893 | point width error 0.01150
+seed 1 seed1 epoch 23/60 | joint 0.73789 | balanced 0.5500 | Dice 0.9900 | point width error 0.01120
+seed 2 seed2 epoch 24/60 | joint 0.45239 | balanced 0.0000 | Dice 0.9895 | point width error 0.01464
+seed 1 seed1 epoch 24/60 | joint 0.52982 | balanced 0.1463 | Dice 0.9888 | point width error 0.01314
+seed 2 seed2 epoch 24/60 | joint 0.45239 | balanced 0.0000 | Dice 0.9895 | point width error 0.01464
+seed 1 seed1 epoch 26/60 | joint 0.72225 | balanced 0.5000 | Dice 0.9901 | point width error 0.00809
+seed 2 seed2 epoch 26/60 | joint 0.84494 | balanced 0.7750 | Dice 0.9897 | point width error 0.01299
+seed 1 seed1 epoch 27/60 | joint 0.46776 | balanced 0.0000 | Dice 0.9897 | point width error 0.00954
+seed 2 seed2 epoch 27/60 | joint 0.80739 | balanced 0.6875 | Dice 0.9898 | point width error 0.01093
+seed 1 seed1 epoch 28/60 | joint 0.51993 | balanced 0.1341 | Dice 0.9899 | point width error 0.01453
+seed 2 seed2 epoch 28/60 | joint 0.74448 | balanced 0.5875 | Dice 0.9899 | point width error 0.01524
+seed 1 seed1 epoch 29/60 | joint 0.46271 | balanced 0.0000 | Dice 0.9894 | point width error 0.01119
+seed 2 seed2 epoch 29/60 | joint 0.45580 | balanced 0.0000 | Dice 0.9896 | point width error 0.01352
+seed 1 seed1 epoch 30/60 | joint 0.55009 | balanced 0.1951 | Dice 0.9898 | point width error 0.01464
+seed 2 seed2 epoch 30/60 | joint 0.85068 | balanced 0.8250 | Dice 0.9895 | point width error 0.01938
+
+seed1.zip:   0%|          | 0.00/24.2M [00:00<?, ?B/s]
+
+seed2.zip:   0%|          | 0.00/24.2M [00:00<?, ?B/s][A
+
+
+Upload 2 LFS files:   0%|          | 0/2 [00:00<?, ?it/s][A[A
+seed1.zip:   5%|▍         | 1.20M/24.2M [00:00<00:02, 8.30MB/s]
+
+seed2.zip:   5%|▌         | 1.25M/24.2M [00:00<00:02, 8.03MB/s][A
+
+seed2.zip:  13%|█▎        | 3.18M/24.2M [00:00<00:02, 7.11MB/s][A
+seed1.zip:  19%|█▉        | 4.64M/24.2M [00:00<00:01, 10.3MB/s]
+
+seed2.zip:  30%|██▉       | 7.19M/24.2M [00:00<00:01, 15.3MB/s][A
+seed1.zip:  38%|███▊      | 9.09M/24.2M [00:00<00:00, 18.8MB/s]
+seed1.zip:  48%|████▊     | 11.6M/24.2M [00:01<00:01, 8.19MB/s]
+
+seed2.zip:  47%|████▋     | 11.4M/24.2M [00:01<00:01, 8.30MB/s][A
+seed1.zip:  54%|█████▍    | 13.2M/24.2M [00:01<00:01, 7.89MB/s]
+
+seed2.zip:  54%|█████▍    | 13.1M/24.2M [00:01<00:01, 8.31MB/s][A
+
+seed2.zip:  63%|██████▎   | 15.2M/24.2M [00:01<00:00, 10.1MB/s][A
+seed1.zip:  60%|█████▉    | 14.5M/24.2M [00:01<00:01, 7.89MB/s]
+
+seed2.zip:  69%|██████▉   | 16.8M/24.2M [00:02<00:01, 5.78MB/s][A
+seed1.zip:  66%|██████▌   | 16.0M/24.2M [00:02<00:01, 4.78MB/s]
+
+seed2.zip:  87%|████████▋ | 20.9M/24.2M [00:02<00:00, 9.38MB/s][A
+seed1.zip:  86%|████████▋ | 20.9M/24.2M [00:02<00:00, 9.24MB/s]
+seed2.zip: 100%|██████████| 24.2M/24.2M [00:04<00:00, 5.58MB/s]
+
+seed1.zip: 100%|██████████| 24.2M/24.2M [00:04<00:00, 5.46MB/s]
+
+
+
+Upload 2 LFS files:  50%|█████     | 1/2 [00:04<00:04,  4.87s/it][A[A
+Upload 2 LFS files: 100%|██████████| 2/2 [00:04<00:00,  2.43s/it]
+HF snapshot verified: 86be4f6627e71573ae640dbf102b6315a56247f8 {'seed1': 1521, 'seed2': 1518}
+seed 1 seed1 epoch 31/60 | joint 0.47613 | balanced 0.0122 | Dice 0.9891 | point width error 0.00872
+seed 2 seed2 epoch 31/60 | joint 0.50191 | balanced 0.1220 | Dice 0.9895 | point width error 0.01847
+seed 1 seed1 epoch 32/60 | joint 0.52844 | balanced 0.1341 | Dice 0.9891 | point width error 0.01161
+seed 2 seed2 epoch 32/60 | joint 0.45410 | balanced 0.0000 | Dice 0.9896 | point width error 0.01409
+seed 1 seed1 epoch 33/60 | joint 0.53640 | balanced 0.1463 | Dice 0.9895 | point width error 0.01103
+seed 2 seed2 epoch 33/60 | joint 0.45264 | balanced 0.0000 | Dice 0.9893 | point width error 0.01453
+seed 1 seed1 epoch 34/60 | joint 0.53245 | balanced 0.1341 | Dice 0.9890 | point width error 0.01025
+seed 2 seed2 epoch 34/60 | joint 0.49679 | balanced 0.1098 | Dice 0.9897 | point width error 0.01816
+seed 1 seed1 epoch 38/60 | joint 0.53586 | balanced 0.1585 | Dice 0.9894 | point width error 0.01324
+seed 2 seed2 epoch 37/60 | joint 0.44991 | balanced 0.0000 | Dice 0.9897 | point width error 0.01549
+seed 1 seed1 epoch 39/60 | joint 0.71683 | balanced 0.5000 | Dice 0.9899 | point width error 0.00988
+seed 2 seed2 epoch 38/60 | joint 0.56987 | balanced 0.2561 | Dice 0.9898 | point width error 0.01820
+seed 1 seed1 epoch 40/60 | joint 0.66227 | balanced 0.3902 | Dice 0.9899 | point width error 0.00978
+seed 2 seed2 epoch 39/60 | joint 0.63035 | balanced 0.3780 | Dice 0.9896 | point width error 0.01834
+seed 1 seed1 epoch 45/60 | joint 0.48514 | balanced 0.0488 | Dice 0.9897 | point width error 0.01188
+seed 2 seed2 epoch 44/60 | joint 0.64670 | balanced 0.4024 | Dice 0.9899 | point width error 0.01699
+seed 1 seed1 epoch 46/60 | joint 0.65800 | balanced 0.3780 | Dice 0.9895 | point width error 0.00912
+seed 2 seed2 epoch 45/60 | joint 0.44053 | balanced 0.0000 | Dice 0.9897 | point width error 0.01862
+seed 1 seed1 epoch 47/60 | joint 0.51860 | balanced 0.1098 | Dice 0.9896 | point width error 0.01088
+seed 2 seed2 epoch 46/60 | joint 0.47032 | balanced 0.0610 | Dice 0.9898 | point width error 0.01886
+seed 1 seed1 epoch 48/60 | joint 0.72055 | balanced 0.5000 | Dice 0.9899 | point width error 0.00863
+seed 2 seed2 epoch 47/60 | joint 0.46925 | balanced 0.0610 | Dice 0.9896 | point width error 0.01920
+seed 1 seed1 epoch 48/60 | joint 0.72055 | balanced 0.5000 | Dice 0.9899 | point width error 0.00863
+seed 2 seed2 epoch 48/60 | joint 0.48016 | balanced 0.0854 | Dice 0.9897 | point width error 0.01964
+seed 1 seed1 epoch 49/60 | joint 0.54680 | balanced 0.1585 | Dice 0.9897 | point width error 0.00962
+seed 2 seed2 epoch 49/60 | joint 0.51921 | balanced 0.1585 | Dice 0.9898 | point width error 0.01883
+seed 1 seed1 epoch 50/60 | joint 0.65117 | balanced 0.3659 | Dice 0.9899 | point width error 0.00940
+seed 2 seed2 epoch 50/60 | joint 0.53985 | balanced 0.1951 | Dice 0.9897 | point width error 0.01803
+seed 1 seed1 epoch 51/60 | joint 0.64592 | balanced 0.3537 | Dice 0.9899 | point width error 0.00913
+seed 2 seed2 epoch 51/60 | joint 0.62517 | balanced 0.3659 | Dice 0.9897 | point width error 0.01805
+seed 1 seed1 epoch 52/60 | joint 0.60094 | balanced 0.2683 | Dice 0.9898 | point width error 0.00988
+seed 2 seed2 epoch 52/60 | joint 0.48274 | balanced 0.0854 | Dice 0.9896 | point width error 0.01877
+seed 1 seed1 epoch 53/60 | joint 0.65834 | balanced 0.3780 | Dice 0.9897 | point width error 0.00903
+seed 2 seed2 epoch 53/60 | joint 0.47006 | balanced 0.0610 | Dice 0.9897 | point width error 0.01894
+seed 1 seed1 epoch 54/60 | joint 0.50112 | balanced 0.0732 | Dice 0.9897 | point width error 0.01063
+seed 2 seed2 epoch 54/60 | joint 0.63046 | balanced 0.3780 | Dice 0.9897 | point width error 0.01832
+seed 1 seed1 epoch 55/60 | joint 0.55254 | balanced 0.1707 | Dice 0.9898 | point width error 0.00975
+seed 2 seed2 epoch 55/60 | joint 0.63166 | balanced 0.3780 | Dice 0.9897 | point width error 0.01792
+seed 1 seed1 epoch 56/60 | joint 0.53922 | balanced 0.1463 | Dice 0.9897 | point width error 0.01011
+seed 2 seed2 epoch 55/60 | joint 0.63166 | balanced 0.3780 | Dice 0.9897 | point width error 0.01792
+seed 1 seed1 epoch 57/60 | joint 0.54606 | balanced 0.1585 | Dice 0.9898 | point width error 0.00988
+seed 2 seed2 epoch 56/60 | joint 0.64418 | balanced 0.4024 | Dice 0.9898 | point width error 0.01782
+seed 1 seed1 epoch 58/60 | joint 0.53946 | balanced 0.1463 | Dice 0.9897 | point width error 0.01004
+seed 2 seed2 epoch 57/60 | joint 0.51899 | balanced 0.1585 | Dice 0.9897 | point width error 0.01889
+seed 1 seed1 epoch 58/60 | joint 0.53946 | balanced 0.1463 | Dice 0.9897 | point width error 0.01004
+seed 2 seed2 epoch 58/60 | joint 0.53269 | balanced 0.1829 | Dice 0.9898 | point width error 0.01840
+
+Upload 2 LFS files:   0%|          | 0/2 [00:00<?, ?it/s]
+
+seed1.zip:   0%|          | 0.00/26.0M [00:00<?, ?B/s][A
+
+
+seed2.zip:   0%|          | 0.00/26.0M [00:00<?, ?B/s][A[A
+
+
+seed2.zip:   0%|          | 16.4k/26.0M [00:00<02:39, 163kB/s][A[A
+
+seed1.zip:   1%|▏         | 344k/26.0M [00:00<00:07, 3.33MB/s][A
+
+seed1.zip:  16%|█▌        | 4.10M/26.0M [00:00<00:02, 9.09MB/s][A
+
+
+seed2.zip:  14%|█▍        | 3.77M/26.0M [00:00<00:02, 8.54MB/s][A[A
+
+seed1.zip:  28%|██▊       | 7.19M/26.0M [00:00<00:01, 13.8MB/s][A
+
+
+seed2.zip:  35%|███▌      | 9.19M/26.0M [00:00<00:00, 18.9MB/s][A[A
+
+
+seed2.zip:  45%|████▍     | 11.6M/26.0M [00:01<00:01, 8.08MB/s][A[A
+
+
+seed2.zip:  51%|█████     | 13.3M/26.0M [00:01<00:01, 8.50MB/s][A[A
+
+seed1.zip:  45%|████▌     | 11.8M/26.0M [00:01<00:01, 7.41MB/s][A
+
+
+seed2.zip:  56%|█████▋    | 14.7M/26.0M [00:01<00:01, 8.89MB/s][A[A
+
+seed1.zip:  54%|█████▍    | 14.0M/26.0M [00:01<00:01, 8.71MB/s][A
+
+
+seed2.zip:  62%|██████▏   | 16.0M/26.0M [00:02<00:02, 4.79MB/s][A[A
+
+seed1.zip:  62%|██████▏   | 16.0M/26.0M [00:02<00:01, 5.60MB/s][A
+
+seed1.zip:  81%|████████  | 21.0M/26.0M [00:02<00:00, 9.54MB/s][A
+seed2.zip: 100%|██████████| 26.0M/26.0M [00:02<00:00, 9.76MB/s]
+
+
+seed1.zip:  99%|█████████▉| 25.8M/26.0M [00:02<00:00, 11.4MB/s][A
+seed1.zip: 100%|██████████| 26.0M/26.0M [00:04<00:00, 5.74MB/s]
+
+Upload 2 LFS files:  50%|█████     | 1/2 [00:04<00:04,  4.98s/it]
+Upload 2 LFS files: 100%|██████████| 2/2 [00:04<00:00,  2.49s/it]
+HF snapshot verified: c1a6bbc9e963446aae495658b86ead2cf9be68e4 {'seed1': 2936, 'seed2': 2926}
+seed 1 seed1 epoch 59/60 | joint 0.57060 | balanced 0.2073 | Dice 0.9898 | point width error 0.00983
+seed 2 seed2 epoch 59/60 | joint 0.57609 | balanced 0.2683 | Dice 0.9898 | point width error 0.01816
+seed1 epoch 56/60 | joint 0.53922 | balanced 0.1463 | Dice 0.9897 | point width error 0.01011
+seed1 epoch 57/60 | joint 0.54606 | balanced 0.1585 | Dice 0.9898 | point width error 0.00988
+seed1 epoch 58/60 | joint 0.53946 | balanced 0.1463 | Dice 0.9897 | point width error 0.01004
+seed1 epoch 59/60 | joint 0.57060 | balanced 0.2073 | Dice 0.9898 | point width error 0.00983
+seed1 epoch 60/60 | joint 0.58310 | balanced 0.2317 | Dice 0.9898 | point width error 0.00973
+
+seed1.zip:   0%|          | 0.00/138M [00:00<?, ?B/s]
+
+Upload 2 LFS files:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+
+seed2.zip:   0%|          | 0.00/81.9M [00:00<?, ?B/s][A[A
+
+
+seed2.zip:   5%|▌         | 4.31M/81.9M [00:00<00:03, 25.3MB/s][A[A
+seed1.zip:   3%|▎         | 4.37M/138M [00:00<00:05, 23.7MB/s]
+seed1.zip:   7%|▋         | 9.09M/138M [00:00<00:04, 30.2MB/s]
+
+
+seed2.zip:  12%|█▏        | 10.2M/81.9M [00:00<00:02, 24.1MB/s][A[A
+
+
+seed2.zip:  15%|█▌        | 12.6M/81.9M [00:01<00:09, 7.39MB/s][A[A
+seed1.zip:   9%|▉         | 12.2M/138M [00:01<00:18, 6.88MB/s]
+
+
+seed2.zip:  17%|█▋        | 14.1M/81.9M [00:01<00:08, 7.99MB/s][A[A
+seed1.zip:  10%|█         | 14.1M/138M [00:01<00:15, 7.91MB/s]
+
+
+seed2.zip:  20%|█▉        | 16.0M/81.9M [00:02<00:12, 5.36MB/s][A[A
+seed1.zip:  12%|█▏        | 16.0M/138M [00:02<00:23, 5.25MB/s]
+
+
+seed2.zip:  39%|███▉      | 32.0M/81.9M [00:02<00:03, 15.5MB/s][A[A
+seed1.zip:  23%|██▎       | 32.0M/138M [00:02<00:07, 14.0MB/s]
+seed1.zip:  26%|██▋       | 36.4M/138M [00:02<00:06, 16.3MB/s]
+seed1.zip:  29%|██▊       | 39.5M/138M [00:02<00:05, 17.7MB/s]
+
+
+seed2.zip:  59%|█████▊    | 48.0M/81.9M [00:03<00:01, 21.9MB/s][A[A
+
+
+seed2.zip:  64%|██████▍   | 52.4M/81.9M [00:03<00:01, 23.6MB/s][A[A
+seed1.zip:  31%|███       | 42.8M/138M [00:03<00:10, 9.37MB/s]
+
+
+seed2.zip:  71%|███████▏  | 58.6M/81.9M [00:04<00:01, 14.0MB/s][A[A
+seed1.zip:  32%|███▏      | 44.7M/138M [00:04<00:09, 9.43MB/s]
+seed1.zip:  34%|███▎      | 46.3M/138M [00:04<00:09, 9.78MB/s]
+
+
+seed2.zip:  74%|███████▍  | 60.8M/81.9M [00:04<00:01, 13.4MB/s][A[A
+
+
+seed2.zip:  76%|███████▋  | 62.6M/81.9M [00:04<00:01, 13.5MB/s][A[A
+seed1.zip:  35%|███▍      | 48.0M/138M [00:04<00:14, 6.14MB/s]
+
+
+seed2.zip:  78%|███████▊  | 64.3M/81.9M [00:05<00:02, 8.40MB/s][A[A
+seed1.zip:  46%|████▋     | 64.0M/138M [00:05<00:04, 15.4MB/s]
+
+
+seed2.zip:  98%|█████████▊| 80.0M/81.9M [00:05<00:00, 16.9MB/s][A[A
+seed2.zip: 100%|██████████| 81.9M/81.9M [00:05<00:00, 14.1MB/s]
+
+seed1.zip:  58%|█████▊    | 80.0M/138M [00:05<00:02, 21.5MB/s]
+seed1.zip:  68%|██████▊   | 94.4M/138M [00:05<00:01, 31.9MB/s]
+seed1.zip:  72%|███████▏  | 99.9M/138M [00:06<00:01, 26.7MB/s]
+seed1.zip:  80%|████████  | 111M/138M [00:06<00:00, 35.5MB/s] 
+seed1.zip:  85%|████████▍ | 117M/138M [00:06<00:00, 29.4MB/s]
+seed1.zip:  93%|█████████▎| 128M/138M [00:07<00:00, 26.8MB/s]
+seed1.zip:  98%|█████████▊| 136M/138M [00:07<00:00, 31.7MB/s]
+seed1.zip: 100%|██████████| 138M/138M [00:07<00:00, 17.7MB/s]
+
+
+Upload 2 LFS files:  50%|█████     | 1/2 [00:08<00:08,  8.11s/it][A
+Upload 2 LFS files: 100%|██████████| 2/2 [00:08<00:00,  4.05s/it]
+HF snapshot verified: ef24e8a09a905be0157bc93bd0bed2c88521b1ff {'seed1': 2940, 'seed2': 2940}
+GPU 0 seed 3 started; real-model resume gate first
+seed2 epoch 56/60 | joint 0.64418 | balanced 0.4024 | Dice 0.9898 | point width error 0.01782
+seed2 epoch 57/60 | joint 0.51899 | balanced 0.1585 | Dice 0.9897 | point width error 0.01889
+seed2 epoch 58/60 | joint 0.53269 | balanced 0.1829 | Dice 0.9898 | point width error 0.01840
+seed2 epoch 59/60 | joint 0.57609 | balanced 0.2683 | Dice 0.9898 | point width error 0.01816
+seed2 epoch 60/60 | joint 0.56350 | balanced 0.2439 | Dice 0.9898 | point width error 0.01829
+
+Upload 2 LFS files:   0%|          | 0/2 [00:00<?, ?it/s]
+
+seed2.zip:   0%|          | 0.00/138M [00:00<?, ?B/s][A
+
+
+seed3.zip:   0%|          | 0.00/491 [00:00<?, ?B/s][A[A
+
+seed2.zip:   5%|▌         | 7.41M/138M [00:00<00:01, 72.6MB/s][A
+
+seed2.zip:  11%|█         | 14.7M/138M [00:00<00:01, 70.6MB/s][A
+seed3.zip: 100%|██████████| 491/491 [00:00<00:00, 816B/s]
+
+
+seed2.zip:  16%|█▌        | 21.8M/138M [00:00<00:03, 29.4MB/s][A
+
+seed2.zip:  20%|██        | 28.3M/138M [00:00<00:03, 36.0MB/s][A
+
+seed2.zip:  24%|██▍       | 33.4M/138M [00:01<00:04, 25.1MB/s][A
+
+seed2.zip:  31%|███       | 42.8M/138M [00:01<00:02, 36.6MB/s][A
+
+seed2.zip:  35%|███▌      | 48.4M/138M [00:01<00:03, 25.4MB/s][A
+
+seed2.zip:  44%|████▍     | 60.7M/138M [00:01<00:01, 39.2MB/s][A
+
+seed2.zip:  48%|████▊     | 67.0M/138M [00:02<00:02, 30.5MB/s][A
+
+seed2.zip:  52%|█████▏    | 71.9M/138M [00:02<00:02, 32.3MB/s][A
+
+seed2.zip:  55%|█████▌    | 76.6M/138M [00:02<00:01, 34.2MB/s][A
+
+seed2.zip:  59%|█████▊    | 81.1M/138M [00:02<00:02, 24.3MB/s][A
+
+seed2.zip:  64%|██████▍   | 88.7M/138M [00:02<00:01, 31.8MB/s][A
+
+seed2.zip:  69%|██████▊   | 94.9M/138M [00:02<00:01, 37.2MB/s][A
+
+seed2.zip:  72%|███████▏  | 100M/138M [00:03<00:01, 28.1MB/s] [A
+
+seed2.zip:  77%|███████▋  | 106M/138M [00:03<00:00, 33.7MB/s][A
+
+seed2.zip:  81%|████████  | 112M/138M [00:03<00:01, 23.6MB/s][A
+
+seed2.zip:  89%|████████▊ | 123M/138M [00:03<00:00, 35.4MB/s][A
+
+seed2.zip:  93%|█████████▎| 128M/138M [00:04<00:00, 27.1MB/s][A
+seed2.zip: 100%|██████████| 138M/138M [00:04<00:00, 30.0MB/s]
+
+Upload 2 LFS files:  50%|█████     | 1/2 [00:04<00:04,  4.94s/it]
+Upload 2 LFS files: 100%|██████████| 2/2 [00:04<00:00,  2.47s/it]
+HF snapshot verified: a6ef858441459f08f9f87baa944e226c4e283d0e {'seed1': 2940, 'seed2': 2940, 'seed3': 0}
+seed 3 smoke/resume preflight running
+seed 3 {"status": "passed", "protocol": "371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c", "runtime_sources": {"phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579", "common.py": "3b2084ed5cd0ff83ecf0f08f1a3359dc0b1bb5727d600686e0437718350866e1", "model.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09", "evaluation.py": "a4ac050002cf904bb371e676265f06d13fec7bac881c5340b2e2cda512b19c40", "worker.py": "33079ea1d39ed99aeb93bde375ae818e8fe7a925190a1bb044c7b9efb7f61524", "run.py": "9a3ec8406ac9eaf4bace4279d0cd87d751abe5cc6f82ae8a861506961cd99a0d", "hub.py": "235e607881479788e482884e1ece7290f380bed60e097ff28ad271da4123171b", "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f", "data.py": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae"}, "differences": {"model": 0.0, "optimizer": 0.0, "scaler": 0.0, "scheduler": 0, "rng": 0, "losses": 0.0}, "parameters": 1372159, "device": {"python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]", "packages": {"torch": "2.11.0+cu128", "numpy": "2.1.3", "Pillow": "13.0.0", "huggingface_hub": "0.36.2", "filelock": "3.29.5"}, "device": "Tesla T4"}, "batch": 8, "input_hw": [512, 384], "scope": "Real model and real transformed images, fresh-process restore, noninitial scheduler, counterfactual branch", "step_seconds": [7.699951518000489, 0.07659556199996587, 0.07658429099956265, 0.07665722199999436, 0.13668877399959456], "peak_allocated_gpu_bytes": 1246766592, "estimated_compute_hours_per_seed": 0.07892546701643571, "estimate_excludes": "Per-update durable saves, validation, image decoding and uploads"}
+seed 3 seed3 epoch 1/60 | joint 0.34023 | balanced 0.0000 | Dice 0.9721 | point width error 0.05536
+seed 3 seed3 epoch 3/60 | joint 0.65834 | balanced 0.5000 | Dice 0.9882 | point width error 0.02917
+seed 3 seed3 epoch 4/60 | joint 0.68042 | balanced 0.5000 | Dice 0.9828 | point width error 0.02118
+seed 3 seed3 epoch 5/60 | joint 0.70664 | balanced 0.5000 | Dice 0.9876 | point width error 0.01301
+seed 3 seed3 epoch 6/60 | joint 0.70562 | balanced 0.5000 | Dice 0.9884 | point width error 0.01344
+seed 3 seed3 epoch 7/60 | joint 0.70544 | balanced 0.5000 | Dice 0.9882 | point width error 0.01348
+seed 3 seed3 epoch 8/60 | joint 0.96004 | balanced 1.0000 | Dice 0.9885 | point width error 0.01198
+seed 3 seed3 epoch 10/60 | joint 0.95950 | balanced 1.0000 | Dice 0.9896 | point width error 0.01229
+seed 3 seed3 epoch 11/60 | joint 0.95078 | balanced 1.0000 | Dice 0.9889 | point width error 0.01511
+seed 3 seed3 epoch 12/60 | joint 0.71102 | balanced 0.5000 | Dice 0.9881 | point width error 0.01161
+seed 3 seed3 epoch 13/60 | joint 0.95563 | balanced 1.0000 | Dice 0.9857 | point width error 0.01312
+seed 3 seed3 epoch 14/60 | joint 0.71431 | balanced 0.5000 | Dice 0.9893 | point width error 0.01065
+seed 3 seed3 epoch 15/60 | joint 0.71001 | balanced 0.5000 | Dice 0.9885 | point width error 0.01199
+seed 3 seed3 epoch 16/60 | joint 0.70911 | balanced 0.5000 | Dice 0.9899 | point width error 0.01245
+seed 3 seed3 epoch 17/60 | joint 0.71465 | balanced 0.5000 | Dice 0.9897 | point width error 0.01058
+seed 3 seed3 epoch 18/60 | joint 0.95885 | balanced 0.9875 | Dice 0.9897 | point width error 0.01043
+seed 3 seed3 epoch 19/60 | joint 0.86199 | balanced 0.8125 | Dice 0.9899 | point width error 0.01357
+seed 3 seed3 epoch 20/60 | joint 0.97221 | balanced 1.0000 | Dice 0.9899 | point width error 0.00808
+seed 3 seed3 epoch 21/60 | joint 0.77208 | balanced 0.6128 | Dice 0.9896 | point width error 0.01023
+seed 3 seed3 epoch 22/60 | joint 0.47395 | balanced 0.0000 | Dice 0.9892 | point width error 0.00743
+seed 3 seed3 epoch 39/60 | joint 0.67512 | balanced 0.4268 | Dice 0.9898 | point width error 0.01158
+seed 3 seed3 epoch 40/60 | joint 0.46520 | balanced 0.0000 | Dice 0.9899 | point width error 0.01043
+seed 3 seed3 epoch 41/60 | joint 0.71623 | balanced 0.5000 | Dice 0.9892 | point width error 0.01000
+seed 3 seed3 epoch 42/60 | joint 0.70885 | balanced 0.5000 | Dice 0.9897 | point width error 0.01252
+seed 3 seed3 epoch 43/60 | joint 0.47387 | balanced 0.0244 | Dice 0.9895 | point width error 0.01155
+seed 3 seed3 epoch 44/60 | joint 0.46081 | balanced 0.0000 | Dice 0.9893 | point width error 0.01181
+seed 3 seed3 epoch 51/60 | joint 0.47538 | balanced 0.0244 | Dice 0.9893 | point width error 0.01103
+seed 3 seed3 epoch 52/60 | joint 0.47482 | balanced 0.0244 | Dice 0.9895 | point width error 0.01124
+seed 3 seed3 epoch 53/60 | joint 0.47300 | balanced 0.0244 | Dice 0.9896 | point width error 0.01185
+seed 3 seed3 epoch 54/60 | joint 0.47485 | balanced 0.0244 | Dice 0.9895 | point width error 0.01123
+seed 3 seed3 epoch 55/60 | joint 0.46507 | balanced 0.0000 | Dice 0.9896 | point width error 0.01043
+seed 3 seed3 epoch 56/60 | joint 0.47269 | balanced 0.0244 | Dice 0.9897 | point width error 0.01196
+seed 3 seed3 epoch 57/60 | joint 0.46919 | balanced 0.0122 | Dice 0.9894 | point width error 0.01106
+seed 3 seed3 epoch 57/60 | joint 0.46919 | balanced 0.0122 | Dice 0.9894 | point width error 0.01106
+seed 3 seed3 epoch 58/60 | joint 0.47435 | balanced 0.0244 | Dice 0.9894 | point width error 0.01138
+seed 3 seed3 epoch 59/60 | joint 0.49569 | balanced 0.0732 | Dice 0.9896 | point width error 0.01241
+seed3 epoch 56/60 | joint 0.47269 | balanced 0.0244 | Dice 0.9897 | point width error 0.01196
+seed3 epoch 57/60 | joint 0.46919 | balanced 0.0122 | Dice 0.9894 | point width error 0.01106
+seed3 epoch 58/60 | joint 0.47435 | balanced 0.0244 | Dice 0.9894 | point width error 0.01138
+seed3 epoch 59/60 | joint 0.49569 | balanced 0.0732 | Dice 0.9896 | point width error 0.01241
+seed3 epoch 60/60 | joint 0.47154 | balanced 0.0244 | Dice 0.9896 | point width error 0.01234
+
+seed3.zip:   0%|          | 0.00/132M [00:00<?, ?B/s]
+seed3.zip:   0%|          | 16.4k/132M [00:00<19:41, 112kB/s]
+seed3.zip:   0%|          | 180k/132M [00:00<02:36, 844kB/s] 
+seed3.zip:   1%|          | 786k/132M [00:00<00:45, 2.91MB/s]
+seed3.zip:   2%|▏         | 3.05M/132M [00:00<00:19, 6.57MB/s]
+seed3.zip:   5%|▍         | 6.09M/132M [00:00<00:11, 11.0MB/s]
+seed3.zip:   6%|▌         | 7.77M/132M [00:00<00:10, 12.2MB/s]
+seed3.zip:   8%|▊         | 11.1M/132M [00:01<00:14, 8.23MB/s]
+seed3.zip:   9%|▉         | 12.5M/132M [00:01<00:14, 8.02MB/s]
+seed3.zip:  11%|█         | 14.1M/132M [00:01<00:13, 8.91MB/s]
+seed3.zip:  12%|█▏        | 16.0M/132M [00:02<00:20, 5.64MB/s]
+seed3.zip:  17%|█▋        | 22.5M/132M [00:02<00:08, 12.4MB/s]
+seed3.zip:  23%|██▎       | 30.5M/132M [00:02<00:04, 21.6MB/s]
+seed3.zip:  26%|██▌       | 34.3M/132M [00:02<00:06, 15.8MB/s]
+seed3.zip:  30%|███       | 40.0M/132M [00:03<00:04, 21.0MB/s]
+seed3.zip:  36%|███▌      | 48.0M/132M [00:03<00:02, 29.7MB/s]
+seed3.zip:  40%|███▉      | 52.7M/132M [00:03<00:03, 21.0MB/s]
+seed3.zip:  43%|████▎     | 56.3M/132M [00:03<00:03, 22.9MB/s]
+seed3.zip:  45%|████▌     | 59.8M/132M [00:04<00:08, 8.68MB/s]
+seed3.zip:  48%|████▊     | 63.2M/132M [00:05<00:06, 10.0MB/s]
+seed3.zip:  50%|████▉     | 65.6M/132M [00:05<00:08, 7.51MB/s]
+seed3.zip:  52%|█████▏    | 68.7M/132M [00:05<00:06, 9.41MB/s]
+seed3.zip:  55%|█████▌    | 73.4M/132M [00:05<00:04, 13.4MB/s]
+seed3.zip:  58%|█████▊    | 76.4M/132M [00:07<00:08, 6.38MB/s]
+seed3.zip:  59%|█████▉    | 78.5M/132M [00:07<00:07, 7.32MB/s]
+seed3.zip:  61%|██████    | 80.5M/132M [00:07<00:09, 5.49MB/s]
+seed3.zip:  65%|██████▍   | 85.7M/132M [00:08<00:05, 8.98MB/s]
+seed3.zip:  70%|██████▉   | 92.2M/132M [00:08<00:02, 14.4MB/s]
+seed3.zip:  73%|███████▎  | 96.0M/132M [00:08<00:02, 13.4MB/s]
+seed3.zip:  79%|███████▊  | 104M/132M [00:08<00:01, 21.0MB/s] 
+seed3.zip:  83%|████████▎ | 110M/132M [00:08<00:00, 26.8MB/s]
+seed3.zip:  87%|████████▋ | 115M/132M [00:09<00:00, 21.1MB/s]
+seed3.zip:  91%|█████████ | 120M/132M [00:09<00:00, 25.2MB/s]
+seed3.zip:  97%|█████████▋| 128M/132M [00:09<00:00, 33.7MB/s]
+seed3.zip: 100%|██████████| 132M/132M [00:09<00:00, 13.3MB/s]
+HF snapshot verified: d25529ba58fff5bea233624a005e0fc6b9b23af7 {'seed1': 2940, 'seed2': 2940, 'seed3': 2940}
+
+7c7cbd1020ca_weights.pt:   0%|          | 0.00/5.53M [00:00<?, ?B/s]
+
+a75de8de8a92_example_class2.npz:   0%|          | 0.00/761k [00:00<?, ?B/s][A
+
+
+db077edab4f0_example_class1.png:   0%|          | 0.00/855k [00:00<?, ?B/s][A[A
+
+
+
+19c0e6bd3456_example_class0.png:   0%|          | 0.00/919k [00:00<?, ?B/s][A[A[A
+
+
+
+
+Upload 7 LFS files:   0%|          | 0/7 [00:00<?, ?it/s][A[A[A[A
+
+
+
+
+
+496d26e63953_example_class1.npz:   0%|          | 0.00/771k [00:00<?, ?B/s][A[A[A[A[A
+7c7cbd1020ca_weights.pt:   0%|          | 16.4k/5.53M [00:00<01:00, 91.3kB/s]
+
+a75de8de8a92_example_class2.npz:   2%|▏         | 16.4k/761k [00:00<00:10, 72.3kB/s][A
+
+
+
+
+
+496d26e63953_example_class1.npz:   2%|▏         | 16.4k/771k [00:00<00:10, 72.1kB/s][A[A[A[A[A
+
+
+
+19c0e6bd3456_example_class0.png:   2%|▏         | 16.4k/919k [00:00<00:13, 68.8kB/s][A[A[A
+
+
+db077edab4f0_example_class1.png:   2%|▏         | 16.4k/855k [00:00<00:12, 67.5kB/s][A[A
+7c7cbd1020ca_weights.pt:   3%|▎         | 180k/5.53M [00:00<00:07, 748kB/s]  
+
+a75de8de8a92_example_class2.npz:  24%|██▎       | 180k/761k [00:00<00:00, 672kB/s]  [A
+
+
+
+
+
+496d26e63953_example_class1.npz:  23%|██▎       | 180k/771k [00:00<00:00, 656kB/s]  [A[A[A[A[A
+
+
+
+19c0e6bd3456_example_class0.png:  20%|█▉        | 180k/919k [00:00<00:01, 622kB/s]  [A[A[A
+
+
+db077edab4f0_example_class1.png:  21%|██        | 180k/855k [00:00<00:01, 616kB/s]  [A[A
+7c7cbd1020ca_weights.pt:   9%|▉         | 524k/5.53M [00:00<00:02, 1.72MB/s]
+
+
+
+
+
+496d26e63953_example_class1.npz:  68%|██████▊   | 524k/771k [00:00<00:00, 1.61MB/s][A[A[A[A[A
+
+
+
+19c0e6bd3456_example_class0.png:  57%|█████▋    | 524k/919k [00:00<00:00, 1.55MB/s][A[A[A
+
+
+db077edab4f0_example_class1.png:  61%|██████▏   | 524k/855k [00:00<00:00, 1.49MB/s][A[A
+7c7cbd1020ca_weights.pt:  41%|████      | 2.28M/5.53M [00:00<00:00, 6.94MB/s]
+7c7cbd1020ca_weights.pt:  90%|█████████ | 5.00M/5.53M [00:00<00:00, 13.0MB/s]
+a75de8de8a92_example_class2.npz: 100%|██████████| 761k/761k [00:01<00:00, 485kB/s]
+
+496d26e63953_example_class1.npz: 100%|██████████| 771k/771k [00:01<00:00, 456kB/s] 
+
+19c0e6bd3456_example_class0.png: 100%|██████████| 919k/919k [00:01<00:00, 517kB/s] 
+
+db077edab4f0_example_class1.png: 100%|██████████| 855k/855k [00:01<00:00, 477kB/s] 
+
+
+59b0bc797202_example_class2.png:   0%|          | 0.00/968k [00:00<?, ?B/s][A
+
+59b0bc797202_example_class2.png:  78%|███████▊  | 754k/968k [00:00<00:00, 4.84MB/s][A
+
+
+c6689e6f6085_example_class0.npz:   0%|          | 0.00/792k [00:00<?, ?B/s][A[A
+7c7cbd1020ca_weights.pt: 100%|██████████| 5.53M/5.53M [00:02<00:00, 2.68MB/s]
+
+
+
+
+
+Upload 7 LFS files:  14%|█▍        | 1/7 [00:02<00:14,  2.38s/it][A[A[A[A
+59b0bc797202_example_class2.png: 100%|██████████| 968k/968k [00:01<00:00, 615kB/s] 
+
+c6689e6f6085_example_class0.npz: 100%|██████████| 792k/792k [00:01<00:00, 527kB/s]
+
+
+
+
+
+Upload 7 LFS files:  86%|████████▌ | 6/7 [00:03<00:00,  1.96it/s][A[A[A[A
+Upload 7 LFS files: 100%|██████████| 7/7 [00:03<00:00,  1.88it/s]
+HF snapshot verified: a0296f18e02b12d28f7e51377783d68538032209 {'seed1': 2940, 'seed2': 2940, 'seed3': 2940}
+All available work complete; reports and export published.
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 8
+NOTEBOOK phase3_NB01_TREAD_ONE.ipynb CELL 9
+Status: completed
+Validation-selected export: {'epoch': 20, 'seed': 3, 'validation_utility': 0.9722130471039863}
+{
+  "fixed_final": {
+    "balanced_accuracy_observed": {
+      "mean": 0.25203252032520324,
+      "population_sd": 0.19058062064603323
+    },
+    "human_point_mae_width_fraction": {
+      "mean": 0.012954194257035853,
+      "population_sd": 0.0015532368102118986
+    },
+    "mask_derived_box_iou": {
+      "mean": 0.8846927188716812,
+      "population_sd": 0.032018216386366684
+    },
+    "mean_two_region_dice": {
+      "mean": 0.9782927915480965,
+      "population_sd": 0.002358066110005676
+    },
+    "mean_two_region_iou": {
+      "mean": 0.9577193497185602,
+      "population_sd": 0.004444195476224977
+    }
+  },
+  "selected": {
+    "balanced_accuracy_observed": {
+      "mean": 0.34146341463414637,
+      "population_sd": 0.22420458915671018
+    },
+    "human_point_mae_width_fraction": {
+      "mean": 0.011893679117783903,
+      "population_sd": 0.0009723317256271716
+    },
+    "mask_derived_box_iou": {
+      "mean": 0.9150472640721979,
+      "population_sd": 0.039994377342224004
+    },
+    "mean_two_region_dice": {
+      "mean": 0.9797765410961526,
+      "population_sd": 0.0032142426315709175
+    },
+    "mean_two_region_iou": {
+      "mean": 0.9605360446871406,
+      "population_sd": 0.006097817908996744
+    }
+  }
+}
+<IPython.core.display.Image object>
+<IPython.core.display.Image object>
+<IPython.core.display.Image object>
+Download: /kaggle/working/TREAD_ONE_Results.zip
+Full training state/traces and raw test outputs are also in the verified HF seed bundles.

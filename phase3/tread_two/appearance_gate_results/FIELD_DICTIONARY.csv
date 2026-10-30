@@ -1,0 +1,85 @@
+table,column,units,missing,scope
+source_train,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,image_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,image_sha256,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,class_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,domain,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,physical_tyre_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,source_group,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,is_v1_bank,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+source_train,is_v1_query,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,image_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,class_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,domain,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,physical_tyre_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,patch,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,valid_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,gray_mean,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,gray_std,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,mean_gradient,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,glare_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,dark_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,chroma_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_quality,low_texture,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,image_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,class_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,cohort,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,variant,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,prediction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,correct,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,logit_0,class-logit units,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,logit_1,class-logit units,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,logit_2,class-logit units,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,probability_0,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,probability_1,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,probability_2,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,nll,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,supported_patches,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+predictions,evidence_residual,class-logit units,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,variant,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,patch,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,class_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,contribution,class-logit units,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+patch_evidence,pooling_mass,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,variant,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,patch,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,prototype,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,cosine,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+affinities,affinity,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,variant,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,patch,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,valid_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,new_clip_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,rgb_relative_l2,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,local_contrast_relative_l2,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,local_contrast_cosine,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+feature_consistency,local_std_floor_scope,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,image_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,dense_device,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,head_device,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,optimizer_updates,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,parameters_with_grad,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,model_frozen,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,compute_seconds,seconds,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,cuda_peak_allocated_dense_bytes,bytes,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+execution,cuda_peak_allocated_head_bytes,bytes,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,prototype,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,class_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,image_index,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,image_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,image_sha256,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,physical_tyre_id,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,patch,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,valid_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,glare_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,chroma_fraction,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,mean_gradient,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,low_texture,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,role,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate
+candidate_bank,status,dimensionless / identifier as named,Blank means unavailable; not numeric zero,Training-only frozen-model gate

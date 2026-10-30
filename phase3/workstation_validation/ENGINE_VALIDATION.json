@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "checks": [
+    "original_workstation_and_registry_unchanged",
+    "pinned_validation_selected_export_real_CPU_inference",
+    "all_ten_output_arrays_match_frozen_original_reference",
+    "probabilities_ordered_points_and_exact_additive_evidence",
+    "all_seven_views_render_without_another_forward_pass",
+    "full_direct_CSV_native_capture_roundtrip_exact",
+    "all_245760_dense_CSV_values_roundtrip_exact_with_units_schema",
+    "ten_CSV_tables_245784_rows_and_unknown_metrics_not_invented",
+    "automatic_per_prediction_class_point_region_and_latent_ledger",
+    "corrupted_capture_rejected_before_loading_arrays",
+    "real_GPU_FP32_inference_agrees_with_CPU_with_recorded_tolerance",
+    "original_files_still_byte_unchanged_after_inference_and_export"
+  ],
+  "check_count": 12,
+  "source_image": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\data\\phase2_dataset_v1\\images\\original\\new_tire__session_001__b000__8eb51dc4b6.jpg",
+  "source_frame_sha256": "ee60a2252adfc24667366eb4b15e8890c1d7151ce9f586d048553b70115a7ea1",
+  "frozen_reference_max_differences": {
+    "probabilities": 0.0,
+    "logits": 0.0,
+    "bias": 0.0,
+    "masks": 0.0,
+    "seg_logits": 0.0,
+    "points": 0.0,
+    "contributions": 0.0,
+    "concepts": 0.0,
+    "gate": 0.0,
+    "guides": 0.0
+  },
+  "GPU_max_differences": {
+    "probabilities": 0.0,
+    "points": 1.4901161193847656e-08,
+    "masks": 4.76837158203125e-07
+  },
+  "CSV_tables": 10,
+  "CSV_rows": 245784,
+  "CSV_rows_by_table": {
+    "class_scores.csv": 3,
+    "latent_mass.csv": 12,
+    "latent_textures.csv": 147456,
+    "mask_logits.csv": 24576,
+    "mask_probabilities.csv": 24576,
+    "points.csv": 6,
+    "prediction.csv": 1,
+    "regions.csv": 2,
+    "signed_evidence.csv": 36864,
+    "tread_gate.csv": 12288
+  },
+  "fixture_capture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation_validation\\engine_4fe1ff06\\captures\\20261029_183511_618807_2caad025",
+  "fixture_root": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation_validation\\engine_4fe1ff06",
+  "model_seed": 3,
+  "model_epoch": 20,
+  "new_training": false,
+  "new_independent_tyres": 0,
+  "new_inference": true,
+  "original_files_preserved": 47
+}

@@ -1,0 +1,992 @@
+[
+  {
+    "type": "directory",
+    "oid": "fdc7396b91c98d0000b59cdbe616b5a3188af197",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering"
+  },
+  {
+    "type": "directory",
+    "oid": "ff3651c10d7d3bad2ad929ab33851970ce68bfa5",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5"
+  },
+  {
+    "type": "directory",
+    "oid": "c7b9ef2fefa461cd09f0fa9914cb9f465601e54a",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/BATCHES"
+  },
+  {
+    "type": "directory",
+    "oid": "9294f9e74b03b45a0f972f33dc6c663082dd860f",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/PUBLICATIONS"
+  },
+  {
+    "type": "directory",
+    "oid": "3f3b28971f9e8835634557f945a6a9c641036d1d",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence"
+  },
+  {
+    "type": "directory",
+    "oid": "0d4f327fc1c043ce29b26ac3806cabdad5fc60aa",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts"
+  },
+  {
+    "type": "directory",
+    "oid": "eb4bacd5f1640a470991d54185c2c1cddd1ff67f",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense"
+  },
+  {
+    "type": "directory",
+    "oid": "9bd132a1c048bef01a585529d497ccaed05b92b2",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/endpoint_maps"
+  },
+  {
+    "type": "directory",
+    "oid": "cc1812343cad2e7f3c9dbe780b135de08f94fdbc",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/endpoint_maps/final"
+  },
+  {
+    "type": "directory",
+    "oid": "6f6ead0f9d6de57094f74065a99b1dc5a3c77791",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/endpoint_maps/selected"
+  },
+  {
+    "type": "directory",
+    "oid": "c315dadc87a3a0406f15644a98d069f7fc7c5bd0",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/epochs"
+  },
+  {
+    "type": "directory",
+    "oid": "313e3e80c724b836641ef6c078fecc51d4383d4f",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history"
+  },
+  {
+    "type": "directory",
+    "oid": "a714a82d1c8567cb18f93fbbd523b9492741b796",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/assets"
+  },
+  {
+    "type": "directory",
+    "oid": "61cd238ab52ada42bd86af7b3c12dbd511e87c35",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/preflight"
+  },
+  {
+    "type": "directory",
+    "oid": "2b78e0647fb33cb8f3f68ec612a4b39bdcb23a29",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv"
+  },
+  {
+    "type": "directory",
+    "oid": "1483ef5c1bff9de6e2010270a2ebd99a7d51158f",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0000"
+  },
+  {
+    "type": "directory",
+    "oid": "b83ac84f3babdc092d6ea68a95fa42de1f000f15",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001"
+  },
+  {
+    "type": "directory",
+    "oid": "08df1f35aa11c783740cf211e141af0460277fc9",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002"
+  },
+  {
+    "type": "directory",
+    "oid": "b8cff1db8fb1f1cc01384d9862379a56d6de924a",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/report"
+  },
+  {
+    "type": "directory",
+    "oid": "d4dd7d9313b72daf53aa4ddfad7465d7431d7909",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/session_history"
+  },
+  {
+    "type": "directory",
+    "oid": "8f2cdcb6553ffd5b203e51ef12524bc6c9f5e199",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source"
+  },
+  {
+    "type": "directory",
+    "oid": "1324d161ecbe9ebdb9ab103846023f0440e99a67",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/assets"
+  },
+  {
+    "type": "directory",
+    "oid": "be97be75d833c69d21c9878470c0cfb6b3249f78",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/fit"
+  },
+  {
+    "type": "directory",
+    "oid": "707c6c00ee1b7f1ffd838ed5e08e37e3acdbdd9f",
+    "size": 0,
+    "path": "phase3/tread-two/atlas-v1/fit/fe7dc763fe6d4b64ce8ccf2f22c4222b6da28ca7975c925d56ba70c3e09d19dd"
+  },
+  {
+    "type": "file",
+    "oid": "3e96ca6525663a9d787a56801f8366a7fcec5685",
+    "size": 9596,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/BATCHES/6abe5544d17710c21af43b19c9936a2830d104414ec56d3688968b6965f881c4.json"
+  },
+  {
+    "type": "file",
+    "oid": "a9e33e816a0836a8d786159c036f257cd778dee4",
+    "size": 13123,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/BATCHES/c08159ff52a1d33e35fabb79e873926ba87abf84ffcecbb34ce4f183cf278b0c.json"
+  },
+  {
+    "type": "file",
+    "oid": "dc0bb92090841a5fd1fd325972c80c3eb9d92ab8",
+    "size": 18966,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/MANIFEST.json"
+  },
+  {
+    "type": "file",
+    "oid": "5d4d3f5a1c8f2dbf0ce58017527cc5c0559e34a4",
+    "size": 26,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/OWNER.json"
+  },
+  {
+    "type": "file",
+    "oid": "dcbd5536c326f13cb0f10c7dbf91931d3b1a5858",
+    "size": 285,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/PUBLICATIONS/7517f14971b3f65f0c2762cd41cf3cb10a71918fb4175379c7dc2500375a6846.json"
+  },
+  {
+    "type": "file",
+    "oid": "f4135440398487167809ddebc2273276e7dd280c",
+    "size": 286,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/PUBLICATIONS/779de487842fb0ec0617f20091b7caf911437c1c6a8d09a99e1a44404aebe3c9.json"
+  },
+  {
+    "type": "file",
+    "oid": "d70b07df4187a672c0aead60c44b6deacda5f8a0",
+    "size": 55886,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/COLUMN_DICTIONARY-3f31fd92214a9cc233ec.csv"
+  },
+  {
+    "type": "file",
+    "oid": "cf97d51ed43b57a0bcad0209848d1cddb911688e",
+    "size": 2786,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/COMMIT_TIMINGS-01199f534b0464323d03.csv"
+  },
+  {
+    "type": "file",
+    "oid": "80bfbbee3ccfd4ab5379a663513a761962092a78",
+    "size": 262,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/COMMIT_TIMINGS-32c982a170b3d75bba98.csv"
+  },
+  {
+    "type": "file",
+    "oid": "e0dd2bffed6aecbc7cc6f1976693093d8b4ff755",
+    "size": 4521,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/CONTRACT-0bb5f3d6cd71255011a8.json"
+  },
+  {
+    "type": "file",
+    "oid": "8e504bba7192c449a7e39d20d109150f4e0cd4cb",
+    "size": 129,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/CREATED_BY_ATLAS-98f2a6c4f7cbed5ee5e2.json"
+  },
+  {
+    "type": "file",
+    "oid": "31393999a8df1b017572ec613d25e65600df6473",
+    "size": 584,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/CURSOR-137b1c4f8f0da616eaca.json"
+  },
+  {
+    "type": "file",
+    "oid": "2f4ee552af1f6be594f9cde65508b1cd22789471",
+    "size": 573,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/CURSOR-edba9dfc688b62d8600c.json"
+  },
+  {
+    "type": "file",
+    "oid": "ee25c613fb567fd688ffeb0f0f1f0939359fef57",
+    "size": 5198,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/HISTORY-001333562d734728b855.json"
+  },
+  {
+    "type": "file",
+    "oid": "0f3bd946f3d20889b2dcde8fe086ca1c19dfc537",
+    "size": 94084,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/HISTORY-51455f2d08ef209a3da0.json"
+  },
+  {
+    "type": "file",
+    "oid": "abe5209ad14c4527ba5241d94ef736948c6fa0b8",
+    "size": 1875,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/LIFECYCLE-71866f942d7d168c9000.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "e59f8e7c424148c18957c5e190027b4867dc631e",
+    "size": 191,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/LIFECYCLE-a0fa7c1c80a651822f43.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "4df9fb13e3d98f8371f22d9afddbdf733182316c",
+    "size": 117,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/POINTER-001de0a1c103919c2bd2.json"
+  },
+  {
+    "type": "file",
+    "oid": "9d99ab45353e788d8fd5f2f982b17978d2aabd57",
+    "size": 117,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/POINTER-89db64a00b43a900b7d8.json"
+  },
+  {
+    "type": "file",
+    "oid": "59fe22b116bd956913b606e8617a73f4ee7a37f1",
+    "size": 2280,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/PREFLIGHT_PROOF-1daf4089424ae1c793d5.json"
+  },
+  {
+    "type": "file",
+    "oid": "4b5674b03c3c7e8a4eb66dfe0e198c231d9b4e18",
+    "size": 366,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/PREPARATION-fb3009c3d7b768377947.json"
+  },
+  {
+    "type": "file",
+    "oid": "1fd24728b4359e3bcc72e7eecef19775b4db2fb7",
+    "size": 4047,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/SCHEMA-28925582e95c4c87cb49.json"
+  },
+  {
+    "type": "file",
+    "oid": "da6b6e53c3b27d880727455f85ebea3dcc6639b3",
+    "size": 4028,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/SCHEMA-91bda5982fce3ea1e78b.json"
+  },
+  {
+    "type": "file",
+    "oid": "7ff71d639152530948454cf28b755b104cb47159",
+    "size": 2526,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/STATE_VERSIONS-4cde61394c84ff2fe184.csv"
+  },
+  {
+    "type": "file",
+    "oid": "29a750932c0460ad38cdcd27ecc193ce74d08d2a",
+    "size": 206,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/STATE_VERSIONS-a5c3fc010d728b17b539.csv"
+  },
+  {
+    "type": "file",
+    "oid": "513d8efefd02b27a694fabcff27b2b8de02777cb",
+    "size": 352,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/INITIALIZATION-386120b03f72a6426561.json"
+  },
+  {
+    "type": "file",
+    "oid": "eccfcff318ea791032c30a93ed9b7006f9e12c0a",
+    "size": 882157,
+    "lfs": {
+      "oid": "a5bace5f87c02f288912950961cef45bc9e6fd8a1fd61efa8cc184c3136a5a8b",
+      "size": 882157,
+      "pointerSize": 131
+    },
+    "xetHash": "e9a51383296a77de2e80d5cbf3b97924ff4bfeb5ffc6aa4ad91835666f716faa",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense/u000001-a5bace5f87c02f288912.pt"
+  },
+  {
+    "type": "file",
+    "oid": "1feed549d3195f7204809fe9c581ea5c935963e6",
+    "size": 633005,
+    "lfs": {
+      "oid": "4f3768ee5f41002cad772ecf96889c44e2cb65b8e55ef3c3f15a7f06bacd9af0",
+      "size": 633005,
+      "pointerSize": 131
+    },
+    "xetHash": "eec9d5cef43eba78492b96dc1e57f0a2344eda13ca72011fa3f9254546f0ffeb",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense/u000002-4f3768ee5f41002cad77.pt"
+  },
+  {
+    "type": "file",
+    "oid": "cae24960780da25b7726b723eee827dd55f4a78f",
+    "size": 879213,
+    "lfs": {
+      "oid": "c1e0affbd58f056f12e60ec15a9779b458795195948525441d3d71e76266c564",
+      "size": 879213,
+      "pointerSize": 131
+    },
+    "xetHash": "68697c93d6b8174ebadae31a79b98caa8e3b6b0b66b48093cd23d6af80d490de",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense/u000003-c1e0affbd58f056f12e6.pt"
+  },
+  {
+    "type": "file",
+    "oid": "54fea4b3c8671b8c7cb6c0d5ea89084ab0ae285f",
+    "size": 512557,
+    "lfs": {
+      "oid": "a6a0cbbad077a5834e48762a57e2d087fad941ec4520e9917b52ee6f37d3dcf1",
+      "size": 512557,
+      "pointerSize": 131
+    },
+    "xetHash": "c4553237e76f5da9065eafb18074c10b998398042c83a1d8ed8d3d4c5ba7d7dc",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense/u000004-a6a0cbbad077a5834e48.pt"
+  },
+  {
+    "type": "file",
+    "oid": "f28d480c3e044fef0359955e540b84e87dddca5b",
+    "size": 250797,
+    "lfs": {
+      "oid": "ef829cc3feaefc20e91b52e94ecf61ab6e69b8f15cb0ce9ef8dcba31227a1596",
+      "size": 250797,
+      "pointerSize": 131
+    },
+    "xetHash": "562ac29aa7bb19abc5985d9a7f4341b35d7b5aff88949270595430e185f7bc57",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/dense/validate-validation-identity-00000-ef829cc3feaefc20e91b.pt"
+  },
+  {
+    "type": "file",
+    "oid": "1f7c9404f719348a7852faecbc3a2fcae8bdfd66",
+    "size": 15508525,
+    "lfs": {
+      "oid": "be43cf140ec173bec1778e283281e884d97aa03649740afc6bd20a2f45074c92",
+      "size": 15508525,
+      "pointerSize": 133
+    },
+    "xetHash": "0a1dcde17ce5560d48d7a1be41c70bcf2f47b583fff7313d7b8bbd82c250053b",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/endpoint_maps/final/chunk_00000-be43cf140ec173bec177.pt"
+  },
+  {
+    "type": "file",
+    "oid": "d05546d0ad0ec58aa5e484c2304c6cacbb02f233",
+    "size": 15530349,
+    "lfs": {
+      "oid": "6c2f8838542fd79f58956b85ee9a4c22e384be7b46a47156dfbcbf478a46cf63",
+      "size": 15530349,
+      "pointerSize": 133
+    },
+    "xetHash": "4ece8ddf172c11677b9c9af2225d57d2a17d5cf44d8a040246bce32e9c63f566",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/endpoint_maps/selected/chunk_00000-6c2f8838542fd79f5895.pt"
+  },
+  {
+    "type": "file",
+    "oid": "8418fe07f9ca350df487fe1819382fbfcd475451",
+    "size": 6744463,
+    "lfs": {
+      "oid": "b05050bb0708165a983a583841315ecc3b88d484ae0423c9a4d987eb7c213366",
+      "size": 6744463,
+      "pointerSize": 132
+    },
+    "xetHash": "8db86b66b20690265ad0095c9758686afe9bc9d722f7dfe7a8d4220ce814d43b",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/epochs/epoch_0001-b05050bb0708165a983a.pt"
+  },
+  {
+    "type": "file",
+    "oid": "19e82d0d6170774889e92bb483e65c7b3470eb6c",
+    "size": 6744463,
+    "lfs": {
+      "oid": "d0dfe83e7a5b873543684796114ae53795fb8c8a9b20cfed417d1c936eca67ab",
+      "size": 6744463,
+      "pointerSize": 132
+    },
+    "xetHash": "3286747c88dd301f575049874fa549e5073eef6a5e15767bd21030fff1586a1b",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/artifacts/epochs/epoch_0002-d0dfe83e7a5b87354368.pt"
+  },
+  {
+    "type": "file",
+    "oid": "f66794096d1061e8c304325d233562ff3762b570",
+    "size": 370,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/assets/HTTP_REQUESTS-14734684f654ad989f53.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "28bd850fbf2b614a6fdc51f2c5df2686b0f278b9",
+    "size": 150,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/assets/REMOTE_HISTORY-3faf81222edbf509bd21.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "5f98d70424f53697e19bc4bf2a4f9a4445554e99",
+    "size": 26659,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/preflight/HTTP_REQUESTS-8ba08a719c8a9dfffbc0.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "3cfd84288849cd1288982e27406e22cf344616dc",
+    "size": 12696,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/control_history/preflight/REMOTE_HISTORY-a3d325d93df3e558ad10.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "d0d25d73dff37d37f6e300b638f74bd0741efd54",
+    "size": 4780,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0000/bank_cases-d6f7f761fef3d5c532a7.csv"
+  },
+  {
+    "type": "file",
+    "oid": "0ad26defd958569432057ed6c877914bdc225c9f",
+    "size": 9332135,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0000/bank_pixels-9b1d47cdbf46463e62d4.csv"
+  },
+  {
+    "type": "file",
+    "oid": "0477374648b26dc477e375f21d382f6c4ea444ea",
+    "size": 3052,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0000/coefficients-383d26f58935c3e3d930.csv"
+  },
+  {
+    "type": "file",
+    "oid": "3a47be29f915fdaf304f5368705e09078b9e11a5",
+    "size": 156047,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0000/source_images-6bf92953f3e1a141a32c.csv"
+  },
+  {
+    "type": "file",
+    "oid": "5d9d9299f091cd5a13bdbd728750f6b809327d7f",
+    "size": 267451,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/affinities-3b4c3bcb505264400a35.csv"
+  },
+  {
+    "type": "file",
+    "oid": "47af098d446bd950cfaa930bb34dbbe91e517a59",
+    "size": 955447,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/affinities-9453d83698a45abb646f.csv"
+  },
+  {
+    "type": "file",
+    "oid": "dd3064dff8a33264e4c53eef4f31e57d6b1a6ba2",
+    "size": 408396,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/atlas_rows-54a37bf1338e755344cc.csv"
+  },
+  {
+    "type": "file",
+    "oid": "34bf6a661c708ae05011239b412ceea2eb9aabc8",
+    "size": 209646,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/atlas_rows-ba5dfe9423b4dc34578a.csv"
+  },
+  {
+    "type": "file",
+    "oid": "bc0cbbec1c84cac2f8d9b3c254b522ac381a5383",
+    "size": 53248,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/calibration_bins-768e5cfe3503747b211c.csv"
+  },
+  {
+    "type": "file",
+    "oid": "0b45d056f131c444c411e8b20835c2f3c50107e9",
+    "size": 3179,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/coefficients-3e358ba38254fb711867.csv"
+  },
+  {
+    "type": "file",
+    "oid": "10813d4700c20873e6965ad7ba59f7f13449da2b",
+    "size": 6296,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/coefficients-8d7791f98c579f0010f7.csv"
+  },
+  {
+    "type": "file",
+    "oid": "c09e838031efa92b65430f6b70c9c65ee290268a",
+    "size": 40255,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/confusion-63d377aa0a60555ec52c.csv"
+  },
+  {
+    "type": "file",
+    "oid": "731bb49d1f883326ee244215dba944c68766393c",
+    "size": 15147486,
+    "lfs": {
+      "oid": "b8713d3b83711a4135fac4401407e43e83f1a7c1ba6ccc720fd163425e15aa03",
+      "size": 15147486,
+      "pointerSize": 133
+    },
+    "xetHash": "7f33269f22c817f67944730b852bc2e4631ab05a9286bb842329305d3934bd02",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_pixels-b8713d3b83711a4135fa.csv"
+  },
+  {
+    "type": "file",
+    "oid": "b3b89780925dea1b72dc2575a6c93df48c4f4cd8",
+    "size": 7598516,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_pixels-b9c2c8f61808161db7c7.csv"
+  },
+  {
+    "type": "file",
+    "oid": "42f989e0ebf3fc9f6adcc19de4c96496770f6cf9",
+    "size": 5428,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_points-1fef72b16fd2cacd6798.csv"
+  },
+  {
+    "type": "file",
+    "oid": "b3213606d68cce62e3fd6b0213c4f280b3d4e5e9",
+    "size": 10544,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_points-372ecaf338a376dca0f4.csv"
+  },
+  {
+    "type": "file",
+    "oid": "a55bab59d67f3f491610665872e32cb3ace515c0",
+    "size": 2119,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_regions-93f7e3fd2845d06def73.csv"
+  },
+  {
+    "type": "file",
+    "oid": "b29ba8cdebda345a5d0a927875b38babd002426e",
+    "size": 3979,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/dense_regions-b3dcadd82d37f5f387b0.csv"
+  },
+  {
+    "type": "file",
+    "oid": "9a7f3dcfe921efede82c6fcaf3938fad56af29a1",
+    "size": 1025,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/explanation_checks-4d57de0155ca47398b12.csv"
+  },
+  {
+    "type": "file",
+    "oid": "7ee1fdd53c3d1e4a20b7fe0cae6265b374567ff5",
+    "size": 127723,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/metrics-911ab55b91d58ab8c3d4.csv"
+  },
+  {
+    "type": "file",
+    "oid": "d7939ec4e456ccaf5a1280c34f5ab5b7ea171af9",
+    "size": 2972,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/parameter_gradients-935584587c647768e8fd.csv"
+  },
+  {
+    "type": "file",
+    "oid": "b9f00267b95cdeebd77c4b35ad966a204edfebc5",
+    "size": 5880,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/parameter_gradients-a9395c2aca7890faf639.csv"
+  },
+  {
+    "type": "file",
+    "oid": "c41bec946cb79ad7f0ef1d9842b7df4e09c14dda",
+    "size": 114369,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/patch_evidence-a7c7d53d3fe32717de96.csv"
+  },
+  {
+    "type": "file",
+    "oid": "aa5c4b9728792f944db45eac715e78424c858d90",
+    "size": 32267,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/patch_evidence-dbd650f0e5b84ed5889d.csv"
+  },
+  {
+    "type": "file",
+    "oid": "a205a578cd3f2ae4bb159615db71f9ff68340499",
+    "size": 27284,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/patch_support-268aa8248cfcc7d28c30.csv"
+  },
+  {
+    "type": "file",
+    "oid": "7dec2033d22deebd3d6ddd4c241a800823f02a8e",
+    "size": 7708,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/patch_support-df967b7ee212584f73cf.csv"
+  },
+  {
+    "type": "file",
+    "oid": "30d8dff55032658beb477327044685baee31026a",
+    "size": 14936,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/predictions-0c519e99fd20ecb5e63a.csv"
+  },
+  {
+    "type": "file",
+    "oid": "e53ca841e20d1ed8e9e69f4f974ec9b47a9de87c",
+    "size": 4556,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/predictions-556171ee739cd36c9c2a.csv"
+  },
+  {
+    "type": "file",
+    "oid": "6e4b8096daf9ab1d5b8854dec9569cece5aa8474",
+    "size": 407517,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/reference_embeddings-71f41fd024defce2d2ea.csv"
+  },
+  {
+    "type": "file",
+    "oid": "c9cd38c9a19648c99fda660bd29551942960a188",
+    "size": 2653,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/sample_exposures-2fdc40fee50bc35f7c93.csv"
+  },
+  {
+    "type": "file",
+    "oid": "9dbb94f786e1022fdb62b04b3e48339849b53418",
+    "size": 1383,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/sample_exposures-fba934485008af96fcd7.csv"
+  },
+  {
+    "type": "file",
+    "oid": "ed284a94aa9c836a3c624af01c24b322bec427d0",
+    "size": 301,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/selection-11dccdc4190fb8621aa9.csv"
+  },
+  {
+    "type": "file",
+    "oid": "0e63ce34258c006f16dac67101937cb4bbb84cac",
+    "size": 612,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/train_updates-14ad60ae4eef7882ec43.csv"
+  },
+  {
+    "type": "file",
+    "oid": "c5085d1d235dbc388442c841b9d3fe52b437b804",
+    "size": 938,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0001/train_updates-2348b8e91a9ebe71be5a.csv"
+  },
+  {
+    "type": "file",
+    "oid": "853a2e0577fb73bef5d30f520c2e422e1b2da8ca",
+    "size": 969424,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/affinities-0490650bd818db650cb4.csv"
+  },
+  {
+    "type": "file",
+    "oid": "81744f2676f5aaa32c857c020f9f52255f47e2bd",
+    "size": 325811,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/atlas_rows-3118b95438c05042c131.csv"
+  },
+  {
+    "type": "file",
+    "oid": "61026e4a671a37a05d9ec204ea573b0910f8642f",
+    "size": 61549,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/calibration_bins-af2c9a364ae48dca1503.csv"
+  },
+  {
+    "type": "file",
+    "oid": "03b0dffafacc54d59c0ee809453452d131eca663",
+    "size": 6270,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/coefficients-1ae9806ec56ea9498ad4.csv"
+  },
+  {
+    "type": "file",
+    "oid": "3e8da92fbace9a65c888c74ade5806b12eaa3c4a",
+    "size": 46366,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/confusion-2e832025f1df8f5cd6e7.csv"
+  },
+  {
+    "type": "file",
+    "oid": "bc5774dc2a4d9171b16ec4fe2fd7cb2db36c484e",
+    "size": 11983052,
+    "lfs": {
+      "oid": "028410b5cb5da0f19382de64bead4b45cb9679955800a264af2dd994d4373fb7",
+      "size": 11983052,
+      "pointerSize": 133
+    },
+    "xetHash": "52f3e841fa93472779c7cdc28473ee566775b7f3f44599ca4b541e40a217eb8d",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/dense_pixels-028410b5cb5da0f19382.csv"
+  },
+  {
+    "type": "file",
+    "oid": "32e0894814fc13ee90289bfe8fb6be6730c94e77",
+    "size": 8624,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/dense_points-03042f2b19c30ec5b9bd.csv"
+  },
+  {
+    "type": "file",
+    "oid": "7271052540a34706ea7df778628d3c1e0e39efe7",
+    "size": 3249,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/dense_regions-7157aff45095efdaac46.csv"
+  },
+  {
+    "type": "file",
+    "oid": "9205a8c158202d23960f2b3630d9bdf6edb9f4e2",
+    "size": 1006,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/explanation_checks-0eb1c95b736ce8f13833.csv"
+  },
+  {
+    "type": "file",
+    "oid": "da130b217b8f1ecfa0ed837f684eeb92a874b3e7",
+    "size": 147129,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/metrics-45a3b9bad1e9b93a08c2.csv"
+  },
+  {
+    "type": "file",
+    "oid": "e54db615285321a0a161c6187685e620608405ae",
+    "size": 5841,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/parameter_gradients-a3c1c5994779cc8bd5fc.csv"
+  },
+  {
+    "type": "file",
+    "oid": "6c9e9be2814e51b7d4b1920c827f8e483a2c6db1",
+    "size": 115181,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/patch_evidence-14e6df79952558b0fc37.csv"
+  },
+  {
+    "type": "file",
+    "oid": "9bcd039177896470cf5733a04e7632a2d79693e5",
+    "size": 27669,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/patch_support-852872d57ae2f91ac69b.csv"
+  },
+  {
+    "type": "file",
+    "oid": "fb9b5c5f995f70fd0208b44443e91c943005f4a6",
+    "size": 14917,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/predictions-a37c557d7640fda344b3.csv"
+  },
+  {
+    "type": "file",
+    "oid": "03d9f9adf3bd4a6e12641f8b190d6d69bbc0dd8c",
+    "size": 402419,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/reference_embeddings-e9db142e2f7636848085.csv"
+  },
+  {
+    "type": "file",
+    "oid": "d58bc33563792fd095089161978e9576ee0687c9",
+    "size": 2675,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/sample_exposures-9339941ec3d0e6fc7439.csv"
+  },
+  {
+    "type": "file",
+    "oid": "89bbdea04b7c8d6f8468904bc2268c3d948689a4",
+    "size": 301,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/selection-115ce3cb5187cc479d99.csv"
+  },
+  {
+    "type": "file",
+    "oid": "97e5daccf8a49c91446b951bf081524df276402f",
+    "size": 939,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/csv/epoch_0002/train_updates-a60e6cf9e923b8e96130.csv"
+  },
+  {
+    "type": "file",
+    "oid": "366f031c7c9652d085c4fd21fb0c59d6e9d65261",
+    "size": 239817,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/report/ATLAS_Evidence_Explorer-b61785f7a3677381ec03.html"
+  },
+  {
+    "type": "file",
+    "oid": "ae66ed2bac8041de0cf80355966dd86579c1a051",
+    "size": 19130,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/report/REFERENCE_CASES-a7180d90d8410559445b.csv"
+  },
+  {
+    "type": "file",
+    "oid": "c33a71fcfc74ee787b8f836b18bbc884eac04710",
+    "size": 174,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/report/REPORT-e7f819f8ff09d04d2968.json"
+  },
+  {
+    "type": "file",
+    "oid": "64ad03832933966a94047d04314e12a84c0fc2fe",
+    "size": 84066,
+    "lfs": {
+      "oid": "e79a19b37470a10052fdcd9d730843f0d2ef8f214254e6fbc960fd0ad83f7f3e",
+      "size": 84066,
+      "pointerSize": 130
+    },
+    "xetHash": "e3ca073b5b622d1ae89fe8a1beae4b48fa7d49f6b1263bfc386e61e07c5559b3",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/report/training_curves-e79a19b37470a10052fd.png"
+  },
+  {
+    "type": "file",
+    "oid": "80bfbbee3ccfd4ab5379a663513a761962092a78",
+    "size": 262,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/session_history/32c982a170b3d75bba98-COMMIT_TIMINGS-32c982a170b3d75bba98.csv"
+  },
+  {
+    "type": "file",
+    "oid": "e59f8e7c424148c18957c5e190027b4867dc631e",
+    "size": 191,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/session_history/a0fa7c1c80a651822f43-LIFECYCLE-a0fa7c1c80a651822f43.jsonl"
+  },
+  {
+    "type": "file",
+    "oid": "6dc7e17823ac23871697bdfbacc3009fb60bcc51",
+    "size": 2605,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/FILES-f9cc6b937f1e480c746f.json"
+  },
+  {
+    "type": "file",
+    "oid": "a65a9fe2585f7bcb692c6bcf2a4f6208fe5330f9",
+    "size": 2267,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/RECIPE-4193e9b7420238ea0929.json"
+  },
+  {
+    "type": "file",
+    "oid": "876e485c513f8f0f1c8637c2ba011683aaeac755",
+    "size": 1167,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/VENDORED-f5eef019050b24a300f9.json"
+  },
+  {
+    "type": "file",
+    "oid": "9ef7de54e5758b4e3a3810a32e7e44247777cbe4",
+    "size": 7512,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/acceptance-3a5788403b734516441b.py"
+  },
+  {
+    "type": "file",
+    "oid": "d70b07df4187a672c0aead60c44b6deacda5f8a0",
+    "size": 55886,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/assets/COLUMN_DICTIONARY-3f31fd92214a9cc233ec.csv"
+  },
+  {
+    "type": "file",
+    "oid": "5005dd9e32321e4199710d485ba88b10182ed9da",
+    "size": 272,
+    "lfs": {
+      "oid": "c966cf056e89dc946e04f149dbc2932c74c15d5362e2a98c64903e32b3d3379a",
+      "size": 272,
+      "pointerSize": 128
+    },
+    "xetHash": "325bd94f262e4f58fcc771c4e8bf3dd6a7b9de1b29cbbc165bb75f07afb1ddcc",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/assets/bank_labels-c966cf056e89dc946e04.npy"
+  },
+  {
+    "type": "file",
+    "oid": "4237a7504e8613f3e741e5955e448b64cc710e4b",
+    "size": 884864,
+    "lfs": {
+      "oid": "374445591bec46bcc7da45223ad73d18da25034cafdf0c5e0b61fb79ac78918c",
+      "size": 884864,
+      "pointerSize": 131
+    },
+    "xetHash": "7f73100441d2a69a49e236347492e8ea947482758c4c4c1f35341d0777aad40f",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/assets/bank_rgb-374445591bec46bcc7da.npy"
+  },
+  {
+    "type": "file",
+    "oid": "238085fae31433c56459a9973196d6b66eb21cf3",
+    "size": 5152,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/assets/prototype_bank-a455f30034d5c850bfb5.csv"
+  },
+  {
+    "type": "file",
+    "oid": "8ba7dd1fc647ea0a94069aa40b8e98a3a310bdb1",
+    "size": 5116,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/common-922c82b82635313ce61e.py"
+  },
+  {
+    "type": "file",
+    "oid": "6399d09ae936015f8a83a48e3a5ab11a440750b9",
+    "size": 17065,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/coordinator-64aef89281409f035687.py"
+  },
+  {
+    "type": "file",
+    "oid": "815fb0dc1649e675427c4d62ce798b09c0f79c3f",
+    "size": 4647,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/data_atlas-56c11c1e4c14712cc6db.py"
+  },
+  {
+    "type": "file",
+    "oid": "7f19fe9decd8908c1ddfe26d467afb75b96432e0",
+    "size": 8288,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/evidence_hub-03da70c79b10cfaf307b.py"
+  },
+  {
+    "type": "file",
+    "oid": "0fc9ff4fa9d022b438cd403c51087bc8e9985e5c",
+    "size": 8502,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/frozen_anchor-d16cd4eef75779044dd9.py"
+  },
+  {
+    "type": "file",
+    "oid": "e54816a3e790993774606a00437ec2d9db180f5c",
+    "size": 2338,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/geometry-04a8151f666c96ab7482.py"
+  },
+  {
+    "type": "file",
+    "oid": "4c1ba5e4f36c11dd2f965cabe743302f277f865c",
+    "size": 2865,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/legacy_data-a15bed0e2574980c2a23.py"
+  },
+  {
+    "type": "file",
+    "oid": "1e67d44d98b808943b23b735728cae5e34537405",
+    "size": 7312,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/model_atlas-95f5dfd3942be96198af.py"
+  },
+  {
+    "type": "file",
+    "oid": "6d11e7c99b8e373b930378f797e4030bab8fe799",
+    "size": 7154,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/phase2_training_data-60f9754078949ecac570.py"
+  },
+  {
+    "type": "file",
+    "oid": "e6f68afb0bf217be889c60b2a4e29b210e833921",
+    "size": 6089,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/publisher-0ea77d5584a3903b01fd.py"
+  },
+  {
+    "type": "file",
+    "oid": "b542750f834c84d5dd8df52c15c75fe317de2bb2",
+    "size": 4404,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/rate_budget-6e02c164ba0b00c3b94c.py"
+  },
+  {
+    "type": "file",
+    "oid": "f5835b5f2610eeba2484c54ab897fd30c80788fb",
+    "size": 10334,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/report-6ca4976225b4fe201e9e.py"
+  },
+  {
+    "type": "file",
+    "oid": "5297368f7cdfe0b954c5165fcfb9855908c77652",
+    "size": 4961,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/schemas-2a9f5bffffc76821e734.py"
+  },
+  {
+    "type": "file",
+    "oid": "b631972499535c2522721ff32f797d51e1a8a60c",
+    "size": 1645,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/spec-b97cba5d15f77b4f00e5.py"
+  },
+  {
+    "type": "file",
+    "oid": "9b3f5d305620968edcfa62d5e19cc85e8c7bed3a",
+    "size": 13905,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/store-8c6f912ce9d1875cc4d4.py"
+  },
+  {
+    "type": "file",
+    "oid": "5f35cbf492546d97a1b196af873a88d76a6e4105",
+    "size": 15107,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/telemetry-1bed94133003aa8232b3.py"
+  },
+  {
+    "type": "file",
+    "oid": "684cf1b48192cfea5cddc6e9711309720f2683c9",
+    "size": 26517,
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/source/worker-875bd8d3a1c74ab77e57.py"
+  },
+  {
+    "type": "file",
+    "oid": "af4d3bf554efd17036eacd9cff4f0a0c50b1d125",
+    "size": 7436101,
+    "lfs": {
+      "oid": "1841182a4c88d1970e224fade722b4d4f22315887f10b185df263e61eede1223",
+      "size": 7436101,
+      "pointerSize": 132
+    },
+    "xetHash": "69b47c5ec2a50cd9c6190e01d96c0e158140cb34a595acd65e02aec72b7d26e5",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/state-1841182a4c88d1970e22.pt"
+  },
+  {
+    "type": "file",
+    "oid": "6052c3df726a9933eed5ca12a7c5f44c9a6e6887",
+    "size": 7436357,
+    "lfs": {
+      "oid": "c72f94a32a750e709b94993df2c643bef4bc92f6f36a946eb52f8d54b167ed48",
+      "size": 7436357,
+      "pointerSize": 132
+    },
+    "xetHash": "fd976fe325da2f11d067cdd60e78f1a12af19b52e096464cc3755aa417a09c7a",
+    "path": "phase3/tread-two/atlas-v1/engineering/0bb5f3d6cd71255011a8b4ca841a6d487076336273a64ad0a482f231cf5407d5/evidence/state-c72f94a32a750e709b94.pt"
+  },
+  {
+    "type": "file",
+    "oid": "776bbc3c20dadde27c7db9261120b2c208beddd8",
+    "size": 73,
+    "path": "phase3/tread-two/atlas-v1/fit/fe7dc763fe6d4b64ce8ccf2f22c4222b6da28ca7975c925d56ba70c3e09d19dd/OWNER.json"
+  }
+]

@@ -1,0 +1,207 @@
+column,column_position,data_type,grain,meaning,table,units
+canonical_source_split,1,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+class_index,2,integer,one source_images record,Class 0/1/2 means low/mid/high mileage proxy; EXIF orientation is recorded without transforming source pixels,source_images,category code
+confirmed_original_tyre_id,3,text,one source_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_images,identifier
+domain,4,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+historical_study_split,5,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+image_id,6,text,one source_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_images,identifier
+image_path,7,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+image_sha256,8,text,one source_images record,Content identity of the named source or registered native file,source_images,SHA-256 hex
+label_source,9,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+leakage_component,10,text,one source_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_images,identifier
+native_height,11,number,one source_images record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,source_images,pixels
+native_width,12,number,one source_images record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,source_images,pixels
+new_independent_tyre,13,boolean,one source_images record,Explicit recorded or calculated flag; not encoded only by color,source_images,true/false
+point_kind,14,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+point_optimization_weight,15,number,one source_images record,"Aspect ratio, frozen supervision weight or mean saved per-occurrence negative log likelihood as named",source_images,dimensionless
+prospective_split,16,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+provisional_video_tyre_id,17,text,one source_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_images,identifier
+proxy_class,18,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+source_frame_index,19,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+source_video,20,text,one source_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_images,text/path/category
+timestamp_seconds,21,number,one source_images record,"Recorded source-video time, not a new capture timestamp",source_images,seconds
+historical_study_split,1,text,one source_tyres record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_tyres,text/path/category
+human_geometry_images,2,integer,one source_tyres record,Count/index for the named table grain; repeated images/frames are not independent tyres,source_tyres,count/index
+label_provenance,3,text,one source_tyres record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_tyres,text/path/category
+measured_tread_depth_mm,4,number,one source_tyres record,Only actual supplied measurements/provenance; unknown values stay blank,source_tyres,mm
+mileage_unit,5,text,one source_tyres record,Only actual supplied measurements/provenance; unknown values stay blank,source_tyres,declared mileage unit
+mileage_value,6,number,one source_tyres record,Only actual supplied measurements/provenance; unknown values stay blank,source_tyres,declared mileage unit
+new_independent_tyre,7,boolean,one source_tyres record,Explicit recorded or calculated flag; not encoded only by color,source_tyres,true/false
+original_photo_count,8,integer,one source_tyres record,Count/index for the named table grain; repeated images/frames are not independent tyres,source_tyres,count/index
+proxy_class,9,text,one source_tyres record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_tyres,text/path/category
+recorded_session_id,10,text,one source_tyres record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_tyres,identifier
+tyre_id,11,text,one source_tyres record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_tyres,identifier
+confirmed_original_tyre_id,1,text,one source_clips record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_clips,identifier
+frames,2,integer,one source_clips record,Count/index for the named table grain; repeated images/frames are not independent tyres,source_clips,count/index
+known_distinct_from_other_clips,3,boolean,one source_clips record,Explicit recorded or calculated flag; not encoded only by color,source_clips,true/false
+known_existing_tyre,4,boolean,one source_clips record,Explicit recorded or calculated flag; not encoded only by color,source_clips,true/false
+mapping_status,5,text,one source_clips record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_clips,text/path/category
+new_independent_tyre,6,boolean,one source_clips record,Explicit recorded or calculated flag; not encoded only by color,source_clips,true/false
+provisional_tyre_id,7,text,one source_clips record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_clips,identifier
+proxy_class,8,text,one source_clips record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",source_clips,text/path/category
+video_id,9,text,one source_clips record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,source_clips,identifier
+candidate_allowed_by_confirmed_distinctness,1,boolean,one video_parent_review record,Explicit recorded or calculated flag; not encoded only by color,video_parent_review,true/false
+identity_evidence,2,text,one video_parent_review record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",video_parent_review,text/path/category
+min_dhash_hamming_to_original_photos,3,integer,one video_parent_review record,Hamming distance between declared 64-bit difference hashes,video_parent_review,"different hash bits, 0–64"
+possible_original_tyre_id,4,text,one video_parent_review record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,video_parent_review,identifier
+selected_by_confirmed_intake,5,boolean,one video_parent_review record,Explicit recorded or calculated flag; not encoded only by color,video_parent_review,true/false
+video_id,6,text,one video_parent_review record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,video_parent_review,identifier
+background_brightness_0_255,1,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+background_pixels_on_quality_grid,2,text,one image_quality record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",image_quality,text/path/category
+blue_mean_0_255,3,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+brightness_0_255,4,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+class_index,5,integer,one image_quality record,Class 0/1/2 means low/mid/high mileage proxy; EXIF orientation is recorded without transforming source pixels,image_quality,category code
+contrast_std_0_255,6,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+dhash64,7,text,one image_quality record,"64-bit horizontal difference hash; review aid, not physical identity proof",image_quality,16 hexadecimal characters
+domain,8,text,one image_quality record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",image_quality,text/path/category
+exif_orientation,9,integer,one image_quality record,Class 0/1/2 means low/mid/high mileage proxy; EXIF orientation is recorded without transforming source pixels,image_quality,category code
+exif_transform_applied,10,boolean,one image_quality record,Explicit recorded or calculated flag; not encoded only by color,image_quality,true/false
+focus_laplacian_variance,11,number,one image_quality record,Variance of a five-point Laplacian on a fixed 512×384 grid; no blur rejection threshold is fitted,image_quality,intensity squared
+foreground_brightness_0_255,12,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+foreground_minus_background_brightness,13,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+foreground_pixels_on_quality_grid,14,text,one image_quality record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",image_quality,text/path/category
+gray_entropy_bits,15,number,one image_quality record,Shannon entropy from 256 gray-intensity bins,image_quality,bits
+green_mean_0_255,16,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+historical_split,17,text,one image_quality record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",image_quality,text/path/category
+image_id,18,text,one image_quality record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,image_quality,identifier
+mean_saturation_0_1,19,number,one image_quality record,Ratio with the documented population/grid denominator; blank if unavailable,image_quality,fraction
+native_aspect_ratio,20,number,one image_quality record,"Aspect ratio, frozen supervision weight or mean saved per-occurrence negative log likelihood as named",image_quality,dimensionless
+native_height,21,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+native_ignored_pixels,22,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+native_width,23,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+quality_height,24,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+quality_scope,25,text,one image_quality record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",image_quality,text/path/category
+quality_width,26,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+red_mean_0_255,27,number,one image_quality record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,image_quality,"intensity, 0–255 (difference may be negative)"
+source_reported_annotation_conflict_pixels,28,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+tread_outside_tyre_native_pixels,29,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+tread_outside_tyre_valid_pixels,30,number,one image_quality record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,image_quality,pixels
+area_fraction,1,number,one region_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,region_geometry,fraction
+centroid_x_fraction,2,number,one region_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,region_geometry,fraction
+centroid_y_fraction,3,number,one region_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,region_geometry,fraction
+height_fraction,4,number,one region_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,region_geometry,fraction
+image_id,5,text,one region_geometry record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,region_geometry,identifier
+native_height,6,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+native_width,7,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+positive_pixels,8,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+region,9,text,one region_geometry record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",region_geometry,text/path/category
+valid_pixels,10,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+width_fraction,11,number,one region_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,region_geometry,fraction
+x0,12,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+x1_exclusive,13,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+y0,14,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+y1_exclusive,15,number,one region_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,region_geometry,pixels
+human_eligible,1,boolean,one point_geometry record,Explicit recorded or calculated flag; not encoded only by color,point_geometry,true/false
+image_id,2,text,one point_geometry record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,point_geometry,identifier
+native_height,3,number,one point_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,point_geometry,pixels
+native_width,4,number,one point_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,point_geometry,pixels
+point_index,5,integer,one point_geometry record,Count/index for the named table grain; repeated images/frames are not independent tyres,point_geometry,count/index
+point_kind,6,text,one point_geometry record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",point_geometry,text/path/category
+point_name,7,text,one point_geometry record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",point_geometry,text/path/category
+source_label,8,text,one point_geometry record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",point_geometry,text/path/category
+source_x_pixels,9,number,one point_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,point_geometry,pixels
+source_y_pixels,10,number,one point_geometry record,Coordinates or counts on the explicitly named native/quality grid; boxes have exclusive upper bounds,point_geometry,pixels
+x_width_fraction,11,number,one point_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,point_geometry,fraction
+y_height_fraction,12,number,one point_geometry record,Ratio with the documented population/grid denominator; blank if unavailable,point_geometry,fraction
+historical_split,1,text,one point_coverage record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",point_coverage,text/path/category
+human_point_records,2,integer,one point_coverage record,Count/index for the named table grain; repeated images/frames are not independent tyres,point_coverage,count/index
+image_id,3,text,one point_coverage record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,point_coverage,identifier
+independent_human_truth,4,boolean,one point_coverage record,Explicit recorded or calculated flag; not encoded only by color,point_coverage,true/false
+optimization_weight,5,number,one point_coverage record,"Aspect ratio, frozen supervision weight or mean saved per-occurrence negative log likelihood as named",point_coverage,dimensionless
+point_kind,6,text,one point_coverage record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",point_coverage,text/path/category
+point_records,7,integer,one point_coverage record,Count/index for the named table grain; repeated images/frames are not independent tyres,point_coverage,count/index
+automatic_identity_assignment,1,boolean,one similarity_candidates record,Explicit recorded or calculated flag; not encoded only by color,similarity_candidates,true/false
+crosses_historical_split,2,boolean,one similarity_candidates record,Explicit recorded or calculated flag; not encoded only by color,similarity_candidates,true/false
+dhash_hamming,3,integer,one similarity_candidates record,Hamming distance between declared 64-bit difference hashes,similarity_candidates,"different hash bits, 0–64"
+image_id,4,text,one similarity_candidates record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,similarity_candidates,identifier
+other_image_id,5,text,one similarity_candidates record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,similarity_candidates,identifier
+rank,6,integer,one similarity_candidates record,Count/index for the named table grain; repeated images/frames are not independent tyres,similarity_candidates,count/index
+same_declared_original_tyre,7,boolean,one similarity_candidates record,Explicit recorded or calculated flag; not encoded only by color,similarity_candidates,true/false
+within_review_radius,8,boolean,one similarity_candidates record,Explicit recorded or calculated flag; not encoded only by color,similarity_candidates,true/false
+image_id,1,text,one exact_duplicates record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,exact_duplicates,identifier
+other_image_id,2,text,one exact_duplicates record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,exact_duplicates,identifier
+sha256,3,text,one exact_duplicates record,Content identity of the named source or registered native file,exact_duplicates,SHA-256 hex
+crosses_historical_split,4,boolean,one exact_duplicates record,Explicit recorded or calculated flag; not encoded only by color,exact_duplicates,true/false
+confirmed_original_tyres,1,integer,one leakage_components record,Count/index for the named table grain; repeated images/frames are not independent tyres,leakage_components,count/index
+constraint_reason,2,text,one leakage_components record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",leakage_components,text/path/category
+crosses_historical_split,3,boolean,one leakage_components record,Explicit recorded or calculated flag; not encoded only by color,leakage_components,true/false
+historical_split,4,text,one leakage_components record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",leakage_components,text/path/category
+images,5,integer,one leakage_components record,Count/index for the named table grain; repeated images/frames are not independent tyres,leakage_components,count/index
+leakage_component,6,text,one leakage_components record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,leakage_components,identifier
+provisional_video_groups,7,integer,one leakage_components record,Count/index for the named table grain; repeated images/frames are not independent tyres,leakage_components,count/index
+confirmed_original_tyres,1,integer,one historical_class_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,historical_class_support,count/index
+historical_split,2,text,one historical_class_support record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",historical_class_support,text/path/category
+human_geometry_images,3,integer,one historical_class_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,historical_class_support,count/index
+images,4,integer,one historical_class_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,historical_class_support,count/index
+is_prospective_blind_cohort,5,boolean,one historical_class_support record,Explicit recorded or calculated flag; not encoded only by color,historical_class_support,true/false
+proxy_class,6,text,one historical_class_support record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",historical_class_support,text/path/category
+unmapped_existing_video_frames,7,integer,one historical_class_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,historical_class_support,count/index
+weak_geometry_images,8,integer,one historical_class_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,historical_class_support,count/index
+confirmed_original_tyres,1,integer,one capture_descriptors record,Count/index for the named table grain; repeated images/frames are not independent tyres,capture_descriptors,count/index
+historical_split,2,text,one capture_descriptors record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",capture_descriptors,text/path/category
+images,3,integer,one capture_descriptors record,Count/index for the named table grain; repeated images/frames are not independent tyres,capture_descriptors,count/index
+mean_background_brightness_0_255,4,number,one capture_descriptors record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,capture_descriptors,"intensity, 0–255 (difference may be negative)"
+mean_brightness_0_255,5,number,one capture_descriptors record,Stored-orientation fixed-grid RGB/gray descriptor; not a causal or physical measurement,capture_descriptors,"intensity, 0–255 (difference may be negative)"
+mean_focus_laplacian_variance,6,number,one capture_descriptors record,Variance of a five-point Laplacian on a fixed 512×384 grid; no blur rejection threshold is fitted,capture_descriptors,intensity squared
+mean_foreground_minus_background_brightness,7,text,one capture_descriptors record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",capture_descriptors,text/path/category
+proxy_class,8,text,one capture_descriptors record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",capture_descriptors,text/path/category
+scope,9,text,one capture_descriptors record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",capture_descriptors,text/path/category
+augmented_accuracy,1,number,one training_image_exposure record,Ratio with the documented population/grid denominator; blank if unavailable,training_image_exposure,fraction
+class_index,2,integer,one training_image_exposure record,Class 0/1/2 means low/mid/high mileage proxy; EXIF orientation is recorded without transforming source pixels,training_image_exposure,category code
+condition,3,text,one training_image_exposure record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",training_image_exposure,text/path/category
+correct_augmented_occurrences,4,integer,one training_image_exposure record,Count/index for the named table grain; repeated images/frames are not independent tyres,training_image_exposure,count/index
+domain,5,text,one training_image_exposure record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",training_image_exposure,text/path/category
+first_update,6,integer,one training_image_exposure record,Count/index for the named table grain; repeated images/frames are not independent tyres,training_image_exposure,count/index
+historical_split,7,text,one training_image_exposure record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",training_image_exposure,text/path/category
+image_id,8,text,one training_image_exposure record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,training_image_exposure,identifier
+last_update,9,integer,one training_image_exposure record,Count/index for the named table grain; repeated images/frames are not independent tyres,training_image_exposure,count/index
+mean_sampled_confidence,10,number,one training_image_exposure record,Ratio with the documented population/grid denominator; blank if unavailable,training_image_exposure,fraction
+mean_sampled_nll,11,number,one training_image_exposure record,"Aspect ratio, frozen supervision weight or mean saved per-occurrence negative log likelihood as named",training_image_exposure,dimensionless
+sampled_augmented_occurrences,12,integer,one training_image_exposure record,Count/index for the named table grain; repeated images/frames are not independent tyres,training_image_exposure,count/index
+scope,13,text,one training_image_exposure record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",training_image_exposure,text/path/category
+tyre_id,1,text,one intake_tyres record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_tyres,identifier
+proxy_class,2,text,one intake_tyres record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_tyres,text/path/category
+new_independent_tyre_confirmed,3,boolean,one intake_tyres record,Explicit recorded or calculated flag; not encoded only by color,intake_tyres,true/false
+identity_review_status,4,text,one intake_tyres record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_tyres,text/path/category
+session_id,1,text,one intake_sessions record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_sessions,identifier
+tyre_id,2,text,one intake_sessions record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_sessions,identifier
+capture_date,3,text,one intake_sessions record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_sessions,text/path/category
+domain,4,text,one intake_sessions record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_sessions,text/path/category
+device_id,5,text,one intake_sessions record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_sessions,identifier
+lighting,6,text,one intake_sessions record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_sessions,text/path/category
+background_id,7,text,one intake_sessions record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_sessions,identifier
+view_description,8,text,one intake_sessions record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_sessions,text/path/category
+source_video_id,9,text,one intake_sessions record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_sessions,identifier
+notes,10,text,one intake_sessions record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_sessions,text/path/category
+image_id,1,text,one intake_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_images,identifier
+tyre_id,2,text,one intake_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_images,identifier
+session_id,3,text,one intake_images record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_images,identifier
+proxy_class,4,text,one intake_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_images,text/path/category
+proposed_split,5,text,one intake_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_images,text/path/category
+relative_path,6,text,one intake_images record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_images,text/path/category
+file_sha256,7,text,one intake_images record,Content identity of the named source or registered native file,intake_images,SHA-256 hex
+eligible_after_validation,8,boolean,one intake_images record,Explicit recorded or calculated flag; not encoded only by color,intake_images,true/false
+entity,1,text,one intake_issues record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_issues,text/path/category
+record_id,2,text,one intake_issues record,Stable source/intake identifier; unresolved identity stays blank and is not inferred from similarity,intake_issues,identifier
+severity,3,text,one intake_issues record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_issues,text/path/category
+code,4,text,one intake_issues record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_issues,text/path/category
+detail,5,text,one intake_issues record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",intake_issues,text/path/category
+confirmed_tyre_records,1,integer,one prospective_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,prospective_support,count/index
+minimum_met,2,boolean,one prospective_support record,Explicit recorded or calculated flag; not encoded only by color,prospective_support,true/false
+minimum_required,3,integer,one prospective_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,prospective_support,count/index
+new_independent_tyre_claims,4,integer,one prospective_support record,Count/index for the named table grain; repeated images/frames are not independent tyres,prospective_support,count/index
+proxy_class,5,text,one prospective_support record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",prospective_support,text/path/category
+role,6,text,one prospective_support record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",prospective_support,text/path/category
+code,1,text,one readiness_gaps record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",readiness_gaps,text/path/category
+detail,2,text,one readiness_gaps record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",readiness_gaps,text/path/category
+check,1,text,one gate_checks record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",gate_checks,text/path/category
+detail,2,text,one gate_checks record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",gate_checks,text/path/category
+passed,3,boolean,one gate_checks record,Explicit recorded or calculated flag; not encoded only by color,gate_checks,true/false
+scope,4,text,one gate_checks record,"Recorded source metadata, explicit status or method; blank means unknown/not applicable",gate_checks,text/path/category
+table,1,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+column_position,2,integer,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+column,3,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+data_type,4,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+units,5,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+meaning,6,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata
+grain,7,text,one CSV column,"Column definition, not a new empirical image/subject record",csv_schema,metadata

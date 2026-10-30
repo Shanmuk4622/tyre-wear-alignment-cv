@@ -1,0 +1,12 @@
+class_draw,domain,source_group_draw,draws,unique_images,online_accuracy
+0,original_photo,new_tire__session_001,7905,66,1
+1,new_video_frame,video1,1298,27,0.993066255778
+1,new_video_frame,video2,1299,93,0.991531947652
+1,new_video_frame,video3,1287,32,0.993783993784
+1,original_photo,mileage_040000__session_001,1385,19,0.995667870036
+1,original_photo,mileage_070000__session_001,1332,19,0.995495495495
+1,original_photo,mileage_090000__session_001,1274,56,0.997645211931
+2,original_photo,mileage_100000_plus__session_001,1936,2,0.997933884298
+2,original_photo,mileage_100000_plus__session_002,1948,1,0.98613963039
+2,original_photo,mileage_100000_plus__session_003,1947,4,0.999486389317
+2,original_photo,mileage_100000_plus__session_004,1909,59,1

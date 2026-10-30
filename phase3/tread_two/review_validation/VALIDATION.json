@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "checks": [
+    "Every derived CSV hash, row count and field order matches its analysis receipt",
+    "Corrected low-to-mid confusion and grayscale/dimming failures verified directly, rather than inferred from BA",
+    "Training/validation gap, absent mid recall, all query exposure and exact saved logit accounting checked",
+    "Verified-cache reuse, corrupt-cache recovery, interrupted-file atomicity and bad-download rejection pass offline",
+    "Actual explorer JavaScript syntax and synthetic-DOM paging/probe/flip/target/class/search controls pass; 1030 records retained",
+    "Fresh NB09 extracted CPU analysis reproduces every CSV, JSON, Markdown, PNG and full explorer byte-for-byte",
+    "New review-only publisher recovers a lost successful response, verifies direct objects, releases ownership and skips identical manifest on rerun offline",
+    "All24 original model/runtime/assets and original repaired NB08 remain byte-identical"
+  ],
+  "count": 8,
+  "derived_csv_tables": 30,
+  "derived_csv_rows": 246157,
+  "packaged_files": 30,
+  "packaged_CPU_analysis_outputs_byte_equal": true,
+  "publication_fixture_passed": true,
+  "network_requests_in_validation": 0,
+  "remote_writes": 0,
+  "actual_Kaggle_NB09_execution": false,
+  "actual_HF_review_publication": false,
+  "browser_render_tested": false,
+  "browser_attempt": "Browser Use could not reach local Windows loopback server (ERR_CONNECTION_TIMED_OUT); synthetic DOM verified behavior instead.",
+  "source_hashes": {
+    "publish_atlas_review.py": "240eedf3aff0f5d6f5d21e138bb45cfa684e82aed17f87beac1b45839ffd5b72",
+    "render_atlas_review.py": "26de9b827124bc5efdfc6e79a9e069e9d28a93aff1861b295ea242a27da31070",
+    "review_atlas.py": "8380f87d4d0da4819c538afa6bd6a99fbdcc4d06eb5410bb4fa7ce0427a18492"
+  },
+  "notebook_sha256": "29b41a79fa3692cd807e5a2a0f6f806a5fe7d1395ee5201b8a0a22b602d9b678",
+  "fixture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\tread_two\\review_validation\\fixture_k_4zk5ul"
+}

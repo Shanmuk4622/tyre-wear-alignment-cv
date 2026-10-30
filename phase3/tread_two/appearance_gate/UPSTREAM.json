@@ -1,0 +1,12 @@
+{
+  "NB09_revision": "93d7ea34c5539769d122330141f96b1a23083b7a",
+  "NB09_destination": "phase3/tread-two/atlas-v1/review/49e2f589866852cc7ad2d92d393b572de5d625d906f274ccf406830baf6186dd",
+  "NB09_review_contract": "49e2f589866852cc7ad2d92d393b572de5d625d906f274ccf406830baf6186dd",
+  "executed_NB09_sha256": "5aa7e27dd416c0e3f93f302a065022150d75bd889c818caff308890d62c6dc5f",
+  "independent_verification_sha256": "46eb6f9ea988a1040af0a63a7cb7cb29971aed42f7cffd8bd83074e7493a4f79",
+  "published_files": 51,
+  "published_csv_tables": 30,
+  "published_derived_rows": 246157,
+  "source_fit_scientific_files_preserved": 1177,
+  "meaning": "Completed analysis motivates a training-only gate, not a new measured fit or checkpoint replacement"
+}

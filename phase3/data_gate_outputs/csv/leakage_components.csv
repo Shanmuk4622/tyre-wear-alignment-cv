@@ -1,0 +1,11 @@
+confirmed_original_tyres,constraint_reason,crosses_historical_split,historical_split,images,leakage_component,provisional_video_groups
+1,confirmed original physical tyre,False,validation,40,tyre:mileage_000100_005000__session_001,0
+1,confirmed original physical tyre,False,test,62,tyre:mileage_000100_005000__session_002,0
+1,confirmed original physical tyre,False,train,3,tyre:mileage_100000_plus__session_001,0
+1,confirmed original physical tyre,False,train,2,tyre:mileage_100000_plus__session_002,0
+1,confirmed original physical tyre,False,train,5,tyre:mileage_100000_plus__session_003,0
+1,confirmed original physical tyre,False,train,60,tyre:mileage_100000_plus__session_004,0
+1,confirmed original physical tyre,False,test,41,tyre:mileage_100000_plus__session_005,0
+1,confirmed original physical tyre,False,validation,41,tyre:mileage_100000_plus__session_006,0
+1,confirmed original physical tyre,False,train,67,tyre:new_tire__session_001,0
+3,unresolved parent candidates co-assigned conservatively; not an identity equivalence,False,train,249,unresolved_mid_parent_component,3

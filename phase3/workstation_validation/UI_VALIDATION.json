@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "check_count": 14,
+  "checks": [
+    "private_Qt_window_and_owned_inference_process_ready",
+    "actual_Latin_font_glyphs_and_separate_station_icon_available",
+    "source_change_discards_stale_overlay_while_preserving_completed_ledger",
+    "real_exported_model_inference_through_JSON_process_bridge",
+    "all_view_class_and_texture_controls_render_without_reinference",
+    "compact_desktop_sidebar_scrolls_without_clipping_button_text",
+    "comparison_wipe_layer_toggle_and_opacity",
+    "native_widget_screenshots_saved",
+    "asynchronous_full_CSV_capture_save",
+    "hashed_capture_restore_without_model_forward",
+    "video_decode_seek_freeze_and_exact_frame_identity",
+    "bounded_live_video_inference_preserves_analysed_snapshot",
+    "clean_shutdown_stops_only_owned_worker_and_media",
+    "all_47_original_source_launcher_and_registry_files_unchanged"
+  ],
+  "Qt_platform": "offscreen",
+  "Qt_binding": "6.8.3",
+  "fixture_root": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation_validation\\ui_e52a4ef8",
+  "fixture_capture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation_validation\\ui_e52a4ef8\\captures\\20261029_185213_732238_906df2b3",
+  "camera_hardware_tested": false,
+  "new_training": false,
+  "new_independent_tyres": 0,
+  "synthetic_video_is_engineering_fixture": true,
+  "model_seed": 3,
+  "model_epoch": 20,
+  "original_files_preserved": 47,
+  "worker_exit_code": 0
+}

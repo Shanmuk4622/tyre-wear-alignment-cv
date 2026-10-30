@@ -1,0 +1,8 @@
+confirmed_original_tyres,historical_split,images,mean_background_brightness_0_255,mean_brightness_0_255,mean_focus_laplacian_variance,mean_foreground_minus_background_brightness,proxy_class,scope
+1,train,67,174.47691345214844,146.60913564198052,761.2758178710938,-35.284913248090604,low,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+3,train,249,150.65446864361743,129.0137610684437,387.4960525926337,-34.6888034008593,mid,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+4,train,70,188.53629150390626,149.41321367536273,447.6873016357422,-62.33276127406529,high,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+1,validation,40,210.8854274749756,143.28333435058593,780.931965637207,-79.48050270080566,low,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+1,validation,41,194.98215726526772,151.04397434141578,536.8435579625572,-73.83048750714558,high,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+1,test,62,195.72144588347405,148.90294622605848,546.1747909053679,-82.75579034128496,low,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test
+1,test,41,190.29004538931497,145.66954524342606,698.4297842630526,-72.33406867050543,high,image-weighted descriptive capture differences; no causal shortcut or subject-level significance test

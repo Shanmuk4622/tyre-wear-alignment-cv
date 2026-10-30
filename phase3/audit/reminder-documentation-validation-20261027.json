@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "date": "2026-10-27",
+  "scope": "Documentation-only user reminder; active runtime and delivered experiment preserved",
+  "frozenFilesChecked": 18,
+  "changedFrozenFiles": [],
+  "localLinksChecked": 199,
+  "brokenLinks": [],
+  "trainingProgress": "User-reported seeds 1 and 2 at epoch 13; not independently verified",
+  "remoteActions": false
+}

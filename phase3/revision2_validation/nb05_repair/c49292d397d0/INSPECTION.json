@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-29",
+  "sha256": "c49292d397d03d1d9aac67f4c5f87721955fb220c86db4aa07d5f30ed68b1256",
+  "bytes": 164154,
+  "errors": [
+    {
+      "cell": 3,
+      "ename": "RuntimeError",
+      "evalue": "Run failed or paused. Preserve logs and rerun unchanged to restore compatible state.",
+      "traceback": [
+        "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+        "\u001b[0;31mRuntimeError\u001b[0m                              Traceback (most recent call last)",
+        "\u001b[0;32m/tmp/ipykernel_49/682892866.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mlaunch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+        "\u001b[0;32m/tmp/ipykernel_49/584921802.py\u001b[0m in \u001b[0;36mlaunch\u001b[0;34m()\u001b[0m\n\u001b[1;32m     38\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mchild\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpoll\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mis\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'Coordinator is still flushing; forced termination can lose unsent work.'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     39\u001b[0m         \u001b[0;32mraise\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 40\u001b[0;31m     \u001b[0;32mif\u001b[0m \u001b[0mcode\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;32mraise\u001b[0m \u001b[0mRuntimeError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'Run failed or paused. Preserve logs and rerun unchanged to restore compatible state.'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+        "\u001b[0;31mRuntimeError\u001b[0m: Run failed or paused. Preserve logs and rerun unchanged to restore compatible state."
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "cell": 1,
+      "text": "TREAD-ONE NB05 ready; secret loaded without displaying it.\n"
+    },
+    {
+      "cell": 3,
+      "text": "Automatic live preflight: baseline\n"
+    },
+    {
+      "cell": 3,
+      "text": "Traceback (most recent call last):\n  File \"/kaggle/working/treadone_r2_paired/revision2/coordinator.py\", line 186, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/kaggle/working/treadone_r2_paired/revision2/coordinator.py\", line 127, in main\n    print('Automatic live preflight:',condition,flush=True);preflight_proofs.append(preflight(cfg,folder,token))\n                                                                                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/treadone_r2_paired/revision2/coordinator.py\", line 28, in preflight\n    hub=publisher(cfg,folder,'phase3/tread-one/r2/engineering',token)\n  File \"/kaggle/working/treadone_r2_paired/revision2/coordinator.py\", line 24, in publisher\n    hub.claim();return hub\n    ~~~~~~~~~^^\n  File \"/kaggle/working/treadone_r2_paired/training/evidence_hub.py\", line 67, in claim\n    if owner and owner['owner'] not in (None,self.owner) and owner['expires']>time.time():raise RuntimeError('Another live gate owns this namespace; stop it cleanly or wait for its 45-minute lease expiry.')\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Another live gate owns this namespace; stop it cleanly or wait for its 45-minute lease expiry.\n"
+    }
+  ]
+}

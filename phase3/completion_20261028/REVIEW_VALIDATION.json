@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "prediction_labels_and_cohorts_checked": 15198,
+  "human_point_image_scores_recalculated": 4650,
+  "local_prepared_files": 30,
+  "zip_uploads_planned": 0,
+  "local_csv_files": 20,
+  "cpu_notebook_schema_and_payloads_valid": true,
+  "protected_original_markdown": 103,
+  "executed_notebook_archives_unchanged": true,
+  "frozen_r1_non_notebook_delivery_unchanged": true,
+  "links_checked": 486,
+  "broken_links": [],
+  "remote_writes_performed": false,
+  "publication_status": "Kaggle publication complete; immutable remote files independently verified.",
+  "cpu_notebook_kaggle_execution_verified": true,
+  "verified_hf_publication_revision": "91ccd3315bd296a76a8b583a6d0f2515ccb3d370",
+  "published_files": 25,
+  "published_csv_files": 18,
+  "verified_published_scientific_rows": 191904
+}

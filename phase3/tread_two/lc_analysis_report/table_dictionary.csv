@@ -1,0 +1,442 @@
+table,column,definition,units,missing
+prediction_audit,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,update,Post-hoc update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,parameter_update,Post-hoc parameter update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,image_index,Post-hoc image index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,logit_0,Post-hoc logit 0,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,logit_1,Post-hoc logit 1,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,logit_2,Post-hoc logit 2,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,probability_0,Post-hoc probability 0,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,probability_1,Post-hoc probability 1,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,probability_2,Post-hoc probability 2,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,nll,Post-hoc nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,brier,Post-hoc brier,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,entropy,Post-hoc entropy,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,correct,Post-hoc correct,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,evidence_residual,Post-hoc evidence residual,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,supported_patches,Post-hoc supported patches,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,supported_bands,Post-hoc supported bands,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,clipped_fraction,Post-hoc clipped fraction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,empty_support,Post-hoc empty support,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,occluded_patch,Post-hoc occluded patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,replacement_r,Post-hoc replacement r,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,replacement_g,Post-hoc replacement g,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,replacement_b,Post-hoc replacement b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,learner_sha256,Post-hoc learner sha256,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_logit_0,Post-hoc anchor logit 0,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_logit_1,Post-hoc anchor logit 1,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_logit_2,Post-hoc anchor logit 2,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_probability_0,Post-hoc anchor probability 0,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_probability_1,Post-hoc anchor probability 1,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_probability_2,Post-hoc anchor probability 2,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,anchor_prediction,Post-hoc anchor prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,source_sha256,Post-hoc source sha256,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,allowed_low,Post-hoc allowed low,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,allowed_mid,Post-hoc allowed mid,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,allowed_high,Post-hoc allowed high,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,role,Post-hoc role,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,physical_tyre_id,Post-hoc physical tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,source_group,Post-hoc source group,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,is_bank,Post-hoc is bank,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,is_query,Post-hoc is query,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,true_probability,Post-hoc true probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,confidence,Post-hoc confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+prediction_audit,true_margin,Post-hoc true margin,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,n,Post-hoc n,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,accuracy,Post-hoc accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,balanced_accuracy_observed,Post-hoc balanced accuracy observed,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,nll,Post-hoc nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,brier,Post-hoc brier,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,ece_10_equal_width,Post-hoc ece 10 equal width,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,mean_confidence,Post-hoc mean confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,low_to_mid,Post-hoc low to mid,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,predicted_low,Post-hoc predicted low,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,predicted_mid,Post-hoc predicted mid,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+cohort_metrics,predicted_high,Post-hoc predicted high,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,target_n,Post-hoc target n,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,recall,Post-hoc recall,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,mean_true_probability,Post-hoc mean true probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,mean_confidence,Post-hoc mean confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,mean_true_margin,Post-hoc mean true margin,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+class_metrics,mean_nll,Post-hoc mean nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,target_class,Post-hoc target class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,predicted_class,Post-hoc predicted class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confusion,count,Post-hoc count,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,update,Post-hoc update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,validation_ba_observed,Post-hoc validation ba observed,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,validation_nll,Post-hoc validation nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,selected,Post-hoc selected,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,selected_epoch,Post-hoc selected epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,tie_break,Post-hoc tie break,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,checkpoint_artifact,Post-hoc checkpoint artifact,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+selection_audit,learner_sha256,Post-hoc learner sha256,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,physical_tyre_id,Post-hoc physical tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,n,Post-hoc n,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,accuracy,Post-hoc accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,balanced_accuracy_observed,Post-hoc balanced accuracy observed,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,nll,Post-hoc nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,brier,Post-hoc brier,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,ece_10_equal_width,Post-hoc ece 10 equal width,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,mean_confidence,Post-hoc mean confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,low_to_mid,Post-hoc low to mid,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,predicted_low,Post-hoc predicted low,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,predicted_mid,Post-hoc predicted mid,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_tyre_metrics,predicted_high,Post-hoc predicted high,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,base_sample,Post-hoc base sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,probe_sample,Post-hoc probe sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,base_prediction,Post-hoc base prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,probe_prediction,Post-hoc probe prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,flip,Post-hoc flip,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,base_correct,Post-hoc base correct,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,probe_correct,Post-hoc probe correct,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,delta_true_probability,Post-hoc delta true probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,delta_confidence,Post-hoc delta confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,delta_true_margin,Post-hoc delta true margin,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,delta_nll,Post-hoc delta nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,max_absolute_probability_change,Post-hoc max absolute probability change,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,occluded_patch,Post-hoc occluded patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,replacement_r,Post-hoc replacement r,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,replacement_g,Post-hoc replacement g,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_pairs,replacement_b,Post-hoc replacement b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,n,Post-hoc n,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,flips,Post-hoc flips,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,mean_delta_true_probability,Post-hoc mean delta true probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,mean_delta_nll,Post-hoc mean delta nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+probe_summary,maximum_probability_change,Post-hoc maximum probability change,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,image_index,Post-hoc image index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,physical_tyre_id,Post-hoc physical tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,source_group,Post-hoc source group,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,training_view_observations,Post-hoc training view observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,epochs_seen,Post-hoc epochs seen,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,first_update,Post-hoc first update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,online_accuracy,Post-hoc online accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+query_exposure,online_nll,Post-hoc online nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,class_draw,Post-hoc class draw,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,source_group_draw,Post-hoc source group draw,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,view_observations,Post-hoc view observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,unique_images,Post-hoc unique images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+sampling_groups,online_accuracy,Post-hoc online accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,image_index,Post-hoc image index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,image_sha256,Post-hoc image sha256,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,role,Post-hoc role,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,physical_tyre_id,Post-hoc physical tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,source_group,Post-hoc source group,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,image_path,Post-hoc image path,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,point_kind,Post-hoc point kind,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,is_bank,Post-hoc is bank,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_registry,is_query,Post-hoc is query,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+gradient_parameters,parameter,Post-hoc parameter,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+gradient_parameters,updates,Post-hoc updates,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+gradient_parameters,mean_norm,Post-hoc mean norm,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+gradient_parameters,maximum_norm,Post-hoc maximum norm,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+gradient_parameters,zero_norm_updates,Post-hoc zero norm updates,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,updates,Post-hoc updates,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,mean_loss,Post-hoc mean loss,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,first_lr,Post-hoc first lr,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,last_lr,Post-hoc last lr,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,mean_gradient_norm,Post-hoc mean gradient norm,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,maximum_gradient_norm,Post-hoc maximum gradient norm,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,clipped_updates,Post-hoc clipped updates,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,mean_compute_seconds,Post-hoc mean compute seconds,seconds,Blank is unavailable/not applicable; absent class recall is not zero
+optimizer_epochs,mean_record_seconds,Post-hoc mean record seconds,seconds,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,prototype,Post-hoc prototype,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,pooled_affinity,Post-hoc pooled affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,parameter_update,Post-hoc parameter update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,prototype_index,Post-hoc prototype index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,source_image_id,Post-hoc source image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+pooled_reference_affinities,source_tyre_id,Post-hoc source tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,prototype,Post-hoc prototype,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,source_image_id,Post-hoc source image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,source_tyre_id,Post-hoc source tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,pooled_affinity,Post-hoc pooled affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+reference_contributions,signed_contribution,Post-hoc signed contribution,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,bias,Post-hoc bias,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,reference_sum,Post-hoc reference sum,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,reconstructed_logit,Post-hoc reconstructed logit,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,saved_logit,Post-hoc saved logit,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+logit_reconstruction,residual,Post-hoc residual,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,prototype,Post-hoc prototype,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,coefficient,Post-hoc coefficient,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,bias,Post-hoc bias,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_coefficients,temperature,Post-hoc temperature,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,prototype_a,Post-hoc prototype a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,prototype_b,Post-hoc prototype b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,class_a,Post-hoc class a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,class_b,Post-hoc class b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+bank_embedding_cosines,cosine,Post-hoc cosine,"dimensionless [-1,1]",Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,top_signed_patch,Post-hoc top signed patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,top_absolute_share,Post-hoc top absolute share,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,top_positive_share,Post-hoc top positive share,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,signed_sum,Post-hoc signed sum,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,absolute_mass,Post-hoc absolute mass,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,positive_patches,Post-hoc positive patches,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+patch_concentration,negative_patches,Post-hoc negative patches,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,patch,Post-hoc patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,contribution,Post-hoc contribution,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,parameter_update,Post-hoc parameter update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_evidence,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,patch,Post-hoc patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,valid_fraction,Post-hoc valid fraction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,pooling_mass,Post-hoc pooling mass,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,parameter_update,Post-hoc parameter update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_patch_support,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,prototype,Post-hoc prototype,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,pooled_affinity,Post-hoc pooled affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,parameter_update,Post-hoc parameter update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,prediction,Post-hoc prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,prototype_index,Post-hoc prototype index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,source_image_id,Post-hoc source image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+nearest_reference,source_tyre_id,Post-hoc source tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,images,Post-hoc images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,mean_affinity,Post-hoc mean affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,min_affinity,Post-hoc min affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+reference_class_affinities,max_affinity,Post-hoc max affinity,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,base_sample,Post-hoc base sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,probe_sample,Post-hoc probe sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,base_prediction,Post-hoc base prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,probe_prediction,Post-hoc probe prediction,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,flip,Post-hoc flip,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,base_correct,Post-hoc base correct,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,probe_correct,Post-hoc probe correct,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,delta_true_probability,Post-hoc delta true probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,delta_confidence,Post-hoc delta confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,delta_true_margin,Post-hoc delta true margin,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,delta_nll,Post-hoc delta nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,max_absolute_probability_change,Post-hoc max absolute probability change,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,occluded_patch,Post-hoc occluded patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,replacement_r,Post-hoc replacement r,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,replacement_g,Post-hoc replacement g,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,replacement_b,Post-hoc replacement b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,sample,Post-hoc sample,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+occlusion_selection_check,top_signed_patch,Post-hoc top signed patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,role,Post-hoc role,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,region,Post-hoc region,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,images,Post-hoc images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,mean_dice,Post-hoc mean dice,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,mean_iou,Post-hoc mean iou,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+dense_region_by_role,mean_box_iou,Post-hoc mean box iou,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,role,Post-hoc role,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,point_kind,Post-hoc point kind,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,metric_available,Post-hoc metric available,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,points,Post-hoc points,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,images,Post-hoc images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+dense_points_by_role,mae_width_fraction,Post-hoc mae width fraction,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_calibration,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_calibration,bin,Post-hoc bin,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_calibration,n,Post-hoc n,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_calibration,accuracy,Post-hoc accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+endpoint_calibration,mean_confidence,Post-hoc mean confidence,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,threshold,Post-hoc threshold,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,retained_images,Post-hoc retained images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,coverage,Post-hoc coverage,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,error_rate,Post-hoc error rate,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+confidence_risk,scope,Post-hoc scope,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,run,Post-hoc run,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,update,Post-hoc update,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,image_index,Post-hoc image index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,sample_a,Post-hoc sample a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,sample_b,Post-hoc sample b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,ce_a,Post-hoc ce a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,ce_b,Post-hoc ce b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,js,Post-hoc js,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,texture,Post-hoc texture,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,total,Post-hoc total,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,prediction_a,Post-hoc prediction a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,prediction_b,Post-hoc prediction b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,disagree,Post-hoc disagree,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,reconstructed_total,Post-hoc reconstructed total,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_loss_audit,loss_residual,Post-hoc loss residual,class-logit units,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,draws,Post-hoc draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,ce_a,Post-hoc ce a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,ce_b,Post-hoc ce b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,js,Post-hoc js,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,texture,Post-hoc texture,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,total,Post-hoc total,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_epoch_metrics,view_disagreement,Post-hoc view disagreement,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,draws,Post-hoc draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,ce_a,Post-hoc ce a,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,ce_b,Post-hoc ce b,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,js,Post-hoc js,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,texture,Post-hoc texture,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_class_metrics,view_disagreement,Post-hoc view disagreement,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_patch_metrics,patch,Post-hoc patch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_patch_metrics,observations,Post-hoc observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+paired_patch_metrics,mean_pooling_mass,Post-hoc mean pooling mass,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+paired_patch_metrics,mean_cosine_distance,Post-hoc mean cosine distance,"dimensionless [-1,1]",Blank is unavailable/not applicable; absent class recall is not zero
+paired_patch_metrics,maximum_cosine_distance,Post-hoc maximum cosine distance,"dimensionless [-1,1]",Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,view,Post-hoc view,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,brightness_mean,Post-hoc brightness mean,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,brightness_min,Post-hoc brightness min,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,brightness_max,Post-hoc brightness max,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,contrast_mean,Post-hoc contrast mean,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,contrast_min,Post-hoc contrast min,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,contrast_max,Post-hoc contrast max,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,gamma_mean,Post-hoc gamma mean,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,gamma_min,Post-hoc gamma min,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+appearance_factor_epochs,gamma_max,Post-hoc gamma max,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,label,Post-hoc label,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,reference_class,Post-hoc reference class,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,observations,Post-hoc observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,reference_rows,Post-hoc reference rows,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,blocked_rows,Post-hoc blocked rows,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,min_scale,Post-hoc min scale,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+reference_permission_summary,max_scale,Post-hoc max scale,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,image_id,Post-hoc image id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,image_index,Post-hoc image index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,source_group,Post-hoc source group,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,physical_tyre_id,Post-hoc physical tyre id,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,is_bank,Post-hoc is bank,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,actual_draws,Post-hoc actual draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,view_observations,Post-hoc view observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,draw_probability,Post-hoc draw probability,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,expected_draws,Post-hoc expected draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+query_draw_exposure,actual_minus_expected,Post-hoc actual minus expected,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,class_index,Post-hoc class index,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,domain,Post-hoc domain,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,source_group,Post-hoc source group,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,images,Post-hoc images,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,draws,Post-hoc draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,view_observations,Post-hoc view observations,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,expected_draws,Post-hoc expected draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+source_group_draws,maximum_image_draws,Post-hoc maximum image draws,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,epoch,Post-hoc epoch,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,compute_seconds,Post-hoc compute seconds,seconds,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,record_seconds,Post-hoc record seconds,seconds,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,peak_cuda_allocated,Post-hoc peak cuda allocated,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,peak_cuda_reserved,Post-hoc peak cuda reserved,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,peak_host_rss,Post-hoc peak host rss,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+resource_epochs,minimum_free_disk,Post-hoc minimum free disk,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,stage,Post-hoc stage,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,endpoint,Post-hoc endpoint,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,variant,Post-hoc variant,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,n_v1,Post-hoc n v1,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,accuracy_v1,Post-hoc accuracy v1,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,balanced_accuracy_observed_v1,Post-hoc balanced accuracy observed v1,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,nll_v1,Post-hoc nll v1,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,brier_v1,Post-hoc brier v1,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,ece_10_equal_width_v1,Post-hoc ece 10 equal width v1,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,n_r2,Post-hoc n r2,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,accuracy_r2,Post-hoc accuracy r2,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,balanced_accuracy_observed_r2,Post-hoc balanced accuracy observed r2,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,nll_r2,Post-hoc nll r2,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,brier_r2,Post-hoc brier r2,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,ece_10_equal_width_r2,Post-hoc ece 10 equal width r2,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,delta_accuracy,Post-hoc delta accuracy,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,delta_balanced_accuracy_observed,Post-hoc delta balanced accuracy observed,dimensionless fraction; see METHODS.md for denominator,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,delta_nll,Post-hoc delta nll,natural-log units,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,delta_brier,Post-hoc delta brier,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+v1_r2_comparison,delta_ece_10_equal_width,Post-hoc delta ece 10 equal width,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+input_inventory,name,Post-hoc name,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero
+input_inventory,bytes,Post-hoc bytes,bytes,Blank is unavailable/not applicable; absent class recall is not zero
+input_inventory,sha256,Post-hoc sha256,identifier/count/scalar as named; see METHODS.md and original schema,Blank is unavailable/not applicable; absent class recall is not zero

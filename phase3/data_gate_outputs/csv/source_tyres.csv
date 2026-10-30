@@ -1,0 +1,13 @@
+historical_study_split,human_geometry_images,label_provenance,measured_tread_depth_mm,mileage_unit,mileage_value,new_independent_tyre,original_photo_count,proxy_class,recorded_session_id,tyre_id
+validation,13,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,40,low,mileage_000100_005000__session_001,mileage_000100_005000__session_001
+test,13,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,62,low,mileage_000100_005000__session_002,mileage_000100_005000__session_002
+train,13,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,20,mid,mileage_040000__session_001,mileage_040000__session_001
+train,13,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,20,mid,mileage_070000__session_001,mileage_070000__session_001
+train,13,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,57,mid,mileage_090000__session_001,mileage_090000__session_001
+train,2,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,3,high,mileage_100000_plus__session_001,mileage_100000_plus__session_001
+train,1,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,2,high,mileage_100000_plus__session_002,mileage_100000_plus__session_002
+train,4,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,5,high,mileage_100000_plus__session_003,mileage_100000_plus__session_003
+train,12,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,60,high,mileage_100000_plus__session_004,mileage_100000_plus__session_004
+test,12,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,41,high,mileage_100000_plus__session_005,mileage_100000_plus__session_005
+validation,12,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,41,high,mileage_100000_plus__session_006,mileage_100000_plus__session_006
+train,12,source folder/group mileage-proxy convention; not a new odometer or physical-wear measurement,,,,False,67,low,new_tire__session_001,new_tire__session_001

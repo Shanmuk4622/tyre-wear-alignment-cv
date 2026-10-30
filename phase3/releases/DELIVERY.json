@@ -1,0 +1,27 @@
+{
+  "version": "tread-one-r1",
+  "files": {
+    "notebooks/phase3_NB00_Data_Preflight.ipynb": "3ec731d827ce2eac8085a4b386d6c441bb360cc6e14ec13ac18423404e48a963",
+    "notebooks/phase3_NB01_TREAD_ONE.ipynb": "04819eb5e7825f812ba0813cdc8f8c9452d25c4243632102d28b6dfd0c0cc531",
+    "TREAD_ONE_RUN_GUIDE.md": "52358186e81ace6279fa2d4f96574fc2602167113c7f53b751e5560c43fce1c9",
+    "TREAD_ONE_DESIGN.md": "4cedefb862887f91d5d85e18428cbf5691b96a72c4c5275585c5df979e936adf",
+    "TREAD_ONE_EXPERIMENT.md": "21f65b574ca7044eb630c5ad82b8135dc6d0a2f1c12400b3a0262bab8e64665f",
+    "TREAD_ONE_VALIDATION.md": "c798e6b8905702a867265ee6484fa4df3332ee37385e334825ff2fc4975f18b0",
+    "validation/LOCAL_TESTS.json": "9f0df335f75ac01b177a6ca71879077354c34778b058d92a2dd2fdb3c96cf452",
+    "validation/PERSISTENCE_TESTS.json": "807be2fd04cd2ab38968f807cb30b104b4430243eadc9f250d421e128b3d2085",
+    "validation/LIFECYCLE_TESTS.json": "046dda4c0521034d511a14749861c762d1403b03dccb0937052310865eca2b6b",
+    "validation/model_contracts.json": "17c05a3b51bb9446f1fa5e74b87fd3be25a5886045c73dc7732718caa742a1e1"
+  },
+  "runtime_sources": {
+    "common.py": "3b2084ed5cd0ff83ecf0f08f1a3359dc0b1bb5727d600686e0437718350866e1",
+    "data.py": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae",
+    "evaluation.py": "a4ac050002cf904bb371e676265f06d13fec7bac881c5340b2e2cda512b19c40",
+    "hub.py": "235e607881479788e482884e1ece7290f380bed60e097ff28ad271da4123171b",
+    "model.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+    "phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+    "run.py": "9a3ec8406ac9eaf4bace4279d0cd87d751abe5cc6f82ae8a861506961cd99a0d",
+    "worker.py": "33079ea1d39ed99aeb93bde375ae818e8fe7a925190a1bb044c7b9efb7f61524"
+  },
+  "generator_sha256": "97ec57410da7a3da5e994b2aabffa11818587bfc773ddf872c328946ddee02c5"
+}

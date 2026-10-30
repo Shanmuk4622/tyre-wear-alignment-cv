@@ -1,0 +1,8 @@
+{
+  "revision": "93d7ea34c5539769d122330141f96b1a23083b7a",
+  "contract": "49e2f589866852cc7ad2d92d393b572de5d625d906f274ccf406830baf6186dd",
+  "source_file": "cohort_metrics.csv",
+  "sha256": "9c889243fa6be2a8f7d4d0ef5786da006bab295e124f47f71c1a024007150b8c",
+  "bytes": 16436,
+  "scope": "Previously verified v1 descriptive endpoint/probe metrics; no new fit and no single-factor attribution"
+}

@@ -1,0 +1,6 @@
+check,detail,passed,scope
+canonical_dataset_hash,06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a,True,historical_source
+safe_overlay_hash,f81a80d20b60ba505d94e31c26615e7e7171a91a8506948be6c392b68107a039,True,historical_source
+historical_physical_component_separation,Conservative unknown-video constraints included,True,historical_source
+no_cross_split_exact_duplicate,Byte SHA-256; similarity alone does not prove identity,True,historical_source
+prospective_training_ready,"All required data, identity, annotation and frozen-protocol conditions must pass",False,new_intake

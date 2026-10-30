@@ -1,0 +1,40 @@
+# Derived CSV inventory
+
+All tables below are new post-hoc derivatives of saved NB08 evidence. The original raw tables remain in their original fit namespace. Repeated draws and probes do not increase independent tyre count.
+
+| Table | Rows | Columns |
+|---|---:|---:|
+| [prediction_audit.csv](prediction_audit.csv) | 29,410 | 48 |
+| [cohort_metrics.csv](cohort_metrics.csv) | 132 | 15 |
+| [class_metrics.csv](class_metrics.csv) | 390 | 11 |
+| [confusion.csv](confusion.csv) | 1,170 | 7 |
+| [selection_audit.csv](selection_audit.csv) | 60 | 10 |
+| [endpoint_tyre_metrics.csv](endpoint_tyre_metrics.csv) | 20 | 16 |
+| [probe_pairs.csv](probe_pairs.csv) | 824 | 20 |
+| [probe_summary.csv](probe_summary.csv) | 8 | 7 |
+| [query_exposure.csv](query_exposure.csv) | 378 | 11 |
+| [sampling_groups.csv](sampling_groups.csv) | 11 | 6 |
+| [source_registry.csv](source_registry.csv) | 570 | 13 |
+| [gradient_parameters.csv](gradient_parameters.csv) | 22 | 5 |
+| [optimizer_epochs.csv](optimizer_epochs.csv) | 60 | 10 |
+| [pooled_reference_affinities.csv](pooled_reference_affinities.csv) | 18,540 | 13 |
+| [reference_contributions.csv](reference_contributions.csv) | 55,620 | 13 |
+| [logit_reconstruction.csv](logit_reconstruction.csv) | 3,090 | 10 |
+| [endpoint_coefficients.csv](endpoint_coefficients.csv) | 108 | 8 |
+| [bank_embedding_cosines.csv](bank_embedding_cosines.csv) | 648 | 6 |
+| [patch_concentration.csv](patch_concentration.csv) | 1,030 | 13 |
+| [endpoint_patch_evidence.csv](endpoint_patch_evidence.csv) | 98,880 | 11 |
+| [endpoint_patch_support.csv](endpoint_patch_support.csv) | 32,960 | 11 |
+| [nearest_reference.csv](nearest_reference.csv) | 1,030 | 13 |
+| [reference_class_affinities.csv](reference_class_affinities.csv) | 60 | 8 |
+| [occlusion_selection_check.csv](occlusion_selection_check.csv) | 206 | 22 |
+| [dense_region_by_role.csv](dense_region_by_role.csv) | 6 | 6 |
+| [dense_points_by_role.csv](dense_points_by_role.csv) | 7 | 6 |
+| [endpoint_calibration.csv](endpoint_calibration.csv) | 20 | 5 |
+| [confidence_risk.csv](confidence_risk.csv) | 42 | 6 |
+| [input_inventory.csv](input_inventory.csv) | 522 | 3 |
+| [table_dictionary.csv](table_dictionary.csv) | 333 | 5 |
+
+[Field dictionary](table_dictionary.csv) · [Calculation methods](METHODS.md) · [Interactive image/probe explorer](ATLAS_Failure_Explorer.html).
+
+All source hashes are retained in input_inventory.csv. Empty fields are unavailable/not applicable, especially absent mid-class target recall. Source masks/points are frozen predictions, not new physical wear measurements.

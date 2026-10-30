@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "library": "@oai/artifact-tool",
+  "CSV_tables": 4,
+  "CSV_rows_including_control": 59,
+  "all_values_headers_and_missing_cells_exact": true,
+  "scientific_new_subjects": 0
+}

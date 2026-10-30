@@ -1,0 +1,10 @@
+{
+  "status": "prepared_not_published",
+  "contract": "feb8305669eadc1137390434b0a7c06f13ecdf2eb3f3fbbdaac23859f9969781",
+  "path": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\tread_two\\review_validation\\bundle\\feb8305669ea",
+  "destination": "phase3/tread-two/atlas-v1/review/feb8305669eadc1137390434b0a7c06f13ecdf2eb3f3fbbdaac23859f9969781",
+  "files": 51,
+  "csv_tables": 30,
+  "source_fit_unchanged": true,
+  "model_training": false
+}

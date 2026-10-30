@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "ignored_path_checks": 20,
+  "retained_path_checks": 20,
+  "index_only_untracked_files": 7,
+  "all7_local_files_preserved_byte_identical": true,
+  "documentation_figures_copied_byte_identical": 4,
+  "frozen_reference_arrays_visible": 6,
+  "history_rewritten": false,
+  "source_notebooks_rewritten": false
+}

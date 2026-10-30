@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "date": "2026-10-27",
+  "timezone": "Asia/Calcutta",
+  "preexistingMarkdownFiles": 103,
+  "uniqueContents": 94,
+  "preexistingMarkdownBytes": 1291786.0,
+  "phase3MarkdownFiles": 12,
+  "localLinksChecked": 173,
+  "brokenLinks": [],
+  "originalMarkdownChanges": [],
+  "originalInventoryDrift": [],
+  "coverageDrift": [],
+  "gitStatus": [
+    "?? phase3/"
+  ],
+  "reviewMethod": "Full text loaded for all source scans; direct priority-document reading, historical section review, hash-identical copies and archive differences",
+  "environmentObservation": "conda env list returned: The system cannot execute the specified program.; no Python was executed",
+  "modelTestsRun": false,
+  "remoteReadsOrWrites": false
+}

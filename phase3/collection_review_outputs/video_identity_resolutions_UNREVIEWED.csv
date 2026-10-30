@@ -1,0 +1,4 @@
+video_id,confirmed_original_tyre_id,review_status,evidence_source,notes
+video1,,unresolved,phase2_video_identity.json,Known existing mid tyre; exact original session not confirmed
+video2,,unresolved,phase2_video_identity.json,Known existing mid tyre; exact original session not confirmed
+video3,,unresolved,phase2_video_identity.json,Known existing mid tyre; exact original session not confirmed

@@ -1,0 +1,14 @@
+{
+  "status": "schema_and_syntax_valid",
+  "revision": "r2-fresh-session-directories",
+  "notebook": "phase3_NB02_Audit_And_Direct_CSV.ipynb",
+  "sha256": "40c85084e1b983419c5f71cd57e26898110d4972d4ea2edee0b369a419296b39",
+  "embedded_sources": {
+    "fetch_completed_results.py": "97f8f0a91f66ebcf8ce46e725c2c126fcadd8a13c3d052b7eb52ec995817c3fd",
+    "audit_and_export_csv.py": "9d3e882df13ac66e3152a8765be645df132eb1856c6d86a179efc39e2e16d809",
+    "publish_recovered_csv.py": "fee5f1d52998e98a2add642355060d33386c6cea068cc5db684c01d1c8d854dd"
+  },
+  "local_audit_executed": true,
+  "kaggle_execution_tested": false,
+  "live_publication_tested": false
+}

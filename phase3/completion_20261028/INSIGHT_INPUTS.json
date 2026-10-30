@@ -1,0 +1,91 @@
+{
+  "selection_and_loss": [
+    {
+      "seed": 1,
+      "selected_epoch": 23,
+      "validation_balanced_accuracy": 0.55,
+      "final_validation_balanced_accuracy": 0.23170731707317074,
+      "first_train_classification_loss": 1.0998800652367728,
+      "last_train_classification_loss": 0.21706197456437715,
+      "first_gradient_norm": 2.0320225905398934,
+      "last_gradient_norm": 0.6720720432242568
+    },
+    {
+      "seed": 2,
+      "selected_epoch": 30,
+      "validation_balanced_accuracy": 0.825,
+      "final_validation_balanced_accuracy": 0.24390243902439024,
+      "first_train_classification_loss": 1.0969200474875314,
+      "last_train_classification_loss": 0.17878979140398454,
+      "first_gradient_norm": 1.601350328143762,
+      "last_gradient_norm": 0.4249920242903184
+    },
+    {
+      "seed": 3,
+      "selected_epoch": 20,
+      "validation_balanced_accuracy": 1.0,
+      "final_validation_balanced_accuracy": 0.024390243902439025,
+      "first_train_classification_loss": 1.099161571385909,
+      "last_train_classification_loss": 0.21680058690966392,
+      "first_gradient_norm": 1.7037799759786956,
+      "last_gradient_norm": 0.7537381004314033
+    }
+  ],
+  "baseline_comparison": [
+    {
+      "baseline": "mobilenetv4",
+      "metric": "balanced_accuracy_observed",
+      "better_direction": "higher",
+      "installed_phase2_value": 0.5,
+      "treadone_validation_selected_seed": 3,
+      "treadone_selected_epoch": 20,
+      "treadone_value": 0.5,
+      "candidate_minus_baseline": 0.0,
+      "scope": "Same frozen Phase2 holdout; different architecture/initialization/joint-selection protocol. Descriptive, not a matched causal ablation."
+    },
+    {
+      "baseline": "resnet50",
+      "metric": "balanced_accuracy_observed",
+      "better_direction": "higher",
+      "installed_phase2_value": 0.5,
+      "treadone_validation_selected_seed": 3,
+      "treadone_selected_epoch": 20,
+      "treadone_value": 0.5,
+      "candidate_minus_baseline": 0.0,
+      "scope": "Same frozen Phase2 holdout; different architecture/initialization/joint-selection protocol. Descriptive, not a matched causal ablation."
+    },
+    {
+      "baseline": "segformer",
+      "metric": "mean_two_region_dice",
+      "better_direction": "higher",
+      "installed_phase2_value": 0.9895663729263021,
+      "treadone_validation_selected_seed": 3,
+      "treadone_selected_epoch": 20,
+      "treadone_value": 0.9841869519273069,
+      "candidate_minus_baseline": -0.0053794209989952435,
+      "scope": "Same frozen Phase2 holdout; different architecture/initialization/joint-selection protocol. Descriptive, not a matched causal ablation."
+    },
+    {
+      "baseline": "yolo26m",
+      "metric": "mean_two_region_dice",
+      "better_direction": "higher",
+      "installed_phase2_value": 0.9878987927597535,
+      "treadone_validation_selected_seed": 3,
+      "treadone_selected_epoch": 20,
+      "treadone_value": 0.9841869519273069,
+      "candidate_minus_baseline": -0.003711840832446578,
+      "scope": "Same frozen Phase2 holdout; different architecture/initialization/joint-selection protocol. Descriptive, not a matched causal ablation."
+    },
+    {
+      "baseline": "hrnet",
+      "metric": "human_point_mae_width_fraction",
+      "better_direction": "lower",
+      "installed_phase2_value": 0.008592266878113151,
+      "treadone_validation_selected_seed": 3,
+      "treadone_selected_epoch": 20,
+      "treadone_value": 0.011960337180644274,
+      "candidate_minus_baseline": 0.0033680703025311225,
+      "scope": "Same frozen Phase2 holdout; different architecture/initialization/joint-selection protocol. Descriptive, not a matched causal ablation."
+    }
+  ]
+}

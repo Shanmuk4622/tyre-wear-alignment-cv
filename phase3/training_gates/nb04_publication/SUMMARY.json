@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "measurements": [
+    {
+      "device": "cuda:0",
+      "stage_mean_seconds": {
+        "data_seconds": 1.3328302826666725,
+        "forward_seconds": 1.1442052980000124,
+        "backward_seconds": 1.6813543690000188,
+        "optimizer_seconds": 0.01874427033332419,
+        "telemetry_seconds": 0.15399491433331983
+      },
+      "mean_update_compute_seconds": 3.000033520000026,
+      "first_update_compute_seconds": 8.38987144400005,
+      "mean_later_update_compute_seconds": 0.30511455800001386,
+      "later_stage_mean_seconds": {
+        "data_seconds": 0.9661031600000172,
+        "forward_seconds": 0.05403443400001606,
+        "backward_seconds": 0.09145180050001045,
+        "optimizer_seconds": 0.003328166499983354,
+        "telemetry_seconds": 0.15452963949996956
+      },
+      "max_loss_reconstruction_error": 2.9072201135349474e-07,
+      "sampled_cuda_peak_bytes": 1260480000,
+      "published_bytes": 609426940
+    },
+    {
+      "device": "cuda:1",
+      "stage_mean_seconds": {
+        "data_seconds": 1.3444928613333407,
+        "forward_seconds": 1.1431072133333373,
+        "backward_seconds": 1.6383707359999942,
+        "optimizer_seconds": 0.01769209966668465,
+        "telemetry_seconds": 0.1687921489999932
+      },
+      "mean_update_compute_seconds": 2.969891014333333,
+      "first_update_compute_seconds": 8.269255355999974,
+      "mean_later_update_compute_seconds": 0.3202088435000121,
+      "later_stage_mean_seconds": {
+        "data_seconds": 0.9856327345000011,
+        "forward_seconds": 0.05669064049999406,
+        "backward_seconds": 0.08989025650001281,
+        "optimizer_seconds": 0.0037501050000230407,
+        "telemetry_seconds": 0.16792054349997443
+      },
+      "max_loss_reconstruction_error": 2.9072201135349474e-07,
+      "sampled_cuda_peak_bytes": 1260480000,
+      "published_bytes": 609410210
+    }
+  ],
+  "JS_syntax_checked": true,
+  "browser_render_checked": false,
+  "published_files": 572,
+  "core_case_rows": 7524,
+  "new_independent_tyres": 0
+}

@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "source_files": [
+    "common.py",
+    "data.py",
+    "evaluation.py",
+    "hub.py",
+    "model.py",
+    "phase2_dataset_verify.py",
+    "phase2_training_data.py",
+    "run.py",
+    "worker.py"
+  ],
+  "export_matches_validation_winner_bitwise": true,
+  "seed": 3,
+  "epoch": 20,
+  "weights_sha256": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65",
+  "all_optimizer_scheduler_scaler_tensors_finite": [
+    1,
+    2,
+    3
+  ],
+  "gallery_image_hashes_checked": [
+    "report/gallery/example_class0.png",
+    "report/gallery/example_class1.png",
+    "report/gallery/example_class2.png"
+  ],
+  "inference_or_training_performed": false
+}

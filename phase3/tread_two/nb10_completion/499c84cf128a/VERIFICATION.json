@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "executed_notebook_sha256": "499c84cf128a7b857ec97b9525b1bdf5bac623d9ee4f0206327cd38a92a72d26",
+  "revision": "62929d235027d3f188174d7f080a034c394afab3",
+  "destination": "phase3/tread-two/atlas-v1/appearance-gate/e6111242ddccc489ec9b138fc4202c19fe880a1da68a36244a92872179351844",
+  "files": 495,
+  "objects_verified": 494,
+  "bytes_verified": 1910152183,
+  "source_code_matches_delivery": true,
+  "code_cells_completed": 4,
+  "errors": 0,
+  "owner_released": true,
+  "devices": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "environment": {
+    "cuda": "12.8",
+    "cudnn": 91900,
+    "devices": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "numpy": "2.1.3",
+    "pillow": "13.0.0",
+    "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+    "torch": "2.11.0+cu128"
+  },
+  "scientific_rows": {
+    "source_train": 386,
+    "patch_quality": 12352,
+    "predictions": 2702,
+    "patch_evidence": 259392,
+    "affinities": 1556352,
+    "feature_consistency": 86464,
+    "execution": 386,
+    "candidate_bank": 18
+  },
+  "total_scientific_rows": 1918052,
+  "native_train_images_verified": 386,
+  "query_images": 378,
+  "support_images": 8,
+  "predictions": 2702,
+  "untrained_bank_photos": 18,
+  "bank_source_sha256_unique": true,
+  "validation_or_test_forwards": 0,
+  "optimizer_updates": 0,
+  "report": {
+    "candidate_bank_structural_pass": true,
+    "candidate_class_tyre_support": {
+      "0": 1,
+      "1": 3,
+      "2": 4
+    },
+    "candidate_images": 18,
+    "candidate_physical_tyres": 8,
+    "images": 386,
+    "measured_v2_classifier": false,
+    "new_independent_tyres": 0,
+    "optimizer_updates": 0,
+    "predictions": 2702,
+    "scope": "Frozen selected v1 probes and an untrained reference/feature proposal; not classifier promotion or physical wear/safety proof",
+    "status": "completed_train_only_gate",
+    "support_images": 8,
+    "v1_queries": 378,
+    "validation_or_test_forwards": 0,
+    "variants": 7
+  },
+  "public_read_requests_this_invocation": 2,
+  "local_credentials_read": false,
+  "remote_writes": 0,
+  "zip_npz_database_files": []
+}

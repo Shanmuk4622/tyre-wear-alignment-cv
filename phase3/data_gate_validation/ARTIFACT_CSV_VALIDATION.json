@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "library": "@oai/artifact-tool",
+  "CSV_tables": 22,
+  "CSV_rows": 7614,
+  "all_values_headers_and_missing_cells_exact": true,
+  "CSV_only_user_requirement": true
+}

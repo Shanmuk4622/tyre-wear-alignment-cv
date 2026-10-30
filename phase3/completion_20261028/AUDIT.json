@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "source_repo": "Shanmuk4622/tyre-wear-study",
+  "source_revision": "a0296f18e02b12d28f7e51377783d68538032209",
+  "protocol": "371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c",
+  "seeds": [
+    {
+      "seed": 1,
+      "epoch": 60,
+      "updates": 2940,
+      "history_rows": 2940,
+      "validation_epochs": 60,
+      "best_epoch": 23,
+      "validation_utility": 0.7378861392278044,
+      "finite_losses": true,
+      "nonfinite_retry_events": 0,
+      "compute_seconds": 267.6296219959977,
+      "bundle_sha256": "1fd763db843324c70895bc1f06601e6e63801c9b1151f15cdbefb2f16f63ccad"
+    },
+    {
+      "seed": 2,
+      "epoch": 60,
+      "updates": 2940,
+      "history_rows": 2940,
+      "validation_epochs": 60,
+      "best_epoch": 30,
+      "validation_utility": 0.8506791244753643,
+      "finite_losses": true,
+      "nonfinite_retry_events": 0,
+      "compute_seconds": 267.16181660599557,
+      "bundle_sha256": "fd7dd25d7142f8429608d9dd196dc4051c137733a1bcfe3f366b5d8039ccbbc8"
+    },
+    {
+      "seed": 3,
+      "epoch": 60,
+      "updates": 2940,
+      "history_rows": 2940,
+      "validation_epochs": 60,
+      "best_epoch": 20,
+      "validation_utility": 0.9722130471039863,
+      "finite_losses": true,
+      "nonfinite_retry_events": 0,
+      "compute_seconds": 262.4694233099917,
+      "bundle_sha256": "6c5c0e1c1b3206b98ded34ba0a6b12135a3552a31233fdba4dfb6f4c584bd314"
+    }
+  ],
+  "csv_rows": {
+    "training_steps.csv": 8820,
+    "training_samples.csv": 70560,
+    "validation_epochs.csv": 180,
+    "validation_predictions.csv": 14580,
+    "validation_confusion.csv": 1620,
+    "class_metrics.csv": 558,
+    "calibration_bins.csv": 674,
+    "point_predictions.csv": 91188,
+    "review_flags.csv": 1813,
+    "test_predictions.csv": 618,
+    "test_region_stats.csv": 1236,
+    "test_group_metrics.csv": 12,
+    "run_summary.csv": 6,
+    "sample_exposures.csv": 33,
+    "gpu_resume_checks.csv": 3,
+    "completion_checks.csv": 3,
+    "numerical_events.csv": 0
+  },
+  "source_mask_files_verified": 309,
+  "claims": {
+    "completed_runs": 3,
+    "epochs_per_run": 60,
+    "updates_per_run": 2940,
+    "test_images_per_endpoint": 103,
+    "human_geometry_test_images": 25
+  },
+  "all_bundle_and_member_hashes_verified": true,
+  "raw_test_metrics_recalculated": true,
+  "validation_metrics_recalculated": true,
+  "checkpoint_or_model_modified": false,
+  "training_performed": false,
+  "derived_metrics": "NLL, Brier, entropy, ECE, QWK, ordinal MAE, class precision/recall/F1 and raw-test region TP/FP/FN/TN derived post hoc from existing saved predictions.",
+  "limits": "No missing training-image predictions, continuous resource traces, or per-epoch full validation mask arrays can be retroactively invented."
+}

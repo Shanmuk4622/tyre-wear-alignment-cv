@@ -1,0 +1,23 @@
+{
+  "status": "schema_syntax_and_embedded_source_valid",
+  "notebook_sha256": "9459d1e01c548f3ec71c48763f674767c384cca47e6146acb85618d26f798691",
+  "sources": {
+    "runtime/common.py": "3b2084ed5cd0ff83ecf0f08f1a3359dc0b1bb5727d600686e0437718350866e1",
+    "runtime/data.py": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae",
+    "runtime/evaluation.py": "a4ac050002cf904bb371e676265f06d13fec7bac881c5340b2e2cda512b19c40",
+    "runtime/hub.py": "235e607881479788e482884e1ece7290f380bed60e097ff28ad271da4123171b",
+    "runtime/model.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "runtime/phase2_dataset_verify.py": "201292f529728c342b70bf5efd20775c99966526a91ae3584681d908ee28f45f",
+    "runtime/phase2_training_data.py": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+    "runtime/run.py": "9a3ec8406ac9eaf4bace4279d0cd87d751abe5cc6f82ae8a861506961cd99a0d",
+    "runtime/worker.py": "33079ea1d39ed99aeb93bde375ae818e8fe7a925190a1bb044c7b9efb7f61524",
+    "diagnostic/explorer.html": "7650ad4c86979893d482c779d6defba300e66674fceccc489a103db379c7a0c1",
+    "diagnostic/metrics.py": "60ecab31cf8680d2cc83ebcad15b072c16a0e96d8dc7ce98d0836ac668282463",
+    "diagnostic/report.py": "65bf2d85cc0d719040e787672425c0c19eca88de7a56296040edca9c7f6e4e98",
+    "diagnostic/run.py": "3b80042215fee3bb9d7c36974d26a0b867bcde7657ad824ff2f3b4b68420ec58",
+    "diagnostic/storage.py": "dd01a5914397e3e20ec9028f023806074773ea256fb30d1f9b6961c2d524d17e",
+    "analysis/fetch_completed_results.py": "97f8f0a91f66ebcf8ce46e725c2c126fcadd8a13c3d052b7eb52ec995817c3fd"
+  },
+  "kaggle_execution_tested": false,
+  "live_hf_diagnostic_publication_tested": false
+}

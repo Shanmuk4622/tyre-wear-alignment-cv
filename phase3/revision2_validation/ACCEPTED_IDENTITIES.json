@@ -1,0 +1,33 @@
+{
+  "actual_cases": [
+    {
+      "condition": "baseline",
+      "initial_model_tensor_sha256": "6a9d01f3e8c5c3e7e21bb19467942457b11066003bc6124fa2f8a633d42c8263",
+      "projections": 0,
+      "real_conflicts": 3
+    },
+    {
+      "condition": "shared_projection",
+      "initial_model_tensor_sha256": "6a9d01f3e8c5c3e7e21bb19467942457b11066003bc6124fa2f8a633d42c8263",
+      "projections": 4,
+      "real_conflicts": 4
+    }
+  ],
+  "live_HF_r2_tested": false,
+  "measured_training_started": false,
+  "notebook_bytes": 168270,
+  "notebook_sha256": "5bd1855e04fbac4abbeb0b96b6a023b15419c21c96954828bb9c7fb9715ec3a2",
+  "offline_checks": 16,
+  "original_math": {
+    "model": 0.0,
+    "optimizer": 0.0,
+    "rng": 0,
+    "scaler": 0.0,
+    "scheduler": 0
+  },
+  "source_files": 27,
+  "study_intent": "16dfddd7672e70c3b321cc6adc4044d5a6c4453a75d7b84a29f72fdd6ab6c1dc",
+  "launcher_sha256": "422c9c6ca8bc627a1a67761556e86a38998292480a82872344c08d95077fed5f",
+  "repair": "notebook-only-preflight-lease-wait-20261029",
+  "repair_live_retest": false
+}

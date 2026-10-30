@@ -1,0 +1,114 @@
+{
+  "notebook_sha256": "c6c6b287249ac4187a80322d248f46f968b37f7dd407872ef28e837a08f8ccac",
+  "cells": [
+    {
+      "cell": 0,
+      "type": "markdown",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 1,
+      "type": "code",
+      "execution_count": 1,
+      "errors": [],
+      "output_tail": [
+        "CPU recovery sources extracted. HF_TOKEN loaded without displaying it."
+      ]
+    },
+    {
+      "cell": 2,
+      "type": "markdown",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 3,
+      "type": "code",
+      "execution_count": 2,
+      "errors": [
+        {
+          "name": "CalledProcessError",
+          "value": "Command '['/usr/bin/python3', '-B', '-u', '/kaggle/working/treadone_csv_recovery/analysis/fetch_completed_results.py', '--bundles']' returned non-zero exit status 1.",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mCalledProcessError\u001b[0m                        Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_49/1561514938.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mlaunch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'fetch_completed_results.py'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'--bundles'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;32m/tmp/ipykernel_49/2706499892.py\u001b[0m in \u001b[0;36mlaunch\u001b[0;34m(script, *arguments)\u001b[0m\n\u001b[1;32m     15\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'CPU recovery sources extracted. HF_TOKEN loaded without displaying it.'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     16\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mlaunch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mscript\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0marguments\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 17\u001b[0;31m     \u001b[0msubprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrun\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0msys\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mexecutable\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'-B'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'-u'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mscripts\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0mscript\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0marguments\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcheck\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;32m/usr/lib/python3.13/subprocess.py\u001b[0m in \u001b[0;36mrun\u001b[0;34m(input, capture_output, timeout, check, *popenargs, **kwargs)\u001b[0m\n\u001b[1;32m    575\u001b[0m         \u001b[0mretcode\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpoll\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    576\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mcheck\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0mretcode\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 577\u001b[0;31m             raise CalledProcessError(retcode, process.args,\n\u001b[0m\u001b[1;32m    578\u001b[0m                                      output=stdout, stderr=stderr)\n\u001b[1;32m    579\u001b[0m     \u001b[0;32mreturn\u001b[0m \u001b[0mCompletedProcess\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mretcode\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstdout\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstderr\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mCalledProcessError\u001b[0m: Command '['/usr/bin/python3', '-B', '-u', '/kaggle/working/treadone_csv_recovery/analysis/fetch_completed_results.py', '--bundles']' returned non-zero exit status 1."
+          ]
+        }
+      ],
+      "output_tail": [
+        "Traceback (most recent call last):",
+        "  File \"/kaggle/working/treadone_csv_recovery/analysis/fetch_completed_results.py\", line 120, in <module>",
+        "    main()",
+        "    ~~~~^^",
+        "  File \"/kaggle/working/treadone_csv_recovery/analysis/fetch_completed_results.py\", line 94, in main",
+        "    (OUT/'remote_tree.json').write_text(json.dumps(dict(repo=REPO, revision=REVISION, prefix=PREFIX, files=metadata), indent=2)+'\\n')",
+        "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/usr/lib/python3.13/pathlib/_local.py\", line 555, in write_text",
+        "    return PathBase.write_text(self, data, encoding, errors, newline)",
+        "           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/usr/lib/python3.13/pathlib/_abc.py\", line 651, in write_text",
+        "    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:",
+        "         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/usr/lib/python3.13/pathlib/_local.py\", line 537, in open",
+        "    return io.open(self, mode, buffering, encoding, errors, newline)",
+        "           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/treadone_csv_recovery/completion_20261028/remote_tree.json'",
+        "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+        "\u001b[0;31mCalledProcessError\u001b[0m                        Traceback (most recent call last)",
+        "\u001b[0;32m/tmp/ipykernel_49/1561514938.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mlaunch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'fetch_completed_results.py'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'--bundles'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+        "\u001b[0;32m/tmp/ipykernel_49/2706499892.py\u001b[0m in \u001b[0;36mlaunch\u001b[0;34m(script, *arguments)\u001b[0m\n\u001b[1;32m     15\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'CPU recovery sources extracted. HF_TOKEN loaded without displaying it.'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     16\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mlaunch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mscript\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0marguments\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 17\u001b[0;31m     \u001b[0msubprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrun\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0msys\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mexecutable\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'-B'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m'-u'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mscripts\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0mscript\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0marguments\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcheck\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+        "\u001b[0;32m/usr/lib/python3.13/subprocess.py\u001b[0m in \u001b[0;36mrun\u001b[0;34m(input, capture_output, timeout, check, *popenargs, **kwargs)\u001b[0m\n\u001b[1;32m    575\u001b[0m         \u001b[0mretcode\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpoll\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    576\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mcheck\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0mretcode\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 577\u001b[0;31m             raise CalledProcessError(retcode, process.args,\n\u001b[0m\u001b[1;32m    578\u001b[0m                                      output=stdout, stderr=stderr)\n\u001b[1;32m    579\u001b[0m     \u001b[0;32mreturn\u001b[0m \u001b[0mCompletedProcess\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mprocess\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mretcode\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstdout\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstderr\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+        "\u001b[0;31mCalledProcessError\u001b[0m: Command '['/usr/bin/python3', '-B', '-u', '/kaggle/working/treadone_csv_recovery/analysis/fetch_completed_results.py', '--bundles']' returned non-zero exit status 1."
+      ]
+    },
+    {
+      "cell": 4,
+      "type": "markdown",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 5,
+      "type": "code",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 6,
+      "type": "markdown",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 7,
+      "type": "code",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 8,
+      "type": "markdown",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    },
+    {
+      "cell": 9,
+      "type": "code",
+      "execution_count": null,
+      "errors": [],
+      "output_tail": []
+    }
+  ]
+}

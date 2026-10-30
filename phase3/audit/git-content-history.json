@@ -1,0 +1,166 @@
+{
+  "candidate_files": 1262,
+  "candidate_bytes": 130339595,
+  "tracked_files": 538,
+  "untracked_candidates": 724,
+  "largest_files": [
+    {
+      "path": "phase2/notebooks/phase2_NB07_Visual_Model_Comparison.ipynb",
+      "bytes": 15544032
+    },
+    {
+      "path": "phase2/local_validation/assets/segformer/pytorch_model.bin",
+      "bytes": 14380029
+    },
+    {
+      "path": "phase3/tread_two/completion_report/ATLAS_Evidence_Explorer.html",
+      "bytes": 4418384
+    },
+    {
+      "path": "phase3/tread_two/appearance_gate_results/Training_Gate_Explorer.html",
+      "bytes": 3967099
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB01_TREAD_ONE.ipynb",
+      "bytes": 3757473
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB12_TREAD_TWO_ATLAS_LC_Completed_Review.ipynb",
+      "bytes": 3434879
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB10_TREAD_TWO_Train_Only_Appearance_And_Reference_Gate.ipynb",
+      "bytes": 3119920
+    },
+    {
+      "path": "phase3/collection_review_outputs/NB07_Identity_Review_Contact_Sheet.png",
+      "bytes": 3054603
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB09_TREAD_TWO_ATLAS_Completed_Review.ipynb",
+      "bytes": 2832242
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_Pilot.ipynb",
+      "bytes": 2796647
+    },
+    {
+      "path": "phase3/tread_two/ATLAS_EXPLORER.html",
+      "bytes": 2679596
+    },
+    {
+      "path": "notebooks/NB10R_Analysis_Recovery.ipynb",
+      "bytes": 2549901
+    },
+    {
+      "path": "docs/report/assets/learned-image-check.png",
+      "bytes": 2389687
+    },
+    {
+      "path": "phase3/collection_review_outputs/TREAD_ONE_Identity_And_Capture_Review.html",
+      "bytes": 2229264
+    },
+    {
+      "path": "phase3/training_gates/summary_exports/engineering_inputs_and_masks.png",
+      "bytes": 2186965
+    }
+  ],
+  "largest_groups": [
+    {
+      "path": "phase2",
+      "files": 168,
+      "bytes": 42106424
+    },
+    {
+      "path": "notebooks",
+      "files": 44,
+      "bytes": 17546684
+    },
+    {
+      "path": "docs",
+      "files": 128,
+      "bytes": 7647216
+    },
+    {
+      "path": "phase3/tread_two/completion_report",
+      "files": 4,
+      "bytes": 4503220
+    },
+    {
+      "path": "phase3/tread_two/appearance_gate_results",
+      "files": 10,
+      "bytes": 4382725
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB01_TREAD_ONE.ipynb",
+      "files": 1,
+      "bytes": 3757473
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB12_TREAD_TWO_ATLAS_LC_Completed_Review.ipynb",
+      "files": 1,
+      "bytes": 3434879
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB10_TREAD_TWO_Train_Only_Appearance_And_Reference_Gate.ipynb",
+      "files": 1,
+      "bytes": 3119920
+    },
+    {
+      "path": "phase3/collection_review_outputs/NB07_Identity_Review_Contact_Sheet.png",
+      "files": 1,
+      "bytes": 3054603
+    },
+    {
+      "path": "phase3/training_gates/summary_exports",
+      "files": 8,
+      "bytes": 2973570
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB09_TREAD_TWO_ATLAS_Completed_Review.ipynb",
+      "files": 1,
+      "bytes": 2832242
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_Pilot.ipynb",
+      "files": 1,
+      "bytes": 2796647
+    },
+    {
+      "path": "phase3/tread_two/lc_analysis_report",
+      "files": 42,
+      "bytes": 2710204
+    },
+    {
+      "path": "phase3/tread_two/ATLAS_EXPLORER.html",
+      "files": 1,
+      "bytes": 2679596
+    },
+    {
+      "path": "phase3/tread_two/prototype_report",
+      "files": 37,
+      "bytes": 2668562
+    },
+    {
+      "path": "phase3/collection_review_outputs/TREAD_ONE_Identity_And_Capture_Review.html",
+      "files": 1,
+      "bytes": 2229264
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB08_TREAD_TWO_ATLAS_Resumable_Pilot.ipynb",
+      "files": 1,
+      "bytes": 2167851
+    },
+    {
+      "path": "phase3/tread_two/analysis_report",
+      "files": 32,
+      "bytes": 1942358
+    }
+  ],
+  "status": "inventory_only",
+  "history": {
+    "blobs_at_least_100_MiB": [],
+    "secret_filenames": [],
+    "history_rewritten": false
+  }
+}

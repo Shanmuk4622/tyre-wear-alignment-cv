@@ -1,0 +1,32 @@
+{
+  "frozen_anchor.py": {
+    "source": "runtime/model.py",
+    "original_sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "copied_or_adapted": true
+  },
+  "phase2_training_data.py": {
+    "source": "runtime/phase2_training_data.py",
+    "original_sha256": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579",
+    "copied_or_adapted": true
+  },
+  "legacy_data.py": {
+    "source": "runtime/data.py",
+    "original_sha256": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae",
+    "copied_or_adapted": true
+  },
+  "geometry.py": {
+    "source": "tread_two/atlas.py",
+    "original_sha256": "04a8151f666c96ab7482c1aa48c2a2ea7e15d34db09893be3a7ad31e507d366a",
+    "copied_or_adapted": true
+  },
+  "evidence_hub.py": {
+    "source": "training/evidence_hub.py",
+    "original_sha256": "6125c30f4dbc29463b033fb0d1bbc7836991e8ab453533592dd5ad8b7e023c2f",
+    "copied_or_adapted": true
+  },
+  "publisher.py": {
+    "source": "revision2/publisher_r2.py",
+    "original_sha256": "d7f873313175ad9e6e5d5d62afbd173474db369d607e6b4ffca3876c5d044d02",
+    "copied_or_adapted": true
+  }
+}

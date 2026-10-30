@@ -1,0 +1,10 @@
+confirmed_original_tyres,historical_split,human_geometry_images,images,is_prospective_blind_cohort,proxy_class,unmapped_existing_video_frames,weak_geometry_images
+1,train,12,67,False,low,0,0
+3,train,39,249,False,mid,152,152
+4,train,19,70,False,high,0,0
+1,validation,13,40,False,low,0,0
+0,validation,0,0,False,mid,0,0
+1,validation,12,41,False,high,0,0
+1,test,13,62,False,low,0,0
+0,test,0,0,False,mid,0,0
+1,test,12,41,False,high,0,0

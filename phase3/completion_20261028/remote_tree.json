@@ -1,0 +1,199 @@
+{
+  "repo": "Shanmuk4622/tyre-wear-study",
+  "revision": "a0296f18e02b12d28f7e51377783d68538032209",
+  "prefix": "phase3/tread-one-r1/371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c",
+  "files": [
+    {
+      "path": "CONTRACT.json",
+      "bytes": 3765,
+      "lfs_sha256": null,
+      "blob_id": "0fb27ce82c72b7d8ecf7aa9158b1a7fe21121d66"
+    },
+    {
+      "path": "DATA_PREFLIGHT.json",
+      "bytes": 1785,
+      "lfs_sha256": null,
+      "blob_id": "cfe132836273f51cc7cae9e3c110a687c47822b5"
+    },
+    {
+      "path": "ENVIRONMENT.json",
+      "bytes": 466,
+      "lfs_sha256": null,
+      "blob_id": "8c5adb10bb6a7b248b0b5fb67f1d15cacf47c002"
+    },
+    {
+      "path": "INDEX.json",
+      "bytes": 1043,
+      "lfs_sha256": null,
+      "blob_id": "d2f40127a8f002d07eb879d558ee93a75ae0fd85"
+    },
+    {
+      "path": "LEASE.json",
+      "bytes": 26,
+      "lfs_sha256": null,
+      "blob_id": "5d4d3f5a1c8f2dbf0ce58017527cc5c0559e34a4"
+    },
+    {
+      "path": "OVERLAY.json",
+      "bytes": 806991,
+      "lfs_sha256": null,
+      "blob_id": "a2ee255a84c8b3784a34638a26b27834b4aca488"
+    },
+    {
+      "path": "preflight/DATA_PREFLIGHT.json",
+      "bytes": 1785,
+      "lfs_sha256": null,
+      "blob_id": "cfe132836273f51cc7cae9e3c110a687c47822b5"
+    },
+    {
+      "path": "report/EVALUATION_seed1.json",
+      "bytes": 262007,
+      "lfs_sha256": null,
+      "blob_id": "bc8fde54b837da5f0cb00f118662cccba6203e97"
+    },
+    {
+      "path": "report/EVALUATION_seed2.json",
+      "bytes": 262684,
+      "lfs_sha256": null,
+      "blob_id": "186f0e76f42b7440a801e7ee25f23c1af8a7a0d2"
+    },
+    {
+      "path": "report/EVALUATION_seed3.json",
+      "bytes": 263756,
+      "lfs_sha256": null,
+      "blob_id": "9747def4432ef4561bdc417f0462c96e37826bfb"
+    },
+    {
+      "path": "report/EXPORT.json",
+      "bytes": 4279,
+      "lfs_sha256": null,
+      "blob_id": "6af11e0c592c1532c57571c2dd6c955226057cc1"
+    },
+    {
+      "path": "report/REPORT.json",
+      "bytes": 790504,
+      "lfs_sha256": null,
+      "blob_id": "22ca874b7d349a5cd9d28b9963eb843e30a3d571"
+    },
+    {
+      "path": "report/gallery/GALLERY.json",
+      "bytes": 423,
+      "lfs_sha256": null,
+      "blob_id": "137ccb214acaa4c4c4fc093cd0a6d12e75e63af9"
+    },
+    {
+      "path": "report/gallery/example_class0.npz",
+      "bytes": 792098,
+      "lfs_sha256": "dbf5e5f555e6c131c66c963c37deb6203ff4e89d1c3f8c7d2828430f3e1b4851",
+      "blob_id": "8b9bed4545857425052ba39122c48208e7712677"
+    },
+    {
+      "path": "report/gallery/example_class0.png",
+      "bytes": 918589,
+      "lfs_sha256": "2c39a42f14c25c3fc374edfffccdd651f7f62a348a3071a3e5a8ee396a2d1fdb",
+      "blob_id": "f785ae093800f5d713a7c9ff740e313e895af3fc"
+    },
+    {
+      "path": "report/gallery/example_class1.npz",
+      "bytes": 771212,
+      "lfs_sha256": "b759fe250886143e01e40ccf90f2f14188c284336c780ad74af38d7883e0cfa0",
+      "blob_id": "a89759162b241ad347a1d2b13966f59d2b10fcd0"
+    },
+    {
+      "path": "report/gallery/example_class1.png",
+      "bytes": 855175,
+      "lfs_sha256": "f4d6009c8d201d4cbb49d4ce4a8c8c40af1ff1d4dacc40a53796c8c962e1c634",
+      "blob_id": "9c8f4d096680b7562edb14f7d025334e29f894c5"
+    },
+    {
+      "path": "report/gallery/example_class2.npz",
+      "bytes": 760766,
+      "lfs_sha256": "daede806905c3a7469afe68f51ed39cfd60c8199fc4fab6b0de03370af1d3fb3",
+      "blob_id": "61a8f467197753ded30796f5b221d0e385a70e7c"
+    },
+    {
+      "path": "report/gallery/example_class2.png",
+      "bytes": 967804,
+      "lfs_sha256": "45149b9ecb27928bf868d9afb857a4d4b8fd607d40b7ee7c36a3dbfeb667ebff",
+      "blob_id": "2287bf26fba46a9aa003e8f883279741f51b8a2d"
+    },
+    {
+      "path": "report/weights.pt",
+      "bytes": 5525189,
+      "lfs_sha256": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65",
+      "blob_id": "21ed799dea41fd46ec30bc3306e2a5b92673bb20"
+    },
+    {
+      "path": "runs/seed1/latest.zip",
+      "bytes": 137902748,
+      "lfs_sha256": "1fd763db843324c70895bc1f06601e6e63801c9b1151f15cdbefb2f16f63ccad",
+      "blob_id": "4c7c0a85ebe731f5a2a43ec867a239c3b00add67"
+    },
+    {
+      "path": "runs/seed2/latest.zip",
+      "bytes": 138141751,
+      "lfs_sha256": "fd7dd25d7142f8429608d9dd196dc4051c137733a1bcfe3f366b5d8039ccbbc8",
+      "blob_id": "ee437525641196c8b9c848e53a58b73cc3ca89f5"
+    },
+    {
+      "path": "runs/seed3/latest.zip",
+      "bytes": 132377272,
+      "lfs_sha256": "6c5c0e1c1b3206b98ded34ba0a6b12135a3552a31233fdba4dfb6f4c584bd314",
+      "blob_id": "f43467feb5066cd162285e70ca38a1c60e036820"
+    },
+    {
+      "path": "sources/common.py",
+      "bytes": 5381,
+      "lfs_sha256": null,
+      "blob_id": "6a842994c2bcaa5518ffd32e7b7e9ed46d93c5fd"
+    },
+    {
+      "path": "sources/data.py",
+      "bytes": 2865,
+      "lfs_sha256": null,
+      "blob_id": "4c1ba5e4f36c11dd2f965cabe743302f277f865c"
+    },
+    {
+      "path": "sources/evaluation.py",
+      "bytes": 11026,
+      "lfs_sha256": null,
+      "blob_id": "d17a412915ed81419b2feebdec3ea554b7b27786"
+    },
+    {
+      "path": "sources/hub.py",
+      "bytes": 14222,
+      "lfs_sha256": null,
+      "blob_id": "46b896affcb04cc59cfa5f21e8656d16068fd5bd"
+    },
+    {
+      "path": "sources/model.py",
+      "bytes": 8502,
+      "lfs_sha256": null,
+      "blob_id": "0fc9ff4fa9d022b438cd403c51087bc8e9985e5c"
+    },
+    {
+      "path": "sources/phase2_dataset_verify.py",
+      "bytes": 3426,
+      "lfs_sha256": null,
+      "blob_id": "fb56d398e842e588555f888d0277d135fefadf47"
+    },
+    {
+      "path": "sources/phase2_training_data.py",
+      "bytes": 7154,
+      "lfs_sha256": null,
+      "blob_id": "6d11e7c99b8e373b930378f797e4030bab8fe799"
+    },
+    {
+      "path": "sources/run.py",
+      "bytes": 13752,
+      "lfs_sha256": null,
+      "blob_id": "e7066accabb7e8b91185890ab03afae6f3b4878a"
+    },
+    {
+      "path": "sources/worker.py",
+      "bytes": 14606,
+      "lfs_sha256": null,
+      "blob_id": "bd2a43b39d30f354902a224ce64d69a8e62b9213"
+    }
+  ]
+}

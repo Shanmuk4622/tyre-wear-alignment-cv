@@ -1,0 +1,4 @@
+proxy_class,historical_train_tyres,historical_validation_tyres,historical_test_tyres,historical_train_original_photos,fewest_original_photos_per_train_tyre,most_original_photos_per_train_tyre,historical_train_video_frames,collection_reason,new_subject_count_required,new_subject_count_decided,minimum_to_be_declared_against_actual_study_budget
+low,1,1,1,67,67,67,0,Only one historical training tyre; both NB05 selected models miss all 62 low test photos. Prioritize additional independent low tyres across capture conditions.,,False,True
+mid,3,0,0,97,20,57,152,All three historical mid tyres are training-only; validation/test contain no mid. Obtain additional independent reserved mid tyres.,,False,True
+high,4,1,1,70,2,60,0,Historical training has four tyres; reserved sets each one. Broaden independent high-subject and capture coverage while preserving low/mid priorities.,,False,True

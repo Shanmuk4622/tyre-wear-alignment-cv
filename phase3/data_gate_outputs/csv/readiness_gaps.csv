@@ -1,0 +1,13 @@
+code,detail
+subject_minima_not_declared,Declare positive per-class subject minima for each role under the actual available cohort
+prospective_support_incomplete,train/low: subject minimum not declared
+prospective_support_incomplete,train/mid: subject minimum not declared
+prospective_support_incomplete,train/high: subject minimum not declared
+prospective_support_incomplete,validation/low: subject minimum not declared
+prospective_support_incomplete,validation/mid: subject minimum not declared
+prospective_support_incomplete,validation/high: subject minimum not declared
+prospective_support_incomplete,test/low: subject minimum not declared
+prospective_support_incomplete,test/mid: subject minimum not declared
+prospective_support_incomplete,test/high: subject minimum not declared
+protocol_not_frozen,Freeze the prospective data/evaluation policy after its actual subjects and criteria are defined
+no_new_intake_images,No new collection was supplied; existing evidence cannot add independent tyres

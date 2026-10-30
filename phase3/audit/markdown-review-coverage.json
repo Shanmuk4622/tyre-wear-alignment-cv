@@ -1,0 +1,723 @@
+[
+  {
+    "path": "ACCESS_latex_template_20260513/.build/editorial-package-check/CITATION_AUDIT.md",
+    "sha256": "78c1facfbf9214ee8ff03e862d9d93c146f2a4cf428dc6a446187bcc91d1d26e",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/editorial-package-check/CITATION_AUDIT.md",
+    "coverage": "Archive differences",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/editorial-package-check/README.md",
+    "sha256": "430a8e2e0d1af747c9151f4aef78cb0293428f62fa20230aab96a6d4684b4b0e",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/editorial-package-check/README.md",
+    "coverage": "Archive differences",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/editorial-package-check/REVIEW_RESPONSE.md",
+    "sha256": "0de9166eaccae25d63458678febcc2ae4b8f9cb3ae0054bf66bba47c60d534ba",
+    "canonicalPath": "ACCESS_latex_template_20260513/REVIEW_RESPONSE.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check-0924/CITATION_AUDIT.md",
+    "sha256": "9b974b2c3201b15a1db4a73f9d76dd8dac98a57b1e8229f73218b3a880e1ea5e",
+    "canonicalPath": "ACCESS_latex_template_20260513/CITATION_AUDIT.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check-0924/README.md",
+    "sha256": "806568a98379085f21c0b75f51ae09739d336fe479486feca4581109d6ce3939",
+    "canonicalPath": "ACCESS_latex_template_20260513/README.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check-0924/REVIEW_RESPONSE.md",
+    "sha256": "0de9166eaccae25d63458678febcc2ae4b8f9cb3ae0054bf66bba47c60d534ba",
+    "canonicalPath": "ACCESS_latex_template_20260513/REVIEW_RESPONSE.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check-0924/SUBMISSION_CHECKLIST.md",
+    "sha256": "3659237a6546a0b298d1403c898c5ba0b9ddb55c4e929e3cfe1e6860412cd6a3",
+    "canonicalPath": "ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check-0924/SUBMISSION_REVISION_20260924.md",
+    "sha256": "d6185365935818d7e87551c92e4487e6f9edc3fb1725ce3d9dc535ec2c15c396",
+    "canonicalPath": "ACCESS_latex_template_20260513/SUBMISSION_REVISION_20260924.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check/CITATION_AUDIT.md",
+    "sha256": "4a18e7477e84001f11c603c894dce7bc0c3da999c4439671f292f32387b92780",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/package-check/CITATION_AUDIT.md",
+    "coverage": "Archive differences",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/package-check/README.md",
+    "sha256": "a86733602f46809d4dbd6a07358dbbd7bf3cfa82ef85152409f7bfe563835fbb",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/package-check/README.md",
+    "coverage": "Archive differences",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/revised-package-check/CITATION_AUDIT.md",
+    "sha256": "78c1facfbf9214ee8ff03e862d9d93c146f2a4cf428dc6a446187bcc91d1d26e",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/editorial-package-check/CITATION_AUDIT.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/revised-package-check/README.md",
+    "sha256": "1775d212b12476123f165c337c8fbe3e69c4fbc413886f1ba2cd7c6fae0b32eb",
+    "canonicalPath": "ACCESS_latex_template_20260513/.build/revised-package-check/README.md",
+    "coverage": "Archive differences",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/.build/revised-package-check/REVIEW_RESPONSE.md",
+    "sha256": "0de9166eaccae25d63458678febcc2ae4b8f9cb3ae0054bf66bba47c60d534ba",
+    "canonicalPath": "ACCESS_latex_template_20260513/REVIEW_RESPONSE.md",
+    "coverage": "Hash-identical copy",
+    "role": "Historical extracted manuscript build/package copy"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/CITATION_AUDIT.md",
+    "sha256": "9b974b2c3201b15a1db4a73f9d76dd8dac98a57b1e8229f73218b3a880e1ea5e",
+    "canonicalPath": "ACCESS_latex_template_20260513/CITATION_AUDIT.md",
+    "coverage": "Direct + sections",
+    "role": "Newer manuscript audit, review response or submission record"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/README.md",
+    "sha256": "806568a98379085f21c0b75f51ae09739d336fe479486feca4581109d6ce3939",
+    "canonicalPath": "ACCESS_latex_template_20260513/README.md",
+    "coverage": "Direct + sections",
+    "role": "Newer manuscript audit, review response or submission record"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/REVIEW_RESPONSE.md",
+    "sha256": "0de9166eaccae25d63458678febcc2ae4b8f9cb3ae0054bf66bba47c60d534ba",
+    "canonicalPath": "ACCESS_latex_template_20260513/REVIEW_RESPONSE.md",
+    "coverage": "Direct + sections",
+    "role": "Newer manuscript audit, review response or submission record"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md",
+    "sha256": "3659237a6546a0b298d1403c898c5ba0b9ddb55c4e929e3cfe1e6860412cd6a3",
+    "canonicalPath": "ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md",
+    "coverage": "Direct + sections",
+    "role": "Newer manuscript audit, review response or submission record"
+  },
+  {
+    "path": "ACCESS_latex_template_20260513/SUBMISSION_REVISION_20260924.md",
+    "sha256": "d6185365935818d7e87551c92e4487e6f9edc3fb1725ce3d9dc535ec2c15c396",
+    "canonicalPath": "ACCESS_latex_template_20260513/SUBMISSION_REVISION_20260924.md",
+    "coverage": "Direct + sections",
+    "role": "Newer manuscript audit, review response or submission record"
+  },
+  {
+    "path": "docs/00_WHAT_THIS_PROJECT_IS.md",
+    "sha256": "6daef615c255bcb77a8941defa02a046e4b0cff99788009ec391ae6a4ade25c0",
+    "canonicalPath": "docs/00_WHAT_THIS_PROJECT_IS.md",
+    "coverage": "Section review",
+    "role": "Project concept, scope changes, shortcut-aware study rationale"
+  },
+  {
+    "path": "docs/01_CONCEPT.md",
+    "sha256": "b1b404e5eeb95466b1347e897752026106929f49e633a1f8fafa29b5650b461c",
+    "canonicalPath": "docs/01_CONCEPT.md",
+    "coverage": "Section review",
+    "role": "Observability, wear/geometry separation and proposed outputs"
+  },
+  {
+    "path": "docs/02_CAPTURE_AND_PREPROCESSING.md",
+    "sha256": "8aeaf4e60a018204ba07e9bf906cd5a9cceefb9fcb0c297c1aa0085361d73c0d",
+    "canonicalPath": "docs/02_CAPTURE_AND_PREPROCESSING.md",
+    "coverage": "Section review",
+    "role": "Capture/preprocessing design; later video use differs"
+  },
+  {
+    "path": "docs/02_RIG_BUILD.md",
+    "sha256": "4d24f10c883866cd6ca2eac00e412215483978db9558e9441f31fa55faa11db5",
+    "canonicalPath": "docs/02_RIG_BUILD.md",
+    "coverage": "Section review",
+    "role": "Explicitly superseded hardware-plan stub"
+  },
+  {
+    "path": "docs/03_DATA.md",
+    "sha256": "3cd94464ef4017470f3091723311b551e882d3ceeb26cec5f58d40ac709c94c9",
+    "canonicalPath": "docs/03_DATA.md",
+    "coverage": "Section review",
+    "role": "Data collection, physical truth, grouping and annotation design"
+  },
+  {
+    "path": "docs/04_MODEL.md",
+    "sha256": "f1d51a976a56721300df4435e9169e7211a6a60a38eda82221d09e0dfd4ae2e8",
+    "canonicalPath": "docs/04_MODEL.md",
+    "coverage": "Section review",
+    "role": "Original zoo, ordinal recipes, model tiers and technique factors"
+  },
+  {
+    "path": "docs/05_TRAINING_KAGGLE_HF.md",
+    "sha256": "ee59a9e2ef05cf63189af32bac12bed1954476de5def8f7fe6b480175ed41f0d",
+    "canonicalPath": "docs/05_TRAINING_KAGGLE_HF.md",
+    "coverage": "Section review",
+    "role": "Infrastructure and long failure history; older epoch-only resume is superseded"
+  },
+  {
+    "path": "docs/06_EVALUATION.md",
+    "sha256": "a0ac875a5db016580e31fd2f5e34ff71eca3ac7704cf6265ca31e2be2e46595d",
+    "canonicalPath": "docs/06_EVALUATION.md",
+    "coverage": "Section review",
+    "role": "Metrics, evidence interventions, aggregation and evaluation caveats"
+  },
+  {
+    "path": "docs/07_ROADMAP.md",
+    "sha256": "78f52d7d3a826ba2baaa63b6f2ae4a65748c9957e7bf53443427923a15ba8b4f",
+    "canonicalPath": "docs/07_ROADMAP.md",
+    "coverage": "Section review",
+    "role": "Original stage map with later amendments; not a fresh execution queue"
+  },
+  {
+    "path": "docs/08_RISKS_AND_MY_OPINION.md",
+    "sha256": "2dfba4e74d814b0bd824aef2fd65196cde7f25a177cceaa2574bd8954a22ff19",
+    "canonicalPath": "docs/08_RISKS_AND_MY_OPINION.md",
+    "coverage": "Section review",
+    "role": "Data/observability/scope risks and historical recommendations"
+  },
+  {
+    "path": "docs/09_RELATED_WORK.md",
+    "sha256": "4559d4a0425fc264c308ac07fb86a9b87ae45ed22dbfedde73f3d865cbd9427d",
+    "canonicalPath": "docs/09_RELATED_WORK.md",
+    "coverage": "Section review",
+    "role": "Historical literature/novelty notes; newer bibliography audit governs paper"
+  },
+  {
+    "path": "docs/10_VISION_TECHNIQUES.md",
+    "sha256": "56e7fbf75501ec015283b1d8fadeb18bfbc5584f12e322725dd8da66a01cd876",
+    "canonicalPath": "docs/10_VISION_TECHNIQUES.md",
+    "coverage": "Section review",
+    "role": "Technique catalogue, not a list of all implemented features"
+  },
+  {
+    "path": "docs/11_APP.md",
+    "sha256": "83cbe52074ceeaa3bbc72aa77e92922de3c7d0eabc0c79a0602b5783ec0b2be8",
+    "canonicalPath": "docs/11_APP.md",
+    "coverage": "Section review",
+    "role": "Historical optional-app proposal; native app now exists"
+  },
+  {
+    "path": "docs/12_DATASET_FINAL_V1.md",
+    "sha256": "6b21c9c134efece4a4188b90587794fd8cc654eb24f4f0263eb5e9e3cc570d29",
+    "canonicalPath": "docs/12_DATASET_FINAL_V1.md",
+    "coverage": "Section review",
+    "role": "Original collection, folds, shortcut probes and immutable-source semantics"
+  },
+  {
+    "path": "docs/13_EXPERIMENT_PLAN.md",
+    "sha256": "6a8dcee4a3dc78335efcb60a2fa26e72dcfa222a6d09edea65051560f8815a9e",
+    "canonicalPath": "docs/13_EXPERIMENT_PLAN.md",
+    "coverage": "Section review",
+    "role": "Original study design, model tiers and execution amendments"
+  },
+  {
+    "path": "docs/14_XAI_PROTOCOL.md",
+    "sha256": "ade075a002448215815babcaa54ac77066d6a5c3fc453e226efd53f542b3a027",
+    "canonicalPath": "docs/14_XAI_PROTOCOL.md",
+    "coverage": "Section review",
+    "role": "Attribution, masks, sanity gate, stability and hypotheses"
+  },
+  {
+    "path": "docs/15_ANNOTATION_GUIDE.md",
+    "sha256": "5a1f3936be9d3981c40ec04eae26965ea22684a382bcc5217a47017c3c09b1bb",
+    "canonicalPath": "docs/15_ANNOTATION_GUIDE.md",
+    "coverage": "Section review",
+    "role": "Historical Windows LabelMe workflow and geometry replay checks"
+  },
+  {
+    "path": "docs/16_HF_REPO_STRUCTURE.md",
+    "sha256": "a3932f8ed0a9bcc45c96e301421bb5a89dd45140a9f46369c081b27b670622e9",
+    "canonicalPath": "docs/16_HF_REPO_STRUCTURE.md",
+    "coverage": "Section review",
+    "role": "Original HF namespace, registry, upload and retention design"
+  },
+  {
+    "path": "docs/17_DATA_LOGGING_SCHEMA.md",
+    "sha256": "84c093ba3ce9b78e567dcd6869d614f35039d72a9c105bb6e2018528df8fde06",
+    "canonicalPath": "docs/17_DATA_LOGGING_SCHEMA.md",
+    "coverage": "Section review",
+    "role": "Metrics, telemetry, checkpoint and provenance schemas"
+  },
+  {
+    "path": "docs/18_STAGE_A_RESULTS.md",
+    "sha256": "68413e578a3f4593b4ac21c94ae05680909cdbfc48fd9211ee37682860b01c4f",
+    "canonicalPath": "docs/18_STAGE_A_RESULTS.md",
+    "coverage": "Section review",
+    "role": "153 valid runs, quarantine and historical identity-leakage suspicion"
+  },
+  {
+    "path": "docs/19_NB08_NB10_COMPLETION_AUDIT.md",
+    "sha256": "cb31ff9300a0c5b399537e949935c032a4da087c45976e9ec7ef9c49147c9764",
+    "canonicalPath": "docs/19_NB08_NB10_COMPLETION_AUDIT.md",
+    "coverage": "Section review",
+    "role": "Stress/calibration/analysis completion with endpoint caveats"
+  },
+  {
+    "path": "docs/20_FULL_PLAN_CLOSURE.md",
+    "sha256": "210a088316c03b5cd748f35fac5e2d5b3aaaa815f7ebfa5787be32c25d77e092",
+    "canonicalPath": "docs/20_FULL_PLAN_CLOSURE.md",
+    "coverage": "Section review",
+    "role": "Implemented versus missing original-plan scope"
+  },
+  {
+    "path": "docs/21_RECOVERY_COMPLETION_AUDIT.md",
+    "sha256": "70145c69e292e5680f742e548810d66c5a78e96707308ec650ebcaa1a290fc67",
+    "canonicalPath": "docs/21_RECOVERY_COMPLETION_AUDIT.md",
+    "coverage": "Section review",
+    "role": "Verified baselines, matched random initialization and reporting recovery"
+  },
+  {
+    "path": "docs/22_S3_MASK_COMPARISON.md",
+    "sha256": "979002caafc0f857226d13217244f7628aa4d7c81fed8d44861e6cf4849bcbb8",
+    "canonicalPath": "docs/22_S3_MASK_COMPARISON.md",
+    "coverage": "Section review",
+    "role": "Optional/deferred SAM2 and blind-consistency comparison"
+  },
+  {
+    "path": "docs/23_S4B_CONFIRMATION.md",
+    "sha256": "270dee153643d36723b50f3e08fa19251fc2c930914de379a5611ced02382213",
+    "canonicalPath": "docs/23_S4B_CONFIRMATION.md",
+    "coverage": "Section review",
+    "role": "18 confirmation runs completed; runtime repairs are history"
+  },
+  {
+    "path": "docs/24_S5_MANUAL_DENSE_TASKS.md",
+    "sha256": "059464dadd6a2b068cb7dc40adba69860561939a07d92126e9ece0f6777e8703",
+    "canonicalPath": "docs/24_S5_MANUAL_DENSE_TASKS.md",
+    "coverage": "Section review",
+    "role": "81 manual-supervised dense runs completed and audited"
+  },
+  {
+    "path": "docs/25_S9_FUSION_AND_REMAINING_GAPS.md",
+    "sha256": "261c3dd373723642885d652d80a0dbd4647da9d8e0aa2bda34a860d5fb979e2e",
+    "canonicalPath": "docs/25_S9_FUSION_AND_REMAINING_GAPS.md",
+    "coverage": "Section review",
+    "role": "Completed exploratory fusion and historically deferred components"
+  },
+  {
+    "path": "docs/26_S10_REPORTING_AND_NEXT_STEPS.md",
+    "sha256": "2b13527f06f3683b3f1551f89dfd3f356ed66579bc57aa5caf003e413c8d3f03",
+    "canonicalPath": "docs/26_S10_REPORTING_AND_NEXT_STEPS.md",
+    "coverage": "Section review",
+    "role": "S10 evidence/report execution and September 15 refresh"
+  },
+  {
+    "path": "docs/27_S9_SMALL_ANNOTATION_PILOT.md",
+    "sha256": "ff80b4ea821d79a7b12065e6d53d87847443ce358b782c31a0fce1f6d7c3855e",
+    "canonicalPath": "docs/27_S9_SMALL_ANNOTATION_PILOT.md",
+    "coverage": "Section review",
+    "role": "12-image guided pilot preparation/intake contract"
+  },
+  {
+    "path": "docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md",
+    "sha256": "e8c290017ea0e21c50b88ff6e99ff9fcc0564ca008d901ac36432fe6e643d96f",
+    "canonicalPath": "docs/28_S9_PILOT_REVIEW_AND_NEXT_PLAN.md",
+    "coverage": "Section review",
+    "role": "Pilot review, P06 issues and segmentation-first decision"
+  },
+  {
+    "path": "docs/29_S9_GEOMETRY_BASELINE.md",
+    "sha256": "1d9246505af06ec1a4038105cdde161aa043c8299ba9a849e305c7c347eaae4a",
+    "canonicalPath": "docs/29_S9_GEOMETRY_BASELINE.md",
+    "coverage": "Section review",
+    "role": "Saved-mask point-extraction protocol; run instruction is historical"
+  },
+  {
+    "path": "docs/30_S9_HRNET_AND_COMPLETION_PLAN.md",
+    "sha256": "182601517e924211501623bd2aa1c11f75eab20160feeca69e86c29c45624944",
+    "canonicalPath": "docs/30_S9_HRNET_AND_COMPLETION_PLAN.md",
+    "coverage": "Section review",
+    "role": "120-image expansion and earlier HRNet plan"
+  },
+  {
+    "path": "docs/31_S9_120_ANNOTATION_COMPLETION.md",
+    "sha256": "e721f0c71d28b6d2b0c41c5ce2ae4141873fb350d2c39369f41d49b52d5d7c4d",
+    "canonicalPath": "docs/31_S9_120_ANNOTATION_COMPLETION.md",
+    "coverage": "Section review",
+    "role": "120 records / 720 visible-point intake completed"
+  },
+  {
+    "path": "docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md",
+    "sha256": "ce7b259ea7c29cc95f0249fc0148c1078d86b94bf4f66201b0c5e14f7bdc047e",
+    "canonicalPath": "docs/32_HRNET_NOTEBOOK_RUN_GUIDE.md",
+    "coverage": "Section review",
+    "role": "HRNet frozen split, coordinate-only model and per-update persistence"
+  },
+  {
+    "path": "docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md",
+    "sha256": "82fb110b3ea3589cd6ecdc03815f7eb6b8422ed0544e9f47810f983f982c427c",
+    "canonicalPath": "docs/33_HRNET_SMOKE_VERIFIED_AMP_REPAIR.md",
+    "coverage": "Section review",
+    "role": "Verified smoke and nonfinite-gradient recovery history"
+  },
+  {
+    "path": "docs/34_HRNET_COMPLETION_AND_RESULTS.md",
+    "sha256": "a41c0a244fad32cc965b8c3594ebb40552b2857d29c428d0cab5637669a3e227",
+    "canonicalPath": "docs/34_HRNET_COMPLETION_AND_RESULTS.md",
+    "coverage": "Section review",
+    "role": "Three-seed original HRNet completion and limitations"
+  },
+  {
+    "path": "docs/35_MATCHED_SEGFORMER_COMPARISON.md",
+    "sha256": "3b4f4bf5459250bf28bc9efa2a0685678a1dc57b960bf9124dd0d911bbf9252a",
+    "canonicalPath": "docs/35_MATCHED_SEGFORMER_COMPARISON.md",
+    "coverage": "Section review",
+    "role": "Matched SegFormer method and earlier deterministic-resume repair"
+  },
+  {
+    "path": "docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md",
+    "sha256": "cbe054118f1c00f990079559c427b527f56d17677e1d569be496e9d3fdd9afe1",
+    "canonicalPath": "docs/36_MATCHED_GEOMETRY_RESULTS_AND_INTEGRATION.md",
+    "coverage": "Section review",
+    "role": "Completed comparison; proposed integration later implemented"
+  },
+  {
+    "path": "docs/37_ORIGINAL_STUDY_VISUAL_COMPARISON.md",
+    "sha256": "793755e3f7e14162b690ce0560ececf202a506e2b079cb61c851eb7f85649d2f",
+    "canonicalPath": "docs/37_ORIGINAL_STUDY_VISUAL_COMPARISON.md",
+    "coverage": "Direct + sections",
+    "role": "NB33 original-paper replay; later paper audit supersedes pending full-run status"
+  },
+  {
+    "path": "docs/CURRENT_STATUS.md",
+    "sha256": "8390d3346c5b55bc6c3da57ccb2a55fbc849a17c90c0be6cb789bb7ad2a949cb",
+    "canonicalPath": "docs/CURRENT_STATUS.md",
+    "coverage": "Direct + sections",
+    "role": "September 15 implemented-software versus scientific-validation status"
+  },
+  {
+    "path": "docs/DOCUMENTATION_INDEX.md",
+    "sha256": "9d592674c8d55ce32a0ea29afde32d20ea74e4233779aeb8167c052dcb797a82",
+    "canonicalPath": "docs/DOCUMENTATION_INDEX.md",
+    "coverage": "Direct + sections",
+    "role": "Original-study reading map; contains superseded run headings"
+  },
+  {
+    "path": "docs/GIT_CONTENT_POLICY.md",
+    "sha256": "303394fa7cfd70eef0a6837efb492104ad45784bc20f9ace639e46da1b1186cf",
+    "canonicalPath": "docs/GIT_CONTENT_POLICY.md",
+    "coverage": "Section review",
+    "role": "Tracked source versus ignored generated/cache/data policy"
+  },
+  {
+    "path": "docs/GITHUB_SETUP.md",
+    "sha256": "05acc4e9aa8e43e46cedad1732ecbe13982e06d6f32b4bc83c14e608f8976168",
+    "canonicalPath": "docs/GITHUB_SETUP.md",
+    "coverage": "Section review",
+    "role": "Historical repository setup and publishing guidance"
+  },
+  {
+    "path": "docs/LOGBOOK.md",
+    "sha256": "d1e05c156bf20c0fe3f60df666c8f785d2a232d051147f37e5520b2f171c93f6",
+    "canonicalPath": "docs/LOGBOOK.md",
+    "coverage": "Section review",
+    "role": "Dated original-study decisions, repairs and completion history"
+  },
+  {
+    "path": "docs/report/CLAIMS_AND_LIMITATIONS.md",
+    "sha256": "c43719a230def7f1307419b8541ae837191a02480094c69951d913358bf288f8",
+    "canonicalPath": "docs/report/CLAIMS_AND_LIMITATIONS.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/evidence/RESULTS_DRAFT.md",
+    "sha256": "db37c89c3c668de0307207ee49ffcd62c714f07f9beb55eececbc48c99ccfaf5",
+    "canonicalPath": "docs/report/evidence/RESULTS_DRAFT.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/manuscript.source.md",
+    "sha256": "5d958cb65944f1774e961e5effb7d2f46cdd00f2aa27fa6e6b26fda99ca7b520",
+    "canonicalPath": "docs/report/manuscript.source.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/REFERENCES.md",
+    "sha256": "e069e2ddd508e3fc62118efac526c20ab5c54f52ea4c80bd5c9540375175e417",
+    "canonicalPath": "docs/report/REFERENCES.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/REPORT.md",
+    "sha256": "087ba3044a38a397074427faeaed134fd7fc95b4c58e0eb442d71005483b6c9e",
+    "canonicalPath": "docs/report/REPORT.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/REPRODUCIBILITY.md",
+    "sha256": "d44867bfe38c8f73ad973889bf558b56254f55b5ece392f6d5bae1c406d20953",
+    "canonicalPath": "docs/report/REPRODUCIBILITY.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/report/SUBMISSION_CHECKLIST.md",
+    "sha256": "0dacd6d3392e23cbe5d7d0bd6dc9d65bb89f0a2d5f8da27f647874014720f256",
+    "canonicalPath": "docs/report/SUBMISSION_CHECKLIST.md",
+    "coverage": "Section review",
+    "role": "September 15 report source/output, references, claims, reproducibility or frozen evidence"
+  },
+  {
+    "path": "docs/REPOSITORY_GUIDE.md",
+    "sha256": "922dbbaa37cdec83188664386675d7dace40b041e896deeb21199bc7da6fddb6",
+    "canonicalPath": "docs/REPOSITORY_GUIDE.md",
+    "coverage": "Direct + sections",
+    "role": "Repository ownership, source/evidence maintenance and preservation"
+  },
+  {
+    "path": "ENVIRONMENT.md",
+    "sha256": "9228c5b908ca3a46483902f0a7d7e3df326f3196efb63279c60c8591a3cb0946",
+    "canonicalPath": "ENVIRONMENT.md",
+    "coverage": "Direct + sections",
+    "role": "Local cv_conda requirement, setup, secrets and historical layout"
+  },
+  {
+    "path": "notebooks/README.md",
+    "sha256": "522f04ea9700cf6ff2e6d44d36f3c98677b0e214b753917490e30adb92b633dd",
+    "canonicalPath": "notebooks/README.md",
+    "coverage": "Section review",
+    "role": "Original notebook index, scope, ordering and accumulated repair instructions"
+  },
+  {
+    "path": "phase2/data/phase2_dataset_v1/README.md",
+    "sha256": "470572a6f51abab59e4f6d88465e0e9906ab249bb20ee64cc5e85595992743dd",
+    "canonicalPath": "phase2/phase2DatasetReadme.md",
+    "coverage": "Hash-identical copy",
+    "role": "Dataset-packaged copy of the source release readme"
+  },
+  {
+    "path": "phase2/notebooks/phase2_YOLO_3workers/phase2_YOLO_3workers_README.md",
+    "sha256": "a879e01c2c84f9c86bdb80b013633568ca86bee2dac1eb99c09b224d4be3e249",
+    "canonicalPath": "phase2/notebooks/phase2_YOLO_3workers/phase2_YOLO_3workers_README.md",
+    "coverage": "Direct + sections",
+    "role": "Historical stopped-worker lease migration; not a new training request"
+  },
+  {
+    "path": "phase2/pahse2Progress.md",
+    "sha256": "dfe6579986250cdd467236082aceb43a294b7c668b9f525f7b618663958a204c",
+    "canonicalPath": "phase2/pahse2Progress.md",
+    "coverage": "Direct + sections",
+    "role": "Maintained Phase 2 progress/history; filename spelling is intentional legacy"
+  },
+  {
+    "path": "phase2/phase2ActiveRunAudit.md",
+    "sha256": "c4861b559a2428cf7461619d16afbf654b3ab96852d860ba7f363fbcfbe4cb56",
+    "canonicalPath": "phase2/phase2ActiveRunAudit.md",
+    "coverage": "Section review",
+    "role": "Historical partial snapshot, seed scheduling and classifier weakness"
+  },
+  {
+    "path": "phase2/phase2CompletionAudit.md",
+    "sha256": "e529bc646997fa399b8f09ca271f092b52d503321124123b5f1087a06c0c92e3",
+    "canonicalPath": "phase2/phase2CompletionAudit.md",
+    "coverage": "Direct + sections",
+    "role": "Earlier 14-run installed-model audit with superseding final banner"
+  },
+  {
+    "path": "phase2/phase2DatasetAudit.md",
+    "sha256": "49bba69073d2365eda3db560b3c868a1793eab4b11bf10dd07f7d7380f1015af",
+    "canonicalPath": "phase2/phase2DatasetAudit.md",
+    "coverage": "Direct + sections",
+    "role": "570-image source release, conflicts, checksums and untouched raw labels"
+  },
+  {
+    "path": "phase2/phase2DatasetReadme.md",
+    "sha256": "470572a6f51abab59e4f6d88465e0e9906ab249bb20ee64cc5e85595992743dd",
+    "canonicalPath": "phase2/phase2DatasetReadme.md",
+    "coverage": "Direct + sections",
+    "role": "Immutable source-v1 content and deliberately unassigned source splits"
+  },
+  {
+    "path": "phase2/phase2KaggleUpload.md",
+    "sha256": "31d5a799fd0396bc88d4855111283479a86fe65069754fb95b6819ea5188d41e",
+    "canonicalPath": "phase2/phase2KaggleUpload.md",
+    "coverage": "Direct + sections",
+    "role": "Source upload/preflight history; completed, not a repeat-upload request"
+  },
+  {
+    "path": "phase2/phase2LabelingGuide.md",
+    "sha256": "72e1d9ee92c897d07dcfabd714526f45046d1c429767e3cbf7220b5719c5b0e8",
+    "canonicalPath": "phase2/phase2LabelingGuide.md",
+    "coverage": "Section review",
+    "role": "New-frame-only labelling; labeling is now complete"
+  },
+  {
+    "path": "phase2/phase2Plan.md",
+    "sha256": "ee00db856ad360326997a470d58ab431f315d4c450be20214bcfe5a6ebc8ed7b",
+    "canonicalPath": "phase2/phase2Plan.md",
+    "coverage": "Section review",
+    "role": "Combined-data experiment design, identity constraints and amendments"
+  },
+  {
+    "path": "phase2/phase2Progress.md",
+    "sha256": "99a640d9138202cd42e33e558ecc5d3d185eff63b5506f6b333cd3d41780e2c8",
+    "canonicalPath": "phase2/phase2Progress.md",
+    "coverage": "Direct + sections",
+    "role": "Short pointer to maintained Phase 2 progress"
+  },
+  {
+    "path": "phase2/phase2RunNotebooks.md",
+    "sha256": "6fe0f58e442acc4d3fefb68812cf09cc8f89874a925be917b72d0bb0ca46b88d",
+    "canonicalPath": "phase2/phase2RunNotebooks.md",
+    "coverage": "Section review",
+    "role": "Runnable revision, safe split, workers and notebook order; training completed"
+  },
+  {
+    "path": "phase2/phase2Seed3Completion.md",
+    "sha256": "f1451d96fd41d083858dffd43daaf8912a703097b399e6d0a7a87a46b4084c8a",
+    "canonicalPath": "phase2/phase2Seed3Completion.md",
+    "coverage": "Direct + sections",
+    "role": "Final 15-run and NB06 completion authority"
+  },
+  {
+    "path": "phase2/phase2StartHere.md",
+    "sha256": "f4c39d3991bb91d9722a8ba9a76bf7129d26878863affd9e61ff8289c0e6695b",
+    "canonicalPath": "phase2/phase2StartHere.md",
+    "coverage": "Direct + sections",
+    "role": "Current Phase 2 entry point, completed runs and visual notebook"
+  },
+  {
+    "path": "phase2/phase2TrainingContract.md",
+    "sha256": "904e44f23e638875527d8133af407c2b4eabd793e0bdfb619c302bdb87913a4f",
+    "canonicalPath": "phase2/phase2TrainingContract.md",
+    "coverage": "Direct + sections",
+    "role": "Kaggle/HF/optimizer-update resume and verification requirements"
+  },
+  {
+    "path": "phase2/phase2Understanding.md",
+    "sha256": "30019c9dc645b031c92b202620b8441832a4eb1152641d19b1d6cea7c164f9e4",
+    "canonicalPath": "phase2/phase2Understanding.md",
+    "coverage": "Direct + sections",
+    "role": "Phase 2 scope, safe runnable overlay and superseded planning gates"
+  },
+  {
+    "path": "phase2/phase2VideoControls.md",
+    "sha256": "ddb3d17c1dd796224532ace02fa610c61e43c887f93d45720cbf1fb6fa8c28e7",
+    "canonicalPath": "phase2/phase2VideoControls.md",
+    "coverage": "Direct + sections",
+    "role": "Current FPS/footer/image-relative-angle controls and recorded checks"
+  },
+  {
+    "path": "phase2/phase2VisualComparison.md",
+    "sha256": "7d7e310baf5d6c69175680efb5f434e36d0e04a2a9b5b4d95491a3a3f154cb62",
+    "canonicalPath": "phase2/phase2VisualComparison.md",
+    "coverage": "Direct + sections",
+    "role": "Phase 2 NB07 inference gallery, persistence and scope"
+  },
+  {
+    "path": "phase2/workstation/backup-20260921/prototype/README.md",
+    "sha256": "89de396e81da4dac6019396d7e1f725ca18872e15e66b91fdd993afde057f7ef",
+    "canonicalPath": "phase2/workstation/backup-20260921/prototype/README.md",
+    "coverage": "Section review",
+    "role": "Pre-Phase 2 prototype README snapshot"
+  },
+  {
+    "path": "phase2/workstation/backup-20260921/README.md",
+    "sha256": "ee282293a268165cfd39531a939bd835d0f803af65893abb06893623193af457",
+    "canonicalPath": "phase2/workstation/backup-20260921/README.md",
+    "coverage": "Section review",
+    "role": "Pre-integration root README snapshot; not current operating authority"
+  },
+  {
+    "path": "phase2/workstation/README.md",
+    "sha256": "39a28e1643f1599e9fee133f7d62816e4ed9ff5e301fc06a90d5e9600f268248",
+    "canonicalPath": "phase2/workstation/README.md",
+    "coverage": "Direct + sections",
+    "role": "Installed five exports, contracts, checks, limits and rollback"
+  },
+  {
+    "path": "PROGRESS.md",
+    "sha256": "ba128cc001879d346fe3a7bb1a9a5cd83689d238e40be7bed4b54c6b0de41529",
+    "canonicalPath": "PROGRESS.md",
+    "coverage": "Section review",
+    "role": "Original-study status and extensive historical troubleshooting"
+  },
+  {
+    "path": "prototype/.vendor/numpy/random/LICENSE.md",
+    "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a",
+    "canonicalPath": "prototype/.vendor/numpy/random/LICENSE.md",
+    "coverage": "Direct + sections",
+    "role": "Bundled third-party NCSA/BSD licence; no project execution instructions"
+  },
+  {
+    "path": "prototype/ALIGNMENT_PLAN.md",
+    "sha256": "2c588b9915878eb8b210e59e96595a5aba885a52a213a406247540a26bb71abd",
+    "canonicalPath": "prototype/ALIGNMENT_PLAN.md",
+    "coverage": "Section review",
+    "role": "Implemented shape/edge hypotheses and remaining physical validation"
+  },
+  {
+    "path": "prototype/CALIBRATED_ALIGNMENT.md",
+    "sha256": "2fbc6384df2658443cc76a68bb54e2d80bf39d2370e20c8733993e794418a826",
+    "canonicalPath": "prototype/CALIBRATED_ALIGNMENT.md",
+    "coverage": "Section review",
+    "role": "Dual-target calibration/alignment workflow and synthetic checks"
+  },
+  {
+    "path": "prototype/LEARNED_GEOMETRY_LOG.md",
+    "sha256": "46f6ec05914b181dc259ebab45334f73739a20f6c1ed41fd6712f3475d102897",
+    "canonicalPath": "prototype/LEARNED_GEOMETRY_LOG.md",
+    "coverage": "Direct + sections",
+    "role": "Original learned-geometry integration, exact adapters and video failure evidence"
+  },
+  {
+    "path": "prototype/README.md",
+    "sha256": "9af5fc01b6f033a7f2154775d3d3701a2dffc1b1a410ff22c937d85b775b8333",
+    "canonicalPath": "prototype/README.md",
+    "coverage": "Direct + sections",
+    "role": "Native workstation operation with current Phase 2 banner and older model details"
+  },
+  {
+    "path": "prototype/VALIDATION.md",
+    "sha256": "c915554c1f16051f33d4459f975734ce5150d8c4296d94ae4643fc476e518efb",
+    "canonicalPath": "prototype/VALIDATION.md",
+    "coverage": "Direct + sections",
+    "role": "Historical local software/runtime checks, not external model accuracy"
+  },
+  {
+    "path": "prototype/VIDEO_NOTES.md",
+    "sha256": "253e8524bf5c4ddd530bbce6e7ecc579f171c11f994bff9e42a8cb1dd54ccce0",
+    "canonicalPath": "prototype/VIDEO_NOTES.md",
+    "coverage": "Direct + sections",
+    "role": "Portrait decoding, stale-frame prevention and earlier qualitative video tests"
+  },
+  {
+    "path": "README.md",
+    "sha256": "05cee84d49e0a34268a5645b1381318060a4672869e20922df3aeab7c0d5122f",
+    "canonicalPath": "README.md",
+    "coverage": "Direct + sections",
+    "role": "Project entry point; newest Phase 2 banner plus historical study narrative"
+  },
+  {
+    "path": "undertand3.md",
+    "sha256": "020808284f6b4bda584011afaa418eb0be62a565422aed4203424414e7544519",
+    "canonicalPath": "undertand3.md",
+    "coverage": "Direct + sections",
+    "role": "September 19 context; later Phase 2/paper updates supersede portions"
+  }
+]

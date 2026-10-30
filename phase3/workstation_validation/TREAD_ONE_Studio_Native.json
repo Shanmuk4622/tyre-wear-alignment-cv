@@ -1,0 +1,23 @@
+{
+  "status": "native_window_ready",
+  "pid": 18092,
+  "worker_pid": 17688,
+  "Qt_platform": "windows",
+  "title": "TREAD-ONE Studio \u00b7 Custom model workstation",
+  "checkpoint": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65",
+  "device": "cuda:0",
+  "model_ms": 659.8120999988168,
+  "source": {
+    "path": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase2\\data\\phase2_dataset_v1\\images\\original\\new_tire__session_001__b000__8eb51dc4b6.jpg",
+    "media_kind": "photo",
+    "source_media_sha256": "2a357f456b76ecab5c658f007cae4d81cc628be606396b25061a385b5cd6db0a",
+    "exif_orientation": 1,
+    "exif_transform_applied": false,
+    "reference_proxy_class": "low",
+    "reference_scope": "Existing train study example; not a new blind test",
+    "source_image_id": "new_tire__session_001__b000__8eb51dc4b6"
+  },
+  "session": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation\\data\\sessions\\20261029_184634_76915e4a",
+  "screenshot": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\workstation_validation\\TREAD_ONE_Studio_Native.png",
+  "new_training": false
+}

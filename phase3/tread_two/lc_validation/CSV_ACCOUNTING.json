@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "observations": 96,
+  "logits_reconstructed": 288,
+  "maximum_logit_residual": 1.1532688401483249e-08,
+  "paired_draw_losses_reconstructed": 32,
+  "update_losses_reconstructed": 4,
+  "maximum_pair_loss_residual": 1.194904095669358e-07,
+  "blocked_reference_observations_checked": 6,
+  "all_SHA_permissions_and_6_over_n_scales_checked": true,
+  "scope": "Independent CSV-only engineering accounting; no measured r2 accuracy claim"
+}

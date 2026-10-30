@@ -1,0 +1,14 @@
+{
+  "version": "prospective-tyre-gate-v1",
+  "frozen": false,
+  "required_classes": ["low", "mid", "high"],
+  "roles": ["train", "validation", "test"],
+  "minimum_distinct_tyres_per_class_role": null,
+  "legacy_training_scope": "existing_train_only",
+  "reserved_roles_require_new_independent_tyres": true,
+  "reserved_roles_require_reviewed_masks": true,
+  "reserved_roles_require_human_geometry_per_tyre": true,
+  "near_similarity_hamming_review_radius": 6,
+  "near_neighbors_per_image": 3,
+  "note": "Draft: actual cohort and per-class/per-role subject minima must be declared before prospective training. A similarity candidate is not an identity match. No sample-size adequacy claim is made."
+}

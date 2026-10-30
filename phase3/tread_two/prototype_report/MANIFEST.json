@@ -1,0 +1,160 @@
+{
+  "files": {
+    "atlas_rows.csv": {
+      "sha256": "1554d04bfa3c036926802eb9aedad2a77c3a2544aea6812622acdb692f382d7b",
+      "bytes": 125091
+    },
+    "bank_00.png": {
+      "sha256": "af11ac898b2371996d708a41f128411ea476360ef28ddb49520ea665cba4b889",
+      "bytes": 7207
+    },
+    "bank_01.png": {
+      "sha256": "55302ecd5dd075bfca186f7393d8396bb8a29c6697e0fddcccbaf777bb47918e",
+      "bytes": 6773
+    },
+    "bank_02.png": {
+      "sha256": "9b24ade1c3df9ad3e7f294d14274ff138606315af0991dae7fd961964e0e99eb",
+      "bytes": 6828
+    },
+    "bank_03.png": {
+      "sha256": "399bc9cd74aac0c6ee1d47cedae691b125c6eb9e003bcbc9ddbbfc0124b89757",
+      "bytes": 6803
+    },
+    "bank_04.png": {
+      "sha256": "093a8c487174ae7d88897a0276607b9d1db7a3d1798dcebace974fd90bb7715f",
+      "bytes": 7718
+    },
+    "bank_05.png": {
+      "sha256": "b3a02009dc69faaa4965227926119495fc50f942bc1cafb201b1da7fb07502c4",
+      "bytes": 6783
+    },
+    "bank_06.png": {
+      "sha256": "f1e33ab853f7af7f31dd1e22f8ab58938d56ca82734521dfb5d1763d70fddba5",
+      "bytes": 7239
+    },
+    "bank_07.png": {
+      "sha256": "eb85096418dfc476cd9d15c1fe1ee83ca739f74ee5b3582cebfb3e52bf6f14ae",
+      "bytes": 6128
+    },
+    "bank_08.png": {
+      "sha256": "b356d19c4076cd0662dc28934cd1624954cf03b6177412b5417f773604c77c02",
+      "bytes": 6538
+    },
+    "bank_09.png": {
+      "sha256": "a1821141b6952faf175283a4641945d678ab07f81022b20d0143e900ee370ca8",
+      "bytes": 6847
+    },
+    "bank_10.png": {
+      "sha256": "e3b1c7363c17581c4289033e87d0f80682f314067637e0ed04a1b4931705fb15",
+      "bytes": 6463
+    },
+    "bank_11.png": {
+      "sha256": "fa2687b4404d26e64290340025e066a4a5219ee6964ab0b74d355946950cb2cd",
+      "bytes": 6932
+    },
+    "bank_12.png": {
+      "sha256": "b7306add31fd75ff3252ebe69cc77c5f0ce9bf6b43bbbd62afcc64bb3477f41d",
+      "bytes": 8036
+    },
+    "bank_13.png": {
+      "sha256": "ace8062480408b7b167b03f29ae44b7a6d121ef2f905bdb30787d1804f6806b6",
+      "bytes": 7058
+    },
+    "bank_14.png": {
+      "sha256": "0086ec9c621c509b28e5912636b83304a91263ca2a1482f47fe5277ca5461f41",
+      "bytes": 7132
+    },
+    "bank_15.png": {
+      "sha256": "520bc8af03e3144aaff4b8cb2ce0cdf398bbf861ffe8ec19aa3f93bb1ec98cf8",
+      "bytes": 5403
+    },
+    "bank_16.png": {
+      "sha256": "7d4fa46fc6a14d040627c6b506254749d60e7fd8694bfdc6aadd3aa168b7c472",
+      "bytes": 6648
+    },
+    "bank_17.png": {
+      "sha256": "8d842655787b5e3bd4161fa33ee20f4dc0e2941d186f288d4648eec9c6c2abb1",
+      "bytes": 6592
+    },
+    "bank_images.csv": {
+      "sha256": "862e83c26d7c02be718796fc61504823141accbc3450b113127259f1b99440be",
+      "bytes": 1283
+    },
+    "bank_labels.npy": {
+      "sha256": "c966cf056e89dc946e04f149dbc2932c74c15d5362e2a98c64903e32b3d3379a",
+      "bytes": 272
+    },
+    "bank_pixels.csv": {
+      "sha256": "153a2eac3a88f214c8a940e9f460165d67ac776b9704ddf96d00d88cc7450273",
+      "bytes": 6456739
+    },
+    "bank_rgb.npy": {
+      "sha256": "374445591bec46bcc7da45223ad73d18da25034cafdf0c5e0b61fb79ac78918c",
+      "bytes": 884864
+    },
+    "CSV_SCHEMA.json": {
+      "sha256": "3cacb0a30997e66b84103336c732b97a8df432b0c737d244431f2bc173a6c61a",
+      "bytes": 2459
+    },
+    "head_gradient_check.csv": {
+      "sha256": "b141c4da51bb05b6bdd262177596cdf50ff7d4749b82bf1fb8ff3a33e9872605",
+      "bytes": 2107
+    },
+    "PROOF.json": {
+      "sha256": "7e9f81ebc9abff0b3e09a5a5c01718f9cd537df450db0e30b25834b2ea76ebbe",
+      "bytes": 2592
+    },
+    "prototype_bank.csv": {
+      "sha256": "a455f30034d5c850bfb512e7b95488eaa99472d1ea2f0df2dfec9b55e74346fc",
+      "bytes": 5152
+    },
+    "PROTOTYPE_STATUS.json": {
+      "sha256": "3c1e40b2e3794cda6cb6bfcd27830ae3cdc1298918b80a4dbebe1239767d58cd",
+      "bytes": 168
+    },
+    "query_0_atlas.png": {
+      "sha256": "742bbb9b6c066748f38584e5ae58ca4fb48e1ceacf604758fd28b783baaded35",
+      "bytes": 210590
+    },
+    "query_0_input.png": {
+      "sha256": "04bc583fe941b182496a132b971dd5a1ffbdbe6f3638b5b9e54814e9d784b40d",
+      "bytes": 297690
+    },
+    "query_1_atlas.png": {
+      "sha256": "2d37cdbed7a8f9637fe3f325cd74eed649e506ef50ed252b38eb014a7be961e5",
+      "bytes": 210946
+    },
+    "query_1_input.png": {
+      "sha256": "fcc4538749477151e8d7df26bcc14b8e79d611894fd271eca5a40dcdf2f8ae89",
+      "bytes": 297828
+    },
+    "query_2_atlas.png": {
+      "sha256": "6f4836e17b9145bbb6c4fbf2fe158d1780bb259c2b0a1c2113e7cec47b771cfd",
+      "bytes": 245952
+    },
+    "query_2_input.png": {
+      "sha256": "14d14b575dfa1598621f2e8f07865b56f1d077e1c7877f19c10e1fd2b3a12f59",
+      "bytes": 363387
+    },
+    "query_manifest.csv": {
+      "sha256": "9de93c971fe4a199abe137d8762986f0e2af7e24767333c877959ecb363d132b",
+      "bytes": 602
+    },
+    "TREAD_TWO_Atlas_Concept.png": {
+      "sha256": "0757a28b0ab1f0e6abe86257069d62a74457f68ffc227ac3e66e3598c2d1d7c6",
+      "bytes": 534275
+    },
+    "untrained_affinities.csv": {
+      "sha256": "4e6cbcf2754c5d554a6d1b68e24569cfec4515f2acba87202929762d9e704b2c",
+      "bytes": 203492
+    },
+    "untrained_patch_evidence.csv": {
+      "sha256": "83faecd51963c5faf49464718dc566f58fea95d934ec4043fe6dba82c0cfa813",
+      "bytes": 34533
+    },
+    "WORKSTATION_SNAPSHOT.json": {
+      "sha256": "93e2a1d75c21ec58ec4270a0a68adc3a05a8da4546822d5f92e80a7d4a026258",
+      "bytes": 1787
+    }
+  }
+}

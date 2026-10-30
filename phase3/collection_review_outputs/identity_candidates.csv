@@ -1,0 +1,10 @@
+candidate_allowed_by_confirmed_distinctness,identity_evidence,min_dhash_hamming_to_original_photos,possible_original_tyre_id,selected_by_confirmed_intake,video_id
+True,candidate set from source provenance; perceptual similarity is review triage only,18,mileage_040000__session_001,False,video1
+True,candidate set from source provenance; perceptual similarity is review triage only,15,mileage_070000__session_001,False,video1
+True,candidate set from source provenance; perceptual similarity is review triage only,15,mileage_090000__session_001,False,video1
+True,candidate set from source provenance; perceptual similarity is review triage only,29,mileage_040000__session_001,False,video2
+True,candidate set from source provenance; perceptual similarity is review triage only,29,mileage_070000__session_001,False,video2
+True,candidate set from source provenance; perceptual similarity is review triage only,29,mileage_090000__session_001,False,video2
+True,candidate set from source provenance; perceptual similarity is review triage only,23,mileage_040000__session_001,False,video3
+True,candidate set from source provenance; perceptual similarity is review triage only,30,mileage_070000__session_001,False,video3
+True,candidate set from source provenance; perceptual similarity is review triage only,30,mileage_090000__session_001,False,video3

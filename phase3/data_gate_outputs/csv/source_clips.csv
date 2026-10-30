@@ -1,0 +1,4 @@
+confirmed_original_tyre_id,frames,known_distinct_from_other_clips,known_existing_tyre,mapping_status,new_independent_tyre,provisional_tyre_id,proxy_class,video_id
+,27,True,True,unresolved,False,phase2_existing_mid_A,mid,video1
+,93,True,True,unresolved,False,phase2_existing_mid_B,mid,video2
+,32,True,True,unresolved,False,phase2_existing_mid_C,mid,video3

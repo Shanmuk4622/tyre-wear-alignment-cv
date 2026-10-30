@@ -1,0 +1,131 @@
+{
+  "status": "packaged_not_executed_on_Kaggle",
+  "notebook": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\notebooks\\phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_Pilot.ipynb",
+  "sha256": "f2128b091319c577aa8bacc1424b3374dfb58d1a0102b351d6c21ee442ca6790",
+  "bytes": 2515362,
+  "code_cells": 5,
+  "embedded_files": 31,
+  "source_files": {
+    "acceptance.py": {
+      "bytes": 7716,
+      "sha256": "7ead486ada144420cf97640d6ba13cf6906083dfc87e77b3fb29595e2ddc4eaf"
+    },
+    "assets/bank_labels.npy": {
+      "bytes": 272,
+      "sha256": "c966cf056e89dc946e04f149dbc2932c74c15d5362e2a98c64903e32b3d3379a"
+    },
+    "assets/bank_rgb.npy": {
+      "bytes": 884864,
+      "sha256": "8e5fa3c8b7a3006a72919bb257cddde77fbc8b01cd60db4eff788d47948173a7"
+    },
+    "assets/bank_sha256.npy": {
+      "bytes": 704,
+      "sha256": "4ca034fa26f2a1f81d6ed68a7de92c90b6380cbc1dc7d9675c3d55d4ef2df2fb"
+    },
+    "assets/bank_valid.npy": {
+      "bytes": 295040,
+      "sha256": "aa08eb8062a0107e48198fe64798e4b4fa6e07c074b173ff34385e38874a36dd"
+    },
+    "assets/prototype_bank.csv": {
+      "bytes": 5257,
+      "sha256": "54b8afedef9323580b480893f1d193a80697b9ba122bf03c91476da47557306b"
+    },
+    "assets/sampling_plan.csv": {
+      "bytes": 45624,
+      "sha256": "e24fc11eecc3d7dfbe5981e316db58663d41accb4293511265c2944b7fcaf6f1"
+    },
+    "common.py": {
+      "bytes": 5116,
+      "sha256": "922c82b82635313ce61ecc2992990f5bc0b7f3cb1d6c8fca00527de72a34a206"
+    },
+    "coordinator.py": {
+      "bytes": 17726,
+      "sha256": "e31c9d33f542411aba7c0380880e4e1d8153b62425b9cda01ccff6670c91a873"
+    },
+    "data_atlas.py": {
+      "bytes": 5013,
+      "sha256": "f5d338291d104eee7774b913d2b99aa12bfc19ba65be4a69cc08e5945f78ddb7"
+    },
+    "evidence_hub.py": {
+      "bytes": 8288,
+      "sha256": "03da70c79b10cfaf307bd29c81f90747d45440c7eb7e2a0d19f1feef980c7b9f"
+    },
+    "frozen_anchor.py": {
+      "bytes": 8502,
+      "sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09"
+    },
+    "geometry.py": {
+      "bytes": 2338,
+      "sha256": "04a8151f666c96ab7482c1aa48c2a2ea7e15d34db09893be3a7ad31e507d366a"
+    },
+    "lc_features.py": {
+      "bytes": 1276,
+      "sha256": "d417e552b910836d8df2734bb5423f7dcee7956f485b02046739ad1bef5741d6"
+    },
+    "LC_RULES.json": {
+      "bytes": 1893,
+      "sha256": "f1404aea24a83a42bfbd7239f098101f4bea66216a08eabf5e16bfe2a99d900b"
+    },
+    "legacy_data.py": {
+      "bytes": 2865,
+      "sha256": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae"
+    },
+    "model_atlas.py": {
+      "bytes": 8620,
+      "sha256": "fc40404475c8a584c0761a32198081efde3fce4f71c68dcee9e27983b9456a90"
+    },
+    "objective.py": {
+      "bytes": 771,
+      "sha256": "a8c0fc6e68bca96a2cb0a3ef0e9d7da88cb6978af53d3c91b1d0eaed7de6391c"
+    },
+    "phase2_training_data.py": {
+      "bytes": 7154,
+      "sha256": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579"
+    },
+    "publisher.py": {
+      "bytes": 6089,
+      "sha256": "0ea77d5584a3903b01fdf7466daa95eb7be1021b4e70ac76a6706531a3d56364"
+    },
+    "rate_budget.py": {
+      "bytes": 7344,
+      "sha256": "55a8df1ee9fb498266858514d654c89ddd5276d7f8e4dd7bb96baa57277e5238"
+    },
+    "RECIPE.json": {
+      "bytes": 2326,
+      "sha256": "2b8ae62ca19a46f0fbf7ee6f25e3100ab93a4414ca525264dd739bd58f20f9f3"
+    },
+    "report.py": {
+      "bytes": 10326,
+      "sha256": "331c71d61ab161ce05ac2b0806b806621a47fe56082a6eaa28839d489662ea02"
+    },
+    "schemas.py": {
+      "bytes": 5681,
+      "sha256": "a2a47863ce01ec64f50693df8be63e611029f121cc4bc6492e41d10d7133614e"
+    },
+    "spec.py": {
+      "bytes": 1645,
+      "sha256": "b97cba5d15f77b4f00e5153d7754fb17783263546a468fca0b492efa9a754615"
+    },
+    "store.py": {
+      "bytes": 13905,
+      "sha256": "8c6f912ce9d1875cc4d4f541ff611a84ff09c16d4f53ff945063ef0bd89eb0d4"
+    },
+    "telemetry.py": {
+      "bytes": 15875,
+      "sha256": "bbd62e1dbb03f6bd251ec2d35d57fc12d87d2323e937443d8d6b83128b955281"
+    },
+    "UPSTREAM.json": {
+      "bytes": 1947,
+      "sha256": "3dcbab459cae40428ddb05388528ad11f8fe4086a623baaeca767609a0ed6fb7"
+    },
+    "VENDORED.json": {
+      "bytes": 1167,
+      "sha256": "f5eef019050b24a300f9e3048dcbcfab4d1160ad8de55596f02546e8f6f2c6a8"
+    },
+    "worker.py": {
+      "bytes": 28546,
+      "sha256": "1eb72d669266c6b4c08a6368566298b41a28968b269628b00975cdf2edb53e0a"
+    }
+  },
+  "measured_fit_started": false
+}

@@ -1,0 +1,7 @@
+job,train_images,train_ba_all_observed,train_recall_0,train_support_0,train_recall_1,train_support_1,train_recall_2,train_support_2,train_low_high_ba,validation_images,validation_ba_all_observed,validation_recall_0,validation_support_0,validation_recall_1,validation_support_1,validation_recall_2,validation_support_2,validation_low_high_ba
+seed1-selected,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,0.55,0.1,40,,0,1.0,41,0.55
+seed1-fixed_final,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,0.23170731707317074,0.0,40,,0,0.4634146341463415,41,0.23170731707317074
+seed2-selected,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,0.825,0.65,40,,0,1.0,41,0.825
+seed2-fixed_final,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,0.24390243902439024,0.0,40,,0,0.4878048780487805,41,0.24390243902439024
+seed3-selected,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,1.0,1.0,40,,0,1.0,41,1.0
+seed3-fixed_final,386,1.0,1.0,67,1.0,249,1.0,70,1.0,81,0.024390243902439025,0.0,40,,0,0.04878048780487805,41,0.024390243902439025

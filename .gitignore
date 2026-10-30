@@ -109,6 +109,9 @@ lightning_logs/
 *.engine
 *.tflite
 *.safetensors
+*.bin
+*.keras
+*.pb
 *.pkl
 *.pickle
 *.joblib
@@ -127,12 +130,14 @@ events.out.tfevents.*
 # Retain current runnable notebooks; exclude archived executions and root scratch
 /notebooks/archive/
 /notebooks/execution_archives/
+execution_archives/
 /test.ipynb
 
 # Diagnostics, temporary files and workstation-specific state
 *.log
 *.tmp
 *.part
+*.jsonl
 *.bak
 *.swp
 *.swo
@@ -151,6 +156,11 @@ desktop.ini
 /outputs/presentation_build/
 
 # Secrets (must stay after all allow-list exceptions)
+.aws/
+.ssh/
+.kaggle/
+.huggingface/
+.secrets/
 .env
 .env.*
 !.env.example
@@ -161,3 +171,7 @@ hf_token*
 *credentials*.json
 *.pem
 *.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519

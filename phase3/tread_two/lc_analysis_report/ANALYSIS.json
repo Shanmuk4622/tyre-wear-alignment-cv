@@ -1,0 +1,720 @@
+{
+  "status": "passed",
+  "source_revision": "3d5ae39602c3b25caa6af65c1e8d45f53a08e1c8",
+  "source_protocol": "ae918ce787775192ce38031936cbfd8285b51b72fbbedb1da570c9271018eb28",
+  "source_manifest_sha256": "893612c8e6110758937254c5c4e2a0a38ccd94d8c30d2145e80135329825f5bf",
+  "source_prediction_rows": 53342,
+  "completed_optimizer_updates": 2940,
+  "selected_epoch": 7,
+  "final_epoch": 60,
+  "model_forward_calls": 0,
+  "training_updates_performed": 0,
+  "new_independent_tyres": 0,
+  "remote_writes": 0,
+  "all_large_source_families_recounted": false,
+  "input_files": 696,
+  "input_bytes": 295152277,
+  "csv_tables": {
+    "prediction_audit": {
+      "rows": 53342,
+      "columns": [
+        "run",
+        "sample",
+        "stage",
+        "endpoint",
+        "epoch",
+        "update",
+        "parameter_update",
+        "image_index",
+        "image_id",
+        "label",
+        "prediction",
+        "logit_0",
+        "logit_1",
+        "logit_2",
+        "probability_0",
+        "probability_1",
+        "probability_2",
+        "nll",
+        "brier",
+        "entropy",
+        "correct",
+        "evidence_residual",
+        "supported_patches",
+        "supported_bands",
+        "clipped_fraction",
+        "empty_support",
+        "variant",
+        "occluded_patch",
+        "replacement_r",
+        "replacement_g",
+        "replacement_b",
+        "learner_sha256",
+        "anchor_logit_0",
+        "anchor_logit_1",
+        "anchor_logit_2",
+        "anchor_probability_0",
+        "anchor_probability_1",
+        "anchor_probability_2",
+        "anchor_prediction",
+        "source_sha256",
+        "allowed_low",
+        "allowed_mid",
+        "allowed_high",
+        "role",
+        "domain",
+        "physical_tyre_id",
+        "source_group",
+        "is_bank",
+        "is_query",
+        "true_probability",
+        "confidence",
+        "true_margin"
+      ],
+      "sha256": "967875d1cbc42a464ae561b7b3a493d212fb13a34eb1194666bc93568566828c"
+    },
+    "cohort_metrics": {
+      "rows": 256,
+      "columns": [
+        "stage",
+        "endpoint",
+        "variant",
+        "epoch",
+        "n",
+        "accuracy",
+        "balanced_accuracy_observed",
+        "nll",
+        "brier",
+        "ece_10_equal_width",
+        "mean_confidence",
+        "low_to_mid",
+        "predicted_low",
+        "predicted_mid",
+        "predicted_high"
+      ],
+      "sha256": "77cbdd5cc483b47f609d41beb407bc95558ab4ea212a2d6a77d6149bdda29d27"
+    },
+    "class_metrics": {
+      "rows": 582,
+      "columns": [
+        "stage",
+        "endpoint",
+        "variant",
+        "epoch",
+        "class_index",
+        "target_n",
+        "recall",
+        "mean_true_probability",
+        "mean_confidence",
+        "mean_true_margin",
+        "mean_nll"
+      ],
+      "sha256": "f4e632a4269a3b8dbbd2415ca1a784300d8d40b780865304e76458a491f3e9d8"
+    },
+    "confusion": {
+      "rows": 1746,
+      "columns": [
+        "stage",
+        "endpoint",
+        "variant",
+        "epoch",
+        "target_class",
+        "predicted_class",
+        "count"
+      ],
+      "sha256": "615b960ae59a9fd1ba6f14aa2a5c94e8947fdf5f1db7ffcaeedc19ef18b61b3f"
+    },
+    "selection_audit": {
+      "rows": 60,
+      "columns": [
+        "run",
+        "epoch",
+        "update",
+        "validation_ba_observed",
+        "validation_nll",
+        "selected",
+        "selected_epoch",
+        "tie_break",
+        "checkpoint_artifact",
+        "learner_sha256"
+      ],
+      "sha256": "3e57f9c6e21109baf4857e3514bfbf15bfed2123fd29bf64d089dfaf80995aac"
+    },
+    "endpoint_tyre_metrics": {
+      "rows": 28,
+      "columns": [
+        "stage",
+        "endpoint",
+        "variant",
+        "label",
+        "physical_tyre_id",
+        "n",
+        "accuracy",
+        "balanced_accuracy_observed",
+        "nll",
+        "brier",
+        "ece_10_equal_width",
+        "mean_confidence",
+        "low_to_mid",
+        "predicted_low",
+        "predicted_mid",
+        "predicted_high"
+      ],
+      "sha256": "a5e823d5ad9aa9bd2cb6a391ab920e9687c0b52f2070f45218875595171786e2"
+    },
+    "probe_pairs": {
+      "rows": 1236,
+      "columns": [
+        "endpoint",
+        "variant",
+        "image_id",
+        "label",
+        "base_sample",
+        "probe_sample",
+        "base_prediction",
+        "probe_prediction",
+        "flip",
+        "base_correct",
+        "probe_correct",
+        "delta_true_probability",
+        "delta_confidence",
+        "delta_true_margin",
+        "delta_nll",
+        "max_absolute_probability_change",
+        "occluded_patch",
+        "replacement_r",
+        "replacement_g",
+        "replacement_b"
+      ],
+      "sha256": "67ec4bd1b32340bc0cd3ef98efa5ae7fc2541d1b489f552bdfcf0921ae515002"
+    },
+    "probe_summary": {
+      "rows": 12,
+      "columns": [
+        "endpoint",
+        "variant",
+        "n",
+        "flips",
+        "mean_delta_true_probability",
+        "mean_delta_nll",
+        "maximum_probability_change"
+      ],
+      "sha256": "26b7e2e5192bd541b0a220e38c1247104a8de906638df87c6affbd254e75b4c7"
+    },
+    "query_exposure": {
+      "rows": 386,
+      "columns": [
+        "image_id",
+        "image_index",
+        "class_index",
+        "domain",
+        "physical_tyre_id",
+        "source_group",
+        "training_view_observations",
+        "epochs_seen",
+        "first_update",
+        "online_accuracy",
+        "online_nll"
+      ],
+      "sha256": "bd43f8749a78b35ac0535befec83696e6b99eace5a99d74278c561fe143d1bea"
+    },
+    "sampling_groups": {
+      "rows": 11,
+      "columns": [
+        "class_draw",
+        "domain",
+        "source_group_draw",
+        "view_observations",
+        "unique_images",
+        "online_accuracy"
+      ],
+      "sha256": "5a5c6d829dd498c584b9402338e09d883b4eaa329bfba5fb6f6aa27476791132"
+    },
+    "source_registry": {
+      "rows": 570,
+      "columns": [
+        "run",
+        "image_index",
+        "image_id",
+        "image_sha256",
+        "class_index",
+        "role",
+        "domain",
+        "physical_tyre_id",
+        "source_group",
+        "image_path",
+        "point_kind",
+        "is_bank",
+        "is_query"
+      ],
+      "sha256": "6854d4f8bc643e8c44283a1bf93e9bf6f894ac6d6609ffbb605ae8229d08441a"
+    },
+    "gradient_parameters": {
+      "rows": 22,
+      "columns": [
+        "parameter",
+        "updates",
+        "mean_norm",
+        "maximum_norm",
+        "zero_norm_updates"
+      ],
+      "sha256": "737cc5b937aaa8968ae7dd1d7cebbc157d84173fc310cb52707b8a742c5df178"
+    },
+    "optimizer_epochs": {
+      "rows": 60,
+      "columns": [
+        "epoch",
+        "updates",
+        "mean_loss",
+        "first_lr",
+        "last_lr",
+        "mean_gradient_norm",
+        "maximum_gradient_norm",
+        "clipped_updates",
+        "mean_compute_seconds",
+        "mean_record_seconds"
+      ],
+      "sha256": "68c450e9780896972dafb6c2e4b1f2895936bc5657c1caf0864f04e1c5f17cfa"
+    },
+    "pooled_reference_affinities": {
+      "rows": 25956,
+      "columns": [
+        "sample",
+        "prototype",
+        "pooled_affinity",
+        "endpoint",
+        "variant",
+        "label",
+        "image_id",
+        "parameter_update",
+        "prediction",
+        "prototype_index",
+        "reference_class",
+        "source_image_id",
+        "source_tyre_id"
+      ],
+      "sha256": "0623700221d85c91ee3e3b3d32b2289d434b708961f2a42e871a2035af5750e6"
+    },
+    "reference_contributions": {
+      "rows": 77868,
+      "columns": [
+        "sample",
+        "endpoint",
+        "variant",
+        "image_id",
+        "label",
+        "prediction",
+        "prototype",
+        "reference_class",
+        "source_image_id",
+        "source_tyre_id",
+        "class_index",
+        "pooled_affinity",
+        "signed_contribution"
+      ],
+      "sha256": "9ca81e0a87891f5949d3ba99ee10c2b035a841a0ca2f463e165ce278f809cf68"
+    },
+    "logit_reconstruction": {
+      "rows": 4326,
+      "columns": [
+        "sample",
+        "endpoint",
+        "variant",
+        "image_id",
+        "class_index",
+        "bias",
+        "reference_sum",
+        "reconstructed_logit",
+        "saved_logit",
+        "residual"
+      ],
+      "sha256": "2989346eb95a18d362d8040589dc0e0adc215e47b3a7ea13ea5ebf9ab02944a8"
+    },
+    "endpoint_coefficients": {
+      "rows": 108,
+      "columns": [
+        "endpoint",
+        "epoch",
+        "class_index",
+        "prototype",
+        "reference_class",
+        "coefficient",
+        "bias",
+        "temperature"
+      ],
+      "sha256": "9498e8e58ab1f48e71b7ac6ede7f9cd0d40c96e61fa55bb8a80467516a6e517d"
+    },
+    "bank_embedding_cosines": {
+      "rows": 648,
+      "columns": [
+        "endpoint",
+        "prototype_a",
+        "prototype_b",
+        "class_a",
+        "class_b",
+        "cosine"
+      ],
+      "sha256": "c8045f9ba2380a07ab59c1bc8afd157e1145e19e93a29ff7f351601ffc8dfae3"
+    },
+    "patch_concentration": {
+      "rows": 1442,
+      "columns": [
+        "sample",
+        "endpoint",
+        "variant",
+        "image_id",
+        "label",
+        "prediction",
+        "top_signed_patch",
+        "top_absolute_share",
+        "top_positive_share",
+        "signed_sum",
+        "absolute_mass",
+        "positive_patches",
+        "negative_patches"
+      ],
+      "sha256": "f5bb5ab8e4f8e933d2fc283594301a1af718d341a4c4f15100b751a5e2f8221a"
+    },
+    "endpoint_patch_evidence": {
+      "rows": 138432,
+      "columns": [
+        "run",
+        "sample",
+        "patch",
+        "class_index",
+        "contribution",
+        "endpoint",
+        "variant",
+        "label",
+        "image_id",
+        "parameter_update",
+        "prediction"
+      ],
+      "sha256": "727da27733947831508c9b56cd32484a335ef646c9b1525910ec2f8ab1c75223"
+    },
+    "endpoint_patch_support": {
+      "rows": 46144,
+      "columns": [
+        "run",
+        "sample",
+        "patch",
+        "valid_fraction",
+        "pooling_mass",
+        "endpoint",
+        "variant",
+        "label",
+        "image_id",
+        "parameter_update",
+        "prediction"
+      ],
+      "sha256": "1bcafb72aae6376a08f16079f32972ad3ae30c3472e054be204ab8fb09192243"
+    },
+    "nearest_reference": {
+      "rows": 1442,
+      "columns": [
+        "sample",
+        "prototype",
+        "pooled_affinity",
+        "endpoint",
+        "variant",
+        "label",
+        "image_id",
+        "parameter_update",
+        "prediction",
+        "prototype_index",
+        "reference_class",
+        "source_image_id",
+        "source_tyre_id"
+      ],
+      "sha256": "06e25a819bad1ba66fbc4dc07140c48977f327b062e11a4330e2e0e242ac7829"
+    },
+    "reference_class_affinities": {
+      "rows": 84,
+      "columns": [
+        "endpoint",
+        "variant",
+        "label",
+        "reference_class",
+        "images",
+        "mean_affinity",
+        "min_affinity",
+        "max_affinity"
+      ],
+      "sha256": "ce980bd3fc888569d7cc0c6d874dc3f66ec9a26b9bffc2b6634b76d3ee153bbd"
+    },
+    "occlusion_selection_check": {
+      "rows": 206,
+      "columns": [
+        "endpoint",
+        "variant",
+        "image_id",
+        "label",
+        "base_sample",
+        "probe_sample",
+        "base_prediction",
+        "probe_prediction",
+        "flip",
+        "base_correct",
+        "probe_correct",
+        "delta_true_probability",
+        "delta_confidence",
+        "delta_true_margin",
+        "delta_nll",
+        "max_absolute_probability_change",
+        "occluded_patch",
+        "replacement_r",
+        "replacement_g",
+        "replacement_b",
+        "sample",
+        "top_signed_patch"
+      ],
+      "sha256": "c90a17eb8cc12e572078e010019503ee9b6aaf96338268fd65cc4bba7c12812f"
+    },
+    "dense_region_by_role": {
+      "rows": 6,
+      "columns": [
+        "role",
+        "region",
+        "images",
+        "mean_dice",
+        "mean_iou",
+        "mean_box_iou"
+      ],
+      "sha256": "a7c7463ce7e451e8f97a02ce23d4ebccba0ccd7b393af59b860a8058c997f7a5"
+    },
+    "dense_points_by_role": {
+      "rows": 7,
+      "columns": [
+        "role",
+        "point_kind",
+        "metric_available",
+        "points",
+        "images",
+        "mae_width_fraction"
+      ],
+      "sha256": "26b7cc985aea24dfb3940471037495861125ef83badecc19554e5413fc4fff04"
+    },
+    "endpoint_calibration": {
+      "rows": 20,
+      "columns": [
+        "endpoint",
+        "bin",
+        "n",
+        "accuracy",
+        "mean_confidence"
+      ],
+      "sha256": "07a8657cefb9fb29b192809dd210f281cb794a4452e1c9c234d767287b8612fe"
+    },
+    "confidence_risk": {
+      "rows": 42,
+      "columns": [
+        "endpoint",
+        "threshold",
+        "retained_images",
+        "coverage",
+        "error_rate",
+        "scope"
+      ],
+      "sha256": "93d9132b1fe7a99d3626ab71074bbf8328f46267ea1ebee69bd23f682d3657ba"
+    },
+    "paired_loss_audit": {
+      "rows": 23520,
+      "columns": [
+        "run",
+        "epoch",
+        "update",
+        "image_index",
+        "sample_a",
+        "sample_b",
+        "ce_a",
+        "ce_b",
+        "js",
+        "texture",
+        "total",
+        "label",
+        "prediction_a",
+        "prediction_b",
+        "disagree",
+        "reconstructed_total",
+        "loss_residual"
+      ],
+      "sha256": "80c64bacab4793777e14241e78af7e06ab5399c04961189880feaf050e9a6724"
+    },
+    "paired_epoch_metrics": {
+      "rows": 60,
+      "columns": [
+        "epoch",
+        "draws",
+        "ce_a",
+        "ce_b",
+        "js",
+        "texture",
+        "total",
+        "view_disagreement"
+      ],
+      "sha256": "7c1266146e74c1d67b23efc910c34f355579551260057e5dd18018c581fb86f1"
+    },
+    "paired_class_metrics": {
+      "rows": 180,
+      "columns": [
+        "epoch",
+        "label",
+        "draws",
+        "ce_a",
+        "ce_b",
+        "js",
+        "texture",
+        "view_disagreement"
+      ],
+      "sha256": "d309fd86745e80f2979bdcfc31953b928ea0eb97f95e9a57607aaeb22a94cf86"
+    },
+    "paired_patch_metrics": {
+      "rows": 32,
+      "columns": [
+        "patch",
+        "observations",
+        "mean_pooling_mass",
+        "mean_cosine_distance",
+        "maximum_cosine_distance"
+      ],
+      "sha256": "f39fed63d9dd2e6be45aa658372294b4e421ef2f622a98bf0d9b46fa77db9f2d"
+    },
+    "appearance_factor_epochs": {
+      "rows": 120,
+      "columns": [
+        "epoch",
+        "view",
+        "brightness_mean",
+        "brightness_min",
+        "brightness_max",
+        "contrast_mean",
+        "contrast_min",
+        "contrast_max",
+        "gamma_mean",
+        "gamma_min",
+        "gamma_max"
+      ],
+      "sha256": "07c69ff99654bf8aa0e9bc493e83a2f756738b833d9f25e1aeca640c69b0ab45"
+    },
+    "reference_permission_summary": {
+      "rows": 33,
+      "columns": [
+        "stage",
+        "label",
+        "reference_class",
+        "observations",
+        "reference_rows",
+        "blocked_rows",
+        "min_scale",
+        "max_scale"
+      ],
+      "sha256": "f456e56359d0cfc89c2b90515e561523713bdf2ceb860d77ca8b48ace997427f"
+    },
+    "query_draw_exposure": {
+      "rows": 386,
+      "columns": [
+        "image_id",
+        "image_index",
+        "class_index",
+        "domain",
+        "source_group",
+        "physical_tyre_id",
+        "is_bank",
+        "actual_draws",
+        "view_observations",
+        "draw_probability",
+        "expected_draws",
+        "actual_minus_expected"
+      ],
+      "sha256": "5dcf19d75e3d075c0b156e26c033469db183fa360ca251eba3018756a48a927e"
+    },
+    "source_group_draws": {
+      "rows": 11,
+      "columns": [
+        "class_index",
+        "domain",
+        "source_group",
+        "images",
+        "draws",
+        "view_observations",
+        "expected_draws",
+        "maximum_image_draws"
+      ],
+      "sha256": "c401950ef367bbd21124ea0245c52560bda8fb89beba8757f560e2331b89e019"
+    },
+    "resource_epochs": {
+      "rows": 60,
+      "columns": [
+        "epoch",
+        "compute_seconds",
+        "record_seconds",
+        "peak_cuda_allocated",
+        "peak_cuda_reserved",
+        "peak_host_rss",
+        "minimum_free_disk"
+      ],
+      "sha256": "9515754df336bc3797982016ce46e0681a6425fbf75c034447c6f45344f1c93a"
+    },
+    "v1_r2_comparison": {
+      "rows": 14,
+      "columns": [
+        "stage",
+        "endpoint",
+        "variant",
+        "n_v1",
+        "accuracy_v1",
+        "balanced_accuracy_observed_v1",
+        "nll_v1",
+        "brier_v1",
+        "ece_10_equal_width_v1",
+        "n_r2",
+        "accuracy_r2",
+        "balanced_accuracy_observed_r2",
+        "nll_r2",
+        "brier_r2",
+        "ece_10_equal_width_r2",
+        "delta_accuracy",
+        "delta_balanced_accuracy_observed",
+        "delta_nll",
+        "delta_brier",
+        "delta_ece_10_equal_width"
+      ],
+      "sha256": "3c72e5902a44e584dd3452f89b73de279f966d2b67d3fab94b668e4eadfb78b6"
+    },
+    "input_inventory": {
+      "rows": 696,
+      "columns": [
+        "name",
+        "bytes",
+        "sha256"
+      ],
+      "sha256": "1690691b37c13a139422c606c73d82f583453a8da3182fd4e34111f70256b205"
+    },
+    "table_dictionary": {
+      "rows": 441,
+      "columns": [
+        "table",
+        "column",
+        "definition",
+        "units",
+        "missing"
+      ],
+      "sha256": "0eb695ee9290c235133f0a6c97bf18686a7da78cac3810a83059e8caa80c87ba"
+    }
+  },
+  "checks": [
+    "All 53342 prediction IDs, roles, probabilities, raw argmax, correctness, NLL and Brier checked",
+    "All saved cohort accuracy, BA, NLL, Brier and ECE rows recomputed; validation selection epoch7 checked",
+    "All1236 diagnostic rows paired by image/checkpoint against their identity endpoint",
+    "All386 query images exposed; all23520 paired draws and2940 finite-gradient updates checked; anchor gradients alwayszero",
+    "All1442 endpoint/probe logits reconstructed from saved576 affinities, geometric pooling,18 reference weights andbias; all32patch sums andocclusion indices checked",
+    "All23520 paired CE/JS/texture losses,752640 patch distances,2940 update losses and47040 seeded appearance factors checked",
+    "All960156 source-SHA permissions/scales verified independently of labels; all386 query draw probabilities checked; endpoint references all allowed"
+  ],
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3"
+  },
+  "scope": "Post-hoc existing-cohort development analysis; no new checkpoint selection or causal wear/safety claim"
+}

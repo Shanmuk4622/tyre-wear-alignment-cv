@@ -1,0 +1,103 @@
+{
+  "prototype_bank": {
+    "rows": 18,
+    "columns": [
+      "prototype_index",
+      "class_index",
+      "proxy_class",
+      "source_image_id",
+      "source_image_sha256",
+      "source_tyre_id",
+      "source_split",
+      "atlas_patch_index",
+      "atlas_row",
+      "atlas_column",
+      "valid_fraction",
+      "clipped_source_rows_fraction",
+      "anchor_weights_sha256",
+      "new_independent_tyre",
+      "model_status"
+    ],
+    "sha256": "a455f30034d5c850bfb512e7b95488eaa99472d1ea2f0df2dfec9b55e74346fc"
+  },
+  "bank_images": {
+    "rows": 8,
+    "columns": [
+      "image_id",
+      "tyre_id",
+      "proxy_class",
+      "image_sha256",
+      "historical_split"
+    ],
+    "sha256": "862e83c26d7c02be718796fc61504823141accbc3450b113127259f1b99440be"
+  },
+  "head_gradient_check": {
+    "rows": 22,
+    "columns": [
+      "parameter",
+      "gradient_norm",
+      "finite",
+      "scope"
+    ],
+    "sha256": "b141c4da51bb05b6bdd262177596cdf50ff7d4749b82bf1fb8ff3a33e9872605"
+  },
+  "bank_pixels": {
+    "rows": 221184,
+    "columns": [
+      "prototype_index",
+      "channel",
+      "row",
+      "column",
+      "value"
+    ],
+    "sha256": "153a2eac3a88f214c8a940e9f460165d67ac776b9704ddf96d00d88cc7450273"
+  },
+  "query_manifest": {
+    "rows": 3,
+    "columns": [
+      "image_id",
+      "class_index",
+      "source_split",
+      "source_image_sha256",
+      "is_bank_image",
+      "status"
+    ],
+    "sha256": "9de93c971fe4a199abe137d8762986f0e2af7e24767333c877959ecb363d132b"
+  },
+  "atlas_rows": {
+    "rows": 1536,
+    "columns": [
+      "image_id",
+      "atlas_row",
+      "source_y_input_pixels",
+      "left_input_pixels",
+      "right_input_pixels",
+      "valid_fraction"
+    ],
+    "sha256": "1554d04bfa3c036926802eb9aedad2a77c3a2544aea6812622acdb692f382d7b"
+  },
+  "untrained_affinities": {
+    "rows": 1728,
+    "columns": [
+      "image_id",
+      "query_patch",
+      "prototype_index",
+      "cosine",
+      "affinity",
+      "model_status"
+    ],
+    "sha256": "4e6cbcf2754c5d554a6d1b68e24569cfec4515f2acba87202929762d9e704b2c"
+  },
+  "untrained_patch_evidence": {
+    "rows": 288,
+    "columns": [
+      "image_id",
+      "query_patch",
+      "class_index",
+      "weight",
+      "contribution",
+      "model_status"
+    ],
+    "sha256": "83faecd51963c5faf49464718dc566f58fea95d934ec4043fe6dba82c0cfa813"
+  }
+}

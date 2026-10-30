@@ -1,0 +1,6 @@
+{
+  "status": "untrained",
+  "classifier_weights_published": false,
+  "HF_uploads": 0,
+  "scope": "Local architecture/provenance checks, not model performance"
+}

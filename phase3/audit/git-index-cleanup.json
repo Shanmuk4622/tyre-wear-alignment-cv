@@ -1,0 +1,33 @@
+{
+  "action": "stop tracking only; local files must remain unchanged",
+  "files": {
+    "phase2/local_validation/assets/segformer/pytorch_model.bin": {
+      "bytes": 14380029,
+      "sha256": "4af8348c2a802bf76115d34797ff5ce1d9f110bb8593c22d9b66d8bd7fa227fc"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB00_Dataset_Preflight_901b12e7493c.ipynb": {
+      "bytes": 12613,
+      "sha256": "901b12e7493c691794caaf1c3057a3133a77160e799840dcffaf07b39c98daf6"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB02_Classification_3c7d7516bff8.ipynb": {
+      "bytes": 111668,
+      "sha256": "3c7d7516bff87bacf0ea6b267da6961c7bb7279e944398f4adc9bc21e69cfe27"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB03_SegFormer_0ee47a32dedd.ipynb": {
+      "bytes": 120739,
+      "sha256": "0ee47a32deddeb5266e250b5c6232ff93242e8cef3e6ee622f85de70f1657a84"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB04_YOLO26M_Seg_10f1c6134872.ipynb": {
+      "bytes": 92638,
+      "sha256": "10f1c61348725346e4559b8036d30847a0eb95ff624ebf80a1b4445acdffe50f"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB04_YOLO26M_Seg_df71b620692e.ipynb": {
+      "bytes": 128116,
+      "sha256": "df71b620692ec2ad06b232ce831705dbe839b396d3c8aadc85aa15b6e254f688"
+    },
+    "phase2/notebooks/execution_archives/phase2_NB05_HRNet_a55ca547050a.ipynb": {
+      "bytes": 118064,
+      "sha256": "a55ca547050aba3b21123067663b34e6db7c41a15c276648a1ec6b7d61797a19"
+    }
+  }
+}

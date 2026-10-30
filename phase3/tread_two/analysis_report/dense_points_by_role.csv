@@ -1,0 +1,8 @@
+role,point_kind,metric_available,points,images,mae_width_fraction
+test,human,1,150,25,0.0119575384559
+test,none,0,468,78,
+train,human,1,396,66,0.00743660891238
+train,none,0,960,160,
+train,polygon_weak,0,912,152,
+validation,human,1,150,25,0.00808536097301
+validation,none,0,336,56,

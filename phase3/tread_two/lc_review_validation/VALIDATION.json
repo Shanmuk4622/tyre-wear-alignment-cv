@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "checks": [
+    "Every derived CSV hash/count/column order checked",
+    "Actual confusion,all386 query draws,paired objectives,zero probe flips and logit reconstruction checked",
+    "Verified cache reuse and corrupted-object replacement tested without network",
+    "Actual explorer JavaScript controls pass with1442cases in synthetic DOM; no browser-render claim",
+    "New review-only publication reconciles lost success,releases owner and skips identical rerun offline; fit namespace untouched"
+  ],
+  "derived_csv_tables": 40,
+  "derived_csv_rows": 380595,
+  "original_fit_source_inventory_unchanged": true,
+  "publication_fixture": true,
+  "packaged_fresh_analysis_equal": false,
+  "actual_Kaggle_NB12_execution": false,
+  "actual_live_HF_review_publication": false,
+  "source_hashes": {
+    "paired_review.py": "3c50c73bd91fe243bf54291319f0e9059bba325deda1a7714d2b40d712143bd9",
+    "publish_lc_review.py": "237eb645316e63341bc7a8edac638d7f479d8f1b381bde1ce52496b20483d54e",
+    "render_lc_review.py": "7d0da9bc19a9ce0b2ceeca07a34c001909c42fbb40b96982bee8764c6abdcf14",
+    "review_lc.py": "4c0b8af3d48c765027fb008525a6baebaa1fe0fe1d6c6866815ccbb8aa201c47"
+  },
+  "fixture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\tread_two\\lc_review_validation\\acceptance_8hrbsyw1",
+  "network_requests_in_tests": 0,
+  "remote_writes": 0,
+  "model_forwards": 0,
+  "training_updates": 0,
+  "native_browser_render": false
+}

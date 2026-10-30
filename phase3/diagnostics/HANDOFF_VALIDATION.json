@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "notebook": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\notebooks\\phase3_NB03_TREAD_ONE_Classifier_Diagnostic.ipynb",
+  "notebook_bytes": 152109,
+  "notebook_sha256": "fb00b911ec46ee1aefa3203d112d8bb22f66d152e5b923cdd9e502468fdf994f",
+  "embedded_source_files": 15,
+  "local_full_diagnostic_verified": true,
+  "diagnostic_contract": "4a15626681359aced6e42b652f3c0638aba76c665a169a54019c7543bd821689",
+  "offline_fault_checks": 12,
+  "actual_gpu_resume_scientific_csvs_identical": true,
+  "browser_render_tested": false,
+  "kaggle_execution_tested": true,
+  "live_hf_diagnostic_publication_tested": true,
+  "executed_code_cells": 4,
+  "verified_revision": "75400f019ba0c6741b5060925b9c956c0a1ca0a8",
+  "historical_unexecuted_delivery_sha256": "9459d1e01c548f3ec71c48763f674767c384cca47e6146acb85618d26f798691",
+  "standing_data_growth_and_visual_requirements_recorded": true
+}

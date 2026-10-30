@@ -1,0 +1,56 @@
+{
+  "status": "prepared",
+  "interpreter": "C:\\Users\\shanm\\dev\\envs\\cv_conda\\python.exe",
+  "torch": "2.5.1+cu121",
+  "numpy": "2.4.6",
+  "pillow": "12.1.1",
+  "cuda_available": true,
+  "packages_before_private_Qt": {
+    "cv2": true,
+    "PySide6": true
+  },
+  "original_files_recorded": 47,
+  "private_Qt_files": 2275,
+  "private_Qt_bytes": 194800431,
+  "model": {
+    "model": "TREAD-ONE r1",
+    "model_version": "tread-one-r1",
+    "seed": 3,
+    "epoch": 20,
+    "selection": "Declared original joint-validation winner; no test-based substitution",
+    "weights_sha256": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65",
+    "model_source_sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "source_repository": "Shanmuk4622/tyre-wear-study",
+    "source_revision": "a0296f18e02b12d28f7e51377783d68538032209",
+    "protocol": "371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c",
+    "input_height": 512,
+    "input_width": 384,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "guides": [
+      0.2501628664495114,
+      0.5003257328990228,
+      0.7498371335504886
+    ],
+    "mask_threshold": 0.5,
+    "parameters": 1372159,
+    "labels": [
+      "Low mileage proxy",
+      "Mid mileage proxy",
+      "High mileage proxy"
+    ],
+    "selected_test_balanced_accuracy": 0.5,
+    "selected_test_mean_dice": 0.98419,
+    "selected_test_human_point_mae_width_fraction": 0.01196,
+    "scope": "Existing 12-tyre development study; low/high test only, no held-out mid. All selected r1 seeds miss the low test tyre. Softmax is not measured wear, depth or safety.",
+    "station_role": "Separate experimental desktop application; does not replace original installed models"
+  }
+}

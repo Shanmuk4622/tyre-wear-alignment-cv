@@ -1,0 +1,10 @@
+confirmed_tyre_records,minimum_met,minimum_required,new_independent_tyre_claims,proxy_class,role
+1,False,,0,low,train
+3,False,,0,mid,train
+4,False,,0,high,train
+0,False,,0,low,validation
+0,False,,0,mid,validation
+0,False,,0,high,validation
+0,False,,0,low,test
+0,False,,0,mid,test
+0,False,,0,high,test

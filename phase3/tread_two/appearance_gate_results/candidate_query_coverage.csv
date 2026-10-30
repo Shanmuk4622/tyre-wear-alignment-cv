@@ -1,0 +1,9 @@
+class_index,physical_tyre_id,original_photos,candidate_support_photos,remaining_original_query_photos
+0,new_tire__session_001,67,6,61
+1,mileage_040000__session_001,20,2,18
+1,mileage_070000__session_001,20,2,18
+1,mileage_090000__session_001,57,2,55
+2,mileage_100000_plus__session_001,3,2,1
+2,mileage_100000_plus__session_002,2,1,1
+2,mileage_100000_plus__session_003,5,1,4
+2,mileage_100000_plus__session_004,60,2,58

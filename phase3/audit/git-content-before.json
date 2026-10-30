@@ -1,0 +1,161 @@
+{
+  "candidate_files": 3506,
+  "candidate_bytes": 4212829536,
+  "tracked_files": 538,
+  "untracked_candidates": 2968,
+  "largest_files": [
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0001/dense_pixels.csv",
+      "bytes": 310246869
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0007/dense_pixels.csv",
+      "bytes": 117619970
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/HISTORY.json",
+      "bytes": 100059539
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0002/dense_pixels.csv",
+      "bytes": 93970296
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0060/affinities.csv",
+      "bytes": 59505681
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0007/affinities.csv",
+      "bytes": 58177868
+    },
+    {
+      "path": "phase3/tread_two/lc_analysis_report/prediction_audit.csv",
+      "bytes": 34630282
+    },
+    {
+      "path": "phase3/tread_two/lc_review_validation/acceptance_8hrbsyw1/publication/bundle/2ec576eac7b6/prediction_audit.csv",
+      "bytes": 34630282
+    },
+    {
+      "path": "phase3/tread_two/lc_review_validation/acceptance_o3_5nh9k/fresh_report/prediction_audit.csv",
+      "bytes": 34630282
+    },
+    {
+      "path": "phase3/tread_two/lc_review_validation/acceptance_o3_5nh9k/publication/bundle/2ec576eac7b6/prediction_audit.csv",
+      "bytes": 34630282
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0035/affinities.csv",
+      "bytes": 32521168
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0034/affinities.csv",
+      "bytes": 32520340
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0036/affinities.csv",
+      "bytes": 32517162
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0037/affinities.csv",
+      "bytes": 32516896
+    },
+    {
+      "path": "phase3/tread_two/nb11_completion/16fa0443f902/remote/csv/epoch_0033/affinities.csv",
+      "bytes": 32516314
+    }
+  ],
+  "largest_groups": [
+    {
+      "path": "phase3/tread_two/nb11_completion",
+      "files": 1072,
+      "bytes": 3189043003
+    },
+    {
+      "path": "phase3/tread_two/lc_review_validation",
+      "files": 213,
+      "bytes": 337320807
+    },
+    {
+      "path": "phase3/tread_two/lc_validation",
+      "files": 920,
+      "bytes": 252240845
+    },
+    {
+      "path": "phase3/tread_two/nb10_completion",
+      "files": 107,
+      "bytes": 134159813
+    },
+    {
+      "path": "phase3/tread_two/lc_analysis_report",
+      "files": 45,
+      "bytes": 111913880
+    },
+    {
+      "path": "phase3/tread_two/analysis_report",
+      "files": 35,
+      "bytes": 69290837
+    },
+    {
+      "path": "phase2",
+      "files": 168,
+      "bytes": 42106424
+    },
+    {
+      "path": "notebooks",
+      "files": 44,
+      "bytes": 17546684
+    },
+    {
+      "path": "docs",
+      "files": 128,
+      "bytes": 7647216
+    },
+    {
+      "path": "phase3/tread_two/prototype_report",
+      "files": 13,
+      "bytes": 6841505
+    },
+    {
+      "path": "phase3/tread_two/completion_report",
+      "files": 3,
+      "bytes": 4419574
+    },
+    {
+      "path": "phase3/tread_two/appearance_gate_results",
+      "files": 8,
+      "bytes": 3987090
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB01_TREAD_ONE.ipynb",
+      "files": 1,
+      "bytes": 3757473
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB12_TREAD_TWO_ATLAS_LC_Completed_Review.ipynb",
+      "files": 1,
+      "bytes": 3249441
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB10_TREAD_TWO_Train_Only_Appearance_And_Reference_Gate.ipynb",
+      "files": 1,
+      "bytes": 3119920
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB09_TREAD_TWO_ATLAS_Completed_Review.ipynb",
+      "files": 1,
+      "bytes": 2832242
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_Pilot.ipynb",
+      "files": 1,
+      "bytes": 2796647
+    },
+    {
+      "path": "phase3/tread_two/ATLAS_EXPLORER.html",
+      "files": 1,
+      "bytes": 2679596
+    }
+  ],
+  "status": "inventory_only"
+}
