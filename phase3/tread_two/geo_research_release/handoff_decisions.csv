@@ -1,0 +1,6 @@
+action,decision,reason
+Promote GEO selected model,No,No checkpoint eligible under original rule
+Run another full fit automatically,No,Requires a distinct justified protocol; no automatic sweep
+Collect new tyre photographs,No,User explicitly limits work to existing photos
+Modify workstations,Deferred,User deferred application changes
+Close this pilot as documented research,Yes,Complete evidence retained; accepted and failed criteria recorded

@@ -1,0 +1,52 @@
+{
+  "class_support": [
+    {
+      "class_index": 0,
+      "class_name": "low",
+      "conservative_components": 1,
+      "images": 67,
+      "known_original_tyres": 1,
+      "original_images": 67,
+      "source_groups": 1,
+      "video_frames": 0
+    },
+    {
+      "class_index": 1,
+      "class_name": "mid",
+      "conservative_components": 1,
+      "images": 249,
+      "known_original_tyres": 3,
+      "original_images": 97,
+      "source_groups": 6,
+      "video_frames": 152
+    },
+    {
+      "class_index": 2,
+      "class_name": "high",
+      "conservative_components": 4,
+      "images": 70,
+      "known_original_tyres": 4,
+      "original_images": 70,
+      "source_groups": 4,
+      "video_frames": 0
+    }
+  ],
+  "classifier_status": "research_only_unpromoted",
+  "coassignment_scope": "Unresolved mid video-parent component is a conservative leakage constraint, not proof that three known mid tyres are the same tyre.",
+  "conditional_folds": 6,
+  "counterfactual_rows": 188160,
+  "counterfactual_scope": "Algebraic parts of saved changing online model states on identical paired views; no independently trained ablations, no component-held-out model fit, no new checkpoint selection.",
+  "folds_missing_fit_class": 2,
+  "heldout_prediction_rows_used": 0,
+  "known_training_original_tyres": 8,
+  "limitation": "Frozen LC prior was selected historically using validation. Training-only here describes rows analyzed, not an untouched pipeline or independent generalization experiment.",
+  "new_independent_tyres": 0,
+  "new_model_forwards": 0,
+  "next_full_classification_fit_authorized_by_gate": false,
+  "online_view_observations": 47040,
+  "optimizer_updates": 0,
+  "scientific_readiness": false,
+  "status": "passed",
+  "training_conservative_components": 6,
+  "training_images": 386
+}

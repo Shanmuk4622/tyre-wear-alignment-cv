@@ -1,0 +1,7 @@
+model,label,endpoint,epoch,images,accuracy,observed_class_BA,low_recall,high_recall,nll,brier,ece_10_equal_width,scope
+v1,ATLAS v1,final,60,103,0.398058252427,0.5,0,1,1.42829815633,0.881228795725,0.602819769707,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"
+v1,ATLAS v1,selected,18,103,0.398058252427,0.5,0,1,1.17829593921,0.711429743996,0.162204207147,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"
+lc,ATLAS-LC r2,final,60,103,0.398058252427,0.5,0,1,1.36987214558,0.854731264284,0.538922623523,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"
+lc,ATLAS-LC r2,selected,7,103,0.398058252427,0.5,0,1,0.961272740528,0.568354944895,0.425969035012,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"
+context,ATLAS-CONTEXT r3,final,60,103,0.398058252427,0.5,0,1,2.3584750656,1.12999691618,0.561833657107,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"
+context,ATLAS-CONTEXT r3,selected,7,103,0.398058252427,0.5,0,1,2.17481285234,1.10558121389,0.552018568354,"Already inspected historical low/high endpoint; no mid targets; descriptive, not independent confirmation"

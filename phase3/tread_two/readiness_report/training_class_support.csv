@@ -1,0 +1,4 @@
+class_index,class_name,images,original_images,video_frames,known_original_tyres,conservative_components,source_groups
+0,low,67,67,0,1,1,1
+1,mid,249,97,152,3,1,6
+2,high,70,70,0,4,4,4

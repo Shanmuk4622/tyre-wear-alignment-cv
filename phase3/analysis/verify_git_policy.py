@@ -29,7 +29,9 @@ visible=['.gitignore','.env.example','README.md','docs/report/assets/study_overv
  'phase3/tread_two/lc_pilot/worker.py','phase3/tread_two/lc_pilot/FILES.json','phase3/tread_two/lc_review/assets/v1_cohort_metrics.csv',
  'phase3/tread_two/lc_analysis_report/cohort_metrics.csv','phase3/tread_two/lc_analysis_report/figures/paired_learning.png',
  'phase3/tread_two/lc_validation/figures/reference_channels.png','phase3/workstation/app.py']
-visible += [f'phase3/tread_two/{folder}/assets/{name}.npy' for folder,names in [('pilot',['bank_rgb','bank_labels']),('lc_pilot',['bank_rgb','bank_labels','bank_valid','bank_sha256'])] for name in names]
+visible += [f'phase3/tread_two/{folder}/assets/{name}.npy' for folder,names in [('pilot',['bank_rgb','bank_labels']),('lc_pilot',['bank_rgb','bank_labels','bank_valid','bank_sha256']),('context_pilot',['bank_rgb','bank_labels','bank_valid','bank_sha256'])] for name in names]
+ignored += ['phase3/tread_two/context_validation/acceptance_example/run/source.py','phase3/tread_two/context_validation/nb13_extract_example/source/worker.py']
+visible += ['phase3/tread_two/context_pilot/worker.py','phase3/tread_two/context_validation/figures/layout_invariance.png','phase3/notebooks/phase3_NB13_TREAD_TWO_ATLAS_CONTEXT_Resumable_Pilot.ipynb']
 for name in ignored:assert git('check-ignore','--no-index','-q','--',name).returncode==0,('must ignore',name)
 for name in visible:assert git('check-ignore','--no-index','-q','--',name).returncode==1,('must retain',name)
 baseline=json.loads(receipt.read_text(encoding='utf-8'))
@@ -52,5 +54,5 @@ for doc,old,new in figures:
     assert sha(dest)==sha(source) and git('check-ignore','--no-index','-q','--',dest.relative_to(ROOT).as_posix()).returncode==1
     p=ROOT/doc;text=p.read_text(encoding='utf-8');p.write_text(text.replace(old,new),encoding='utf-8')
 result=dict(status='passed',ignored_path_checks=len(ignored),retained_path_checks=len(visible),index_only_untracked_files=len(baseline['files']),all7_local_files_preserved_byte_identical=True,
-  documentation_figures_copied_byte_identical=len(figures),frozen_reference_arrays_visible=6,history_rewritten=False,source_notebooks_rewritten=False)
+  documentation_figures_copied_byte_identical=len(figures),frozen_reference_arrays_visible=10,history_rewritten=False,source_notebooks_rewritten=False)
 (OUT/'GIT_IGNORE_POLICY_CHECK.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,indent=2))

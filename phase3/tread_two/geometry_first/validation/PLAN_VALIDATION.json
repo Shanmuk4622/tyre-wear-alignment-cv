@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "scope": "planning/source/shape arithmetic/schedule feasibility only; no model implementation acceptance",
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "HF_writes": 0,
+  "new_independent_tyres": 0,
+  "implementation_pending": true,
+  "actual_T4_and_storage_measurements_pending": true,
+  "CSV_families": 40,
+  "declared_columns": 443,
+  "planned_parameter_counts_not_measured": true,
+  "schedule_prototypes": 480,
+  "schedule_replay_identical": true,
+  "FP32_decimal_roundtrip_fixture": 10000,
+  "coarse_cell_TP_FP_FN_reconstruction": true,
+  "arithmetic_projected_logical_bytes": 14630073600.0,
+  "arithmetic_projected_peak_bytes": 15166944512.0,
+  "actual_CSV_widths_unmeasured": true,
+  "original_Markdown_preserved": 103,
+  "frozen_source_counts": [
+    24,
+    30,
+    32
+  ],
+  "preservation_counts": {
+    "original_workstation": 47,
+    "phase3_workstation": 18,
+    "paired_runtime": 27
+  },
+  "executed_notebooks_preserved": true,
+  "Markdown_documents_checked": 81,
+  "local_links_checked": 1754,
+  "broken_links": [],
+  "plan_artifact_sha256": {
+    "ARCHITECTURE.md": "59493eea0602666bc450cb1efa23064d0ac25f10c77a4ae6e837bc330abedb23",
+    "BUDGET.json": "47fe81dc8e9cf56613e6f9bf3201821b2c412e7fb3c07ab951534a7912f53f1b",
+    "EXPERIMENT.md": "ad9a0a7e468494869b95b768ea2395bae2effbd403e3bb26ceaed00fe5b6bf74",
+    "IMPLEMENTATION.md": "15a0546bd61531857ec77900ec7959bef7f3541f1289c36228492a96f351f335",
+    "OPERATIONS.md": "c979d9ed62f715263c4fcc408cd9569bee821a0f5ae3ee3de261802aa4a9893c",
+    "PLAN.json": "a58e7064a26d4472812c03cc45332cba2f0bfa56cee777aaf4b5bda9c9a3740c",
+    "README.md": "bb17f7d6aeb14a1b09f9178fef3d6b09be785dd9b5fc01d557216b22a4a7e2e9",
+    "RETENTION.md": "c63ad63c6f2c03ae272f0c545e7431dc18e37ee178d96dd5e639112d385088d6",
+    "RISKS_AND_DECISIONS.md": "d241afd3f2a5f77a52bebfaafed4580985078614dafcbc0d480416a8b9a66025",
+    "SCHEMAS.json": "7ddfbd71d3aa892cabf797827bc80aba2bd536848db7409232a6328bd3703a80",
+    "SOURCES.json": "1daba2ea93d8eb3fa4b1b9cdd7975d9550037f9017ad23b3278e9fb10014933a"
+  },
+  "master_plan_sha256": "a3afe478856887bb8e8c54acec2b6941ebf414012083f0a0fda79bb01b289d40"
+}

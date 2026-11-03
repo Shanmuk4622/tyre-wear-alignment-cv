@@ -1,5 +1,7 @@
 # ATLAS-LC r2 — code ownership and Kaggle run guide
 
+> Completed-study guide: NB11 and NB12 are HF-verified. No rerun is needed. See [NB12 findings](../../phase3NB12Completion.md) and the new [NB13 guide](../context_pilot/README.md). Earlier run instructions below describe the preserved completed delivery.
+
 <!-- NB11_COMPLETE_UPDATE_20261030 -->
 ## Current — NB11 complete; NB12 review ready
 

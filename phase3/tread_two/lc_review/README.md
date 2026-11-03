@@ -1,5 +1,7 @@
 # Completed ATLAS-LC review — code and CPU run guide
 
+> Completed-study guide: NB11 and NB12 are HF-verified. No rerun is needed. See [NB12 findings](../../phase3NB12Completion.md) and the new [NB13 guide](../context_pilot/README.md). Earlier run instructions below describe the preserved completed delivery.
+
 This is a separate post-hoc analysis of completed NB11. It makes **zero model
 forward passes and zero optimizer updates**. It never changes an original fit,
 selects another test-scoring checkpoint or installs a workstation model.

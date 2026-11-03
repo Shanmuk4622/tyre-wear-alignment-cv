@@ -1,0 +1,10 @@
+metric,value,scope
+mean_dice,0.98986229594842889,Original validation / epoch 60 / unselected
+human_point_MAE,0.0076621973576645021,Original validation / epoch 60 / unselected
+masked_huber,0.034621990845896275,Original validation / epoch 60 / unselected
+mean_huber,0.036077252377148379,Original validation / epoch 60 / unselected
+masked_gain,0.040337371483807338,Original validation / epoch 60 / unselected
+pair_cosine,0.00011855658189748802,Original validation / epoch 60 / unselected
+projector_rank,1.038659162015543,Original validation / epoch 60 / unselected
+global_rank,1.0209899947932497,Original validation / epoch 60 / unselected
+projector_std_median,0.44110625761833477,Original validation / epoch 60 / unselected

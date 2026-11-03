@@ -1,0 +1,10 @@
+{
+  "origin": "geo_pilot/store_fit.py",
+  "source_sha256": "3fb53d80861520a882ba5965862711670c7dd1c152410ba5a706fe958d40cc72",
+  "changes": [
+    "executable TRACE schema",
+    "state_ledger fields",
+    "explicit no scheduler/scaler",
+    "immutable input hardlink reuse"
+  ]
+}

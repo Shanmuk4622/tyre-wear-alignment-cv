@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "case_records": 1854,
+  "reference_cases": 18,
+  "full_attention_cases": 206,
+  "controls": [
+    "paging",
+    "eight probes",
+    "flip/wrong/target/search",
+    "base/context/combined",
+    "explained class",
+    "layer/head",
+    "attention missingness"
+  ],
+  "native_browser_render": false
+}

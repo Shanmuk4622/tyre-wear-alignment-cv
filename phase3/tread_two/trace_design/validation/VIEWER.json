@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "actual_script": true,
+  "training_cases": 4,
+  "channels": 6,
+  "paging": true,
+  "hidden_overlay": true,
+  "hover": true,
+  "CSV_export_rows": 512,
+  "PNG_signatures": true,
+  "native_browser_render": false
+}

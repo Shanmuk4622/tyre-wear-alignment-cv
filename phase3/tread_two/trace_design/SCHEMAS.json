@@ -1,0 +1,4087 @@
+{
+  "status": "draft_specification_not_measured_writer_coverage",
+  "version": "trace-schema-draft-v1",
+  "families": {
+    "source_images": {
+      "grain": "source image",
+      "frequency": "once",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "component",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "domain",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "label_proxy",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "geometry_kind",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "original_path",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "geometry_provenance": {
+      "grain": "frozen input artifact",
+      "frequency": "once",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "artifact",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "selected",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "inherited_status",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_cells": {
+      "grain": "image tile cell",
+      "frequency": "once per role",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "target_revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tile",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_y",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_x",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "valid_pixels",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "contrast",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "gradient_energy",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "orientation_axis",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "orientation_cross",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "relative_curvature",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "contrast_occupancy",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_normalization": {
+      "grain": "target channel",
+      "frequency": "train construction",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "channel",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "weighted_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "weighted_square_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "mean",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "std",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "floor_applied",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "fit_role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_position_control": {
+      "grain": "tile channel cell",
+      "frequency": "train construction",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "tile",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "channel",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_y",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_x",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "weighted_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "mean",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_input_inventory": {
+      "grain": "input artifact",
+      "frequency": "construction",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "logical_file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "target_revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "view_plans": {
+      "grain": "source draw view",
+      "frequency": "every view",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "appearance_seed",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "brightness",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "contrast",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "gamma",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "target_id",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "geometry_id",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "mask_plans": {
+      "grain": "view tile",
+      "frequency": "every view",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tile",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "band",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "column",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "mask_seed",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "supported",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "hidden",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "valid_fraction",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "sample_schedule": {
+      "grain": "source draw",
+      "frequency": "every draw",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "draw",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "component",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "primary",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "padding",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "ordinal_in_epoch",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "batch_position",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "sample_observations": {
+      "grain": "source draw",
+      "frequency": "every draw",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "primary",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eligible",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "skip_reason",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "supported_tiles",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "supported_bands",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "visible_tiles",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "hidden_cells",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "reconstruction_cells": {
+      "grain": "view tile cell",
+      "frequency": "every view",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tile",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_y",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cell_x",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "target_id",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "valid_pixels",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "hidden",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_0",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_1",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_2",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_3",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_4",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_5",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_0",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_1",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_2",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_3",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_4",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_5",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "image_losses": {
+      "grain": "observation view objective",
+      "frequency": "every view",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "objective",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "huber_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "weighted_channel_count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eligible",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "image_mean",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "objective_terms": {
+      "grain": "optimizer update",
+      "frequency": "every update",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "local",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "pair",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "variance",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "covariance",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "total",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_weight",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_weight",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "pair_weight",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "variance_weight",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "covariance_weight",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eligible_rows",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "diversity_available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "update_gradients": {
+      "grain": "parameter group",
+      "frequency": "every update",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "group",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "pre_clip_norm",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "post_clip_norm",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "clip_limit",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "finite",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "learning_rate",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "optimizer_step",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "parameter_statistics": {
+      "grain": "parameter tensor",
+      "frequency": "epoch and bounded step sample",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "parameter",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "elements",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "l2",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_absolute",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "mean",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "std",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "finite",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "observation_frequency",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "epoch_metrics": {
+      "grain": "role task endpoint",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "task",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "metric",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "value",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "numerator",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "denominator",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "images",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "component_metrics": {
+      "grain": "role component task",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "component",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "task",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "metric",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "value",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "images",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "target_cells",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "geometry_sentinels": {
+      "grain": "source image",
+      "frequency": "cache and endpoint",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "frozen_export_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "logits_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "points_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masks_equal",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_logit_difference",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "human_points_available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "representation_spectra": {
+      "grain": "role space eigenvalue",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "space",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "component_centered",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "dimension",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eigenvalue",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "fraction",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "image_count",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "std_median",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "effective_rank",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "local_token_statistics": {
+      "grain": "role layer tile",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "layer",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tile",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "image_count",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "feature_count",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "effective_rank",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "std_median",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "leading_fraction",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "scatter_decomposition": {
+      "grain": "role feature space",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "space",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "components",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "total_scatter",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "within_scatter",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "between_scatter",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "between_fraction",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "decomposition_error",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "control_losses": {
+      "grain": "source image control",
+      "frequency": "baseline validation endpoints",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "control",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "model_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "control_sum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "common_count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "model_mean",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "control_mean",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "control_coverage": {
+      "grain": "source image control",
+      "frequency": "baseline validation endpoints",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "control",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "model_native_count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "control_native_count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "common_count",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "coverage",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "missing_reason",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "intervention_metrics": {
+      "grain": "source image variant",
+      "frequency": "fixed endpoint probes",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "variant",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "plan_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "space",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "cosine_change",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "l2_change",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_loss",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_loss",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "support_changed",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "retrieval_neighbors": {
+      "grain": "query neighbor rank",
+      "frequency": "endpoints",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "query_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "neighbor_id",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "neighbor_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "neighbor_component",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "rank",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "distance",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "excluded_self",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "permitted",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "native_chunks_index": {
+      "grain": "native shard",
+      "frequency": "each sealed shard",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "kind",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "first_observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "last_observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "shape",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "dtype",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "committed_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "state_ledger": {
+      "grain": "atomic completed unit",
+      "frequency": "every complete update and phase",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "previous_unit_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "state_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "csv_prefix_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "native_prefix_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "next_cursor",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "chain_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "resume_events": {
+      "grain": "restore event",
+      "frequency": "every session/restore",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "remote_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "chosen_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "compatibility",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "action",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "replayed_incomplete_update",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "numerical_events": {
+      "grain": "numerical event",
+      "frequency": "event and finite checks",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "event",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tensor",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "finite",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "minimum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "maximum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "action",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "resource_measurements": {
+      "grain": "device measurement",
+      "frequency": "update peaks and bounded heartbeat",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "device",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "allocated_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "reserved_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_allocated_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_reserved_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "peak_reset_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "host_RSS_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "free_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "measurement_scope",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "staging_inventory": {
+      "grain": "publication stage object",
+      "frequency": "every publication",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "snapshot",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "hardlink",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "staging_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "logical_total_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "actual_free_bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "transport_events": {
+      "grain": "HTTP event",
+      "frequency": "every parent request",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "event_id",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "category",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "status",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "attempt",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "retry_after_seconds",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "quota_remaining",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "reset_seconds",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "duration_seconds",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "transport_receipts": {
+      "grain": "verified selecting commit",
+      "frequency": "every publication",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "snapshot",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "owner_released",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "verified",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "last_update",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "pending_updates",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "event_coverage_through",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "unsent_events",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "errors": {
+      "grain": "error/stop event",
+      "frequency": "every event",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "phase",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "exception_type",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sanitized_message",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "traceback_file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "last_committed_unit",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "last_remote_revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "flush_attempted",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "endpoint_records": {
+      "grain": "checkpoint endpoint",
+      "frequency": "selected and final",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "endpoint",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "epoch_selected",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "parameter_update",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "provenance",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "scientific_status",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "eligibility": {
+      "grain": "validation checkpoint",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "geometry",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "exposure",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "control_coverage",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "masked_utility",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "local_utility",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "projector_diversity",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "encoder_diversity",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "within_component_diversity",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "finite",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eligible",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "objective",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "rejection_reasons",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "source_exposure": {
+      "grain": "source epoch",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "primary_draws",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "padding_draws",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "eligible_draws",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "skipped_draws",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "views",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "environment": {
+      "grain": "environment key",
+      "frequency": "every session",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "key",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "value",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "identity_relevant",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "run_configuration": {
+      "grain": "configuration key",
+      "frequency": "once and explicit repair",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "key",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "value",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "type",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "protocol_revision",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "source_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "artifact_gaps": {
+      "grain": "evidence gap",
+      "frequency": "once and every discovered gap",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "artifact",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "requested_grain",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "available",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "reason",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "reconstruction_inputs",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "interpretation_limit",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "timings": {
+      "grain": "phase duration",
+      "frequency": "every update/stage/transport boundary",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "session",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "phase",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "start_monotonic",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "duration_seconds",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "images",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "complete",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "source_hashes": {
+      "grain": "source artifact",
+      "frequency": "once and every session verification",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "logical_file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "bytes",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "origin",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "frozen",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "preflight_gates": {
+      "grain": "engineering gate",
+      "frequency": "pre-fit and recovery",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "gate",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "passed",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "evidence_file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "evidence_sha256",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "actual_Kaggle",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "actual_HF",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "detail",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_channel_diagnostics": {
+      "grain": "role channel",
+      "frequency": "construction",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "channel",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "count",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "mean",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "std",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "minimum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "maximum",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "zero_fraction",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "unavailable_cells",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "spatial_moment_vectors": {
+      "grain": "observation view coordinate",
+      "frequency": "every view",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observation",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "moment",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "channel",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "value",
+          "dtype": "float32",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "space",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "native_file",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "parameter_deltas": {
+      "grain": "parameter group",
+      "frequency": "every epoch",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "group",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "reference",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "l2_delta",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_absolute_delta",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "unchanged",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "elements",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "reconstruction_verification": {
+      "grain": "independent reduction",
+      "frequency": "review",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "artifact",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "grain",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "compared_values",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_absolute_difference",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "max_relative_difference",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "tolerance",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "passed",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    },
+    "target_space_diagnostics": {
+      "grain": "role target space",
+      "frequency": "construction and final review",
+      "writer_status": "planned_not_implemented",
+      "columns": [
+        {
+          "name": "run",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "stage",
+          "dtype": "utf8",
+          "nullable": false
+        },
+        {
+          "name": "epoch",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "update",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "image_id",
+          "dtype": "utf8",
+          "nullable": true
+        },
+        {
+          "name": "view",
+          "dtype": "int64",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "space",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "dimensions",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "images",
+          "dtype": "int64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "within_component_centered",
+          "dtype": "bool",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "effective_rank",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "leading_fraction",
+          "dtype": "float64",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        },
+        {
+          "name": "scope",
+          "dtype": "utf8",
+          "nullable": true,
+          "missingness": "Empty CSV cell only when explicitly unavailable/not applicable; record reason/count."
+        }
+      ]
+    }
+  },
+  "families_count": 48,
+  "field_declarations": 669,
+  "CSV_null": "empty; never reinterpret as measured zero",
+  "bool_values": [
+    0,
+    1
+  ],
+  "units": {
+    "points": "image-width fractions",
+    "resource_memory": "bytes",
+    "durations": "seconds",
+    "loss": "standardised descriptor Smooth L1 beta0.1",
+    "eigenvalues": "sample covariance ddof1"
+  },
+  "precision": {
+    "float32": "round-trip binary32 with nine significant digits; verify native equality",
+    "float64": "17 significant digits or equivalent round-trip"
+  },
+  "fit_delivery_gate": "Every declared family/field must map to an exercised writer before measured notebook delivery."
+}

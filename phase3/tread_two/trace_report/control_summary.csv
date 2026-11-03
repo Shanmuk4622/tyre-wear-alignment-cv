@@ -1,0 +1,4 @@
+control,images,image_mean_huber,minimum_common_coverage
+channel_mean,386,0.7452108047786772,1.0
+position_mean,386,0.6765162983397746,1.0
+visible_band_mean,386,0.6169604572607446,1.0

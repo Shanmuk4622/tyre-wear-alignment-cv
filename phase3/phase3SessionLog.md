@@ -1,5 +1,183 @@
 # Phase 3 — session log
 
+<!-- IEEE_ACCESS_PAPER_20261103 -->
+## 2–3 November 2026 — separate IEEE Access manuscript
+
+1. Created `paper_ieee_access/`; copied compact evidence and template assets with hashes.
+2. Wrote nine substantive sections, equations, references, AI disclosure and working-author biographies.
+3. Generated seven scientific figures and five tables, including all 60 TRACE epochs and two deterministic saved-image examples.
+4. Separated primary sweep decoder reads from additional bridge reads; preserved original rank/gate arithmetic and selected=None.
+5. Checked primary citations and the current IEEE template; core class/style hashes match.
+6. Compiled the paper and checked numeric tables, gains, execution counts, citations, original-file preservation and PDF layout.
+7. Added claim ledger, reproducibility guide, citation audit, writing log and author-action checklist.
+8. Kept new paper/aggregation assets local. No new fit, photo, HF upload, Git push, or workstation change.
+
+Final numeric and visual receipts are in the [paper package](paper_ieee_access/README.md).
+Next: author review and genuine declaration/availability decisions.
+<!-- END_IEEE_ACCESS_PAPER_20261103 -->
+
+<!-- TEXTURE_AGGREGATION_20261102 -->
+## 2 November 2026 — authorized local-texture aggregation investigation
+
+1. Froze the primary nine-variant protocol, then fetched/reused249 pinned native/metadata bodies,66,722,671 bytes, using public reads only.
+2. Verified all saved pooling/projector/decoder bridges and every original local/masked prediction replay. Compared unchanged decoders after weighted means, band/column means, spatial/random modes and train-only templates/residuals.
+3. Retained every counterfactual prediction plus image/channel/tile losses, all feature spectra and covariance/energy details. No image encoder/geometry forward or neural training.
+4. Measured61.14% local validation utility retention for one average and 81.76% for position-template +five residual moments; identified orientation/contrast losses and disproportionate low-group detail loss.
+5. Distinguished context/aggregation concentration, rank scale-dependence and exploratory mask-layout association. Reconciled all channel/role/component reductions and retained original selected=None.
+6. Added scientific Markdown/methods, two figures and an interactive component/tile explorer. New derivatives local; source evidence, notebooks, workstations and previous reports preserved.
+<!-- END_TEXTURE_AGGREGATION_20261102 -->
+
+<!-- RETROSPECTIVE_RECORD -->
+## 2 November 2026 — whole-project analysis requested
+
+1. Inventoried236 maintained Markdown documents and reconciled original-study, Phase 2, Phase 3, application and manuscript scopes with40 controlling source records.
+2. Built measured-fit and selected/final endpoint ledgers; distinguished10 Phase 3 fit executions from notebook counts, reviews, engineering and continuation.
+3. Read/checksummed444 actual saved CSV bodies and calculated570 final-view image comparisons,10 component summaries,3 role summaries and 6 retained tile-statistic summaries.
+4. Reconciled role means to original NB24 endpoints. Both validation/test components improve reconstruction; original global diversity rejection remains unchanged.
+5. Added whole-project and component Markdown reports, two scientific figures,10 CSV tables and a standalone interactive explorer. New derivatives are local, not HF-published.
+6. Preserved source evidence, completed notebooks, both workstations and all original selections. No model forward/training, new photo, network/HF write or paper rewrite.
+<!-- END_RETROSPECTIVE_RECORD -->
+
+<!-- NB24_RECORD -->
+## 2 November 2026 — NB24 verified after user execution
+
+1. Archived supplied executed NB24 and verified33 exact payloads /three complete code cells.
+2. Checked all five public HF selecting manifests,12,262 object existence/size identities, released owners, bounded full-body hashes and explicit large-Git metadata limits.
+3. Independently reconstructed all 2,940 objectives and60 validation gates using946 fully checked native inputs and SVD; verified complete state, source coverage, all epoch weights and selected=None.
+4. Confirmed original dense-review receipts, actual viewer, seven earlier selecting manifests, direct CSV retention and scientific limitations.
+5. Added illustrated completion/findings records and current status updates. No new training, photos, local credentials, HF write or workstation change.
+<!-- END_NB24_RECORD -->
+
+<!-- TRACE_BATCH_SESSION -->
+## 2 November 2026 — complete TRACE notebook implementation
+
+1. Built separate cache/data/schedule, transaction, telemetry, resource/selection and parent/review modules without changing the checked prototype or completed experiments.
+2. Delivered four self-contained notebooks with one sequential Run All master. Added actual HF seam/restore/continue and capacity gates before one 60-epoch candidate.
+3. Exercised actual8-image CPU lifecycle/within-epoch continuation, raw prediction/objective/selection review, seven fault/selected/error boundaries,16-image preparation restart and all 570-image frozen cache with60 schedules.
+4. Tested real orchestration with explicit injected HF/numeric services and actual notebook setup in fresh interpreters. No local credential lookup, remote write or measured fit occurred.
+5. Fixed allocator initialisation, final publication acknowledgement, partial-stage artifact selection and serialization/review issues caught before delivery. Updated documentation, source provenance and Git ignores.
+6. Next user action: Run All in NB24 on Kaggle T4×2 with existing prepared input, Internet/HF_TOKEN and sufficient measured space. Live gates and measured outcome remain pending.
+<!-- END_TRACE_BATCH_SESSION -->
+
+<!-- TRACE_SESSION -->
+## 2 November2026 — authorised next design and checked prototype
+
+1. Read current instructions, GEO/NB20 evidence and the proposed fixed-target brief.
+2. Implemented isolated TRACE target, model, objective and frozen-geometry modules; no completed source changed.
+3. Audited every 386 train image from verified original pixels and saved final geometry. Preserved the correlated v0 descriptor attempt; refined image fields and retained spatial evidence.
+4. Checked leakage, objective reductions, gradients, rank guard, explicit spatial moments, native CPU continuation and exact inherited geometry.
+5. Wrote the mathematical/design/experiment/retention/operations/delivery documents,48-family schema and interactive existing-image explorer. Updated current records and Git ignore rules.
+6. Full trainer/writers/storage/two-T4/live-HF proofs and runnable notebooks remain separate next engineering work. No measured fit, new photos, local credentials, HF writes or workstation changes.
+<!-- END_TRACE_SESSION -->
+
+<!-- NB20_SESSION -->
+## 2 November 2026 — NB20 verified and documented
+
+1. Archived executed NB20 unchanged; matched all 19 payloads and three completed cells.
+2. Downloaded/verified both actual HF publications, released owners and unchanged manifests. Checked 48 comparable tables, exact vectors, original/native audit records and actual passport provenance.
+3. Quantified one-ULP cross-platform norm diagnostics and 4,020 FP64 original-weight norms. Parsed atlas and script are identical despite a seven-byte serialization difference.
+4. Added completion report, pinned research registry and proposed next-design brief. Completed sources and both workstations are preserved.
+5. No current-cycle rerun remains. A texture revision is proposed; no new training, photos or workstation changes started.
+<!-- END_NB20_SESSION -->
+
+<!-- NB17_BATCH_SESSION -->
+## 2 November2026 — NB17 verification and uninterrupted postrun batch
+
+1. Archived supplied executed NB17; distinguished its filename/output from the message's NB16 wording.
+2. Independently downloaded/verified pinned HF content without local credentials or remote writes; checked original earlier selecting manifests unchanged.
+3. Reconstructed all objectives, original validation criteria, raw native evidence, final masks and retained recovery state. Recorded geometry improvement and failed latent rank honestly.
+4. Built a separate saved-data runtime and NB18/NB19/NB20; one master runs both stages sequentially, caches once and publishes direct evidence.
+5. Checked actual-data outputs, notebook schema/fresh setup, completed-stage recovery, offline handoff/restore and interactive controls. Updated structured docs and Git ignores; both workstations/completed sources preserved.
+6. Next user action: Run All in NB20 on Kaggle CPU / None with existing prepared input, Internet and HF_TOKEN. No extra full fit/new photos; actual report publication pending.
+<!-- END_NB17_BATCH_SESSION -->
+
+
+<!-- NB17_DETAILS -->
+## NB16 verified; NB17 implemented — 1 November 2026
+
+User reported NB16 complete and requested HF verification, documentation and continuation. Preserved executed SHAea4f6784588f… with three complete cells/no errors and27 matching payload files. Pinned public audit at 9f991635… checked all 173 selected objects/174logical files, 24,341,191bytes, 60 CSV/42,217rows, 65 finiteNPY arrays, both complete-unit chains and32-case viewer behavior. Original context-fit/review/readiness manifests remain unchanged and owner released.96 scientific files match after actual two-T4/HF restore; independent raw-vector/target reconstruction agrees within FP32 tolerances. Diagnostic scalar warnings are not failed checks. The visible wait was conservative API-budget handling.
+
+Implemented the isolated NB17 runtime: every 40family emitter, 468typed fields, train-only mean/quality-median controls, G0 validation, all 60epoch weights, original eligibility/selection, same-source/component-excluded retrieval, selected/final all 570image endpoints, 10diagnostics and standalone interactive mask overlays. Corrected draft field types and added explicit loss denominators/provenance. Selected predictions retain their actual checkpoint epoch/update, distinct from final training counter. Utility uses original selected validation metrics plus training coverage. No classifier/depth/safety promotion is introduced.
+
+Added bounded CSV/raw native prefix transactions, 64-observation/8-update NPY sealing, two rotating full native states, source/env/history verification, local-ahead publication and fresh-session full HF restore. A stable registry binds one measured experiment. Single-owner transport has30-minute / major/stop flush, visible waits, actual-header80%API/resolver budgets and unchanged96/hour commit guard. Replay-safe request/publication IDs and native service acknowledgement prevent metadata duplication across sessions. Pinned logical files resolve through immutable manifests rather than assuming root-level paths.
+
+Disposable local tests cover full lifecycle, exact fresh-process model/moments/RNG/cursor and307 scientific shards, independent total-loss reconstruction, seal crash points, cross-session transport IDs, service replay and injected selected-export provenance. These are CPU/offline fixtures, not a measured model. Actual new live storage/hardlink/HF gate runs in NB17 before fitting. Built29-file self-contained notebook with three code cells under 1 MB; updated schema/run/protocol/acceptance docs and current trackers. No credentials read or remote write locally. All completed notebooks/runtime/workstations/original Markdown remain preserved.
+
+Next: user runs NB17 T4×2/Internet/expanded input/HF_TOKEN/RunAll. After execution, independently verify actual publication and create NB18's retained-evidence review. No NB16 rerun, new photographs or automatic additional candidate fit.
+<!-- END_NB17_DETAILS -->
+
+<!-- GEO_NB16_DETAILS -->
+## NB16 preparation implementation — 1 November 2026
+
+User approved the complete GEO plan and requested notebooks. Implemented the frozen-hook anchor, bounded zero-init geometry heads, detached original-equivalent atlas, four-channel local-contrast patch encoder, two axial blocks,64D VIC projector, masked-target decoder and experimental detached error head. Measured355,879 trainable /1,728,038 total parameters, split27,068 geometry /326,632 texture /2,179 error.
+
+Implemented exact existing-data overlay/component checks and a full-source coverage schedule; separate group clipping; loss numerator/count records; dense original-grid confusion reconstruction; finite engineering native/CSV complete-update persistence; owner-fenced HF transport copying; secret-free worker; visible30-second status;30-minute / major/stop flush; actual published-unit1 download/continuation design. Added individual tensor gradients, complete vectors/tokens/logits/masked targets/weights and view/support/provenance records. The live notebook creates a32-case interactive predicted-mask passport.
+
+Local full-model tests passed warm-start/atlas equality, gradient isolation, hidden-token/actual hidden-RGB leakage, independent covariance/Huber reconstruction, missing/ignored targets, human-only point quality, texture-skip moment/decay invariance, dense block counts, interrupted pointer states and FP32 CSV roundtrip. Direct four-update and restored paths match model/moments/counters/RNG/scientific records; a fresh process continues a verified offline snapshot identically. Local CPU proof is explicitly distinct from actual T4/HF proof. No credential lookup or remote write occurred.
+
+Built self-contained NB16 with27 embedded files/three code cells, under1MB; notebook schema and source payload checks pass. Clarified per-tile photometric contrast means before measured freeze, preventing a hidden-pixel shortcut. Preserved all completed runtime/catalog/notebook identities, both workstations and103 original Markdown records. The approved design snapshots remain historical; added six structured implementation/run/retention/validation documents and current trackers.
+
+Next user action is NB16 T4×2/Internet/expanded Kaggle input/HF_TOKEN/RunAll. Measured_fit_ready remains false until its actual receipt is independently verified and the full40-family shard/staging/validation pipeline is integrated. NB17/NB18 are not yet delivered; no measured fit or new photos.
+<!-- END_GEO_NB16_DETAILS -->
+
+<!-- GEO_PLAN_20261101 -->
+## Complete GEO planning requested and delivered — 1 November 2026
+
+After discussing remaining work, the user requested the geometry-first direction be planned completely. Read the current project instructions, ATLAS closure/readiness results, original TREAD-ONE architecture, NB05/NB06 gradient/dense failures, the exact frozen anchor/canonicalizer and NB07 annotation-support records. Consulted the original VICReg paper and official PyTorch2.11 grid-sampling/reproducibility and HF rate-limit documentation; sources and local hashes are retained.
+
+Designed TREAD-TWO / GEO: original selected r1 seed3/epoch20 anchor frozen, small zero-initialized bounded mask/raw-point refinements, detached predicted-support atlas, two-view local-contrast96Dtexture encoder/two axial blocks, masked tile reconstruction,64Dvariance/invariance/covariance projector, and three detached-target experimental annotation-error estimates. Parameter groups/gradient paths/clips are separate; no mileage-classification objective enters pilot1. Exact geometry/quality/texture reductions, source grouping, deterministic392draw full-coverage epoch, selection/failure rules and diagnostics are chosen in the plan.
+
+Created eight Markdown design documents and four machine-readable JSON records under the new plan folder/master entry point. Defined40draftCSVfamilies/443fields with proposed types/keys/cadences, full training raw tensor retention, uncompressed native shard/prefix semantics,60epoch weights and complete rolling recovery. Shape arithmetic covers29,520train/validation/endpoint source passes and59,040texture views before controls; adjusted logical estimate14.630GB and same-filesystem peak15.167GB remain provisional because CSV widths/real model writes are unmeasured. Ceilings15GBlogical/18GBpeak preserve2GBreserve within a20GBassumption. No1TBscratch dependence or silent mid-fit evidence reduction.
+
+Specified planned NB16 actual dual-T4 engineering/contract gate, one NB17 seed1/60epoch/2940update measured model, and conditional NB18 review. GPU1 owns frozen feature inference and barrier evaluation; GPU0 trains disjoint heads/texture. Planned HF cadence remains30min/major/catchable-stop with private SDK, immutable objects, owner fencing, visible server backoff and fresh-session restore. Exact model parameter count, actual T4 math/memory/runtime, native/CSV capacity and model outcomes are pending measured gates, not invented results.
+
+Updated current project trackers, decisions, evidence/inventory/map and marked older closure statements by scope. This task produced a design only: no model implementation, .ipynb delivery, optimizer step, image/model forward, dataset expansion, HF write or workstation change. Next engineering milestone is isolated runtime/data/store implementation and NB16. Existing photos, completed experiments/research index and both workstations remain preserved.
+<!-- END_GEO_PLAN_20261101 -->
+
+
+<!-- NB15_CLOSED_20261101 -->
+## NB15 verification and consolidated research handoff — 1 November 2026
+
+User reported NB15 complete and requested HF verification, Markdown updates and continuation. Preserved executed SHA `98837b907abc…`, all 40 matching source/metadata payloads and four completed code cells with no saved errors. The actual private HF SDK setup and publication completed successfully.
+
+Independent public audit at `f4b44d3d…` verified all 37 selected objects / 38 logical direct files, 58,797,180 bytes, all 16 CSVs / 196,905 rows, three PNG figures, actual interactive passport controls, SUMMARY.json and CAPABILITIES.json. All 1,502 original context-fit manifest entries and 79 context-review entries are unchanged at this revision; owner released. No credential reads or remote writes. Cross-environment numeric/text/schema/missingness comparisons are recorded in the receipt.
+
+Scientific readiness remains false as expected: low/mid/high conservative components 1/1/4 and two conditional holdouts missing a fit class. Original known tyres remain 1/3/4; unresolved mid co-assignment is a leakage constraint, not physical identity equivalence. The training-only correction utility finding is unchanged: prior already correct on all 47,040 sampled views; context rescues 0 prior errors, transiently spoils 44 and mainly increases confidence through spatial correction. All three candidates' historical low recall remains 0/62. No classification promotion or new physical wear/depth/safety claim.
+
+Implemented the next consolidation step as a local research release: three model cards, seven metadata CSVs / 134 rows, six original endpoint records, nine pinned verified publications, fourteen checkpoint/explorer/figure descriptors, comparison PNG and interactive evidence hub. Every consumed receipt/manifest/metric CSV hash and each generated artifact hash is retained. Original validation-selected epochs 18/7/7 are preserved; no model weights loaded or republished. NB08 cursor-declared row counts remain distinguished from later exhaustive raw-row and derived-table audits.
+
+Local acceptance checks all sources/artifacts/tables, native object SHA/size/URL descriptors, original selected epochs, model-card links, three model filters and fit/review/gate controls against actual HTML JavaScript. Comparison figure visually inspected; native browser rendering is not claimed. No further notebook is needed to close unchanged current studies. Underlying science is already on HF; the new index itself is local and not claimed uploaded. Added a narrow Git exception for its curated figure. Both workstations, all frozen fits/gates/reviews and existing source photos remain preserved. Application work remains deferred; no acquisition prerequisite or automatic fourth full classifier fit introduced.
+<!-- END_NB15_CLOSED_20261101 -->
+
+
+<!-- NB14_COMPLETED_20261101 -->
+## NB14 verification and existing-data readiness implementation — 1 November 2026
+
+User reported NB14 complete and requested HF verification, Markdown updates and continuation. Preserved executed SHA `356dc789…` and all 44 matching payloads. All four code cells completed without errors. The public-read audit at HF `10c2f16d…` verified 79 objects / 80 logical files, 217,059,186 bytes, 52 CSV tables / 585,825 rows, five PNGs, 1,854 interactive cases, 18 references and 206 full attention matrices. All scientific tables are byte-identical to independent local reconstruction; maximum numeric difference is 0. All 1,502 original fit manifest entries are unchanged; writer released. No local credential reads or remote writes.
+
+Implemented and ran the isolated existing-data readiness and algebraic online utility analysis. Six pinned NB14/NB07 inputs total 70,218,229 bytes. Only 386 training images and 47,040 training-view observations enter numeric calculations. Known original tyres are 1/3/4; conservative components are 1/1/4. Six conditional holdouts are enumerated without fitting: low and mid folds each remove an entire fit class. Unresolved mid co-assignment is a constraint, not physical identity equivalence. Frozen 18-reference bank support is counted after complete component/source-SHA exclusion; unsupported normalization stays blank.
+
+Four algebraic variants produce 188,160 rows. Frozen LC is already argmax-correct on all 47,040 saved training views; full context rescues 0 and transiently spoils 44 prior-correct view observations. Epoch 60 uses the same 784 views / 214 images: prior NLL 0.636877 versus full 0.031365; bias-only 0.636948 and spatial-only 0.031380. This describes confidence/loss fitting on known images, not unseen-tyre transfer or independently trained ablations. Research-only status retained; no fourth full classifier fit triggered.
+
+Delivered NB15 for CPU / Internet / HF_TOKEN / no image attachment, with a 40-file package and private HF SDK publication directory. Sixteen CSVs / 196,905 rows, three figures, an interactive passport and CAPABILITIES.json are retained. Actual-data tests cover hashes, schemas and support; perturbing all held-out numeric predictions/corrections and registry labels leaves scientific outputs byte-identical; a training SHA mismatch is rejected. Actual setup cell, fresh extracted science, viewer JavaScript and offline publication lost-response/owner-release/idempotence checks pass. Actual NB15 Kaggle/HF completion remains pending. Added narrow Git ignores for cache, fixtures and the heavy counterfactual table; source, summaries and figures stay visible. No additional photos, fitting, inference, checkpoint reselection or workstation changes.
+<!-- END_NB14_COMPLETED_20261101 -->
+
+
+<!-- NB13_COMPLETED_20261101 -->
+## NB13A completed verification and next review — 1 November 2026
+
+User reported NB13A complete and requested HF verification, documentation and continuation. Preserved supplied executed notebook SHA `8bdf46ec…`, both complete code cells and all 35 matching payload entries. Public-read pinned audit at `a4441884…` verified all 1,502 manifest objects (5,645,673,072 bytes), all 27 raw CSV schemas/counts (58,176,066 rows), 3,913 history units and 45,852 CSV chunks. Native final/full order/cursors finite; all 60 epoch identities and original selected LC prior bit equality checked. All updates 0–2,940 retained, original partial-history prefix cryptographically linked, owner released.
+
+Actual executed bootstrap restored newer HF update 2,486, then completed the original experiment at 2,940. Earlier update 1,294 remains historical partial evidence; no current loss/replay count is inferred from it. Actual dual-T4/live-HF gate reused. Exact earlier freeze cause still unproven.
+
+Independent saved-science analysis consumed 876 cached inputs without network refetch, zero forwards or training: 52 derived CSVs / 585,825 rows. Validation selects epoch7/update343 (BA50%, NLL1.734916); unchanged LC prior validation BA56.25%, NLL0.934841. Historical selected/final BA50%, low0/62 high41/41, NLL2.174813/2.358475. Context reinforces low→mid confidence; candidate remains unpromoted. Frozen geometry retained, no new dense improvements claimed. Full correction/attention/layout/pair/self-exclusion accounting and limitations documented.
+
+Implemented five separate review modules and four pinned peer assets; 44-file self-contained CPU NB14. Added direct 52-table publication, five figures, 1,854-case interactive base/context/combined evidence, 206 full endpoint attention cases with explicit missing probe/training matrices. Actual table hashes/counts/residuals, cache corruption/range handling, viewer JS controls, offline additive publication/lost-response/idempotence/owner release, and fresh extracted notebook science reproduction pass. This local evidence is distinct from pending actual NB14 Kaggle/HF completion.
+
+Updated current project trackers, decision/evidence/inventory/map, repair/protocol/architecture outcome notices and detailed completion/review/run guides. Expanded narrow Git ignores for heavy context review rows/attention and acceptance fixtures; compact summaries/source/curated figures remain visible. No local credential reads, remote writes, fitting, additional photos or workstation changes. Next: NB14 CPU, Internet/HF_TOKEN,  no data attachment, Run All; return executed notebook for independent review publication audit.
+<!-- END_NB13_COMPLETED_20261101 -->
+
+
 ## Git preparation — 30 October 2026
 
 Updated root/Phase 3 ignore rules before the user's repository push. Excluded
@@ -18,7 +196,7 @@ Git-visible working files decreased from about 4.21 GB to 116 MB.
 [ignore/retention checks](audit/GIT_IGNORE_POLICY_CHECK.json).
 
 <!-- NB11_COMPLETE_UPDATE_20261030 -->
-## Current — NB11 complete; NB12 review ready
+## Historical — NB11 complete; NB12 review ready
 
 **30 October 2026. NB11 is complete and independently HF-verified:** 60 epochs / 2,940 updates, 1,351 direct files and 54,336,368 raw scientific rows. The actual T4×2/live-HF preflight passed; ownership is released. No NB11 rerun is needed. [Full completion and findings](phase3NB11Completion.md).
 
@@ -28,7 +206,7 @@ Next: [NB12 saved-evidence review](notebooks/phase3_NB12_TREAD_TWO_ATLAS_LC_Comp
 
 <!-- END_NB11_COMPLETE_UPDATE -->
 <!-- NB10_LC_UPDATE_20261030 -->
-## Latest status — NB10 closed; NB11 ready, 30 October2026
+## Historical — NB10 closed; NB11 ready, 30 October2026
 
 Completed this user-requested follow-up: archived/inspected executed NB10; verified all public pinned HF objects,raw CSV counts,native training roles/hashes and released owner; froze NB10 references for a new model; implemented r2 LC/source-exclusion/paired-loss/sampler/telemetry/recovery; passed local actual batch8/fault/restore/package checks; wrote structured diagrams/tables/schema/figures. No remote writes from local work,no new photos,no workstation changes.
 
@@ -97,7 +275,7 @@ Next is [NB11 / ATLAS-LC r2](notebooks/phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_
 
 **User correction/policy:** added `phase3DataRetentionPolicy.md` and superseding instructions: never HF ZIP bundles; directly browsable CSV, JSON contracts/manifests and native tensor state; much richer predeclared future telemetry and coverage checks. Original archives/delivery are preserved as history. No new training/weights/code/labels/app or paper change is made.
 
-**Publication:** prepared one additive direct-file commit, schema/manifest and a new CPU-only `phase3_NB02_Audit_And_Direct_CSV.ipynb`. It uses authorized Kaggle HF_TOKEN, no dependency downgrade, no training and no ZIP upload. Local standard Hub credential lookup returned none. Automatic approval review rejected a proposed project `.env` credential fallback because it was not explicitly authorized; the rejected patch was not applied, no `.env` credential was read, and no bypass was attempted. Local CSV recovery is complete; actual new HF publication remains pending NB02 execution.
+**Publication:** prepared one additive direct-file commit, schema/manifest and a new CPU-only `phase3_NB02_Audit_And_Direct_CSV.ipynb`. It uses authorized Kaggle HF_TOKEN,  no dependency downgrade, no training and no ZIP upload. Local standard Hub credential lookup returned none. Automatic approval review rejected a proposed project `.env` credential fallback because it was not explicitly authorized; the rejected patch was not applied, no `.env` credential was read, and no bypass was attempted. Local CSV recovery is complete; actual new HF publication remains pending NB02 execution.
 
 **Next:** publish direct CSV, diagnose the classifier using existing selected/final checkpoints, freeze the richer direct-file logger/publisher, then choose one controlled model revision from the diagnosis. Keep current workstation models; wider generalization requires independent tyre evidence.
 
@@ -606,7 +784,7 @@ Run identity `a0df0c048f177fddd64622f648a214d56f621584f0ec13900297abc75f432263`;
 `aabf20e532daeaa8d349fd5ac66be5bd1d9ee2d2f739ca30f994becda5b85220`; prepared publication contract
 `6f5306b473bd29f59de4184362ddc08e1acf38d9e3364afc6632bffe53ce8522`. Figures/CSV preview visually inspected; HTML syntax
 and 570 embedded previews checked. [Technical/run guide](phase3NB07DataGate.md).
-Next user action: Kaggle NB07 CPU/Internet/prepared input/HF_TOKEN, Run All; later
+Next user action: Kaggle NB07 CPU/Internet/prepared input/HF_TOKEN,  Run All; later
 actual independent intake and full prospective protocol before another fit.
 
 ## 29 October 2026 — verify executed NB07 and prepare actual capture review
@@ -1027,3 +1205,33 @@ Python used cv_conda; the Kaggle input remains direct/read-only. Next: user runs
 NB10, then independently audit its execution/new namespace before a separately
 frozen model revision. [NB09 completion](phase3NB09Completion.md),
 [gate findings](phase3TreadTwoAppearanceGate.md).
+
+<!-- NB12_R3_SESSION -->
+## 30 October 2026 — NB12 independently verified; NB13 implemented
+
+User reported completed NB12 and authorized verification/documentation/next work. Archived executed notebook 036132254087… without regeneration; all four code cells and 39 payload files pass. Public HF revision 77d03303… contains 63 direct files, 40 CSVs/380,595 rows, four figures and 1,442 cases. Verified every payload byte/size/SHA and exact retained-precision tables; original NB11 1,350 manifest entries unchanged, owner released. No local credentials or remote writes.
+
+Review interpretation: stable appearance probes, better selected NLL/Brier, worse ECE and unchanged low→mid endpoint failures. No promotion. Train-only structural check used eight known tyres, 24 cached head calls/16 permutations and zero optimizer/held-out/dense forwards; confirms pooling order invariance only.
+
+Implemented isolated context r3 from selected LC epoch7: frozen full prior; warm-start trainable patch encoder; fixed 2D positions/coverage; two 96D four-head attention blocks; zero-initialized bounded spatial/global correction. One new seed/60epoch budget; same existing dataset/sampler/recovery/transport. Added three CSV families, 53,754 planned observations, full selected/final attention and every-observation summaries/corrections. All 27 CSV families and exact native state pass real four-update interruption/recovery checks. CSV-only audit reconstructs 312 logits,32 paired losses and32,768 attention entries; extracted notebook one-update comparison passes. Storage planning peak14.37GB; actual Kaggle guard remains required.
+
+Delivered NB13 and six substantive Markdown documents with diagrams, full tables, exact pins, findings/visuals, schema/gaps, runtime ownership and run/resume/troubleshooting. Updated central indexes, decisions, retention, environment/scope context and Git policy. Existing photos only; both workstations, completed source packages/executed notebooks and original documentation baselines preserved. Local math/disposable engineering updates are not a measured context run. Actual T4×2/live-HF/60epoch metrics pending; next action is unchanged NB13 Run All on Kaggle, then pinned publication audit.
+<!-- END_NB12_R3_SESSION -->
+
+<!-- NB13_RECOVERY_LOG -->
+## 31 October 2026 — NB13 partial/HF check and recovery
+
+User reported apparent freezing; confirmed execution stopped with session/files retained. Archived supplied NB13 e0c714be…; all33payloadfiles match unchanged32source entries. No notebook exception, last displayed local update2467/2940, last displaycellunexecuted. Public pinnedHF head2d148d… holds798object partialmanifest. Downloaded and size/SHA-verified15diagnostic/native/control objects (11,973,539bytes); native checkpoint1294/2940, epoch27cursor20, model/optimizerfinite, sourceprotocol36f473b0… matches. Actual T4×2/live-HF preflightpassed; owner expired11:33IST, no clean release. This is not a full798object/rawrow audit. No local credentials or remote writes.
+
+Confirmed orchestration visibility gaps; precise stop causeunknown without retained Kagglelogs. Implemented externalNB13recovery with exactsource/contract guards, verifiedlocal-prefix restore avoiding redundantold snapshotdownload, aheadlocalflushbeforefit,15secondphaseheartbeat,180secondstackcapture and timeoutsonlyotherwiseunboundedHTTP sends. Ratebudgets/backoff/CASscientificstateunchanged. PackagedNB13A two-code-cell existing-session companion; do not reset or replace original execution. Offline prefix/flush/divergence/byte-preservation/provenance/status/timeout/owned-process checks pass; actualKagglerecoverypending. UpdatedcurrentMarkdownstatus/evidence/inventory/retention/protocol guides, with diagramandtables. No new fitting, photos or workstation changes.
+<!-- END_NB13_RECOVERY_LOG -->
+
+<!-- NB13A_R2_RECORD -->
+## 31 October 2026 — NB13A unavailable-workdir error repaired
+
+User supplied executed NB13A with two AssertionErrors: expected local run pointer is unavailable in that execution. Archived the complete notebook b5a4dd68…, old launcher/generator and original delivery/check receipts. Both guards fired before recovery, Secret retrieval, fitting or publication. The error does not identify a defect in the deep-learning model or prove the older files no longer exist elsewhere.
+
+Built standalone revision 2 under the same filename: embeds 33 unchanged runtime/inventory payload files, external launcher and original measured contract. Reconstructs Kaggle paths and exact upstream weights, enforces the saved environment/data/source protocol, discovers compatible attached output, preserves unanchored partial files, reuses the verified HF gate and performs full remote restore when local state is absent. Missing remote state still refuses a fresh fit; no new namespace, model, seed or scientific schema is introduced. Fresh public head check confirms the original partial HF checkpoint remains at update 1,294; local output 2,467 is only recoverable from retained/saved files.
+
+Eighteen offline checks pass, including real native/CSV transfer through the in-memory immutable service and negative integrity/environment cases. The actual notebook setup cell executes successfully in an empty fixture directory, repeats idempotently, recognizes retained pointer metadata and rejects altered source without overwrite. No local model forwards, optimizer updates or remote writes. Updated current documentation with tables, flow diagram, precise run settings, recovery boundaries and actual-execution caveats. Next is revised NB13A Run All on Kaggle; actual recovery and final fit completion remain pending.
+<!-- END_NB13A_R2_RECORD -->

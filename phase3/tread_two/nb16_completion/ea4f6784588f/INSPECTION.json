@@ -1,0 +1,42 @@
+{
+  "executed_notebook_sha256": "ea4f6784588f41611b632b705291481973c5c4daa12ae33a2f670221a89e066a",
+  "bytes": 759354,
+  "embedded_files": 27,
+  "all_payload_hashes_match": true,
+  "cells": [
+    {
+      "index": 1,
+      "execution_count": 1,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "Collecting huggingface_hub==0.36.2\n  Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)\nDownloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 566.4/566.4 kB 6.6 MB/s  0:00:00\nInstalling collected packages: huggingface_hub\nSuccessfully installed huggingface_hub-0.36.2\nVerified 27 embedded source/config files. Private HF SDK 0.36.2\n"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "execution_count": 2,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "Downloading the pinned 5.5 MB anchor; photos remain on Kaggle input.\nNB16 alive: {\"stage\": \"source verification / initialization\"} \u2014 next complete boundary is protected.\nVerifying every prepared data checksum and historical annotation role...\nNB16 alive: {\"stage\": \"source verification / initialization\"} \u2014 next complete boundary is protected.\n/kaggle/working/geo_source_9bbb92ec75db/checks_geo.py:36: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  assert np.isclose(float(terms['masked_numerator']), numerator, rtol=1e-5)\nEngineering direct: update 1/4, frozen features then backward / CSV / native commit\nEngineering direct: update 2/4, frozen features then backward / CSV / native commit\nEngineering direct: update 3/4, frozen features then backward / CSV / native commit\nEngineering direct: update 4/4, frozen features then backward / CSV / native commit\nEngineering resumed: update 1/4, frozen features then backward / CSV / native commit\nEngineering resumed: update 2/4, frozen features then backward / CSV / native commit\nEngineering resumed: update 3/4, frozen features then backward / CSV / native commit\nEngineering resumed: update 4/4, frozen features then backward / CSV / native commit\nHF: publishing direct engineering CSV/native files; server waits remain visible.\n"
+        },
+        {
+          "type": "stream",
+          "text": "HF api budget/backoff: waiting 212.4 seconds; saved progress is retained.\nHF api budget/backoff: waiting 182.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 152.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 122.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 92.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 62.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 32.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 2.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.2 seconds; saved progress is retained.\nHF api budget/backoff: waiting 21.9 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.1 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.0 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.5 seconds; saved progress is retained.\nHF api budget/backoff: waiting 1.7 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.3 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.0 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.7 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.4 seconds; saved progress is retained.\nHF api budget/backoff: waiting 0.3 seconds; saved progress is retained.\nNB16 alive: {\"fixture_contract\": \"7e33890c708287fae8b95cab0c3184fb8936b1dbadfa09d7eb2c1cc4b81ced98\", \"immutable_snapshot\": \"checkpoints/resumed_0004\", \"stage\": \"resumed\", \"update\": 4} \u2014 next complete boundary is protected.\nActual HF-restored continuation update 2/4\n/kaggle/working/geo_source_9bbb92ec75db/engineering_geo.py:116: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)\n  rows['quality_errors'] = [dict(update=update, slot=i, output=j, prediction=float(out['quality'][i,j]),\nActual HF-restored continuation update 3/4\nActual HF-restored continuation update 4/4\nHF: publishing direct engineering CSV/native files; server waits remain visible.\n{\n  \"status\": \"engineering_gate_passed\",\n  \"actual_dual_T4\": true,\n  \"actual_HF_restore_continue\": true,\n  \"protocol\": \"c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979\",\n  \"measured_fit_started\": false,\n  \"measured_fit_ready\": false,\n  \"next\": \"Independent NB16 receipt review, finish 40-family fit/shard integration and freeze NB17\",\n  \"scope\": \"Preparation only; no 60-epoch fit or scientific improvement claim\",\n  \"publication\": {\n    \"status\": \"published_and_verified\",\n    \"revision\": \"9f991635f1d333e4e48eb6f932a9c704ca5eeb39\",\n    \"destination\": \"phase3/tread-two/geo-r1/engineering/c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979\",\n    \"files\": 174,\n    \"uploaded_objects\": 3,\n    \"zip_uploads\": 0,\n    \"owner_released\": true\n  }\n}\n"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "execution_count": 3,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "{\n  \"actual_HF_restore_continue\": true,\n  \"actual_dual_T4\": true,\n  \"measured_fit_ready\": false,\n  \"measured_fit_started\": false,\n  \"next\": \"Independent NB16 receipt review, finish 40-family fit/shard integration and freeze NB17\",\n  \"protocol\": \"c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979\",\n  \"publication\": {\n    \"destination\": \"phase3/tread-two/geo-r1/engineering/c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979\",\n    \"files\": 174,\n    \"owner_released\": true,\n    \"revision\": \"9f991635f1d333e4e48eb6f932a9c704ca5eeb39\",\n    \"status\": \"published_and_verified\",\n    \"uploaded_objects\": 3,\n    \"zip_uploads\": 0\n  },\n  \"scope\": \"Preparation only; no 60-epoch fit or scientific improvement claim\",\n  \"status\": \"engineering_gate_passed\"\n}\n"
+        }
+      ]
+    }
+  ]
+}

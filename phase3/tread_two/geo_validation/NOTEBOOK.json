@@ -1,0 +1,10 @@
+{
+  "status": "built_unexecuted",
+  "notebook": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\notebooks\\phase3_NB17_TREAD_TWO_GEO_Resumable_Pilot.ipynb",
+  "sha256": "529f9bbd5b9a2cf0213d2a656a652d10d14fd9473a0ca51e75f13e4610b1bb4c",
+  "bytes": 772542,
+  "package_sha256": "0d6c4dbca386a03221cdae68d111890d3cc5cd24692d480b7b831a931e1192be",
+  "embedded_files": 29,
+  "source_inventory_sha256": "69c02f8f4aec4cef53eff70bd0c29d93c84e8df0a7c6de52de513d465d19891e",
+  "measured_run_not_performed_locally": true
+}

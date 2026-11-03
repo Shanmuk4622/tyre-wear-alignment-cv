@@ -1,0 +1,414 @@
+{
+  "status": "passed",
+  "executed_notebook_sha256": "356dc7893cc5bfe67368fae758962cd6759afe6f9aa5eecc9d2b5be7d3679c63",
+  "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+  "contract": "793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+  "prefix": "phase3/tread-two/atlas-context-r3/review/793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+  "files": 80,
+  "objects_verified": 79,
+  "bytes_verified": 217059186,
+  "all44_payload_files_match": true,
+  "code_cells_completed": 4,
+  "notebook_errors": 0,
+  "owner_released": true,
+  "CSV_tables": 52,
+  "CSV_rows": 585825,
+  "table_comparisons": [
+    {
+      "table": "prediction_audit",
+      "rows": 53754,
+      "numeric_columns": 41,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "cohort_metrics",
+      "rows": 260,
+      "numeric_columns": 12,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "class_metrics",
+      "rows": 594,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "confusion",
+      "rows": 1782,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "selection_audit",
+      "rows": 60,
+      "numeric_columns": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_tyre_metrics",
+      "rows": 36,
+      "numeric_columns": 12,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "probe_pairs",
+      "rows": 1648,
+      "numeric_columns": 17,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "probe_summary",
+      "rows": 16,
+      "numeric_columns": 5,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "query_exposure",
+      "rows": 386,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "sampling_groups",
+      "rows": 11,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "source_registry",
+      "rows": 570,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "gradient_parameters",
+      "rows": 49,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "optimizer_epochs",
+      "rows": 60,
+      "numeric_columns": 10,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "context_observations",
+      "rows": 53754,
+      "numeric_columns": 41,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "context_epochs",
+      "rows": 124,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "context_by_variant",
+      "rows": 44,
+      "numeric_columns": 9,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_context_evidence",
+      "rows": 59328,
+      "numeric_columns": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "frozen_LC_prior_metrics",
+      "rows": 198,
+      "numeric_columns": 12,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "base_context_pairs",
+      "rows": 1854,
+      "numeric_columns": 41,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "layout_prior_context_delta",
+      "rows": 412,
+      "numeric_columns": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "attention_head_audit",
+      "rows": 1648,
+      "numeric_columns": 9,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "attention_by_endpoint",
+      "rows": 16,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "frozen_prior_peer_check",
+      "rows": 206,
+      "numeric_columns": 2,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "LC_context_comparison",
+      "rows": 18,
+      "numeric_columns": 17,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "pooled_reference_affinities",
+      "rows": 33372,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_patch_accounting",
+      "rows": 1854,
+      "numeric_columns": 2,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "reference_contributions",
+      "rows": 100116,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "logit_reconstruction",
+      "rows": 5562,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_coefficients",
+      "rows": 108,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "bank_embedding_cosines",
+      "rows": 648,
+      "numeric_columns": 5,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "patch_concentration",
+      "rows": 1854,
+      "numeric_columns": 10,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_patch_evidence",
+      "rows": 177984,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_patch_support",
+      "rows": 59328,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "nearest_reference",
+      "rows": 1854,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "reference_class_affinities",
+      "rows": 108,
+      "numeric_columns": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "occlusion_selection_check",
+      "rows": 206,
+      "numeric_columns": 19,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "dense_region_by_role",
+      "rows": 6,
+      "numeric_columns": 5,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "dense_points_by_role",
+      "rows": 7,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "endpoint_calibration",
+      "rows": 20,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "confidence_risk",
+      "rows": 42,
+      "numeric_columns": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "paired_loss_audit",
+      "rows": 23520,
+      "numeric_columns": 17,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "paired_epoch_metrics",
+      "rows": 60,
+      "numeric_columns": 9,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "paired_class_metrics",
+      "rows": 180,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "paired_patch_metrics",
+      "rows": 32,
+      "numeric_columns": 5,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "appearance_factor_epochs",
+      "rows": 120,
+      "numeric_columns": 11,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "reference_permission_summary",
+      "rows": 33,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "query_draw_exposure",
+      "rows": 386,
+      "numeric_columns": 8,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "source_group_draws",
+      "rows": 11,
+      "numeric_columns": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "resource_epochs",
+      "rows": 60,
+      "numeric_columns": 7,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "v1_r3_comparison",
+      "rows": 18,
+      "numeric_columns": 17,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "input_inventory",
+      "rows": 876,
+      "numeric_columns": 1,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "table_dictionary",
+      "rows": 632,
+      "numeric_columns": 0,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    }
+  ],
+  "figures_verified": 5,
+  "interactive_cases": 1854,
+  "reference_cases": 18,
+  "full_attention_cases": 206,
+  "viewer": {
+    "status": "passed",
+    "case_records": 1854,
+    "reference_cases": 18,
+    "full_attention_cases": 206,
+    "controls": [
+      "paging",
+      "eight probes",
+      "flip/wrong/target/search",
+      "base/context/combined",
+      "explained class",
+      "layer/head",
+      "attention missingness"
+    ],
+    "native_browser_render": false
+  },
+  "original_fit_manifest_all1502_entries_unchanged": true,
+  "new_model_forwards": 0,
+  "new_training_updates": 0,
+  "new_independent_tyres": 0,
+  "environment": {
+    "python": "3.13.15",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3"
+  },
+  "local_credentials_read": false,
+  "remote_writes": 0,
+  "public_read_requests_this_invocation": 280
+}

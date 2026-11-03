@@ -1,0 +1,130 @@
+{
+  "acceptance.py": {
+    "bytes": 8203,
+    "sha256": "5b8ff9b4c1fc7f421aaa9a435dd7cecee7c53303ad2bee88e6106450d45b046a"
+  },
+  "assets/bank_labels.npy": {
+    "bytes": 272,
+    "sha256": "c966cf056e89dc946e04f149dbc2932c74c15d5362e2a98c64903e32b3d3379a"
+  },
+  "assets/bank_rgb.npy": {
+    "bytes": 884864,
+    "sha256": "8e5fa3c8b7a3006a72919bb257cddde77fbc8b01cd60db4eff788d47948173a7"
+  },
+  "assets/bank_sha256.npy": {
+    "bytes": 704,
+    "sha256": "4ca034fa26f2a1f81d6ed68a7de92c90b6380cbc1dc7d9675c3d55d4ef2df2fb"
+  },
+  "assets/bank_valid.npy": {
+    "bytes": 295040,
+    "sha256": "aa08eb8062a0107e48198fe64798e4b4fa6e07c074b173ff34385e38874a36dd"
+  },
+  "assets/prototype_bank.csv": {
+    "bytes": 5257,
+    "sha256": "54b8afedef9323580b480893f1d193a80697b9ba122bf03c91476da47557306b"
+  },
+  "assets/sampling_plan.csv": {
+    "bytes": 45624,
+    "sha256": "e24fc11eecc3d7dfbe5981e316db58663d41accb4293511265c2944b7fcaf6f1"
+  },
+  "BASE_INPUT.json": {
+    "bytes": 627,
+    "sha256": "e2e5c707b07e04d3c1dfc421f4bc6a6a2e463ab1f44d4b1a1082180acad866e7"
+  },
+  "common.py": {
+    "bytes": 5116,
+    "sha256": "922c82b82635313ce61ecc2992990f5bc0b7f3cb1d6c8fca00527de72a34a206"
+  },
+  "coordinator.py": {
+    "bytes": 18721,
+    "sha256": "1c71142aa275d69ef68b7139ba143e5805c320cac56e4232a476a970560daec2"
+  },
+  "data_atlas.py": {
+    "bytes": 5013,
+    "sha256": "f5d338291d104eee7774b913d2b99aa12bfc19ba65be4a69cc08e5945f78ddb7"
+  },
+  "evidence_hub.py": {
+    "bytes": 8288,
+    "sha256": "03da70c79b10cfaf307bd29c81f90747d45440c7eb7e2a0d19f1feef980c7b9f"
+  },
+  "frozen_anchor.py": {
+    "bytes": 8502,
+    "sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09"
+  },
+  "frozen_lc.py": {
+    "bytes": 8698,
+    "sha256": "6ffa1977160e534dedc68e84efab2585089d9380065bb4626590e831324f19cf"
+  },
+  "geometry.py": {
+    "bytes": 2338,
+    "sha256": "04a8151f666c96ab7482c1aa48c2a2ea7e15d34db09893be3a7ad31e507d366a"
+  },
+  "lc_features.py": {
+    "bytes": 1276,
+    "sha256": "d417e552b910836d8df2734bb5423f7dcee7956f485b02046739ad1bef5741d6"
+  },
+  "LC_RULES.json": {
+    "bytes": 1893,
+    "sha256": "f1404aea24a83a42bfbd7239f098101f4bea66216a08eabf5e16bfe2a99d900b"
+  },
+  "legacy_data.py": {
+    "bytes": 2865,
+    "sha256": "a15bed0e2574980c2a2339a8a900613cc9292c6342d2ee5e16e1f5a0569955ae"
+  },
+  "model_atlas.py": {
+    "bytes": 5266,
+    "sha256": "d7ac9a349886a6d97167baa4ffb69e49c37d2528504a1316d9e4d88dd0b46c3b"
+  },
+  "objective.py": {
+    "bytes": 898,
+    "sha256": "730ecbc5575e5b1cecbdbdd08063567834ac32685fcea1ef2448153a9e11a795"
+  },
+  "phase2_training_data.py": {
+    "bytes": 7154,
+    "sha256": "60f9754078949ecac5704b73ef9307b7b95c2cc8acc1a20df2f345d08d7e2579"
+  },
+  "publisher.py": {
+    "bytes": 6089,
+    "sha256": "0ea77d5584a3903b01fdf7466daa95eb7be1021b4e70ac76a6706531a3d56364"
+  },
+  "rate_budget.py": {
+    "bytes": 7344,
+    "sha256": "55a8df1ee9fb498266858514d654c89ddd5276d7f8e4dd7bb96baa57277e5238"
+  },
+  "RECIPE.json": {
+    "bytes": 2725,
+    "sha256": "c20fbf5d46bb566764b41f39c6a65c9c023b4d5398daa1b4dd1679eb0406be24"
+  },
+  "report.py": {
+    "bytes": 10974,
+    "sha256": "9bd724d489ab5e637f60b196d8a253ddc046bf0dc3170130526c277f2be327b4"
+  },
+  "schemas.py": {
+    "bytes": 6244,
+    "sha256": "d218a6ab08582f60b7c5e8d50838aaf23635a4801179e0d702e638e162199333"
+  },
+  "spec.py": {
+    "bytes": 1937,
+    "sha256": "665f1f3d82ff4e82667561b7ade000b885fc4b3f862c6c1c351dd6b6f1d8513a"
+  },
+  "store.py": {
+    "bytes": 13905,
+    "sha256": "8c6f912ce9d1875cc4d4f541ff611a84ff09c16d4f53ff945063ef0bd89eb0d4"
+  },
+  "telemetry.py": {
+    "bytes": 17507,
+    "sha256": "a198a08e8ecaa0fa9aa95600ddb2ef3a5eeda6763b32390102701405c7125b62"
+  },
+  "UPSTREAM.json": {
+    "bytes": 1947,
+    "sha256": "3dcbab459cae40428ddb05388528ad11f8fe4086a623baaeca767609a0ed6fb7"
+  },
+  "VENDORED.json": {
+    "bytes": 1434,
+    "sha256": "a114fb5b17e04a45a065bab3edea05fc06d5a1c503f18fcf7e4016b1de6d8134"
+  },
+  "worker.py": {
+    "bytes": 29560,
+    "sha256": "0213ce899b3eef191c6488729218cfa19e110101e18385a9314146c83ceae02c"
+  }
+}

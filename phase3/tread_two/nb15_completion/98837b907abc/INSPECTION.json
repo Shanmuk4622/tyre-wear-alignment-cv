@@ -1,0 +1,56 @@
+{
+  "executed_notebook_sha256": "98837b907abc332fd2eaf745b578656f1c70df594ede28e13c02ca678b43aa07",
+  "bytes": 2764971,
+  "embedded_files": 40,
+  "all_payload_hashes_match": true,
+  "cells": [
+    {
+      "index": 1,
+      "execution_count": 1,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "Pinned existing-data gate ready; no training or image/model inference.\n"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "execution_count": 2,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "{\n  \"status\": \"passed\",\n  \"scientific_readiness\": false,\n  \"classifier_status\": \"research_only_unpromoted\",\n  \"next_full_classification_fit_authorized_by_gate\": false,\n  \"training_images\": 386,\n  \"known_training_original_tyres\": 8,\n  \"training_conservative_components\": 6,\n  \"class_support\": [\n    {\n      \"class_index\": 0,\n      \"class_name\": \"low\",\n      \"images\": 67,\n      \"original_images\": 67,\n      \"video_frames\": 0,\n      \"known_original_tyres\": 1,\n      \"conservative_components\": 1,\n      \"source_groups\": 1\n    },\n    {\n      \"class_index\": 1,\n      \"class_name\": \"mid\",\n      \"images\": 249,\n      \"original_images\": 97,\n      \"video_frames\": 152,\n      \"known_original_tyres\": 3,\n      \"conservative_components\": 1,\n      \"source_groups\": 6\n    },\n    {\n      \"class_index\": 2,\n      \"class_name\": \"high\",\n      \"images\": 70,\n      \"original_images\": 70,\n      \"video_frames\": 0,\n      \"known_original_tyres\": 4,\n      \"conservative_components\": 4,\n      \"source_groups\": 4\n    }\n  ],\n  \"conditional_folds\": 6,\n  \"folds_missing_fit_class\": 2,\n  \"online_view_observations\": 47040,\n  \"counterfactual_rows\": 188160,\n  \"new_model_forwards\": 0,\n  \"optimizer_updates\": 0,\n  \"new_independent_tyres\": 0,\n  \"heldout_prediction_rows_used\": 0,\n  \"limitation\": \"Frozen LC prior was selected historically using validation. Training-only here describes rows analyzed, not an untouched pipeline or independent generalization experiment.\",\n  \"counterfactual_scope\": \"Algebraic parts of saved changing online model states on identical paired views; no independently trained ablations, no component-held-out model fit, no new checkpoint selection.\",\n  \"coassignment_scope\": \"Unresolved mid video-parent component is a conservative leakage constraint, not proof that three known mid tyres are the same tyre.\"\n}\n"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "execution_count": 3,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "Collecting huggingface_hub==0.36.2\n  Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)\nDownloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 566.4/566.4 kB 5.1 MB/s  0:00:00\nInstalling collected packages: huggingface_hub\nSuccessfully installed huggingface_hub-0.36.2\n"
+        },
+        {
+          "type": "stream",
+          "text": "Processing Files (0 / 0)      : |          |  0.00B /  0.00B            \nNew Data Upload               : |          |  0.00B /  0.00B            \u001b[A\n\n  .../utility_by_component.png:   4%|\u258d         | 4.51kB /  107kB            \u001b[A\u001b[A\n\n\n  ...ures/correction_parts.png:   4%|\u258d         | 4.68kB /  111kB            \u001b[A\u001b[A\u001b[A\n\n\n\n  ...onent_counterfactuals.csv:   4%|\u258d         | 2.41MB / 57.0MB            \u001b[A\u001b[A\u001b[A\u001b[A\n\n\n\n\n  ...s/independent_support.png:   4%|\u258d         | 3.64kB / 86.2kB            \u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\n\n  .../utility_by_component.png:   4%|\u258d         | 4.51kB /  107kB            \u001b[A\u001b[A\n\n\n  ...ures/correction_parts.png:   4%|\u258d         | 4.68kB /  111kB            \u001b[A\u001b[A\u001b[A\n\n\n\n  ...onent_counterfactuals.csv:   4%|\u258d         | 2.41MB / 57.0MB            \u001b[A\u001b[A\u001b[A\u001b[A\n\n\n\n\nProcessing Files (0 / 4)      :   4%|\u258d         | 2.42MB / 57.3MB,  237kB/s  \u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\nNew Data Upload               :   4%|\u258d         | 2.42MB / 57.3MB,  237kB/s  \u001b[A\n\n  .../utility_by_component.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589|  107kB /  107kB            \u001b[A\u001b[A\n\n\n  ...ures/correction_parts.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589|  111kB /  111kB            \u001b[A\u001b[A\u001b[A\n\n\n\n  ...onent_counterfactuals.csv: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 57.0MB / 57.0MB            \u001b[A\u001b[A\u001b[A\u001b[A\n\n\n\n\nProcessing Files (0 / 4)      : 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 57.3MB / 57.3MB, 5.56MB/s  \u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\nNew Data Upload               : 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 57.3MB / 57.3MB, 5.56MB/s  \u001b[A\n\n  .../utility_by_component.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588|  107kB /  107kB            \u001b[A\u001b[A\n\n\n  ...ures/correction_parts.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588|  111kB /  111kB            \u001b[A\u001b[A\u001b[A\n\n\n\n  ...onent_counterfactuals.csv: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 57.0MB / 57.0MB            \u001b[A\u001b[A\u001b[A\u001b[A\n\n\n\n\nProcessing Files (4 / 4)      : 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 57.3MB / 57.3MB, 5.42MB/s  \u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\nProcessing Files (4 / 4)      : 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 57.3MB / 57.3MB, 5.42MB/s  \u001b[A\nNew Data Upload               : 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 57.3MB / 57.3MB, 5.42MB/s  \n  .../utility_by_component.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588|  107kB /  107kB            \n  ...ures/correction_parts.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588|  111kB /  111kB            \n  ...onent_counterfactuals.csv: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 57.0MB / 57.0MB            \n  ...s/independent_support.png: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 86.2kB / 86.2kB            \n"
+        },
+        {
+          "type": "stream",
+          "text": "{\n  \"status\": \"published_and_verified\",\n  \"revision\": \"f4b44d3d8e309db28d42171f1c5210881aa7b079\",\n  \"destination\": \"phase3/tread-two/readiness-gate/v1/1bbb0142fc67619b74b3fda9f8ad8924d836f1ba6eaf67c53ca58fa02fe58f49\",\n  \"files\": 38,\n  \"uploaded_objects\": 37,\n  \"zip_uploads\": 0,\n  \"owner_released\": true\n}\n"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "execution_count": 4,
+      "outputs": [
+        {
+          "type": "stream",
+          "text": "{\n  \"destination\": \"phase3/tread-two/readiness-gate/v1/1bbb0142fc67619b74b3fda9f8ad8924d836f1ba6eaf67c53ca58fa02fe58f49\",\n  \"files\": 38,\n  \"owner_released\": true,\n  \"revision\": \"f4b44d3d8e309db28d42171f1c5210881aa7b079\",\n  \"status\": \"published_and_verified\",\n  \"uploaded_objects\": 37,\n  \"zip_uploads\": 0\n}\n\n{\n  \"class_support\": [\n    {\n      \"class_index\": 0,\n      \"class_name\": \"low\",\n      \"conservative_components\": 1,\n      \"images\": 67,\n      \"known_original_tyres\": 1,\n      \"original_images\": 67,\n      \"source_groups\": 1,\n      \"video_frames\": 0\n    },\n    {\n      \"class_index\": 1,\n      \"class_name\": \"mid\",\n      \"conservative_components\": 1,\n      \"images\": 249,\n      \"known_original_tyres\": 3,\n      \"original_images\": 97,\n      \"source_groups\": 6,\n      \"video_frames\": 152\n    },\n    {\n      \"class_index\": 2,\n      \"class_name\": \"high\",\n      \"conservative_components\": 4,\n      \"images\": 70,\n      \"known_original_tyres\": 4,\n      \"original_images\": 70,\n      \"source_groups\": 4,\n      \"video_frames\": 0\n    }\n  ],\n  \"classifier_status\": \"research_only_unpromoted\",\n  \"coassignment_scope\": \"Unresolved mid video-parent component is a conservative leakage constraint, not proof that three known mid tyres are the same tyre.\",\n  \"conditional_folds\": 6,\n  \"counterfactual_rows\": 188160,\n  \"counterfactual_scope\": \"Algebraic parts of saved changing online model states on identical paired views; no independently trained ablations, no component-held-out model fit, no new checkpoint selection.\",\n  \"folds_missing_fit_class\": 2,\n  \"heldout_prediction_rows_used\": 0,\n  \"known_training_original_tyres\": 8,\n  \"limitation\": \"Frozen LC prior was selected historically using validation. Training-only here describes rows analyzed, not an untouched pipeline or independent generalization experiment.\",\n  \"new_independent_tyres\": 0,\n  \"new_model_forwards\": 0,\n  \"next_full_classification_fit_authorized_by_gate\": false,\n  \"online_view_observations\": 47040,\n  \"optimizer_updates\": 0,\n  \"scientific_readiness\": false,\n  \"status\": \"passed\",\n  \"training_conservative_components\": 6,\n  \"training_images\": 386\n}\n\n{\n  \"classification\": \"research_only_unpromoted\",\n  \"explanation\": \"conserved_internal_signed_evidence_and_attention_not_causal_wear_truth\",\n  \"geometry\": \"retained_frozen_TREAD_ONE_outputs_not_newly_certified\",\n  \"model_family\": \"TREAD-TWO ATLAS through context-r3\",\n  \"new_full_classification_fit\": \"not_supported_by_this_gate\",\n  \"new_photos_required_for_this_audit\": false,\n  \"physical_depth_mm\": \"unavailable\",\n  \"safety_assessment\": \"unavailable\",\n  \"version\": 1,\n  \"workstation_installation\": false\n}\n\n"
+        }
+      ]
+    }
+  ]
+}

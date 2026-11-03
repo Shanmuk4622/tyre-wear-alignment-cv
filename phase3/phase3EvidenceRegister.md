@@ -1,20 +1,244 @@
 # Phase 3 — evidence register
 
-<!-- NB11_COMPLETE_UPDATE_20261030 -->
-## Current — NB11 complete; NB12 review ready
+<!-- IEEE_ACCESS_PAPER_20261103 -->
+## IEEE Access manuscript evidence
 
 | Record | Scope |
 |---|---|
-| [NB11 full publication audit](tread_two/nb11_completion/16fa0443f902/VERIFICATION.json) | Every raw object byte, all 24 raw schemas/counts, native state and actual preflight |
-| [Scientific review](tread_two/lc_analysis_report/ANALYSIS.json) | 53,342 predictions, 23,520 paired losses, source exclusions, selection and all 1,442 endpoint/probe logits |
-| [Review CSV index](tread_two/lc_analysis_report/CSV_INDEX.md) | 40 tables / 380,595 derived rows |
-| [NB12 package checks](tread_two/lc_review_validation/PACKAGE_VALIDATION.json) | Fresh extracted-code equality, cache seam, viewer and offline publication |
+| [Paper PDF](paper_ieee_access/main.pdf) /[source](paper_ieee_access/main.tex) | Complete author-review manuscript |
+| [Copied scientific inputs](paper_ieee_access/audit/EVIDENCE_FILES.json) | Original byte identities and source paths |
+| [Additional inputs](paper_ieee_access/audit/ADDITIONAL_INPUTS.json) | Epoch records and deterministic atlas/cell evidence |
+| [Claim ledger](paper_ieee_access/CLAIMS_AND_LIMITATIONS.md) | Endpoint, denominator and permitted inference |
+| [Current template check](paper_ieee_access/audit/CURRENT_TEMPLATE_CHECK.json) | Official core files match supplied template |
+| [Numeric/PDF validation](paper_ieee_access/audit/VALIDATION.json) | Tables, headlines, all epochs, citations and preservation |
+| [Visual review](paper_ieee_access/audit/VISUAL_REVIEW.md) | Latest rendered-page inspection |
+<!-- END_IEEE_ACCESS_PAPER_20261103 -->
 
-**30 October 2026. NB11 is complete and independently HF-verified:** 60 epochs / 2,940 updates, 1,351 direct files and 54,336,368 raw scientific rows. The actual T4×2/live-HF preflight passed; ownership is released. No NB11 rerun is needed. [Full completion and findings](phase3NB11Completion.md).
+<!-- TEXTURE_AGGREGATION_20261102 -->
+## TRACE aggregation investigation evidence
 
-<!-- END_NB11_COMPLETE_UPDATE -->
+| Evidence | Scope |
+|---|---|
+| [Primary protocol](texture_aggregation_20261102/PROTOCOL.json) | Nine fixed interventions declared before primary results |
+| [Input verification](texture_aggregation_20261102/INPUT_VERIFICATION.json) |249 full-body checked native/metadata objects; pinned source |
+| [Numerical bridges](texture_aggregation_20261102/BRIDGE_VERIFICATION.csv) | Six original source/readout bridges including all native decoder predictions |
+| [Role utility](texture_aggregation_20261102/UTILITY_SUMMARY.csv) /[components](texture_aggregation_20261102/COMPONENT_UTILITY.csv) | Both branches, original roles/components/views and all nine interventions |
+| [Descriptor utility](texture_aggregation_20261102/CHANNEL_UTILITY_SUMMARY.csv) | Contrast/orientation damage and exact channel-to-image reconciliation |
+| [Covariance](texture_aggregation_20261102/SPATIAL_COVARIANCE.csv) /[spaces](texture_aggregation_20261102/FEATURE_SPACES.csv) | Exact mean-mode/spatial decomposition and scale-dependent ranks |
+| [Exploratory mask addendum](texture_aggregation_20261102/MASK_ADDENDUM_PROTOCOL.json) | Mask-plan alignment is association, not physical evidence |
+| [Methods/dictionary](texture_aggregation_20261102/METHODS.md) | All native/detail grains, units, caveats and local/publication boundary |
+<!-- END_TEXTURE_AGGREGATION_20261102 -->
+
+<!-- RETROSPECTIVE_RECORD -->
+## Whole-project retrospective evidence
+
+| Record | Scope |
+|---|---|
+| [Markdown inventory](retrospective_20261102/MARKDOWN_INVENTORY.csv) |236 pre-analysis maintained documents, bytes/hashes and scope |
+| [Source evidence](retrospective_20261102/SOURCE_EVIDENCE.csv) |40 controlling report/data/state inputs |
+| [Actual consumed science](retrospective_20261102/CONSUMED_SCIENCE_INPUTS.csv) |444 full-hash saved CSV bodies for the new TRACE analysis |
+| [Analysis receipt](retrospective_20261102/ANALYSIS.json) |570 images /10 components /zero fitting, forwards, network calls or remote writes |
+| [Fit ledger](retrospective_20261102/PHASE3_FIT_LEDGER.csv) |7 families /10 measured fit executions;600 epochs /29,400 updates |
+| [Explorer and dictionary](retrospective_20261102/README.md) |Local new derivatives; original raw evidence already on HF |
+<!-- END_RETROSPECTIVE_RECORD -->
+
+<!-- NB24_RECORD -->
+## NB24 verification evidence
+
+| Record | Purpose |
+|---|---|
+| [HF verification](tread_two/nb24_completion/23e081e52454/VERIFICATION.json) | Five stages, exact scope, counts, released owners and seven old manifests |
+| [Science](tread_two/nb24_completion/23e081e52454/SCIENTIFIC_VERIFICATION.json) | All 2,940 objectives,60 original validation gates,946 native inputs and final complete state |
+| [Object methods](tread_two/nb24_completion/23e081e52454/OBJECT_VERIFICATION.json) | Full-body versus LFS-identity versus large-Git metadata tiers |
+| [Validation](tread_two/trace_completion_report/VALIDATION_GATE_AUDIT.csv) | Independent SVD and every original gate |
+| [Figures/findings](phase3TreadTwoTRACEFindings.md) | Actual utility, group variation and limits |
+<!-- END_NB24_RECORD -->
+
+<!-- TRACE_BATCH_EVIDENCE -->
+## TRACE executable batch evidence
+
+| Evidence | Location |
+|---|---|
+| Notebook identities | [Four notebooks](tread_two/trace_validation/NOTEBOOKS.json) |
+| Actual local lifecycle and independent review | [Receipt](tread_two/trace_validation/LOCAL_LIFECYCLE.json) |
+| Complete-update/error/corruption/selected-branch fixtures | [Transactions](tread_two/trace_validation/TRANSACTIONS.json) |
+| All 570 source cache /all 60 schedules | [Full data](tread_two/trace_validation/FULL_CACHE.json) |
+| Preparation and stage recovery | [Receipt](tread_two/trace_validation/PREPARATION_RECOVERY.json) |
+| Parent sequence/stop/skip with injected services | [Controller](tread_two/trace_validation/COORDINATOR.json) |
+|48-family writer exercise | [CSV](tread_two/trace_validation/WRITER_COVERAGE.csv) |
+| Fresh setup and delivery preservation | [Payloads](tread_two/trace_validation/PAYLOADS.json) / [handoff](tread_two/trace_validation/DELIVERY.json) |
+<!-- END_TRACE_BATCH_EVIDENCE -->
+
+<!-- TRACE_EVIDENCE -->
+## TRACE local design evidence — 2 November2026
+
+| Evidence | Location | Scope |
+|---|---|---|
+| Numerical/leakage/CPU native restore | [JSON](tread_two/trace_design/validation/NUMERICAL.json) | Synthetic engineering; 12 actual updates in current fixture; no measured fit |
+| Original geometry comparison | [JSON](tread_two/trace_design/validation/GEOMETRY.json) | 2 train images / 4 CPU forwards; exact output and state preservation |
+| All 386 target construction | [JSON](tread_two/trace_design/validation/ACTUAL_TARGETS.json) | 197,632 cells, full CSV/native retained locally; no held-out reads or HF writes |
+| Spatial target diagnosis | [CSV](tread_two/trace_report/target_spaces.csv) | Initial/revised descriptors; not learned representations |
+| Current implementation/preservation proof | [Delivery](tread_two/trace_design/validation/DELIVERY.json) | Scope and old source/notebook identities |
+| Interactive observed maps | [Explorer](tread_two/trace_report/TRACE_Design_Explorer.html) |4fixed train examples,6channels |
+<!-- END_TRACE_EVIDENCE -->
+
+<!-- NB20_EVIDENCE -->
+## Completed NB20 — independent evidence
+
+| Evidence | Location | Result |
+|---|---|---|
+| Executed master +19 payloads | [Inspection](tread_two/nb20_completion/8c9c2991e1bb/INSPECTION.json) | Three complete cells; no saved errors |
+| Both HF stages | [Verification](tread_two/nb20_completion/8c9c2991e1bb/VERIFICATION.json) | Objects, owners, scientific values and provenance pass |
+| Table comparison | [CSV](tread_two/nb20_completion/8c9c2991e1bb/SCIENTIFIC_COMPARISON.csv) | 48 comparable tables; copied passport tables match review bytes |
+| Numeric precision | [FP64 summary](tread_two/nb20_completion/8c9c2991e1bb/FP64_WEIGHT_NORM_SUMMARY.json) / [HTML](tread_two/nb20_completion/8c9c2991e1bb/HTML_COMPARISON.json) | Explicit diagnostics; raw weights/vectors unchanged |
+| Current pointers | [Registry](tread_two/geo_research_release/README.md) | Four pinned stages and actual published provenance |
+<!-- END_NB20_EVIDENCE -->
+
+<!-- NB17_BATCH_EVIDENCE -->
+## NB17 and postrun batch — 2 November2026
+
+| Evidence | Location | Status |
+|---|---|---|
+| Executed notebook +29payloads | [Inspection](tread_two/nb17_completion/4b92d8fd7081/INSPECTION.json) | Preserved; all match |
+| Independent public HF audit | [Verification](tread_two/nb17_completion/4b92d8fd7081/VERIFICATION.json) | All selected bytes and scientific checks pass |
+| 40 CSV families/468 fields | [File/schema proof](tread_two/nb17_report/FILE_VERIFICATION.json) | 27,514,418 rows |
+| Native and final-state audit | [Native proof](tread_two/nb17_report/NATIVE_VERIFICATION.json) |8,455 shards+2controls;60 epoch weights |
+| Scientific result | [Findings](tread_two/nb17_report/FINDINGS.json) | Geometry60/60; representation0/60 |
+| Runnable batch | [Guide](phase3TreadTwoGEOPostrunBatch.md) | NB18/NB19/NB20 delivered together |
+| Delivery/local checks | [Receipt](tread_two/geo_postrun_validation/DELIVERY_CHECKS.json) | Pass; actual new Kaggle/HF publication pending |
+<!-- END_NB17_BATCH_EVIDENCE -->
+
+
+<!-- NB17_DETAILS -->
+## NB16 completion and NB17 acceptance
+
+| Evidence | What it establishes |
+|---|---|
+| [NB16 completion](phase3NB16Completion.md) | Executed identity, pinned174-file public audit, resource plot and actual two-T4/HF proof |
+| [NB17 resume](tread_two/geo_validation/RESUME.json) | New streamed lifecycle, 307 scientific shards and exact fresh-process model/moments/RNG/cursor |
+| [Loss accounting](tread_two/geo_validation/LOSS_ACCOUNTING.json) | Independent per-batch geometry/quality/SSL/total reconstruction |
+| [Transactions](tread_two/geo_validation/TRANSACTIONS.json) |64-sample seal crash points and observed quota/commit-budget behavior |
+| [Transport](tread_two/geo_validation/TRANSPORT.json) | Actual pinned manifest resolution and replay-safe cross-session CSV IDs; no writes |
+| [Selected branch](tread_two/geo_validation/SELECTED_BRANCH.json) | Injected test branch only: selected epoch/update provenance remains distinct from final counter |
+
+Actual NB17 Kaggle/new-HF gate and measured model outcome remain pending.
+<!-- END_NB17_DETAILS -->
+
+<!-- GEO_NB16_DETAILS -->
+## NB16 engineering evidence — 1 November 2026
+
+| Evidence | Established scope |
+|---|---|
+| [DELIVERY.json](tread_two/geometry_first/validation/DELIVERY.json) | Actual local model math, offline restored continuation, notebook/source identity, preservation |
+| [LOCAL_ENGINEERING.json](tread_two/geometry_first/validation/LOCAL_ENGINEERING.json) | Independent loss arithmetic, exact warm start/atlas, isolated gradients, hidden-RGB and state recovery |
+| [NOTEBOOK.json](tread_two/geometry_first/validation/NOTEBOOK.json) | Current unexecuted self-contained NB16 identity, source count and size |
+| [Vendored sources](tread_two/geometry_first/runtime/VENDORED.json) | Nine unchanged copied dependencies and source SHAs |
+| [Runbook](tread_two/geometry_first/RUNBOOK.md) | Actual Kaggle settings, stop/recovery/output and next-step boundaries |
+
+Actual T4/HF gate pending. No measured model outcome or new independent tyre.
+<!-- END_GEO_NB16_DETAILS -->
+
+<!-- GEO_PLAN_20261101 -->
+## GEO design evidence — 1 November 2026
+
+| Evidence | What it establishes |
+|---|---|
+| [Plan](tread_two/geometry_first/plan/PLAN.json) | Chosen design values/status and planned one-model budget; no measured updates |
+| [Schema proposal](tread_two/geometry_first/plan/SCHEMAS.json) | All planned CSV family/field/type/key/cadence definitions |
+| [Source record](tread_two/geometry_first/plan/SOURCES.json) | Pinned original anchor/source/annotation/prior-result hashes and primary technical references |
+| [Capacity arithmetic](tread_two/geometry_first/plan/BUDGET.json) | Exact tensor-shape byte totals plus explicitly provisional CSV/other/staging allowances |
+
+Evidence inputs include the a5b8… seed3/epoch20 geometry anchor, NB05's shared-gradient findings, NB07 point/identity counts and verified NB15 support limits. New model quality, throughput, exact parameter count, actual disk peak and T4 replay remain pending implementation/live gates. [Master plan](phase3TreadTwoGeometryPlan.md).
+<!-- END_GEO_PLAN_20261101 -->
+
+
+<!-- NB15_CLOSED_20261101 -->
+## NB15 closure and research handoff — 1 November 2026
+
+| Evidence | Scope |
+|---|---|
+| [NB15 verification](tread_two/nb15_completion/98837b907abc/VERIFICATION.json) | Every published payload hash/size, all 16 tables, capability/summary, figures, actual passport JS, unchanged earlier manifests |
+| [Executed inspection](tread_two/nb15_completion/98837b907abc/INSPECTION.json) | Four completed cells, no errors, forty matching payloads and actual private-SDK/publication output |
+| [Release manifest](tread_two/research_release/RELEASE.json) | Local handoff only; source/output hashes and three-model/nine-publication scope |
+| [Release acceptance](tread_two/research_release_validation/VALIDATION.json) | Model cards, original epochs/native object descriptors, exact receipt links, row-scope distinctions and viewer controls |
+
+[NB15 completion](phase3NB15Completion.md) · [Research closure](phase3TreadTwoResearchClosure.md). No new fit, prediction, independent tyre, HF write or workstation change.
+<!-- END_NB15_CLOSED_20261101 -->
+
+
+<!-- NB14_COMPLETED_20261101 -->
+## NB14 closure and NB15 readiness evidence — 1 November 2026
+
+| Evidence | Scope |
+|---|---|
+| [NB14 verification](tread_two/nb14_completion/356dc7893cc5/VERIFICATION.json) | All79objects/80files,52tables exactly equal, five figures, published viewer/attention, original fit unchanged |
+| [Executed NB14 inspection](tread_two/nb14_completion/356dc7893cc5/INSPECTION.json) | SHA356dc789…,four completed cells,44payloads, actual publication receipt/warnings |
+| [NB15 pinned inputs](tread_two/readiness_gate/INPUTS.json) | Six source objects/70,218,229bytes at exact NB14/NB07 revisions |
+| [Readiness analysis](tread_two/readiness_report/ANALYSIS.json) | 16derivedCSVs/196,905rows; no forward/fitting/held-out numeric use |
+| [Capability record](tread_two/readiness_report/CAPABILITIES.json) | Research-only classification, retained frozen geometry, internal evidence, physical depth/safety unavailable |
+| [Package validation](tread_two/readiness_validation/PACKAGE_VALIDATION.json) | Held-out perturbation invariance, source mismatch rejection, fresh40-file package equality, actual JS controls and offline publication |
+
+[NB14 report](phase3NB14Completion.md) · [NB15 findings/methods](phase3TreadTwoReadiness.md).
+<!-- END_NB14_COMPLETED_20261101 -->
+
+
+<!-- NB13_COMPLETED_20261101 -->
+## NB13A completion / NB14 review evidence — 1 November 2026
+
+| Evidence | Role |
+|---|---|
+| [NB13 receipt](tread_two/nb13_completion/8bdf46ec2040/VERIFICATION.json) | All 1,503 direct files, raw 58,176,066 rows, original protocol, full SHA/size verification |
+| [Ledger/native audit](tread_two/nb13_completion/8bdf46ec2040/LEDGER_VERIFICATION.json) | 3,913 units, 45,852 chunks, all 60 finite epoch states/frozen prior, gap-free update sequence |
+| [Executed inspection](tread_two/nb13_completion/8bdf46ec2040/INSPECTION.json) | Two complete cells, actual restore 2,486, original gate reused, released writer |
+| [Findings](tread_two/nb13_completion/8bdf46ec2040/SCIENTIFIC_FINDINGS.json) | Classification, geometry, probes, exposure and numerical residuals derived without new forwards |
+| [Scientific review](tread_two/context_analysis_report/ANALYSIS.json) | 876 evidence inputs; 52 derived CSVs / 585,825 rows; scope and checks |
+| [NB14 package proof](tread_two/context_review_validation/PACKAGE_VALIDATION.json) | 44 payload files, fresh table equality, actual viewer JS, cache and offline publication |
+| [NB14 setup proof](tread_two/context_review_validation/SETUP_VALIDATION.json) | Actual first cell in an empty fixture, identical rerun and drift rejection; local path/SDK stubs only |
+| [NB14 identity](tread_two/context_review_validation/NOTEBOOK.json) | Current clean notebook hash and complete payload hashes; actual Kaggle execution pending |
+
+[Illustrated completion](phase3NB13Completion.md) · [Review methodology](phase3TreadTwoContextReview.md). Old partial checkpoints below are dated observations, not current completion status.
+<!-- END_NB13_COMPLETED_20261101 -->
+
+
+<!-- NB13A_REPAIR_UPDATE_20261031 -->
+## Historical — NB13A missing-file error fixed; standalone recovery ready
+
+**31 October 2026:** supplied NB13A failed before recovery because its original local `run/POINTER.json` was unavailable. The executed error is archived (`b5a4dd68…`). Revision 2 now embeds the unchanged runtime and original contract, prefers compatible local/attached saved state, and otherwise restores the full verified HF checkpoint. Latest independently verified HF recovery remains update **1,294**; earlier local notebook output showed **2,467**. Missing unsent progress is recoverable only from surviving files. [Repair, evidence and instructions](phase3NB13ARepair.md).
+
+Next: run the updated [NB13A](notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb) directly with **Run All**: T4×2, Internet, existing expanded Kaggle input and HF_TOKEN. It can run without the old workspace. Preserve/use the older session or attach its saved output if available. Do not run concurrent writers. The original passed live gate is reused, compatibility is verified and the same experiment resumes; no fresh fit is allowed without a matching recovery snapshot.
+
+Eighteen offline recovery checks and the actual notebook setup in an empty fixture directory pass. Actual revised Kaggle recovery remains pending. All 32 frozen model/runtime entries, original NB13 protocol/source/notebooks and both workstations are preserved. Earlier existing-session-only instructions below describe superseded revision 1.
+<!-- END_NB13A_REPAIR_UPDATE -->
+
+<!-- NB13_RECOVERY_UPDATE_20261031 -->
+## Historical — NB13 incomplete; preserve the stopped Kaggle session
+
+**31 October 2026:** the user reports an apparent freeze and confirms stopped execution with local files retained. Saved NB13 output reaches **2,467 / 2,940 updates**; the independently verified HF checkpoint is only at **1,294**, phase train. All 33 embedded files match the unchanged 32-file runtime. The actual T4×2/live-HF preflight passed. No final completion or clean owner release is verified. [Status, proof and diagnosis](phase3NB13FreezeAndRecovery.md).
+
+Next: copy the **two code cells** from [NB13A existing-session recovery](notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb) into the existing stopped Kaggle NB13 and run them in order. Keep its files, same settings/input and HF_TOKEN. Do not reset into a new empty session or run another original training cell concurrently. Recovery verifies local/remote history, publishes ahead local progress before fitting, and resumes the original protocol with phase/status/stack diagnostics. [Original run guide](tread_two/context_pilot/README.md).
+
+Exact stop cause is not established: no traceback was saved. Long snapshot/verification/upload paths lacked continuous status; do not claim a proven numerical/GPU/HF failure. The external orchestration repair and notebook pass local offline checks; actual Kaggle recovery remains pending. Preserve executed NB13 (`e0c714be…`), all frozen sources, protocol `36f473b0…`, native/CSV progress and earlier completed experiments. No model/recipe/data/workstation change. Earlier pending-NB13 delivery text below is historical.
+<!-- END_NB13_RECOVERY_UPDATE -->
+
+<!-- NB12_CONTEXT_UPDATE_20261030 -->
+## NB12 closed / r3 evidence map — 30 October 2026
+
+| Record | Verified scope |
+|---|---|
+| [NB12 completion](phase3NB12Completion.md) | Executed notebook, 63 direct files, 40 CSVs / 380,595 rows, owner released |
+| [Pinned publication audit](tread_two/nb12_completion/036132254087/VERIFICATION.json) | Every object byte/SHA; exact table agreement; original 1,350-entry fit unchanged |
+| [Layout diagnostic](tread_two/context_validation/LAYOUT_PROOF.json) | Eight train tyres / 16 interventions, no fitting/held-out forwards |
+| [r3 math](tread_two/context_validation/MATH_VALIDATION.json) | Zero-initialized identity, frozen base, finite/empty support and layout expressiveness |
+| [r3 recovery](tread_two/context_validation/LOCAL_VALIDATION.json) | All 27 CSV/native state equality, four batch-8 updates, 17 offline checks and 14.37 GB planning estimate |
+| [CSV-only accounting](tread_two/context_validation/CSV_ACCOUNTING.json) | 104 observations / 312 logits / 32 pairs / 32,768 attention values; zero forwards |
+| [NB13 package](tread_two/context_validation/PACKAGE_VALIDATION.json) | 33 extracted files, one actual update; all scientific/native state match |
+| [Source inventory](tread_two/context_pilot/FILES.json) | 32 frozen inputs; new namespace, earlier studies unchanged |
+
+Actual NB13 dual T4/live-HF/fit/accuracy are pending. Engineering receipts cannot substitute for them. Earlier pending NB12 notes below are historical.
+<!-- END_NB12_CONTEXT_UPDATE -->
+
 <!-- NB10_LC_UPDATE_20261030 -->
-## Latest status — NB10 closed; NB11 ready, 30 October2026
+## Historical — NB10 closed; NB11 ready, 30 October2026
 
 | Evidence | Verified scope |
 |---|---|

@@ -1,0 +1,43 @@
+{
+  "CSV_rows": 196905,
+  "CSV_tables": 16,
+  "actual_NB15_Kaggle_HF_completion": false,
+  "actual_setup_executed_locally": true,
+  "checks": [
+    "Actual support1/1/4,missing-class folds2/6,all table hashes/counts,unsupported normalization and188160 algebraic rows",
+    "Perturb every held-out numeric prediction/correction and registry label; every scientific CSV remains byte-identical",
+    "Training identity mismatch rejected",
+    "Actual passport JavaScript filters/epoch bounds/variants/curves pass synthetic DOM",
+    "Actual40-file setup extracts/reruns/rejects drift; fresh packaged analysis reproduces every CSV without network",
+    "Offline additive publication/lost response/owner release/identical rerun,without any original fit or review namespace writes"
+  ],
+  "embedded_files": 40,
+  "fresh_packaged_science_equal": true,
+  "heldout_noninterference": true,
+  "model_forwards": 0,
+  "notebook_sha256": "1ab1c059cb9939cac5d65ca4b45a76206e63a1fc5b786290bc79436d8953503a",
+  "optimizer_updates": 0,
+  "private_SDK_install_actual_Kaggle_pending": true,
+  "publication_files": 38,
+  "remote_writes": 0,
+  "source_hashes": {
+    "INPUTS.json": "bf6bcf7cb72ecd66ec3d468cc24bbd7a6b19dfd26f448cf6e89176eacafdbee9",
+    "public_inputs.py": "c26c2e872fc440d39e86033c0cc062d205690e7d07420039ff1f9f67adb75e7a",
+    "publish_gate.py": "82a6e4565f51414fdd73c3df02bbb4e174919aca49fc17ea82f0140540a5bd96",
+    "render_gate.py": "4c72b7d75425402563d07b90d370b6aecb265755ec60309f68736a856efc4a01",
+    "run_gate.py": "1134652fcd35d9eb0e6a517a03374a27e06f7c745ac46653bc00d5f9050bc8a7"
+  },
+  "status": "passed",
+  "viewer": {
+    "component_epoch_variant_rows": 1440,
+    "controls": [
+      "epoch bounds",
+      "three classes/all",
+      "four algebraic variants",
+      "weighted NLL curves",
+      "capability and conditional-support tables"
+    ],
+    "native_browser_render": false,
+    "status": "passed"
+  }
+}

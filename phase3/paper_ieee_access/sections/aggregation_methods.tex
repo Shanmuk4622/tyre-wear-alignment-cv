@@ -1,0 +1,73 @@
+\section{Saved-Feature Aggregation Study}\label{sec:aggregation}
+\subsection{Endpoint, Inputs, and Replay Boundary}
+We analyze the fixed final TRACE endpoint at epoch 60, update 2,940. The retained evidence contains $Z$, $H$, and $C$ for 570 images and two recorded views, each of shape $32\times48$, together with masses, mask plans, fixed targets, target weights, and frozen decoder/projector parameters. No new photo, photometric view, geometry forward pass, image-encoder forward pass, or optimizer update is introduced. The primary intervention sweep performs 656,640 frozen decoder-token readouts. Bridge verification adds 72,960 decoder-token and 1,140 projector-vector readouts. Calling it saved-feature analysis therefore does not mean zero computation.\AIdraftingnote
+
+View 0 is the primary clean observation. View 1 is a retained sensitivity view; its appearance factors and mask plan both differ, so a change between views cannot be attributed to appearance alone. Training-only templates and scales use view 0. The validation and historical-test roles contain all 32 supported tiles per image. Two training images have missing tiles, with at least 28 supported. Fixed-grid training spectra can consequently include placeholder effects; our principal covariance interpretation uses the complete-support held-out roles.
+
+\subsection{Nine Fixed Interventions}
+For one image/view and one token layer, let $X\in\mathbb{R}^{32\times48}$, $M=\operatorname{diag}(m)$, and $B\in\mathbb{R}^{32\times k}$ be a prescribed spatial basis. The mass-weighted projection is
+\begin{equation}\label{eq:projection}
+ \mathcal{P}_B(X)=B(B^{\mathsf T}MB)^+B^{\mathsf T}MX,
+\end{equation}
+where the Moore--Penrose pseudoinverse uses relative cutoff $10^{-10}$. This reconstructs a token at every original position from the permitted spatial modes. It changes neither feature channels nor decoder parameters.
+
+The nine interventions are: (1) original tokens; (2) one constant mode, equivalent to a global mass-weighted mean; (3) eight row-band indicators; (4) four column indicators; (5) the five source-defined spatial moments; (6) a constant plus four fixed random zero-sum orthogonal modes; (7) a train-position feature template; (8) that template plus a constant-mode residual; and (9) that template plus five residual moments. Random modes are generated once with seed 462225 using Gaussian draws, mean removal, and QR factorization. They are a dimension-matched spatial control, not an optimized random search.
+
+Let $T$ be the unweighted per-position feature mean over supported training images, fitted separately for each layer. The final two variants are
+\begin{equation}
+ \widehat X=T+\mathcal{P}_B(X-T).
+\end{equation}
+The template is a feature statistic, not a target-fitted neural model. All held-out fitting is excluded. Bands, columns, moments, and random modes have different dimensions or structure; the analysis asks what each prescribed compression retains, not whether one has superior capacity after matched retraining.
+
+The unchanged decoder $D$ reads each transformed $Z$ for local reconstruction and each transformed $C$ for masked reconstruction. The same supported cells, hidden cells, and train-position-control availability are used for every variant. Full-context $H$ participates in representation diagnostics and in verification of the actual global branch; it is not substituted into the local reconstruction headline.
+
+\subsection{Loss and Retained Advantage}\label{sec:utility}
+For predictions $p_{icuv}$ and standardized targets $t_{icuv}$, define Smooth L1
+\begin{equation}
+ h_\beta(a)=\begin{cases}a^2/(2\beta),&|a|<\beta,\\ |a|-\beta/2,&\text{otherwise},\end{cases}
+\end{equation}
+with $\beta=0.1$. Cell weights are valid-pixel counts on the common support. The image loss averages channels after weighted cell reduction; role-level loss averages available images equally. Thus a large tyre region does not automatically dominate a small one.
+
+Let $L_0$ be the loss of original tokens, $L_v$ the loss under intervention $v$, and $L_{\mathrm{pos}}$ the fixed train-position target control on the same support. We report
+\begin{equation}\label{eq:retention}
+ R_v=\frac{L_{\mathrm{pos}}-L_v}{L_{\mathrm{pos}}-L_0}.
+\end{equation}
+For a positive original advantage, $R_v=1$ retains that advantage, $R_v=0$ matches the position control, and a negative value is worse than that control. It is not a classification accuracy, a proportion of physically meaningful information, or a universal information measure. Small original margins can make channel-specific $R_v$ unstable; we therefore show absolute channel losses as well.
+
+The 21.63\% original masked-improvement headline uses the \emph{strongest declared control}, the visible-band mean, whereas~\eqref{eq:retention} consistently uses the train-position control. These denominators answer different questions and are not interchanged. The transformed tokens may also lie outside the decoder's training distribution. Their loss measures compatibility and recoverable evidence under the \emph{fixed} readout, not all information that a newly trained decoder could exploit.
+
+\subsection{Spectral and Component Diagnostics}\label{sec:spectra}
+For a role-centered image-feature matrix with covariance eigenvalues $\lambda_j\geq0$, define
+\begin{equation}\label{eq:rank}
+ p_j=\frac{\lambda_j}{\sum_\ell\lambda_\ell},\qquad
+ \rankE=\exp\!\left(-\sum_jp_j\log p_j\right).
+\end{equation}
+For the saved-feature diagnostics, numerical eigenvalues below $10^{-14}$ of total energy are excluded. Original selection retains its native positive-eigenvalue treatment; no gate is recomputed with a changed rule. This is covariance-energy entropy rank. Since $\lambda_j$ is proportional to squared singular value, it differs from singular-value-weighted effective rank. Leading-energy fraction, coordinate standard deviations, and dimensions accompany it. Concatenated 1,536-dimensional tokens and pooled 48-dimensional means have different rank ceilings; their comparison is a mechanism diagnostic, not matched model performance.
+
+We also center each conservative component separately. The between-component fraction is $1-V_{\mathrm{within}}/V_{\mathrm{total}}$, using the same covariance trace convention. This identifies where variance lies, without making component identity a permissible deployment input. In these data, class and component are confounded, so removing identity indiscriminately could also remove category-associated variation.
+
+For a spatial decomposition, fix a single mass vector $r$ to the mean recorded training mass, normalized to sum to one. Using the same role and centering policy, let
+\begin{equation}
+ K_{tu}=\frac{1}{N-1}\sum_i\langle\widetilde X_{it},\widetilde X_{iu}\rangle.
+\end{equation}
+Then the weighted tile variance, constant-mode variance, and spatial residual obey
+\begin{equation}
+\begin{aligned}
+ V_{\mathrm{tile}}&=\sum_t r_tK_{tt},\\
+ V_{\mathrm{mean}}&=r^{\mathsf T}Kr.
+\end{aligned}
+\end{equation}
+\begin{align}
+ V_{\mathrm{res}}&=\frac{1}{N-1}\sum_{i,t}r_t\left\|\widetilde X_{it}-\sum_u r_u\widetilde X_{iu}\right\|^2,\\[-3pt]
+ V_{\mathrm{tile}}&=V_{\mathrm{mean}}+V_{\mathrm{res}}.\label{eq:partition}
+\end{align}
+Using fixed $r$ makes this identity interpretable. It differs deliberately from the per-image masses used for actual network pooling and reconstruction interventions. Diagonal and cross-position covariance contributions are retained separately.
+
+Finally, we standardize each global feature coordinate using only training-view-0 mean and standard deviation, with floor $10^{-3}$. The inverse transformation is checked. A rank change under this invertible rescaling demonstrates sensitivity to coordinates; it cannot add information to the vector.
+
+\subsection{Exploratory Mask-Layout Association}
+After observing high rank in masked tokens, we added a separate diagnostic comparing recorded 32-position hidden indicators with full-context $H$, masked-context $C$, their difference $C-H$, and the actual projector output. For centered Gram matrices $A$ and $B$, linear CKA is
+\begin{equation}
+ \operatorname{CKA}(A,B)=\frac{\langle A,B\rangle_F}{\|A\|_F\|B\|_F}.
+\end{equation}
+Component-centered versions remove component means before constructing the Grams. This is an association with a deterministic image-addressed plan, not a randomized masking experiment. CKA is not an explained-variance percentage. The actual projector reads full-context $H$, so a strong association in $C-H$ cannot by itself explain the projector's failed diversity gate.

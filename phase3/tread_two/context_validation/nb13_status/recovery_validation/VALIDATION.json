@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "revision": "nb13-recovery-20261031-r2",
+  "checks": [
+    "frozen32_source_entries_unchanged",
+    "native_and_scientific_CSV_bytes_unchanged_by_restore",
+    "verified_local_prefix_kept",
+    "ahead_local_state_published_before_training",
+    "equal_history_skips_full_download_and_extra_flush",
+    "divergence_rejected",
+    "failed_first_flush_does_not_train_or_delete_state",
+    "repair_provenance_in_direct_snapshot",
+    "live_phase_status_recorded",
+    "unconfigured_HTTP_timeout_bounded_explicit_timeout_preserved",
+    "only_owned_run_scripts_requested_to_stop_no_process_kill",
+    "fresh_session_native_CSV_snapshot_restore",
+    "missing_remote_refuses_fresh_fit",
+    "saved_output_readonly_import",
+    "unanchored_partial_run_preserved",
+    "bootstrap_reuses_verified_gate_without_fit",
+    "bootstrap_environment_drift_rejected",
+    "bootstrap_corrupt_gate_rejected"
+  ],
+  "network_requests": 0,
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "fixture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\tread_two\\context_validation\\nb13_status\\recovery_validation\\fixture_0o9cyrvu",
+  "actual_Kaggle_recovery": false,
+  "launcher_sha256": "bc74ea98e637575c2b457e59278da712b07fbc3c5c23c54ff981a2910a4b952b"
+}

@@ -1,0 +1,14 @@
+{
+  "revision": "93d7ea34c5539769d122330141f96b1a23083b7a",
+  "contract": "49e2f589866852cc7ad2d92d393b572de5d625d906f274ccf406830baf6186dd",
+  "source_file": "cohort_metrics.csv",
+  "sha256": "9c889243fa6be2a8f7d4d0ef5786da006bab295e124f47f71c1a024007150b8c",
+  "bytes": 16436,
+  "scope": "Previously verified v1 descriptive endpoint/probe metrics; no new fit and no single-factor attribution",
+  "lc_fit_revision": "3d5ae39602c3b25caa6af65c1e8d45f53a08e1c8",
+  "lc_review_revision": "77d03303a9d42f89bfd3fbc567faedf86b09a855",
+  "lc_selected_epoch": 7,
+  "lc_metrics_sha256": "77cbdd5cc483b47f609d41beb407bc95558ab4ea212a2d6a77d6149bdda29d27",
+  "lc_selected_identity_sha256": "0d26480bf3c2f0bb1c677dc6ecd0f9afe94a617f8b2a6b88da2cf0950d80d406",
+  "comparison_scope": "Already-inspected cohort, changed models; descriptive comparison, not independent confirmation"
+}

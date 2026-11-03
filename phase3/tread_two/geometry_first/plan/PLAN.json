@@ -1,0 +1,227 @@
+{
+  "anchor": {
+    "epoch": 20,
+    "frozen": true,
+    "model": "TREAD-ONE r1",
+    "parameters": 1372159,
+    "seed": 3,
+    "source_sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "url": "https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/resolve/a0296f18e02b12d28f7e51377783d68538032209/phase3/tread-one-r1/371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c/report/weights.pt",
+    "weights_sha256": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65"
+  },
+  "architecture": {
+    "EMA_teacher": false,
+    "actual_parameter_count_pending": true,
+    "atlas_align_corners": true,
+    "atlas_hw": [
+      512,
+      256
+    ],
+    "atlas_min_source_row_width": 16,
+    "axial_blocks": 2,
+    "classification_loss": false,
+    "geometry_feature_shape": [
+      48,
+      128,
+      96
+    ],
+    "guide_mask_gap_flag": 0.05,
+    "guides": [
+      0.2501628664495114,
+      0.5003257328990228,
+      0.7498371335504886
+    ],
+    "input_hw": [
+      512,
+      384
+    ],
+    "mask_adapter_channels": [
+      48,
+      24,
+      2
+    ],
+    "mask_logit_delta_bound": 1.0,
+    "mask_threshold": 0.5,
+    "masked_decoder_channels": [
+      96,
+      128,
+      1024
+    ],
+    "masked_target_shape": [
+      4,
+      16,
+      16
+    ],
+    "masked_tile_min_coverage": 0.25,
+    "minimum_SSL_supported_bands": 2,
+    "minimum_SSL_supported_tiles": 4,
+    "patch_grid": [
+      8,
+      4
+    ],
+    "patch_hw": [
+      64,
+      64
+    ],
+    "point_adapter_channels": [
+      256,
+      64,
+      2
+    ],
+    "point_raw_delta_bound": 0.25,
+    "projector_channels": [
+      96,
+      128,
+      64
+    ],
+    "quality_channels": [
+      64,
+      32,
+      3
+    ],
+    "shared_trainable_geometry_texture_parameters": false,
+    "target_max_total_parameters": 3000000,
+    "target_max_trainable_parameters": 1000000,
+    "texture_encoder_channels": [
+      24,
+      32,
+      64,
+      96
+    ],
+    "texture_input_channels": 4,
+    "token_dimensions": 96,
+    "transformer": false
+  },
+  "data": {
+    "checksum_file_sha256": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a",
+    "conservative_train_components": [
+      1,
+      1,
+      4
+    ],
+    "historical_test": 103,
+    "images": 570,
+    "kaggle_input": "shanmuk4622/tire-dataset-prepared-phase2",
+    "known_train_tyres": [
+      1,
+      3,
+      4
+    ],
+    "overlay_sha256": "f81a80d20b60ba505d94e31c26615e7e7171a91a8506948be6c392b68107a039",
+    "test_human_geometry_images": 25,
+    "train": 386,
+    "train_human_geometry_images": 70,
+    "train_no_point_target_images": 164,
+    "train_weak_geometry_images": 152,
+    "validation": 81,
+    "validation_human_geometry_images": 25
+  },
+  "date_Asia_Calcutta": "2026-11-01",
+  "family": "TREAD-TWO/GEO",
+  "fit": {
+    "batch": 8,
+    "batches_per_epoch": 49,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "candidate_fits": 1,
+    "draws": 23520,
+    "epochs": 60,
+    "eps": 1e-08,
+    "foreach": false,
+    "fused": false,
+    "geometry_lr": 0.0001,
+    "lr_schedule": "cosine by completed global update",
+    "minimum_SSL_components_per_batch": 2,
+    "minimum_SSL_images_per_batch": 4,
+    "optimizer": "AdamW",
+    "precision": "FP32",
+    "quality_lr": 0.0003,
+    "schedule": "complete386-image coverage plus6 documented padding draws per epoch; at least one largest-component and one other-component image per batch",
+    "seed": 1,
+    "separate_group_clip_norm": 1.0,
+    "texture_lr": 0.001,
+    "texture_ramp_epochs": 5,
+    "texture_views": 47040,
+    "updates": 2940,
+    "weight_decay": 0.0001
+  },
+  "losses": {
+    "VIC_covariance_weight": 1.0,
+    "VIC_invariance_weight": 25.0,
+    "VIC_variance_epsilon": 0.0001,
+    "VIC_variance_floor": 1.0,
+    "VIC_variance_weight": 25.0,
+    "anchor_drift_weight": 0.1,
+    "containment_weight": 0.1,
+    "masked_huber_beta": 0.1,
+    "masked_prediction_weight": 0.5,
+    "point_smooth_l1_beta": 0.02,
+    "point_weight": 2.0,
+    "quality_smooth_l1_beta": 0.02,
+    "quality_weight": 0.25,
+    "row_agreement_weight": 0.1,
+    "segmentation": "masked BCE + soft Dice, mean of2 regions",
+    "weak_point_weight": 0.25
+  },
+  "notebooks": {
+    "NB16": "planned GEO preparation, math/recovery/storage and actual dual-T4 gate; disposable engineering updates only",
+    "NB17": "planned single resumable GEO measured pilot",
+    "NB18": "planned completed-run review/export if NB17 completes; no automatic extra model fit"
+  },
+  "publication": {
+    "catchable_stop_attempt_immediate": true,
+    "local_commit_attempts_per_hour": 96,
+    "major_cell_push": true,
+    "namespace": "phase3/tread-two/geo-r1",
+    "native_epoch_checkpoints": 60,
+    "normal_push_seconds": 1800,
+    "npz": false,
+    "private_HF_SDK": "0.36.2 until separately tested transport revision",
+    "repository": "Shanmuk4622/tyre-wear-study",
+    "secret": "HF_TOKEN",
+    "server_headers_authoritative": true,
+    "zip": false
+  },
+  "resources": {
+    "DDP": false,
+    "assumed_output_bytes": 20000000000,
+    "free_reserve_bytes": 2000000000,
+    "frozen_feature_and_evaluation_gpu": "cuda:1",
+    "geometry_microbatch": 1,
+    "live_measurement_required": true,
+    "logical_artifact_budget_bytes": 15000000000,
+    "maximum_projected_peak_bytes": 18000000000,
+    "observation_native_format": "uncompressed NPY shards, at most8complete updates; active raw append streams with committed byte prefixes and indexed shapes",
+    "scratch_1TB_required": false,
+    "storage_uncertainty_factor": 1.2,
+    "training_gpu": "cuda:0",
+    "wall_time_estimate": "pending actual fixture; no speed claim"
+  },
+  "revision": "geo-r1-plan-v1",
+  "scope": {
+    "actual_Kaggle_gate_passed": false,
+    "existing_photos_only": true,
+    "measured_training_started": false,
+    "new_independent_tyres": 0,
+    "new_model_forwards_performed": 0,
+    "new_optimizer_updates_performed": 0,
+    "workstation_changes": false
+  },
+  "selection": {
+    "human_point_MAE_ceiling_delta": 0.001,
+    "invalid_atlas_fraction_ceiling_delta": 0.01,
+    "mask_dice_floor_delta": -0.002,
+    "mileage_classification_selection_metric": false,
+    "no_eligible_checkpoint": "reject candidate; retain final and all evidence; do not substitute historical-test winner",
+    "objective": "masked_Huber / training_mean_predictor_Huber +0.1*paired_cosine_distance; lower is better; earliest tie",
+    "projector_effective_rank_floor": 4,
+    "projector_std_median_floor": 0.1,
+    "quality_head_selection_metric": false,
+    "success_masked_loss_relative_gain": 0.05,
+    "success_minimum_SSL_draw_coverage": 0.9,
+    "success_paired_cosine_distance": 0.05
+  },
+  "status": "design_complete_implementation_pending"
+}

@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "checks": [
+    "Every derived table hash/count/columns and correction/pair/attention residuals checked",
+    "Small-object cache reuse and corruption replacement",
+    "Bounded range assembly yields exact declared bytes/SHA offline",
+    "Invalid/ignored byte-range response rejected",
+    "Actual explorer JavaScript controls and explicit attention missingness pass synthetic DOM",
+    "Additive review publication reconciles lost success,releases owner and skips same rerun offline",
+    "Fresh extracted notebook source reproduces every scientific table byte-for-byte"
+  ],
+  "notebook_sha256": "53601e0baa1c872ef5302a6472ec55025d37008e17b10b15b91913ef8c0caaa1",
+  "embedded_files": 44,
+  "derived_tables": 52,
+  "derived_rows": 585825,
+  "packaged_fresh_analysis_equal": true,
+  "viewer": {
+    "status": "passed",
+    "case_records": 1854,
+    "reference_cases": 18,
+    "full_attention_cases": 206,
+    "controls": [
+      "paging",
+      "eight probes",
+      "flip/wrong/target/search",
+      "base/context/combined",
+      "explained class",
+      "layer/head",
+      "attention missingness"
+    ],
+    "native_browser_render": false
+  },
+  "offline_publication": true,
+  "source_hashes": {
+    "context_checks.py": "6c53ca2860d250df9f2387b089601c6b74ce402c7d90abe2dbef7882a0db4373",
+    "paired_context.py": "8fa0f4d407c818dc339322400b12b13fec6a3746d3bcc8dc65553a8c9ce13d82",
+    "publish_context_review.py": "18e30f07e026fcacb59e2ce66d6edc848437601e579c6db57eb7458a2e584c52",
+    "render_context.py": "ab3f59ae32d655c1f5a0d3eedaa3b2172f37f5f234e759d9ea21073742891514",
+    "review_context.py": "16ab6eee67b19409df0d96cfe75e137b2070bc20549a1aa976790d48029e0fd6"
+  },
+  "model_forward_calls": 0,
+  "training_updates": 0,
+  "remote_writes": 0,
+  "actual_Kaggle_NB14_execution": false,
+  "actual_HF_review_publication": false,
+  "fixture": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\tread_two\\context_review_validation\\acceptance_dyl5tvmt"
+}

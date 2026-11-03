@@ -1,0 +1,19 @@
+model,seed,endpoint,epoch,validation_BA,test_observed_BA,mean_Dice,human_point_MAE_width,nll,scope
+TREAD-ONE r1,1,selected,23,0.55,0.5,0.9785243523473974,0.0106708918046206,1.1867758631087562,same 103-image development endpoint
+TREAD-ONE r1,1,final,60,,0.5,0.9757917532816448,0.0107631731778383,1.7830202271793134,same 103-image development endpoint
+TREAD-ONE r1,2,selected,30,0.825,0.024390243902439,0.9766183190137536,0.0130498083680868,2.6408368770445465,same 103-image development endpoint
+TREAD-ONE r1,2,final,60,,0.2195121951219512,0.9776329915035292,0.0139141066558659,2.6864096297305284,same 103-image development endpoint
+TREAD-ONE r1,3,selected,20,1.0,0.5,0.9841869519273068,0.0119603371806442,1.3869620031341476,same 103-image development endpoint
+TREAD-ONE r1,3,final,60,,0.0365853658536585,0.9814536298591154,0.0141853029374033,2.344001215474545,same 103-image development endpoint
+Phase2 mobilenetv4,1,selected,4,1.0,0.5,,,,validation-selected installed seed; no test-best seed substitution
+Phase2 resnet50,2,selected,1,0.85,0.5,,,,validation-selected installed seed; no test-best seed substitution
+TREAD-ONE paired baseline,1,selected,23,0.55,0.5,0.9785243523473974,0.0106708917913318,1.1867758631087562,same 103-image development endpoint
+TREAD-ONE paired baseline,1,final,60,,0.5,0.9757917532816448,0.0107631738366094,1.7830202271793134,same 103-image development endpoint
+TREAD-ONE shared projection,1,selected,17,0.8375,0.1707317073170731,0.9778224952779214,0.0188461304594736,1.7082978549511971,same 103-image development endpoint
+TREAD-ONE shared projection,1,final,60,,0.5,0.9775633991190752,0.0147733437466062,2.217687196432442,same 103-image development endpoint
+ATLAS v1,1,final,60,,0.5,,,1.42829815633,same 103-image development endpoint
+ATLAS v1,1,selected,18,0.5,0.5,,,1.17829593921,same 103-image development endpoint
+ATLAS-LC r2,1,final,60,,0.5,,,1.36987214558,same 103-image development endpoint
+ATLAS-LC r2,1,selected,7,0.5625,0.5,,,0.961272740528,same 103-image development endpoint
+ATLAS-CONTEXT r3,1,final,60,,0.5,,,2.3584750656,same 103-image development endpoint
+ATLAS-CONTEXT r3,1,selected,7,0.5,0.5,,,2.17481285234,same 103-image development endpoint

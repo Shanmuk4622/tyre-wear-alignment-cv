@@ -1,0 +1,5 @@
+check,passed,meaning
+all_training_images_have_unchanged_hash_identity,True,386 original training records agree with independently published NB07
+all_leave_component_out_fits_retain_three_classes,False,A complete group-held-out comparison across low/mid/high requires class support in every fit fold
+at_least_two_conservative_training_components_per_class,False,Minimum support for withholding one independent conservative component while retaining that class
+new_fit_or_workstation_promotion_justified,False,Existing context result fails low recognition; this metadata/post-hoc gate does not establish useful unseen-tyre classification

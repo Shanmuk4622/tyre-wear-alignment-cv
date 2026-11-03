@@ -1,0 +1,178 @@
+{
+  "status": "passed",
+  "scope": "design_local_prototype_and_actual_train_target_audit_not_measured_fit",
+  "prototype_modules": 4,
+  "syntax_checked_files": 12,
+  "source_receipts_match": true,
+  "target_cells_CSV_native_exact": 197632,
+  "target_values_CSV_native_exact": 1185792,
+  "full_train_construction_SHA_verified": true,
+  "prototype_checks": {
+    "deterministic_per_band_mask": true,
+    "fixed_target_detached": true,
+    "heldout_statistics_rejected": true,
+    "independent_target_cell_reduction_max_absolute_difference": 3.56409145751968e-07,
+    "hidden_raw_pixel_perturbation_masked_prediction_bit_exact": true,
+    "hidden_target_changes_cannot_change_visible_targets": true,
+    "annotation_ignore_does_not_enter_student_features": true,
+    "invalid_raw_pixels_cannot_change_supported_targets": true,
+    "explicit_spatial_moments_respond_to_row_and_column_reversal": true,
+    "per_image_loss_reconstruction_max_absolute_difference": 2.436629920055111e-08,
+    "trainable_parameters": 71022,
+    "all_parameter_gradients_finite_and_connected": true,
+    "geometry_inputs_detached": true,
+    "covariance_guard_requires_at_least_seven_eligible_rows": true,
+    "empty_support_explicitly_unavailable": true,
+    "nonfinite_input_rejected": true,
+    "batch8_dim6_unit_covariance_feasible_max_difference": 6.661338147750939e-16,
+    "CPU_completed_update_native_restore_exact_model_optimizer_RNG_cursor_history": true
+  },
+  "geometry_equivalence": "passed",
+  "target_audit": "passed",
+  "planned_CSV_families": 48,
+  "planned_field_declarations": 669,
+  "measured_CSV_writer_coverage_claimed": false,
+  "viewer": {
+    "status": "passed",
+    "actual_script": true,
+    "training_cases": 4,
+    "channels": 6,
+    "paging": true,
+    "hidden_overlay": true,
+    "hover": true,
+    "CSV_export_rows": 512,
+    "PNG_signatures": true,
+    "native_browser_render": false
+  },
+  "figure_size": [
+    1800,
+    1200
+  ],
+  "prior_frozen_source_inventories_preserved": {
+    "pilot": 24,
+    "lc_pilot": 30,
+    "context_pilot": 32,
+    "geo_pilot": 28,
+    "geo_postrun": 18,
+    "geometry_first/runtime": 26,
+    "original_workstation": 47,
+    "phase3_workstation": 18,
+    "paired_runtime": 27
+  },
+  "executed_notebooks_preserved": {
+    "10": [
+      "phase3_NB10_TREAD_TWO_Train_Only_Appearance_And_Reference_Gate.ipynb"
+    ],
+    "11": [
+      "phase3_NB11_TREAD_TWO_ATLAS_LC_Resumable_Pilot.ipynb"
+    ],
+    "12": [
+      "phase3_NB12_TREAD_TWO_ATLAS_LC_Completed_Review.ipynb"
+    ],
+    "13": [
+      "phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb"
+    ],
+    "14": [
+      "phase3_NB14_TREAD_TWO_CONTEXT_Completed_Review.ipynb"
+    ],
+    "15": [
+      "phase3_NB15_TREAD_TWO_Existing_Data_Readiness_And_Evidence_Passport.ipynb"
+    ],
+    "16": [
+      "phase3_NB16_TREAD_TWO_GEO_Preparation_And_Contract_Gate.ipynb"
+    ],
+    "17": [
+      "phase3_NB17_TREAD_TWO_GEO_Resumable_Pilot.ipynb"
+    ],
+    "20": [
+      "phase3_NB20_TREAD_TWO_GEO_All_In_One_Postrun.ipynb"
+    ]
+  },
+  "original_Markdown_preserved": 103,
+  "Markdown_checked": 84,
+  "local_links_checked": 1959,
+  "broken_links": [],
+  "Kaggle_notebook_delivery": false,
+  "dual_T4_live_HF_proof": false,
+  "new_measured_training": false,
+  "local_credentials_read": false,
+  "remote_writes": 0,
+  "new_photos": 0,
+  "workstation_changes": false,
+  "large_fixtures_ignored": true,
+  "curated_deliverables_visible": true,
+  "deliverables": {
+    "tread_two\\trace_design\\DELIVERY_PLAN.md": {
+      "bytes": 3645,
+      "sha256": "7a00c561594b9d81e8245c8dc5280794e025fd79f70b045c3e9cd1c704354bb7"
+    },
+    "tread_two\\trace_design\\DESIGN.md": {
+      "bytes": 7742,
+      "sha256": "5e596e1600aaae1714305962087c338343e2b24e3375ac41f299a1dc6506e443"
+    },
+    "tread_two\\trace_design\\EVIDENCE.md": {
+      "bytes": 7269,
+      "sha256": "e2a8b57e9004c303d7c7d237c4409bc2cf0416230e741dc11ea274527704c7aa"
+    },
+    "tread_two\\trace_design\\EXPERIMENT.md": {
+      "bytes": 6381,
+      "sha256": "a71a0d4e93199919e9ae2eaaab306988a1e173aacf6904659cd38b3b37fc1ad2"
+    },
+    "tread_two\\trace_design\\FINDINGS.md": {
+      "bytes": 7051,
+      "sha256": "0a24565eec40ae9a98cd4b89ae241708b9d843625cf7d7eb8b755f9329f2f248"
+    },
+    "tread_two\\trace_design\\OPERATIONS.md": {
+      "bytes": 5977,
+      "sha256": "73432ad1d6fc07be492de34b9b76092778fe21d1a3403368e84284ca522dc4c7"
+    },
+    "tread_two\\trace_design\\README.md": {
+      "bytes": 2389,
+      "sha256": "185a975e0987af4553d3a411de6a8272bbb1c19baa0d51decdeb2b90afc77122"
+    },
+    "tread_two\\trace_design\\TARGETS.md": {
+      "bytes": 6874,
+      "sha256": "3ca1dfa8c9abf0b630e9959c227f45d381aee436ed3e5ae0b9433b9ccf6f952d"
+    },
+    "tread_two\\trace_design\\BUDGET.json": {
+      "bytes": 1030,
+      "sha256": "97232536f0c49c9252e1f6164fce2f26d0b807d91033b988560eed1b6f05112c"
+    },
+    "tread_two\\trace_design\\SCHEMAS.json": {
+      "bytes": 127712,
+      "sha256": "66c5633ebeb2767da2e2a0c0d770700d0ab40d73ba2eb2c20e4d16e91072119e"
+    },
+    "tread_two\\trace_design\\SOURCES.json": {
+      "bytes": 2827,
+      "sha256": "1405e7cd26dc6ca295792876cfd84d7b8a5f50d231154d472d65695a88b2c235"
+    },
+    "tread_two\\trace_design\\STATUS.json": {
+      "bytes": 770,
+      "sha256": "3cfee1996048dc66946bbdfea5dbc6e242e7bb56b85a5871e3ad922c9ea3fe07"
+    },
+    "tread_two\\trace_design\\runtime\\frozen_geometry.py": {
+      "bytes": 3626,
+      "sha256": "13af74071281f45d70816c350317e6c12f802de6dbb0066419b707f96c3933be"
+    },
+    "tread_two\\trace_design\\runtime\\model.py": {
+      "bytes": 4053,
+      "sha256": "84ef4840970480e6541716534d7f9e61caf08ad584dafdb8676a7675fb085d07"
+    },
+    "tread_two\\trace_design\\runtime\\objective.py": {
+      "bytes": 2789,
+      "sha256": "05816e29b36551089b19e8b8a201dbe053d837d96bf6c4575221bfd2844fc4f1"
+    },
+    "tread_two\\trace_design\\runtime\\targets.py": {
+      "bytes": 7047,
+      "sha256": "68e5cc728141e0376bd13b58f13d0448edc46163eb243e400dc43782d6222d11"
+    },
+    "tread_two\\trace_report\\TRACE_Design_Explorer.html": {
+      "bytes": 916811,
+      "sha256": "931894b656e518b5bcf182102e9880ed58317e0e7808aabe820da0041eec279e"
+    },
+    "tread_two\\trace_report\\figures\\TRACE_Fixed_Targets.png": {
+      "bytes": 563138,
+      "sha256": "42790df97312477871c38b23959fed9bbd08d1dd30eeaf0460d529c070719059"
+    }
+  }
+}

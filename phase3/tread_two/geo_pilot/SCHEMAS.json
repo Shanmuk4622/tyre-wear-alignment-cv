@@ -1,0 +1,3503 @@
+{
+  "CSV_families": 40,
+  "declared_columns": 443,
+  "families": {
+    "HF_publications": {
+      "cadence": "every publication attempt",
+      "columns": [
+        {
+          "definition": "run for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "attempt for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "attempt",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reason for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reason",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "local update for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "local_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "remote update for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "remote_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "revision for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "revision",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "manifest sha256 for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "manifest_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "new objects for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "new_objects",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "verified objects for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "verified_objects",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "elapsed seconds for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "elapsed_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "owner released for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "owner_released",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "pending for HF publications; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "pending",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "attempt"
+      ],
+      "status": "draft_required_family"
+    },
+    "HF_requests": {
+      "cadence": "every request category/event; no secrets",
+      "columns": [
+        {
+          "definition": "run for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "event id for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "event_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "category for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "category",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "method for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "method",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "http status for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "http_status",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "retry delay seconds for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "retry_delay_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "rate remaining for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "rate_remaining",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reset seconds for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reset_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "bytes transferred for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bytes_transferred",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "outcome for HF requests; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "outcome",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "event_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "annotation_targets": {
+      "cadence": "once",
+      "columns": [
+        {
+          "definition": "run for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image id for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "guide for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "guide",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "side for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "side",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "x width fraction for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "x_width_fraction",
+          "units": "width-normalized coordinate/error"
+        },
+        {
+          "definition": "y height fraction for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "y_height_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "target kind for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "optimization weight for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "optimization_weight",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "human eligible for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "human_eligible",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "metric available for annotation targets; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "metric_available",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "image_id",
+        "guide",
+        "side"
+      ],
+      "status": "draft_required_family"
+    },
+    "atlas_bands": {
+      "cadence": "every sample and8bands",
+      "columns": [
+        {
+          "definition": "run for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "band for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "band",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid rows for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_rows",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid fraction for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "mean width width fraction for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mean_width_width_fraction",
+          "units": "width-normalized coordinate/error"
+        },
+        {
+          "definition": "clipped fraction for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "clipped_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "point mask gap width fraction for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_mask_gap_width_fraction",
+          "units": "width-normalized coordinate/error"
+        },
+        {
+          "definition": "unsupported for atlas bands; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unsupported",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "band"
+      ],
+      "status": "draft_required_family"
+    },
+    "atlas_rows": {
+      "cadence": "selected/final source cohorts; all training row parameters additionally native",
+      "columns": [
+        {
+          "definition": "run for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "atlas row for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "atlas_row",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source y for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_y",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "left x for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "left_x",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "right x for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "right_x",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "row valid for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "row_valid",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source clipped for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_clipped",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "grid parameter native key for atlas rows; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "grid_parameter_native_key",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "atlas_row"
+      ],
+      "status": "draft_required_family"
+    },
+    "batch_objectives": {
+      "cadence": "every completed update",
+      "columns": [
+        {
+          "definition": "run for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry objective for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_objective",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quality objective for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_objective",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL objective for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_objective",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "variance a for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "variance_a",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "variance b for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "variance_b",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "covariance a for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "covariance_a",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "covariance b for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "covariance_b",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "texture ramp for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_ramp",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "total loss for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "total_loss",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "geometry samples for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_samples",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quality mask targets for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_mask_targets",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quality human point targets for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_human_point_targets",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL pairs for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_pairs",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "texture step skipped for batch objectives; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_step_skipped",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "update"
+      ],
+      "status": "draft_required_family"
+    },
+    "dense_pixels": {
+      "cadence": "selected/final identity cohorts only; run identity bound by file manifest; each row is one4x4report block; all logits additionally native",
+      "columns": [
+        {
+          "definition": "sample for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "region for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "region",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "row for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "row",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "column for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "column",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "probability for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "float32",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "probability",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "predicted for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target foreground subpixels for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_foreground_subpixels",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid subpixels for dense pixels; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_subpixels",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "region",
+        "row",
+        "column"
+      ],
+      "status": "draft_required_family"
+    },
+    "endpoint_neighbours": {
+      "cadence": "selected/final diagnostic retrieval",
+      "columns": [
+        {
+          "definition": "run for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reference id for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reference_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reference sha256 for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reference_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reference component for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reference_component",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reference stage for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reference_stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "cosine similarity for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "cosine_similarity",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "rank for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "rank",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "same source blocked for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "same_source_blocked",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "same component blocked for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "same_component_blocked",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "proxy label context only for endpoint neighbours; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "proxy_label_context_only",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "reference_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "environment": {
+      "cadence": "once and recovery attempts",
+      "columns": [
+        {
+          "definition": "run for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "record id for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "record_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "python for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "python",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "torch for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "torch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "cuda for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "cuda",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "cudnn for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "cudnn",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "numpy for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "numpy",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "pillow for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "pillow",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "HF SDK for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "HF_SDK",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "devices for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "devices",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "free output bytes for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "free_output_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "source inventory sha256 for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_inventory_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dataset checksum for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dataset_checksum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "anchor sha256 for environment; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "anchor_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "record_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "epoch_metrics": {
+      "cadence": "every epoch and endpoint task/group",
+      "columns": [
+        {
+          "definition": "run for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "endpoint for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "endpoint",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "task for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "task",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "group for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "group",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "numerator for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "numerator",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "denominator for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "denominator",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "value for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "value",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "available for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "aggregation definition for epoch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "aggregation_definition",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "stage",
+        "epoch",
+        "task",
+        "group"
+      ],
+      "status": "draft_required_family"
+    },
+    "epoch_schedule": {
+      "cadence": "every epoch before updates",
+      "columns": [
+        {
+          "definition": "run for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "draw for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "draw",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "batch for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "batch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "batch slot for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "batch_slot",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image id for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source sha256 for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "leakage component for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "leakage_component",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "is padding for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "is_padding",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "base augmentation seed for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "base_augmentation_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view a seed for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view_a_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view b seed for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view_b_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask a seed for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_a_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask b seed for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_b_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "schedule sha256 for epoch schedule; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "schedule_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "epoch",
+        "draw"
+      ],
+      "status": "draft_required_family"
+    },
+    "gate_checks": {
+      "cadence": "preflight and final audit",
+      "columns": [
+        {
+          "definition": "run for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "check for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "check",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "passed for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "passed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "observed for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "observed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "required for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "required",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "evidence path for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "evidence_path",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "fixture or measured for gate checks; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "fixture_or_measured",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "check"
+      ],
+      "status": "draft_required_family"
+    },
+    "geometry_drift": {
+      "cadence": "every sample against same-view anchor",
+      "columns": [
+        {
+          "definition": "run for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask logit delta max for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_logit_delta_max",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask probability delta mean for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_probability_delta_mean",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "point delta max width fraction for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_delta_max_width_fraction",
+          "units": "width-normalized coordinate/error"
+        },
+        {
+          "definition": "tyre box delta for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "tyre_box_delta",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "tread box delta for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "tread_box_delta",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "anchor weights unchanged for geometry drift; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "anchor_weights_unchanged",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample"
+      ],
+      "status": "draft_required_family"
+    },
+    "geometry_losses": {
+      "cadence": "every sample; unreduced sufficient statistics",
+      "columns": [
+        {
+          "definition": "run for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bce sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bce_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bce count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bce_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dice loss sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dice_loss_sum",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "dice region count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dice_region_count",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "point loss sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_loss_sum",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "point weight count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_weight_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "containment sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "containment_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "containment count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "containment_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "row agreement sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "row_agreement_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "row agreement count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "row_agreement_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "anchor drift sum for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "anchor_drift_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "anchor drift count for geometry losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "anchor_drift_count",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample"
+      ],
+      "status": "draft_required_family"
+    },
+    "global_embeddings": {
+      "cadence": "every eligible view, all96coordinates",
+      "columns": [
+        {
+          "definition": "run for global embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for global embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view for global embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dimension for global embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dimension",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "value for global embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "float32",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "value",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "view",
+        "dimension"
+      ],
+      "status": "draft_required_family"
+    },
+    "group_gradient_summary": {
+      "cadence": "every group/update",
+      "columns": [
+        {
+          "definition": "run for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "group for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "group",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "pre clip norm for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "pre_clip_norm",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "post clip norm for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "post_clip_norm",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "clip coefficient for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "clip_coefficient",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "gradient count for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gradient_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "optimizer step applied for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "optimizer_step_applied",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "frozen anchor gradient count for group gradient summary; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "frozen_anchor_gradient_count",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "update",
+        "group"
+      ],
+      "status": "draft_required_family"
+    },
+    "interventions": {
+      "cadence": "selected/final predeclared probes",
+      "columns": [
+        {
+          "definition": "run for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "variant for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "variant",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "base sample for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "base_sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask dice change for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_dice_change",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "point MAE change for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_MAE_change",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "embedding cosine change for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "embedding_cosine_change",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "quality error change for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_error_change",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid fraction change for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_fraction_change",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "scope for interventions; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "scope",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "variant"
+      ],
+      "status": "draft_required_family"
+    },
+    "latent_diagnostics": {
+      "cadence": "every batch and validation epoch",
+      "columns": [
+        {
+          "definition": "run for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "eligible images for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "eligible_images",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "components for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "components",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "projector std min for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "projector_std_min",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "projector std median for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "projector_std_median",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dimensions below floor for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dimensions_below_floor",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "covariance offdiag energy for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "covariance_offdiag_energy",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "effective rank for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "effective_rank",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "embedding norm min for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "embedding_norm_min",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "embedding norm max for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "embedding_norm_max",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "finite for latent diagnostics; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "finite",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "update",
+        "stage"
+      ],
+      "status": "draft_required_family"
+    },
+    "masked_patch_metrics": {
+      "cadence": "every masked tile",
+      "columns": [
+        {
+          "definition": "run for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "patch for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "patch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "huber sum for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "huber_sum",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "huber weight count for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "huber_weight_count",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "absolute error sum for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "absolute_error_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "absolute error max for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "absolute_error_max",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mean predictor huber sum for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mean_predictor_huber_sum",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "mean predictor weight count for masked patch metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mean_predictor_weight_count",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "view",
+        "patch"
+      ],
+      "status": "draft_required_family"
+    },
+    "masked_patch_plan": {
+      "cadence": "every eligible texture view and masked tile",
+      "columns": [
+        {
+          "definition": "run for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "patch for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "patch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "masked for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "masked",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid loss pixels for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_loss_pixels",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "mask weight sum for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_weight_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target mean for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_mean",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target std for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_std",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native prediction key for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_prediction_key",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native target key for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_target_key",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native weight key for masked patch plan; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_weight_key",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "view",
+        "patch"
+      ],
+      "status": "draft_required_family"
+    },
+    "native_chunks_index": {
+      "cadence": "each closed epoch or snapshot",
+      "columns": [
+        {
+          "definition": "run for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "file for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "file",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "kind for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "first sample for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "first_sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "last sample for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "last_sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bytes for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "sha256 for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "immutable for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "immutable",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "committed unit for native chunks index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "committed_unit",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "file"
+      ],
+      "status": "draft_required_family"
+    },
+    "numeric_events": {
+      "cadence": "only when event occurs; empty table valid",
+      "columns": [
+        {
+          "definition": "run for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "event id for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "event_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "event kind for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "event_kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "parameter or tensor for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "parameter_or_tensor",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "finite for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "finite",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "action for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "action",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "replay from update for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "replay_from_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "reason for numeric events; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "reason",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "event_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "pair_losses": {
+      "cadence": "every eligible paired draw",
+      "columns": [
+        {
+          "definition": "run for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "invariance for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "invariance",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "masked huber a for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "masked_huber_a",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "masked huber b for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "masked_huber_b",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "pair cosine distance for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "pair_cosine_distance",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "valid images in batch for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_images_in_batch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid components in batch for pair losses; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_components_in_batch",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample"
+      ],
+      "status": "draft_required_family"
+    },
+    "parameter_gradients": {
+      "cadence": "every trainable tensor/update",
+      "columns": [
+        {
+          "definition": "run for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "group for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "group",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "parameter for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "parameter",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "gradient available for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gradient_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "numel for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "numel",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "l2 norm for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "l2_norm",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "max absolute for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "max_absolute",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mean absolute for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mean_absolute",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "zero fraction for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "zero_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "finite for parameter gradients; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "finite",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "update",
+        "parameter"
+      ],
+      "status": "draft_required_family"
+    },
+    "patch_support": {
+      "cadence": "every sample and32tiles",
+      "columns": [
+        {
+          "definition": "run for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "patch for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "patch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "band for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "band",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "column for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "column",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid fraction for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "pooling mass for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "pooling_mass",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid target fraction for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_target_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "source row start for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_row_start",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source row end for patch support; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_row_end",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "patch"
+      ],
+      "status": "draft_required_family"
+    },
+    "pipeline_timings": {
+      "cadence": "every update/evaluation unit",
+      "columns": [
+        {
+          "definition": "run for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "feature seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "feature_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "transfer seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "transfer_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "geometry seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "texture seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "record seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "record_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "publish wait seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "publish_wait_seconds",
+          "units": "seconds"
+        },
+        {
+          "definition": "evaluation seconds for pipeline timings; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "evaluation_seconds",
+          "units": "seconds"
+        }
+      ],
+      "key": [
+        "unit"
+      ],
+      "status": "draft_required_family"
+    },
+    "point_values": {
+      "cadence": "every sample and6points",
+      "columns": [
+        {
+          "definition": "run for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "guide for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "guide",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "side for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "side",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "prediction for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "prediction",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "absolute error width fraction for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "absolute_error_width_fraction",
+          "units": "width-normalized coordinate/error"
+        },
+        {
+          "definition": "smooth l1 sum for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "smooth_l1_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target kind for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "optimization weight for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "optimization_weight",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "human metric available for point values; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "human_metric_available",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "guide",
+        "side"
+      ],
+      "status": "draft_required_family"
+    },
+    "projected_embeddings": {
+      "cadence": "every eligible view, all64coordinates",
+      "columns": [
+        {
+          "definition": "run for projected embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for projected embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view for projected embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dimension for projected embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dimension",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "value for projected embeddings; precise joins/denominators in RETENTION.md",
+          "dtype": "float32",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "value",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "view",
+        "dimension"
+      ],
+      "status": "draft_required_family"
+    },
+    "quality_bins": {
+      "cadence": "each validation epoch and endpoints",
+      "columns": [
+        {
+          "definition": "run for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "endpoint for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "endpoint",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quantity for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quantity",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bin for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bin",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "count for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted error sum for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_error_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "observed error sum for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "observed_error_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "absolute error sum for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "absolute_error_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "median baseline error sum for quality bins; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "median_baseline_error_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "stage",
+        "epoch",
+        "quantity",
+        "bin"
+      ],
+      "status": "draft_required_family"
+    },
+    "quality_predictions": {
+      "cadence": "every sample and3error outputs",
+      "columns": [
+        {
+          "definition": "run for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quantity for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quantity",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted error for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_error",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "observed error for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "observed_error",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target available for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "human only target for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "human_only_target",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "loss sum for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "loss_sum",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "loss count for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "loss_count",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "validated for deployment for quality predictions; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "validated_for_deployment",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "quantity"
+      ],
+      "status": "draft_required_family"
+    },
+    "region_metrics": {
+      "cadence": "every sample and2regions",
+      "columns": [
+        {
+          "definition": "run for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "region for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "region",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "tp for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "tp",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "fp for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "fp",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "fn for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "fn",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "valid pixels for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "valid_pixels",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target pixels for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_pixels",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted pixels for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_pixels",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dice for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dice",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "iou for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "iou",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "box iou for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "box_iou",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "target box available for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_box_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted box available for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_box_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted box left for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_box_left",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted box top for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_box_top",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted box right for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_box_right",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "predicted box bottom for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "predicted_box_bottom",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target box left for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_box_left",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target box top for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_box_top",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target box right for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_box_right",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "target box bottom for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "target_box_bottom",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bce sum for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bce_sum",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "bce count for region metrics; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "bce_count",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "region"
+      ],
+      "status": "draft_required_family"
+    },
+    "resource_samples": {
+      "cadence": "every update and publication boundary",
+      "columns": [
+        {
+          "definition": "run for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "gpu0 allocated bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gpu0_allocated_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "gpu0 reserved bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gpu0_reserved_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "gpu1 allocated bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gpu1_allocated_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "gpu1 reserved bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gpu1_reserved_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "host rss bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "host_rss_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "working free bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "working_free_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "logical artifact bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "logical_artifact_bytes",
+          "units": "bytes"
+        },
+        {
+          "definition": "staging bytes for resource samples; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "staging_bytes",
+          "units": "bytes"
+        }
+      ],
+      "key": [
+        "unit"
+      ],
+      "status": "draft_required_family"
+    },
+    "sample_observations": {
+      "cadence": "every train/evaluation source pass",
+      "columns": [
+        {
+          "definition": "run for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "stage for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "stage",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "endpoint for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "endpoint",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "completed update for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "completed_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "parameter update for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "parameter_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image id for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source sha256 for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry valid for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_valid",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL valid for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_valid",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL skip reason for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_skip_reason",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "guide count for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "guide_count",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask valid pixels for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_valid_pixels",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "point target kind for sample observations; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_target_kind",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample"
+      ],
+      "status": "draft_required_family"
+    },
+    "selection": {
+      "cadence": "each validation epoch",
+      "columns": [
+        {
+          "definition": "run for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "validation mean dice for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "validation_mean_dice",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "baseline mean dice for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "baseline_mean_dice",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "validation human point MAE for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "validation_human_point_MAE",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "baseline human point MAE for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "baseline_human_point_MAE",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "invalid atlas fraction for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "invalid_atlas_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "baseline invalid atlas fraction for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "baseline_invalid_atlas_fraction",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "projector std median for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "projector_std_median",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "effective rank for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "effective_rank",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "geometry eligible for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_eligible",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "collapse eligible for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "collapse_eligible",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "selection objective for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "selection_objective",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "selected so far for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "selected_so_far",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "rejection reasons for selection; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "rejection_reasons",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "epoch"
+      ],
+      "status": "draft_required_family"
+    },
+    "source_exposure": {
+      "cadence": "each epoch per original training image",
+      "columns": [
+        {
+          "definition": "run for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image id for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry draws for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_draws",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "texture views for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_views",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "padding draws for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "padding_draws",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL valid draws for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_valid_draws",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "SSL skipped draws for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "SSL_skipped_draws",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "first update for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "first_update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "last update for source exposure; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "last_update",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "epoch",
+        "image_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "source_images": {
+      "cadence": "once",
+      "columns": [
+        {
+          "definition": "run for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image id for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "image sha256 for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "image_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "role for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "role",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "domain for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "domain",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "confirmed tyre id for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "confirmed_tyre_id",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "source group for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "source_group",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "leakage component for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "leakage_component",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "label proxy for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "label_proxy",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "point kind for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "point_kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "human target available for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "human_target_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "weak target available for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "weak_target_available",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask sha256 for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "ignore sha256 for source images; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "ignore_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "image_id"
+      ],
+      "status": "draft_required_family"
+    },
+    "spatial_maps_index": {
+      "cadence": "every retained native map chunk",
+      "columns": [
+        {
+          "definition": "run for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quantity for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quantity",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native file for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_file",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native key for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_key",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "shape for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "shape",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "dtype for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "dtype",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "coordinate system for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "coordinate_system",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sha256 for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "precision note for spatial maps index; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "precision_note",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "quantity"
+      ],
+      "status": "draft_required_family"
+    },
+    "train_updates": {
+      "cadence": "every completed update",
+      "columns": [
+        {
+          "definition": "run for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "epoch for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "epoch",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "next draw for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "next_draw",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry optimizer steps for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_optimizer_steps",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "texture optimizer steps for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_optimizer_steps",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quality optimizer steps for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_optimizer_steps",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry lr for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_lr",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "texture lr for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_lr",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "quality lr for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "quality_lr",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "gradient finite for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gradient_finite",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update committed for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "bool",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update_committed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit sha256 for train updates; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "update"
+      ],
+      "status": "draft_required_family"
+    },
+    "unit_ledger": {
+      "cadence": "every complete atomic unit",
+      "columns": [
+        {
+          "definition": "run for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "unit for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "unit",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "kind for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "kind",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "update for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "update",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "csv prefix sha256 for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "csv_prefix_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "native state sha256 for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "native_state_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "previous unit sha256 for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "previous_unit_sha256",
+          "units": "dimensionless fraction/statistic"
+        },
+        {
+          "definition": "current unit sha256 for unit ledger; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "current_unit_sha256",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "unit"
+      ],
+      "status": "draft_required_family"
+    },
+    "view_plans": {
+      "cadence": "two texture views per eligible sample",
+      "columns": [
+        {
+          "definition": "run for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "utf8",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "run",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "sample for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "sample",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "view for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "view",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "brightness for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "brightness",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "contrast for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "contrast",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "gamma for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "float64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "gamma",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "geometry augmentation seed for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "geometry_augmentation_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "texture seed for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "texture_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "mask seed for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "uint64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "mask_seed",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "masked tiles for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "masked_tiles",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "visible tiles for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "visible_tiles",
+          "units": "index/count/text/boolean as defined by field name"
+        },
+        {
+          "definition": "masked target pixels for view plans; precise joins/denominators in RETENTION.md",
+          "dtype": "int64",
+          "missing": "Blank only when unavailable/not applicable; availability/count fields must explain why",
+          "name": "masked_target_pixels",
+          "units": "index/count/text/boolean as defined by field name"
+        }
+      ],
+      "key": [
+        "sample",
+        "view"
+      ],
+      "status": "draft_required_family"
+    }
+  },
+  "status": "design_only_not_runtime_validated"
+}

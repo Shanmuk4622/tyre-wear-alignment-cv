@@ -1,0 +1,13 @@
+{
+  "status": "packaged_not_executed_on_Kaggle",
+  "revision": "r2",
+  "notebook": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\notebooks\\phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb",
+  "sha256": "9beacdc64b84c69f33131c18c6dfaefaa66739b718f7c934a006afad0e938549",
+  "launcher_sha256": "bc74ea98e637575c2b457e59278da712b07fbc3c5c23c54ff981a2910a4b952b",
+  "code_cells": 2,
+  "embedded_files": 35,
+  "source_runtime_changed": false,
+  "existing_session_required": false,
+  "remote_checkpoint_required": true,
+  "frozen_source_inventory_sha256": "f63d309ebed9dec516dba02ef8ed082b65b1cbbbfe2132368f47cc136f4193b8"
+}

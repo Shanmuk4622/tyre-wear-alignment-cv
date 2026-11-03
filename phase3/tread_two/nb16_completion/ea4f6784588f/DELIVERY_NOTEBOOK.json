@@ -1,0 +1,10 @@
+{
+  "status": "built_unexecuted",
+  "notebook": "D:\\Documents\\norse\\web Applicarion\\Tyre\\phase3\\notebooks\\phase3_NB16_TREAD_TWO_GEO_Preparation_And_Contract_Gate.ipynb",
+  "sha256": "b2d79f79fa43e7558db4c03aeff70e25c0671c99f245cb6f56f4018d19092689",
+  "bytes": 697475,
+  "package_sha256": "9bbb92ec75dba3e8dda7f32573f8eab33ea4314f68c3f2a67ef4152d389b43a0",
+  "embedded_files": 27,
+  "code_cells": 3,
+  "measured_fit_notebook_delivered": false
+}

@@ -1,0 +1,9 @@
+quantity,recorded_samples,missing_samples,minimum,maximum_sampled,last_recorded,scope
+gpu0_allocated_bytes,9867,0,1435136,201397760,73897984,Sampled at completed observation units; not a true within-step peak
+gpu0_reserved_bytes,9867,0,2097152,723517440,723517440,Sampled at completed observation units; not a true within-step peak
+gpu1_allocated_bytes,9867,0,40117760,58809344,57498624,Sampled at completed observation units; not a true within-step peak
+gpu1_reserved_bytes,9867,0,92274688,96468992,96468992,Sampled at completed observation units; not a true within-step peak
+host_rss_bytes,9867,0,1731837952,2327363584,2314121216,Sampled at completed observation units; not a true within-step peak
+working_free_bytes,9867,0,10280304640,20730871808,10280304640,Sampled at completed observation units; not a true within-step peak
+logical_artifact_bytes,9867,0,13358773,10300607571,10300607571,Sampled at completed observation units; not a true within-step peak
+staging_bytes,0,9867,,,,Sampled at completed observation units; not a true within-step peak

@@ -1,0 +1,371 @@
+{
+  "environment": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "python": "3.11.15"
+  },
+  "inputs": {
+    "identity_components.csv": {
+      "bytes": 1091,
+      "name": "csv/leakage_components.csv",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "330c65eb1495f0dc33e261b40f2d74ff429c95de010fd020bce36b3e336bfa4d"
+    },
+    "identity_images.csv": {
+      "bytes": 200753,
+      "name": "csv/source_images.csv",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "25fc0fd2ce5592297c3b1fe0929970db9c97040227b3b4fb71be107a5e3e293f"
+    },
+    "identity_tyres.csv": {
+      "bytes": 2392,
+      "name": "csv/source_tyres.csv",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "e6b1195b7cec80a6c5e267100c83e5cf1b7bfb631c8522fb08f2fc408e8600b4"
+    },
+    "review_context.csv": {
+      "bytes": 34855186,
+      "name": "context_observations.csv",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "36163f79135c469be2369cac58c4a77ebbbe7d7bb251e0a0d672f823bc68b9db"
+    },
+    "review_predictions.csv": {
+      "bytes": 35002760,
+      "name": "prediction_audit.csv",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "b82ec5b1aff2ecbdbf9f42e6d7100ca8270825680bf34dfe25b0552c6cb375a3"
+    },
+    "review_source.csv": {
+      "bytes": 156047,
+      "name": "source_registry.csv",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "3553f3fcd7ab1fdcb0d163c64b8665be817e9dc6bf1a539636d267a158142bc2"
+    }
+  },
+  "new_model_forwards": 0,
+  "optimizer_updates": 0,
+  "public_read_requests": 0,
+  "remote_writes": 0,
+  "status": "passed",
+  "summary": {
+    "class_support": [
+      {
+        "class_index": 0,
+        "class_name": "low",
+        "conservative_components": 1,
+        "images": 67,
+        "known_original_tyres": 1,
+        "original_images": 67,
+        "source_groups": 1,
+        "video_frames": 0
+      },
+      {
+        "class_index": 1,
+        "class_name": "mid",
+        "conservative_components": 1,
+        "images": 249,
+        "known_original_tyres": 3,
+        "original_images": 97,
+        "source_groups": 6,
+        "video_frames": 152
+      },
+      {
+        "class_index": 2,
+        "class_name": "high",
+        "conservative_components": 4,
+        "images": 70,
+        "known_original_tyres": 4,
+        "original_images": 70,
+        "source_groups": 4,
+        "video_frames": 0
+      }
+    ],
+    "classifier_status": "research_only_unpromoted",
+    "coassignment_scope": "Unresolved mid video-parent component is a conservative leakage constraint, not proof that three known mid tyres are the same tyre.",
+    "conditional_folds": 6,
+    "counterfactual_rows": 188160,
+    "counterfactual_scope": "Algebraic parts of saved changing online model states on identical paired views; no independently trained ablations, no component-held-out model fit, no new checkpoint selection.",
+    "folds_missing_fit_class": 2,
+    "heldout_prediction_rows_used": 0,
+    "known_training_original_tyres": 8,
+    "limitation": "Frozen LC prior was selected historically using validation. Training-only here describes rows analyzed, not an untouched pipeline or independent generalization experiment.",
+    "new_independent_tyres": 0,
+    "new_model_forwards": 0,
+    "next_full_classification_fit_authorized_by_gate": false,
+    "online_view_observations": 47040,
+    "optimizer_updates": 0,
+    "scientific_readiness": false,
+    "status": "passed",
+    "training_conservative_components": 6,
+    "training_images": 386
+  },
+  "tables": {
+    "conditional_fold_assignments": {
+      "columns": [
+        "fold",
+        "image_id",
+        "class_index",
+        "leakage_component",
+        "conditional_role",
+        "original_role"
+      ],
+      "rows": 2316,
+      "sha256": "9488aa55d30e09644f1921b80a9c105622d897276192fd571bb87424f12b6167"
+    },
+    "conditional_fold_class_support": {
+      "columns": [
+        "fold",
+        "held_component",
+        "class_index",
+        "fit_images",
+        "fit_components",
+        "held_images",
+        "held_components",
+        "frozen_bank_fit_references"
+      ],
+      "rows": 18,
+      "sha256": "e86e3bc6bc9f2102fa895a510df0985efdebd6e3159b2adb96857e887f0828ba"
+    },
+    "conditional_folds": {
+      "columns": [
+        "fold",
+        "held_component",
+        "fit_images",
+        "held_images",
+        "fit_classes",
+        "held_classes",
+        "missing_fit_classes",
+        "all_three_fit_classes",
+        "model_fitted"
+      ],
+      "rows": 6,
+      "sha256": "b7f36c0216ae2a14e14bd4aec19eb4576a6f7d43872db65bc1239d15df30fb06"
+    },
+    "frozen_bank_registry": {
+      "columns": [
+        "run",
+        "image_index",
+        "image_id",
+        "image_sha256",
+        "class_index",
+        "role",
+        "domain",
+        "physical_tyre_id",
+        "source_group",
+        "image_path",
+        "point_kind",
+        "is_bank",
+        "is_query",
+        "confirmed_original_tyre_id",
+        "provisional_video_tyre_id",
+        "leakage_component"
+      ],
+      "rows": 18,
+      "sha256": "028cead2025db2bb94df395d3c21d18a4dca926655ce440ad0008bb9ea772b58"
+    },
+    "held_component_bank_support": {
+      "columns": [
+        "fold",
+        "image_id",
+        "query_class",
+        "reference_class",
+        "allowed_references",
+        "normalization_if_supported",
+        "unsupported",
+        "bank_refit"
+      ],
+      "rows": 1158,
+      "sha256": "d530cad31d7efb71a2ebc0b7d959676b039430baf4cbc5f423101f26691f6f34"
+    },
+    "online_class_variants": {
+      "columns": [
+        "epoch",
+        "label",
+        "variant",
+        "view_observations",
+        "unique_images",
+        "online_accuracy",
+        "online_nll",
+        "online_mean_confidence",
+        "mean_delta_nll",
+        "rescued_prior_errors",
+        "spoiled_prior_corrects",
+        "prediction_flips"
+      ],
+      "rows": 720,
+      "sha256": "c43209b226183ad17314ef7907608ef405e1a82c165b427a79473ffc814a6d2b"
+    },
+    "online_component_counterfactuals": {
+      "columns": [
+        "sample",
+        "epoch",
+        "parameter_update",
+        "image_id",
+        "label",
+        "domain",
+        "source_group",
+        "leakage_component",
+        "variant",
+        "logit_0",
+        "probability_0",
+        "logit_1",
+        "probability_1",
+        "logit_2",
+        "probability_2",
+        "prediction",
+        "correct",
+        "nll",
+        "confidence",
+        "prior_correct",
+        "prior_nll",
+        "delta_nll",
+        "rescued_prior_error",
+        "spoiled_prior_correct",
+        "prediction_flip"
+      ],
+      "rows": 188160,
+      "sha256": "be09c617837d39abae0f52a8f7a0f58c054e9877f6b5e9e8a9ffeff18a1c2dc6"
+    },
+    "online_component_variants": {
+      "columns": [
+        "epoch",
+        "leakage_component",
+        "label",
+        "variant",
+        "view_observations",
+        "unique_images",
+        "online_accuracy",
+        "online_nll",
+        "online_mean_confidence",
+        "mean_delta_nll",
+        "rescued_prior_errors",
+        "spoiled_prior_corrects",
+        "prediction_flips"
+      ],
+      "rows": 1440,
+      "sha256": "c74a31a2cb94887b687360df17884432ff7bbc4e1267477d8158652a76f48cb2"
+    },
+    "online_epoch_variants": {
+      "columns": [
+        "epoch",
+        "variant",
+        "view_observations",
+        "unique_images",
+        "online_accuracy",
+        "online_nll",
+        "online_mean_confidence",
+        "mean_delta_nll",
+        "rescued_prior_errors",
+        "spoiled_prior_corrects",
+        "prediction_flips"
+      ],
+      "rows": 240,
+      "sha256": "5905445e4e4284d8e3aa396937c4d2069770ee7b77cac558f707cddd06252f1f"
+    },
+    "online_image_variants": {
+      "columns": [
+        "image_id",
+        "label",
+        "variant",
+        "view_observations",
+        "unique_images",
+        "online_accuracy",
+        "online_nll",
+        "online_mean_confidence",
+        "mean_delta_nll",
+        "rescued_prior_errors",
+        "spoiled_prior_corrects",
+        "prediction_flips"
+      ],
+      "rows": 1544,
+      "sha256": "8917ec76b306f9530f1a47d008783aa5602e6a9f1e36c9f1a2409543dab61001"
+    },
+    "online_prior_status_variants": {
+      "columns": [
+        "epoch",
+        "label",
+        "prior_correct",
+        "variant",
+        "view_observations",
+        "unique_images",
+        "online_accuracy",
+        "online_nll",
+        "online_mean_confidence",
+        "mean_delta_nll",
+        "rescued_prior_errors",
+        "spoiled_prior_corrects",
+        "prediction_flips"
+      ],
+      "rows": 720,
+      "sha256": "34e0d3e16c17bc05590a931a9882a76e813151f0371c354b537959225ab3044f"
+    },
+    "readiness_checks": {
+      "columns": [
+        "check",
+        "passed",
+        "meaning"
+      ],
+      "rows": 4,
+      "sha256": "e66df0bc7273a81c384bdff67bc7eac1ec031144c3f7b8a5ed6f84005eaf6a5e"
+    },
+    "table_dictionary": {
+      "columns": [
+        "table",
+        "column",
+        "definition",
+        "units",
+        "missing"
+      ],
+      "rows": 166,
+      "sha256": "1b4577efbb0821f291e7114ff97e405a78c57dfd1919ef187efeb9aca42d3910"
+    },
+    "training_class_support": {
+      "columns": [
+        "class_index",
+        "class_name",
+        "images",
+        "original_images",
+        "video_frames",
+        "known_original_tyres",
+        "conservative_components",
+        "source_groups"
+      ],
+      "rows": 3,
+      "sha256": "94ef05f404faf1016e50795c11bd9966989a7b4f414699ff5c0e760a67b20a67"
+    },
+    "training_component_support": {
+      "columns": [
+        "leakage_component",
+        "class_index",
+        "images",
+        "known_original_tyres",
+        "provisional_video_groups",
+        "bank_images"
+      ],
+      "rows": 6,
+      "sha256": "cc5ac85b6474cc05770ca9e81dc386c7a1ba98e6868d872c0c05153156fd78f5"
+    },
+    "training_roster": {
+      "columns": [
+        "run",
+        "image_index",
+        "image_id",
+        "image_sha256",
+        "class_index",
+        "role",
+        "domain",
+        "physical_tyre_id",
+        "source_group",
+        "image_path",
+        "point_kind",
+        "is_bank",
+        "is_query",
+        "confirmed_original_tyre_id",
+        "provisional_video_tyre_id",
+        "leakage_component"
+      ],
+      "rows": 386,
+      "sha256": "2dad9180b777a2286d7614c59e0a9c713883c5c4192cd0004d745ff735ca759c"
+    }
+  }
+}

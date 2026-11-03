@@ -1,0 +1,54 @@
+"""Direct CSV families; short run/sample/image keys join the full contract registry."""
+SCHEMAS = {
+ 'source_images': ['run','image_index','image_id','image_sha256','class_index','role','domain','physical_tyre_id','source_group','image_path','point_kind','is_bank','is_query'],
+ 'bank_cases': ['run','prototype_index','class_index','image_index','source_image_id','source_tyre_id','atlas_patch_index','valid_fraction','clipped_fraction','review_policy','risk_note'],
+ 'bank_pixels': ['run','prototype_index','channel','row','column','value'],
+ 'predictions': ['run','sample','stage','endpoint','epoch','update','parameter_update','image_index','image_id','label','prediction','logit_0','logit_1','logit_2','probability_0','probability_1','probability_2','nll','brier','entropy','correct','evidence_residual','supported_patches','supported_bands','clipped_fraction','empty_support','variant','occluded_patch','replacement_r','replacement_g','replacement_b','learner_sha256','anchor_logit_0','anchor_logit_1','anchor_logit_2','anchor_probability_0','anchor_probability_1','anchor_probability_2','anchor_prediction'],
+ 'sample_exposures': ['run','sample','epoch','update','slot','occurrence','image_index','class_draw','domain_draw','source_group','draw_probability','augmentation_seed','brightness','contrast','saturation'],
+ 'affinities': ['run','sample','patch','prototype','cosine','affinity'],
+ 'patch_support': ['run','sample','patch','valid_fraction','pooling_mass'],
+ 'patch_evidence': ['run','sample','patch','class_index','contribution'],
+ 'coefficients': ['run','parameter_update','kind','class_index','prototype','value'],
+ 'reference_embeddings': ['run','epoch','update','endpoint','prototype','dimension','value','learner_sha256'],
+ 'train_updates': ['run','epoch','update','cursor','loss','lr','grad_norm_before_clip','grad_norm_after_clip','gradient_finite','trainable_parameters','anchor_gradient_count','before_learner_sha256','after_learner_sha256','compute_seconds','record_seconds','device','cuda_peak_allocated_bytes','cuda_peak_reserved_bytes','host_peak_rss_bytes','free_disk_bytes'],
+ 'parameter_gradients': ['run','epoch','update','parameter','elements','norm','mean','minimum','maximum','finite'],
+ 'dense_pixels': ['run','image_index','channel','row','column','probability'],
+ 'atlas_rows': ['run','image_index','atlas_row','source_y','source_left','source_right','valid_fraction'],
+ 'dense_regions': ['run','image_index','region','predicted_pixels','target_pixels','intersection','union','valid_pixels','dice','iou','box_iou','pred_left','pred_top','pred_right_exclusive','pred_bottom_exclusive','truth_left','truth_top','truth_right_exclusive','truth_bottom_exclusive'],
+ 'dense_points': ['run','image_index','point','predicted_x_fraction','target_x_fraction','point_kind','prediction_guide_y_fraction','target_guide_y_fraction','absolute_error_width_fraction','metric_available','unavailable_reason'],
+ 'metrics': ['run','stage','endpoint','epoch','update','level','group','class_index','metric','value','n','unavailable_reason'],
+ 'confusion': ['run','stage','endpoint','epoch','update','level','group','target_class','predicted_class','count'],
+ 'calibration_bins': ['run','stage','endpoint','epoch','update','level','group','bin','lower','upper','count','correct','confidence_sum','accuracy','mean_confidence'],
+ 'selection': ['run','epoch','update','validation_ba_observed','validation_nll','selected','selected_epoch','tie_break','checkpoint_artifact','learner_sha256'],
+ 'explanation_checks': ['run','sample','epoch','update','endpoint','mass_input','mass_projected','bias','logit','residual','class_index','supported_pixels','unsupported_mass'],
+}
+
+UNITS = {
+ 'run': '12-character prefix; CONTRACT.json maps it to the full immutable SHA-256',
+ 'sample': 'Monotonic observation key; joins predictions and dependent evidence rows',
+ 'image_index': 'Zero-based fixed source registry key; image identity/hash retained in source_images',
+ 'parameter_update': 'Model state after this many completed optimizer updates; training predictions use the preceding state',
+ 'probability': 'dimensionless [0,1]; uncalibrated model score',
+ 'contribution': 'signed class-logit units; bias is separate',
+ 'cosine': 'dimensionless [-1,1]', 'affinity': 'exp((cosine-1)/temperature)',
+ 'pooling_mass': 'dimensionless; valid bands have equal total mass, empty atlas has zero',
+ 'absolute_error_width_fraction': 'fraction of resized image width; not physical depth/alignment',
+ 'dice': '(2*intersection+1)/(predicted_pixels+target_pixels+1) on unignored pixels',
+ 'iou': '(intersection+1)/(union+1) on unignored pixels',
+ 'time': 'seconds; timing/resource observations are not expected to match across resumed executions',
+ 'coordinate': 'Zero-based resized input (512 high,384 wide) or declared atlas/patch indices; boxes half-open',
+ 'missing': 'Blank means unavailable/not applicable. Missing class recall is NA; observed zeros remain zero.',
+}
+
+SCHEMAS['case_rules']=['run','sample','prototype','reference_class','allowed','same_source_sha256','normalization_scale']
+SCHEMAS['view_pairs']=['run','epoch','update','image_index','sample_a','sample_b','ce_a','ce_b','js','texture','total','label','prediction_a','prediction_b','disagree']
+SCHEMAS['view_patch_consistency']=['run','sample_a','sample_b','patch','pooling_mass','cosine_distance']
+SCHEMAS['predictions'] += ['source_sha256','allowed_low','allowed_mid','allowed_high']
+SCHEMAS['sample_exposures']=['gamma' if x=='saturation' else x for x in SCHEMAS['sample_exposures']]+['view']
+SCHEMAS['train_updates'] += ['ce_a','ce_b','js','texture','prediction_views']
+
+SCHEMAS['context_evidence']=['run','sample','patch','source_patch','delta_0','delta_1','delta_2']
+SCHEMAS['context_summary']=['run','sample','base_prediction','base_nll','correction_l2']+[f'base_logit_{c}' for c in range(3)]+[f'bias_delta_{c}' for c in range(3)]+[field for layer in range(2) for head in range(4) for field in (f'entropy_{layer}_{head}',f'max_attention_{layer}_{head}')]
+SCHEMAS['endpoint_attention']=['run','sample','layer','head','query','key','value']
+SCHEMAS['view_pairs'] += ['residual_l2']
+SCHEMAS['train_updates'] += ['residual_l2']

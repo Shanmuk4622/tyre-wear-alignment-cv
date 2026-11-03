@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "notebook_sha256": "53601e0baa1c872ef5302a6472ec55025d37008e17b10b15b91913ef8c0caaa1",
+  "actual_setup_cell_executed": true,
+  "empty_directory_extract": true,
+  "identical_rerun": true,
+  "changed_source_rejected": true,
+  "path_and_SDK_metadata_stubs_only": true,
+  "Kaggle_runtime_test": false,
+  "remote_writes": 0,
+  "model_forwards": 0,
+  "training_updates": 0
+}

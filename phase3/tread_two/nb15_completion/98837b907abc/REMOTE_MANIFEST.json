@@ -1,0 +1,191 @@
+{
+  "contract": "1bbb0142fc67619b74b3fda9f8ad8924d836f1ba6eaf67c53ca58fa02fe58f49",
+  "files": {
+    "ANALYSIS.json": {
+      "bytes": 10524,
+      "object": "evidence/ANALYSIS-be047c0e4788085f6f70.json",
+      "sha256": "be047c0e4788085f6f7091e08b00bf9bde1bc3c7e66c80263f3b1707e471e335"
+    },
+    "CAPABILITIES.json": {
+      "bytes": 508,
+      "object": "evidence/CAPABILITIES-c2d526873b3060b51cc8.json",
+      "sha256": "c2d526873b3060b51cc80bde48bf1539f180adb683b4d486035a3c69d7b89091"
+    },
+    "CONTRACT.json": {
+      "bytes": 7162,
+      "object": "evidence/CONTRACT-16829b29aadcd8e00cb0.json",
+      "sha256": "16829b29aadcd8e00cb04be07b7db1520b25f1f9cd3778bb97851997c24f399c"
+    },
+    "CSV_INDEX.md": {
+      "bytes": 1239,
+      "object": "evidence/CSV_INDEX-1ac478ae605f664979a3.md",
+      "sha256": "1ac478ae605f664979a3f1ce8d849baf33395eb001ec4e1bd298d4d1fa236686"
+    },
+    "Evidence_Passport.html": {
+      "bytes": 487342,
+      "object": "evidence/Evidence_Passport-20c2d6e83117f16bd0a4.html",
+      "sha256": "20c2d6e83117f16bd0a4ae2739fa38028a4f69ae79602f93403b4b24adb24e00"
+    },
+    "METHODS.md": {
+      "bytes": 4455,
+      "object": "evidence/METHODS-fd8da85ab73bb0595956.md",
+      "sha256": "fd8da85ab73bb05959564fd143319d07654d15881f6c42c6de98a50485b3900a"
+    },
+    "README.md": {
+      "bytes": 718,
+      "object": "evidence/README-421f9416c9a13d168894.md",
+      "sha256": "421f9416c9a13d168894d312275a13adcbe601df6c05a9175d8c729fcb5bc677"
+    },
+    "SUMMARY.json": {
+      "bytes": 1805,
+      "object": "evidence/SUMMARY-d182d443a6938fa6f0c9.json",
+      "sha256": "d182d443a6938fa6f0c992af9ba38a26679d5e5484ad07067b7900b0008498b7"
+    },
+    "conditional_fold_assignments.csv": {
+      "bytes": 225141,
+      "object": "evidence/conditional_fold_assignments-9488aa55d30e09644f19.csv",
+      "sha256": "9488aa55d30e09644f1921b80a9c105622d897276192fd571bb87424f12b6167"
+    },
+    "conditional_fold_class_support.csv": {
+      "bytes": 1023,
+      "object": "evidence/conditional_fold_class_support-e86e3bc6bc9f2102fa89.csv",
+      "sha256": "e86e3bc6bc9f2102fa895a510df0985efdebd6e3159b2adb96857e887f0828ba"
+    },
+    "conditional_folds.csv": {
+      "bytes": 490,
+      "object": "evidence/conditional_folds-b7f36c0216ae2a14e14b.csv",
+      "sha256": "b7f36c0216ae2a14e14bd4aec19eb4576a6f7d43872db65bc1239d15df30fb06"
+    },
+    "figures/correction_parts.png": {
+      "bytes": 110897,
+      "object": "evidence/figures/correction_parts-0da20e5145401abceeba.png",
+      "sha256": "0da20e5145401abceeba9219446ce6eb8578462df88239b433713b1d02b7bb15"
+    },
+    "figures/independent_support.png": {
+      "bytes": 86225,
+      "object": "evidence/figures/independent_support-787c32edd7cbf5c9d82d.png",
+      "sha256": "787c32edd7cbf5c9d82dada88a184079681c9c1b0198064c592f94e540890cc6"
+    },
+    "figures/utility_by_component.png": {
+      "bytes": 106800,
+      "object": "evidence/figures/utility_by_component-71f0819223cf4d3b12c1.png",
+      "sha256": "71f0819223cf4d3b12c157afe1a42bccbe090ff3600c9172d5c05eae81b2c3ac"
+    },
+    "frozen_bank_registry.csv": {
+      "bytes": 6357,
+      "object": "evidence/frozen_bank_registry-028cead2025db2bb94df.csv",
+      "sha256": "028cead2025db2bb94df395d3c21d18a4dca926655ce440ad0008bb9ea772b58"
+    },
+    "gate_source/INPUTS.json": {
+      "bytes": 3722,
+      "object": "evidence/gate_source/INPUTS-bf6bcf7cb72ecd66ec3d.json",
+      "sha256": "bf6bcf7cb72ecd66ec3d468cc24bbd7a6b19dfd26f448cf6e89176eacafdbee9"
+    },
+    "gate_source/public_inputs.py": {
+      "bytes": 4237,
+      "object": "evidence/gate_source/public_inputs-c26c2e872fc440d39e86.py",
+      "sha256": "c26c2e872fc440d39e86033c0cc062d205690e7d07420039ff1f9f67adb75e7a"
+    },
+    "gate_source/publish_gate.py": {
+      "bytes": 4709,
+      "object": "evidence/gate_source/publish_gate-82a6e4565f51414fdd73.py",
+      "sha256": "82a6e4565f51414fdd73c3df02bbb4e174919aca49fc17ea82f0140540a5bd96"
+    },
+    "gate_source/render_gate.py": {
+      "bytes": 14647,
+      "object": "evidence/gate_source/render_gate-4c72b7d75425402563d0.py",
+      "sha256": "4c72b7d75425402563d07b90d370b6aecb265755ec60309f68736a856efc4a01"
+    },
+    "gate_source/run_gate.py": {
+      "bytes": 16898,
+      "object": "evidence/gate_source/run_gate-1134652fcd35d9eb0e6a.py",
+      "sha256": "1134652fcd35d9eb0e6a517a03374a27e06f7c745ac46653bc00d5f9050bc8a7"
+    },
+    "held_component_bank_support.csv": {
+      "bytes": 67051,
+      "object": "evidence/held_component_bank_support-d530cad31d7efb71a2eb.csv",
+      "sha256": "d530cad31d7efb71a2ebc0b7d959676b039430baf4cbc5f423101f26691f6f34"
+    },
+    "online_class_variants.csv": {
+      "bytes": 54452,
+      "object": "evidence/online_class_variants-c43209b226183ad17314.csv",
+      "sha256": "c43209b226183ad17314ef7907608ef405e1a82c165b427a79473ffc814a6d2b"
+    },
+    "online_component_counterfactuals.csv": {
+      "bytes": 56980409,
+      "object": "evidence/online_component_counterfactuals-0484a814f325d00ccf55.csv",
+      "sha256": "0484a814f325d00ccf55a1e6df83e66e34ab091b7bdf1ce0c494e17a8ae13bea"
+    },
+    "online_component_variants.csv": {
+      "bytes": 157806,
+      "object": "evidence/online_component_variants-c74a31a2cb94887b6873.csv",
+      "sha256": "c74a31a2cb94887b687360df17884432ff7bbc4e1267477d8158652a76f48cb2"
+    },
+    "online_epoch_variants.csv": {
+      "bytes": 18097,
+      "object": "evidence/online_epoch_variants-01a06ae264ba18a7c806.csv",
+      "sha256": "01a06ae264ba18a7c8060c0b044145bec356395efbe5d1cacd6a9b79dbe9dc43"
+    },
+    "online_image_variants.csv": {
+      "bytes": 171416,
+      "object": "evidence/online_image_variants-8917ec76b306f9530f1a.csv",
+      "sha256": "8917ec76b306f9530f1a47d008783aa5602e6a9f1e36c9f1a2409543dab61001"
+    },
+    "online_prior_status_variants.csv": {
+      "bytes": 55906,
+      "object": "evidence/online_prior_status_variants-34e0d3e16c17bc05590a.csv",
+      "sha256": "34e0d3e16c17bc05590a931a9882a76e813151f0371c354b537959225ab3044f"
+    },
+    "publication_source/FILES.json": {
+      "bytes": 4214,
+      "object": "evidence/publication_source/FILES-f63d309ebed9dec516db.json",
+      "sha256": "f63d309ebed9dec516dba02ef8ed082b65b1cbbbfe2132368f47cc136f4193b8"
+    },
+    "publication_source/common.py": {
+      "bytes": 5116,
+      "object": "evidence/publication_source/common-922c82b82635313ce61e.py",
+      "sha256": "922c82b82635313ce61ecc2992990f5bc0b7f3cb1d6c8fca00527de72a34a206"
+    },
+    "publication_source/evidence_hub.py": {
+      "bytes": 8288,
+      "object": "evidence/publication_source/evidence_hub-03da70c79b10cfaf307b.py",
+      "sha256": "03da70c79b10cfaf307bd29c81f90747d45440c7eb7e2a0d19f1feef980c7b9f"
+    },
+    "publication_source/publisher.py": {
+      "bytes": 6089,
+      "object": "evidence/publication_source/publisher-0ea77d5584a3903b01fd.py",
+      "sha256": "0ea77d5584a3903b01fdf7466daa95eb7be1021b4e70ac76a6706531a3d56364"
+    },
+    "publication_source/rate_budget.py": {
+      "bytes": 7344,
+      "object": "evidence/publication_source/rate_budget-55a8df1ee9fb49826685.py",
+      "sha256": "55a8df1ee9fb498266858514d654c89ddd5276d7f8e4dd7bb96baa57277e5238"
+    },
+    "readiness_checks.csv": {
+      "bytes": 636,
+      "object": "evidence/readiness_checks-e66df0bc7273a81c384b.csv",
+      "sha256": "e66df0bc7273a81c384bdff67bc7eac1ec031144c3f7b8a5ed6f84005eaf6a5e"
+    },
+    "table_dictionary.csv": {
+      "bytes": 42746,
+      "object": "evidence/table_dictionary-1b4577efbb0821f291e7.csv",
+      "sha256": "1b4577efbb0821f291e7114ff97e405a78c57dfd1919ef187efeb9aca42d3910"
+    },
+    "training_class_support.csv": {
+      "bytes": 182,
+      "object": "evidence/training_class_support-94ef05f404faf1016e50.csv",
+      "sha256": "94ef05f404faf1016e50795c11bd9966989a7b4f414699ff5c0e760a67b20a67"
+    },
+    "training_component_support.csv": {
+      "bytes": 370,
+      "object": "evidence/training_component_support-cc5ac85b6474cc05770c.csv",
+      "sha256": "cc5ac85b6474cc05770ca9e81dc386c7a1ba98e6868d872c0c05153156fd78f5"
+    },
+    "training_roster.csv": {
+      "bytes": 122159,
+      "object": "evidence/training_roster-2dad9180b777a2286d76.csv",
+      "sha256": "2dad9180b777a2286d7614c59e0a9c713883c5c4192cd0004d745ff735ca759c"
+    }
+  },
+  "format": "immutable-direct-files-v1"
+}

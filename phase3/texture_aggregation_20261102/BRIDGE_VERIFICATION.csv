@@ -1,0 +1,7 @@
+bridge,values,max_absolute_difference,passed
+encoded_to_saved_local_pooled,54720,1.8812716007232666e-07,True
+full_context_to_saved_context_mean,54720,3.1805810696283743e-07,True
+full_context_to_saved_spatial240,273600,6.049504284177942e-07,True
+spatial240_to_saved_projected6,6840,1.207166286931738e-07,True
+encoded_frozen_decoder_to_saved_prediction,3502080,1.0013472442338411e-06,True
+masked_context_frozen_decoder_to_saved_prediction,3502080,2.220307142586364e-06,True

@@ -1,0 +1,157 @@
+{
+  "status": "passed",
+  "executed_notebook_sha256": "98837b907abc332fd2eaf745b578656f1c70df594ede28e13c02ca678b43aa07",
+  "revision": "f4b44d3d8e309db28d42171f1c5210881aa7b079",
+  "contract": "1bbb0142fc67619b74b3fda9f8ad8924d836f1ba6eaf67c53ca58fa02fe58f49",
+  "prefix": "phase3/tread-two/readiness-gate/v1/1bbb0142fc67619b74b3fda9f8ad8924d836f1ba6eaf67c53ca58fa02fe58f49",
+  "files": 38,
+  "objects_verified": 37,
+  "bytes_verified": 58797180,
+  "all40_payload_files_match": true,
+  "code_cells_completed": 4,
+  "notebook_errors": 0,
+  "owner_released": true,
+  "CSV_tables": 16,
+  "CSV_rows": 196905,
+  "table_comparisons": [
+    {
+      "table": "conditional_fold_assignments",
+      "rows": 2316,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "conditional_fold_class_support",
+      "rows": 18,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "conditional_folds",
+      "rows": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "frozen_bank_registry",
+      "rows": 18,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "held_component_bank_support",
+      "rows": 1158,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "online_class_variants",
+      "rows": 720,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "online_component_counterfactuals",
+      "rows": 188160,
+      "maximum_numeric_difference": 9.999778782798785e-13,
+      "byte_identical": false
+    },
+    {
+      "table": "online_component_variants",
+      "rows": 1440,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "online_epoch_variants",
+      "rows": 240,
+      "maximum_numeric_difference": 2.0000036071450133e-18,
+      "byte_identical": false
+    },
+    {
+      "table": "online_image_variants",
+      "rows": 1544,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "online_prior_status_variants",
+      "rows": 720,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "readiness_checks",
+      "rows": 4,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "table_dictionary",
+      "rows": 166,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "training_class_support",
+      "rows": 3,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "training_component_support",
+      "rows": 6,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    },
+    {
+      "table": "training_roster",
+      "rows": 386,
+      "maximum_numeric_difference": 0.0,
+      "byte_identical": true
+    }
+  ],
+  "summary_and_capabilities_match": true,
+  "figures_verified": 3,
+  "viewer": {
+    "status": "passed",
+    "component_epoch_variant_rows": 1440,
+    "controls": [
+      "epoch bounds",
+      "three classes/all",
+      "four algebraic variants",
+      "weighted NLL curves",
+      "capability and conditional-support tables"
+    ],
+    "native_browser_render": false
+  },
+  "scientific_readiness": false,
+  "training_images": 386,
+  "known_training_tyres": 8,
+  "conservative_training_components": 6,
+  "folds_missing_fit_class": 2,
+  "source_publications_unchanged": [
+    {
+      "publication": "original_context_fit",
+      "manifest_entries": 1502,
+      "unchanged": true
+    },
+    {
+      "publication": "completed_context_review",
+      "manifest_entries": 79,
+      "unchanged": true
+    }
+  ],
+  "private_SDK_publication_completed": true,
+  "environment": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "python": "3.13.15"
+  },
+  "new_model_forwards": 0,
+  "optimizer_updates": 0,
+  "new_independent_tyres": 0,
+  "local_credentials_read": false,
+  "remote_writes": 0,
+  "public_read_requests_this_invocation": 95
+}

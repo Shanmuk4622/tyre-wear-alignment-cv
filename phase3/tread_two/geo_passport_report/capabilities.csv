@@ -1,0 +1,8 @@
+capability,status,evidence,limit
+Tyre / tread segmentation,Research geometry; baseline floor preserved,Validation Dice 0.989862296,Small previously used development cohorts; final is unselected
+Tread point localisation,Human-only retrospective improvement,Validation width-normalised MAE 0.007662197,Weak/absent annotations excluded from human metrics
+Texture representation,Rejected by original eligibility gate,0/60 eligible; final projector rank 1.038659,Near-rank-one held-out pooled vectors; test and validation are previously inspected
+Annotation error estimation,Experimental only,quality_comparison.csv and quality_calibration.csv,Annotation error estimate; no calibrated safety confidence
+Explainability,"Descriptive overlays, probes and retrieval",570 overlays; 1030 probes; cross-component source exclusions checked,Model sensitivity / residuals are not causal defect or wear labels
+Mileage classification,Not fitted in GEO,No classification objective/head fitted,Earlier ATLAS mileage proxy failures remain unchanged
+Physical depth / tyre safety,Not validated,No measured physical-depth or safety targets,"Do not make physical depth, serviceability or safety claims"

@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "release_sha256": "4aed2501d417d05252fc449a6dcaf6b02a903bf195396b98b2751b379f8eded4",
+  "all_source_and_artifact_hashes_match": true,
+  "model_cards": 3,
+  "selected_epochs": [
+    18,
+    7,
+    7
+  ],
+  "model_status": "research_only_unpromoted",
+  "publications": 9,
+  "publication_types": {
+    "fit": 3,
+    "review": 3,
+    "gate": 3
+  },
+  "artifact_descriptors": 14,
+  "CSV_tables": 7,
+  "CSV_rows": 134,
+  "original_row_audit_scope_distinctions_preserved": true,
+  "local_model_card_links_checked": 24,
+  "viewer": {
+    "status": "passed",
+    "candidate_models": 3,
+    "endpoint_records": 6,
+    "publication_records": 9,
+    "artifact_links": 14,
+    "controls": [
+      "three model filters",
+      "fit/review/gate filters",
+      "model card links",
+      "capability display",
+      "pinned artifact links"
+    ],
+    "native_browser_render": false
+  },
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "remote_writes": 0,
+  "HF_publication_of_new_index": false,
+  "workstation_changes": false
+}

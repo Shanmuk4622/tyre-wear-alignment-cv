@@ -1,0 +1,28 @@
+[
+  {
+    "case": "low",
+    "Index": 0,
+    "image_id": "mileage_000100_005000__session_001__b000__20309e7b90",
+    "role": "validation",
+    "component": "tyre:mileage_000100_005000__session_001",
+    "proxy_class": 0,
+    "source_sha256": "39a0ef831ff6583778554b325326e537e2b4cedcf862fdac7e7300e237f220f9",
+    "slot": 0,
+    "observation": 28461,
+    "selection_rule": "lexicographically first validation image per observed proxy class; not error-ranked",
+    "atlas": "8-bit display conversion of existing FP32 frozen canonical atlas, no new inference"
+  },
+  {
+    "case": "high",
+    "Index": 310,
+    "image_id": "mileage_100000_plus__session_006__b000__0d24e56a4d",
+    "role": "validation",
+    "component": "tyre:mileage_100000_plus__session_006",
+    "proxy_class": 2,
+    "source_sha256": "8c29103ee864f88e6856256377bea76ad4d4a9c1162a135ca0688dde948291c9",
+    "slot": 310,
+    "observation": 28771,
+    "selection_rule": "lexicographically first validation image per observed proxy class; not error-ranked",
+    "atlas": "8-bit display conversion of existing FP32 frozen canonical atlas, no new inference"
+  }
+]

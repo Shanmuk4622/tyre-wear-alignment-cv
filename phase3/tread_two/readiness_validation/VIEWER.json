@@ -1,0 +1,12 @@
+{
+  "component_epoch_variant_rows": 1440,
+  "controls": [
+    "epoch bounds",
+    "three classes/all",
+    "four algebraic variants",
+    "weighted NLL curves",
+    "capability and conditional-support tables"
+  ],
+  "native_browser_render": false,
+  "status": "passed"
+}

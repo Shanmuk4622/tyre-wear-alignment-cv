@@ -1,0 +1,64 @@
+table,column,definition,units,missing
+publications,publication,publication for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,title,title for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,kind,kind for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,notebook,notebook for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,revision,revision for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,prefix,prefix for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,contract,contract for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,files_with_manifest,Logical direct scientific/control files selected by the manifest plus the manifest itself,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+publications,payload_bytes,payload bytes for this pinned research registry; see README.md for scope,bytes,Blank means not applicable/unavailable; no new measurement inferred
+publications,scientific_rows,Row count in this publication under the explicit row_count_scope; repeated views/derived rows are not independent tyres,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+publications,row_count_scope,"States whether counts are exhaustively checked, saved cursor declarations or structured-table counts",text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,verification_status,verification status for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,owner_released,owner released for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,manifest_url,manifest url for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,HF_tree,HF tree for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,receipt,receipt for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+publications,receipt_sha256,SHA-256 of the safe local independent verification receipt,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,model,model for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,label,label for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,status,status for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,architecture,architecture for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,seed,seed for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,epochs,epochs for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,optimizer_updates,optimizer updates for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,selected_epoch,Original validation-selected checkpoint; never chosen by the historical test comparison,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,final_epoch,final epoch for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,selection,selection for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,source_entries,source entries for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+models,source_inventory_sha256,SHA-256 of the unchanged frozen FILES.json for this candidate,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,fit_publication,fit publication for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,review_publication,review publication for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,selected_checkpoint_sha256,selected checkpoint sha256 for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,final_checkpoint_sha256,final checkpoint sha256 for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,selected_checkpoint_url,selected checkpoint url for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,final_checkpoint_url,final checkpoint url for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+models,architecture_doc,architecture doc for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,model,model for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,label,label for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,endpoint,endpoint for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,epoch,epoch for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,images,images for this pinned research registry; see README.md for scope,integer count/index,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,accuracy,accuracy for this pinned research registry; see README.md for scope,dimensionless fraction,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,observed_class_BA,Mean recall over target classes present: low/high only; no absent mid recall is invented,dimensionless fraction,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,low_recall,Correct low predictions / all62historical low targets,dimensionless fraction,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,high_recall,Correct high predictions / all41historical high targets,dimensionless fraction,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,nll,Mean negative natural log of true-class probability; three output classes,natural-log units,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,brier,Mean sum of three squared probability-minus-one-hot target errors,dimensionless squared probability error,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,ece_10_equal_width,Ten equal-width max-confidence bins; weighted absolute accuracy-confidence gap,dimensionless fraction,Blank means not applicable/unavailable; no new measurement inferred
+endpoint_metrics,scope,scope for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,publication,publication for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,label,label for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,kind,kind for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,logical_name,logical name for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,bytes,bytes for this pinned research registry; see README.md for scope,bytes,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,sha256,sha256 for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,revision,revision for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+artifacts,url,url for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+capabilities,capability,capability for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+capabilities,status,status for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+capabilities,evidence,evidence for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+capabilities,limit,limit for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+provenance,path,path for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred
+provenance,sha256,sha256 for this pinned research registry; see README.md for scope,text/hash/URL/category or boolean as named,Blank means not applicable/unavailable; no new measurement inferred

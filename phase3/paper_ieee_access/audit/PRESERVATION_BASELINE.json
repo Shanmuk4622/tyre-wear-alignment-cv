@@ -1,0 +1,82 @@
+{
+  "ACCESS_latex_template_20260513/access.tex": {
+    "bytes": 43943,
+    "sha256": "fcbef4f3d54cf19f597f1f919cf998beab02977f0ae296e336b48091f379b724"
+  },
+  "ACCESS_latex_template_20260513/engine_compat.tex": {
+    "bytes": 581,
+    "sha256": "bc9415313e4edc047b64a87a93ead83c861b74f269431c12dc4f96829315e824"
+  },
+  "ACCESS_latex_template_20260513/main.tex": {
+    "bytes": 5280,
+    "sha256": "065b3bbc623fb0e4b6367121f084f1ffc21ec2868dd79887233195218d04acce"
+  },
+  "ACCESS_latex_template_20260513/references.bib": {
+    "bytes": 11631,
+    "sha256": "b175be965e7a492128e37f89511376376c86c5190b2f669b291f5b8f84497146"
+  },
+  "ACCESS_latex_template_20260513/ieeeaccess.cls": {
+    "bytes": 50800,
+    "sha256": "67b73c4da05479d592a9449c38a81fcc7779d78753085bb44199e7f2746b757d"
+  },
+  "ACCESS_latex_template_20260513/IEEEtran.cls": {
+    "bytes": 281957,
+    "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
+  },
+  "ACCESS_latex_template_20260513/main.pdf": {
+    "bytes": 7264407,
+    "sha256": "622356d46778a68612368f188ddc3ecaf7b0d223dadb970405fece056ba996f3"
+  },
+  "ACCESS_latex_template_20260513/sections/appendix.tex": {
+    "bytes": 3701,
+    "sha256": "b5e112b591cd4a443fc63f9c43243907de4b98943982ffef150b1de5848f42b6"
+  },
+  "ACCESS_latex_template_20260513/sections/biographies.tex": {
+    "bytes": 2283,
+    "sha256": "be336352dd435ad428277ad27be720445e842e996b440d874f560be88076db3e"
+  },
+  "ACCESS_latex_template_20260513/sections/discussion.tex": {
+    "bytes": 8668,
+    "sha256": "1af3ec9819d1a7ea638c494a7b9caed09d417eebb0784ac6be9397c355432e16"
+  },
+  "ACCESS_latex_template_20260513/sections/introduction.tex": {
+    "bytes": 11424,
+    "sha256": "e31176f5bf65268524e02c423738e1d5d28721aaab5df735466d7cdb81d47639"
+  },
+  "ACCESS_latex_template_20260513/sections/literature_table.tex": {
+    "bytes": 2858,
+    "sha256": "5713f1655a04b3fe11e48f0a30f21fec1b6d968cda0ac5c4d795ec7ae619240a"
+  },
+  "ACCESS_latex_template_20260513/sections/methods.tex": {
+    "bytes": 17683,
+    "sha256": "8415e75fdbe4721c9573548781a3e0bc8b6450d4ed2e15290ae415b445e35ab4"
+  },
+  "ACCESS_latex_template_20260513/sections/results.tex": {
+    "bytes": 14666,
+    "sha256": "c50339c90a16e6c15d5ff31eaeb9d379fe10b791322d3694c2174894c5cd4c53"
+  },
+  "phase3/phase3NB24Completion.md": {
+    "bytes": 9412,
+    "sha256": "6afe00655dac30a6c9d958a816491442322d53a50421b5d0a6c3d39bb4580f39"
+  },
+  "phase3/phase3ProjectRetrospective.md": {
+    "bytes": 21484,
+    "sha256": "36aec6509c2f57e9b61cce4cbf385ec46b63e0452b354ab40428fb6c7a346de4"
+  },
+  "phase3/phase3TRACEComponentReview.md": {
+    "bytes": 4999,
+    "sha256": "bd358d510890d6febf68b26cb722610650f8b8101f8167e9433cb55703087d3d"
+  },
+  "phase3/phase3TextureAggregationInvestigation.md": {
+    "bytes": 14010,
+    "sha256": "3476bc361d4072c9781b07ab27bc2e3de9e527fbb8d6f2128f858da50aaed6e9"
+  },
+  "phase3/texture_aggregation_20261102/VALIDATION.json": {
+    "bytes": 2352,
+    "sha256": "ee246f851247e1c8e44e2fbb1e7e7df1e012a22ce65b1c580a7505ab39338f26"
+  },
+  "phase3/retrospective_20261102/VALIDATION.json": {
+    "bytes": 2218,
+    "sha256": "d8f02a5a4af5e48c588003c41f6d5ab213ec82b5b686d458cffce45244e4d38c"
+  }
+}

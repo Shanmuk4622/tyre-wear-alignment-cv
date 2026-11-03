@@ -1,0 +1,9 @@
+{
+  "protocol": "ae918ce787775192ce38031936cbfd8285b51b72fbbedb1da570c9271018eb28",
+  "revision": "3d5ae39602c3b25caa6af65c1e8d45f53a08e1c8",
+  "epoch": 7,
+  "bytes": 7040141,
+  "sha256": "f6156aa560aeb880317c6acd745ec1b287aa615fd76656411059033b6a5959fd",
+  "url": "https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/resolve/3d5ae39602c3b25caa6af65c1e8d45f53a08e1c8/phase3/tread-two/atlas-lc-r2/fit/ae918ce787775192ce38031936cbfd8285b51b72fbbedb1da570c9271018eb28/evidence/artifacts/epochs/epoch_0007-f6156aa560aeb880317c.pt",
+  "source": "Original validation-selected LC model; no test-based substitution"
+}

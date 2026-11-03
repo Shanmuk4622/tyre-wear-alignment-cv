@@ -1,0 +1,33 @@
+{
+  "assumed_output_bytes": 20000000000,
+  "free_reserve_bytes": 2000000000,
+  "full_copy_staging_may_fail": true,
+  "logical_limit_bytes": 15000000000,
+  "native_exact_shape_bytes": {
+    "all_geometry_logits_FP32": 2901934080,
+    "atlas_row_parameters_FP32": 181370880,
+    "masked_loss_weights_FP32": 483655680,
+    "masked_predictions_and_targets_FP32": 3869245440,
+    "pre_and_post_context_tokens_FP32": 1450967040
+  },
+  "peak_limit_bytes": 18000000000,
+  "projected_logical_bytes": 14630073600.0,
+  "projected_same_filesystem_peak_bytes": 15166944512.0,
+  "provisional_allowance_bytes": {
+    "endpoint_dense_CSV": 1176698880,
+    "epoch_checkpoints_and_rolling_states": 600000000,
+    "galleries": 150000000,
+    "global_and_projected_CSV": 377856000,
+    "intervention_outputs": 400000000,
+    "other_CSV_and_native_flags": 500000000,
+    "source_and_SDK": 100000000
+  },
+  "provisional_dense_row_bytes": 42,
+  "provisional_vector_row_bytes": 40,
+  "requires_live_fixture": true,
+  "sample_upper_bound": 29520,
+  "status": "arithmetic_design_projection_not_live_measurement",
+  "texture_view_upper_bound": 59040,
+  "unadjusted_logical_bytes": 12191728000,
+  "uncertainty_factor": 1.2
+}

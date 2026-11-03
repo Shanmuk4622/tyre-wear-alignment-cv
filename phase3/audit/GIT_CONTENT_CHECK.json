@@ -1,8 +1,8 @@
 {
-  "candidate_files": 1265,
-  "candidate_bytes": 115952547,
-  "tracked_files": 531,
-  "untracked_candidates": 734,
+  "candidate_files": 1370,
+  "candidate_bytes": 123412646,
+  "tracked_files": 1266,
+  "untracked_candidates": 104,
   "largest_files": [
     {
       "path": "phase2/notebooks/phase2_NB07_Visual_Model_Comparison.ipynb",
@@ -45,6 +45,14 @@
       "bytes": 2679596
     },
     {
+      "path": "phase3/notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb",
+      "bytes": 2577125
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB13_TREAD_TWO_ATLAS_CONTEXT_Resumable_Pilot.ipynb",
+      "bytes": 2564487
+    },
+    {
       "path": "notebooks/NB10R_Analysis_Recovery.ipynb",
       "bytes": 2549901
     },
@@ -55,14 +63,6 @@
     {
       "path": "phase3/collection_review_outputs/TREAD_ONE_Identity_And_Capture_Review.html",
       "bytes": 2229264
-    },
-    {
-      "path": "phase3/training_gates/summary_exports/engineering_inputs_and_masks.png",
-      "bytes": 2186965
-    },
-    {
-      "path": "phase3/notebooks/phase3_NB08_TREAD_TWO_ATLAS_Resumable_Pilot.ipynb",
-      "bytes": 2167851
     }
   ],
   "largest_groups": [
@@ -79,7 +79,7 @@
     {
       "path": "docs",
       "files": 129,
-      "bytes": 7651881
+      "bytes": 7652039
     },
     {
       "path": "phase3/tread_two/completion_report",
@@ -142,19 +142,19 @@
       "bytes": 2668562
     },
     {
+      "path": "phase3/notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb",
+      "files": 1,
+      "bytes": 2577125
+    },
+    {
+      "path": "phase3/notebooks/phase3_NB13_TREAD_TWO_ATLAS_CONTEXT_Resumable_Pilot.ipynb",
+      "files": 1,
+      "bytes": 2564487
+    },
+    {
       "path": "phase3/collection_review_outputs/TREAD_ONE_Identity_And_Capture_Review.html",
       "files": 1,
       "bytes": 2229264
-    },
-    {
-      "path": "phase3/notebooks/phase3_NB08_TREAD_TWO_ATLAS_Resumable_Pilot.ipynb",
-      "files": 1,
-      "bytes": 2167851
-    },
-    {
-      "path": "phase3/tread_two/analysis_report",
-      "files": 32,
-      "bytes": 1942358
     }
   ],
   "status": "passed",

@@ -1,5 +1,41 @@
 # Phase 3 — documentation conflicts and precedence
 
+<!-- TEXTURE_AGGREGATION_20261102 -->
+## Aggregation assay scope — 2 November 2026
+
+| Wording to avoid | Exact interpretation |
+|---|---|
+| No model computation occurred | No image/geometry forward or optimizer update; frozen decoder/projector readouts are counted explicitly |
+| Pooled collapse contradicts useful reconstruction | Original local/masked decoders use spatial tokens, bypassing the global projector |
+|82% retention means82% accuracy | It is a retained loss advantage over the train-position control; no classification evaluated |
+|95.85% of wear information was lost | This is projected-away component-centered token variance under a fixed-mass diagnostic, not semantic information |
+| Higher masked rank or scaled rank fixes representation | Mask layout and invertible coordinate scaling can inflate the statistic; original rule stays unchanged |
+| The best counterfactual is a selected new model | Same frozen decoder, potentially off-manifold features, no new head training or checkpoint selection |
+
+[Investigation](phase3TextureAggregationInvestigation.md) preserves original reports,
+selection and existing-photo/deferred-workstation scope. Mask association is an
+explicit post-hoc addendum. New derivative HF publication remains unperformed.
+<!-- END_TEXTURE_AGGREGATION_20261102 -->
+
+<!-- RETROSPECTIVE_RECORD -->
+## Retrospective reconciliation — 2 November 2026
+
+| Apparent conflict | Controlling interpretation |
+|---|---|
+| Root September “current” versus November Phase 3 | Different scope/date; use the relevant exact artifact and completion receipt |
+|24 notebook numbers imply24 trained models | Phase 3 measured ledger records10 fit executions across 7 families; engineering/review/recovery/master stages are separate |
+| NB13A adds a model /NB24 adds another independent NB22 fit | Continuation /automatic wrapper of the same frozen fit |
+| Strong Dice means wear classifier is solved | Dense localization and proxy classification have distinct targets and observed outcomes |
+| TRACE failed diversity therefore learned no useful texture | New final-view audit finds every image beats all 3 controls; global selection still rejects0/60 eligible epochs |
+| Rich telemetry adds data support | Derived rows/repeated views are not new physical tyres or physical labels |
+| New retrospective CSVs already saved on HF | They are local derivatives; only original raw evidence has earlier verified HF publication |
+| Local versus pooled rank proves a pooling defect | Different statistics/support; motivates a hypothesis, not a causal remedy or gate relaxation |
+
+[Full synthesis](phase3ProjectRetrospective.md) and [bounded new analysis](phase3TRACEComponentReview.md)
+preserve all original snapshots and selections. Existing-photo scope supersedes
+historical new-intake instructions; it does not remove generalization limits.
+<!-- END_RETROSPECTIVE_RECORD -->
+
 Reviewed: 27 October 2026. Historical files are preserved; this ledger supplies the current interpretation within each scope.
 
 **Latest amendments, 28 October 2026:** [TREAD-ONE completion](phase3CompletionAudit.md) supersedes epoch-13/pending-execution statements. [The user publication policy](phase3DataRetentionPolicy.md) forbids future HF ZIP bundles; original r1 guides are historical release snapshots. [NB02](notebooks/phase3_NB02_Audit_And_Direct_CSV.ipynb) recovers/publishes direct CSV without changing trained weights.

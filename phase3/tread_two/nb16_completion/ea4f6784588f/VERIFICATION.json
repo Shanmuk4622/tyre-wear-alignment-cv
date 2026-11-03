@@ -1,0 +1,1712 @@
+{
+  "status": "passed",
+  "executed_notebook_sha256": "ea4f6784588f41611b632b705291481973c5c4daa12ae33a2f670221a89e066a",
+  "revision": "9f991635f1d333e4e48eb6f932a9c704ca5eeb39",
+  "prefix": "phase3/tread-two/geo-r1/engineering/c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979",
+  "contract": "c8d91064beec55898208953811dfe75ec63bfe067ec2a4f19cf96e358b616979",
+  "files": 174,
+  "objects_verified": 173,
+  "bytes_verified": 24341191,
+  "payload_files": 27,
+  "all_payload_files_match": true,
+  "code_cells_completed": 3,
+  "notebook_errors": 0,
+  "owner_released": true,
+  "actual_dual_T4": true,
+  "actual_HF_restore_continue": true,
+  "scientific_files_identical": 96,
+  "CSV_files": 60,
+  "CSV_rows": 42217,
+  "CSV_inventory": [
+    {
+      "file": "HF_transport_events.csv",
+      "rows": 640,
+      "columns": [
+        "attempt",
+        "blocked_seconds",
+        "bucket",
+        "category",
+        "coordinator_calls",
+        "destination",
+        "files",
+        "kind",
+        "local_limit",
+        "method",
+        "operation",
+        "owner_released",
+        "policy",
+        "rate_limit",
+        "rate_policy",
+        "reason",
+        "remaining",
+        "reset_seconds",
+        "retry_after",
+        "revision",
+        "seconds",
+        "source",
+        "status",
+        "time_utc",
+        "uploaded_objects",
+        "window_seconds",
+        "zip_uploads"
+      ]
+    },
+    {
+      "file": "RESOURCES.csv",
+      "rows": 2,
+      "columns": [
+        "device",
+        "name",
+        "peak_allocated_bytes",
+        "peak_reserved_bytes"
+      ]
+    },
+    {
+      "file": "schedule.csv",
+      "rows": 23520,
+      "columns": [
+        "image_id",
+        "component",
+        "padding",
+        "epoch",
+        "batch",
+        "slot",
+        "seed"
+      ]
+    },
+    {
+      "file": "source_images.csv",
+      "rows": 570,
+      "columns": [
+        "image_id",
+        "role",
+        "component",
+        "image_sha256",
+        "point_kind",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0001/geometry_points.csv",
+      "rows": 48,
+      "columns": [
+        "update",
+        "slot",
+        "coordinate",
+        "predicted",
+        "target",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0001/gradients.csv",
+      "rows": 3,
+      "columns": [
+        "update",
+        "group",
+        "preclip_norm",
+        "clip_limit",
+        "completed_steps"
+      ]
+    },
+    {
+      "file": "progress/units/0001/masked_tiles.csv",
+      "rows": 128,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "packed_slot",
+        "patch"
+      ]
+    },
+    {
+      "file": "progress/units/0001/objectives.csv",
+      "rows": 1,
+      "columns": [
+        "update",
+        "geometry_bce_numerator",
+        "geometry_bce_denominator",
+        "geometry_soft_dice_loss",
+        "geometry_point_numerator",
+        "geometry_point_denominator",
+        "geometry_containment_numerator",
+        "geometry_containment_denominator",
+        "geometry_row_numerator",
+        "geometry_row_denominator",
+        "geometry_anchor_drift",
+        "geometry_geometry",
+        "texture_eligible_images",
+        "texture_eligible_components",
+        "texture_texture_step",
+        "texture_ramp",
+        "texture_reason",
+        "texture_invariance",
+        "texture_variance_a",
+        "texture_variance_b",
+        "texture_covariance_a",
+        "texture_covariance_b",
+        "texture_masked_numerator",
+        "texture_masked_denominator",
+        "texture_masked_huber",
+        "texture_texture",
+        "quality_numerator",
+        "quality_denominator"
+      ]
+    },
+    {
+      "file": "progress/units/0001/parameter_gradients.csv",
+      "rows": 67,
+      "columns": [
+        "update",
+        "group",
+        "parameter",
+        "available",
+        "numel",
+        "preclip_l2",
+        "preclip_max_abs",
+        "preclip_mean_abs",
+        "zero_fraction",
+        "finite"
+      ]
+    },
+    {
+      "file": "progress/units/0001/quality_errors.csv",
+      "rows": 24,
+      "columns": [
+        "update",
+        "slot",
+        "output",
+        "prediction",
+        "target",
+        "available"
+      ]
+    },
+    {
+      "file": "progress/units/0001/region_metrics.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "region",
+        "tp",
+        "fp",
+        "fn",
+        "dice"
+      ]
+    },
+    {
+      "file": "progress/units/0001/samples.csv",
+      "rows": 8,
+      "columns": [
+        "update",
+        "slot",
+        "image_id",
+        "role",
+        "component",
+        "point_kind"
+      ]
+    },
+    {
+      "file": "progress/units/0001/tile_support.csv",
+      "rows": 512,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "patch",
+        "coverage",
+        "mass",
+        "selected",
+        "eligible"
+      ]
+    },
+    {
+      "file": "progress/units/0001/vectors.csv",
+      "rows": 2560,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "kind",
+        "dimension",
+        "value"
+      ]
+    },
+    {
+      "file": "progress/units/0001/view_plans.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "brightness",
+        "contrast",
+        "gamma",
+        "eligible",
+        "masked_tiles",
+        "valid_loss_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0002/geometry_points.csv",
+      "rows": 48,
+      "columns": [
+        "update",
+        "slot",
+        "coordinate",
+        "predicted",
+        "target",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0002/gradients.csv",
+      "rows": 3,
+      "columns": [
+        "update",
+        "group",
+        "preclip_norm",
+        "clip_limit",
+        "completed_steps"
+      ]
+    },
+    {
+      "file": "progress/units/0002/masked_tiles.csv",
+      "rows": 128,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "packed_slot",
+        "patch"
+      ]
+    },
+    {
+      "file": "progress/units/0002/objectives.csv",
+      "rows": 1,
+      "columns": [
+        "update",
+        "geometry_bce_numerator",
+        "geometry_bce_denominator",
+        "geometry_soft_dice_loss",
+        "geometry_point_numerator",
+        "geometry_point_denominator",
+        "geometry_containment_numerator",
+        "geometry_containment_denominator",
+        "geometry_row_numerator",
+        "geometry_row_denominator",
+        "geometry_anchor_drift",
+        "geometry_geometry",
+        "texture_eligible_images",
+        "texture_eligible_components",
+        "texture_texture_step",
+        "texture_ramp",
+        "texture_reason",
+        "texture_invariance",
+        "texture_variance_a",
+        "texture_variance_b",
+        "texture_covariance_a",
+        "texture_covariance_b",
+        "texture_masked_numerator",
+        "texture_masked_denominator",
+        "texture_masked_huber",
+        "texture_texture",
+        "quality_numerator",
+        "quality_denominator"
+      ]
+    },
+    {
+      "file": "progress/units/0002/parameter_gradients.csv",
+      "rows": 67,
+      "columns": [
+        "update",
+        "group",
+        "parameter",
+        "available",
+        "numel",
+        "preclip_l2",
+        "preclip_max_abs",
+        "preclip_mean_abs",
+        "zero_fraction",
+        "finite"
+      ]
+    },
+    {
+      "file": "progress/units/0002/quality_errors.csv",
+      "rows": 24,
+      "columns": [
+        "update",
+        "slot",
+        "output",
+        "prediction",
+        "target",
+        "available"
+      ]
+    },
+    {
+      "file": "progress/units/0002/region_metrics.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "region",
+        "tp",
+        "fp",
+        "fn",
+        "dice"
+      ]
+    },
+    {
+      "file": "progress/units/0002/samples.csv",
+      "rows": 8,
+      "columns": [
+        "update",
+        "slot",
+        "image_id",
+        "role",
+        "component",
+        "point_kind"
+      ]
+    },
+    {
+      "file": "progress/units/0002/tile_support.csv",
+      "rows": 512,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "patch",
+        "coverage",
+        "mass",
+        "selected",
+        "eligible"
+      ]
+    },
+    {
+      "file": "progress/units/0002/vectors.csv",
+      "rows": 2560,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "kind",
+        "dimension",
+        "value"
+      ]
+    },
+    {
+      "file": "progress/units/0002/view_plans.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "brightness",
+        "contrast",
+        "gamma",
+        "eligible",
+        "masked_tiles",
+        "valid_loss_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0003/geometry_points.csv",
+      "rows": 48,
+      "columns": [
+        "update",
+        "slot",
+        "coordinate",
+        "predicted",
+        "target",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0003/gradients.csv",
+      "rows": 3,
+      "columns": [
+        "update",
+        "group",
+        "preclip_norm",
+        "clip_limit",
+        "completed_steps"
+      ]
+    },
+    {
+      "file": "progress/units/0003/masked_tiles.csv",
+      "rows": 128,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "packed_slot",
+        "patch"
+      ]
+    },
+    {
+      "file": "progress/units/0003/objectives.csv",
+      "rows": 1,
+      "columns": [
+        "update",
+        "geometry_bce_numerator",
+        "geometry_bce_denominator",
+        "geometry_soft_dice_loss",
+        "geometry_point_numerator",
+        "geometry_point_denominator",
+        "geometry_containment_numerator",
+        "geometry_containment_denominator",
+        "geometry_row_numerator",
+        "geometry_row_denominator",
+        "geometry_anchor_drift",
+        "geometry_geometry",
+        "texture_eligible_images",
+        "texture_eligible_components",
+        "texture_texture_step",
+        "texture_ramp",
+        "texture_reason",
+        "texture_invariance",
+        "texture_variance_a",
+        "texture_variance_b",
+        "texture_covariance_a",
+        "texture_covariance_b",
+        "texture_masked_numerator",
+        "texture_masked_denominator",
+        "texture_masked_huber",
+        "texture_texture",
+        "quality_numerator",
+        "quality_denominator"
+      ]
+    },
+    {
+      "file": "progress/units/0003/parameter_gradients.csv",
+      "rows": 67,
+      "columns": [
+        "update",
+        "group",
+        "parameter",
+        "available",
+        "numel",
+        "preclip_l2",
+        "preclip_max_abs",
+        "preclip_mean_abs",
+        "zero_fraction",
+        "finite"
+      ]
+    },
+    {
+      "file": "progress/units/0003/quality_errors.csv",
+      "rows": 24,
+      "columns": [
+        "update",
+        "slot",
+        "output",
+        "prediction",
+        "target",
+        "available"
+      ]
+    },
+    {
+      "file": "progress/units/0003/region_metrics.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "region",
+        "tp",
+        "fp",
+        "fn",
+        "dice"
+      ]
+    },
+    {
+      "file": "progress/units/0003/samples.csv",
+      "rows": 8,
+      "columns": [
+        "update",
+        "slot",
+        "image_id",
+        "role",
+        "component",
+        "point_kind"
+      ]
+    },
+    {
+      "file": "progress/units/0003/tile_support.csv",
+      "rows": 512,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "patch",
+        "coverage",
+        "mass",
+        "selected",
+        "eligible"
+      ]
+    },
+    {
+      "file": "progress/units/0003/vectors.csv",
+      "rows": 2560,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "kind",
+        "dimension",
+        "value"
+      ]
+    },
+    {
+      "file": "progress/units/0003/view_plans.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "brightness",
+        "contrast",
+        "gamma",
+        "eligible",
+        "masked_tiles",
+        "valid_loss_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0004/geometry_points.csv",
+      "rows": 48,
+      "columns": [
+        "update",
+        "slot",
+        "coordinate",
+        "predicted",
+        "target",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "progress/units/0004/gradients.csv",
+      "rows": 3,
+      "columns": [
+        "update",
+        "group",
+        "preclip_norm",
+        "clip_limit",
+        "completed_steps"
+      ]
+    },
+    {
+      "file": "progress/units/0004/masked_tiles.csv",
+      "rows": 128,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "packed_slot",
+        "patch"
+      ]
+    },
+    {
+      "file": "progress/units/0004/objectives.csv",
+      "rows": 1,
+      "columns": [
+        "update",
+        "geometry_bce_numerator",
+        "geometry_bce_denominator",
+        "geometry_soft_dice_loss",
+        "geometry_point_numerator",
+        "geometry_point_denominator",
+        "geometry_containment_numerator",
+        "geometry_containment_denominator",
+        "geometry_row_numerator",
+        "geometry_row_denominator",
+        "geometry_anchor_drift",
+        "geometry_geometry",
+        "texture_eligible_images",
+        "texture_eligible_components",
+        "texture_texture_step",
+        "texture_ramp",
+        "texture_reason",
+        "texture_invariance",
+        "texture_variance_a",
+        "texture_variance_b",
+        "texture_covariance_a",
+        "texture_covariance_b",
+        "texture_masked_numerator",
+        "texture_masked_denominator",
+        "texture_masked_huber",
+        "texture_texture",
+        "quality_numerator",
+        "quality_denominator"
+      ]
+    },
+    {
+      "file": "progress/units/0004/parameter_gradients.csv",
+      "rows": 67,
+      "columns": [
+        "update",
+        "group",
+        "parameter",
+        "available",
+        "numel",
+        "preclip_l2",
+        "preclip_max_abs",
+        "preclip_mean_abs",
+        "zero_fraction",
+        "finite"
+      ]
+    },
+    {
+      "file": "progress/units/0004/quality_errors.csv",
+      "rows": 24,
+      "columns": [
+        "update",
+        "slot",
+        "output",
+        "prediction",
+        "target",
+        "available"
+      ]
+    },
+    {
+      "file": "progress/units/0004/region_metrics.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "region",
+        "tp",
+        "fp",
+        "fn",
+        "dice"
+      ]
+    },
+    {
+      "file": "progress/units/0004/samples.csv",
+      "rows": 8,
+      "columns": [
+        "update",
+        "slot",
+        "image_id",
+        "role",
+        "component",
+        "point_kind"
+      ]
+    },
+    {
+      "file": "progress/units/0004/tile_support.csv",
+      "rows": 512,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "patch",
+        "coverage",
+        "mass",
+        "selected",
+        "eligible"
+      ]
+    },
+    {
+      "file": "progress/units/0004/vectors.csv",
+      "rows": 2560,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "kind",
+        "dimension",
+        "value"
+      ]
+    },
+    {
+      "file": "progress/units/0004/view_plans.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "brightness",
+        "contrast",
+        "gamma",
+        "eligible",
+        "masked_tiles",
+        "valid_loss_weight"
+      ]
+    },
+    {
+      "file": "resume/units/0001/geometry_points.csv",
+      "rows": 48,
+      "columns": [
+        "update",
+        "slot",
+        "coordinate",
+        "predicted",
+        "target",
+        "point_weight"
+      ]
+    },
+    {
+      "file": "resume/units/0001/gradients.csv",
+      "rows": 3,
+      "columns": [
+        "update",
+        "group",
+        "preclip_norm",
+        "clip_limit",
+        "completed_steps"
+      ]
+    },
+    {
+      "file": "resume/units/0001/masked_tiles.csv",
+      "rows": 128,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "packed_slot",
+        "patch"
+      ]
+    },
+    {
+      "file": "resume/units/0001/objectives.csv",
+      "rows": 1,
+      "columns": [
+        "update",
+        "geometry_bce_numerator",
+        "geometry_bce_denominator",
+        "geometry_soft_dice_loss",
+        "geometry_point_numerator",
+        "geometry_point_denominator",
+        "geometry_containment_numerator",
+        "geometry_containment_denominator",
+        "geometry_row_numerator",
+        "geometry_row_denominator",
+        "geometry_anchor_drift",
+        "geometry_geometry",
+        "texture_eligible_images",
+        "texture_eligible_components",
+        "texture_texture_step",
+        "texture_ramp",
+        "texture_reason",
+        "texture_invariance",
+        "texture_variance_a",
+        "texture_variance_b",
+        "texture_covariance_a",
+        "texture_covariance_b",
+        "texture_masked_numerator",
+        "texture_masked_denominator",
+        "texture_masked_huber",
+        "texture_texture",
+        "quality_numerator",
+        "quality_denominator"
+      ]
+    },
+    {
+      "file": "resume/units/0001/parameter_gradients.csv",
+      "rows": 67,
+      "columns": [
+        "update",
+        "group",
+        "parameter",
+        "available",
+        "numel",
+        "preclip_l2",
+        "preclip_max_abs",
+        "preclip_mean_abs",
+        "zero_fraction",
+        "finite"
+      ]
+    },
+    {
+      "file": "resume/units/0001/quality_errors.csv",
+      "rows": 24,
+      "columns": [
+        "update",
+        "slot",
+        "output",
+        "prediction",
+        "target",
+        "available"
+      ]
+    },
+    {
+      "file": "resume/units/0001/region_metrics.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "region",
+        "tp",
+        "fp",
+        "fn",
+        "dice"
+      ]
+    },
+    {
+      "file": "resume/units/0001/samples.csv",
+      "rows": 8,
+      "columns": [
+        "update",
+        "slot",
+        "image_id",
+        "role",
+        "component",
+        "point_kind"
+      ]
+    },
+    {
+      "file": "resume/units/0001/tile_support.csv",
+      "rows": 512,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "patch",
+        "coverage",
+        "mass",
+        "selected",
+        "eligible"
+      ]
+    },
+    {
+      "file": "resume/units/0001/vectors.csv",
+      "rows": 2560,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "kind",
+        "dimension",
+        "value"
+      ]
+    },
+    {
+      "file": "resume/units/0001/view_plans.csv",
+      "rows": 16,
+      "columns": [
+        "update",
+        "slot",
+        "view",
+        "brightness",
+        "contrast",
+        "gamma",
+        "eligible",
+        "masked_tiles",
+        "valid_loss_weight"
+      ]
+    },
+    {
+      "file": "source/SOURCE_COMPONENTS.csv",
+      "rows": 570,
+      "columns": [
+        "canonical_source_split",
+        "class_index",
+        "confirmed_original_tyre_id",
+        "domain",
+        "historical_study_split",
+        "image_id",
+        "image_path",
+        "image_sha256",
+        "label_source",
+        "leakage_component",
+        "native_height",
+        "native_width",
+        "new_independent_tyre",
+        "point_kind",
+        "point_optimization_weight",
+        "prospective_split",
+        "provisional_video_tyre_id",
+        "proxy_class",
+        "source_frame_index",
+        "source_video",
+        "timestamp_seconds"
+      ]
+    }
+  ],
+  "native_arrays": 65,
+  "native_inventory": [
+    {
+      "file": "progress/units/0001/geometry_logits.npy",
+      "shape": [
+        8,
+        2,
+        128,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/row_parameters.npy",
+      "shape": [
+        8,
+        512,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/row_valid.npy",
+      "shape": [
+        8,
+        512
+      ],
+      "dtype": "bool"
+    },
+    {
+      "file": "progress/units/0001/v0_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v0_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v0_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v0_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v0_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v1_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v1_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v1_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v1_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0001/v1_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/geometry_logits.npy",
+      "shape": [
+        8,
+        2,
+        128,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/row_parameters.npy",
+      "shape": [
+        8,
+        512,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/row_valid.npy",
+      "shape": [
+        8,
+        512
+      ],
+      "dtype": "bool"
+    },
+    {
+      "file": "progress/units/0002/v0_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v0_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v0_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v0_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v0_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v1_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v1_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v1_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v1_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0002/v1_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/geometry_logits.npy",
+      "shape": [
+        8,
+        2,
+        128,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/row_parameters.npy",
+      "shape": [
+        8,
+        512,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/row_valid.npy",
+      "shape": [
+        8,
+        512
+      ],
+      "dtype": "bool"
+    },
+    {
+      "file": "progress/units/0003/v0_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v0_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v0_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v0_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v0_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v1_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v1_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v1_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v1_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0003/v1_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/geometry_logits.npy",
+      "shape": [
+        8,
+        2,
+        128,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/row_parameters.npy",
+      "shape": [
+        8,
+        512,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/row_valid.npy",
+      "shape": [
+        8,
+        512
+      ],
+      "dtype": "bool"
+    },
+    {
+      "file": "progress/units/0004/v0_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v0_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v0_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v0_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v0_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v1_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v1_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v1_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v1_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "progress/units/0004/v1_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/geometry_logits.npy",
+      "shape": [
+        8,
+        2,
+        128,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/row_parameters.npy",
+      "shape": [
+        8,
+        512,
+        3
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/row_valid.npy",
+      "shape": [
+        8,
+        512
+      ],
+      "dtype": "bool"
+    },
+    {
+      "file": "resume/units/0001/v0_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v0_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v0_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v0_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v0_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v1_encoded.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v1_full.npy",
+      "shape": [
+        8,
+        32,
+        96
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v1_prediction.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v1_target.npy",
+      "shape": [
+        8,
+        8,
+        4,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    },
+    {
+      "file": "resume/units/0001/v1_weight.npy",
+      "shape": [
+        8,
+        8,
+        1,
+        16,
+        16
+      ],
+      "dtype": "float32"
+    }
+  ],
+  "unit_chains": [
+    {
+      "namespace": "resume",
+      "committed_updates": 1,
+      "chain_verified": true
+    },
+    {
+      "namespace": "progress",
+      "committed_updates": 4,
+      "chain_verified": true
+    }
+  ],
+  "independent_loss_reconstruction": [
+    {
+      "update": 1,
+      "all_terms_reconstructed": true,
+      "maximum_absolute_difference": 0.00024329293773917016
+    },
+    {
+      "update": 2,
+      "all_terms_reconstructed": true,
+      "maximum_absolute_difference": 6.892908277222887e-05
+    },
+    {
+      "update": 3,
+      "all_terms_reconstructed": true,
+      "maximum_absolute_difference": 0.0002024961395363789
+    },
+    {
+      "update": 4,
+      "all_terms_reconstructed": true,
+      "maximum_absolute_difference": 0.0003462532058620127
+    }
+  ],
+  "gallery": {
+    "status": "passed",
+    "scope": "actual_script_synthetic_DOM_not_browser_screenshot",
+    "cases": 32,
+    "update_filters": 4,
+    "png_signatures_valid": true
+  },
+  "parameters": {
+    "frozen": 1372159,
+    "geometry": 27068,
+    "quality": 2179,
+    "texture": 326632,
+    "total": 1728038,
+    "trainable": 355879
+  },
+  "environment": {
+    "cuda": "12.8",
+    "cudnn": 91900,
+    "devices": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "numpy": "2.1.3",
+    "pillow": "13.0.0",
+    "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+    "torch": "2.11.0+cu128"
+  },
+  "GPU_memory": [
+    {
+      "device": 0,
+      "name": "Tesla T4",
+      "peak_allocated_bytes": 916755968,
+      "peak_reserved_bytes": 1111490560
+    },
+    {
+      "device": 1,
+      "name": "Tesla T4",
+      "peak_allocated_bytes": 57303552,
+      "peak_reserved_bytes": 67108864
+    }
+  ],
+  "storage": {
+    "CSV_bytes": {
+      "geometry_points": 5793,
+      "gradients": 623,
+      "masked_tiles": 5606,
+      "objectives": 3936,
+      "parameter_gradients": 28323,
+      "quality_errors": 4423,
+      "region_metrics": 2787,
+      "samples": 3055,
+      "tile_support": 47724,
+      "vectors": 322479,
+      "view_plans": 3493
+    },
+    "CSV_rows": {
+      "geometry_points": 192,
+      "gradients": 12,
+      "masked_tiles": 512,
+      "objectives": 4,
+      "parameter_gradients": 268,
+      "quality_errors": 96,
+      "region_metrics": 64,
+      "samples": 32,
+      "tile_support": 2048,
+      "vectors": 10240,
+      "view_plans": 64
+    },
+    "complete_40_family_measurement": false,
+    "dense_measured_bytes_per_row": 35.29439798990885,
+    "endpoint_dense_CSV_projected_bytes": 988830443,
+    "free_output_bytes": 20793065472,
+    "max_rolling_state_bytes": 4359009,
+    "measured_fit_storage_gate_passed": false,
+    "native_fixture_bytes": 9656832,
+    "native_projected_bytes": 8908427520,
+    "provisional_total_with_other_allowances_bytes": 14333693810,
+    "reason": "NB17 shard writer, all 40 executable CSV families and staging peak require implementation/measurement before measured fit",
+    "scope": "engineering_observation_measurements_not_complete_fit_budget",
+    "vector_CSV_projected_bytes": 297486878
+  },
+  "original_publications_unchanged": [
+    {
+      "notebook": 13,
+      "entries": 1502,
+      "unchanged": true
+    },
+    {
+      "notebook": 14,
+      "entries": 79,
+      "unchanged": true
+    },
+    {
+      "notebook": 15,
+      "entries": 37,
+      "unchanged": true
+    }
+  ],
+  "measured_fit_started": false,
+  "warnings": "Scalar conversion warnings are diagnostic-only; no saved error or failed check",
+  "local_credentials_read": false,
+  "remote_writes": 0,
+  "public_read_requests_this_invocation": 188
+}

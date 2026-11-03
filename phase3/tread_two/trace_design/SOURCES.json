@@ -1,0 +1,72 @@
+{
+  "status": "design_input_pins_not_new_measured_protocol",
+  "data": {
+    "checksum_file_sha256": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a",
+    "conservative_train_components": [
+      1,
+      1,
+      4
+    ],
+    "historical_test": 103,
+    "images": 570,
+    "kaggle_input": "shanmuk4622/tire-dataset-prepared-phase2",
+    "known_train_tyres": [
+      1,
+      3,
+      4
+    ],
+    "overlay_sha256": "f81a80d20b60ba505d94e31c26615e7e7171a91a8506948be6c392b68107a039",
+    "test_human_geometry_images": 25,
+    "train": 386,
+    "train_human_geometry_images": 70,
+    "train_no_point_target_images": 164,
+    "train_weak_geometry_images": 152,
+    "validation": 81,
+    "validation_human_geometry_images": 25
+  },
+  "original_anchor": {
+    "epoch": 20,
+    "frozen": true,
+    "model": "TREAD-ONE r1",
+    "parameters": 1372159,
+    "seed": 3,
+    "source_sha256": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "url": "https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study/resolve/a0296f18e02b12d28f7e51377783d68538032209/phase3/tread-one-r1/371c40c0c6aaedaf5c5970f7721a284b042494db7bb330065f6cbde8fc3a0b8c/report/weights.pt",
+    "weights_sha256": "a5b872ed2e4cbfb3b9782b0df563e2606631744cd0274fee2da42a832f985f65"
+  },
+  "GEO_fit": {
+    "repository": "Shanmuk4622/tyre-wear-study",
+    "revision": "1113bf8a9dd69687b23570fe985ed3a979a5f0e1",
+    "protocol": "7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb",
+    "prefix": "phase3/tread-two/geo-r1/fit/7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb",
+    "logical_files": 11637,
+    "selected_objects": 11636,
+    "bytes": 10307839796,
+    "expected_epochs": 60,
+    "expected_updates": 2940,
+    "expected_samples": 30447,
+    "expected_unit": 9877,
+    "source_checksum": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a"
+  },
+  "geometry_export_sha256": "8358e0595d46caee1160818ad975042f2031e14f7d0fa6f2ac105b9312325450",
+  "geometry_selection_status": "GEO unselected final epoch60; original selected=None preserved",
+  "GEO_NB20_verification_sha256": "b5397390345cc4afef95fd5be5a6b02334cc32eb7a701a1d66ad7606ad84e047",
+  "prototype_files": {
+    "frozen_geometry.py": {
+      "bytes": 3626,
+      "sha256": "13af74071281f45d70816c350317e6c12f802de6dbb0066419b707f96c3933be"
+    },
+    "model.py": {
+      "bytes": 4053,
+      "sha256": "84ef4840970480e6541716534d7f9e61caf08ad584dafdb8676a7675fb085d07"
+    },
+    "objective.py": {
+      "bytes": 2789,
+      "sha256": "05816e29b36551089b19e8b8a201dbe053d837d96bf6c4575221bfd2844fc4f1"
+    },
+    "targets.py": {
+      "bytes": 7047,
+      "sha256": "68e5cc728141e0376bd13b58f13d0448edc46163eb243e400dc43782d6222d11"
+    }
+  }
+}

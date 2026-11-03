@@ -13,10 +13,11 @@ local evidence or changing a completed experiment.
 | Current runnable `.ipynb` files, including their existing execution evidence | Duplicate archived executions and downloaded notebook copies |
 | Environment definitions, protocols, source inventories and small audit receipts | Checkpoints, model binaries, native recovery states and downloaded dependencies |
 | Compact result summaries, documentation and curated figures | Full HF mirrors, raw per-update/per-image telemetry and test/publication fixtures |
-| Six explicitly allowed small reference-bank `.npy` inputs | Other NumPy datasets/maps/arrays and generated snapshot bundles |
+| Ten explicitly allowed small reference-bank `.npy` inputs | Other NumPy datasets/maps/arrays and generated snapshot bundles |
 
-The six arrays under `phase3/tread_two/pilot/assets/` and
-`phase3/tread_two/lc_pilot/assets/` are deliberate frozen model inputs. They are
+The ten arrays under `phase3/tread_two/pilot/assets/` and
+`phase3/tread_two/lc_pilot/assets/` and
+`phase3/tread_two/context_pilot/assets/` are deliberate frozen model inputs. They are
 required by their `FILES.json` inventories and notebook builders. They contain
 reference RGB, validity, labels and source identifiers, not trained weights.
 The narrow exceptions keep these builders reproducible without allowing an
@@ -77,7 +78,7 @@ The `.env.example` / `.env.template` exceptions are for placeholders only.
 | Record | Evidence |
 |---|---|
 | [Content check](../phase3/audit/GIT_CONTENT_CHECK.json) | Git-visible file sizes, credential-pattern scan and history size/filename check |
-| [Ignore policy check](../phase3/audit/GIT_IGNORE_POLICY_CHECK.json) | 20 ignored / 20 retained path cases, six frozen arrays and four published figures |
+| [Ignore policy check](../phase3/audit/GIT_IGNORE_POLICY_CHECK.json) | 22 ignored / 27 retained path cases, ten frozen arrays and four published figures |
 | [Index-only cleanup](../phase3/audit/git-index-cleanup.json) | Original local size/SHA for the seven files removed from tracking |
 
 The earlier [content policy](GIT_CONTENT_POLICY.md) remains the historical record

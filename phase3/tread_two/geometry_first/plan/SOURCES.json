@@ -1,0 +1,38 @@
+{
+  "checked_date": "2026-11-01",
+  "local_sources": {
+    "data_gate_validation/nb07_publication/remote/csv/historical_class_support.csv": "3a437b26a60d5b9fad47824ea7161d37a4296a428041d79f1e7991bffc48006d",
+    "revision2_validation/nb05_publication/SCIENTIFIC_VERIFICATION.json": "24f29f37c073f0ade5cb4429cfd9e7727b4fe81019447ea9dceccf595035a5f7",
+    "tread_two/context_pilot/RECIPE.json": "c20fbf5d46bb566764b41f39c6a65c9c023b4d5398daa1b4dd1679eb0406be24",
+    "tread_two/context_pilot/data_atlas.py": "f5d338291d104eee7774b913d2b99aa12bfc19ba65be4a69cc08e5945f78ddb7",
+    "tread_two/context_pilot/frozen_anchor.py": "d16cd4eef75779044dd95900c0531fee474704cf88f523326ee069115347ba09",
+    "tread_two/context_pilot/frozen_lc.py": "6ffa1977160e534dedc68e84efab2585089d9380065bb4626590e831324f19cf",
+    "tread_two/context_pilot/geometry.py": "04a8151f666c96ab7482c1aa48c2a2ea7e15d34db09893be3a7ad31e507d366a",
+    "tread_two/nb15_completion/98837b907abc/VERIFICATION.json": "a6e8e3e209f062ec3980c5cc794f96aaa76c9ec443551e76e40a2489f2a8a22c",
+    "tread_two/readiness_report/SUMMARY.json": "dcb532a20f611ac321ab9c9e4f3360a9e744ceba1a7cc9d6eb15e0e844886e9e",
+    "workstation/models/MODEL.json": "570738d641da782147172af8d11c7a9fb9af3d03f612d55c4f15eeed5d9676bb",
+    "workstation_validation/DELIVERY.json": "910d42da1bdb2b6f09f05bfc534c7994600e0607d141c6836bf427b61aefa497"
+  },
+  "primary_references": [
+    {
+      "role": "Variance/invariance/covariance loss motivation; no project performance guarantee",
+      "title": "VICReg original paper",
+      "url": "https://arxiv.org/abs/2105.04906"
+    },
+    {
+      "role": "CUDA backward caveat motivates a detached sampling boundary",
+      "title": "PyTorch2.11 grid_sample",
+      "url": "https://docs.pytorch.org/docs/2.11/generated/torch.nn.functional.grid_sample.html"
+    },
+    {
+      "role": "Same-environment RNG/state seam tests; no cross-platform bit-exact promise",
+      "title": "PyTorch2.11 reproducibility",
+      "url": "https://docs.pytorch.org/docs/2.11/notes/randomness.html"
+    },
+    {
+      "role": "Separate HTTP buckets and server headers; commit action limits also apply",
+      "title": "HF Hub rate limits",
+      "url": "https://huggingface.co/docs/hub/en/rate-limits"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+role,images,masked_model,strongest_aggregate_control,gain_vs_strongest_aggregate_control,images_beating_all_controls,images_passing_5pct_all_controls,local_gain
+test,103,0.47201248946645696,visible_band_mean,0.1784912941492497,103,98,0.37800248974396666
+train,386,0.33332446607697813,visible_band_mean,0.459306937813483,386,386,0.5363408720221169
+validation,81,0.46738311340889765,visible_band_mean,0.2163300604311369,81,81,0.36441466924236376

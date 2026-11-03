@@ -1,5 +1,213 @@
 # Phase 3 — decisions
 
+<!-- IEEE_ACCESS_PAPER_20261103 -->
+## Manuscript decisions — 3 November 2026
+
+| ID | Decision | Boundary |
+|---|---|---|
+| P3-D195 | Isolate the IEEE Access paper under Phase 3 | Preserve original manuscript and all measured sources |
+| P3-D196 | Center local evidence and aggregation | Serial model revisions motivate; not a universal model-superiority claim |
+| P3-D197 | Retain selected=None and existing-data limits | No new fit, photos, gate relaxation or blind-test claim |
+| P3-D198 | Generate figures from verified saved evidence | Deterministic examples, unchanged predictions, direct cell/epoch CSVs |
+| P3-D199 | Distinguish primary sweep and bridge readout counts | No claim of zero-computation review; zero new image-model inference |
+| P3-D200 | Use primary citations and explicit AI assistance disclosure | No invented references, approval, grant or permission |
+| P3-D201 | Deliver editable source, PDF and audit/checklist together | Actual author/submission decisions remain open |
+| P3-D202 | Retain curated paper assets in Git, exclude build scratch | No staging, commit, history rewrite or push |
+<!-- END_IEEE_ACCESS_PAPER_20261103 -->
+
+<!-- TEXTURE_AGGREGATION_20261102 -->
+## Aggregation investigation decisions — 2 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D187 | Freeze nine saved-feature interventions before primary calculation | Same final epoch, original roles/views/support, no new candidate search |
+| P3-D188 | Count frozen-head readouts explicitly |656,640 decoder-token /1,140 projector-vector readouts; zero image/geometry forwards or optimizer updates |
+| P3-D189 | Separate local-decoder utility from global-vector diversity | Actual source graph, native bridge replay and fixed-head counterfactuals |
+| P3-D190 | Preserve original checkpoint selection and gate | GEO/TRACE selected=None; diagnostic alternatives never installed |
+| P3-D191 | Declare mask association follow-up as exploratory | Separately pinned addendum after observing high masked-context rank |
+| P3-D192 | Use an invertible scaling control for the rank statistic | Original coordinates recover to 1e-12; no new information or gate relaxation |
+| P3-D193 | Prioritize local contrast/orientation residual utility in the next design question | Evidence supports a question, not a trained objective or architecture claim |
+| P3-D194 | Retain full direct CSV/native derivatives locally with explicit Git/HF boundaries | Large predictions/detail kept out of Git; new derivative HF publication not claimed |
+<!-- END_TEXTURE_AGGREGATION_20261102 -->
+
+<!-- RETROSPECTIVE_RECORD -->
+## Whole-project retrospective — 2 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D181 | Reconcile by experiment scope and later controlling evidence | Original study /Phase 2 /Phase 3 /manuscript are separate;236-document pre-analysis inventory |
+| P3-D182 | Count fits rather than notebook numbers |7 measured families /10 executions; NB13A continues NB13, masters wrap stages |
+| P3-D183 | Preserve every original validation selection and research rejection | No test-selected MobileNet seed swap; GEO/TRACE selected=None |
+| P3-D184 | Add saved-only TRACE component/image diagnostics |570 images /10 components;444 full-hash inputs; no new forward or fit |
+| P3-D185 | Distinguish local reconstruction utility from pooled diversity | All images beat3 controls for one recorded plan; per-tile statistics do not prove a causal pooling fix |
+| P3-D186 | Prioritize supported local evidence and aggregation diagnosis | Existing photos only; no automatic new fit, workstation or manuscript change |
+<!-- END_RETROSPECTIVE_RECORD -->
+
+<!-- NB24_RECORD -->
+## NB24 measured result — 2 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D175 | Close NB21–NB24 through actual NB24 master execution |60 epochs /2,940 updates and completed review; no standalone execution invented |
+| P3-D176 | Keep selected=None and original gates | Utility60/60; projector/encoder diversity0/60 |
+| P3-D177 | Preserve improved reconstruction without a wear-accuracy claim |21.63% masked /36.44% local control advantage on previously inspected validation |
+| P3-D178 | Distinguish published full dense audit from this bounded independent audit | All objectives/gates replayed; every large CSV body was not re-downloaded |
+| P3-D179 | Count observations, padding and inherited cache explicitly |47,263,346fit-publication rows;570 existing photos; no new independent data |
+| P3-D180 | Diagnose saved local/component evidence before another candidate | No automatic refit, post-hoc gate relaxation or workstation deployment |
+<!-- END_NB24_RECORD -->
+
+<!-- TRACE_BATCH_DECISIONS -->
+## TRACE batch implementation — 2 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D168 | Deliver NB21/NB22/NB23 and recommended sequential NB24 together | No manual notebook handoff or concurrent writers |
+| P3-D169 | Keep prototype/completed packages immutable; use separate trace_batch |14 exact helper/core copies; explicitly adapted new store |
+| P3-D170 | Freeze48 families / 671 fields, adding prediction-update and paired-cosine provenance | All natural/injected fixture writers exercised; unavailable fields remain nullable |
+| P3-D171 | Keep batch 8 unique-source coverage, six explicit padding draws and one measured seed | All 60 schedules checked; no new independent photos |
+| P3-D172 | Require actual full formatting/capacity and HF-restored dual-T4 continuation before long fit | Local proofs are not mislabeled live Kaggle evidence |
+| P3-D173 | Use complete-update prefixes, owner fencing and finite final transport receipt | Atomic fault, stop-flush and final-acknowledgement tests |
+| P3-D174 | Preserve research rejection and original GEO selected=None | No checkpoint substitution, workstation deployment or new safety/classification claim |
+<!-- END_TRACE_BATCH_DECISIONS -->
+
+<!-- TRACE_DECISIONS -->
+## TRACE design decisions — 2 November2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D161 | Separate TRACE texture revision; preserve all completed sources | User authorised next design; no new measured fit or workstation change |
+| P3-D162 | Frozen selected anchor + explicit unselected GEO-final geometry only | Exact CPU geometry comparison; original GEO selected=None stays intact |
+| P3-D163 | Fixed image-derived local targets and train-only normalisation | All 386 training photos, no held-out fitting; full target maps retained |
+| P3-D164 | Keep failed v0 audit and full spatial evidence | Averaged targets remain low-rank; no claim of a solved collapse |
+| P3-D165 | Six-dimensional projector with ≥7 eligible-row diversity guard; five spatial moments | Rank-feasibility, mask-leakage and row/column reversal proofs |
+| P3-D166 | Draft 48 CSV families / 669 fields and storage/continuation gates before fit delivery | Schema is a plan, not implemented measured telemetry |
+| P3-D167 | One future candidate and full automatic notebook batch | No new runnable notebooks yet; actual two-T4/HF proof pending |
+<!-- END_TRACE_DECISIONS -->
+
+<!-- NB20_DECISIONS -->
+## NB20 verification and closure — 2 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D155 | Close NB18/NB19 through actual NB20 execution | Both stage publications verified; no fictitious standalone executions |
+| P3-D156 | Use published inventories as the count authority | 51 HF CSVs include publication-time transport records; local-root counts differ in scope |
+| P3-D157 | Measure numerical precision explicitly | One cross-platform FP32 norm ULP; FP64 original-weight audit; parsed HTML identical despite seven-byte serialization difference |
+| P3-D158 | Preserve selected=None and research-only status | Publication does not change 0/60 representation eligibility |
+| P3-D159 | Add a small local registry of published GEO evidence | Exact revisions/hashes; no new HF experiment or model duplication |
+| P3-D160 | Recommend a separately justified texture revision | Fixed local targets and batch-compatible diversity; proposed only; existing data and no automatic fit |
+<!-- END_NB20_DECISIONS -->
+
+<!-- NB17_BATCH_DECISIONS -->
+## NB17 completion and batch delivery — 2 November2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D147 | Identify completion from the attached NB17 bytes | Message says NB16; NB16 already verified; archive executed NB17 unchanged |
+| P3-D148 | Accept completed execution and failed representation eligibility separately |60 epochs/2,940 updates;0/60 eligible; no selected checkpoint invented |
+| P3-D149 | Audit64D projector and96D pooled vectors by original role | Held-out near-rank-one; pooled570 does not replace validation |
+| P3-D150 | Preserve richer direct CSV/native evidence and exact masks | All11636selectedobjects; objective/native/dense reconstruction and provenance |
+| P3-D151 | Deliver NB18, NB19 and recommended NB20 together | Master sequences dependent stages without manual handoff; avoid competing writers |
+| P3-D152 | Separate finite CPU stage recovery from training resumption | Replay incomplete analysis stage; completed fit never receives another update |
+| P3-D153 | Keep GEO final as unselected research artifact | Geometry maintained, texture gate failed, error head loses to constant control |
+| P3-D154 | No automatic next full fit, new photos or workstation change | User existing-data/deferred-workstation scope; a future fit needs a justified protocol |
+<!-- END_NB17_BATCH_DECISIONS -->
+
+
+<!-- NB17_DETAILS -->
+## NB16 completion / NB17 freeze — 1 November 2026
+
+| ID | Decision | Evidence / limit |
+|---|---|---|
+| P3-D140 | Close NB16 without rerun | All174 files/60 CSV and actual T4/HF continuation verified |
+| P3-D141 | Freeze a separate GEO measured runtime | Completed NB16 bytes/sources preserved; full40-family lifecycle added separately |
+| P3-D142 | Correct14 draft types and add25sufficient-statistic/provenance fields |468executable fields before measured fit; original443-field draft preserved |
+| P3-D143 | Bounded raw prefixes→NPY plus immutable CSV shards and strict staging | No ZIP/NPZ; measured hardlink/space gate before optimization |
+| P3-D144 | Header-driven API/resolver budgets, separate96/hour commit guard | NB16 actually advertised1,000/5,000 per 300 seconds; preserve server backoff |
+| P3-D145 | Stable single-experiment registry and shared-history resume | Source/env changes cannot silently start another fit |
+| P3-D146 | Utility evaluated on original selected validation metrics only | No training/test endpoint pooling or test-based checkpoint substitution |
+
+[Implemented protocol](phase3TreadTwoGEOProtocol.md).
+<!-- END_NB17_DETAILS -->
+
+<!-- GEO_NB16_DETAILS -->
+## NB16 implementation decisions — 1 November 2026
+
+| ID | Decision | Reason / boundary |
+|---|---|---|
+| P3-D135 | Deliver the actual prerequisite NB16 now | The approved sequence requires real two-T4/HF proof before measured NB17 |
+| P3-D136 | Use tile-local photometric contrast means | Actual hidden-RGB leakage check; no cross-tile mean shortcut |
+| P3-D137 | Keep engineering and measured telemetry scopes explicit |11 actual unit families versus40/443 planned fit schema; no fabricated full-fit pass |
+| P3-D138 | Retain unit1 seam and latest complete progress | Actual remote-continuation proof must not hide later committed engineering state |
+| P3-D139 | Keep measured_fit_ready false until full integration | Raw stream/shards, full validation/selection and staging need separate acceptance |
+
+[Implementation and precise remaining work](tread_two/geometry_first/IMPLEMENTATION_STATUS.md).
+<!-- END_GEO_NB16_DETAILS -->
+
+<!-- GEO_PLAN_20261101 -->
+## Geometry-first GEO design — 1 November 2026
+
+| ID | Chosen direction | Reason / boundary |
+|---|---|---|
+| P3-D128 | Plan a new geometry/representation objective within TREAD-TWO | User explicitly requested complete planning; old ATLAS classifier closure remains preserved |
+| P3-D129 | Freeze selected r1 anchor; train bounded geometry adapters and isolated texture/error branches | Existing useful dense results and shared-gradient/point regression evidence; no new measured improvement claimed |
+| P3-D130 | Use masked local-target prediction plus variance/invariance/covariance; no first-pilot mileage loss | Avoid repeating confidence sharpening on already-correct training labels; collapse/mean-predictor controls required |
+| P3-D131 | Cover all386trainingimages once/epoch plus6documented padding draws | Reduce extreme replacement repetition; ensure structured batch source diversity, while retaining component limitations |
+| P3-D132 | One seed/60 epochs after automatic gates; geometry/collapse eligibility then representation selection | Existing photos and old historical roles; no test-selected checkpoint or automatic extra sweep |
+| P3-D133 | Retain40 CSV families/443fields plus every training mask logit/token/masked target/prediction in native shards | User's extensive telemetry requirement;15GBlogical/18GBpeak projections must be measured before fitting |
+| P3-D134 | Deliver plan now; implement isolated runtime and NB16 next | Model/notebooks not yet runnable; no workstation/HF/model mutation during planning |
+
+[Full design](phase3TreadTwoGeometryPlan.md), [risks and primary sources](tread_two/geometry_first/plan/RISKS_AND_DECISIONS.md).
+<!-- END_GEO_PLAN_20261101 -->
+
+
+<!-- NB15_CLOSED_20261101 -->
+## NB15 completion and current experimental-series closure — 1 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D122 | Close NB15 without rerun | Four complete cells; all 38 files / 16 CSVs verified, released owner and unchanged upstream manifests |
+| P3-D123 | Keep false support readiness separate from failed execution | Two conditional folds remove a fit class; analysis integrity passes; mid co-assignment is not identity equivalence |
+| P3-D124 | Close v1/LC/context as completed, unpromoted research candidates | All selected/final low recalls 0/62; probability changes do not establish transfer |
+| P3-D125 | Consolidate original selected/final checkpoint and evidence identities | Three cards, nine pinned publications, fourteen artifact descriptors and local provenance release |
+| P3-D126 | Avoid an unnecessary repeat/fourth full fit or publication-only NB16 for unchanged studies | Scientific records already directly retained on HF; local handoff is not claimed uploaded |
+| P3-D127 | Preserve deferred workstation scope and existing-photo constraint | No application tree changes or acquisition prerequisite; later experiments need a distinct supported protocol |
+
+[Completion](phase3NB15Completion.md) · [Research closure and implemented handoff](phase3TreadTwoResearchClosure.md).
+<!-- END_NB15_CLOSED_20261101 -->
+
+
+<!-- NB14_COMPLETED_20261101 -->
+## NB14 closure / existing-data readiness — 1 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D116 | Close NB14 without rerun; preserve executed notebook/source and original fit | 80files/52tables verified, exact table equality, released owner, all1502fit entries unchanged |
+| P3-D117 | Audit existing independent support before another full classifier fit | One low and one conservative mid training component; two conditional folds remove fit class |
+| P3-D118 | Keep mid co-assignment separate from physical identity | Three known mid tyres remain distinct; unresolved clip-parent constraint is preserved |
+| P3-D119 | Quantify algebraic correction utility without fitting or new held-out inference | Four variants on47040savedtrainingviews; held-out perturbation leaves scientific outputs identical |
+| P3-D120 | Publish structured capability/evidence passport through CPU NB15 | 16CSVtables/196,905rows; model remains research-only, physical depth/safety unavailable |
+| P3-D121 | Isolate tested HF SDK in new publication subprocess | NB14 completed despite unrelated dependency warnings; no global SDK/Torch/CUDA replacement in NB15 |
+
+No new-photo prerequisite or workstation work is introduced. Future classification exploration needs a distinct objective/protocol; this gate does not prove all possible models impossible.
+<!-- END_NB14_COMPLETED_20261101 -->
+
+
+<!-- NB13_COMPLETED_20261101 -->
+## NB13A closure and saved-context review — 1 November 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D110 | Close original NB13/NB13A without another fit | 60 epochs / 2,940 updates, all published bytes/rows/ledger/native states verified, released owner |
+| P3-D111 | Record actual recovery at 2,486; preserve dated 1,294 partial audit | Executed bootstrap/output identifies a newer verified HF revision; no invented lost/replayed-update claim |
+| P3-D112 | Keep original selected epoch 7 and leave context unpromoted | Validation worsens vs unchanged LC prior; low recall stays 0/62 and endpoint NLL increases |
+| P3-D113 | Separate layout sensitivity and conserved explanation from useful recognition/causal truth | Learned correction responds while frozen prior is invariant; zero probe flips do not mean unchanged scores |
+| P3-D114 | Deliver isolated CPU NB14 with richer direct CSV/attention review | 52 tables / 585,825 rows, five figures, 1,854 cases, actual extracted science/viewer/offline publication pass |
+| P3-D115 | Preserve original fits/workstations; defer any new model to a separately justified frozen experiment | Existing photos only; actual NB14/HF publication remains pending user execution |
+
+[Completion](phase3NB13Completion.md) · [Review and validation](phase3TreadTwoContextReview.md).
+<!-- END_NB13_COMPLETED_20261101 -->
+
+
 | ID | Date | Decision | Reason / source |
 |---|---|---|---|
 | P3-D001 | 2026-10-27 | Name the chat `phase 3` and use `phase3/` for new work | Explicit user request |
@@ -110,3 +318,43 @@ Append a new decision when its rationale changes. Identify the superseded decisi
 | P3-D092 | Separate stability/probability loss from recognition and calibration | Zero saved-probe flips and lower NLL/Brier; unchanged low errors and worse selected ECE |
 | P3-D093 | Audit paired objectives, full-source exclusion and draw-vs-view exposure before another fit | All 23,520 paired objectives and 960,156 permission rows checked; 386 queries actually exposed |
 | P3-D094 | Deliver CPU NB12 for additive 40-table review publication; no new fit or workstation promotion | Existing photos only; local extracted-code/viewer/offline publication pass; actual NB12 publication pending |
+
+<!-- NB12_R3_DECISIONS -->
+## NB12 closure and isolated spatial-context candidate — 30 October 2026
+
+| ID | Decision | Evidence / constraint |
+|---|---|---|
+| P3-D095 | Close NB12, preserve executed payload and original fit | All 63 direct files/40 tables match; owner released; all 1,350 fit entries unchanged |
+| P3-D096 | Treat stable probes and lower NLL as narrower findings | Endpoint low recall remains 0/62 and selected ECE worsens; no model promotion |
+| P3-D097 | Test a separate position-aware residual, not another old-fit seed | Training-only proof exposes order invariance; not proof of the cause of endpoint failure |
+| P3-D098 | Freeze original validation-selected LC epoch 7; zero-initialize bounded context head | Exact native SHA pinned; initial predictions/evidence match; base remains unchanged |
+| P3-D099 | Retain 27 CSV families and full selected/final attention | Every view gets corrections and attention summaries; full per-update matrices explicitly omitted |
+| P3-D100 | Deliver NB13 after local math/recovery/package/CSV tests | Actual T4×2/live-HF/storage/accuracy pending Kaggle; one new candidate only |
+| P3-D101 | Preserve Git hygiene alongside new source inputs | Four narrow new NPY exceptions; fixtures/native/HF mirrors ignored; no commit/push |
+
+[Findings](phase3NB12Completion.md), [architecture](phase3TreadTwoContextArchitecture.md), [protocol](phase3TreadTwoContextProtocol.md).
+<!-- END_NB12_R3_DECISIONS -->
+
+<!-- NB13_RECOVERY_LOG -->
+## NB13 incomplete-run recovery — 31 October 2026
+
+| ID | Decision | Evidence / constraint |
+|---|---|---|
+| P3-D102 | Preserve stopped session and treat NB13 as incomplete | Notebook local2467 vs verifiedHF1294; no final completion/cleanrelease |
+| P3-D103 | Do not identify an unobserved GPU/HTTP/numerical cause | No savedtraceback; exact waitingstage needs localdiagnostics |
+| P3-D104 | Use an external orchestration repair, preserve all32frozen entries and actualprotocol | Initialaheadlocalpublication; verifiedhistoryprefix; same model/optimizer/schema |
+| P3-D105 | Deliver existing-session NB13A with status/stackdiagnostics | Offlinechecks pass; actualKagglerecoveryandfitcompletionpending |
+
+<!-- END_NB13_RECOVERY_LOG -->
+
+<!-- NB13A_R2_RECORD -->
+## NB13A revision 2 — 31 October 2026
+
+| ID | Decision | Evidence / boundary |
+|---|---|---|
+| P3-D106 | Fix missing working-state handling through a standalone bootstrap | Both revision-1 guards failed before any recovery/fitting; cannot assume old workspace exists |
+| P3-D107 | Prefer compatible current/saved state, otherwise full verified HF restore | HF update 1,294 is verified; unuploaded later progress cannot be fabricated |
+| P3-D108 | Keep exact measured identity and original gate; reject drift or missing remote state | No fresh fit/model/namespace created to evade compatibility checks |
+| P3-D109 | Deliver revision 2 after empty-directory package and 18 recovery checks | Actual Kaggle recovery remains pending; earlier execution/source history archived |
+
+<!-- END_NB13A_R2_RECORD -->

@@ -1,0 +1,3 @@
+device,samples,max_allocated_bytes,max_reserved_bytes,max_host_RSS_bytes,minimum_free_bytes
+cuda:0,3801,586502656,765460480,2331189248,7224127488
+cuda:1,3801,0,2097152,2331189248,7224127488

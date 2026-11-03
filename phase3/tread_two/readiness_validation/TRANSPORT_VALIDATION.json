@@ -1,0 +1,12 @@
+{
+  "actual_pinned_public_read": true,
+  "bounded_range_assembly": true,
+  "cache_reuse": true,
+  "corruption_replacement": true,
+  "ignored_range_rejected_before_body": true,
+  "local_credentials_read": false,
+  "public_requests": 2,
+  "remote_writes": 0,
+  "source_sha256": "c26c2e872fc440d39e86033c0cc062d205690e7d07420039ff1f9f67adb75e7a",
+  "status": "passed"
+}

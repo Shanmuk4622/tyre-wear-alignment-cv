@@ -1,0 +1,14 @@
+{
+  "repository": "Shanmuk4622/tyre-wear-study",
+  "revision": "1113bf8a9dd69687b23570fe985ed3a979a5f0e1",
+  "protocol": "7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb",
+  "prefix": "phase3/tread-two/geo-r1/fit/7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb",
+  "logical_files": 11637,
+  "selected_objects": 11636,
+  "bytes": 10307839796,
+  "expected_epochs": 60,
+  "expected_updates": 2940,
+  "expected_samples": 30447,
+  "expected_unit": 9877,
+  "source_checksum": "06c6c9d003aff808babf7ebb5786f441e95064eb000f5e5ed5b155d0ee9e7c6a"
+}

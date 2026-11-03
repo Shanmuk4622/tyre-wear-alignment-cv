@@ -1,0 +1,1 @@
+{"all_original_epoch_bytes_verified":true,"criterion":"Each norm lies within a conservative FP32 sum-of-squares reduction roundoff bound; exact model tensors remain unchanged","max_ULP_distance_from_rounded_FP64":12,"max_absolute_difference":2.2200368373859192e-05,"max_relative_difference":1.1799423926149529e-06,"rows":4020,"status":"passed"}

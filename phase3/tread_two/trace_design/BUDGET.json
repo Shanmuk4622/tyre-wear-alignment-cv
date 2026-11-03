@@ -1,0 +1,30 @@
+{
+  "status": "draft_math_requires_actual_writer_and_dual_T4_measurement",
+  "assumed_output_bytes": 20000000000,
+  "logical_ceiling_bytes": 15000000000,
+  "projected_peak_ceiling_bytes": 18000000000,
+  "reserve_bytes": 2000000000,
+  "optional_1TB_required": false,
+  "training_views": 47040,
+  "shape_per_view": [
+    32,
+    6,
+    4,
+    4
+  ],
+  "one_prediction_body_train_bytes": 578027520,
+  "all_three_token_bodies_train_bytes": 867041280,
+  "spatial_moment_train_bytes": 45158400,
+  "full_target_all570_bytes": 7004160,
+  "full_weight_all570_bytes": 1167360,
+  "forbidden_all_training_view_input_lc_bytes": 98650030080,
+  "missing_before_freeze": [
+    "All formatted CSV family sizes",
+    "Validation/baseline/endpoint/probe bodies",
+    "Staging and actual allocator peaks",
+    "Both optimizer/recovery slots",
+    "Every epoch weight and transport index",
+    "Conservative uncertainty multiplier"
+  ],
+  "on_over_budget": "stop before long fit; never silently drop promised evidence"
+}

@@ -1,0 +1,176 @@
+[
+  {
+    "file": "phase3_fits.csv",
+    "source": "phase3/retrospective_20261102/PHASE3_FIT_LEDGER.csv",
+    "bytes": 1443,
+    "sha256": "6c5bd3d9de809a7d8a98c8a2c2e8765ad43fa2a1c4d1be2402b1479de0f51b47"
+  },
+  {
+    "file": "classification_endpoints.csv",
+    "source": "phase3/retrospective_20261102/CLASSIFICATION_ENDPOINTS.csv",
+    "bytes": 2209,
+    "sha256": "758574efb4b5e864b9c5b636f9022fb92fc58dfe12a6bab3f02efaf253253ef1"
+  },
+  {
+    "file": "phase2_selections.csv",
+    "source": "phase3/retrospective_20261102/PHASE2_SELECTIONS.csv",
+    "bytes": 1004,
+    "sha256": "f6fffafc02fddd67835e8d5ccbc17b4a91720f8153a3e7931d5a212deb214c0c"
+  },
+  {
+    "file": "atlas_endpoints.csv",
+    "source": "phase3/tread_two/research_release/endpoint_metrics.csv",
+    "bytes": 1356,
+    "sha256": "45d011f7d58c977c2d07a89f20f6ceae4c45ba304525a17cd2e7d2c7c7f39442"
+  },
+  {
+    "file": "tread_one_summary.csv",
+    "source": "phase3/completion_20261028/csv/run_summary.csv",
+    "bytes": 2385,
+    "sha256": "69bab86c2ce477b56588cd4a7dbd940a381590f54d5b48953f2df53d6a8f6051"
+  },
+  {
+    "file": "paired_endpoints.csv",
+    "source": "phase3/revision2_validation/nb05_publication/analysis/endpoint_metrics.csv",
+    "bytes": 981,
+    "sha256": "1c7260c384f8800a97d841dc79980e4f299280abe200ee8f7c59cdd8e5c239a8"
+  },
+  {
+    "file": "geo_validation.csv",
+    "source": "phase3/tread_two/nb17_report/validation_reconstruction.csv",
+    "bytes": 15676,
+    "sha256": "65976b211ce9cd5224db70a73b2a95d76fae1d45cbf311dccc09e94000a60e27"
+  },
+  {
+    "file": "geo_findings.json",
+    "source": "phase3/tread_two/nb17_report/FINDINGS.json",
+    "bytes": 1531,
+    "sha256": "34791b8117aceb69c26f8d36dd69f39eb944f7f62f3334f1f64572b9e03bffdd"
+  },
+  {
+    "file": "trace_roles.csv",
+    "source": "phase3/retrospective_20261102/TRACE_ROLE_UTILITY.csv",
+    "bytes": 448,
+    "sha256": "2f30dd5d8f56b3c288b5ced1ec8a1f96c0bf41ed10d6d2bf0bc38cf26aca0ccc"
+  },
+  {
+    "file": "trace_component_utility.csv",
+    "source": "phase3/retrospective_20261102/TRACE_COMPONENT_UTILITY.csv",
+    "bytes": 2746,
+    "sha256": "e8d0a9ecc56c11a087556b61dd2b39b894e5d710c6fadf0f639e4eead1c23e03"
+  },
+  {
+    "file": "trace_feature_cohorts.csv",
+    "source": "phase3/tread_two/trace_completion_report/ENDPOINT_COHORTS.csv",
+    "bytes": 2913,
+    "sha256": "3787b45846ee7aeae4b680e654b84b95443d35f9c89549f766b4953ae1c6675e"
+  },
+  {
+    "file": "aggregation_utility_summary.csv",
+    "source": "phase3/texture_aggregation_20261102/UTILITY_SUMMARY.csv",
+    "bytes": 19435,
+    "sha256": "23f3e637e8b43af783661b89a74b3634e888e1e3c713c62792ed37fb4bc91042"
+  },
+  {
+    "file": "aggregation_component_utility.csv",
+    "source": "phase3/texture_aggregation_20261102/COMPONENT_UTILITY.csv",
+    "bytes": 53905,
+    "sha256": "6a0a1ccdcd36c5c3f6f84a4a029557ab253935a26bc17efd533e047f2f637f1a"
+  },
+  {
+    "file": "aggregation_channel_utility_summary.csv",
+    "source": "phase3/texture_aggregation_20261102/CHANNEL_UTILITY_SUMMARY.csv",
+    "bytes": 99595,
+    "sha256": "47f03b65cff9ef5c014c8138fa3ac89b1ca1115d0b6f0c7a5205718b3732e9d4"
+  },
+  {
+    "file": "aggregation_feature_spaces.csv",
+    "source": "phase3/texture_aggregation_20261102/FEATURE_SPACES.csv",
+    "bytes": 41014,
+    "sha256": "1c803c65fd6362cb5ec4122c8ac0d08bf369a6ce32d6f72d49d58976f8b87378"
+  },
+  {
+    "file": "aggregation_spatial_covariance.csv",
+    "source": "phase3/texture_aggregation_20261102/SPATIAL_COVARIANCE.csv",
+    "bytes": 6904,
+    "sha256": "1d531735ddc23ccc25a84e7bd5a1b87356284f0effd2bf44d5cb712b58956e8d"
+  },
+  {
+    "file": "aggregation_mask_plan_alignment.csv",
+    "source": "phase3/texture_aggregation_20261102/MASK_PLAN_ALIGNMENT.csv",
+    "bytes": 2983,
+    "sha256": "45db91b2eeb14d1ae00882968a29b0997cf40e0b5757435dfc124ac347f4e632"
+  },
+  {
+    "file": "aggregation_mask_plan_summary.csv",
+    "source": "phase3/texture_aggregation_20261102/MASK_PLAN_SUMMARY.csv",
+    "bytes": 417,
+    "sha256": "b77016af199f3b38a7ec5ee326330e205abc80bb54011ce7188db67da1dba359"
+  },
+  {
+    "file": "aggregation_support_summary.csv",
+    "source": "phase3/texture_aggregation_20261102/SUPPORT_SUMMARY.csv",
+    "bytes": 310,
+    "sha256": "dc7f3c1fe2fec8b8a04b45fd8a56d21bef4dff2a3855c5795ad8748c40d494c7"
+  },
+  {
+    "file": "aggregation_spatial_energy_summary.csv",
+    "source": "phase3/texture_aggregation_20261102/SPATIAL_ENERGY_SUMMARY.csv",
+    "bytes": 11586,
+    "sha256": "a8716ec3c52138ec5c9e1992e1ed52c84d29559f014456ad3e68ef254e4d72d2"
+  },
+  {
+    "file": "aggregation_bridge_verification.csv",
+    "source": "phase3/texture_aggregation_20261102/BRIDGE_VERIFICATION.csv",
+    "bytes": 479,
+    "sha256": "45579bc66692a58fb50643b4f9fc169e03e70fa0dbf415ac4cc545f6ea75468e"
+  },
+  {
+    "file": "aggregation_image_alignment.csv",
+    "source": "phase3/texture_aggregation_20261102/IMAGE_ALIGNMENT.csv",
+    "bytes": 92785,
+    "sha256": "6e3b5b82cde758cf29aae912eb0fcb1cce7651d6a713e691debe9107de9600ca"
+  },
+  {
+    "file": "aggregation_protocol.json",
+    "source": "phase3/texture_aggregation_20261102/PROTOCOL.json",
+    "bytes": 2148,
+    "sha256": "06b2a06afb53a360f1ce2a254ab67d4e71a4ab698ee9f8e7a46f67dda710c44d"
+  },
+  {
+    "file": "aggregation_analysis.json",
+    "source": "phase3/texture_aggregation_20261102/ANALYSIS.json",
+    "bytes": 693,
+    "sha256": "0a11944c1f41bb99604791944e8e42e4aac98bbf23df930169dd253693b45a06"
+  },
+  {
+    "file": "aggregation_validation.json",
+    "source": "phase3/texture_aggregation_20261102/VALIDATION.json",
+    "bytes": 2352,
+    "sha256": "ee246f851247e1c8e44e2fbb1e7e7df1e012a22ce65b1c580a7505ab39338f26"
+  },
+  {
+    "file": "aggregation_mask_addendum_protocol.json",
+    "source": "phase3/texture_aggregation_20261102/MASK_ADDENDUM_PROTOCOL.json",
+    "bytes": 651,
+    "sha256": "26c651ae8d1e54363b61ce8fa3e1103226561450286f05d551695a0125f55e99"
+  },
+  {
+    "file": "aggregation_input_verification.json",
+    "source": "phase3/texture_aggregation_20261102/INPUT_VERIFICATION.json",
+    "bytes": 268,
+    "sha256": "87a68fe53017f0dbc9dca5c2318bbb0d12d3a02e1132f8e023dfbca60d20cdae"
+  },
+  {
+    "file": "nb24_verification.json",
+    "source": "phase3/tread_two/nb24_completion/23e081e52454/VERIFICATION.json",
+    "bytes": 3928,
+    "sha256": "7db4f138a24d8ec89737ee9030db2a73696832109a0fdac3a21f6f02034bc3e7"
+  },
+  {
+    "file": "nb24_science.json",
+    "source": "phase3/tread_two/nb24_completion/23e081e52454/SCIENTIFIC_VERIFICATION.json",
+    "bytes": 8465,
+    "sha256": "874569f624671a515019acb5cb9592147e61717ef69eb66e06b74a8b68245a69"
+  }
+]

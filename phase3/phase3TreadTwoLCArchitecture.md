@@ -1,5 +1,7 @@
 # ATLAS-LC r2 — an appearance-consistent case-evidence model
 
+> Current status, 30 October 2026: NB11 and NB12 are complete/HF-verified. This document records the preserved LC r2 study. The new separately frozen candidate is [ATLAS-CONTEXT r3](phase3TreadTwoContextArchitecture.md); [NB12 completion](phase3NB12Completion.md) records actual publication and interpretation.
+
 <!-- NB11_COMPLETE_UPDATE_20261030 -->
 ## Current — NB11 complete; NB12 review ready
 

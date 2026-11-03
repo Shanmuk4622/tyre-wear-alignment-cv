@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "unit_chain": 3913,
+  "committed_CSV_chunks": 45852,
+  "all_chunk_hashes_and_cumulative_offsets": true,
+  "all60_native_epoch_protocols_updates_finite_base_unchanged": true,
+  "completed_update_sequence_0_to_2940_without_gaps": true,
+  "partial_original_remote_prefix_units": 1607,
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "remote_writes": 0
+}

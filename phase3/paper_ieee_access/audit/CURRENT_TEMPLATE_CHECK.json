@@ -1,0 +1,25 @@
+{
+  "checked": "2026-11-03",
+  "official_url": "https://ieeeaccess.ieee.org/wp-content/uploads/2026/05/ACCESS_latex_template_20260513-1-1.zip",
+  "download_bytes": 1942796,
+  "download_sha256": "60c7efc9db8ac9e8bdb31c550ad4e03cb6f258a878ececc0bc690b6203e45a67",
+  "saved_zip": false,
+  "core": {
+    "ieeeaccess.cls": {
+      "official_member": "ACCESS_latex_template_20260513/ieeeaccess.cls",
+      "sha256": "67b73c4da05479d592a9449c38a81fcc7779d78753085bb44199e7f2746b757d",
+      "matches": true
+    },
+    "IEEEtran.bst": {
+      "official_member": "ACCESS_latex_template_20260513/IEEEtran.bst",
+      "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f",
+      "matches": true
+    },
+    "spotcolor.sty": {
+      "official_member": "ACCESS_latex_template_20260513/spotcolor.sty",
+      "sha256": "a9c5bacbf5b832e5eac61393bf1b330fc75fa353cbc9cf4319c227de49bfa5fa",
+      "matches": true
+    }
+  },
+  "status": "passed"
+}

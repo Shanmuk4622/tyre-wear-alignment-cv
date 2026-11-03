@@ -66,9 +66,9 @@ def main():
                 if any(pattern.search(content) for pattern in TOKEN_PATTERNS):
                     bad.append(dict(path=n, reason='credential-like content; values are never printed'))
         # Frozen source packages must be rebuildable from a checkout, including
-        # the six small deliberate NPY reference arrays; no blanket binary exception.
+        # the ten small deliberate NPY reference arrays; no blanket binary exception.
         missing = []
-        for folder in ('phase3/tread_two/pilot', 'phase3/tread_two/lc_pilot'):
+        for folder in ('phase3/tread_two/pilot', 'phase3/tread_two/lc_pilot', 'phase3/tread_two/context_pilot'):
             package = ROOT / folder
             if not (package / 'FILES.json').exists(): continue
             for name in json.loads((package / 'FILES.json').read_text(encoding='utf-8')):

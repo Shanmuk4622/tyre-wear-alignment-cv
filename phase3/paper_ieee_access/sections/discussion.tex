@@ -1,0 +1,23 @@
+\section{Discussion and Limitations}\label{sec:discussion}
+\subsection{Local Utility and Global Diversity Are Separate Properties}
+TRACE separates useful local prediction from broad global diversity. Its local and hidden-cell heads read $Z$ and $C$ directly, bypassing the global descriptor and projector. Reconstruction success can therefore coexist with a failed global gate.\AIdraftingnote
+
+The interventions make this distinction measurable: a mean preserves about three fifths of local advantage, while a small spatial residual preserves about four fifths. Descriptor and component effects differ. This supports measuring local residuals, without establishing an optimal learned architecture or a solution to proxy classification.
+
+Averaging favors coherent variation across positions, dominated here by component differences. Much within-component variation cancels. Intervention losses show that some discarded variation is useful to the descriptor decoder; other variation may reflect illumination, viewpoint, noise, or geometry artifacts. The data do not assign those sources a physical-wear meaning.
+
+\subsection{What Would Justify a Future Revision?}
+A defensible next question is whether a compact branch retains contrast and orientation residuals \emph{beyond} a strong global-plus-position control. Evaluation should measure incremental descriptor/component utility, preserve the visible-input masking boundary, and check geometry separately from representation quality.
+
+This implication does not select a new objective or model. The cycle closes with its original unselected status. A future protocol must distinguish reconstruction improvement from transfer, physical measurement, and useful operator decisions.
+
+\subsection{Limits of the Evidence}
+Independent subject support is the strongest limit: twelve user-confirmed tyres, six conservative training components, and only two held-out components per role. The training mid category is image-heavy but provenance-poor and absent from held-out ground truth. Full three-class generalization is untested. Conservative merging reduces unsupported independence assumptions without resolving physical identity uncertainty.
+
+The historical test was inspected repeatedly. The nine interventions were fixed before their calculation, but the question follows observed failures. No prospective confirmation or external deployment cohort is available, and later candidates have one seed. Serial model differences therefore cannot establish seed-robust causal effects.
+
+A fixed decoder can be sensitive to off-manifold interventions: loss combines information discard with readout mismatch. Decoder retraining was not performed. Concatenated and pooled spectra also differ in dimension, while component centering uses diagnostic group information unavailable to generic inference.
+
+Targets remain image descriptors, without physical depth, abrasion, defect severity, roadworthiness, or replacement labels. Canonical resampling depends on imperfect geometry and heterogeneous annotations. Neither the small internal point improvement nor either application workstation has been validated as a physical alignment or safety measurement by this study.
+
+Finally, deterministic masking, an exploratory CKA addendum, and jointly changed view-1 photometry/layout limit causal attribution. Spectral concentration, mask association, and reconstruction utility require separate reporting. The evidence is application-specific, rather than a general proof about pooling or self-supervised learning.

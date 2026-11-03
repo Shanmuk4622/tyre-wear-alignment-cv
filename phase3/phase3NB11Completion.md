@@ -1,5 +1,7 @@
 # NB11 — completed ATLAS-LC r2, independently HF-verified
 
+> Current status, 30 October 2026: NB11 and NB12 are complete/HF-verified. This document records the preserved LC r2 study. The new separately frozen candidate is [ATLAS-CONTEXT r3](phase3TreadTwoContextArchitecture.md); [NB12 completion](phase3NB12Completion.md) records actual publication and interpretation.
+
 **30 October 2026. The fit is complete; no NB11 rerun is needed.** All five
 notebook cells completed without a notebook exception. The actual dual-T4/live-HF
 recovery preflight passed, followed by 60 epochs / 2,940 optimizer updates,

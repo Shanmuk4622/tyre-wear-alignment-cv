@@ -1,0 +1,7 @@
+capability,status,evidence,limit
+Mileage-proxy classification,research_only_unpromoted,"All three candidate selected/final endpoints: low recall 0/62, observed-class BA 50%",Not promoted to either workstation
+Segmentation and localization,retained_frozen_TREAD_ONE,Geometry outputs and native weights retained from earlier study,No new geometry fit or deployment certification
+Signed evidence and attention,internal_accounting,Published reference/context conservation and saved endpoint attention,Not causal physical-wear truth
+Independent class-supported group holdouts,not_supported_for_complete_three_class_training_comparison,Training conservative components low/mid/high = 1/1/4; two conditional folds remove a fit class,Conditional support enumeration; no held-component model was fitted
+Physical depth in millimetres,unavailable,No measured physical target supplied,Do not convert mileage proxies to depth
+Safety assessment,unavailable,No safety validation supplied,No safety decision is established

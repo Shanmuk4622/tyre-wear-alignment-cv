@@ -1,0 +1,190 @@
+{
+  "ieeeaccess.cls": {
+    "bytes": 50800,
+    "sha256": "67b73c4da05479d592a9449c38a81fcc7779d78753085bb44199e7f2746b757d"
+  },
+  "IEEEtran.bst": {
+    "bytes": 57748,
+    "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f"
+  },
+  "engine_compat.tex": {
+    "bytes": 581,
+    "sha256": "bc9415313e4edc047b64a87a93ead83c861b74f269431c12dc4f96829315e824"
+  },
+  "spotcolor.sty": {
+    "bytes": 2231,
+    "sha256": "a9c5bacbf5b832e5eac61393bf1b330fc75fa353cbc9cf4319c227de49bfa5fa"
+  },
+  "logo.png": {
+    "bytes": 9705,
+    "sha256": "7e04ba7f0c579f3765941680e2a19437e15a81b84a138d73c54bd4afead752cd"
+  },
+  "notaglinelogo.png": {
+    "bytes": 3150,
+    "sha256": "955e9a07fb35ffbc8a41597b8c6e7ec4cedf6a8652f5c73a33957044aae64900"
+  },
+  "bullet.png": {
+    "bytes": 430,
+    "sha256": "754772e36aab389556f98c14f5deeb4031e792b68a766dc5f9766e76e114fffc"
+  },
+  "t1-formata-bold.pfb": {
+    "bytes": 59944,
+    "sha256": "85cc7db8dc04090411600cfb2853bb2efe92a8dc3c406e57ba11fd21248e607b"
+  },
+  "t1-formata-bold.tfm": {
+    "bytes": 1420,
+    "sha256": "07d3efeaf10af3eb2c15cc00ef16629cee96df315d0551984fce5b7f67cf8ee3"
+  },
+  "t1-formata-bolditalic.pfb": {
+    "bytes": 57834,
+    "sha256": "51af5f6d5ae0c69597cf68e4f3f0a1b222ae1f8fe014f248379e3162d783a8da"
+  },
+  "t1-formata-bolditalic.tfm": {
+    "bytes": 1672,
+    "sha256": "edba8f3a19f9ccc6c3fc2b99aabb108d88ca16188cc110c34dba01716553f005"
+  },
+  "t1-formata-condmedium.pfb": {
+    "bytes": 63989,
+    "sha256": "21d1c9853f4c1d1975c13541629e9977380dd61cb461de130dd22f181f60c749"
+  },
+  "t1-formata-condmedium.tfm": {
+    "bytes": 1412,
+    "sha256": "6b50cfdac0503850bd1042e6f81a5bc7106732b71a6e7382083290e8d28ae3d4"
+  },
+  "t1-formata-condmediumital.pfb": {
+    "bytes": 65644,
+    "sha256": "2b9c7803d3d79d86ec2fe84785a2c5e92db7f8ea01f59ae4d4be19d806e4bc4b"
+  },
+  "t1-formata-condmediumital.tfm": {
+    "bytes": 1660,
+    "sha256": "bdcc73dd762e6345daf132d476845eda1f87a72e900203e43afb721626e2baae"
+  },
+  "t1-formata-italic.pfb": {
+    "bytes": 55897,
+    "sha256": "774a9b0f146bdc4fa3bfe366cc70a0c357f3a33095cc30f41622823a1514ce4e"
+  },
+  "t1-formata-italic.tfm": {
+    "bytes": 1680,
+    "sha256": "b5abe759c73ab5f6c7130b11a1c58e793dc2d329affe8fc82583b97ef6acec3e"
+  },
+  "t1-formata-light.pfb": {
+    "bytes": 62934,
+    "sha256": "e172485ed2369cd310b4510ed1175272c9a25e978c7d9394887d5258b3e22b69"
+  },
+  "t1-formata-light.tfm": {
+    "bytes": 1416,
+    "sha256": "e49ec9919a791c4db785743997fbdf6a1896c4820028ef6cf7460a6326bab6bd"
+  },
+  "t1-formata-lightitalic.pfb": {
+    "bytes": 56817,
+    "sha256": "e1e8b533ef124f9ce1e845031b67a4b71ed4ec283c784217b8383d18629c5efe"
+  },
+  "t1-formata-lightitalic.tfm": {
+    "bytes": 1656,
+    "sha256": "faf7c6e83e68da1342bbcba422021e18bc936292e25fc43ce2705e8cc3724dda"
+  },
+  "t1-formata-medium.pfb": {
+    "bytes": 67701,
+    "sha256": "86bcb9f9047a23d192e46b85af6ac50a3f557dd81bcb57bb77fe10fbd2c4f7a7"
+  },
+  "t1-formata-medium.tfm": {
+    "bytes": 4720,
+    "sha256": "06bbc55cb560d7f16e3821f739756db3dcced3543542cfca79790cdaf7918b9d"
+  },
+  "t1-formata-mediumitalic.pfb": {
+    "bytes": 62483,
+    "sha256": "81675003831e33e5e4f708d6d3ee6db81c0ec0da241a083e9457cc83fdd73df4"
+  },
+  "t1-formata-mediumitalic.tfm": {
+    "bytes": 4948,
+    "sha256": "6af7b2d27109a2aeb09a6775974d67b0c78f4acdbc23e072138e0b69f39cb53d"
+  },
+  "t1-formata-regsymb.pfb": {
+    "bytes": 14621,
+    "sha256": "28b3e632d96f651dbbd9f5225ed362f0506279513cf7ecb0785506bb77573c4f"
+  },
+  "t1-formata-regsymb.tfm": {
+    "bytes": 432,
+    "sha256": "2099220084353dd2414b1e47156b6b4745cfa94d8cf7a737c519f8e47d8d9cc2"
+  },
+  "t1-formata-regular.pfb": {
+    "bytes": 63982,
+    "sha256": "ddda54f35e3b59effa5bc0782bfc75b971d4503e3d643888e12ef8cf0a5c259c"
+  },
+  "t1-formata-regular.tfm": {
+    "bytes": 1416,
+    "sha256": "5b72c4ed7ea54027bfd6206b35898e3d531372f9810b4a1d35325fa4a9bed95f"
+  },
+  "t1-formata.map": {
+    "bytes": 690,
+    "sha256": "6bc40400c9d3e827bc8c9243699e5681fe2fd385aa58f1c010c0bb62db8ac7b4"
+  },
+  "t1-giovannistd-bookitalic.pfb": {
+    "bytes": 60827,
+    "sha256": "98ad0803de1518d803e7c6b339196f2a6907cf22b1a18475284c26a0d230a84f"
+  },
+  "t1-giovannistd-bookitalic.tfm": {
+    "bytes": 5452,
+    "sha256": "35669a03bfac8239f2c9aeb234c3d258fb3c8773add552fa79c21d0e8eaf77ce"
+  },
+  "t1-giovannistd.map": {
+    "bytes": 81,
+    "sha256": "3b53bc7de8bce199c2b5cb5a7e0b0dd4625a8f15f3ab50ba6b550fc497b0ba37"
+  },
+  "t1-helvetica.map": {
+    "bytes": 253,
+    "sha256": "4cb73edb6c8f800aabedf7c69791cafd3df90dc04ef73d334b4f92cccb47d485"
+  },
+  "t1-times-bold.pfb": {
+    "bytes": 74023,
+    "sha256": "9de3b06aee8a29697b10861f1d4f4fff11568f5629ed2d03bfa82ff0d244c682"
+  },
+  "t1-times-bold.tfm": {
+    "bytes": 6264,
+    "sha256": "4c845739e4c4b74bd3314d191781ed5bfad3005e568376186ff3be72e4007a2b"
+  },
+  "t1-times-bolditalic.pfb": {
+    "bytes": 63189,
+    "sha256": "2bc33058718a7bce6defaa09a5c2684e410117baec62937da0b1952c66bf6452"
+  },
+  "t1-times-bolditalic.tfm": {
+    "bytes": 5328,
+    "sha256": "2fdc98c536dc5e4c10948496450ae2afe5d221c3063c65d4b5d2322ef05ecc65"
+  },
+  "t1-times-italic.pfb": {
+    "bytes": 59460,
+    "sha256": "8b291a54d50d0064621726d947d013743c097ddb6e0dca7704fedec65f6adda5"
+  },
+  "t1-times-italic.tfm": {
+    "bytes": 6284,
+    "sha256": "1a7a52a19b83939973e9a46a1615ca5b01b826670b77631c9e97313e325a6aa0"
+  },
+  "t1-times.map": {
+    "bytes": 215,
+    "sha256": "34315863a8b07b692262ef6489a0cd2fab0e1c7ee2979379a3ab488dde62a1a9"
+  },
+  "t1-times.pfb": {
+    "bytes": 76176,
+    "sha256": "d7a1e71f532e430ecb31b0f70fdc3c13e6d952371899649ba70821ddc2aee3e8"
+  },
+  "t1-times.tfm": {
+    "bytes": 5932,
+    "sha256": "5c8fb592c16a481b6594dc5edfa62ef24db5d233a1e57f36f502e2d0f79c1a20"
+  },
+  "t1formata.fd": {
+    "bytes": 706,
+    "sha256": "87385e77266d505e48556523732275185b9540ff06fb87b78ec5dc122346b10e"
+  },
+  "t1giovannistd.fd": {
+    "bytes": 115,
+    "sha256": "e071d747b940f03a238ee82c85b84be9991086ed2a487e4e6293a2185c0fc0a3"
+  },
+  "t1helvetica.fd": {
+    "bytes": 592,
+    "sha256": "5ee12b5ba0ac6ad044218568bc38a9d706e3d1b842559dd3c4c625b0cfbf7012"
+  },
+  "t1times.fd": {
+    "bytes": 508,
+    "sha256": "257f290ea4e57bd9bcbaf22bdfeb1b17ada22d92e4b543d56625044302708e3b"
+  }
+}

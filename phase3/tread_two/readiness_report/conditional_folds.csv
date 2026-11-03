@@ -1,0 +1,7 @@
+fold,held_component,fit_images,held_images,fit_classes,held_classes,missing_fit_classes,all_three_fit_classes,model_fitted
+0,tyre:mileage_100000_plus__session_001,383,3,3,1,,True,False
+1,tyre:mileage_100000_plus__session_002,384,2,3,1,,True,False
+2,tyre:mileage_100000_plus__session_003,381,5,3,1,,True,False
+3,tyre:mileage_100000_plus__session_004,326,60,3,1,,True,False
+4,tyre:new_tire__session_001,319,67,2,1,low,False,False
+5,unresolved_mid_parent_component,137,249,2,1,mid,False,False

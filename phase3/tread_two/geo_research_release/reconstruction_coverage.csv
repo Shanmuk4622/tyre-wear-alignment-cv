@@ -1,0 +1,7 @@
+item,coverage,status,gap
+Published file bytes / hashes,11636 objects; 10307839796 bytes,Verified,No historical unsent filesystem bytes can be inferred
+CSV schemas / saved counters,3080 CSVs; 27514418 rows,Verified,Per-run retained telemetry does not add independent tyres
+Complete training objective,2940 updates from saved vectors and sufficient numerators/denominators,Verified,Anchor drift uses logged sums; no new frozen-anchor forward
+Native measured bodies,8455 shards + 2 controls; all 60 epoch weights,Verified,"Historical full optimizer states are rolling, not all permanently kept"
+Final masks / confusion,"14,008,320 dense CSV rows against existing PNG masks",Verified,No new photographs or independent annotation audit
+Probe raw texture,1030 compact geometry/probe observations plus CSV vectors/statistics,Declared narrower coverage,Probe raw texture bodies were not retained by original policy

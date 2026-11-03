@@ -1,0 +1,6 @@
+model,seed,epoch,metric,source_metric,higher_is_better,validation,test,test_images,selection
+hrnet,3,2,human_point_MAE_width_fraction,negative_mean_width_fraction_error,False,0.004223972531035542,0.008592264365535385,25,original validation winner; first-seed tie rule
+mobilenetv4,1,4,balanced_accuracy_on_observed_low_high_classes,balanced_accuracy_on_observed_low_high_classes,True,1.0,0.5,103,original validation winner; first-seed tie rule
+resnet50,2,1,balanced_accuracy_on_observed_low_high_classes,balanced_accuracy_on_observed_low_high_classes,True,0.85,0.5,103,original validation winner; first-seed tie rule
+segformer,2,29,mean_two_region_dice_at_input_resolution,mean_two_region_dice_at_input_resolution,True,0.9937317381736286,0.9895663729263021,103,original validation winner; first-seed tie rule
+yolo26m,1,10,mean_two_region_dice_at_input_resolution,mean_two_region_dice_at_input_resolution,True,0.9921617682229407,0.9878987927597535,103,original validation winner; first-seed tie rule

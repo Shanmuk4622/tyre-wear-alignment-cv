@@ -1,0 +1,8 @@
+family,fit_notebook,fits,seed_policy,epochs_per_fit,updates_per_fit,task,selected,result,source
+TREAD-ONE r1,NB01,3,"1,2,3",60,2940,classification + masks + points + additive evidence,seed3 epoch20; original validation rule,classification transfer weak; internal dense outputs useful,phase3CompletionAudit.md
+TREAD-ONE paired r2,NB05,2,matched seed1 baseline + projection,60,2940,shared-gradient intervention,baseline23 / projection17,projection selected BA17.073% vs baseline50%; point error worse,phase3NB05Completion.md
+ATLAS v1,NB08,1,1,60,2940,reference-based proxy classifier + frozen dense anchor,epoch18,low recall0/62; appearance-sensitive,phase3TreadTwoFindings.md
+ATLAS-LC,NB11,1,1,60,2940,local-contrast paired reference classifier,epoch7,appearance stability and selected NLL improve; low recall unchanged,phase3NB12Completion.md
+ATLAS-CONTEXT,NB13 + NB13A same fit,1,1,60,2940,bounded positional residual over frozen LC prior,epoch7,layout-sensitive; NLL worse; low recall unchanged,phase3NB13Completion.md
+GEO,NB17,1,1,60,2940,isolated geometry + texture + annotation-error heads,unavailable under original joint gate,geometry maintained; representation0/60 eligible; learned error heads lose to controls,phase3NB17Completion.md
+TRACE,NB24 wraps NB22,1,1,60,2940,fixed-geometry local texture reconstruction,unavailable under original gate,masked gain21.63%; local gain36.44%; broad diversity0/60,phase3NB24Completion.md

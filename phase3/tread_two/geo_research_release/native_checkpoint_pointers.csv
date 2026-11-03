@@ -1,0 +1,3 @@
+endpoint,status,revision,logical_file,protocol
+final_epoch_60,Research only; not selected,1113bf8a9dd69687b23570fe985ed3a979a5f0e1,exports/final.pt,7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb
+selected,Unavailable: original gate rejected all epochs,1113bf8a9dd69687b23570fe985ed3a979a5f0e1,,7d1bc8554813ae16ba3d73d5d4af2d8c05c977e9282d1bf324ff9dbef6e89bdb

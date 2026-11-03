@@ -1,5 +1,226 @@
 # Phase 3 — repository map
 
+<!-- IEEE_ACCESS_PAPER_20261103 -->
+## Added — separate IEEE Access manuscript
+
+`paper_ieee_access/` contains the new LaTeX/PDF paper, vector/PNG figures,
+compact direct evidence, generators and audits. Its `.build/`, `preview/` and TeX
+intermediates are ignored. [Package guide](paper_ieee_access/README.md).
+The original `../ACCESS_latex_template_20260513/` manuscript is unchanged.
+<!-- END_IEEE_ACCESS_PAPER_20261103 -->
+
+<!-- TEXTURE_AGGREGATION_20261102 -->
+## Saved aggregation investigation locations
+
+| Path | Ownership / scope |
+|---|---|
+| `texture_aggregation_20261102/` | New protocols, compact CSV summaries, receipts and offline explorer |
+| `texture_aggregation_20261102/native/`, `detail/` | Large derived predictions/features and full CSV detail; local/Git-ignored |
+| `texture_aggregation_20261102/figures/` | Curated generated scientific charts, Git-visible |
+| `analysis/*texture_aggregation*.py`, `analysis/texture_mask_confounds.py` | Public pinned retrieval, frozen-token algebra, validation and documentation; no new training |
+| Existing NB24 mirror | Source evidence read-only; additional pinned native arrays downloaded into its already ignored remote cache |
+<!-- END_TEXTURE_AGGREGATION_20261102 -->
+
+<!-- RETROSPECTIVE_RECORD -->
+## Whole-project retrospective locations
+
+| Location | Role |
+|---|---|
+| `phase3ProjectRetrospective.md` |Current synthesis across scopes; no completed experiment redefined |
+| `phase3TRACEComponentReview.md` |New bounded saved-only analysis |
+| `retrospective_20261102/` |Compact direct CSVs, input hashes, figures, offline explorer and analysis receipt |
+| `analysis/*project_retrospective.py`, `analysis/build_retrospective_explorer.py` |Read-only numerical/report generation; no training, inference or network |
+<!-- END_RETROSPECTIVE_RECORD -->
+
+<!-- NB24_RECORD -->
+## NB24 completion locations
+
+| Location | Purpose |
+|---|---|
+| `tread_two/nb24_completion/23e081e52454/` | Compact public and independent scientific audit receipts |
+| `tread_two/nb24_completion/23e081e52454/remote/` | Ignored checksum-verified downloaded HF bodies |
+| `tread_two/trace_completion_report/` | Curated small CSVs, exact model card and documentation figures |
+| `analysis/audit_nb24_*.py`, `analysis/verify_nb24_objects.py` | Credential-free audit; no notebook execution/training/HF write |
+<!-- END_NB24_RECORD -->
+
+<!-- TRACE_BATCH_MAP -->
+## TRACE executable batch locations
+
+| Path | Role |
+|---|---|
+| `tread_two/trace_batch/` |32source/configuration files +selecting FILES inventory; isolated from prototype/completed studies |
+| `tread_two/trace_validation/` | Compact acceptance receipts, notebook hashes and writer coverage |
+| `tread_two/trace_validation/fixture_*/` | Disposable local data/model/cache/publication tests; ignored by Git |
+| `notebooks/phase3_NB21…` through `NB24…` | Preparation, measured pilot, CPU review and recommended automatic master |
+| `phase3TreadTwoTRACEBatch.md` | Current user run instructions |
+<!-- END_TRACE_BATCH_MAP -->
+
+<!-- TRACE_MAP -->
+## TRACE design locations
+
+| Location | Role |
+|---|---|
+| `tread_two/trace_design/runtime/` | Four isolated prototype modules; no full fit runner |
+| `tread_two/trace_design/*.md`, `*.json` | Technical design, draft schema/budget/source pins/status |
+| `tread_two/trace_design/validation/` | Small numeric/geometry/actual-data/delivery receipts and fixture CSV |
+| `tread_two/trace_design/validation/actual_train*/` | Full local constructions and v0 history, excluded from Git |
+| `tread_two/trace_report/` | Compact direct CSV summaries, observed-data PNG and interactive HTML |
+| `analysis/*trace*` | Reproducible prototype checks, target audit, builder, documentation and handoff checks |
+<!-- END_TRACE_MAP -->
+
+<!-- NB20_MAP -->
+## NB20 completion locations
+
+| Location | Role |
+|---|---|
+| `tread_two/nb20_completion/8c9c2991e1bb/` | Safe inspection, manifests, inventories and verification; execution copy and remote mirror ignored |
+| `tread_two/nb20_report/figures/` | Exact published PNGs curated for Markdown |
+| `tread_two/geo_research_release/` | Small local registry and exact published model-card/capability copies |
+| `phase3NB20Completion.md` | Current verified stages and scientific outcome |
+| `phase3TreadTwoGEONextResearch.md` | Proposed next direction; no new runnable experiment |
+<!-- END_NB20_MAP -->
+
+<!-- NB17_BATCH_MAP -->
+## GEO completion / postrun locations
+
+| Path | Role |
+|---|---|
+| `tread_two/nb17_completion/4b92d8fd7081/` | Executed archive/public HF mirror (ignored), compact inspection/verification/manifest receipts |
+| `tread_two/nb17_report/` | Actual-data derived CSV/native/HTML review (large outputs ignored), curated figures and summaries |
+| `tread_two/geo_postrun/` | Separate self-contained embedded package, numeric audit modules, publisher/coordinator and run guide |
+| `tread_two/geo_postrun_validation/` | Source/notebook identities and local delivery/check receipts; disposable fixtures ignored |
+| `tread_two/geo_passport_report/` | Local verified research model card, capability/evidence/provenance CSVs |
+| `notebooks/phase3_NB18…`, `phase3_NB19…`, `phase3_NB20…` | Review, passport and recommended automatic master |
+<!-- END_NB17_BATCH_MAP -->
+
+
+<!-- NB17_DETAILS -->
+## Completed NB16 and measured GEO implementation
+
+| Path | State / owner |
+|---|---|
+| `tread_two/nb16_completion/ea4f6784588f/` | Compact inspection/manifest/verification; ignored executed archive and full mirror |
+| `tread_two/nb16_report/figures/` | Curated actual dual-T4 resource figure |
+| `tread_two/geometry_first/runtime/` | Frozen executed NB16 source; preserved |
+| `tread_two/geo_pilot/` | Isolated frozen NB17 source/data/schema/transport plus human documentation |
+| `tread_two/geo_validation/` | Compact acceptance/schema/notebook receipts; ignored fixture_ directories |
+| `notebooks/phase3_NB17_TREAD_TWO_GEO_Resumable_Pilot.ipynb` | Current unexecuted measured-pilot handoff |
+| `analysis/build_nb17_geo.py` | Rebuild only an unexecuted new notebook; never executed NB16 |
+
+No Git staging/push, completed-source rewrite or workstation change.
+<!-- END_NB17_DETAILS -->
+
+<!-- GEO_NB16_DETAILS -->
+## Implemented GEO preparation — 1 November 2026
+
+| Path | State / purpose |
+|---|---|
+| `tread_two/geometry_first/runtime/` | New isolated model, losses, data, engineering store/worker/coordinator, report and copied frozen transport |
+| `notebooks/phase3_NB16_TREAD_TWO_GEO_Preparation_And_Contract_Gate.ipynb` | Current self-contained preparation delivery; unexecuted |
+| `tread_two/geometry_first/validation/` | Compact plan/local/notebook/delivery receipts; heavy fixture_ directories ignored |
+| `analysis/build_nb16_geo.py` | Regenerates only an unexecuted NB16 from verified readable source |
+| `analysis/validate_nb16_delivery.py` | Local math, source payload, offline fresh-process continuation and preservation |
+| `analysis/document_nb16_geo.py` | Maintains current implementation documentation/tracker blocks |
+
+NB17/NB18 are future stage names. No placeholders claim a runnable full fit.
+<!-- END_GEO_NB16_DETAILS -->
+
+<!-- GEO_PLAN_20261101 -->
+## New planned GEO branch — 1 November 2026
+
+| Path | State / purpose |
+|---|---|
+| `tread_two/geometry_first/plan/` | Delivered design docs, JSON proposal/schema, pinned sources and capacity arithmetic |
+| `tread_two/geometry_first/runtime/` | Planned isolated modules; not yet implemented |
+| `tread_two/geometry_first/validation/` | Plan checks now; later numerical/resource/recovery receipts and ignored fixtures |
+| `analysis/write_geometry_first_plan.py` | Author design documents and machine proposals only; no trainer/model forward |
+| `phase3TreadTwoGeometryPlan.md` | Complete project-level entry point |
+
+Future NB16/NB17/NB18 are planned names only. Old source trees/catalogs and executed notebooks remain unchanged. No generated training native/cache data belongs in Git; only compact plan/source/receipts and curated figures will be kept visible.
+<!-- END_GEO_PLAN_20261101 -->
+
+
+<!-- NB15_CLOSED_20261101 -->
+## NB15 completion / local research handoff paths — 1 November 2026
+
+| Path | Retention / ownership |
+|---|---|
+| `tread_two/nb15_completion/98837b907abc/` | Small inspection/manifest/verification receipts; ignored executed archive and full HF mirror |
+| `tread_two/research_release/` | Three model cards, seven metadata CSVs / 134 rows, one curated PNG, interactive HTML, capability and hashed release manifest |
+| `tread_two/research_release_validation/` | Small functional/numeric/provenance acceptance and final preservation receipts |
+| `analysis/build_tread_two_research_release.py` | Metadata/report generator; no fitting, inference, credential lookup or publication |
+| `analysis/verify_nb15_publication.py` | Pinned public NB15 audit; all37objects and16tables checked |
+
+The local research browser is an evidence report, not a workstation implementation. Both application trees and all completed runtime/notebook identities remain preserved.
+<!-- END_NB15_CLOSED_20261101 -->
+
+
+<!-- NB14_COMPLETED_20261101 -->
+## NB14 completion and readiness paths — 1 November 2026
+
+| Path | Retention / owner |
+|---|---|
+| `tread_two/nb14_completion/356dc7893cc5/` | Versioned safe receipts/manifest; ignored full remote mirror and executed archive |
+| `tread_two/readiness_gate/` | Four isolated Python modules and exact six-object INPUTS.json; no model source changes |
+| `tread_two/readiness_report/` | 16tables/three figures/passport/methods/capability JSON; heavy counterfactual CSV ignored locally and published on HF |
+| `tread_two/readiness_validation/` | Small package/notebook/viewer/transport/handoff receipts; cache/fixtures ignored |
+| `notebooks/phase3_NB15_TREAD_TWO_Existing_Data_Readiness_And_Evidence_Passport.ipynb` | Self-contained CPU readiness and direct additive HF publication |
+
+[Completion](phase3NB14Completion.md) · [Readiness design](phase3TreadTwoReadiness.md). Both workstations and all original fit/review modules remain unchanged.
+<!-- END_NB14_COMPLETED_20261101 -->
+
+
+<!-- NB13_COMPLETED_20261101 -->
+## New verified-fit and CPU-review paths — 1 November 2026
+
+| Path | Ownership / retention |
+|---|---|
+| `tread_two/nb13_completion/8bdf46ec2040/` | Small versioned receipts; ignored executed archive/full 5.646 GB HF mirror |
+| `tread_two/context_review/` | Five isolated analysis/publication modules and four pinned peer assets; frozen model code untouched |
+| `tread_two/context_analysis_report/` | 52 derived CSVs, five curated PNGs, methods/index; large row tables, attention JSON and explorer ignored locally but included in HF review |
+| `tread_two/context_review_validation/` | Versioned notebook/package/viewer/handoff receipts; ignored acceptance fixtures |
+| `notebooks/phase3_NB14_TREAD_TWO_CONTEXT_Completed_Review.ipynb` | Self-contained CPU saved-data audit and additive direct HF publication |
+| `analysis/verify_nb13_publication.py`, `verify_nb13_ledger.py` | Exhaustive public-read completion audit; no fit or credentials |
+
+[Completion](phase3NB13Completion.md) · [Review guide](phase3TreadTwoContextReview.md). Keep original 32-entry context package, earlier studies and both workstations unchanged.
+<!-- END_NB13_COMPLETED_20261101 -->
+
+
+<!-- NB13A_REPAIR_UPDATE_20261031 -->
+## Historical — NB13A missing-file error fixed; standalone recovery ready
+
+**31 October 2026:** supplied NB13A failed before recovery because its original local `run/POINTER.json` was unavailable. The executed error is archived (`b5a4dd68…`). Revision 2 now embeds the unchanged runtime and original contract, prefers compatible local/attached saved state, and otherwise restores the full verified HF checkpoint. Latest independently verified HF recovery remains update **1,294**; earlier local notebook output showed **2,467**. Missing unsent progress is recoverable only from surviving files. [Repair, evidence and instructions](phase3NB13ARepair.md).
+
+Next: run the updated [NB13A](notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb) directly with **Run All**: T4×2, Internet, existing expanded Kaggle input and HF_TOKEN. It can run without the old workspace. Preserve/use the older session or attach its saved output if available. Do not run concurrent writers. The original passed live gate is reused, compatibility is verified and the same experiment resumes; no fresh fit is allowed without a matching recovery snapshot.
+
+Eighteen offline recovery checks and the actual notebook setup in an empty fixture directory pass. Actual revised Kaggle recovery remains pending. All 32 frozen model/runtime entries, original NB13 protocol/source/notebooks and both workstations are preserved. Earlier existing-session-only instructions below describe superseded revision 1.
+<!-- END_NB13A_REPAIR_UPDATE -->
+
+<!-- NB13_RECOVERY_UPDATE_20261031 -->
+## Historical — NB13 incomplete; preserve the stopped Kaggle session
+
+**31 October 2026:** the user reports an apparent freeze and confirms stopped execution with local files retained. Saved NB13 output reaches **2,467 / 2,940 updates**; the independently verified HF checkpoint is only at **1,294**, phase train. All 33 embedded files match the unchanged 32-file runtime. The actual T4×2/live-HF preflight passed. No final completion or clean owner release is verified. [Status, proof and diagnosis](phase3NB13FreezeAndRecovery.md).
+
+Next: copy the **two code cells** from [NB13A existing-session recovery](notebooks/phase3_NB13A_TREAD_TWO_CONTEXT_Existing_Session_Recovery.ipynb) into the existing stopped Kaggle NB13 and run them in order. Keep its files, same settings/input and HF_TOKEN. Do not reset into a new empty session or run another original training cell concurrently. Recovery verifies local/remote history, publishes ahead local progress before fitting, and resumes the original protocol with phase/status/stack diagnostics. [Original run guide](tread_two/context_pilot/README.md).
+
+Exact stop cause is not established: no traceback was saved. Long snapshot/verification/upload paths lacked continuous status; do not claim a proven numerical/GPU/HF failure. The external orchestration repair and notebook pass local offline checks; actual Kaggle recovery remains pending. Preserve executed NB13 (`e0c714be…`), all frozen sources, protocol `36f473b0…`, native/CSV progress and earlier completed experiments. No model/recipe/data/workstation change. Earlier pending-NB13 delivery text below is historical.
+<!-- END_NB13_RECOVERY_UPDATE -->
+
+<!-- NB12_CONTEXT_UPDATE_20261030 -->
+## NB12 completion / ATLAS-CONTEXT documentation — 30 October 2026
+
+| Document | Purpose |
+|---|---|
+| [NB12 completion](phase3NB12Completion.md) | Actual pinned-HF proof, findings, figures and why the next hypothesis changes |
+| [Context architecture](phase3TreadTwoContextArchitecture.md) | Frozen prior, tokens/positions/attention, bounds, objective and explanation accounting |
+| [Context protocol](phase3TreadTwoContextProtocol.md) | Existing cohort, exact fit/selection/recovery/publication and capacity boundaries |
+| [Context evidence dictionary](phase3TreadTwoContextEvidenceSchema.md) | All 27 families and every column, units, joins, cadence and declared gaps |
+| [Context validation](phase3TreadTwoContextValidation.md) | Actual local tests, numerical residuals, preserved studies and pending Kaggle checks |
+| [NB13 run guide](tread_two/context_pilot/README.md) | T4×2/input/Secret/cells, resume, stopping, output and troubleshooting |
+
+Current action is NB13, not a repeat of NB08–NB12. Earlier dated pending statements are historical. Git policy now includes ten small reference-input arrays in three frozen packages; new large context fixtures stay ignored.
+<!-- END_NB12_CONTEXT_UPDATE -->
+
 ## TREAD-TWO implementation addition — 29 October 2026
 
 | Location | Ownership |

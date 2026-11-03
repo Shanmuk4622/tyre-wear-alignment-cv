@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "actual_report_JavaScript": true,
+  "fixture_cases": 4,
+  "reference_cards": 18,
+  "separate_frozen_base_and_context_accounting": true,
+  "filters": [
+    "endpoint",
+    "wrong",
+    "empty",
+    "source"
+  ],
+  "native_browser_render": false,
+  "network_requests": 0
+}

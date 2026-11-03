@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "scope": "untrained_design_and_disposable_synthetic_engineering_only",
+  "checks": {
+    "deterministic_per_band_mask": true,
+    "fixed_target_detached": true,
+    "heldout_statistics_rejected": true,
+    "independent_target_cell_reduction_max_absolute_difference": 3.56409145751968e-07,
+    "hidden_raw_pixel_perturbation_masked_prediction_bit_exact": true,
+    "hidden_target_changes_cannot_change_visible_targets": true,
+    "annotation_ignore_does_not_enter_student_features": true,
+    "invalid_raw_pixels_cannot_change_supported_targets": true,
+    "explicit_spatial_moments_respond_to_row_and_column_reversal": true,
+    "per_image_loss_reconstruction_max_absolute_difference": 2.436629920055111e-08,
+    "trainable_parameters": 71022,
+    "all_parameter_gradients_finite_and_connected": true,
+    "geometry_inputs_detached": true,
+    "covariance_guard_requires_at_least_seven_eligible_rows": true,
+    "empty_support_explicitly_unavailable": true,
+    "nonfinite_input_rejected": true,
+    "batch8_dim6_unit_covariance_feasible_max_difference": 6.661338147750939e-16,
+    "CPU_completed_update_native_restore_exact_model_optimizer_RNG_cursor_history": true
+  },
+  "source_sha256": {
+    "frozen_geometry.py": "13af74071281f45d70816c350317e6c12f802de6dbb0066419b707f96c3933be",
+    "model.py": "84ef4840970480e6541716534d7f9e61caf08ad584dafdb8676a7675fb085d07",
+    "objective.py": "05816e29b36551089b19e8b8a201dbe053d837d96bf6c4575221bfd2844fc4f1",
+    "targets.py": "68e5cc728141e0376bd13b58f13d0448edc46163eb243e400dc43782d6222d11"
+  },
+  "synthetic_training_updates_executed": 12,
+  "measured_candidate_updates": 0,
+  "new_photos": 0,
+  "HF_writes": 0,
+  "credentials_read": false,
+  "dual_T4_recovery_verified": false,
+  "live_HF_recovery_verified": false,
+  "limitations": [
+    "CPU fixture is not the future full transactional trainer.",
+    "No measured accuracy or generalization finding."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "completed_saved_analysis",
+  "protocol": "06b2a06afb53a360f1ce2a254ab67d4e71a4ab698ee9f8e7a46f67dda710c44d",
+  "local_validation_mean_retained": 0.6113713364079594,
+  "local_validation_template_retained": 0.0775081745482531,
+  "local_validation_residual_moments_retained": 0.8176321522247699,
+  "local_test_residual_moments_retained": 0.8216748669403405,
+  "validation_local_concat_rank": 3.47340849690956,
+  "validation_local_mean_rank": 1.2296264782185715,
+  "validation_context_raw_moment_rank": 1.2488587147105932,
+  "validation_context_scaled_moment_rank": 2.9120091505743986,
+  "original_selected": null,
+  "new_model_objective_selected": false,
+  "new_neural_training": false,
+  "image_encoder_forwards": 0,
+  "new_optimizer_updates": 0,
+  "remote_writes": 0
+}

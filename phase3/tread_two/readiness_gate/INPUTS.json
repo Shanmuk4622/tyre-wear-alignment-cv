@@ -1,0 +1,69 @@
+{
+  "inputs": {
+    "identity_components.csv": {
+      "bytes": 1091,
+      "name": "csv/leakage_components.csv",
+      "object": "evidence/csv/leakage_components-330c65eb1495f0dc33e2.csv",
+      "prefix": "phase3/tread-one/data-gate/v1/dbb3cf3634d1c2b19034b32e7182a4deaab1fdb5dc094a605f733514009d6f91",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "330c65eb1495f0dc33e261b40f2d74ff429c95de010fd020bce36b3e336bfa4d"
+    },
+    "identity_images.csv": {
+      "bytes": 200753,
+      "name": "csv/source_images.csv",
+      "object": "evidence/csv/source_images-25fc0fd2ce5592297c3b.csv",
+      "prefix": "phase3/tread-one/data-gate/v1/dbb3cf3634d1c2b19034b32e7182a4deaab1fdb5dc094a605f733514009d6f91",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "25fc0fd2ce5592297c3b1fe0929970db9c97040227b3b4fb71be107a5e3e293f"
+    },
+    "identity_tyres.csv": {
+      "bytes": 2392,
+      "name": "csv/source_tyres.csv",
+      "object": "evidence/csv/source_tyres-e6b1195b7cec80a6c5e2.csv",
+      "prefix": "phase3/tread-one/data-gate/v1/dbb3cf3634d1c2b19034b32e7182a4deaab1fdb5dc094a605f733514009d6f91",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1",
+      "sha256": "e6b1195b7cec80a6c5e267100c83e5cf1b7bfb631c8522fb08f2fc408e8600b4"
+    },
+    "review_context.csv": {
+      "bytes": 34855186,
+      "name": "context_observations.csv",
+      "object": "evidence/context_observations-36163f79135c469be236.csv",
+      "prefix": "phase3/tread-two/atlas-context-r3/review/793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "36163f79135c469be2369cac58c4a77ebbbe7d7bb251e0a0d672f823bc68b9db"
+    },
+    "review_predictions.csv": {
+      "bytes": 35002760,
+      "name": "prediction_audit.csv",
+      "object": "evidence/prediction_audit-b82ec5b1aff2ecbdbf9f.csv",
+      "prefix": "phase3/tread-two/atlas-context-r3/review/793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "b82ec5b1aff2ecbdbf9f42e6d7100ca8270825680bf34dfe25b0552c6cb375a3"
+    },
+    "review_source.csv": {
+      "bytes": 156047,
+      "name": "source_registry.csv",
+      "object": "evidence/source_registry-3553f3fcd7ab1fdcb0d1.csv",
+      "prefix": "phase3/tread-two/atlas-context-r3/review/793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92",
+      "sha256": "3553f3fcd7ab1fdcb0d163c64b8665be817e9dc6bf1a539636d267a158142bc2"
+    }
+  },
+  "kind": "existing-data readiness and algebraic online correction utility",
+  "publications": {
+    "NB07": {
+      "manifest_contract": "dbb3cf3634d1c2b19034b32e7182a4deaab1fdb5dc094a605f733514009d6f91",
+      "manifest_local_receipt_sha256": "7cd00ddad18fecaa5af3248092dd96ed28282415619fde6aed9b3ea6598aed4c",
+      "prefix": "phase3/tread-one/data-gate/v1/dbb3cf3634d1c2b19034b32e7182a4deaab1fdb5dc094a605f733514009d6f91",
+      "revision": "1b6d7122ed47350a9623476975912aff54c690a1"
+    },
+    "NB14": {
+      "manifest_contract": "793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+      "manifest_local_receipt_sha256": "798e9222a52e6279f4fc65e778bba6c713a37e515397847e2e42d1b6824ff3d3",
+      "prefix": "phase3/tread-two/atlas-context-r3/review/793525de3180a2f9025333c4afec219162aaca9a819474c1e60f208bf3e9a5bc",
+      "revision": "10c2f16ddf669ca6454cd27ebb306d699dba3d92"
+    }
+  },
+  "scope": "Training rows only; no model fitting, inference, selection or workstation changes",
+  "version": 1
+}

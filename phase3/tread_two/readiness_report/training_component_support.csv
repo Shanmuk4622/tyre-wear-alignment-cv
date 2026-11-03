@@ -1,0 +1,7 @@
+leakage_component,class_index,images,known_original_tyres,provisional_video_groups,bank_images
+tyre:mileage_100000_plus__session_001,2,3,1,0,2
+tyre:mileage_100000_plus__session_002,2,2,1,0,1
+tyre:mileage_100000_plus__session_003,2,5,1,0,1
+tyre:mileage_100000_plus__session_004,2,60,1,0,2
+tyre:new_tire__session_001,0,67,1,0,6
+unresolved_mid_parent_component,1,249,3,3,6

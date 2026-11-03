@@ -1,0 +1,25 @@
+\section{Reproducibility and Evidence Availability}\label{sec:repro}
+\subsection{Training State and Direct Evidence}
+The experiments use self-contained Kaggle notebooks with fixed source, configuration, data, and protocol hashes. Complete-update recovery retains model and optimizer state, Python and NumPy random state, central processing unit (CPU) and both CUDA-device random states, sample order, cursor, and partial statistics. An interrupted incomplete update is replayed; a compatible completed update is not silently retrained. All 60 TRACE epoch weight sets are retained alongside rolling complete recovery checkpoints. Historical optimizer state is not stored for every update.\AIdraftingnote
+
+Local snapshots and remote publication are separate operations. The runtime batches ordinary Hugging Face publication at 30-minute intervals and flushes at major-stage completion or a catchable stop, with bounded retries, server backoff, and explicit run ownership. Forced kernel death cannot guarantee publication of pending local progress. Rate control addresses the operational request budget; no universal fixed API quota is claimed.
+
+TRACE retains 3,553 direct comma-separated value (CSV) files containing 47,263,346 rows, 6,725 NumPy arrays (\texttt{.npy}), and 64 PyTorch files (\texttt{.pt}), totaling 13.507 GB (decimal). The row count includes 297,021 inherited cache rows and 46,966,325 main-fit rows. These records are additional evidence from the same photographs, not additional subjects. The 29,443 observations include preparation/baseline, training, validation, final-endpoint, and probe records. Predictions, token summaries, masks, target statistics, draw plans, objectives, state, and provenance support later analysis without another fit. The telemetry does not contain every processed tensor at every operation; saved caches, plans, and deterministic seeds fill specific reconstruction roles.
+
+\subsection{Verification Scope}
+The original published review checks 361,795,584 dense prediction values and 14,132,640 moment values for CSV/native agreement, reconstructs all 2,940 training objectives and all 60 validation decisions, and retains the unavailable selection result. A later independent local audit verifies 946 bounded native bodies (16,130,192 bytes) and reconstructs every objective and gate. It also inspects the published dense-review receipts. That bounded audit is not described as an independent re-download of every large dense body.
+
+For the aggregation study, 249 pinned native/metadata bodies and 254 source CSV bodies are hash-verified. Six bridge checks connect saved local/context tokens to the actual means, moments, projector, and original decoder predictions; the largest bridge discrepancy is below $3\times10^{-6}$. Calculations use FP64 CPU matrix arithmetic after reproducing original FP32 target normalization. An independent reduction of all 63,037,440 counterfactual prediction values reproduces the image/channel/tile summaries to a maximum absolute difference of $2.23\times10^{-16}$. Support intersections, training-only statistic cohorts, component reductions, covariance identities, and invertibility controls are checked explicitly.
+
+These checks establish consistency of retained evidence and the stated calculations. They do not validate the annotations, establish independent tyre identities, or convert a post-hoc analysis into a prospective experiment.
+
+\subsection{Data, Code, and Exact Versions}
+The existing public evidence repository is \url{https://huggingface.co/datasets/Shanmuk4622/tyre-wear-study}. TRACE fit artifacts are pinned to revision \nolinkurl{510cbc827337cbc963562c798811226326dc7c0c}; the completed review is pinned to \nolinkurl{7672729fdb1ccd0f55b565c1d60e8a50c6be078e}. The fit protocol digest is
+\begin{quote}\footnotesize\url{ef8c68133a8a060c47792f7e02a84a953b783cf71653e1c87eff596f8172ad2f}.
+\end{quote}
+The new saved-aggregation protocol digest is
+\begin{quote}\footnotesize\url{06b2a06afb53a360f1ce2a254ab67d4e71a4ab698ee9f8e7a46f67dda710c44d}.
+\end{quote}
+The companion manuscript package contains editable LaTeX, vector figures, compact direct CSV inputs, SHA-256 manifests, a claim-to-evidence ledger, and local build/verification instructions. The larger new aggregation derivatives, native arrays, and exploratory addendum are currently retained locally; they have \emph{not} been published to Hugging Face by preparation of this manuscript. The public evidence repository and the local manuscript package therefore have different availability scopes. No new archive DOI or unrestricted raw-image license is asserted here.
+
+The study reuses the project's original photographs and earlier task components. An earlier internal project manuscript addresses checkpoint policy, region interventions, and boundary localization. The present contribution is the geometry-anchored texture model and saved-feature aggregation analysis; shared data and prior components are not presented as newly acquired evidence or independent external validation.

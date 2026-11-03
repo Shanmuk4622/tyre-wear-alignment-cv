@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "training_photos": 8,
+  "known_training_tyres": 8,
+  "interventions": 16,
+  "frozen_head_calls": 24,
+  "dense_forwards": 0,
+  "optimizer_updates": 0,
+  "heldout_forwards": 0,
+  "maximum_logit_delta": 5.960464477539063e-08,
+  "checkpoint_sha256": "f6156aa560aeb880317c6acd745ec1b287aa615fd76656411059033b6a5959fd",
+  "scope": "Band-order/within-band-column permutation invariance of the implemented pooling; not proof that layout causes the observed classification errors"
+}
