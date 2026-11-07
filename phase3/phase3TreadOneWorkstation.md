@@ -1,5 +1,13 @@
 # TREAD-ONE Studio — independent workstation delivery
 
+## Current workstation
+
+TREAD-ONE is now one tab of the unified Phase 3 workstation. The other tab
+hosts the original model bench, with shared frame handoff and separate
+evidence formats. The implementation record below describes the initial
+TREAD-ONE delivery.
+[Current launcher and guide](workstation/README.md).
+
 **29 October 2026. User scope: existing data only; no more tyre photos will be
 collected.** This supersedes the earlier assumed acquisition campaign. The
 current deliverable is an independent native desktop window for the already

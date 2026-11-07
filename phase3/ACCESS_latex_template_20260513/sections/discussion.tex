@@ -1,0 +1,27 @@
+\Needspace{8\baselineskip}
+\section{Discussion and Limitations}\label{sec:discussion}
+\subsection{Local Utility and Global Diversity Are Separate Properties}
+TRACE separates useful local prediction from broad global diversity. Its local and hidden-cell heads read $Z$ and $C$ directly, bypassing the global descriptor and projector. Reconstruction success can therefore coexist with a failed global gate.
+
+The untemplated mean preserves about three fifths of local advantage. With a shared position template, five fitted modes preserve close to nine tenths on both roles. This finding supports testing spatial summaries against an ordinary PCA baseline before adding decoder-aware complexity. In this setting, the three squared fitting objectives give very similar five-mode task retention, even though they optimize different quantities. Group perturbations are larger than the surrogate differences. A local validation lead of a fraction of a percentage point should therefore carry little weight in model selection.
+
+Averaging favors coherent variation across positions, dominated here by component differences. Much within-component variation cancels. Intervention losses show that some discarded variation is useful to the descriptor decoder; other variation may reflect illumination, viewpoint, noise, or geometry artifacts. The data do not assign those sources a physical-wear meaning.
+
+\subsection{What Would Justify a Future Revision?}
+A compact branch can be tested against the five-mode spatial PCA baseline for incremental contrast and orientation utility. The test should preserve the visible-input masking boundary and check geometry separately. Because the current analysis projects representations of one frozen model, a trained decoder could change the ranking. The signed order term and absolute drift provide separate checks if the decoder is refitted.
+
+This implication does not select a new objective or model. The cycle closes with its original unselected status. A future protocol must distinguish reconstruction improvement from transfer, physical measurement, and useful operator decisions.
+
+\subsection{Limits of the Evidence}
+The collection has twelve recorded tyres, six conservative training components, and two held-out components per role. The mid category contributes many training images but appears in neither held-out role. Tyre identity and mileage proxy are therefore confounded in each held-out split. Conservative merging addresses uncertainty in the provenance of related training images.
+
+The historical test was inspected repeatedly. The nine interventions were fixed before their calculation, but the question follows observed failures. No prospective confirmation or external deployment cohort is available, and later candidates have one seed. Serial model differences therefore cannot establish seed-robust causal effects.
+
+A fixed decoder can be sensitive to interventions outside its training distribution. Our order decomposition is an accounting identity for a specified projection and template. Its output-space reference uses twice as many scalar coefficients, and neither term measures mutual information or the best performance attainable by a refitted decoder. Concatenated and pooled spectra also differ in dimension, while component centering uses diagnostic group information unavailable to generic inference.
+
+Canonical resampling depends on image-space geometry and heterogeneous annotations. Its atlas aligns visible structures across images. It supplies no metric scale for the height of a groove floor relative to the adjoining tread surface.
+
+\subsection{Implications for Camera-Based Groove Depth}
+The audit identifies which representations preserve visible rib and groove orientation. This is relevant to designing the front end of an optical measurement system. A single image admits ambiguity between scene scale, perspective, reflectance, and illumination \cite{eigondepth}. A metric groove-depth study would need calibrated capture, paired groove measurements in millimeters at matched positions, and evaluation on independent tyres. An optical cross-section method with scale calibration, such as TireEye \cite{tireeye}, illustrates the distinction. Depth recovery, absolute error, and calibration stability were outside the measurements reported here.
+
+Finally, deterministic masking, an exploratory CKA addendum, and jointly changed view-1 photometry/layout limit causal attribution. Spectral concentration, mask association, and reconstruction utility require separate reporting. The evidence is application-specific, rather than a general proof about pooling or self-supervised learning.

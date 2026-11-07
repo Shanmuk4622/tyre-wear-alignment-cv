@@ -1,0 +1,10 @@
+{
+  "status": "verified_and_removed",
+  "removed_relative_path": "phase3/paper_ieee_access",
+  "active_relative_path": "phase3/ACCESS_latex_template_20260513",
+  "verified_source_files": 539,
+  "verified_source_bytes": 164281844,
+  "original_root_author_source_preserved": true,
+  "current_pdf_sha256": "2a134cdd2090eb2554a6c7f1b901bd1f3ca8aa5280ffd85b04118a765bdad9ac",
+  "revised_evidence_and_prior_pdf_preserved": true
+}

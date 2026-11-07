@@ -1,0 +1,22 @@
+\subsection{Why the Fitted Bases Agree}\label{sec:basis-similarity}
+The three fitted methods retain closely aligned spatial subspaces, consistent with their similar reconstruction results. Table~\ref{tab:angles} compares the four residual modes against token PCA. Jacobian and decoded PCA attain overlaps of 0.9773--0.9896 across branches. The same comparison for DCT and fixed moments gives overlaps of 0.4581--0.4859. Both fixed bases have at least one residual mode nearly orthogonal to the fitted subspace. The angles quantify agreement among fitted bases for this checkpoint.
+
+\begin{table*}[t]
+\caption{Subspace agreement with token PCA at five total modes. Overlap averages squared principal-angle cosines over the four residual modes, excluding the constant.}\label{tab:angles}
+\centering\small
+\begin{tabular}{lrrrr}\toprule
+ & \multicolumn{2}{c}{Local tokens} & \multicolumn{2}{c}{Masked-context tokens}\\
+Comparison basis & Overlap & Largest angle & Overlap & Largest angle\\\midrule
+Jacobian PCA & 0.9896 & $7.96^\circ$ & 0.9883 & $9.02^\circ$\\
+Decoded PCA & 0.9885 & $8.95^\circ$ & 0.9773 & $15.08^\circ$\\
+Spatial moments & 0.4751 & $87.76^\circ$ & 0.4859 & $86.19^\circ$\\
+DCT & 0.4581 & $87.21^\circ$ & 0.4712 & $86.16^\circ$\\\bottomrule
+\end{tabular}
+\end{table*}
+
+The median relative Jacobian differences at the template positions are 14.57\% locally and 47.62\% for masked context. Across full-support training tokens, these increase to 31.65\% and 69.22\%. Using position-specific Jacobians lowers the relative output linearization error from 30.93\% to 25.50\% locally and from 49.93\% to 39.51\% for masked context. Thus a shared Jacobian approximates the dominant fitted spatial subspace while leaving appreciable nonlinear output residuals.
+
+\subsection{An Affine Readout Preserves the Local Ordering}
+With the train-only affine readout, five-mode token PCA retains 90.21\% and 89.91\% of its local reconstruction advantage on validation and historical test. Fixed moments retain 80.17\% and 82.07\%, while DCT retains 79.90\% and 82.42\%. All three fitted bases exceed the fixed bases and all 16 random controls in both local cohorts. Their similar retention therefore extends to this alternate decoder of the same features.
+
+The masked branch is more decoder dependent. The uncompressed affine readout yields masked losses of 0.47434 and 0.48101, close to the original decoder's 0.46738 and 0.47201. After token PCA compression, its losses rise to 0.62830 and 0.64034. This retains 18.07\% and 10.62\% of its advantage, compared with 83.96\% and 82.51\% for the original decoder. Fixed moments and DCT fall below the position control. The fitted bases still outperform the fixed bases, but the large absolute masked retention depends on the original decoder. This comparison varies the readout at a single saved checkpoint. It provides evidence about decoder dependence and leaves checkpoint, seed, and architecture generalization open.

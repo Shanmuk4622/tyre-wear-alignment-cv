@@ -1,0 +1,940 @@
+{
+  "status": "passed",
+  "Git_state_mutated": false,
+  "paper_visible_files": 170,
+  "paper_visible_bytes": 9234599,
+  "max_file_bytes": 2177612,
+  "curated_outputs_visible": [
+    "main.pdf",
+    "main.tex",
+    "references.bib",
+    "figures/qualitative.pdf",
+    "figures/qualitative.png",
+    "evidence/qualitative/low_atlas.png",
+    "ieeeaccess.cls",
+    "t1-times.pfb",
+    "figures/spatial_budget.pdf",
+    "figures/spatial_budget.png",
+    "evidence/spatial_budget_summary.csv",
+    "generated/spatial_budget_rows.tex",
+    "figures/spatial_budget_differences.pdf",
+    "a1.jpg",
+    "a2.jpg",
+    "logo.png",
+    "notaglinelogo.png",
+    "bullet.png",
+    "REVIEW_RESPONSE.md",
+    "figures/architecture.pdf",
+    "figures/architecture.svg",
+    "figures/architecture.png"
+  ],
+  "scratch_ignored": [
+    "main.aux",
+    "main.bbl",
+    "main.blg",
+    "main.log",
+    "main.out",
+    "main.xdv",
+    "preview/page_01.png",
+    ".build/cache/check.tmp",
+    ".build/spatial_budget/IMAGE_RESULTS.csv",
+    ".build/spatial_budget/BASIS_VECTORS.csv",
+    ".build/reviewer/AFFINE_IMAGE_LOSSES.csv",
+    ".build/revision_2_reference.pdf"
+  ],
+  "files": [
+    {
+      "file": ".gitignore",
+      "bytes": 397
+    },
+    {
+      "file": "CITATION_AUDIT.md",
+      "bytes": 6340
+    },
+    {
+      "file": "CLAIMS_AND_LIMITATIONS.md",
+      "bytes": 9169
+    },
+    {
+      "file": "IEEEtran.bst",
+      "bytes": 57748
+    },
+    {
+      "file": "IEEEtran.cls",
+      "bytes": 281957
+    },
+    {
+      "file": "NOVELTY_AND_EVIDENCE.md",
+      "bytes": 4926
+    },
+    {
+      "file": "README.md",
+      "bytes": 5780
+    },
+    {
+      "file": "REPRODUCIBILITY.md",
+      "bytes": 8667
+    },
+    {
+      "file": "REVIEW_RESPONSE.md",
+      "bytes": 5757
+    },
+    {
+      "file": "SUBMISSION_CHECKLIST.md",
+      "bytes": 3663
+    },
+    {
+      "file": "WRITING_LOG.md",
+      "bytes": 6417
+    },
+    {
+      "file": "a1.jpg",
+      "bytes": 1813275
+    },
+    {
+      "file": "a2.jpg",
+      "bytes": 46593
+    },
+    {
+      "file": "access.tex",
+      "bytes": 89
+    },
+    {
+      "file": "audit/ADDITIONAL_INPUTS.json",
+      "bytes": 35199
+    },
+    {
+      "file": "audit/ASSET_BUILD.json",
+      "bytes": 5682
+    },
+    {
+      "file": "audit/CURRENT_TEMPLATE_CHECK.json",
+      "bytes": 975
+    },
+    {
+      "file": "audit/DELIVERY_CHECK.json",
+      "bytes": 19640
+    },
+    {
+      "file": "audit/DELIVERY_MANIFEST.json",
+      "bytes": 26189
+    },
+    {
+      "file": "audit/EVIDENCE_FILES.json",
+      "bytes": 6757
+    },
+    {
+      "file": "audit/MIGRATION_COMPLETION.json",
+      "bytes": 434
+    },
+    {
+      "file": "audit/MIGRATION_INPUTS.json",
+      "bytes": 111901
+    },
+    {
+      "file": "audit/PRESERVATION_BASELINE.json",
+      "bytes": 3281
+    },
+    {
+      "file": "audit/REVIEWER_ANALYSIS.json",
+      "bytes": 1176
+    },
+    {
+      "file": "audit/SPATIAL_BUDGET.json",
+      "bytes": 1446
+    },
+    {
+      "file": "audit/TEMPLATE_FILES.json",
+      "bytes": 6427
+    },
+    {
+      "file": "audit/TRACE_ARCHITECTURE.json",
+      "bytes": 2701
+    },
+    {
+      "file": "audit/VALIDATION.json",
+      "bytes": 4918
+    },
+    {
+      "file": "audit/VISUAL_REVIEW.md",
+      "bytes": 5588
+    },
+    {
+      "file": "build.ps1",
+      "bytes": 1432
+    },
+    {
+      "file": "build_assets.py",
+      "bytes": 15773
+    },
+    {
+      "file": "build_spatial_budget.py",
+      "bytes": 5386
+    },
+    {
+      "file": "build_trace_figure.py",
+      "bytes": 8276
+    },
+    {
+      "file": "bullet.png",
+      "bytes": 430
+    },
+    {
+      "file": "check_template.py",
+      "bytes": 1283
+    },
+    {
+      "file": "engine_compat.tex",
+      "bytes": 581
+    },
+    {
+      "file": "evidence/aggregation_analysis.json",
+      "bytes": 693
+    },
+    {
+      "file": "evidence/aggregation_bridge_verification.csv",
+      "bytes": 479
+    },
+    {
+      "file": "evidence/aggregation_channel_utility_summary.csv",
+      "bytes": 99595
+    },
+    {
+      "file": "evidence/aggregation_component_utility.csv",
+      "bytes": 53905
+    },
+    {
+      "file": "evidence/aggregation_feature_spaces.csv",
+      "bytes": 41014
+    },
+    {
+      "file": "evidence/aggregation_image_alignment.csv",
+      "bytes": 92785
+    },
+    {
+      "file": "evidence/aggregation_input_verification.json",
+      "bytes": 268
+    },
+    {
+      "file": "evidence/aggregation_mask_addendum_protocol.json",
+      "bytes": 651
+    },
+    {
+      "file": "evidence/aggregation_mask_plan_alignment.csv",
+      "bytes": 2983
+    },
+    {
+      "file": "evidence/aggregation_mask_plan_summary.csv",
+      "bytes": 417
+    },
+    {
+      "file": "evidence/aggregation_protocol.json",
+      "bytes": 2148
+    },
+    {
+      "file": "evidence/aggregation_spatial_covariance.csv",
+      "bytes": 6904
+    },
+    {
+      "file": "evidence/aggregation_spatial_energy_summary.csv",
+      "bytes": 11586
+    },
+    {
+      "file": "evidence/aggregation_support_summary.csv",
+      "bytes": 310
+    },
+    {
+      "file": "evidence/aggregation_utility_summary.csv",
+      "bytes": 19435
+    },
+    {
+      "file": "evidence/aggregation_validation.json",
+      "bytes": 2352
+    },
+    {
+      "file": "evidence/atlas_endpoints.csv",
+      "bytes": 1356
+    },
+    {
+      "file": "evidence/classification_endpoints.csv",
+      "bytes": 2209
+    },
+    {
+      "file": "evidence/geo_findings.json",
+      "bytes": 1531
+    },
+    {
+      "file": "evidence/geo_validation.csv",
+      "bytes": 15676
+    },
+    {
+      "file": "evidence/nb24_science.json",
+      "bytes": 8465
+    },
+    {
+      "file": "evidence/nb24_verification.json",
+      "bytes": 3928
+    },
+    {
+      "file": "evidence/paired_endpoints.csv",
+      "bytes": 981
+    },
+    {
+      "file": "evidence/phase2_selections.csv",
+      "bytes": 1004
+    },
+    {
+      "file": "evidence/phase3_fits.csv",
+      "bytes": 1443
+    },
+    {
+      "file": "evidence/qualitative/EXAMPLES.json",
+      "bytes": 1154
+    },
+    {
+      "file": "evidence/qualitative/high_atlas.png",
+      "bytes": 207192
+    },
+    {
+      "file": "evidence/qualitative/low_atlas.png",
+      "bytes": 229131
+    },
+    {
+      "file": "evidence/qualitative/orientation_cells.csv",
+      "bytes": 72481
+    },
+    {
+      "file": "evidence/review_affine_readout.csv",
+      "bytes": 14316
+    },
+    {
+      "file": "evidence/review_jacobian_variation.csv",
+      "bytes": 464
+    },
+    {
+      "file": "evidence/review_linearization_error.csv",
+      "bytes": 201
+    },
+    {
+      "file": "evidence/review_qualitative_pca.csv",
+      "bytes": 33442
+    },
+    {
+      "file": "evidence/review_subspace_angles.csv",
+      "bytes": 2856
+    },
+    {
+      "file": "evidence/spatial_budget_components.csv",
+      "bytes": 58904
+    },
+    {
+      "file": "evidence/spatial_budget_descriptors.csv",
+      "bytes": 21092
+    },
+    {
+      "file": "evidence/spatial_budget_fits.csv",
+      "bytes": 866
+    },
+    {
+      "file": "evidence/spatial_budget_protocol.json",
+      "bytes": 1727
+    },
+    {
+      "file": "evidence/spatial_budget_summary.csv",
+      "bytes": 389053
+    },
+    {
+      "file": "evidence/trace_component_utility.csv",
+      "bytes": 2746
+    },
+    {
+      "file": "evidence/trace_feature_cohorts.csv",
+      "bytes": 2913
+    },
+    {
+      "file": "evidence/trace_roles.csv",
+      "bytes": 448
+    },
+    {
+      "file": "evidence/trace_validation_epochs.csv",
+      "bytes": 12656
+    },
+    {
+      "file": "evidence/tread_one_summary.csv",
+      "bytes": 2385
+    },
+    {
+      "file": "figures/aggregation.pdf",
+      "bytes": 15490
+    },
+    {
+      "file": "figures/aggregation.png",
+      "bytes": 92281
+    },
+    {
+      "file": "figures/architecture.pdf",
+      "bytes": 17442
+    },
+    {
+      "file": "figures/architecture.png",
+      "bytes": 167388
+    },
+    {
+      "file": "figures/architecture.svg",
+      "bytes": 37857
+    },
+    {
+      "file": "figures/classification.pdf",
+      "bytes": 15788
+    },
+    {
+      "file": "figures/classification.png",
+      "bytes": 66494
+    },
+    {
+      "file": "figures/descriptor_groups.pdf",
+      "bytes": 16824
+    },
+    {
+      "file": "figures/descriptor_groups.png",
+      "bytes": 88801
+    },
+    {
+      "file": "figures/qualitative.pdf",
+      "bytes": 105166
+    },
+    {
+      "file": "figures/qualitative.png",
+      "bytes": 556939
+    },
+    {
+      "file": "figures/representation.pdf",
+      "bytes": 18407
+    },
+    {
+      "file": "figures/representation.png",
+      "bytes": 136423
+    },
+    {
+      "file": "figures/spatial_budget.pdf",
+      "bytes": 20836
+    },
+    {
+      "file": "figures/spatial_budget.png",
+      "bytes": 225423
+    },
+    {
+      "file": "figures/spatial_budget_differences.pdf",
+      "bytes": 15771
+    },
+    {
+      "file": "figures/spatial_budget_differences.png",
+      "bytes": 109760
+    },
+    {
+      "file": "figures/training.pdf",
+      "bytes": 19699
+    },
+    {
+      "file": "figures/training.png",
+      "bytes": 144362
+    },
+    {
+      "file": "generated/aggregation_rows.tex",
+      "bytes": 626
+    },
+    {
+      "file": "generated/spatial_budget_rows.tex",
+      "bytes": 370
+    },
+    {
+      "file": "generated/table_aggregation.csv",
+      "bytes": 820
+    },
+    {
+      "file": "ieeeaccess.cls",
+      "bytes": 50800
+    },
+    {
+      "file": "logo.png",
+      "bytes": 9705
+    },
+    {
+      "file": "main.pdf",
+      "bytes": 2177612
+    },
+    {
+      "file": "main.tex",
+      "bytes": 4904
+    },
+    {
+      "file": "notaglinelogo.png",
+      "bytes": 3150
+    },
+    {
+      "file": "prepare_paper.py",
+      "bytes": 3980
+    },
+    {
+      "file": "prepare_references.py",
+      "bytes": 5480
+    },
+    {
+      "file": "prepare_visual_evidence.py",
+      "bytes": 5226
+    },
+    {
+      "file": "record_delivery.py",
+      "bytes": 7125
+    },
+    {
+      "file": "references.bib",
+      "bytes": 8575
+    },
+    {
+      "file": "run_reviewer_analysis.py",
+      "bytes": 12752
+    },
+    {
+      "file": "run_spatial_budget.py",
+      "bytes": 13510
+    },
+    {
+      "file": "seal_delivery.py",
+      "bytes": 3915
+    },
+    {
+      "file": "sections/aggregation_methods.tex",
+      "bytes": 8594
+    },
+    {
+      "file": "sections/biographies.tex",
+      "bytes": 2265
+    },
+    {
+      "file": "sections/conclusion.tex",
+      "bytes": 1288
+    },
+    {
+      "file": "sections/data_protocol.tex",
+      "bytes": 5036
+    },
+    {
+      "file": "sections/discussion.tex",
+      "bytes": 4662
+    },
+    {
+      "file": "sections/introduction.tex",
+      "bytes": 4037
+    },
+    {
+      "file": "sections/models.tex",
+      "bytes": 12650
+    },
+    {
+      "file": "sections/related_work.tex",
+      "bytes": 5027
+    },
+    {
+      "file": "sections/reproducibility.tex",
+      "bytes": 1276
+    },
+    {
+      "file": "sections/results.tex",
+      "bytes": 15618
+    },
+    {
+      "file": "sections/reviewer_results.tex",
+      "bytes": 2965
+    },
+    {
+      "file": "sections/spatial_budget.tex",
+      "bytes": 8049
+    },
+    {
+      "file": "sections/spatial_results.tex",
+      "bytes": 5082
+    },
+    {
+      "file": "spotcolor.sty",
+      "bytes": 2231
+    },
+    {
+      "file": "t1-formata-bold.pfb",
+      "bytes": 59944
+    },
+    {
+      "file": "t1-formata-bold.tfm",
+      "bytes": 1420
+    },
+    {
+      "file": "t1-formata-bolditalic.pfb",
+      "bytes": 57834
+    },
+    {
+      "file": "t1-formata-bolditalic.tfm",
+      "bytes": 1672
+    },
+    {
+      "file": "t1-formata-condmedium.pfb",
+      "bytes": 63989
+    },
+    {
+      "file": "t1-formata-condmedium.tfm",
+      "bytes": 1412
+    },
+    {
+      "file": "t1-formata-condmediumital.pfb",
+      "bytes": 65644
+    },
+    {
+      "file": "t1-formata-condmediumital.tfm",
+      "bytes": 1660
+    },
+    {
+      "file": "t1-formata-italic.pfb",
+      "bytes": 55897
+    },
+    {
+      "file": "t1-formata-italic.tfm",
+      "bytes": 1680
+    },
+    {
+      "file": "t1-formata-light.pfb",
+      "bytes": 62934
+    },
+    {
+      "file": "t1-formata-light.tfm",
+      "bytes": 1416
+    },
+    {
+      "file": "t1-formata-lightitalic.pfb",
+      "bytes": 56817
+    },
+    {
+      "file": "t1-formata-lightitalic.tfm",
+      "bytes": 1656
+    },
+    {
+      "file": "t1-formata-medium.pfb",
+      "bytes": 67701
+    },
+    {
+      "file": "t1-formata-medium.tfm",
+      "bytes": 4720
+    },
+    {
+      "file": "t1-formata-mediumitalic.pfb",
+      "bytes": 62483
+    },
+    {
+      "file": "t1-formata-mediumitalic.tfm",
+      "bytes": 4948
+    },
+    {
+      "file": "t1-formata-regsymb.pfb",
+      "bytes": 14621
+    },
+    {
+      "file": "t1-formata-regsymb.tfm",
+      "bytes": 432
+    },
+    {
+      "file": "t1-formata-regular.pfb",
+      "bytes": 63982
+    },
+    {
+      "file": "t1-formata-regular.tfm",
+      "bytes": 1416
+    },
+    {
+      "file": "t1-formata.map",
+      "bytes": 690
+    },
+    {
+      "file": "t1-giovannistd-bookitalic.pfb",
+      "bytes": 60827
+    },
+    {
+      "file": "t1-giovannistd-bookitalic.tfm",
+      "bytes": 5452
+    },
+    {
+      "file": "t1-giovannistd.map",
+      "bytes": 81
+    },
+    {
+      "file": "t1-helvetica.map",
+      "bytes": 253
+    },
+    {
+      "file": "t1-times-bold.pfb",
+      "bytes": 74023
+    },
+    {
+      "file": "t1-times-bold.tfm",
+      "bytes": 6264
+    },
+    {
+      "file": "t1-times-bolditalic.pfb",
+      "bytes": 63189
+    },
+    {
+      "file": "t1-times-bolditalic.tfm",
+      "bytes": 5328
+    },
+    {
+      "file": "t1-times-italic.pfb",
+      "bytes": 59460
+    },
+    {
+      "file": "t1-times-italic.tfm",
+      "bytes": 6284
+    },
+    {
+      "file": "t1-times.map",
+      "bytes": 215
+    },
+    {
+      "file": "t1-times.pfb",
+      "bytes": 76176
+    },
+    {
+      "file": "t1-times.tfm",
+      "bytes": 5932
+    },
+    {
+      "file": "t1formata.fd",
+      "bytes": 706
+    },
+    {
+      "file": "t1giovannistd.fd",
+      "bytes": 115
+    },
+    {
+      "file": "t1helvetica.fd",
+      "bytes": 592
+    },
+    {
+      "file": "t1times.fd",
+      "bytes": 508
+    },
+    {
+      "file": "verify_paper.py",
+      "bytes": 13347
+    }
+  ],
+  "PDF_fonts_embedded": [
+    {
+      "name": "IHAIZV+FormataOTFCond-Md",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 4117
+    },
+    {
+      "name": "BZIVMZ+FormataOTFMd",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 8854
+    },
+    {
+      "name": "IXFAWU+TimesLTStd-Roman",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 10338
+    },
+    {
+      "name": "TQTHRL+FormataOTF-Bold",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 4611
+    },
+    {
+      "name": "YEUUOC+TimesLTStd-Bold",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 1229
+    },
+    {
+      "name": "AKHCZK+TimesLTStd-Italic",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 8214
+    },
+    {
+      "name": "VDVGTR+FormataOTF-Reg",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 1624
+    },
+    {
+      "name": "CAFSZL+FormataOTFMdIt",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 4323
+    },
+    {
+      "name": "DDIEWW+CMR10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 4267
+    },
+    {
+      "name": "FKPJSN+CMSY10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 2103
+    },
+    {
+      "name": "PVTTLK+CMMI10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 890
+    },
+    {
+      "name": "JAGKKY+CMMI7",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 1008
+    },
+    {
+      "name": "NOMARO+CMSY7",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 949
+    },
+    {
+      "name": "KPXLOM+CMR7",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 3484
+    },
+    {
+      "name": "UTACNV+CMSY9",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 1173
+    },
+    {
+      "name": "FZDNHS+CMR9",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 2416
+    },
+    {
+      "name": "DZGKAF+CMR6",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 392
+    },
+    {
+      "name": "GJMHKB+CMMI9",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 532
+    },
+    {
+      "name": "NITCSQ+CMBX9",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 356
+    },
+    {
+      "name": "UBBQTN+MSBM10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 527
+    },
+    {
+      "name": "LPOGEQ+CMEX10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 1996
+    },
+    {
+      "name": "GQYLQL+CMSY5",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 325
+    },
+    {
+      "name": "CZRBLR+STIXGeneral-Regular",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 11716
+    },
+    {
+      "name": "FTXWZA+STIXGeneral-Italic",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 2276
+    },
+    {
+      "name": "WXMALW+CMSS8",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 331
+    },
+    {
+      "name": "XKCNTN+CMBX10",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 357
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 15344
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 14608
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 13076
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 13112
+    },
+    {
+      "name": "AIBCOH+CMSY6",
+      "format": "cff",
+      "type": "Type1",
+      "embedded_bytes": 365
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 14284
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 14524
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 13764
+    },
+    {
+      "name": "BMQQDV+DejaVuSans",
+      "format": "ttf",
+      "type": "Type0",
+      "embedded_bytes": 17900
+    }
+  ],
+  "PDF_SHA256": "55b6ae64bd46b28a2afc6ded1c237231066b60c191d0493cdb311659991f5449"
+}

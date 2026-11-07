@@ -1,0 +1,57 @@
+\section{Decoder-Aware Spatial Budget Audit}\label{sec:budget}
+The nine interventions establish that spatial layout matters. Their numbers of modes differ, and the original comparison has one random basis. We therefore ask whether a spatial basis that accounts for the frozen decoder retains more task utility at the same number of image-dependent coefficients. We also measure how much loss changes solely when the order of projection and decoding is reversed.
+
+\subsection{A Common Affine Spatial Codec}
+Let $X_i\in\mathbb{R}^{32\times48}$ be one token grid, $T$ a shared train-position template, and $S=\operatorname{diag}(\sqrt{r})$ for the normalized mean training mass $r$. The fixed-mass protocol uses one $S$ across images and methods. It complements the per-image weighted projections in Section~\ref{sec:aggregation}. Every basis has an orthonormal prefix $Q_k$ with the mandatory first column $u=S\mathbf{1}$. The other columns lie in $u^\perp$. Define
+\begin{align}
+ P_k &= S^{-1}Q_kQ_k^\mathsf{T}S,\\
+ \widehat X_i &= T+P_k(X_i-T).
+\end{align}
+The image-dependent code is $Q_k^\mathsf{T}S(X_i-T)$, with $48k$ real scalars. The template, basis, and weights are shared. We compare coefficient counts without assuming quantization, entropy coding, or a speed gain. Full support holds for every held-out image. Two incomplete-support train images contribute to the supported-position template but are excluded from the spatial eigensystem.
+
+\subsection{Optimal Subspace for Each Training Surrogate}
+Let $A_i=X_i-T$ and let $E$ be any orthonormal basis for $u^\perp$. For training snapshot residuals $F_i\in\mathbb{R}^{32\times d}$, form the $31\times31$ matrix
+\begin{equation}
+ C_F=\sum_{i\in\mathcal T} a_i
+ (E^\mathsf{T}SF_i)(E^\mathsf{T}SF_i)^\mathsf{T},
+\end{equation}
+where $a_i$ is the nonnegative normalized weight of a full-support training image. If $U$ contains $k-1$ orthonormal columns in the 31-dimensional coordinate space, then $Q_k=[u,EU]$. The squared residual cost in snapshot space is
+\begin{equation}
+ \sum_i a_i\|S(I-P_k)F_i\|_F^2
+ =\operatorname{tr}(C_F)-\operatorname{tr}(U^\mathsf{T}C_F U).
+ \label{eq:spatial-optimum}
+\end{equation}
+The equality follows by orthogonality of $u$ and $E$ and idempotence of $UU^\mathsf{T}$. The Rayleigh--Ritz principle gives a minimum by taking the leading $k-1$ eigenvectors of $C_F$. The optimum residual equals the sum of the omitted eigenvalues. This is an exact statement about each declared squared surrogate under the fixed spatial mass and mandatory mean. It makes no optimality claim for held-out Smooth L1 loss.
+
+We fit three bases under this common rule. \emph{Token PCA} uses $F_i=A_i$ and minimizes token error. \emph{Jacobian PCA} uses $F_i=A_i J^\mathsf{T}$, where $J$ is the analytic Jacobian of the frozen decoder at the shared anchor $r^\mathsf{T}T$. For an affine decoder, this is the exact output-space squared residual objective. For the nonlinear decoder it is a shared linear approximation. \emph{Decoded PCA} uses $F_i=D(X_i)-D(T)$ and minimizes the squared residual of projecting these frozen output snapshots. At evaluation, all three fitted bases project the same input tokens before decoding. Decoded PCA therefore uses the same $48k$ image-dependent scalars as token PCA. Both decoder-aware fits use decoder weights and saved train tokens as their sole data sources.
+
+We compare the fits with separable discrete cosine transform (DCT) modes, the original five spatial moments at $k=5$, and 16 seeded random orthonormal bases in $u^\perp$. DCT frequencies are ordered by squared normalized spatial frequency with lexicographic ties, then orthogonalized in the fixed mass metric. We report $k\in\{1,2,4,5,8,16,32\}$ including the constant. At $k=1$ and $32$, all complete basis families are equivalent. The main fit weights 384 full-support training images equally, using the original supported-position template from 386 train images. The sensitivity audit fits both the template and eigensystem under equal component weight and after separately removing each of the six training components. The mass remains fixed. These are perturbations of basis construction, not new independent cohorts.
+
+\subsection{Exact Loss Accounting Across the Decoder}
+To separate what is lost in the chosen spatial subspace from what changes because the decoder is nonlinear, define
+\begin{align}
+ \widehat Y_{\mathrm{pre}} &= D\big(T+P_k(X-T)\big),\\
+ \widehat Y_{\mathrm{post}} &= D(T)+P_k\big(D(X)-D(T)\big).
+\end{align}
+For an affine pointwise decoder these are identical, because spatial projection acts on rows and the linear decoder on feature channels. They can differ for the measured SiLU decoder. Holding the scoring support and target fixed, the signed task-loss change is exactly
+\begin{equation}
+\begin{split}
+ L(\widehat Y_{\mathrm{pre}})-L(D(X))
+  ={}& L(\widehat Y_{\mathrm{post}})-L(D(X))\\
+     &+L(\widehat Y_{\mathrm{pre}})-L(\widehat Y_{\mathrm{post}}).
+\end{split}\label{eq:order}
+\end{equation}
+The first term measures output-space compression under the same spatial basis. The second measures the effect of changing the order. Both can have either sign. Output-first requires $96k$ coefficients and serves as a diagnostic with a different scalar budget.
+
+Each scalar Smooth L1 derivative has magnitude at most one. For normalized pixel weights $w_j$ and predictions $Y,Y'$ on the same support, the mean value theorem gives
+\begin{equation}
+ \left|L(Y)-L(Y')\right|\leq\sum_j w_j|Y_j-Y'_j|.
+\end{equation}
+This applies both to the total task-loss change and to the order term. We check both bounds on every scored image and report signed change alongside output drift. The protocol fixes the primary comparison at five modes, the local branch and clean view~0, with validation and historical test kept separate. The masked branch and the second recorded view probe the scope of the result. All checks are paired by image. Each held-out role has only two components for cross-tyre inference.
+
+\subsection{Subspace and Readout Sensitivity}\label{sec:readout-method}
+Let $B_i=E^\mathsf{T}S(X_i-T)$. The token and Jacobian covariances share the form $\sum_i a_i B_i W B_i^\mathsf{T}$ with channel metric $W=I$ and $W=J^\mathsf{T}J$, respectively. If the cross-position second moments factor into a spatial coefficient and a common channel matrix, then changing $W$ scales the spatial covariance by a common factor. For a positive factor, the leading spatial eigenspace is unchanged. This is a sufficient condition for identical subspaces. We measure the actual overlap without assuming separability. For two four-column orthonormal residual bases $U_1,U_2$, the singular values of $U_1^\mathsf{T}U_2$ give the cosines of the principal angles. The mean of their squared cosines excludes the constant mode shared by all methods.
+
+We test the near-affine explanation separately. At all 32 template positions and all 12,288 full-support training tokens per branch, we measure the relative Frobenius difference between the analytic Jacobian and the one at the shared anchor. We also compare exact decoder residuals $D(X_{i,t})-D(T_t)$ with $(X_{i,t}-T_t)J^\mathsf{T}$ and with a position-specific linearization about $T_t$. The relative error is the fixed-mass weighted residual norm divided by the exact decoder-residual norm.
+
+As a readout sensitivity control, we fit one shared affine decoder per branch to uncompressed view-0 training tokens. For each of the 16 cell locations within a tile, weighted ridge least squares maps 48 channels to six standardized descriptors. The weights are the valid-pixel counts on the common scoring support, normalized to sum to one within the fit for that cell. The ridge coefficient is $10^{-3}$, and the intercept is unpenalized. We freeze each fitted readout and apply it to the original tokens and all five-mode variants. Retention is relative to that readout's own uncompressed loss and the same position control. This changes the downstream readout at epoch 60 and leaves the representation and spatial bases fixed.

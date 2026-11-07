@@ -1,0 +1,36 @@
+\Needspace{8\baselineskip}
+\section{Data and Evaluation Protocol}\label{sec:data}
+\subsection{Existing Data and Conservative Independence}
+The collection contains 418 photographs and 152 frames extracted from videos of three existing mid-category tyres, yielding 570 images. Acquisition records identify 12 physical tyres. The frames add views of existing subjects, and tyre identity relies on the acquisition record.
+
+The training allocation contains 386 images, validation 81, and the historical test allocation 103 (Table~\ref{tab:data}). Images carry low-, mid-, or high-mileage proxy categories derived from source odometer folders. Low combines new tyres with the 100--5,000 group; mid contains the 40,000, 70,000, and 90,000 groups; high is the 100,000-plus group. These source labels are not measurements of abrasion. The known tyre allocation is eight/two/two. Unresolved relationships among three mid-category video parents are conservatively merged for component-based analysis. Consequently, the training role has six conservative connected components: one low, one mid, and four high. Their image counts are 67, 249, 60, 5, 3, and 2. This grouping does not assert that the three user-identified mid tyres are physically identical; it prevents uncertain provenance from being treated as independent evidence.
+
+\begin{table}[t]
+\caption{Fixed image allocation and supervision. Components are conservative provenance groups, not additional tyres.}\label{tab:data}
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\columnwidth}{Lrrr}\toprule
+Quantity & Train & Validation & Historical test\\\midrule
+Images & 386 & 81 & 103\\
+Low / mid / high & 67 / 249 / 70 & 40 / 0 / 41 & 62 / 0 / 41\\
+User-confirmed tyres & 8 & 2 & 2\\
+Conservative components & 6 & 2 & 2\\
+Human point images & 70 & 25 & 25\\
+Weak point images & 152 & 0 & 0\\
+No point target & 164 & 56 & 78\\\bottomrule
+\end{tabularx}
+\end{table}
+
+Neither held-out role contains mid-category ground truth. Observed-class balanced accuracy (BA) is therefore the mean of low and high recalls, even though a classifier can predict all three categories. It is not three-class coverage. Class and component identity are strongly confounded: each held-out class corresponds to one conservative component per role. Group-aware evaluation is essential in dependent data \cite{groups}; here the small number of independent groups also limits what can be inferred after grouping.
+
+\subsection{Geometry and Annotation Provenance}
+The 418 original images have indexed masks, and the 152 frames have polygon-derived masks. Tyre and tread targets are overlapping binary channels. Pixels contradicted by the annotation contract are ignored rather than forced into mutually exclusive classes. A 120-image subset provides six human boundary points per image, allocated 70/25/25. The 152 video frames additionally supply weak polygon-derived point targets, weighted 0.25 during training. These weak targets are not counted as independent human evaluation truth.
+
+Mean Dice describes agreement with available segmentation annotations; horizontal point mean absolute error (MAE) is normalized by image width and evaluated on human point images. Image-relative boundary positions do not provide physical camber, toe, or groove-depth measurements. TRACE uses frozen predicted support, not ground-truth masks at inference. Annotation ignore regions affect target-loss eligibility and do not enter the texture network as observation channels.
+
+\subsection{Development History and Reporting Units}
+The development sequence comprises ten training runs of 60 epochs each. TREAD-ONE has three seeds, the shared-gradient diagnostic has two matched runs, and ATLAS, ATLAS-LC, ATLAS-CONTEXT, GEO, and TRACE have one run each. The spatial audit uses TRACE at epoch 60.
+
+Later candidates have one seed each. Their sequence is hypothesis-driven development rather than a factorial or fully seed-replicated comparison. Hyperparameters and selection contracts were frozen separately for each execution, but the overall sequence responded to previously inspected outcomes. Model-selection bias can arise even with a fixed finite validation allocation \cite{selectionbias}. We therefore distinguish validation-selected checkpoints from fixed final endpoints and explicitly acknowledge repeated historical-test inspection. No test-best checkpoint replaces the declared validation choice.
+
+The primary new investigation is post-hoc analysis of retained TRACE evidence. Its nine interventions and arithmetic were recorded before that calculation; they were not prospectively preregistered before the model was trained. The mask-layout addendum was formulated later, after a high masked-token rank was observed, and is labeled exploratory. No image-independent confidence intervals or significance tests are reported: treating the many related images as independent replicates would misrepresent the support. Image means, component summaries, complete counts, and exact losses are reported instead.

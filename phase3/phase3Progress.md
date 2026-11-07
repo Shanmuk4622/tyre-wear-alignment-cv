@@ -1,15 +1,32 @@
 # Phase 3 — progress
 
+## Manuscript revision 3
+
+The manuscript now uses the supplied IEEE Access template. On one saved
+TRACE checkpoint, the fitted bases overlap strongly. A train-only affine
+readout preserves their local ordering while masked PCA retention drops.
+[Review and evidence](ACCESS_latex_template_20260513/REVIEW_RESPONSE.md).
+
+## 6 November 2026 — manuscript revision 2
+
+The revised [IEEE Access paper](phase3PaperIEEEAccess.md) compares train-fitted
+and fixed spatial bases at equal coefficient counts. Five-mode token PCA
+retains 89.47% of local validation advantage against 81.71% for fixed moments.
+The Jacobian and decoded-snapshot variants do not consistently improve on
+ordinary PCA across both historical roles. Direct paired evidence, basis
+sensitivity, decoder-order checks, and the revised PDF are documented in the
+[paper package](ACCESS_latex_template_20260513/README.md).
+
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## Latest — separate IEEE Access author-review paper
 
 **3 November 2026:** [Paper and handoff](phase3PaperIEEEAccess.md),
-[PDF](paper_ieee_access/main.pdf), and [editable source](paper_ieee_access/README.md)
+[PDF](ACCESS_latex_template_20260513/main.pdf), and [editable source](ACCESS_latex_template_20260513/README.md)
 are prepared from completed Phase 3 evidence. The focused contribution is local
 texture utility versus global aggregation, with all failed gates and data limits
 retained. No new fit, photo, workstation change, HF publication or Git push.
 
-Next is author review and the [submission checklist](paper_ieee_access/SUBMISSION_CHECKLIST.md),
+Next is author review and the [submission checklist](ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md),
 not another notebook. Original manuscript, measured sources and selections remain unchanged.
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 

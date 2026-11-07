@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "protocol_sha256": "30547281aaed048a3c41b9b1445c73af5aec828d214aea4649a702bd656ce5f3",
+  "script_sha256": "dff8dc1c36b9e526bf3d159bbd8cbf106fc2b9e00b3a7d5b2c7fdd667fe9c275",
+  "pinned_input_files": 249,
+  "basis_images_primary": 384,
+  "template_images_primary": 386,
+  "decoder_vector_readouts": 9122048,
+  "bound_max_violation": 2.0009150632028587e-17,
+  "max_full_budget_prediction_difference": 1.4210854715202004e-14,
+  "identity_bridge_max_difference": 0.0,
+  "eigentail_cost_verified": true,
+  "analytic_jacobian_finite_difference_verified": true,
+  "image_results_rows": 282720,
+  "summary_rows": 1488,
+  "optimizer_updates": 0,
+  "encoder_or_geometry_forwards": 0,
+  "remote_writes": 0,
+  "outputs": {
+    "evidence/spatial_budget_components.csv": "70618997908b15acd9e4cfaa986d37240093e44623f13229277a160e4ed238a6",
+    "evidence/spatial_budget_descriptors.csv": "a589ff5089ac85d4f6bede61e73ae7e309bf9d049cbb9da02f873797634c204c",
+    "evidence/spatial_budget_fits.csv": "b354246fe1b1d0d8c6035222b95c41c1956618fb656902a3faa573ccee20525b",
+    "evidence/spatial_budget_summary.csv": "e55afdddcd119da3db29567cb90cdf96c0061d97350057dee263c3b963d5e6f0",
+    ".build/spatial_budget/IMAGE_RESULTS.csv": "a3f8f5135886673ebe8ae1e0637f62b0ab8428d2b99486ca620751b40a07ee24",
+    ".build/spatial_budget/BASIS_VECTORS.csv": "c385aafa24ac3a9e4ef972e71105b76ab3ffa7a279d2510db693eca73a5ed0af"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "input_verification": "all copied evidence SHA-256 values match",
+  "new_training": false,
+  "figure_data": {
+    "architecture": [
+      "TRACE model.py and execution receipt; editable vector geometry"
+    ],
+    "classification": [
+      "classification_endpoints.csv; selected endpoints only; same historical roles"
+    ],
+    "aggregation": [
+      "aggregation_utility_summary.csv; view 0; equal-image mean losses"
+    ],
+    "descriptor_groups": [
+      "aggregation_channel_utility_summary.csv",
+      "aggregation_component_utility.csv; each held-out component is one class"
+    ],
+    "representation": [
+      "aggregation_feature_spaces.csv",
+      "aggregation_spatial_covariance.csv",
+      "aggregation_mask_plan_alignment.csv; view 0, validation"
+    ],
+    "training": [
+      "trace_validation_epochs.csv; all 60 original validation records",
+      "nb24_science.json; fixed controls"
+    ],
+    "qualitative": [
+      "qualitative/EXAMPLES.json",
+      "qualitative/orientation_cells.csv",
+      "review_qualitative_pca.csv"
+    ]
+  },
+  "metrics": {
+    "identity_retained_percent": [
+      100.00000007923342,
+      99.99999996787412,
+      99.99999982645905,
+      99.9999996347846
+    ],
+    "global_mean_retained_percent": [
+      61.13713364079594,
+      62.11741563352392,
+      61.22805101269688,
+      62.6231413914237
+    ],
+    "band_means_retained_percent": [
+      70.42479681031931,
+      72.62146510228226,
+      54.20479540738343,
+      58.235428940431234
+    ],
+    "column_means_retained_percent": [
+      76.38573821480838,
+      72.47136093895327,
+      75.896625867729,
+      64.95109226823004
+    ],
+    "moments5_retained_percent": [
+      76.05290045385179,
+      81.89301712457144,
+      68.3864693118901,
+      81.55309897499014
+    ],
+    "random5_retained_percent": [
+      65.47310875378237,
+      66.42687044892297,
+      61.0707861752752,
+      62.87491617572587
+    ],
+    "train_template_retained_percent": [
+      7.7508174548253095,
+      6.311777096944709,
+      -29.18648290464305,
+      -27.76798708485867
+    ],
+    "residual_mean_retained_percent": [
+      75.08764032132926,
+      74.68593822951881,
+      52.845917491257055,
+      52.843808940467106
+    ],
+    "residual_moments5_retained_percent": [
+      81.76321522247699,
+      82.16748669403405,
+      65.81901758987618,
+      65.28871643133132
+    ]
+  },
+  "outputs": [
+    {
+      "file": "figures/architecture.pdf",
+      "bytes": 17442,
+      "sha256": "58bac1abc6009a57daba1fa3ef58b2cd95796ba561e036327cf889b8b589586d"
+    },
+    {
+      "file": "figures/architecture.png",
+      "bytes": 167388,
+      "sha256": "cde6a42a5a9ba3bab1bc127f735572b6631844cf3638c03f2d8f93a5d80cd98d"
+    },
+    {
+      "file": "figures/architecture.svg",
+      "bytes": 37857,
+      "sha256": "bab7ead0f3f01ad0f0831faa18e56a1280da6e6a5db64839be66c2ca7ab800e4"
+    },
+    {
+      "file": "figures\\aggregation.pdf",
+      "bytes": 15490,
+      "sha256": "52f56278d531075a75c9d90018e79658fd7c426e39b874c306bcdfd51e8c163c"
+    },
+    {
+      "file": "figures\\aggregation.png",
+      "bytes": 92281,
+      "sha256": "8db0af27c42a1a381bd411d0654bc8987b6ca521ef36bca2d4480c472526cb41"
+    },
+    {
+      "file": "figures\\classification.pdf",
+      "bytes": 15788,
+      "sha256": "b74854d60a84bb36d87ee32b09c06a8d1ef1b2823f39e2bd92f418a61502dbe6"
+    },
+    {
+      "file": "figures\\classification.png",
+      "bytes": 66494,
+      "sha256": "3ee2f632f31f4af40321a08a3ba4670d10d3bee9169c532fa6b56f3c566638c2"
+    },
+    {
+      "file": "figures\\descriptor_groups.pdf",
+      "bytes": 16824,
+      "sha256": "0e48ea55245530b54645d620051ec40ca7d39d544f6d8c92880c27601ff168f2"
+    },
+    {
+      "file": "figures\\descriptor_groups.png",
+      "bytes": 88801,
+      "sha256": "d2c489a773f9fa88a98105fd9327f32c99648137dab7d3438b8df5cab01a0697"
+    },
+    {
+      "file": "figures\\qualitative.pdf",
+      "bytes": 105166,
+      "sha256": "44c2769ea777250a592a05eed4096e1d4cf62e48d9406209e3439f1bb8966e11"
+    },
+    {
+      "file": "figures\\qualitative.png",
+      "bytes": 556939,
+      "sha256": "a47e312017771a90cddaccacaaa1db3b55d17229972a47b71b2e748972c9b10a"
+    },
+    {
+      "file": "figures\\representation.pdf",
+      "bytes": 18407,
+      "sha256": "7bed1ffca2bf8a1ef9b2ed80e7d08f89a02960bb67ec1de73b19be6403716e6e"
+    },
+    {
+      "file": "figures\\representation.png",
+      "bytes": 136423,
+      "sha256": "f61a7abf041aa87045843ccb41a450c92084d9d1d43fe3e26d2b7a034c17618d"
+    },
+    {
+      "file": "figures\\spatial_budget.pdf",
+      "bytes": 20836,
+      "sha256": "c79fb7abcffd557833bf34925e49b6f2178505c2d45c6704eb25d00111eb6dc4"
+    },
+    {
+      "file": "figures\\spatial_budget.png",
+      "bytes": 225423,
+      "sha256": "91583d4d60ceb392b1616342c0b9937f331b77d26eaa2a0523e0530c4e4739c1"
+    },
+    {
+      "file": "figures\\spatial_budget_differences.pdf",
+      "bytes": 15771,
+      "sha256": "bfc23b772be18f8ed6038a38b7a41bc12c2e4e67066ec1d00417d03a513e94e1"
+    },
+    {
+      "file": "figures\\spatial_budget_differences.png",
+      "bytes": 109760,
+      "sha256": "d994474a011aaf91ab3ea21ff4768032c29e11b62c9eeb7f95d3bfd258cdc4c1"
+    },
+    {
+      "file": "figures\\training.pdf",
+      "bytes": 19699,
+      "sha256": "2ed90e5361671c9052917deae8b1c871f4e4215f07a694afd01fae9720c29ad7"
+    },
+    {
+      "file": "figures\\training.png",
+      "bytes": 144362,
+      "sha256": "85df9599846b025229f027dbe5ddd823941be28f448bd904af5c94746ad39ed3"
+    }
+  ]
+}

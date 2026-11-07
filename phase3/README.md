@@ -1,15 +1,45 @@
 # Phase 3 — start here
 
+## Project presentation
+
+The [project deck through Phase 3](../outputs/presentation/Tyre_Inspection_Project_Presentation_Through_Phase_3.pptx)
+preserves the 30 slides from the original deck. Slides 31–46 cover the model
+experiments, TRACE texture evidence, Kaggle and Hugging Face records, the
+unified workstation, and the path from the results to the manuscript.
+
+## Workstation — TREAD-ONE and original tools
+
+The [Phase 3 workstation](workstation/README.md) now hosts the TREAD-ONE
+inspection and the original model bench in one window. It includes exact
+snapshot handoff, four-model comparison, alignment and geometry tools, and
+photo/video evidence export. Use [Launch Phase 3 Workstation](workstation/Launch%20Phase%203%20Workstation.cmd).
+
+## Current paper — reviewer revision
+
+Revision 3 uses the supplied IEEE Access template and author portraits. It
+includes a verified TRACE architecture, subspace and Jacobian diagnostics, and
+a train-only affine readout.
+[PDF](ACCESS_latex_template_20260513/main.pdf) ·
+[Editable package](ACCESS_latex_template_20260513/README.md) ·
+[Reviewer response](ACCESS_latex_template_20260513/REVIEW_RESPONSE.md).
+
+## Revision 2 — matched-budget spatial audit
+
+**6 November 2026.** [Revision 2](phase3PaperIEEEAccess.md) adds the constrained
+spatial basis comparison and decoder-order analysis from saved TRACE evidence.
+See the [paper](ACCESS_latex_template_20260513/main.pdf) and
+[novelty and evidence](ACCESS_latex_template_20260513/NOVELTY_AND_EVIDENCE.md).
+
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## Latest — separate IEEE Access author-review paper
 
 **3 November 2026:** [Paper and handoff](phase3PaperIEEEAccess.md),
-[PDF](paper_ieee_access/main.pdf), and [editable source](paper_ieee_access/README.md)
+[PDF](ACCESS_latex_template_20260513/main.pdf), and [editable source](ACCESS_latex_template_20260513/README.md)
 are prepared from completed Phase 3 evidence. The focused contribution is local
 texture utility versus global aggregation, with all failed gates and data limits
 retained. No new fit, photo, workstation change, HF publication or Git push.
 
-Next is author review and the [submission checklist](paper_ieee_access/SUBMISSION_CHECKLIST.md),
+Next is author review and the [submission checklist](ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md),
 not another notebook. Original manuscript, measured sources and selections remain unchanged.
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 

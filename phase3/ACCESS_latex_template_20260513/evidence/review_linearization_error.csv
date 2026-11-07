@@ -1,0 +1,5 @@
+branch,scope,relative_output_rmse
+local,shared_anchor,0.3093328358607021
+local,position_anchor,0.2549728265744201
+masked,shared_anchor,0.4993411907173143
+masked,position_anchor,0.3951144908634753

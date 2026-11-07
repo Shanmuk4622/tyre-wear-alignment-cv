@@ -1,0 +1,2 @@
+# Compatibility with the original vendor's Transformers 4.51.3.
+huggingface_hub==0.36.0 --hash=sha256:7bcc9ad17d5b3f07b57c78e79d527102d08313caa278a641993acddcb894548d

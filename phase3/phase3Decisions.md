@@ -1,5 +1,13 @@
 # Phase 3 — decisions
 
+## Manuscript revision 2 — 6 November 2026
+
+| Decision | Rationale |
+|---|---|
+| Keep IEEE Access layout and deepen the research contribution | Equal-budget empirical comparison, exact surrogate optimum and decoder-order analysis |
+| Fix budget, basis-fit cohorts and evaluation rules before the extension | Evaluation remains retrospective. Basis statistics come from training records. |
+| Lead with fitted versus fixed modes and retain the decoder-aware null result | Differences among fitted bases are smaller than the training-component sensitivity at five modes. |
+
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## Manuscript decisions — 3 November 2026
 

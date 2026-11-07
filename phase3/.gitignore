@@ -77,6 +77,7 @@ workstation/data/
 workstation/models/*.pt
 workstation_validation/engine_*/
 workstation_validation/ui_*/
+workstation_validation/unified_*/
 tread_two/pilot_validation/acceptance_*/
 tread_two/pilot_validation/first_smoke/
 tread_two/pilot_validation/fresh_notebook_*/

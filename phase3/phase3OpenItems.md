@@ -6,7 +6,7 @@
 The separate [IEEE Access paper](phase3PaperIEEEAccess.md) is prepared. Next review
 its science and confirm authorship/contributions, author approval, funding/conflicts,
 image/data permissions, institutional requirements, related-manuscript status,
-public availability and submission-account details. [Full checklist](paper_ieee_access/SUBMISSION_CHECKLIST.md).
+public availability and submission-account details. [Full checklist](ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md).
 
 No new photo collection, notebook rerun or training is required for this review.
 GEO and TRACE remain unselected research; both workstation revisions stay deferred.

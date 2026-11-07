@@ -1,0 +1,192 @@
+{
+  "source_sha256": "84ef4840970480e6541716534d7f9e61caf08ad584dafdb8676a7675fb085d07",
+  "parameters": {
+    "encoder1": 624,
+    "encoder2": 3528,
+    "encoder3": 7008,
+    "encoder4": 13968,
+    "metadata": 192,
+    "axial1": 9888,
+    "axial2": 9888,
+    "decoder": 14016,
+    "projector": 11862,
+    "mask_token": 48
+  },
+  "calls": {
+    "encoder": [
+      {
+        "input": [
+          32,
+          4,
+          64,
+          64
+        ],
+        "output": [
+          32,
+          48,
+          4,
+          4
+        ]
+      },
+      {
+        "input": [
+          32,
+          4,
+          64,
+          64
+        ],
+        "output": [
+          32,
+          48,
+          4,
+          4
+        ]
+      }
+    ],
+    "metadata": [
+      {
+        "input": [
+          1,
+          32,
+          3
+        ],
+        "output": [
+          1,
+          32,
+          48
+        ]
+      }
+    ],
+    "context": [
+      {
+        "input": [
+          1,
+          32,
+          48
+        ],
+        "output": [
+          1,
+          32,
+          48
+        ]
+      },
+      {
+        "input": [
+          1,
+          32,
+          48
+        ],
+        "output": [
+          1,
+          32,
+          48
+        ]
+      }
+    ],
+    "decoder": [
+      {
+        "input": [
+          1,
+          32,
+          48
+        ],
+        "output": [
+          1,
+          32,
+          96
+        ]
+      },
+      {
+        "input": [
+          1,
+          32,
+          48
+        ],
+        "output": [
+          1,
+          32,
+          96
+        ]
+      }
+    ],
+    "projector": [
+      {
+        "input": [
+          1,
+          240
+        ],
+        "output": [
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  "outputs": {
+    "encoded": [
+      1,
+      32,
+      48
+    ],
+    "full_context": [
+      1,
+      32,
+      48
+    ],
+    "context": [
+      1,
+      32,
+      48
+    ],
+    "local_pooled": [
+      1,
+      48
+    ],
+    "context_mean": [
+      1,
+      48
+    ],
+    "pooled": [
+      1,
+      240
+    ],
+    "projected": [
+      1,
+      6
+    ],
+    "local_prediction": [
+      1,
+      32,
+      6,
+      4,
+      4
+    ],
+    "masked_prediction": [
+      1,
+      32,
+      6,
+      4,
+      4
+    ],
+    "mass": [
+      1,
+      32
+    ],
+    "supported": [
+      1,
+      32
+    ],
+    "hidden": [
+      1,
+      32
+    ],
+    "visible_input": [
+      1,
+      32,
+      4,
+      64,
+      64
+    ]
+  },
+  "hidden_rgb_invariance_fixed_support": true
+}

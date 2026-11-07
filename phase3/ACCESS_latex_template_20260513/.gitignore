@@ -1,0 +1,27 @@
+# LaTeX scratch/cache/previews; final PDF and curated figures remain visible.
+.build/
+preview/
+*.aux
+*.log
+*.out
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.xdv
+*.run.xml
+*.bcf
+!main.pdf
+!figures/*.pdf
+!figures/*.png
+!figures/architecture.svg
+!evidence/qualitative/*.png
+!a1.jpg
+!a2.jpg
+!logo.png
+!notaglinelogo.png
+!bullet.png
+author[123].png
+equation3.png
+fig1.png

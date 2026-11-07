@@ -1,0 +1,17 @@
+branch,fit,excluded_component,template_images,basis_images
+local,main,,386,384
+local,component_balanced,,386,384
+local,omit_0,tyre:mileage_100000_plus__session_001,383,381
+local,omit_1,tyre:mileage_100000_plus__session_002,384,382
+local,omit_2,tyre:mileage_100000_plus__session_003,381,379
+local,omit_3,tyre:mileage_100000_plus__session_004,326,324
+local,omit_4,tyre:new_tire__session_001,319,317
+local,omit_5,unresolved_mid_parent_component,137,137
+masked,main,,386,384
+masked,component_balanced,,386,384
+masked,omit_0,tyre:mileage_100000_plus__session_001,383,381
+masked,omit_1,tyre:mileage_100000_plus__session_002,384,382
+masked,omit_2,tyre:mileage_100000_plus__session_003,381,379
+masked,omit_3,tyre:mileage_100000_plus__session_004,326,324
+masked,omit_4,tyre:new_tire__session_001,319,317
+masked,omit_5,unresolved_mid_parent_component,137,137

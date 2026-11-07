@@ -1,0 +1,238 @@
+{
+  "original_manuscript_and_reports_unchanged": 20,
+  "copied_scientific_inputs_byte_identical": 29,
+  "template_assets_unchanged": true,
+  "additional_evidence_outputs_verified": 5,
+  "all_60_original_epoch_gate_outcomes_preserved": true,
+  "all_36_aggregation_table_values_reconcile": true,
+  "fit_execution_ledger_reconciles": true,
+  "headline_utility_and_unselected_state_verified": true,
+  "matched_budget": {
+    "summary_rows": 1488,
+    "image_rows_independently_reduced": 282720,
+    "full_budget_prediction_difference": 1.4210854715202004e-14
+  },
+  "reviewer_diagnostics": {
+    "architecture_parameters": 71022,
+    "affine_fits": 2,
+    "affine_image_rows_independently_reduced": 25080
+  },
+  "figure_1_vector_and_editable_exports_verified": true,
+  "defined_and_cited_references": 23,
+  "linked_AI_disclosure_in_acknowledgment": true,
+  "abstract_words": 189,
+  "local_documentation_links_checked": 92,
+  "no_overfull_boxes_or_unresolved_references": true,
+  "supplied_author_biographies_and_portraits": true,
+  "status": "passed",
+  "pages": 18,
+  "page_details": [
+    {
+      "page": 1,
+      "characters": 4541,
+      "size_pt": [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      "image": "page_01.png"
+    },
+    {
+      "page": 2,
+      "characters": 5958,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_02.png"
+    },
+    {
+      "page": 3,
+      "characters": 5546,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_03.png"
+    },
+    {
+      "page": 4,
+      "characters": 5410,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_04.png"
+    },
+    {
+      "page": 5,
+      "characters": 3171,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_05.png"
+    },
+    {
+      "page": 6,
+      "characters": 5619,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_06.png"
+    },
+    {
+      "page": 7,
+      "characters": 4718,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_07.png"
+    },
+    {
+      "page": 8,
+      "characters": 5127,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_08.png"
+    },
+    {
+      "page": 9,
+      "characters": 5922,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_09.png"
+    },
+    {
+      "page": 10,
+      "characters": 3335,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_10.png"
+    },
+    {
+      "page": 11,
+      "characters": 3450,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_11.png"
+    },
+    {
+      "page": 12,
+      "characters": 1696,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_12.png"
+    },
+    {
+      "page": 13,
+      "characters": 5079,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_13.png"
+    },
+    {
+      "page": 14,
+      "characters": 3043,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_14.png"
+    },
+    {
+      "page": 15,
+      "characters": 4106,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_15.png"
+    },
+    {
+      "page": 16,
+      "characters": 3442,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_16.png"
+    },
+    {
+      "page": 17,
+      "characters": 3298,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_17.png"
+    },
+    {
+      "page": 18,
+      "characters": 8531,
+      "size_pt": [
+        0.0,
+        0.0,
+        576.0,
+        782.9299926757812
+      ],
+      "image": "page_18.png"
+    }
+  ],
+  "main_pdf_bytes": 2177612,
+  "main_pdf_sha256": "55b6ae64bd46b28a2afc6ded1c237231066b60c191d0493cdb311659991f5449",
+  "figures": 9,
+  "tables": 8,
+  "visual_review": "Latest rendered pages require human/agent visual inspection; see VISUAL_REVIEW.md",
+  "new_training": false,
+  "new_photos": false,
+  "workstation_changes": false,
+  "HF_writes": false
+}

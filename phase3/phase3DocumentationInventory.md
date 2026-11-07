@@ -6,13 +6,13 @@
 | Document | Purpose |
 |---|---|
 | [Phase 3 paper handoff](phase3PaperIEEEAccess.md) | Scope, result and next author actions |
-| [Package guide](paper_ieee_access/README.md) | PDF/source/figures and build navigation |
-| [Claim ledger](paper_ieee_access/CLAIMS_AND_LIMITATIONS.md) | Scientific evidence and excluded claims |
-| [Reproducibility](paper_ieee_access/REPRODUCIBILITY.md) | Build commands, identities and audit boundaries |
-| [Citation audit](paper_ieee_access/CITATION_AUDIT.md) | Primary literature and current venue rules |
-| [Submission checklist](paper_ieee_access/SUBMISSION_CHECKLIST.md) | Finished preparation versus real author decisions |
-| [Writing log](paper_ieee_access/WRITING_LOG.md) | Editorial and preservation decisions |
-| [Visual review](paper_ieee_access/audit/VISUAL_REVIEW.md) | Final PDF page QA |
+| [Package guide](ACCESS_latex_template_20260513/README.md) | PDF/source/figures and build navigation |
+| [Claim ledger](ACCESS_latex_template_20260513/CLAIMS_AND_LIMITATIONS.md) | Scientific evidence and excluded claims |
+| [Reproducibility](ACCESS_latex_template_20260513/REPRODUCIBILITY.md) | Build commands, identities and audit boundaries |
+| [Citation audit](ACCESS_latex_template_20260513/CITATION_AUDIT.md) | Primary literature and current venue rules |
+| [Submission checklist](ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md) | Finished preparation versus real author decisions |
+| [Writing log](ACCESS_latex_template_20260513/WRITING_LOG.md) | Editorial and preservation decisions |
+| [Visual review](ACCESS_latex_template_20260513/audit/VISUAL_REVIEW.md) | Final PDF page QA |
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 
 <!-- TEXTURE_AGGREGATION_20261102 -->

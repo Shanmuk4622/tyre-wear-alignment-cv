@@ -4,12 +4,12 @@
 ## Latest — separate IEEE Access author-review paper
 
 **3 November 2026:** [Paper and handoff](phase3PaperIEEEAccess.md),
-[PDF](paper_ieee_access/main.pdf), and [editable source](paper_ieee_access/README.md)
+[PDF](ACCESS_latex_template_20260513/main.pdf), and [editable source](ACCESS_latex_template_20260513/README.md)
 are prepared from completed Phase 3 evidence. The focused contribution is local
 texture utility versus global aggregation, with all failed gates and data limits
 retained. No new fit, photo, workstation change, HF publication or Git push.
 
-Next is author review and the [submission checklist](paper_ieee_access/SUBMISSION_CHECKLIST.md),
+Next is author review and the [submission checklist](ACCESS_latex_template_20260513/SUBMISSION_CHECKLIST.md),
 not another notebook. Original manuscript, measured sources and selections remain unchanged.
 
 Earlier notebook/design directions below are historical for this completed cycle.

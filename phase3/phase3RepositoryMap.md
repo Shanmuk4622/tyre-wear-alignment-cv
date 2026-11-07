@@ -3,9 +3,9 @@
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## Added — separate IEEE Access manuscript
 
-`paper_ieee_access/` contains the new LaTeX/PDF paper, vector/PNG figures,
+`ACCESS_latex_template_20260513/` contains the new LaTeX/PDF paper, vector/PNG figures,
 compact direct evidence, generators and audits. Its `.build/`, `preview/` and TeX
-intermediates are ignored. [Package guide](paper_ieee_access/README.md).
+intermediates are ignored. [Package guide](ACCESS_latex_template_20260513/README.md).
 The original `../ACCESS_latex_template_20260513/` manuscript is unchanged.
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 

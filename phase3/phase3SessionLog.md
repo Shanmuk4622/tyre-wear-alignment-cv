@@ -3,7 +3,7 @@
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## 2–3 November 2026 — separate IEEE Access manuscript
 
-1. Created `paper_ieee_access/`; copied compact evidence and template assets with hashes.
+1. Created `ACCESS_latex_template_20260513/`; copied compact evidence and template assets with hashes.
 2. Wrote nine substantive sections, equations, references, AI disclosure and working-author biographies.
 3. Generated seven scientific figures and five tables, including all 60 TRACE epochs and two deterministic saved-image examples.
 4. Separated primary sweep decoder reads from additional bridge reads; preserved original rank/gate arithmetic and selected=None.
@@ -12,7 +12,7 @@
 7. Added claim ledger, reproducibility guide, citation audit, writing log and author-action checklist.
 8. Kept new paper/aggregation assets local. No new fit, photo, HF upload, Git push, or workstation change.
 
-Final numeric and visual receipts are in the [paper package](paper_ieee_access/README.md).
+Final numeric and visual receipts are in the [paper package](ACCESS_latex_template_20260513/README.md).
 Next: author review and genuine declaration/availability decisions.
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 

@@ -1,4 +1,25 @@
-# TREAD-ONE Studio — implementation and isolation
+# Phase 3 workstation — implementation and isolation
+
+## Unified window
+
+`workspace.py` hosts the existing TREAD-ONE page and lazily mounts the
+original multi-model station as a second native Qt page. `legacy_bench.py`
+resolves the original flat imports in a separate namespace so its `engine`,
+`theme` and `bootstrap` identities cannot replace Phase 3's modules. Qt
+stays owned by Phase 3. Original model loaders and checkpoints are read in
+place. The bench's writable root and video-export child are private to
+`workstation/data/model_bench/`.
+
+Both tabs expose the same calibrated alignment dialog. TREAD-ONE supplies its
+native RGB and, for supporting image geometry, its thresholded tyre/tread masks.
+The dialog reads oriented images without importing the legacy model engine.
+The UI selects the original workstation's NumPy/OpenCV dependencies before
+either tab imports them, keeping alignment and later Model bench startup
+compatible in the Windows process.
+
+Frame handoff transfers RGB and source time. Each tab keeps its own model
+preprocessing, prediction state, and evidence format. The historical
+TREAD-ONE processing contract below still applies to its tab.
 
 **29 October 2026.** A separate inference application under `phase3/workstation/`.
 No training/runtime source, original workstation source, selected-model registry
@@ -34,10 +55,12 @@ flowchart TD
 | `models/tread_one_r1.py` | Exact copied frozen model source; no architectural changes |
 | `models/MODEL.json`, `models/weights.pt` | Declared selected model identity and 5,525,189-byte state dictionary |
 
-The Qt process does not import Torch. The worker inherits the activated cv_conda
-interpreter and loads only this station's model. Windows starts the child
-without another console window. Closing the application stops only its own
-child PID and media reader. Device switching restarts this owned worker.
+TREAD-ONE inference stays in its child process. The worker inherits the
+activated cv_conda interpreter and loads only the pinned TREAD-ONE checkpoint.
+Windows starts the child without another console window. The embedded model
+bench loads Torch lazily in the Qt process and retains the original inference
+thread and independent export process. Device switching in TREAD-ONE restarts
+only its owned worker.
 
 ## Model identity
 

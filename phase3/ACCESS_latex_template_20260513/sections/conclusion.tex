@@ -1,0 +1,6 @@
+\section{Conclusion}\label{sec:conclusion}
+We introduced a matched-budget audit for the texture evidence used by a frozen decoder. A shared position template and constant mode allowed us to compare three train-fitted spatial bases against fixed and random bases. At 240 input coefficients, ordinary token PCA retained 89.47\% of local validation advantage and 89.01\% on the historical test. These values exceed the fixed-moment baselines by 7.76 and 6.85 percentage points before rounding.
+
+The decoder-aware bases closely overlap the token PCA subspace despite substantial Jacobian variation. An affine readout preserves the advantage of fitted bases for local reconstruction, while masked retention drops sharply. Reversing the order of decoding and projection also substantially changes masked descriptor fields despite a small signed loss effect. Together these results distinguish shared spatial structure from the decoder's effect on task utility.
+
+The results are retrospective and specific to TRACE, six image descriptors, and the available tyre components. The original selection rule still yields no eligible checkpoint. The audit provides a reproducible way to test how proposed summaries preserve local texture evidence before attributing utility to a global representation.

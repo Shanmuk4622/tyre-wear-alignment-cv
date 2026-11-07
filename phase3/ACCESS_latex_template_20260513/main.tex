@@ -1,0 +1,79 @@
+\input{engine_compat}
+\documentclass[nolineno]{ieeeaccess}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx,booktabs,tabularx,array}
+\usepackage{textcomp,xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{iftex,etoolbox,needspace,placeins}
+\makeatletter
+\InputIfFileExists{t1pcr.fd}{}{}
+\DeclareFontShape{T1}{pcr}{n}{n}{<->ssub*pcr/m/n}{}
+\DeclareFontShape{T1}{formata}{m}{sl}{<->ssub*formata/m/it}{}
+\makeatother
+\makeatletter
+% Keep the supplied photo biographies together without elastic vertical gaps.
+\def\@IEEEBIOskipN{1.25\baselineskip}
+\expandafter\patchcmd\csname\string\IEEEbiography\endcsname
+  {\vskip \@IEEEBIOskipN plus 1fil minus 0\baselineskip}
+  {\vskip \@IEEEBIOskipN}{}{}
+\newcommand{\submissionfooter}{\hbox to\textwidth{\hfill\footerpagefont\thepage}}
+\apptocmd{\ps@titlepage}{\let\@oddfoot\submissionfooter\let\@evenfoot\submissionfooter}{}{}
+\apptocmd{\ps@headings}{\let\@oddfoot\submissionfooter\let\@evenfoot\submissionfooter}{}{}
+\patchcmd{\@maketitle}{Digital Object Identifier\space\@doi}{}{}{\PackageError{paper}{DOI suppression failed}{Check template title macro}}
+\makeatother
+\ifXeTeX
+\special{pdf:mapfile t1-times.map}
+\special{pdf:mapfile t1-formata.map}
+\special{pdf:mapfile t1-giovannistd.map}
+\fi
+\graphicspath{{figures/}}
+\newlength{\paperabstractwidth}
+\setlength{\paperabstractwidth}{\dimexpr\titlewidth-10pt\relax}
+\let\abstractwidth\paperabstractwidth
+\setcounter{dbltopnumber}{3}
+\renewcommand{\dbltopfraction}{.9}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\textfraction}{.08}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\rankE}{r_{\mathrm{E}}}
+\input{generated/aggregation_rows}
+\input{generated/spatial_budget_rows}
+\hypersetup{pdftitle={A Decoder-Aware Spatial Budget Audit for Local Texture Evidence in Tyre Inspection},pdfauthor={Edara Sreenivasa Reddy, Shanmukesh Bonala},pdfsubject={Author-review manuscript on spatial compression and texture reconstruction}}
+\begin{document}
+\raggedbottom
+\pagestyle{headings}
+\history{}
+\doi{}
+\title{A Decoder-Aware Spatial Budget Audit for Local Texture Evidence in Tyre Inspection}
+\author{\uppercase{Edara Sreenivasa Reddy}\authorrefmark{1}, AND
+\uppercase{Shanmukesh Bonala}\authorrefmark{2}}
+\address[1]{School of Computer Science and Engineering, VIT-AP University, Amaravati, India (e-mail: sreenivasareddy.e@vitap.ac.in)}
+\address[2]{School of Computer Science and Engineering, VIT-AP University, Amaravati, India (e-mail: shanmukesh.23BCE20070@vitapstudent.ac.in)}
+\corresp{Corresponding author: Edara Sreenivasa Reddy (e-mail: sreenivasareddy.e@vitap.ac.in).}
+\begin{abstract}
+Spatial pooling can discard local texture that a frozen decoder uses for inspection. We present a matched-budget audit that separates spatial compression loss from the effect of decoder order. The study uses TRACE, a compact geometry-anchored texture model, and saved evidence from 570 images of 12 recorded tyres. At five modes (240 coefficients), token principal component analysis retains 89.47\% and 89.01\% of local reconstruction advantage on validation and historical test, compared with 81.71\% and 82.17\% for fixed moments. The decoder-aware bases show no consistent gain over token principal component analysis. Their leading residual subspaces overlap strongly even though the decoder Jacobian varies across tokens. A train-only affine readout reproduces the fitted-basis advantage for local prediction, while masked retention falls to 18.07\% and 10.62\% with that readout, compared with 83.96\% and 82.51\% for the original decoder. These results separate spatial redundancy, decoder sensitivity, and reconstruction utility. The final checkpoint reduces local validation loss by 36.44\% against the position control, but every epoch fails the original global-diversity requirements. The study concerns image-descriptor recovery on previously inspected cohorts. Metric groove depth remains unmeasured.
+\end{abstract}
+\begin{keywords}
+Feature aggregation, image reconstruction, principal component analysis, representation analysis, tyre inspection.
+\end{keywords}
+\titlepgskip=-21pt
+\maketitle
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/data_protocol}
+\input{sections/models}
+\input{sections/aggregation_methods}
+\input{sections/spatial_budget}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/reproducibility}
+\input{sections/conclusion}
+\FloatBarrier
+\section*{Acknowledgment}
+\href{https://openai.com/codex/}{OpenAI Codex} assisted in drafting and editing the abstract, Sections I--X, and figure captions. It also assisted with LaTeX and with code for the spatial-budget, reviewer, and figure analyses. The figures use recorded measurements, existing tyre photographs, and the source-defined architecture.
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\input{sections/biographies}
+\EOD
+\end{document}

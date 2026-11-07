@@ -26,7 +26,7 @@ dist/
 .coverage
 htmlcov/
 
-ACCESS_latex_template_20260513/
+/ACCESS_latex_template_20260513/
 
 # Datasets, annotation packages and captures
 data/
@@ -126,6 +126,9 @@ events.out.tfevents.*
 /outputs/*/*HISTORY*.json
 /outputs/*/*_tree.json
 !/outputs/README.md
+
+# Curated project presentation for sharing.
+!/outputs/presentation/Tyre_Inspection_Project_Presentation_Through_Phase_3.pptx
 
 # Retain current runnable notebooks; exclude archived executions and root scratch
 /notebooks/archive/

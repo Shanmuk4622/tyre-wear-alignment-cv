@@ -1,0 +1,17 @@
+{
+  "version": "TRACE-decoder-aware-spatial-budget-v1",
+  "recorded": "2026-11-06",
+  "study_design": "Post-hoc extension defined before running this comparison, after prior fixed-basis results. No prospective validation.",
+  "endpoint": "Original TRACE epoch 60, update 2940, selected=null",
+  "fit_revision": "510cbc827337cbc963562c798811226326dc7c0c",
+  "basis_fit": "384 full-support training images, clean view 0, no targets, equal image weight. Shared fixed position template from supported observations in all 386 training images. Fixed normalized training mean mass.",
+  "methods": ["DCT", "token PCA", "Jacobian PCA", "decoded snapshot PCA", "16 random orthogonal bases", "original spatial moments at k=5"],
+  "random_seeds": [462250, 462251, 462252, 462253, 462254, 462255, 462256, 462257, 462258, 462259, 462260, 462261, 462262, 462263, 462264, 462265],
+  "mode_counts_including_constant": [1, 2, 4, 5, 8, 16, 32],
+  "primary_comparison": "k=5, local encoded branch, clean view 0, validation and historical test reported separately. Measure retained position-control advantage, feature MSE, frozen-output drift, and signed Smooth L1 loss change.",
+  "secondary": "All budgets, both recorded views and branches, per-descriptor and component summaries, component-balanced and leave-one-component-out train basis and template sensitivity at k=5, fixed-mass projection before versus after frozen decoder.",
+  "limits": "A scalar budget counts 48k image-dependent coefficients plus shared template and basis. No bit-rate, speed, fresh-test, physical measurement or decoder refit claim. Output-first diagnostic uses 96k coefficients.",
+  "optimizer_updates": 0,
+  "encoder_or_geometry_forwards": 0,
+  "remote_writes": 0
+}

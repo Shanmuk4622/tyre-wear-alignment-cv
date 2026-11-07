@@ -1,17 +1,34 @@
 # Phase 3 — evidence register
 
+## Manuscript revision 3 evidence
+
+| Evidence | Scope |
+|---|---|
+| [Architecture execution](ACCESS_latex_template_20260513/audit/TRACE_ARCHITECTURE.json) | Parameters, reuse, and hidden RGB invariance at fixed geometry and support |
+| [Reviewer analysis](ACCESS_latex_template_20260513/audit/REVIEWER_ANALYSIS.json) | Frozen inputs, affine readouts, paired records, and compact output hashes |
+| [Reviewer response](ACCESS_latex_template_20260513/REVIEW_RESPONSE.md) | Scientific, editorial, and template changes |
+
+## Manuscript revision 2 evidence
+
+| Evidence | Scope |
+|---|---|
+| [Matched-budget protocol](ACCESS_latex_template_20260513/evidence/spatial_budget_protocol.json) | Precalculation definition of the post-hoc extension |
+| [Primary results](ACCESS_latex_template_20260513/evidence/spatial_budget_summary.csv) | Role, view, branch, basis, budget, loss and drift |
+| [Computation receipt](ACCESS_latex_template_20260513/audit/SPATIAL_BUDGET.json) | Input and output hashes, readouts, eigentail and Jacobian checks |
+| [Revision 2 rationale](ACCESS_latex_template_20260513/NOVELTY_AND_EVIDENCE.md) | Prior art, results, interpretation and limits |
+
 <!-- IEEE_ACCESS_PAPER_20261103 -->
 ## IEEE Access manuscript evidence
 
 | Record | Scope |
 |---|---|
-| [Paper PDF](paper_ieee_access/main.pdf) /[source](paper_ieee_access/main.tex) | Complete author-review manuscript |
-| [Copied scientific inputs](paper_ieee_access/audit/EVIDENCE_FILES.json) | Original byte identities and source paths |
-| [Additional inputs](paper_ieee_access/audit/ADDITIONAL_INPUTS.json) | Epoch records and deterministic atlas/cell evidence |
-| [Claim ledger](paper_ieee_access/CLAIMS_AND_LIMITATIONS.md) | Endpoint, denominator and permitted inference |
-| [Current template check](paper_ieee_access/audit/CURRENT_TEMPLATE_CHECK.json) | Official core files match supplied template |
-| [Numeric/PDF validation](paper_ieee_access/audit/VALIDATION.json) | Tables, headlines, all epochs, citations and preservation |
-| [Visual review](paper_ieee_access/audit/VISUAL_REVIEW.md) | Latest rendered-page inspection |
+| [Paper PDF](ACCESS_latex_template_20260513/main.pdf) /[source](ACCESS_latex_template_20260513/main.tex) | Complete author-review manuscript |
+| [Copied scientific inputs](ACCESS_latex_template_20260513/audit/EVIDENCE_FILES.json) | Original byte identities and source paths |
+| [Additional inputs](ACCESS_latex_template_20260513/audit/ADDITIONAL_INPUTS.json) | Epoch records and deterministic atlas/cell evidence |
+| [Claim ledger](ACCESS_latex_template_20260513/CLAIMS_AND_LIMITATIONS.md) | Endpoint, denominator and permitted inference |
+| [Current template check](ACCESS_latex_template_20260513/audit/CURRENT_TEMPLATE_CHECK.json) | Official core files match supplied template |
+| [Numeric/PDF validation](ACCESS_latex_template_20260513/audit/VALIDATION.json) | Tables, headlines, all epochs, citations and preservation |
+| [Visual review](ACCESS_latex_template_20260513/audit/VISUAL_REVIEW.md) | Latest rendered-page inspection |
 <!-- END_IEEE_ACCESS_PAPER_20261103 -->
 
 <!-- TEXTURE_AGGREGATION_20261102 -->

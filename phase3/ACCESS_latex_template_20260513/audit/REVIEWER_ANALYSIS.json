@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "input_count": 249,
+  "checkpoint_epoch": 60,
+  "basis_fit_view": 0,
+  "image_rows": 25080,
+  "probe_fits": 2,
+  "ridge": 0.001,
+  "weights": "valid target counts, normalized per cell, intercept unpenalized",
+  "network_optimizer_updates": 0,
+  "image_or_geometry_forwards": 0,
+  "synthetic_trace_forwards": 2,
+  "output_sha256": {
+    "evidence/review_affine_readout.csv": "63aa5a18ef5007989e78f8cd195da3963daa7b6bd39028f0bfd803299ff0d795",
+    "evidence/review_jacobian_variation.csv": "e0ecb3ed42939c84ba47ffc698c064a0ec289219f518a474205941ce03a3a8bd",
+    "evidence/review_linearization_error.csv": "799b198a38106713c5e16da1d47f868aa10713cf881aca14cef9eef2fc6b8fbc",
+    "evidence/review_qualitative_pca.csv": "3809b6e6e8ad2cb8a6977c06885dc06e33e81d6cbc753d6731b561e640abd879",
+    "evidence/review_subspace_angles.csv": "851ee5b2c8566ac2f7c2a327c8870ae8aa450da81c1c65298f6a89f06bde4b60",
+    ".build/reviewer/AFFINE_COEFFICIENTS.csv": "e48c11fac67ff3bf4e6333b8c2797cda50f632a2c436923254e9f55a4e32cc3a",
+    ".build/reviewer/AFFINE_IMAGE_LOSSES.csv": "bca9bc2dda9787d68ef400960e63dd3e9fcec41a07c90ee80a73b6118df6ccd1"
+  }
+}

@@ -1,15 +1,15 @@
-# TREAD-ONE Studio — separate desktop workstation
+# Tread Station | Phase 3
 
-**29 October 2026. Existing data only.** This is the custom TREAD-ONE model's
-own native Windows window. It has its own model, Qt bindings, cache, sessions
-and evidence captures. The original `prototype/` workstation remains unchanged.
+The native Windows workstation contains **TREAD-ONE** and **Model bench** in
+one window. The original launcher and its model files remain separate.
 
 ## Open the app
 
-Double-click **[Launch TREAD-ONE Studio.cmd](Launch%20TREAD-ONE%20Studio.cmd)**.
+Double-click **[Launch Phase 3 Workstation.cmd](Launch%20Phase%203%20Workstation.cmd)**.
+The previous Studio launcher opens the same window.
 It activates `cv_conda`, opens this application and loads a labelled existing
 training example. The example is demonstration input, not a new blind test.
-No Kaggle notebook, HF secret, download or retraining is needed.
+Normal inspection uses the installed local weights.
 
 For terminal use from the project root:
 
@@ -17,17 +17,71 @@ For terminal use from the project root:
 .\phase3\run_cv.cmd -B phase3\workstation\app.py --example
 ```
 
+Add `--bench` to open the model bench first.
+
 Choose CPU explicitly if needed:
 
 ```powershell
 .\phase3\run_cv.cmd -B phase3\workstation\app.py --device cpu --example
 ```
 
-The first model load may take a few seconds. The device status changes from
-loading to the actual CPU/GPU name. The original workstation can remain open;
-closing this window stops only this app's reader and inference child process.
+The model bench initializes when opened. The device status displays the actual
+CPU or GPU name after load. Closing this window handles its own readers, model
+workers, and pending exports. The first four-model comparison may take longer
+while the installed checkpoints load.
 
-![Actual native-widget preview](../workstation_validation/TREAD_ONE_Studio_Preview.png)
+## Choose a workspace
+
+| Tab | Tools |
+|---|---|
+| **TREAD-ONE** | Selected custom checkpoint, mileage-proxy scores, masks, boundary proposals, signed logit evidence, latent textures, CSV/native captures, calibrated wheel alignment, and boundary/rim comparison |
+| **Model bench** | Original model recipes and four-model comparison, YOLO/SegFormer assistance, learned geometry, edge/shape diagrams, rim and boundary comparison, calibrated alignment, capture cards, playback and frame stepping, PNG and full silent MP4 export |
+
+Use **Send frame to model bench** or **Send frame to TREAD-ONE** to transfer the
+exact displayed analysis snapshot or the current frame before inspection.
+The destination receives the original RGB pixels and known time, clears its
+previous result, and waits for an explicit inspection. It applies its own
+model preprocessing. The source tab keeps its result. Switching tabs pauses
+recorded playback and releases an explicitly opened camera.
+
+The bench keeps the canvas and playback controls visible. Use **Geometry and
+alignment** for edge, shape, rim, and calibrated-target tools. Use **Evidence
+and export** to save records or download the current PNG and full MP4. The right
+pane separates model settings, observations, and saved records.
+
+Model bench uses the original model registry and cached dependencies from this
+checkout. Its local settings, calibration files, HTML cards and comparison
+exports are stored in `data/model_bench/`. Its **Download** buttons retain
+the original Downloads destination for operator-requested PNGs and MP4s.
+The calibrated tool still requires the matching camera profile, verified target
+setup and both targets. [Calibration guide](../../prototype/CALIBRATED_ALIGNMENT.md).
+
+### Local setup and verification
+
+On a machine where the original workstation is already prepared, the Phase 3
+bench shares its installed dependency and checkpoint files. The private Phase 3
+vendor additionally pins a Hub client compatible with the original
+Transformers 4.51.3 runtime. Restore that one compatibility package if needed:
+
+```powershell
+.\phase3\run_cv.cmd -m pip install --no-deps --only-binary=:all: --require-hashes --target phase3/workstation/.vendor -r phase3/workstation/requirements-bench.txt
+.\phase3\run_cv.cmd -B phase3\workstation\check_workspace.py
+```
+
+The setup command installs into the app's private dependency folder.
+The check uses an existing study image and a short local video fixture and
+keeps its captures under `workstation_validation/unified_*/`.
+[Pinned Hub release](https://pypi.org/project/huggingface-hub/0.36.0/).
+
+The local integration check passed TREAD-ONE inference and CSV restore,
+four-model comparison with learned geometry, exact photo and video frame
+handoffs, HTML evidence restore, the alignment and boundary dialogs, printable
+target generation, frame stepping, PNG and MP4 export, and owned-worker
+shutdown. The MP4 fixture decoded to four frames at 3 fps. The check also
+verified 47 original source and model files against their recorded hashes.
+Physical camera and calibrated vehicle measurements remain outside this check.
+
+## TREAD-ONE inspection
 
 ## Inspect an existing image
 
@@ -44,6 +98,14 @@ closing this window stops only this app's reader and inference child process.
    signed spatial contributions.
 5. Add an optional note and select **Save capture + CSV** for the full portable
    result. Double-click a saved capture to restore it without inference.
+
+Below the inspection controls, **Wheel alignment…** opens the shared calibration
+and target-measurement dialog directly from TREAD-ONE. Use a matching calibration
+profile and an image showing both targets. It can measure a loaded frame before
+model inference or follow analysed video frames. **Compare boundaries and rim…**
+uses the current TREAD-ONE tyre mask after inspection. The comparison reports
+image-space fits. Calibrated camber and toe-in come from the camera targets.
+Alignment and comparison files use the shared local model-bench evidence folders.
 
 The user has ruled out further tyre-photo collection. Existing examples,
 photos and recorded videos remain usable. The camera button is optional live
@@ -69,7 +131,8 @@ timestamps are frame index divided by reported FPS, explicitly labelled as such.
 |---|---|
 | `data/sessions/<session>/` | Automatic prediction, class, point, region, latent-mass and event CSVs; session identity JSON |
 | `data/captures/<capture>/` | Explicit full capture: **10 direct CSV tables / 245,784 rows**, ten native NPY arrays, five PNGs, schema/metadata/hash manifest |
-| `.cache/` | This app's inference-worker/UI error logs |
+| `data/model_bench/` | Model bench captures, calibration profiles, targets, comparison records and private export jobs |
+| `.cache/` | This app's inference-worker/UI error logs and shared runtime caches |
 | `models/` | Private pinned checkpoint, exact model implementation and model record |
 | `.vendor/` | Private copy of the already installed Qt bindings; no environment upgrade |
 
@@ -114,4 +177,4 @@ physical wear/depth, safety or camber/toe.
 | No accuracy/Dice/error for a photo | Expected: workstation inference does not use reference masks/points; those CSV fields stay blank |
 
 [Technical architecture](ARCHITECTURE.md) · [Evidence definitions](EVIDENCE_SCHEMA.md) ·
-[Project integration and validation](../phase3TreadOneWorkstation.md).
+[Original TREAD-ONE delivery](../phase3TreadOneWorkstation.md).
